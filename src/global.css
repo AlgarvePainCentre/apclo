@@ -87,7 +87,7 @@ code {
   left: 0;
   width: 100%;
   padding: 16px 32px;
-  z-index: 20;
+  z-index: 22;
   background: transparent;
   backdrop-filter: none;
   border-bottom: 1px solid transparent;
@@ -100,7 +100,6 @@ code {
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(148, 163, 184, 0.18);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
-  padding: 12px 24px;
 }
 
 .navbar-inner {
