@@ -40,15 +40,13 @@ describe('Navbar dropdowns', () => {
     expect(trigger).toHaveAttribute('aria-expanded', 'false');
   });
 
-  it('filters items and shows "No results" when none match', async () => {
+  it('renders the Specialities menu items without a search bar', async () => {
     setup();
     const trigger = screen.getByRole('button', { name: /specialities/i });
     await userEvent.click(trigger);
-    const input = screen.getByRole('searchbox', { name: /search specialities/i });
-    await userEvent.clear(input);
-    await userEvent.type(input, 'zzz');
-    const empty = await screen.findByText(/no results/i);
-    expect(empty).toBeVisible();
+    const menu = screen.getByRole('menu', { name: /specialities/i });
+    const items = await within(menu).findAllByRole('menuitem');
+    expect(items.length).toBeGreaterThan(5);
   });
 });
 

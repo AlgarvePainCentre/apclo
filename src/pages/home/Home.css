@@ -4,12 +4,13 @@
 
 .hero {
   position: relative;
-  min-height: 100vh;
+  min-height: 110vh;
   background-color: #000000;
   overflow: hidden;
   display: flex;
   align-items: center;
   padding: 96px 48px 80px;
+  top: -96px;
 }
 
 .hero::before {
@@ -46,15 +47,18 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: stretch;
+  height: 100%;
+  min-height: 80vh;
 }
 
 .hero-left {
-  max-width: 480px;
+  max-width: fit-content;
+  align-self: flex-start;
 }
 
 .hero-title {
-  font-size: 56px;
+  font-size: 5rem;
   line-height: 1.1;
   margin: 0 0 24px;
   color: var(--color-white);
@@ -62,9 +66,9 @@
 
 .hero-subtitle {
   margin: 0;
-  max-width: 360px;
+  max-width: 480px;
   color: rgba(255, 255, 255, 0.85);
-  font-size: 16px;
+  font-size: 1.2rem;
   line-height: 1.6;
 }
 
@@ -73,32 +77,94 @@
   flex-direction: column;
   align-items: flex-end;
   gap: 16px;
+  align-self: flex-end;
 }
 
 .hero-small-text {
   margin: 0;
-  font-size: 14px;
+  font-size: 1.2rem;
   color: rgba(255, 255, 255, 0.85);
 }
 
 .hero-cta {
   padding: 14px 28px;
   border-radius: 999px;
-  border: none;
-  background: var(--color-darkRed);
-  color: var(--color-white);
-  font-size: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  background-image: linear-gradient(
+    135deg,
+    var(--warm-cream) 0%,
+    var(--warm-orange) 45%,
+    var(--warm-coral) 100%
+  );
+  color: #000;
+  font-size: 16px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.55);
+  background-size: 220% 220%;
+  background-position: 0% 50%;
+  transform: scale(1);
+  transition:
+    background-position 0.35s ease-out,
+    box-shadow 0.28s ease-out,
+    transform 0.28s ease-out;
 }
 
 .hero-cta:hover {
-  background: var(--color-midRed);
+  background-image: linear-gradient(
+    135deg,
+    var(--warm-orange) 0%,
+    var(--warm-coral) 55%,
+    var(--warm-rose) 100%
+  );
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  background-position: 100% 50%;
+  transform: scale(1.04);
+  color: #ffffff;
 }
 
+.hero-cta:active {
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
+  background-position: 50% 50%;
+  transform: scale(0.98);
+}
+
+.hero-cta:focus-visible {
+  outline: 3px solid var(--color-darkRed);
+  outline-offset: 4px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    top: 0;
+    min-height: 100vh;
+    padding: 80px 16px 56px;
+  }
+  .hero-content {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    min-height: auto;
+    gap: 20px;
+  }
+  .hero-right {
+    align-self: auto;
+    align-items: flex-start;
+  }
+  .hero-title {
+    font-size: 40px;
+  }
+  .hero-subtitle {
+    max-width: 100%;
+  }
+}
 
 
 
@@ -109,9 +175,7 @@
 
 .home-section-testimonial {
   padding: 80px 48px;
-  background:
-    radial-gradient(circle at top right, rgba(248, 113, 113, 0.18), transparent 55%),
-    linear-gradient(135deg, #fffaf2, #fef3c7 45%, #fecaca 90%);
+  background: transparent;
 }
 
 .home-section-testimonial-inner {
@@ -243,7 +307,7 @@
 
 .home-main {
   padding: 80px 48px;
-  background-color: #ffffff;
+  background-color: transparent;
   color: #111827;
 }
 
@@ -313,7 +377,7 @@
 
 .home-section-mainpain-cards {
   padding: 80px 0;
-  background-color: #f7f9fb;
+  background-color: transparent;
   min-height: 100vh;
 }
 
@@ -352,7 +416,7 @@
 
 .home-section-mainpain-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
 }
 
@@ -363,6 +427,12 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.mainpain-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 52px rgba(15, 23, 42, 0.14);
 }
 
 .mainpain-card-image {
@@ -422,6 +492,12 @@
   font-weight: 500;
   color: #6b7280;
   text-decoration: none;
+  outline: none;
+}
+
+.mainpain-card-cta:focus-visible {
+  outline: 3px solid var(--color-darkRed);
+  outline-offset: 3px;
 }
 
 .mainpain-card-cta:hover {
@@ -440,7 +516,7 @@
 
 .home-section-treatment-cards {
   padding: 80px 0;
-  background-color: #f7f9fb;
+  background-color: transparent;
   min-height: 100vh;
 }
 
@@ -470,7 +546,7 @@
 
 .home-section-treatment-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
 }
 
@@ -481,6 +557,12 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.treatment-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 52px rgba(15, 23, 42, 0.14);
 }
 
 .treatment-card-illustration {
@@ -557,10 +639,27 @@
   font-weight: 500;
   color: #6b7280;
   text-decoration: none;
+  outline: none;
+}
+
+.treatment-card-cta:focus-visible {
+  outline: 3px solid var(--color-darkRed);
+  outline-offset: 3px;
 }
 
 .treatment-card-cta:hover {
   color: #111827;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mainpain-card,
+  .treatment-card {
+    transition: none;
+  }
+  .mainpain-card:hover,
+  .treatment-card:hover {
+    transform: none;
+  }
 }
 
 .treatment-card-cta-icon {

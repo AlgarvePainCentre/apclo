@@ -273,13 +273,10 @@ export default function Navbar() {
   const [treatmentsOpen, setTreatmentsOpen] = useState(false);
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const specialitiesRef = useRef(null);
   const treatmentsRef = useRef(null);
   const resourcesRef = useRef(null);
-  const [specialitiesQuery, setSpecialitiesQuery] = useState('');
-  const [treatmentsQuery, setTreatmentsQuery] = useState('');
-  const [debouncedSpec, setDebouncedSpec] = useState('');
-  const [debouncedTreat, setDebouncedTreat] = useState('');
 
   const isSpecialitiesActive = location.pathname.startsWith('/specialities');
   const isTreatmentsActive = location.pathname.startsWith('/treatments');
@@ -326,15 +323,15 @@ export default function Navbar() {
     };
   }, [specialitiesOpen, treatmentsOpen, resourcesOpen]);
 
+  // Removed dropdown search bar and filtering
   useEffect(() => {
-    const t = setTimeout(() => setDebouncedSpec(specialitiesQuery.trim()), 200);
-    return () => clearTimeout(t);
-  }, [specialitiesQuery]);
-
-  useEffect(() => {
-    const t = setTimeout(() => setDebouncedTreat(treatmentsQuery.trim()), 200);
-    return () => clearTimeout(t);
-  }, [treatmentsQuery]);
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   useEffect(() => {
     if (!mobileOpen) return;
@@ -383,13 +380,14 @@ export default function Navbar() {
   }
 
   return (
-    <header className="navbar">
+    <header className={scrolled ? 'navbar navbar-scrolled' : 'navbar'}>
       <div className="navbar-inner">
         <div className="navbar-left">
           <Link to="/" className="navbar-brand">
             <img
               className="navbar-logo"
-              src="/assets/apc-preto.svg"
+              src="/assets/apc-branco.svg"
+              decoding="async"
               alt="Algarve Pain Centre logo"
             />
           </Link>
@@ -470,76 +468,59 @@ export default function Navbar() {
               aria-labelledby="specialities-trigger"
               onKeyDown={(e) => handleMenuKeyDown(e, specialitiesRef, () => setSpecialitiesOpen(false))}
             >
-              {specialitiesCategories.flatMap(c => c.items).length > 10 && (
-                <div className="navbar-dropdown-search">
-                  <input
-                    className="navbar-dropdown-input"
-                    type="search"
-                    placeholder="Search Specialities"
-                    aria-label="Search Specialities"
-                    value={specialitiesQuery}
-                    onChange={(e) => setSpecialitiesQuery(e.target.value)}
-                  />
-                </div>
-              )}
               <div className="navbar-dropdown-inner">
-                {specialitiesCategories.map((category) => {
-                  const items = debouncedSpec
-                    ? category.items.filter((i) =>
-                        i.label
-                          .toLowerCase()
-                          .includes(debouncedSpec.toLowerCase())
-                      )
-                    : category.items;
-                  return (
-                    <div
-                      key={category.title}
-                      className="navbar-dropdown-column"
-                    >
-                      <h3 className="navbar-dropdown-title">
-                        {category.title}
-                      </h3>
-                      <ul className="navbar-dropdown-list">
-                        {items.map((item) => (
-                          <li key={item.label} className="navbar-dropdown-item">
-                            <Link
-                              to={item.path}
-                              className="navbar-dropdown-link"
-                              role="menuitem"
-                              onClick={() => {
-                                setSpecialitiesOpen(false);
-                                setMobileOpen(false);
-                              }}
-                            >
-                              {item.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  );
-                })}
-                {debouncedSpec &&
-                  specialitiesCategories.every((c) =>
-                    c.items.every(
-                      (i) =>
-                        !i.label
-                          .toLowerCase()
-                          .includes(debouncedSpec.toLowerCase())
-                    )
-                  ) && (
-                  <div className="navbar-dropdown-empty">No results</div>
-                )}
+                {specialitiesCategories.map((category) => (
+                  <div
+                    key={category.title}
+                    className="navbar-dropdown-column"
+                  >
+                    <h3 className="navbar-dropdown-title">
+                      {category.title}
+                    </h3>
+                    <ul className="navbar-dropdown-list">
+                      {category.items.map((item) => (
+                        <li key={item.label} className="navbar-dropdown-item">
+                          <Link
+                            to={item.path}
+                            className="navbar-dropdown-link"
+                            role="menuitem"
+                            onClick={() => {
+                              setSpecialitiesOpen(false);
+                              setMobileOpen(false);
+                            }}
+                          >
+                            {item.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
-              <div className="navbar-dropdown-footer">
-                <Link
-                  to="/specialities"
-                  className="navbar-dropdown-footer-link"
-                  onClick={() => setSpecialitiesOpen(false)}
-                >
-                  View all Specialities
-                </Link>
-              </div>
+            <div className="navbar-dropdown-cta-row">
+              <Link
+                to="/specialities"
+                className="navbar-cta-card"
+                onClick={() => {
+                  setSpecialitiesOpen(false);
+                  setMobileOpen(false);
+                }}
+              >
+                All Specialities
+                <span aria-hidden="true">→</span>
+              </Link>
+              <Link
+                to="/contact"
+                className="navbar-cta-card navbar-cta-card-secondary"
+                onClick={() => {
+                  setSpecialitiesOpen(false);
+                  setMobileOpen(false);
+                }}
+              >
+                Book an appointment
+                <span aria-hidden="true">→</span>
+              </Link>
+            </div>
             </div>
           </div>
           <div className="navbar-dropdown-wrapper" ref={treatmentsRef}>
@@ -591,74 +572,57 @@ export default function Navbar() {
               aria-labelledby="treatments-trigger"
               onKeyDown={(e) => handleMenuKeyDown(e, treatmentsRef, () => setTreatmentsOpen(false))}
             >
-              {treatmentsCategories.flatMap(c => c.items).length > 10 && (
-                <div className="navbar-dropdown-search">
-                  <input
-                    className="navbar-dropdown-input"
-                    type="search"
-                    placeholder="Search Treatments"
-                    aria-label="Search Treatments"
-                    value={treatmentsQuery}
-                    onChange={(e) => setTreatmentsQuery(e.target.value)}
-                  />
-                </div>
-              )}
               <div className="navbar-dropdown-inner">
-                {treatmentsCategories.map((category) => {
-                  const items = debouncedTreat
-                    ? category.items.filter((i) =>
-                        i.label
-                          .toLowerCase()
-                          .includes(debouncedTreat.toLowerCase())
-                      )
-                    : category.items;
-                  return (
-                    <div
-                      key={category.title}
-                      className="navbar-dropdown-column"
-                    >
-                      <h3 className="navbar-dropdown-title">
-                        {category.title}
-                      </h3>
-                      <ul className="navbar-dropdown-list">
-                        {items.map((item) => (
-                          <li key={item.path} className="navbar-dropdown-item">
-                            <Link
-                              to={item.path}
-                              className="navbar-dropdown-link"
-                              role="menuitem"
-                              onClick={() => {
-                                setTreatmentsOpen(false);
-                                setMobileOpen(false);
-                              }}
-                            >
-                              {item.label}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  );
-                })}
-                {debouncedTreat &&
-                  treatmentsCategories.every((c) =>
-                    c.items.every(
-                      (i) =>
-                        !i.label
-                          .toLowerCase()
-                          .includes(debouncedTreat.toLowerCase())
-                    )
-                  ) && (
-                  <div className="navbar-dropdown-empty">No results</div>
-                )}
+                {treatmentsCategories.map((category) => (
+                  <div
+                    key={category.title}
+                    className="navbar-dropdown-column"
+                  >
+                    <h3 className="navbar-dropdown-title">
+                      {category.title}
+                    </h3>
+                    <ul className="navbar-dropdown-list">
+                      {category.items.map((item) => (
+                        <li key={item.path} className="navbar-dropdown-item">
+                          <Link
+                            to={item.path}
+                            className="navbar-dropdown-link"
+                            role="menuitem"
+                            onClick={() => {
+                              setTreatmentsOpen(false);
+                              setMobileOpen(false);
+                            }}
+                          >
+                            {item.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
-              <div className="navbar-dropdown-footer">
+              <div className="navbar-dropdown-cta-row">
                 <Link
                   to="/treatments"
-                  className="navbar-dropdown-footer-link"
-                  onClick={() => setTreatmentsOpen(false)}
+                  className="navbar-cta-card"
+                  onClick={() => {
+                    setTreatmentsOpen(false);
+                    setMobileOpen(false);
+                  }}
                 >
-                  View all Treatments
+                  Explore Treatments
+                  <span aria-hidden="true">→</span>
+                </Link>
+                <Link
+                  to="/contact"
+                  className="navbar-cta-card navbar-cta-card-secondary"
+                  onClick={() => {
+                    setTreatmentsOpen(false);
+                    setMobileOpen(false);
+                  }}
+                >
+                  Book a consultation
+                  <span aria-hidden="true">→</span>
                 </Link>
               </div>
             </div>
@@ -741,13 +705,28 @@ export default function Navbar() {
                   </div>
                 ))}
               </div>
-              <div className="navbar-dropdown-footer">
+              <div className="navbar-dropdown-cta-row">
                 <Link
                   to="/resources"
-                  className="navbar-dropdown-footer-link"
-                  onClick={() => setResourcesOpen(false)}
+                  className="navbar-cta-card"
+                  onClick={() => {
+                    setResourcesOpen(false);
+                    setMobileOpen(false);
+                  }}
                 >
-                  View all Resources
+                  View all resources
+                  <span aria-hidden="true">→</span>
+                </Link>
+                <Link
+                  to="/resources/learn/blog"
+                  className="navbar-cta-card navbar-cta-card-secondary"
+                  onClick={() => {
+                    setResourcesOpen(false);
+                    setMobileOpen(false);
+                  }}
+                >
+                  Visit the blog
+                  <span aria-hidden="true">→</span>
                 </Link>
               </div>
             </div>
@@ -766,13 +745,6 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Link
-            to="/contact"
-            className="navbar-cta navbar-cta-mobile"
-            onClick={() => setMobileOpen(false)}
-          >
-            Contact Us
-          </Link>
           </nav>
           <div
             className={

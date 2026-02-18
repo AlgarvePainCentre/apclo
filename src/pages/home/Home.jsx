@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -10,6 +11,46 @@ export default function Home() {
   const testimonialSectionRef = useRef(null);
   const testimonialVideoRef = useRef(null);
   const testimonialCopyRef = useRef(null);
+  const navigate = useNavigate();
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+      const vids = [
+        heroVideoRef.current,
+        testimonialVideoRef.current,
+        ...Array.from(document.querySelectorAll('.mainpain-card-video')),
+        ...Array.from(document.querySelectorAll('.treatment-card-video')),
+      ].filter(Boolean);
+      vids.forEach((v) => {
+        try {
+          v.pause();
+        } catch {}
+      });
+      return undefined;
+    }
+    const videos = [
+      heroVideoRef.current,
+      testimonialVideoRef.current,
+      ...Array.from(document.querySelectorAll('.mainpain-card-video')),
+      ...Array.from(document.querySelectorAll('.treatment-card-video')),
+    ].filter(Boolean);
+    const onIntersect = (entries) => {
+      entries.forEach((entry) => {
+        const el = entry.target;
+        if (!(el instanceof HTMLVideoElement)) return;
+        if (entry.isIntersecting) {
+          el.play().catch(() => {});
+        } else {
+          try {
+            el.pause();
+          } catch {}
+        }
+      });
+    };
+    const io = new IntersectionObserver(onIntersect, { threshold: 0.25 });
+    videos.forEach((v) => io.observe(v));
+    return () => io.disconnect();
+  }, []);
   const handleVideoEnter = (e) => {
     const video = e.currentTarget.querySelector('video');
     if (video) {
@@ -23,9 +64,7 @@ export default function Home() {
   useEffect(() => {
     const heroEl = heroRef.current;
     const heroVideoEl = heroVideoRef.current;
-    const testimonialEl = testimonialSectionRef.current;
-    const navbarEl = document.querySelector('.navbar');
-    if (!heroEl || !heroVideoEl || !testimonialEl || !navbarEl) {
+    if (!heroEl || !heroVideoEl) {
       return undefined;
     }
 
@@ -35,7 +74,6 @@ export default function Home() {
       return undefined;
     }
 
-    let latestScrollY = window.scrollY;
     let ticking = false;
 
     const updateParallax = () => {
@@ -46,18 +84,10 @@ export default function Home() {
       const heroOffset = heroProgress * -110;
       heroVideoEl.style.transform = `translate3d(0, ${heroOffset}px, 0)`;
 
-      const testimonialRect = testimonialEl.getBoundingClientRect();
-      const start = viewportHeight * 0.9;
-      const end = viewportHeight * 0.2;
-      const raw = 1 - (testimonialRect.top - end) / (start - end || 1);
-      const progress = Math.min(Math.max(raw, 0), 1);
-      navbarEl.style.setProperty('--navbar-gradient-opacity', String(progress));
-
       ticking = false;
     };
 
     const onScroll = () => {
-      latestScrollY = window.scrollY;
       if (!ticking) {
         window.requestAnimationFrame(updateParallax);
         ticking = true;
@@ -70,7 +100,6 @@ export default function Home() {
     return () => {
       window.removeEventListener('scroll', onScroll);
       heroVideoEl.style.transform = '';
-      navbarEl.style.removeProperty('--navbar-gradient-opacity');
     };
   }, []);
 
@@ -85,6 +114,7 @@ export default function Home() {
             muted
             loop
             playsInline
+            preload="metadata"
             src="/assets/videos/Appointment-Video.mp4"
           />
         </div>
@@ -98,7 +128,14 @@ export default function Home() {
           </div>
           <div className="hero-right">
             <p className="hero-small-text">We care about your pain.</p>
-            <button className="hero-cta">Book an appointment</button>
+            <button
+              type="button"
+              className="hero-cta"
+              aria-label="Book an appointment"
+              onClick={() => navigate('/contact')}
+            >
+              Book an appointment
+            </button>
           </div>
         </div>
       </section>
@@ -144,6 +181,7 @@ export default function Home() {
                 muted
                 loop
                 playsInline
+                preload="metadata"
                 src="/assets/videos/test.mp4"
               />
               <div className="home-section-testimonial-video-overlay">
@@ -212,6 +250,7 @@ export default function Home() {
                     muted
                     loop
                     playsInline
+                    preload="metadata"
                     src="/assets/videos/test.mp4"
                   />
                 </div>
@@ -238,6 +277,7 @@ export default function Home() {
                     muted
                     loop
                     playsInline
+                    preload="metadata"
                     src="/assets/videos/test.mp4"
                   />
                 </div>
@@ -264,6 +304,7 @@ export default function Home() {
                     muted
                     loop
                     playsInline
+                    preload="metadata"
                     src="/assets/videos/test.mp4"
                   />
                 </div>
@@ -302,6 +343,7 @@ export default function Home() {
                     muted
                     loop
                     playsInline
+                    preload="metadata"
                     src="/assets/videos/test.mp4"
                   />
                 </div>
@@ -329,6 +371,7 @@ export default function Home() {
                     muted
                     loop
                     playsInline
+                    preload="metadata"
                     src="/assets/videos/test.mp4"
                   />
                 </div>
@@ -356,6 +399,7 @@ export default function Home() {
                     muted
                     loop
                     playsInline
+                    preload="metadata"
                     src="/assets/videos/test.mp4"
                   />
                 </div>
