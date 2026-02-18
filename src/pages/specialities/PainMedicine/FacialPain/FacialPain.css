@@ -1,0 +1,14 @@
+.facial-pain-page {
+  padding: 80px 24px;
+}
+
+.facial-pain-page h1 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.facial-pain-page p {
+  max-width: 640px;
+  line-height: 1.6;
+}
+

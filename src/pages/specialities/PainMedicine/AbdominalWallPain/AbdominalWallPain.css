@@ -1,0 +1,14 @@
+.abdominal-wall-pain-page {
+  padding: 80px 24px;
+}
+
+.abdominal-wall-pain-page h1 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.abdominal-wall-pain-page p {
+  max-width: 640px;
+  line-height: 1.6;
+}
+
