@@ -87,28 +87,28 @@
 }
 
 .hero-cta {
-  padding: 14px 28px;
+  padding: 0 16px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(253, 244, 215, 0.9);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 48px;
+  height: 42px;
   background-image: linear-gradient(
     135deg,
-    var(--warm-cream) 0%,
-    var(--warm-orange) 45%,
-    var(--warm-coral) 100%
+    var(--warm-cream, #ffe7b3) 0%,
+    var(--warm-yellow, #ffd27a) 35%,
+    var(--warm-orange, #ff9a52) 70%,
+    var(--warm-coral, #ff5c6e) 100%
   );
-  color: #000;
+  color: #111827;
   font-size: 16px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   font-weight: 600;
   cursor: pointer;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.55);
-  background-size: 220% 220%;
+  background-size: 200% 200%;
   background-position: 0% 50%;
   transform: scale(1);
   transition:
@@ -120,20 +120,18 @@
 .hero-cta:hover {
   background-image: linear-gradient(
     135deg,
-    var(--warm-orange) 0%,
-    var(--warm-coral) 55%,
-    var(--warm-rose) 100%
+    var(--warm-yellow, #ffd27a) 0%,
+    var(--warm-orange, #ff9a52) 40%,
+    var(--warm-coral, #ff5c6e) 80%,
+    var(--warm-rose, #e83d5b) 100%
   );
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
   background-position: 100% 50%;
   transform: scale(1.04);
-  color: #ffffff;
+  color: #111827;
 }
 
 .hero-cta:active {
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.6);
-  background-position: 50% 50%;
-  transform: scale(0.98);
+  transform: translateY(0);
 }
 
 .hero-cta:focus-visible {
@@ -230,12 +228,16 @@
 }
 
 .home-section-testimonial-pill {
-  padding: 8px 14px;
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
   border-radius: 999px;
-  background-color: #e5edff;
-  font-size: 0.8rem;
+  font-size: 12px;
   font-weight: 500;
-  color: #1d4ed8;
+  color: #1f2937;
+  background-color: #eef2f7;
+  border: 1px solid #e5e7eb;
 }
 
 .home-section-testimonial-media {
@@ -320,15 +322,18 @@
   display: flex;
   gap: 40px;
   align-items: stretch;
-  background-color: #f3f7fb;
-  border-radius: 24px;
+  background: radial-gradient(circle at top left, #e0ecff, #f3f7fb 45%, #fef9c3);
+  border-radius: 28px;
   padding: 32px 40px;
+  box-shadow: 0 22px 52px rgba(15, 23, 42, 0.12);
 }
 
 .home-section-cards-pain-image {
   flex: 0 0 46%;
   border-radius: 20px;
-  background: linear-gradient(135deg, var(--color-midBlue), var(--color-darkBlue));
+  background: radial-gradient(circle at 0 0, rgba(59, 130, 246, 0.22), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(239, 68, 68, 0.16), transparent 50%),
+    linear-gradient(135deg, var(--color-midBlue), var(--color-darkBlue));
 }
 
 .home-section-cards-pain-cards {
@@ -339,12 +344,13 @@
 }
 
 .home-section-cards-pain-card {
-  padding: 8px 0;
+  padding: 10px 0;
 }
 
 .home-section-cards-pain-title {
   margin: 0 0 8px;
-  font-size: 20px;
+  font-size: 22px;
+  line-height: 1.35;
   color: #111827;
 }
 
@@ -355,18 +361,78 @@
   color: #4b5563;
 }
 
+.home-section-cards-pain-eyebrow {
+  margin: 0 0 6px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-blue);
+}
+
 .home-section-cards-pain-link {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
   font-size: 13px;
-  font-weight: 500;
-  color: var(--color-blue);
+  font-weight: 600;
+  color: #111827;
+  background-image: linear-gradient(
+    135deg,
+    var(--warm-cream, #ffe7b3) 0%,
+    var(--warm-yellow, #ffd27a) 35%,
+    var(--warm-orange, #ff9a52) 70%,
+    var(--warm-coral, #ff5c6e) 100%
+  );
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  border: 1px solid rgba(253, 244, 215, 0.9);
   text-decoration: none;
+  outline: none;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.home-section-cards-pain-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+}
+
+.home-section-cards-pain-link-secondary {
+  background-image: linear-gradient(
+    135deg,
+    var(--warm-cream, #ffe7b3) 0%,
+    var(--warm-yellow, #ffd27a) 35%,
+    var(--warm-orange, #ff9a52) 70%,
+    var(--warm-coral, #ff5c6e) 100%
+  );
 }
 
 .home-section-cards-pain-link:hover {
-  text-decoration: underline;
+  transform: translateY(-1px);
+  filter: saturate(1.08);
+  background-image: linear-gradient(
+    135deg,
+    var(--warm-yellow, #ffd27a) 0%,
+    var(--warm-orange, #ff9a52) 40%,
+    var(--warm-coral, #ff5c6e) 80%,
+    var(--warm-rose, #e83d5b) 100%
+  );
+  color: #111827;
+}
+
+.home-section-cards-pain-link:focus-visible {
+  outline: 3px solid var(--color-darkRed);
+  outline-offset: 3px;
 }
 
 .home-section-cards-pain-divider {
@@ -388,21 +454,7 @@
 }
 
 .home-section-mainpain-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.home-section-mainpain-title {
-  margin: 0 0 8px;
-  font-size: 32px;
-  line-height: 1.3;
-  color: #111827;
-}
-
-.home-section-mainpain-subtitle {
-  margin: 0;
-  font-size: 16px;
-  color: var(--color-blue);
+  margin: 0 0 28px;
 }
 
 .home-section-testemunials-grid {
@@ -421,9 +473,8 @@
 }
 
 .mainpain-card {
-  background-color: #ffffff;
+  background-color: transparent;
   border-radius: 20px;
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -432,13 +483,12 @@
 
 .mainpain-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 22px 52px rgba(15, 23, 42, 0.14);
 }
 
 .mainpain-card-image {
   position: relative;
-  aspect-ratio: 9 / 16;
-  min-height: 220px;
+  aspect-ratio: 4 / 5;
+  min-height: 190px;
   overflow: hidden;
   background-size: cover;
   background-position: center;
@@ -483,27 +533,6 @@
   color: #4b5563;
 }
 
-.mainpain-card-cta {
-  margin-top: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 13px;
-  font-weight: 500;
-  color: #6b7280;
-  text-decoration: none;
-  outline: none;
-}
-
-.mainpain-card-cta:focus-visible {
-  outline: 3px solid var(--color-darkRed);
-  outline-offset: 3px;
-}
-
-.mainpain-card-cta:hover {
-  color: #111827;
-}
-
 .mainpain-card-cta-icon {
   display: inline-flex;
   align-items: center;
@@ -527,21 +556,62 @@
 }
 
 .home-section-treatment-header {
-  text-align: center;
-  margin-bottom: 40px;
+  max-width: 720px;
+  margin: 0 0 28px;
+  text-align: left;
+  position: relative;
+  padding-left: 16px;
+}
+
+.home-section-treatment-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  bottom: 2px;
+  width: 4px;
+  border-radius: 6px;
+  background: linear-gradient(
+    180deg,
+    var(--warm-yellow, #fbd38d),
+    var(--warm-orange, #f6ad55) 60%,
+    var(--warm-coral, #f58b8b)
+  );
+  box-shadow: 0 8px 16px rgba(251, 171, 80, 0.25);
 }
 
 .home-section-treatment-title {
-  margin: 0 0 8px;
-  font-size: 32px;
-  line-height: 1.3;
+  margin: 0 0 10px;
+  font-size: 36px;
+  line-height: 1.25;
   color: #111827;
+  letter-spacing: -0.01em;
 }
 
 .home-section-treatment-subtitle {
   margin: 0;
   font-size: 16px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.home-section-treatment-eyebrow {
+  margin: 0 0 6px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
   color: var(--color-blue);
+}
+
+@media (max-width: 768px) {
+  .home-section-treatment-title {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+  .home-section-treatment-header {
+    padding-left: 12px;
+  }
 }
 
 .home-section-treatment-grid {
@@ -551,9 +621,10 @@
 }
 
 .treatment-card {
-  background-color: #ffffff;
+  background-color: transparent;
   border-radius: 20px;
-  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+  border: none;
+  box-shadow: none;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -562,13 +633,13 @@
 
 .treatment-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 22px 52px rgba(15, 23, 42, 0.14);
+  box-shadow: none;
 }
 
 .treatment-card-illustration {
   position: relative;
-  aspect-ratio: 9 / 16;
-  min-height: 220px;
+  aspect-ratio: 4 / 5;
+  min-height: 170px;
   overflow: hidden;
   background-color: #fff5db;
   background-size: cover;
@@ -651,6 +722,81 @@
   color: #111827;
 }
 
+.treatment-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 14px;
+}
+
+.treatment-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1f2937;
+  background-color: #eef2f7;
+  border: 1px solid #e5e7eb;
+}
+
+.mainpain-card-cta,
+.treatment-card-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  color: #111827;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  outline: none;
+}
+
+.mainpain-card-cta,
+.treatment-card-button {
+  background-image: linear-gradient(
+    135deg,
+    var(--warm-cream, #ffe7b3) 0%,
+    var(--warm-yellow, #ffd27a) 35%,
+    var(--warm-orange, #ff9a52) 70%,
+    var(--warm-coral, #ff5c6e) 100%
+  );
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  border: 1px solid rgba(253, 244, 215, 0.9);
+}
+
+.mainpain-card-cta:hover,
+.treatment-card-button:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.08);
+  background-image: linear-gradient(
+    135deg,
+    var(--warm-yellow, #ffd27a) 0%,
+    var(--warm-orange, #ff9a52) 40%,
+    var(--warm-coral, #ff5c6e) 80%,
+    var(--warm-rose, #e83d5b) 100%
+  );
+  background-position: 100% 50%;
+  color: #111827;
+}
+
+.treatment-card-button:active {
+  transform: translateY(0);
+}
+
+.treatment-card-button:focus-visible,
+.home-section-cards-pain-link:focus-visible {
+  outline: 3px solid var(--color-darkRed);
+  outline-offset: 3px;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .mainpain-card,
   .treatment-card {
@@ -712,6 +858,193 @@
   }
 }
 
+.home-section-why-choose-us {
+  padding: 80px 48px 96px;
+}
+
+.home-section-why-choose-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.home-section-why-choose-header {
+  max-width: 640px;
+  margin-bottom: 32px;
+}
+
+.home-section-why-choose-eyebrow {
+  margin: 0 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-blue);
+}
+
+.home-section-why-choose-title {
+  margin: 0 0 16px;
+  font-size: 32px;
+  line-height: 1.3;
+  color: #111827;
+}
+
+.home-section-why-choose-subtitle {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.home-section-why-choose-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+  gap: 32px;
+  align-items: stretch;
+}
+
+.home-section-why-choose-grid {
+  position: relative;
+  display: grid;
+  gap: 20px;
+  overflow: hidden;
+  padding: 8px 12px 32px 0;
+}
+
+.why-choose-card {
+  background-color: #ffffff;
+  border-radius: 18px;
+  padding: 18px 20px 20px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.why-choose-card-title {
+  margin: 0 0 8px;
+  font-size: 17px;
+  color: #111827;
+}
+
+.why-choose-card-body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.home-section-why-choose-track {
+  display: flex;
+  gap: 0;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.45s ease;
+}
+
+.home-section-why-choose-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.home-section-why-choose-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.home-section-why-choose-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  background: rgba(148, 163, 184, 0.35);
+  padding: 0;
+}
+
+.home-section-why-choose-dot-active {
+  background: var(--color-darkRed);
+  border-color: var(--color-darkRed);
+}
+
+.home-section-why-choose-arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.9);
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.home-section-why-choose-arrow:hover {
+  background: #f9fafb;
+}
+
+.home-section-why-choose-arrow:focus-visible,
+.home-section-why-choose-dot:focus-visible {
+  outline: 2px solid var(--color-darkRed);
+  outline-offset: 2px;
+}
+
+.home-section-why-choose-visual {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: radial-gradient(circle at 10% 0%, #1f2937, #020617 55%);
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.55);
+  min-height: 260px;
+}
+
+.home-section-why-choose-visual-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: radial-gradient(circle at top left, rgba(239, 68, 68, 0.2), transparent 55%);
+}
+
+.home-section-why-choose-visual-eyebrow {
+  margin: 0 0 6px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(249, 250, 251, 0.75);
+}
+
+.home-section-why-choose-visual-copy {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(249, 250, 251, 0.9);
+}
+
+@media (max-width: 900px) {
+  .home-section-why-choose-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .home-section-why-choose-visual {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-section-why-choose-us {
+    padding: 56px 16px 72px;
+  }
+}
+
 .home-section {
   max-width: var(--container-width);
   margin: 0 auto 40px;
@@ -723,4 +1056,19 @@
   background-color: #0b0b10;
   color: rgba(255, 255, 255, 0.7);
   font-size: 12px;
+}
+
+/* Info Badge */
+.info {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }

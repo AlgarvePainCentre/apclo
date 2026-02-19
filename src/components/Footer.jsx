@@ -126,21 +126,6 @@ export default function Footer() {
                   </li>
                 </ul>
               </div>
-              <div className="footer-subcolumn">
-                <h3 className="footer-column-title">Get help</h3>
-                <ul className="footer-column-list">
-                  <li className="footer-column-item">
-                    <Link to="/support" className="footer-link" aria-label="Support">
-                      Support
-                    </Link>
-                  </li>
-                  <li className="footer-column-item">
-                    <Link to="/pricing" className="footer-link" aria-label="Pricing">
-                      Pricing
-                    </Link>
-                  </li>
-                </ul>
-              </div>
             </div>
           </section>
           {footerColumns.map((column) => (

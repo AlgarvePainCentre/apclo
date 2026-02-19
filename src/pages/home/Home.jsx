@@ -12,6 +12,24 @@ export default function Home() {
   const testimonialVideoRef = useRef(null);
   const testimonialCopyRef = useRef(null);
   const navigate = useNavigate();
+  const whyChooseItems = [
+    {
+      title: 'Specialised multidisciplinary team',
+      body: 'Pain medicine, spine surgery, sports medicine, stroke care and rehabilitation working together, so your treatment plan is built from multiple expert perspectives, not just one.',
+    },
+    {
+      title: 'Personalised treatment pathways',
+      body: 'We start with the least invasive options and only escalate when it is clinically necessary, combining medication, targeted procedures and rehabilitation tailored to your goals and lifestyle.',
+    },
+    {
+      title: 'Advanced, evidence-based techniques',
+      body: 'Access to modern procedures such as radiofrequency, vertebroplasty, spinal interventions and ultrasound-guided injections, always aligned with international best-practice guidelines.',
+    },
+    {
+      title: 'Continuity and clear communication',
+      body: 'Your care team follows you over time, explains each step in clear language and coordinates with your other doctors, so you never feel alone in your treatment journey.',
+    },
+  ];
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) {
@@ -39,6 +57,10 @@ export default function Home() {
         const el = entry.target;
         if (!(el instanceof HTMLVideoElement)) return;
         if (entry.isIntersecting) {
+          const dataSrc = el.getAttribute('data-src');
+          if (dataSrc && !el.getAttribute('src')) {
+            el.setAttribute('src', dataSrc);
+          }
           el.play().catch(() => {});
         } else {
           try {
@@ -188,6 +210,9 @@ export default function Home() {
                 <button
                   type="button"
                   className="home-section-testimonial-video-cta"
+                  onClick={() =>
+                    navigate('/resources/testimonials/overcoming-sciatica-pain')
+                  }
                 >
                   Watch how APC treats complex pain
                 </button>
@@ -203,31 +228,34 @@ export default function Home() {
             <div className="home-section-cards-pain-image" />
             <div className="home-section-cards-pain-cards">
               <article className="home-section-cards-pain-card">
-                <h3 className="home-section-cards-pain-title">All Pain Areas</h3>
+                <p className="home-section-cards-pain-eyebrow">Personalised pain pathways</p>
+                <h3 className="home-section-cards-pain-title">All pain areas we treat</h3>
                 <p className="home-section-cards-pain-description">
-                  We intervene in the pathology that causes acute pain or chronic pain,
-                  thereby restoring your quality of life.
+                  From spine and joint pain to complex neurological conditions, our multidisciplinary team
+                  understands the root cause of your pain and builds a plan around you.
                 </p>
                 <Link
                   to="/specialities"
                   className="home-section-cards-pain-link"
                 >
-                  Learn More
+                  Explore pain areas
+                  <span className="home-section-cards-pain-link-icon">→</span>
                 </Link>
               </article>
               <div className="home-section-cards-pain-divider" />
               <article className="home-section-cards-pain-card">
-                <h3 className="home-section-cards-pain-title">Our Pain Treatments</h3>
+                <p className="home-section-cards-pain-eyebrow">Evidence-based treatments</p>
+                <h3 className="home-section-cards-pain-title">Advanced pain treatments</h3>
                 <p className="home-section-cards-pain-description">
-                  We have the most outstanding treatments performed in the world's
-                  leading pain center. From peripheral nerve blocks, to cryoablation,
-                  radiofrequency, among others.
+                  Access a full spectrum of options—from non-invasive therapies to image‑guided procedures
+                  and advanced spine interventions—delivered in one coordinated centre.
                 </p>
                 <Link
                   to="/treatments"
-                  className="home-section-cards-pain-link"
+                  className="home-section-cards-pain-link home-section-cards-pain-link-secondary"
                 >
-                  Learn More
+                  See treatment options
+                  <span className="home-section-cards-pain-link-icon">→</span>
                 </Link>
               </article>
             </div>
@@ -235,11 +263,14 @@ export default function Home() {
         </section>
         <section className="home-section-mainpain-cards">
           <div className="home-section-mainpain-inner">
-            <header className="home-section-mainpain-header">
-              <h2 className="home-section-mainpain-title">Our Main Pain Areas</h2>
-              <p className="home-section-mainpain-subtitle">
-                Meet your medical needs and improve your life.
-              </p>
+            <header className="home-section-treatment-header home-section-mainpain-header">
+              <div className="home-section-treatment-header-content">
+                <p className="home-section-treatment-eyebrow">Main pain areas</p>
+                <h2 className="home-section-treatment-title">Our Main Pain Areas</h2>
+                <p className="home-section-treatment-subtitle">
+                  Meet your medical needs and improve your life.
+                </p>
+              </div>
             </header>
             <div className="home-section-mainpain-grid">
               <article className="mainpain-card">
@@ -251,7 +282,7 @@ export default function Home() {
                     loop
                     playsInline
                     preload="metadata"
-                    src="/assets/videos/test.mp4"
+                    data-src="/assets/videos/test.mp4"
                   />
                 </div>
                 <div className="mainpain-card-body">
@@ -278,7 +309,7 @@ export default function Home() {
                     loop
                     playsInline
                     preload="metadata"
-                    src="/assets/videos/test.mp4"
+                    data-src="/assets/videos/test.mp4"
                   />
                 </div>
                 <div className="mainpain-card-body">
@@ -305,7 +336,7 @@ export default function Home() {
                     loop
                     playsInline
                     preload="metadata"
-                    src="/assets/videos/test.mp4"
+                    data-src="/assets/videos/test.mp4"
                   />
                 </div>
                 <div className="mainpain-card-body">
@@ -329,37 +360,47 @@ export default function Home() {
         <section className="home-section-treatment-cards">
           <div className="home-section-treatment-inner">
             <header className="home-section-treatment-header">
-              <h2 className="home-section-treatment-title">Our Treatment Approaches</h2>
-              <p className="home-section-treatment-subtitle">
-                We can help you at every level of your health journey.
-              </p>
+              <div className="home-section-treatment-header-content">
+                <p className="home-section-treatment-eyebrow">Clinically-led care plans</p>
+                <h2 className="home-section-treatment-title">Our Treatment Approaches</h2>
+                <p className="home-section-treatment-subtitle">
+                  Evidence-based pathways from conservative care to advanced procedures—designed to relieve pain,
+                  restore function and help you return to the activities you love.
+                </p>
+              </div>
             </header>
             <div className="home-section-treatment-grid">
               <article className="treatment-card">
                 <div className="treatment-card-illustration treatment-card-illustration-non-invasive">
                   <video
                     className="treatment-card-video"
+                    aria-hidden="true"
                     autoPlay
                     muted
                     loop
                     playsInline
                     preload="metadata"
-                    src="/assets/videos/test.mp4"
+                    data-src="/assets/videos/test.mp4"
                   />
                 </div>
                 <div className="treatment-card-body">
-                  <h3 className="treatment-card-title">Non-Invasive Treatments</h3>
+                  <h3 className="treatment-card-title">Non‑invasive pain treatments</h3>
                   <div className="treatment-card-accent" />
                   <p className="treatment-card-description">
-                    Quick and non-committing steps we can take together to improve
-                    your health.
+                    Manage back, neck and joint pain without surgery through physiotherapy, guided exercise and
+                    personalised rehabilitation programmes that rebuild strength and flexibility.
                   </p>
+                  <div className="treatment-card-tags" aria-label="Key non-invasive modalities">
+                    <span className="treatment-chip">Physiotherapy</span>
+                    <span className="treatment-chip">Rehabilitation</span>
+                    <span className="treatment-chip">Lifestyle coaching</span>
+                  </div>
                   <Link
                     to="/treatments/non-invasive-treatments/physiotherapy"
-                    className="treatment-card-cta"
+                    className="treatment-card-button"
+                    aria-label="Explore non-invasive pain treatment options"
                   >
-                    <span>Learn more</span>
-                    <span className="treatment-card-cta-icon">→</span>
+                    <span>Explore non‑invasive care</span>
                   </Link>
                 </div>
               </article>
@@ -367,27 +408,33 @@ export default function Home() {
                 <div className="treatment-card-illustration treatment-card-illustration-minimally-invasive">
                   <video
                     className="treatment-card-video"
+                    aria-hidden="true"
                     autoPlay
                     muted
                     loop
                     playsInline
                     preload="metadata"
-                    src="/assets/videos/test.mp4"
+                    data-src="/assets/videos/test.mp4"
                   />
                 </div>
                 <div className="treatment-card-body">
-                  <h3 className="treatment-card-title">Minimally Invasive Treatments</h3>
+                  <h3 className="treatment-card-title">Minimally invasive procedures</h3>
                   <div className="treatment-card-accent" />
                   <p className="treatment-card-description">
-                    Procedures with reduced surgical risks that promote quicker
-                    recovery times.
+                    Targeted interventions with smaller incisions and faster recovery—such as ultrasound‑guided injections,
+                    radiofrequency and vertebroplasty—performed by experienced specialists.
                   </p>
+                  <div className="treatment-card-tags" aria-label="Key minimally invasive techniques">
+                    <span className="treatment-chip">Ultrasound‑guided</span>
+                    <span className="treatment-chip">Radiofrequency</span>
+                    <span className="treatment-chip">Vertebroplasty</span>
+                  </div>
                   <Link
                     to="/treatments/minimally-invasive-treatments/vertebroplasty"
-                    className="treatment-card-cta"
+                    className="treatment-card-button"
+                    aria-label="See minimally invasive procedure options"
                   >
-                    <span>Learn more</span>
-                    <span className="treatment-card-cta-icon">→</span>
+                    <span>See minimally invasive options</span>
                   </Link>
                 </div>
               </article>
@@ -395,36 +442,76 @@ export default function Home() {
                 <div className="treatment-card-illustration treatment-card-illustration-surgical">
                   <video
                     className="treatment-card-video"
+                    aria-hidden="true"
                     autoPlay
                     muted
                     loop
                     playsInline
                     preload="metadata"
-                    src="/assets/videos/test.mp4"
+                    data-src="/assets/videos/test.mp4"
                   />
                 </div>
                 <div className="treatment-card-body">
-                  <h3 className="treatment-card-title">Surgical Treatments</h3>
+                  <h3 className="treatment-card-title">Surgical spine treatments</h3>
                   <div className="treatment-card-accent" />
                   <p className="treatment-card-description">
-                    Comprehensive procedures tailored to address complex health
-                    issues with precision.
+                    When surgery is the right choice, our spine surgeons perform precise procedures—including tubular
+                    microsurgery and decompression—focused on lasting relief and functional recovery.
                   </p>
+                  <div className="treatment-card-tags" aria-label="Key surgical approaches">
+                    <span className="treatment-chip">Tubular microsurgery</span>
+                    <span className="treatment-chip">Decompression</span>
+                    <span className="treatment-chip">Spine surgery</span>
+                  </div>
                   <Link
                     to="/treatments/surgical-treatments/tubular-microsurgery"
-                    className="treatment-card-cta"
+                    className="treatment-card-button"
+                    aria-label="Discover surgical spine treatment options"
                   >
-                    <span>Learn more</span>
-                    <span className="treatment-card-cta-icon">→</span>
+                    <span>Discover surgical solutions</span>
                   </Link>
                 </div>
               </article>
             </div>
           </div>
         </section>
+
         <section className="home-section-why-choose-us">
-          <h2>Why Choose Us</h2>
-          <p>Summarize your main strengths or differentiators.</p>
+          <div className="home-section-why-choose-inner">
+            <header className="home-section-why-choose-header">
+              <p className="home-section-why-choose-eyebrow">Why choose Algarve Pain Centre</p>
+              <h2 className="home-section-why-choose-title">
+                The right team by your side at every step
+              </h2>
+              <p className="home-section-why-choose-subtitle">
+                From first assessment to long-term follow-up, you are supported by a coordinated,
+                multidisciplinary team focused on relieving your pain and restoring your quality of life.
+              </p>
+            </header>
+
+            <div className="home-section-why-choose-layout">
+              <div
+                className="home-section-why-choose-grid"
+                aria-label="Reasons patients choose Algarve Pain Centre"
+              >
+                {whyChooseItems.map((item) => (
+                  <article key={item.title} className="why-choose-card">
+                    <h3 className="why-choose-card-title">{item.title}</h3>
+                    <p className="why-choose-card-body">{item.body}</p>
+                  </article>
+                ))}
+              </div>
+              <div className="home-section-why-choose-visual" aria-hidden="true">
+                <div className="home-section-why-choose-visual-overlay">
+                  <p className="home-section-why-choose-visual-eyebrow">Care without shortcuts</p>
+                  <p className="home-section-why-choose-visual-copy">
+                    Every patient story is different. We take the time to understand yours, build a plan around your
+                    daily life and help you move with confidence again.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </main>
       <Footer />

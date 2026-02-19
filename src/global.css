@@ -37,39 +37,32 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #111827;
-  background:
-    radial-gradient(circle at top right, rgba(248, 113, 113, 0.08), transparent 55%),
+  background-color: #f7f9fc;
+  background-image:
+    -webkit-linear-gradient(
+      135deg,
+      #e6f3ff 0%,
+      #f0e6ff 35%,
+      #ffe6f0 70%,
+      #e6fff0 100%
+    ),
+    -moz-linear-gradient(
+      135deg,
+      #e6f3ff 0%,
+      #f0e6ff 35%,
+      #ffe6f0 70%,
+      #e6fff0 100%
+    ),
     linear-gradient(
       135deg,
-      #fffefb 0%,
-      #fff7e6 30%,
-      #ffefd6 55%,
-      #ffe5dd 75%,
-      #ffddea 100%
+      #e6f3ff 0%,
+      #f0e6ff 35%,
+      #ffe6f0 70%,
+      #e6fff0 100%
     );
   background-attachment: fixed;
-  background-size: 180% 180%;
-  background-position: 10% 0%, 40% 50%;
-  animation: bodyGradientShift 22s ease-in-out infinite alternate;
-}
-
-@keyframes bodyGradientShift {
-  0% {
-    background-position: 10% 0%, 40% 50%;
-  }
-  35% {
-    background-position: 30% 10%, 55% 40%;
-  }
-  100% {
-    background-position: 55% 20%, 70% 35%;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body {
-    animation: none;
-    background-attachment: scroll;
-  }
+  background-size: 200% 200%;
+  background-position: 50% 0%;
 }
 
 code {
@@ -197,29 +190,28 @@ code {
 }
 
 .navbar-cta {
-  padding: 10px 20px;
+  padding: 0 16px;
   border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(253, 244, 215, 0.9);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  min-height: 42px;
+  height: 42px;
   background-image: linear-gradient(
     135deg,
-    var(--warm-cream) 0%,
-    var(--warm-yellow) 30%,
-    var(--warm-orange) 65%,
-    var(--warm-coral) 100%
+    var(--warm-cream, #ffe7b3) 0%,
+    var(--warm-yellow, #ffd27a) 35%,
+    var(--warm-orange, #ff9a52) 70%,
+    var(--warm-coral, #ff5c6e) 100%
   );
-  color: #000;
+  color: #111827;
   font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   text-decoration: none;
   font-weight: 600;
-  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.55);
-  background-size: 220% 220%;
+  background-size: 200% 200%;
   background-position: 0% 50%;
   transform: scale(1);
   transition:
@@ -232,21 +224,18 @@ code {
 .navbar-cta:hover {
   background-image: linear-gradient(
     135deg,
-    var(--warm-yellow) 0%,
-    var(--warm-orange) 35%,
-    var(--warm-coral) 70%,
-    var(--warm-rose) 100%
+    var(--warm-yellow, #ffd27a) 0%,
+    var(--warm-orange, #ff9a52) 40%,
+    var(--warm-coral, #ff5c6e) 80%,
+    var(--warm-rose, #e83d5b) 100%
   );
-  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
   background-position: 100% 50%;
   transform: scale(1.04);
-  color: #ffffff;
+  color: #111827;
 }
 
 .navbar-cta:active {
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.6);
-  background-position: 50% 50%;
-  transform: scale(0.97);
+  transform: translateY(0);
 }
 
 .navbar-dropdown-wrapper {
@@ -373,20 +362,20 @@ code {
   padding: 18px 20px;
   border-radius: 14px;
   max-width: 380px;
-  color: #000;
+  color: #111827;
   text-decoration: none;
   font-weight: 700;
   letter-spacing: 0.02em;
   background-image: linear-gradient(
     135deg,
-    var(--warm-cream) 0%,
-    var(--warm-yellow) 30%,
-    var(--warm-orange) 65%,
-    var(--warm-coral) 100%
+    var(--warm-cream, #ffe7b3) 0%,
+    var(--warm-yellow, #ffd27a) 35%,
+    var(--warm-orange, #ff9a52) 70%,
+    var(--warm-coral, #ff5c6e) 100%
   );
-  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.5);
-  background-size: 220% 220%;
+  background-size: 200% 200%;
   background-position: 0% 50%;
+  border: 1px solid rgba(253, 244, 215, 0.9);
   transform: scale(1);
   transition:
     background-position 0.35s ease-out,
@@ -397,15 +386,14 @@ code {
 .navbar-cta-card:hover {
   background-image: linear-gradient(
     135deg,
-    var(--warm-yellow) 0%,
-    var(--warm-orange) 35%,
-    var(--warm-coral) 70%,
-    var(--warm-rose) 100%
+    var(--warm-yellow, #ffd27a) 0%,
+    var(--warm-orange, #ff9a52) 40%,
+    var(--warm-coral, #ff5c6e) 80%,
+    var(--warm-rose, #e83d5b) 100%
   );
-  box-shadow: 0 22px 46px rgba(0, 0, 0, 0.65);
   background-position: 100% 50%;
   transform: scale(1.03);
-  color: #ffffff;
+  color: #111827;
 }
 
 .navbar-cta-card-secondary {

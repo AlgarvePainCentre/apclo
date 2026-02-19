@@ -33,7 +33,6 @@ describe('Footer', () => {
       'Treatments',
       'Resource',
       'Company',
-      'Get help',
     ];
 
     titles.forEach((title) => {
@@ -50,11 +49,9 @@ describe('Footer', () => {
     expect(links.length).toBeGreaterThan(0);
   });
 
-  it('links Support and Pricing to their pages', () => {
+  it('does not render Support or Pricing links', () => {
     setup();
-    const supportLinks = screen.getAllByRole('link', { name: /Support/i });
-    expect(supportLinks[0]).toHaveAttribute('href', '/support');
-    const pricingLinks = screen.getAllByRole('link', { name: /Pricing/i });
-    expect(pricingLinks[0]).toHaveAttribute('href', '/pricing');
+    expect(screen.queryByRole('link', { name: /Support/i })).toBeNull();
+    expect(screen.queryByRole('link', { name: /Pricing/i })).toBeNull();
   });
 });

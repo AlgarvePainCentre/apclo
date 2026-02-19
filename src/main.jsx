@@ -14,4 +14,6 @@ root.render(
   </React.StrictMode>
 );
 
-reportWebVitals();
+if (import.meta.env.DEV) {
+  reportWebVitals(console.log);
+}
