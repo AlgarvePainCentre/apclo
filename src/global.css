@@ -753,3 +753,204 @@ footer img[alt="Algarve Pain Centre"] {
     grid-template-columns: minmax(0, 1fr);
   }
 }
+
+
+
+
+
+/* Container - Head Pain */
+
+/* Root section wrapper for all head pain treatment content.
+   - Uses block layout so heading and paragraph stack vertically in normal flow.
+   - Reuses the global page-section width for visual alignment with other sections.
+   - Adds background, border radius and spacing to visually group the content.
+   - Designed to be light-weight so it can be reused for multiple head pain sections.
+   - Uses only broadly supported CSS properties for maximum cross-browser compatibility. */
+.head-pain-treatment {
+  /* Keeps the section participating in standard document flow with vertical stacking. */
+  display: block;
+
+  /* Ensures the section width follows the app content width and never exceeds it. */
+  max-width: var(--container-width);
+
+  /* Centers the section horizontally and adds space below to separate from next content. */
+  margin: 0 auto 40px;
+
+  /* Adds vertical and horizontal breathing room around heading and paragraph text. */
+  padding: 32px 32px 36px;
+
+  /* Applies a subtle light background to distinguish the section from the main page. */
+  background-color: #f9fafb;
+
+  /* Softens corners so the section feels consistent with other rounded cards. */
+  border-radius: 24px;
+
+  /* Adds a thin neutral border for clear separation on light backgrounds. */
+  border: 1px solid #e5e7eb;
+
+  /* Uses the primary text color to keep contrast high and readable. */
+  color: #111827;
+
+  /* Provides a smooth transition when theme or hover states adjust visual properties. */
+  transition: background-color 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+
+  /* Converts the section into a containing block for the absolutely positioned accent. */
+  position: relative;
+}
+
+/* Head pain section heading styles.
+   - Uses a medium-large font size to establish clear hierarchy under the hero.
+   - Left-aligns text to match the treatments overview typography.
+   - Keeps copy to a single readable column width on large screens.
+   - All properties rely on widely supported CSS features. */
+.head-pain-treatment h2 {
+  /* Removes any default margin to reset browser inconsistencies. */
+  margin: 0 0 12px;
+
+  /* Sets a clear heading size large enough to stand out but below hero titles. */
+  font-size: 26px;
+
+  /* Uses comfortable line height for multi-line headings. */
+  line-height: 1.3;
+
+  /* Aligns heading text to the left for a clinical, content-first layout. */
+  text-align: left;
+
+  /* Ensures the heading color matches other major headings in the system. */
+  color: #111827;
+}
+
+/* Head pain section body text styles.
+   - Controls paragraph width for optimal readability on large screens.
+   - Uses body font sizing that aligns with other descriptive copy across the site.
+   - Provides comfortable spacing between paragraphs and surrounding elements. */
+.head-pain-treatment p {
+  /* Removes default top margin and keeps only bottom spacing to separate from next block. */
+  margin: 0 0 16px;
+
+  /* Constrains content width so long paragraphs remain easy to scan. */
+  max-width: 720px;
+
+  /* Sets base font size consistent with other body copy in treatments sections. */
+  font-size: 15px;
+
+  /* Adds generous line height for better legibility of dense medical content. */
+  line-height: 1.8;
+
+  /* Uses a softer gray to reduce eye strain while maintaining sufficient contrast. */
+  color: #4b5563;
+}
+
+/* Emphasizes linked or interactive text within head pain paragraphs.
+   - Reuses the brand accent color for visual consistency.
+   - Keeps underline off by default while preserving clear affordance via color. */
+.head-pain-treatment a {
+  /* Applies the brand teal color to link text for quick visual recognition. */
+  color: #0f766e;
+
+  /* Removes underlines to keep the clinical layout visually clean. */
+  text-decoration: none;
+
+  /* Increases font weight slightly so links are distinguishable from surrounding text. */
+  font-weight: 600;
+}
+
+/* Hover and focus styles for interactive text links inside the head pain section.
+   - Provides clear feedback when users interact via mouse or keyboard.
+   - Uses a darker shade of the brand color for accessible contrast.
+   - All properties are widely supported in modern and older evergreen browsers. */
+.head-pain-treatment a:hover,
+.head-pain-treatment a:focus-visible {
+  /* Darkens link color to indicate hover or focus without breaking brand palette. */
+  color: #0b3c6f;
+
+  /* Restores underline on interaction so links are unmistakably interactive. */
+  text-decoration: underline;
+}
+
+/* Decorative accent for head pain treatment sections.
+   - Adds a vertical gradient bar similar to the treatments overview header accent.
+   - Anchored to the left edge to visually tie the section back to the main content.
+   - Uses standard pseudo-element syntax supported in all modern browsers. */
+.head-pain-treatment::before {
+  /* Creates an empty pseudo-element purely for visual decoration. */
+  content: '';
+
+  /* Positions the accent relative to the head pain section container. */
+  position: absolute;
+
+  /* Anchors the accent to the left padding edge of the section. */
+  left: 0;
+
+  /* Keeps the accent inset from the top edge for a balanced starting point. */
+  top: 32px;
+
+  /* Extends the accent down to roughly match the text block height. */
+  bottom: 32px;
+
+  /* Sets a slim width to act as a subtle visual guide rather than a border. */
+  width: 4px;
+
+  /* Rounds the accent edges so it feels cohesive with other rounded elements. */
+  border-radius: 6px;
+
+  /* Applies a warm vertical gradient reused from other treatment accents. */
+  background: linear-gradient(
+    180deg,
+    var(--warm-yellow, #fbd38d),
+    var(--warm-orange, #f6ad55) 60%,
+    var(--warm-coral, #f58b8b)
+  );
+
+  /* Adds a soft shadow so the accent stands out against light backgrounds. */
+  box-shadow: 0 8px 16px rgba(251, 171, 80, 0.25);
+}
+
+/* Medium breakpoint adjustments for head pain sections.
+   - Reduces padding on tablets and small laptops to keep content comfortably within the viewport.
+   - Ensures border radius and background styling remain intact on all devices. */
+@media (max-width: 1024px) {
+  .head-pain-treatment {
+    /* Tightens horizontal padding so content fits smaller viewports without horizontal scrolling. */
+    padding: 28px 24px 32px;
+
+    /* Slightly reduces bottom margin to balance vertical rhythm on shorter screens. */
+    margin: 0 auto 32px;
+  }
+}
+
+/* Small breakpoint adjustments for mobile devices.
+   - Stacks content with narrower padding for thumb-friendly spacing.
+   - Ensures the accent bar remains visible without crowding text. */
+@media (max-width: 768px) {
+  .head-pain-treatment {
+    /* Uses smaller horizontal padding so text has room within narrow screens. */
+    padding: 24px 16px 28px;
+
+    /* Reduces corner radius slightly so the section still feels grounded on small devices. */
+    border-radius: 20px;
+  }
+
+  .head-pain-treatment::before {
+    /* Adjusts top spacing so the accent begins closer to smaller headings on mobile. */
+    top: 24px;
+
+    /* Adjusts bottom spacing to stay proportional to the reduced section height. */
+    bottom: 24px;
+  }
+}
+
+/* Extra-small breakpoint adjustments.
+   - Ensures the section spans the full width with comfortable content padding.
+   - Keeps all values within safe ranges for very small handheld devices. */
+@media (max-width: 480px) {
+  .head-pain-treatment {
+    /* Allows the section to use the full available width within the page padding. */
+    max-width: 100%;
+
+    /* Further reduces horizontal padding so text does not feel cramped. */
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}
+
