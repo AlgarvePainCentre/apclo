@@ -20,10 +20,275 @@
   margin: 0 auto 40px;
 }
 
+.specialities-teams {
+  border-top: 1px solid #e5e7eb;
+  padding: 56px 0;
+}
+
+.specialities-teams-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: 64px;
+  align-items: flex-start;
+  padding: 32px;
+  border-radius: 24px;
+  background-color: #f9fafb;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+}
+
+.specialities-teams-eyebrow {
+  margin: 0 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-blue);
+}
+
+.specialities-teams-title {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.25;
+  color: #111827;
+}
+
+.specialities-teams-right {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #4b5563;
+}
+
+.specialities-teams-right p {
+  margin: 0 0 14px;
+}
+
+.specialities-teams-right p:last-of-type {
+  margin-bottom: 0;
+}
+
+.specialities-treatments {
+  padding: 16px 0 72px;
+}
+
+.specialities-treatments-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.specialities-treatments-title {
+  margin: 0 0 8px;
+  font-size: 32px;
+  line-height: 1.3;
+  color: #111827;
+}
+
+.specialities-treatments-subtitle {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.specialities-treatments-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.specialities-treatments-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  overflow: hidden;
+  background-color: #ffffff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+}
+
+.specialities-treatments-illustration {
+  position: relative;
+  background-color: #ffeecd;
+  padding: 32px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.specialities-treatments-icon {
+  width: 96px;
+  height: 96px;
+  object-fit: contain;
+}
+
+.specialities-treatments-body {
+  padding: 20px 20px 18px;
+}
+
+.specialities-treatments-card-title {
+  margin: 0 0 8px;
+  font-size: 18px;
+  line-height: 1.35;
+  color: #111827;
+}
+
+.specialities-treatments-card-accent {
+  width: 40px;
+  height: 2px;
+  background-color: #e11d48;
+  margin-bottom: 12px;
+}
+
+.specialities-treatments-card-description {
+  margin: 0 0 18px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.specialities-treatments-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f766e;
+  text-decoration: none;
+}
+
+.specialities-treatments-card-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 1px solid #cbd5f5;
+}
+
+.specialities-grid-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.specialities-grid-title {
+  margin: 0 0 8px;
+  font-size: 32px;
+  line-height: 1.25;
+  color: #111827;
+}
+
+.specialities-grid-subtitle {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.specialities-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px 24px;
+}
+
+.speciality-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 16px;
+  padding: 24px 18px 20px;
+  border-radius: 18px;
+  background-color: #ffffff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  text-decoration: none;
+  color: #111827;
+  transition:
+    transform 160ms ease-out,
+    box-shadow 160ms ease-out,
+    background-color 160ms ease-out;
+}
+
+.speciality-card:hover {
+  transform: translate3d(0, -3px, 0);
+  box-shadow: 0 22px 52px rgba(15, 23, 42, 0.08);
+}
+
+.speciality-card-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: 20px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-color: transparent;
+}
+
+.speciality-card-label {
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  color: #111827;
+}
+
 .page-footer {
   padding: 24px 48px;
   text-align: center;
   background-color: #0b0b10;
   color: rgba(255, 255, 255, 0.7);
   font-size: 12px;
+}
+
+@media (max-width: 1024px) {
+  .page-main {
+    padding: 0 32px 64px;
+  }
+
+  .specialities-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .specialities-teams-inner {
+    gap: 40px;
+    padding: 28px 24px;
+  }
+
+   .specialities-treatments-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .page-main {
+    padding: 0 16px 56px;
+  }
+
+  .page-section {
+    margin: 0 auto 32px;
+  }
+
+  .specialities-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .specialities-grid-title {
+    font-size: 26px;
+  }
+
+  .specialities-teams-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    padding: 24px 20px;
+  }
+
+  .specialities-teams-title {
+    font-size: 26px;
+  }
+
+  .specialities-treatments-title {
+    font-size: 26px;
+  }
+
+  .specialities-treatments-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

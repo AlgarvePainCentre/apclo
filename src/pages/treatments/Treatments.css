@@ -20,10 +20,577 @@
   margin: 0 auto 40px;
 }
 
+.treatments-overview {
+  margin-top: 56px;
+  min-height: auto;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.treatments-overview-header {
+  max-width: 720px;
+  margin: 0 0 28px;
+  text-align: left;
+  position: relative;
+  padding-left: 16px;
+}
+
+.treatments-overview-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  bottom: 2px;
+  width: 4px;
+  border-radius: 6px;
+  background: linear-gradient(
+    180deg,
+    var(--warm-yellow, #fbd38d),
+    var(--warm-orange, #f6ad55) 60%,
+    var(--warm-coral, #f58b8b)
+  );
+  box-shadow: 0 8px 16px rgba(251, 171, 80, 0.25);
+}
+
+.treatments-overview-title {
+  margin: 0 0 16px;
+  font-size: 36px;
+  line-height: 1.3;
+  color: #111827;
+}
+
+.treatments-overview-subtitle {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #4b5563;
+  max-width: 760px;
+}
+
+.treatments-overview-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 40px;
+  align-items: stretch;
+  min-height: auto;
+}
+
+.treatments-overview-card {
+  background-color: transparent;
+  border-radius: 24px;
+  padding: 32px 32px 28px;
+  border: none;
+  box-shadow: none;
+  min-height: 380px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.treatments-overview-card-title {
+  margin: 0 0 12px;
+  font-size: 26px;
+  line-height: 1.3;
+  color: #0b3c6f;
+}
+
+.treatments-overview-card-accent {
+  width: 56px;
+  height: 2px;
+  background: linear-gradient(90deg, #f97316, #fb7185);
+  margin-bottom: 16px;
+}
+
+.treatments-overview-card-body {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #4b5563;
+}
+
+.treatments-overview-card-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f766e;
+  text-decoration: none;
+}
+
+.treatments-overview-card-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  border: 1px solid #cbd5f5;
+}
+
+.treatments-overview-media {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.22);
+}
+
+.treatments-overview-media-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  background-image: url('/assets/images/Icons-Specialities/Asset-S15.png');
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.treatments-overview-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.02);
+  pointer-events: none;
+}
+.treatments-highlighted {
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+.treatments-highlighted-header {
+  text-align: left;
+  margin-bottom: 32px;
+}
+
+.treatments-highlighted-title {
+  margin: 0 0 10px;
+  font-size: 36px;
+  line-height: 1.25;
+  color: #111827;
+  letter-spacing: -0.01em;
+}
+
+.treatments-highlighted-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.treatments-highlighted-mi {
+  padding-top: 56px;
+}
+
+.treatments-highlighted-ni {
+  padding-top: 56px;
+}
+
+.treatment-highlight-card {
+  border-radius: 24px;
+  background-color: #ffffff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.treatment-highlight-illustration {
+  background-color: #ffeecd;
+  padding: 32px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.treatment-highlight-icon {
+  width: 112px;
+  height: 112px;
+  object-fit: contain;
+}
+
+.treatment-highlight-body {
+  padding: 22px 20px 18px;
+  text-align: center;
+}
+
+.treatment-highlight-title {
+  margin: 0 0 16px;
+  font-size: 18px;
+  line-height: 1.35;
+  color: #0b3c6f;
+}
+
+.treatment-highlight-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+  text-decoration: none;
+}
+
+.treatment-highlight-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+}
+
+.treatments-feature {
+  padding: 16px 0 56px;
+}
+
+.treatments-feature-mi {
+  margin-top: 32px;
+}
+
+.treatments-feature-inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  align-items: stretch;
+  gap: 24px;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: none;
+  min-height: 560px;
+}
+
+.treatments-feature-media {
+  position: relative;
+  background: #0b0b10;
+  min-height: 560px;
+}
+
+.treatments-feature-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.treatments-feature-copy {
+  background: transparent;
+  padding: 28px 28px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.treatments-feature-title {
+  margin: 0 0 12px;
+  font-size: 26px;
+  line-height: 1.3;
+  color: #0b3c6f;
+}
+
+.treatments-feature-accent {
+  width: 56px;
+  height: 2px;
+  background: linear-gradient(90deg, #f97316, #fb7185);
+  margin-bottom: 16px;
+}
+
+.treatments-feature-body {
+  margin: 0 0 14px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #4b5563;
+}
+
+.treatments-feature-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+  text-decoration: none;
+}
+
+.treatments-feature-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+}
+
+.treatments-feature-ni .treatments-feature-copy {
+  background: transparent;
+}
+
+.treatments-feature-ni .treatments-feature-inner {
+  box-shadow: none;
+}
+
+.treatments-feature-ni .treatments-feature-accent {
+  background: linear-gradient(90deg, #ef4444, #fb7185);
+}
+
+.treatments-feature-ni .treatments-feature-copy {
+  order: 1;
+}
+
+.treatments-feature-ni .treatments-feature-media {
+  order: 2;
+}
+
+.treatments-feature-ni-header {
+  margin-bottom: 28px;
+}
+
+.treatments-feature-mi-header {
+  margin-bottom: 28px;
+}
+
+.treatments-pain-learn {
+  padding-top: 56px;
+}
+
+.treatments-pain-learn-header {
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.treatments-pain-learn-title {
+  margin: 0 0 8px;
+  font-size: 30px;
+  line-height: 1.3;
+  color: #111827;
+}
+
+.treatments-pain-learn-subtitle {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #4b5563;
+}
+
+.treatments-pain-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.treatments-testimonials {
+  padding-top: 64px;
+  padding-bottom: 72px;
+}
+
+.treatments-testimonials-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.treatments-testimonials-title {
+  margin: 0;
+  font-size: 32px;
+  line-height: 1.3;
+  color: #111827;
+}
+
+.treatments-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.testimonial-card {
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  padding: 24px 24px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.testimonial-quote {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #4b5563;
+}
+
+.testimonial-person {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.testimonial-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 20%, #fed7aa, #fb7185);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.testimonial-name {
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.testimonial-location {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.pain-learn-card {
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.pain-learn-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  background: #f3f4f6;
+}
+
+.pain-learn-media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pain-learn-body {
+  padding: 24px 22px 24px;
+  background: #fffaf0;
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.pain-learn-title {
+  margin: 0 0 10px;
+  font-size: 20px;
+  color: var(--color-blue);
+}
+
+.pain-learn-accent {
+  width: 56px;
+  height: 2px;
+  background: linear-gradient(90deg, #ef4444, #fb7185);
+  margin: 8px 0 12px;
+}
+
+.pain-learn-description {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.pain-learn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+  text-decoration: none;
+  margin-top: auto;
+  align-self: flex-end;
+}
+
+@media (max-width: 768px) {
+  .treatments-pain-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .treatments-testimonials-grid {
+    grid-template-columns: 1fr;
+  }
+}
 .page-footer {
   padding: 24px 48px;
   text-align: center;
   background-color: #0b0b10;
   color: rgba(255, 255, 255, 0.7);
   font-size: 12px;
+}
+
+@media (max-width: 900px) {
+  .treatments-overview-layout {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 0;
+  }
+
+  .treatments-overview-media {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .page-main {
+    padding: 0 16px 64px;
+  }
+
+  .page-section {
+    margin: 0 auto 32px;
+  }
+
+  .treatments-overview {
+    min-height: auto;
+    margin-top: 40px;
+  }
+
+  .treatments-overview-header {
+    padding-left: 12px;
+  }
+
+
+  .treatments-overview-title {
+    font-size: 28px;
+  }
+  
+  .treatments-highlighted-title {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+
+  .treatments-overview-card {
+    padding: 26px 20px 22px;
+    min-height: auto;
+  }
+
+  .treatments-overview-media-inner {
+    min-height: 260px;
+  }
+
+  .treatments-highlighted-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .treatments-feature-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .treatments-feature-media {
+    min-height: 460px;
+  }
 }
