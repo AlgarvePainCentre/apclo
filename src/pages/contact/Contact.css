@@ -57,9 +57,9 @@
 
 .contact-form-layout {
   margin-top: 16px;
-  background-color: transparent;
+  background-color: #f3f8fd;
   border-radius: 24px;
-  padding: 32px 40px;
+  padding: 40px 56px;
   box-shadow: none;
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
@@ -87,25 +87,26 @@
 .contact-form {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 16px;
-  padding: 22px 24px;
-  border-radius: 22px;
-  border: 1px solid rgba(148, 163, 184, 0.35);
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.04);
-  backdrop-filter: blur(12px);
-  transition: box-shadow 180ms ease-out, transform 180ms ease-out, border-color 180ms ease-out, background-color 180ms ease-out;
+  gap: 20px;
+  padding: 0;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  transition: none;
 }
 
 .contact-form:hover {
-  box-shadow: 0 22px 52px rgba(15, 23, 42, 0.06);
-  transform: translate3d(0, -1px, 0);
+  box-shadow: none;
+  transform: none;
 }
 
 .contact-form-field {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 8px;
+  padding: 5px 0;
 }
 
 .contact-form-label {
@@ -113,7 +114,7 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   font-weight: 600;
-  color: #6b7280;
+  color: var(--color-blue);
 }
 
 .contact-label-required {
@@ -123,14 +124,15 @@
 .contact-form-name-row {
   display: flex;
   gap: 12px;
+  max-height: 48px;
 }
 
 .contact-form-phone-row {
   display: flex;
   align-items: center;
   gap: 8px;
-  height: 44px;
-  padding: 0 14px;
+  height: 48px;
+  padding: 0 16px;
   border-radius: 999px;
   border: 1px solid #d1d5db;
   background-color: #ffffff;
@@ -151,18 +153,13 @@
 
 .contact-input {
   flex: 1;
-  height: 44px;
-  padding: 0 14px;
-  padding: 0 14px;
+  height: 48px;
+  padding: 0 16px;
   border-radius: 999px;
   border: 1px solid #d1d5db;
   background-color: #ffffff;
-  font-size: 14px;
+  font-size: 15px;
   transition: border-color 160ms ease-out, box-shadow 160ms ease-out, background-color 160ms ease-out;
-}
-
-#contact-email {
-  height: 44px;
 }
 
 .contact-input::placeholder {
@@ -197,12 +194,12 @@
 
 .contact-textarea {
   width: 100%;
-  min-height: 120px;
-  padding: 10px 14px;
-  border-radius: 18px;
+  min-height: 160px;
+  padding: 14px 18px;
+  border-radius: 24px;
   border: 1px solid #d1d5db;
   background-color: #ffffff;
-  font-size: 14px;
+  font-size: 15px;
   resize: vertical;
   transition: border-color 160ms ease-out, box-shadow 160ms ease-out, background-color 160ms ease-out;
 }
@@ -219,33 +216,33 @@
 }
 
 .contact-form-footer-row {
-  margin-top: 4px;
-  padding: 10px 12px;
+  margin-top: 12px;
+  padding: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 16px;
   flex-wrap: wrap;
-  border-radius: 14px;
-  background-color: #f9fafb;
+  border-radius: 0;
+  background-color: transparent;
 }
 
 .contact-form-human {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  font-size: 13px;
+  font-size: 14px;
   color: #4b5563;
 }
 
 .contact-human-checkbox {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
 }
 
 .contact-form-captcha-placeholder {
-  flex: 0 0 260px;
-  height: 70px;
+  flex: 0 0 300px;
+  height: 82px;
   border-radius: 8px;
   border: 1px solid #d1d5db;
   background-color: #ffffff;
@@ -258,7 +255,7 @@
 }
 
 .contact-form-actions {
-  margin-top: 16px;
+  margin-top: 24px;
   display: flex;
   justify-content: center;
 }
@@ -266,6 +263,9 @@
 .contact-form-submit {
   border: none;
   cursor: pointer;
+  min-height: 48px;
+  padding: 0 40px;
+  border-radius: 999px;
 }
 
 .contact-visit-layout {
@@ -337,6 +337,16 @@
     padding: 0 16px 64px;
   }
 
+  .contact-input {
+    height: 48px;
+    max-height: 48px;
+  }
+
+  .contact-form-phone-row {
+    height: 48px;
+    max-height: 48px;
+  }
+
   .page-section {
     margin: 0 auto 32px;
   }
@@ -362,6 +372,7 @@
 
   .contact-form-name-row {
     flex-direction: column;
+    height: 48px;
   }
 
   .contact-form-footer-row {

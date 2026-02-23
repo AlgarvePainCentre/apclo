@@ -1,14 +1,9 @@
 .medical-complications-post-stroke-page {
-  padding: 80px 24px;
+  padding-top: 120px;
 }
 
-.medical-complications-post-stroke-page h1 {
-  font-size: 32px;
-  margin-bottom: 16px;
+@media (max-width: 768px) {
+  .medical-complications-post-stroke-page {
+    padding-top: 96px;
+  }
 }
-
-.medical-complications-post-stroke-page p {
-  max-width: 720px;
-  line-height: 1.6;
-}
-

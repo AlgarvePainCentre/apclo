@@ -1,14 +1,9 @@
 .shoulder-pain-page {
-  padding: 80px 24px;
+  padding-top: 120px;
 }
 
-.shoulder-pain-page h1 {
-  font-size: 32px;
-  margin-bottom: 16px;
+@media (max-width: 768px) {
+  .shoulder-pain-page {
+    padding-top: 96px;
+  }
 }
-
-.shoulder-pain-page p {
-  max-width: 640px;
-  line-height: 1.6;
-}
-

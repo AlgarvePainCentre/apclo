@@ -274,9 +274,12 @@ export default function Navbar() {
   const [resourcesOpen, setResourcesOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [mobileSection, setMobileSection] = useState(null);
   const specialitiesRef = useRef(null);
   const treatmentsRef = useRef(null);
   const resourcesRef = useRef(null);
+  const navRef = useRef(null);
+  const headerRef = useRef(null);
 
   const isSpecialitiesActive = location.pathname.startsWith('/specialities');
   const isTreatmentsActive = location.pathname.startsWith('/treatments');
@@ -334,6 +337,16 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
+    function setOffset() {
+      const h = headerRef.current ? headerRef.current.offsetHeight : 88;
+      document.documentElement.style.setProperty('--navbar-offset', h + 'px');
+    }
+    setOffset();
+    window.addEventListener('resize', setOffset);
+    return () => window.removeEventListener('resize', setOffset);
+  }, []);
+
+  useEffect(() => {
     if (!mobileOpen) return;
     const prevOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
@@ -344,6 +357,34 @@ export default function Navbar() {
       }
     }
     document.addEventListener('keydown', onKey);
+    const focusables = navRef.current
+      ? Array.from(
+          navRef.current.querySelectorAll(
+            'a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])'
+          )
+        )
+      : [];
+    if (focusables.length) {
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      setTimeout(() => first.focus(), 0);
+      function onTrap(e) {
+        if (e.key !== 'Tab') return;
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          last.focus();
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault();
+          first.focus();
+        }
+      }
+      document.addEventListener('keydown', onTrap);
+      return () => {
+        document.body.style.overflow = prevOverflow;
+        document.removeEventListener('keydown', onKey);
+        document.removeEventListener('keydown', onTrap);
+      };
+    }
     return () => {
       document.body.style.overflow = prevOverflow;
       document.removeEventListener('keydown', onKey);
@@ -380,7 +421,7 @@ export default function Navbar() {
   }
 
   return (
-    <header className={scrolled ? 'navbar navbar-scrolled' : 'navbar'}>
+    <header ref={headerRef} className={scrolled ? 'navbar navbar-scrolled' : 'navbar'}>
       <div className="navbar-inner">
         <div className="navbar-left">
           <Link to="/" className="navbar-brand">
@@ -404,6 +445,7 @@ export default function Navbar() {
             onClick={() => {
               if (mobileOpen) {
                 closeAllDropdowns();
+                setMobileSection(null);
               }
               setMobileOpen((open) => !open);
             }}
@@ -418,7 +460,9 @@ export default function Navbar() {
             className={
               mobileOpen ? 'navbar-nav navbar-nav-open' : 'navbar-nav'
             }
+            ref={navRef}
           >
+          <div className="navbar-links-desktop">
           <div className="navbar-dropdown-wrapper" ref={specialitiesRef}>
             <button
               type="button"
@@ -745,6 +789,289 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
+          </div>
+          <div className="navbar-menu-mobile">
+            {!mobileSection && (
+              <>
+              <div className="navbar-menu-mobile-top">
+                <Link
+                  to="/"
+                  className="navbar-brand"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setMobileSection(null);
+                  }}
+                >
+                  <img
+                    className="navbar-logo"
+                    src="/assets/apc-branco.svg"
+                    decoding="async"
+                    alt="Algarve Pain Centre logo"
+                  />
+                </Link>
+                <button
+                  type="button"
+                  className="navbar-menu-mobile-detail-button"
+                  aria-label="Close navigation"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setMobileSection(null);
+                  }}
+                >
+                  ×
+                </button>
+              </div>
+              <div className="navbar-menu-mobile-main">
+                <Link
+                  to="/"
+                  className="navbar-menu-mobile-link-simple"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setMobileSection(null);
+                  }}
+                >
+                  Home
+                </Link>
+                <button
+                  type="button"
+                  className="navbar-menu-mobile-section-toggle"
+                  onClick={() => setMobileSection('specialities')}
+                >
+                  <span>Specialities</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+                <button
+                  type="button"
+                  className="navbar-menu-mobile-section-toggle"
+                  onClick={() => setMobileSection('treatments')}
+                >
+                  <span>Treatments</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+                <button
+                  type="button"
+                  className="navbar-menu-mobile-section-toggle"
+                  onClick={() => setMobileSection('resources')}
+                >
+                  <span>Resources</span>
+                  <span aria-hidden="true">→</span>
+                </button>
+                {mainLinks.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className="navbar-menu-mobile-link-simple"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setMobileSection(null);
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                <Link
+                  to="/contact"
+                  className="navbar-menu-mobile-link-simple"
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setMobileSection(null);
+                  }}
+                >
+                  Contact Us
+                </Link>
+              </div>
+              </>
+            )}
+            {mobileSection === 'specialities' && (
+              <div className="navbar-menu-mobile-detail">
+                <div className="navbar-menu-mobile-detail-header">
+                  <button
+                    type="button"
+                    className="navbar-menu-mobile-detail-button"
+                    aria-label="Back to main menu"
+                    onClick={() => setMobileSection(null)}
+                  >
+                    ←
+                  </button>
+                  <div className="navbar-menu-mobile-detail-title">
+                    Specialities
+                  </div>
+                  <button
+                    type="button"
+                    className="navbar-menu-mobile-detail-button"
+                    aria-label="Close navigation"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setMobileSection(null);
+                    }}
+                  >
+                    ×
+                  </button>
+                </div>
+                <div className="navbar-menu-mobile-section">
+                  {specialitiesCategories.map((category) => (
+                    <div
+                      key={category.title}
+                      className="navbar-menu-mobile-group"
+                    >
+                      <div className="navbar-menu-mobile-group-title">
+                        {category.title}
+                      </div>
+                      {category.items.map((item) => (
+                        <Link
+                          key={item.path}
+                          to={item.path}
+                          className="navbar-menu-mobile-link"
+                          onClick={() => {
+                            setMobileOpen(false);
+                            setMobileSection(null);
+                          }}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                  <Link
+                    to="/specialities"
+                    className="navbar-menu-mobile-link-all"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setMobileSection(null);
+                    }}
+                  >
+                    All Specialities
+                  </Link>
+                </div>
+              </div>
+            )}
+            {mobileSection === 'treatments' && (
+              <div className="navbar-menu-mobile-detail">
+                <div className="navbar-menu-mobile-detail-header">
+                  <button
+                    type="button"
+                    className="navbar-menu-mobile-detail-button"
+                    aria-label="Back to main menu"
+                    onClick={() => setMobileSection(null)}
+                  >
+                    ←
+                  </button>
+                  <div className="navbar-menu-mobile-detail-title">
+                    Treatments
+                  </div>
+                  <button
+                    type="button"
+                    className="navbar-menu-mobile-detail-button"
+                    aria-label="Close navigation"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setMobileSection(null);
+                    }}
+                  >
+                    ×
+                  </button>
+                </div>
+                <div className="navbar-menu-mobile-section">
+                  {treatmentsCategories.map((category) => (
+                    <div
+                      key={category.title}
+                      className="navbar-menu-mobile-group"
+                    >
+                      <div className="navbar-menu-mobile-group-title">
+                        {category.title}
+                      </div>
+                      {category.items.map((item) => (
+                        <Link
+                          key={item.path}
+                          to={item.path}
+                          className="navbar-menu-mobile-link"
+                          onClick={() => {
+                            setMobileOpen(false);
+                            setMobileSection(null);
+                          }}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                  <Link
+                    to="/treatments"
+                    className="navbar-menu-mobile-link-all"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setMobileSection(null);
+                    }}
+                  >
+                    Explore Treatments
+                  </Link>
+                </div>
+              </div>
+            )}
+            {mobileSection === 'resources' && (
+              <div className="navbar-menu-mobile-detail">
+                <div className="navbar-menu-mobile-detail-header">
+                  <button
+                    type="button"
+                    className="navbar-menu-mobile-detail-button"
+                    aria-label="Back to main menu"
+                    onClick={() => setMobileSection(null)}
+                  >
+                    ←
+                  </button>
+                  <div className="navbar-menu-mobile-detail-title">
+                    Resources
+                  </div>
+                  <button
+                    type="button"
+                    className="navbar-menu-mobile-detail-button"
+                    aria-label="Close navigation"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setMobileSection(null);
+                    }}
+                  >
+                    ×
+                  </button>
+                </div>
+                <div className="navbar-menu-mobile-section">
+                  {resourceCategories.map((category) => (
+                    <div
+                      key={category.title}
+                      className="navbar-menu-mobile-group"
+                    >
+                      <div className="navbar-menu-mobile-group-title">
+                        {category.title}
+                      </div>
+                      {category.items.map((item) => (
+                        <Link
+                          key={item.path}
+                          to={item.path}
+                          className="navbar-menu-mobile-link"
+                          onClick={() => {
+                            setMobileOpen(false);
+                            setMobileSection(null);
+                          }}
+                        >
+                          {item.label}
+                        </Link>
+                      ))}
+                    </div>
+                  ))}
+                  <Link
+                    to="/resources"
+                    className="navbar-menu-mobile-link-all"
+                    onClick={() => {
+                      setMobileOpen(false);
+                      setMobileSection(null);
+                    }}
+                  >
+                    View all resources
+                  </Link>
+                </div>
+              </div>
+            )}
+          </div>
           </nav>
           <div
             className={
@@ -756,6 +1083,7 @@ export default function Navbar() {
             onClick={() => {
               setMobileOpen(false);
               closeAllDropdowns();
+              setMobileSection(null);
             }}
           />
         </div>

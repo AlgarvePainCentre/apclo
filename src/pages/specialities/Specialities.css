@@ -20,6 +20,21 @@
   margin: 0 auto 40px;
 }
 
+.speciality-page-title {
+  margin: 0 0 16px;
+  font-size: 32px;
+  line-height: 1.3;
+  color: #111827;
+}
+
+.speciality-page-body {
+  margin: 0;
+  max-width: 720px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
 .specialities-teams {
   border-top: 1px solid #e5e7eb;
   padding: 56px 0;

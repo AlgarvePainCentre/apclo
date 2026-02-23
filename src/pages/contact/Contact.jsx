@@ -47,6 +47,22 @@ export default function Contact() {
     };
   }, []);
 
+  useEffect(() => {
+    const titleText = 'Contact Algarve Pain Centre | Book a pain clinic appointment in the Algarve';
+    const descriptionText =
+      'Contact Algarve Pain Centre in Vale do Lobo, Algarve to discuss your pain symptoms, request an assessment or plan treatment. Call, message or use our contact form to reach our multidisciplinary pain clinic.';
+
+    document.title = titleText;
+
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'description';
+      document.head.appendChild(meta);
+    }
+    meta.content = descriptionText;
+  }, []);
+
   return (
     <div className="page">
       <Navbar />

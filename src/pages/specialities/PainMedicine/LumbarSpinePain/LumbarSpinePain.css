@@ -1,13 +1,9 @@
 .lumbar-spine-pain-page {
-  padding: 80px 24px;
+  padding-top: 120px;
 }
 
-.lumbar-spine-pain-page h1 {
-  font-size: 32px;
-  margin-bottom: 16px;
-}
-
-.lumbar-spine-pain-page p {
-  max-width: 640px;
-  line-height: 1.6;
+@media (max-width: 768px) {
+  .lumbar-spine-pain-page {
+    padding-top: 96px;
+  }
 }

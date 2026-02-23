@@ -27,11 +27,17 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding: 32px 32px 40px;
+  border-radius: 28px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
 }
 
 .treatments-overview-header {
-  max-width: 720px;
-  margin: 0 0 28px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 32px;
   text-align: left;
   position: relative;
   padding-left: 16px;
@@ -56,7 +62,7 @@
 
 .treatments-overview-title {
   margin: 0 0 16px;
-  font-size: 36px;
+  font-size: clamp(1.9rem, 1.4vw + 1.6rem, 2.8rem);
   line-height: 1.3;
   color: #111827;
 }
@@ -80,13 +86,24 @@
 .treatments-overview-card {
   background-color: transparent;
   border-radius: 24px;
-  padding: 32px 32px 28px;
+  padding: 32px 32px 32px;
   border: none;
   box-shadow: none;
   min-height: 380px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  backdrop-filter: blur(4px);
+  transition:
+    transform 160ms ease-out,
+    box-shadow 160ms ease-out,
+    background-color 140ms ease-out;
+}
+
+.treatments-overview-card:hover {
+  transform: translateY(-2px);
+  box-shadow: none;
+  background-color: transparent;
 }
 
 .treatments-overview-card-title {
@@ -133,7 +150,8 @@
 .treatments-overview-media {
   border-radius: 24px;
   overflow: hidden;
-  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.22);
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.28);
+  position: relative;
 }
 
 .treatments-overview-media-inner {
@@ -557,24 +575,21 @@
   .treatments-overview {
     min-height: auto;
     margin-top: 40px;
+    padding: 24px 16px 24px;
+    border-radius: 24px;
   }
 
   .treatments-overview-header {
     padding-left: 12px;
   }
 
-
-  .treatments-overview-title {
-    font-size: 28px;
-  }
-  
   .treatments-highlighted-title {
     font-size: 28px;
     line-height: 1.3;
   }
 
   .treatments-overview-card {
-    padding: 26px 20px 22px;
+    padding: 24px 16px 24px;
     min-height: auto;
   }
 
@@ -592,5 +607,17 @@
 
   .treatments-feature-media {
     min-height: 460px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .page-main {
+    padding: 0 72px 96px;
+  }
+}
+
+@media (min-width: 1920px) {
+  .page-main {
+    padding: 0 96px 112px;
   }
 }

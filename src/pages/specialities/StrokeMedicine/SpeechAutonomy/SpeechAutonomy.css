@@ -1,14 +1,9 @@
 .speech-autonomy-page {
-  padding: 80px 24px;
+  padding-top: 120px;
 }
 
-.speech-autonomy-page h1 {
-  font-size: 32px;
-  margin-bottom: 16px;
+@media (max-width: 768px) {
+  .speech-autonomy-page {
+    padding-top: 96px;
+  }
 }
-
-.speech-autonomy-page p {
-  max-width: 640px;
-  line-height: 1.6;
-}
-

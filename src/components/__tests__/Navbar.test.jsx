@@ -20,7 +20,10 @@ describe('Navbar dropdowns', () => {
 
   it('opens and closes Specialities on click and outside click', async () => {
     setup();
-    const trigger = screen.getByRole('button', { name: /specialities/i });
+    const trigger = screen
+      .getAllByRole('button', { name: /specialities/i })
+      .find((button) => button.getAttribute('aria-controls') === 'menu-specialities');
+    expect(trigger).toBeDefined();
     await userEvent.click(trigger);
     const menu = screen.getByRole('menu', { name: /specialities/i });
     expect(trigger).toHaveAttribute('aria-expanded', 'true');
@@ -30,7 +33,10 @@ describe('Navbar dropdowns', () => {
 
   it('supports keyboard open, navigation, and escape close', async () => {
     setup();
-    const trigger = screen.getByRole('button', { name: /specialities/i });
+    const trigger = screen
+      .getAllByRole('button', { name: /specialities/i })
+      .find((button) => button.getAttribute('aria-controls') === 'menu-specialities');
+    expect(trigger).toBeDefined();
     trigger.focus();
     await userEvent.keyboard('{Enter}');
     const menu = screen.getByRole('menu', { name: /specialities/i });
@@ -42,7 +48,10 @@ describe('Navbar dropdowns', () => {
 
   it('renders the Specialities menu items without a search bar', async () => {
     setup();
-    const trigger = screen.getByRole('button', { name: /specialities/i });
+    const trigger = screen
+      .getAllByRole('button', { name: /specialities/i })
+      .find((button) => button.getAttribute('aria-controls') === 'menu-specialities');
+    expect(trigger).toBeDefined();
     await userEvent.click(trigger);
     const menu = screen.getByRole('menu', { name: /specialities/i });
     const items = await within(menu).findAllByRole('menuitem');

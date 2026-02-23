@@ -84,6 +84,23 @@ export default function Home() {
   };
 
   useEffect(() => {
+    const titleText =
+      'Algarve Pain Centre | Multidisciplinary pain clinic in Vale do Lobo, Algarve';
+    const descriptionText =
+      'Algarve Pain Centre is a specialised pain clinic in Vale do Lobo, Algarve, Portugal. Our multidisciplinary team treats spine, joint and nerve pain with personalised plans that combine non-invasive therapies, minimally invasive procedures and advanced spine surgery.';
+
+    document.title = titleText;
+
+    let meta = document.querySelector('meta[name="description"]');
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.name = 'description';
+      document.head.appendChild(meta);
+    }
+    meta.content = descriptionText;
+  }, []);
+
+  useEffect(() => {
     const heroEl = heroRef.current;
     const heroVideoEl = heroVideoRef.current;
     if (!heroEl || !heroVideoEl) {
@@ -128,6 +145,28 @@ export default function Home() {
   return (
     <div className="home-page">
       <Navbar />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'MedicalClinic',
+            name: 'Algarve Pain Centre',
+            url: 'https://www.algarvepaincentre.com/',
+            description:
+              'Multidisciplinary pain clinic in Vale do Lobo, Algarve, Portugal, specialising in spine pain, joint pain, sports injuries and stroke rehabilitation.',
+            address: {
+              '@type': 'PostalAddress',
+              streetAddress: 'Av. do Mar',
+              addressLocality: 'Vale do Lobo',
+              addressRegion: 'Algarve',
+              addressCountry: 'PT',
+            },
+            telephone: '+351915915001',
+            medicalSpecialty: ['PainManagement', 'Orthopedic', 'Neurologic', 'PhysicalTherapy'],
+          }),
+        }}
+      />
       <section className="hero" ref={heroRef}>
         <div className="hero-video" aria-hidden="true" ref={heroVideoRef}>
           <video
@@ -172,6 +211,35 @@ export default function Home() {
             <h2 className="home-section-testimonial-title">
               “APC gave me back the freedom to move without fear.”
             </h2>
+            <div className="home-section-testimonial-media-inline">
+              <div
+                className="home-section-testimonial-video"
+                ref={testimonialVideoRef}
+                onMouseEnter={handleVideoEnter}
+                onFocus={handleVideoEnter}
+              >
+                <video
+                  className="home-section-testimonial-video-el"
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  src="/assets/videos/post-43.mp4"
+                />
+                <div className="home-section-testimonial-video-overlay">
+                  <button
+                    type="button"
+                    className="home-section-testimonial-video-cta"
+                    onClick={() =>
+                      navigate('/resources/testimonials/overcoming-sciatica-pain')
+                    }
+                  >
+                    Watch how APC treats complex pain
+                  </button>
+                </div>
+              </div>
+            </div>
             <p className="home-section-testimonial-body">
               After years of living around chronic spine pain, Ana arrived at APC exhausted,
               anxious, and worried about losing her independence.
@@ -509,6 +577,71 @@ export default function Home() {
                     daily life and help you move with confidence again.
                   </p>
                 </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="home-section-faq">
+          <div className="home-section-why-choose-inner">
+            <header className="home-section-why-choose-header">
+              <p className="home-section-why-choose-eyebrow">
+                Frequently asked questions about Algarve Pain Centre
+              </p>
+              <h2 className="home-section-why-choose-title">
+                Answers to common questions about our pain clinic in the Algarve
+              </h2>
+              <p className="home-section-why-choose-subtitle">
+                Choosing a pain clinic is an important decision. These answers cover what we treat,
+                how appointments work and what to expect when you visit us in Vale do Lobo.
+              </p>
+            </header>
+            <div className="home-section-why-choose-layout">
+              <div className="home-section-why-choose-grid" aria-label="Frequently asked questions">
+                <article className="why-choose-card">
+                  <h3 className="why-choose-card-title">
+                    What types of pain conditions do you treat?
+                  </h3>
+                  <p className="why-choose-card-body">
+                    We treat a wide range of conditions including spine pain, joint pain, nerve
+                    pain, headaches, sports injuries and post‑stroke symptoms. If you are unsure
+                    whether your condition fits, our team can review your situation and guide you to
+                    the right specialist.
+                  </p>
+                </article>
+                <article className="why-choose-card">
+                  <h3 className="why-choose-card-title">
+                    Do I need a referral to book an appointment?
+                  </h3>
+                  <p className="why-choose-card-body">
+                    A formal referral is not always required. Many patients contact Algarve Pain
+                    Centre directly, while others are referred by their family doctor or another
+                    specialist. If you already have scans or reports, bringing them to your visit
+                    helps us avoid repeating tests.
+                  </p>
+                </article>
+                <article className="why-choose-card">
+                  <h3 className="why-choose-card-title">
+                    Do you see international patients visiting the Algarve?
+                  </h3>
+                  <p className="why-choose-card-body">
+                    Yes. We regularly care for patients who live abroad or spend part of the year in
+                    Portugal. Our clinic team can help you coordinate appointments and treatment
+                    around your travel schedule, and we share information with your doctors at home
+                    when needed.
+                  </p>
+                </article>
+                <article className="why-choose-card">
+                  <h3 className="why-choose-card-title">
+                    What should I expect from my first consultation?
+                  </h3>
+                  <p className="why-choose-card-body">
+                    Your first visit usually lasts long enough for a detailed discussion of your
+                    symptoms, examination and review of previous investigations. By the end we aim to
+                    give you a clear explanation of your condition, outline immediate steps and
+                    propose a longer‑term plan tailored to your goals.
+                  </p>
+                </article>
               </div>
             </div>
           </div>

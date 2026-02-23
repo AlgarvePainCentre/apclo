@@ -1,14 +1,9 @@
 .feeding-autonomy-page {
-  padding: 80px 24px;
+  padding-top: 120px;
 }
 
-.feeding-autonomy-page h1 {
-  font-size: 32px;
-  margin-bottom: 16px;
+@media (max-width: 768px) {
+  .feeding-autonomy-page {
+    padding-top: 96px;
+  }
 }
-
-.feeding-autonomy-page p {
-  max-width: 640px;
-  line-height: 1.6;
-}
-

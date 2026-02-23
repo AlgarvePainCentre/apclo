@@ -1,14 +1,9 @@
 .community-reintegration-page {
-  padding: 80px 24px;
+  padding-top: 120px;
 }
 
-.community-reintegration-page h1 {
-  font-size: 32px;
-  margin-bottom: 16px;
+@media (max-width: 768px) {
+  .community-reintegration-page {
+    padding-top: 96px;
+  }
 }
-
-.community-reintegration-page p {
-  max-width: 720px;
-  line-height: 1.6;
-}
-

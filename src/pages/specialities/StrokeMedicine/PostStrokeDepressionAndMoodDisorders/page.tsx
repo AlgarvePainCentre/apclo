@@ -1,14 +1,51 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import ConditionDetailPage from '../../ConditionDetailPage';
 import './PostStrokeDepressionAndMoodDisorders.css';
 
 const PostStrokeDepressionAndMoodDisordersPage: React.FC = () => {
+  const navigate = useNavigate();
+
   return (
-    <main className="post-stroke-depression-and-mood-disorders-page">
-      <h1>Post-Stroke Depression and Mood Disorders</h1>
-      <p>Content for Post-Stroke Depression and Mood Disorders will go here.</p>
-    </main>
+    <>
+      <section className="hero">
+        <div className="hero-video" aria-hidden="true">
+          <video
+            className="hero-video-el"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            src="/assets/videos/banner-consulta-2.mp4"
+          />
+        </div>
+        <div className="hero-content">
+          <div className="hero-left">
+            <h1 className="hero-title">Post‑stroke depression and mood disorders</h1>
+            <p className="hero-subtitle">
+              Emotional changes after stroke are common; specialist support can help you adjust.
+            </p>
+          </div>
+          <div className="hero-right">
+            <p className="hero-small-text">Relief starts with a clear plan.</p>
+            <button
+              type="button"
+              className="hero-cta"
+              aria-label="Book an appointment about post‑stroke mood changes"
+              onClick={() => navigate('/contact')}
+            >
+              Book an appointment
+            </button>
+          </div>
+        </div>
+      </section>
+      <ConditionDetailPage
+        title="Post‑stroke depression and mood disorders"
+        areaLabel="post‑stroke mood disorders"
+      />
+    </>
   );
 };
 
 export default PostStrokeDepressionAndMoodDisordersPage;
-
