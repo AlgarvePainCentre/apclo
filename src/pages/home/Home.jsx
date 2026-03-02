@@ -182,6 +182,7 @@ export default function Home() {
         <div className="hero-content">
           <div className="hero-left">
             <h1 className="hero-title">Your Pain Centre</h1>
+            <div className="hero-accent-line mainpain-card-accent"></div>
             <p className="hero-subtitle">
               Our specialized team will find the best approach to improve your
               quality of life.

@@ -43,31 +43,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   color: #111827;
   background-color: #f7f9fc;
-  background-image:
-    -webkit-linear-gradient(
-      135deg,
-      #e6f3ff 0%,
-      #f0e6ff 35%,
-      #ffe6f0 70%,
-      #e6fff0 100%
-    ),
-    -moz-linear-gradient(
-      135deg,
-      #e6f3ff 0%,
-      #f0e6ff 35%,
-      #ffe6f0 70%,
-      #e6fff0 100%
-    ),
-    linear-gradient(
-      135deg,
-      #e6f3ff 0%,
-      #f0e6ff 35%,
-      #ffe6f0 70%,
-      #e6fff0 100%
-    );
-  background-attachment: fixed;
-  background-size: 200% 200%;
-  background-position: 50% 0%;
 }
 
 code {
@@ -86,12 +61,27 @@ code {
 }
 
 .page-main {
-  padding: 0 48px 80px;
+  padding: 1rem;
 }
 
 .page-section {
   max-width: var(--container-width);
   margin: 0 auto 40px;
+}
+
+@media (max-width: 768px) {
+  .page-main {
+    margin: 0;
+  }
+
+  .page-section {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .page-section > div {
+    width: 100%;
+  }
 }
 
 .speciality-page-title {
@@ -115,8 +105,8 @@ code {
   left: 0;
   width: 100%;
   padding: 16px 32px;
-  z-index: 22;
-  background: transparent;
+  z-index: 1000;
+  background:  transparent;
   backdrop-filter: none;
   border-bottom: 1px solid transparent;
   overflow: visible;
@@ -124,14 +114,14 @@ code {
 }
 
 .navbar.navbar-scrolled {
-  background: rgba(14, 14, 14, 0.88);
-  backdrop-filter: blur(8px);
+  background: #005384;
+  backdrop-filter: none;
   border-bottom: 1px solid rgba(148, 163, 184, 0.18);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
 }
 
 .navbar-inner {
-  max-width: var(--container-width);
+  max-width: 1800px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -146,6 +136,7 @@ code {
   gap: 32px;
   flex: 1 1 auto;
   min-width: 0;
+  width: fit-content;
 }
 
 .navbar-backdrop {
@@ -154,13 +145,13 @@ code {
 
 .navbar-brand {
   display: flex;
-  align-items: center;
-  gap: 10px;
+  align-items: flex-start;
 }
 
 .navbar-logo {
-  height: 32px;
+  height: 42px;
   width: auto;
+  padding-right: 32px;
 }
 
 .navbar-nav {
@@ -195,13 +186,15 @@ code {
 }
 
 .navbar-link {
-  font-size: 12px;
+  font-size: 1rem;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #e5e7eb;
+  font-weight: 600;
+  color: var(--color-white);
   text-decoration: none;
-  opacity: 0.75;
+  opacity: none;
+  text-shadow: none;
   transition: opacity 0.2s ease, color 0.2s ease;
+  text-transform: uppercase;
 }
 
 .navbar-link-active {
@@ -235,26 +228,21 @@ code {
 }
 
 .navbar-cta {
-  padding: 0 16px;
+  padding: 1.4rem;
   border-radius: 999px;
-  border: 1px solid rgba(253, 244, 215, 0.9);
+  border: 1px solid var(--color-white);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   height: 42px;
-  background-image: linear-gradient(
-    135deg,
-    var(--warm-cream, #ffe7b3) 0%,
-    var(--warm-yellow, #ffd27a) 35%,
-    var(--warm-orange, #ff9a52) 70%,
-    var(--warm-coral, #ff5c6e) 100%
-  );
-  color: #111827;
-  font-size: 12px;
+  background-image: transparent;
+  color: var(--color-white);
+  font-size: 1.4rem;
   letter-spacing: 0.08em;
-  text-transform: uppercase;
+  text-transform: none;
   text-decoration: none;
+  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   font-weight: 600;
   background-size: 200% 200%;
   background-position: 0% 50%;
@@ -267,16 +255,11 @@ code {
 
 
 .navbar-cta:hover {
-  background-image: linear-gradient(
-    135deg,
-    var(--warm-yellow, #ffd27a) 0%,
-    var(--warm-orange, #ff9a52) 40%,
-    var(--warm-coral, #ff5c6e) 80%,
-    var(--warm-rose, #e83d5b) 100%
-  );
+  background-color: var(--color-midYellow);
   background-position: 100% 50%;
   transform: scale(1.04);
-  color: #111827;
+  color: #005384;
+  border-color: #005384;
 }
 
 .navbar-cta:active {
@@ -289,12 +272,12 @@ code {
 
 .navbar-dropdown {
   position: absolute;
-  top: 100%;
+  top: 3.6rem;
   left: 0;
   right: 0;
   transform: translateY(-8px);
-  background: rgba(14, 14, 14, 0.9);
-  backdrop-filter: blur(12px);
+  background: #005384;
+  backdrop-filter: none;
   padding: 32px 56px;
   border-radius: 16px;
   border-top-left-radius: 0;
@@ -304,12 +287,12 @@ code {
   max-width: 100%;
   box-sizing: border-box;
 
-  overflow-y: auto;
+  overflow-y: hidden;
   overflow-x: hidden;
   opacity: 0;
   transition: opacity 0.2s ease, transform 0.2s ease;
   pointer-events: none;
-  z-index: 1000;
+  z-index: 100;
 }
 
 .navbar-dropdown-open {
@@ -328,7 +311,7 @@ code {
   margin-top: 24px;
   padding-top: 16px;
   border-top: 1px solid rgba(148, 163, 184, 0.18);
-  text-align: right;
+  text-align: left;
 }
 
 
@@ -337,8 +320,8 @@ code {
   display: inline-block;
   padding: 10px 16px;
   border-radius: 8px;
-  background: #0f172a;
-  color: #e5e7eb;
+  background: #005384;
+  color: var(--color-white);
   text-decoration: none;
   font-weight: 600;
   border: 1px solid rgba(148, 163, 184, 0.18);
@@ -353,10 +336,10 @@ code {
 
 .navbar-dropdown-title {
   margin: 0 0 16px;
-  font-size: 13px;
+  font-size: 1.2rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: #9ca3af;
+  color: var(--color-white);
 }
 
 .navbar-dropdown-list {
@@ -371,8 +354,9 @@ code {
 }
 
 .navbar-dropdown-link {
-  font-size: 14px;
-  color: #e5e7eb;
+  font-size: 1rem;
+  color: var(--color-white);
+  padding: 8px 0;
   text-decoration: none;
   display: block;
   max-width: 100%;
@@ -450,7 +434,7 @@ code {
 
 @media (max-width: 1024px) {
   .navbar {
-    padding: 16px 24px;
+    padding: 1rem;
   }
 
   .navbar-left {
@@ -462,15 +446,15 @@ code {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1130px) {
   .navbar {
-    padding: 12px 16px;
-    background-color: #0f172a;
+    padding: 1rem;
+    background-color: #005384;
     border-bottom: 1px solid rgba(148, 163, 184, 0.18);
     backdrop-filter: none;
   }
   .navbar.navbar-scrolled {
-    background-color: #0f172a;
+    background-color: #005384;
     border-bottom: 1px solid rgba(148, 163, 184, 0.18);
     backdrop-filter: none;
     box-shadow: none;
@@ -481,8 +465,8 @@ code {
   }
 
   .navbar-left {
-    width: 100%;
-    justify-content: space-between;
+    width: 22px;
+    justify-content: right;
   }
 
   .navbar-nav {
@@ -497,8 +481,8 @@ code {
     flex-direction: column;
     align-items: flex-start;
     gap: 20px;
-    background-color: #0f172a;
-    color: #e5e7eb;
+    background-color: #005384;
+    color: var(--color-white);
     border-radius: 0 0 16px 16px;
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
     border-top: 1px solid rgba(148, 163, 184, 0.18);
@@ -535,7 +519,7 @@ code {
   .navbar-menu-mobile-link:hover,
   .navbar-menu-mobile-link-simple:hover,
   .navbar-menu-mobile-link-all:hover {
-    color: #ffffff;
+    color: var(--color-white);
   }
 
   .navbar-mobile-toggle {
@@ -546,7 +530,7 @@ code {
     width: 44px;
     height: 44px;
     border-radius: 999px;
-    border: 1px solid rgba(148, 163, 184, 0.4);
+    border: 1px solid var(--color-white);
     background-color: transparent;
     cursor: pointer;
     padding: 0;
@@ -557,7 +541,7 @@ code {
     width: 18px;
     height: 2px;
     border-radius: 999px;
-    background-color: #e5e7eb;
+    background-color: var(--color-white);
     transition: transform 0.32s ease, opacity 0.32s ease, background-color 0.2s ease;
   }
 
@@ -601,7 +585,7 @@ code {
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 16px;
+    gap: 20px;
     min-height: 100%;
     justify-content: flex-start;
   }
@@ -624,8 +608,8 @@ code {
     align-items: center;
     justify-content: space-between;
     padding: 12px 0 14px;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
-    background-color: #0f172a;
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-navbar);
   }
 
   .navbar-menu-mobile-section-toggle {
@@ -637,20 +621,26 @@ code {
     min-height: 44px;
     border: none;
     background: none;
-    font-size: 18px;
+    font-size: 1.2rem;
     letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: #f9fafb;
+    text-transform: none;
+    color: var(--color-white);
     cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
   }
 
   .navbar-menu-mobile-link-simple {
     display: flex;
     align-items: center;
     min-height: 44px;
-    font-size: 16px;
-    color: #e5e7eb;
+    font-size: 1.2rem;
+    color: var(--color-white);
     text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   .navbar-menu-mobile-section {
@@ -663,45 +653,48 @@ code {
 
   .navbar-menu-mobile-detail {
     width: 100%;
+    overflow: auto;
+    scroll-behavior: smooth;
   }
 
   .navbar-menu-mobile-detail-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 10px 0 14px;
-    margin-bottom: 16px;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    padding: 14px 0;
+    margin-bottom: 1rem;
+     border-bottom: 1px solid var(--color-white);
   }
 
   .navbar-menu-mobile-detail-button {
     width: 44px;
     height: 44px;
-    border-radius: 999px;
-    border: 1px solid rgba(148, 163, 184, 0.4);
-    background-color: transparent;
+    border-radius: 50%;
+    border: 1px solid var(--color-white);
+    background-color: #005384;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 1.4rem;
     cursor: pointer;
-    color: #e5e7eb;
-    padding: 0;
+    color: var(--color-white);
+    padding: 0.8rem;
     transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
   }
 
   .navbar-menu-mobile-detail-title {
-    font-size: 16px;
+    font-size: 1.2rem;
     font-weight: 600;
-    color: #f9fafb;
+    color: var(--color-white);
   }
 
   .navbar-menu-mobile-detail-header {
-    position: sticky;
-    top: -22px;
+    position: static;
+    top: -25px;
     z-index: 31;
-    background-color: #0f172a;
-    border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+    background-color: #005384;
+    border-bottom: 1px solid var(--color-white);
+    height: fit-content;
   }
 
   .navbar-menu-mobile-detail-header .navbar-menu-mobile-detail-button,
@@ -723,25 +716,30 @@ code {
   }
 
   .navbar-menu-mobile-group-title {
-    font-size: 12px;
+    font-size: 1.4rem;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: #9ca3af;
-    margin-bottom: 6px;
+    color: var(--color-darkYellow);
+    margin-bottom: 1rem;
   }
 
   .navbar-menu-mobile-link,
   .navbar-menu-mobile-link-all {
     display: block;
-    padding: 4px 0;
-    font-size: 14px;
-    color: #e5e7eb;
+    padding:  1rem;
+    font-size: 1rem;
+    color: var(--color-white);
     text-decoration: none;
   }
 
   .navbar-menu-mobile-link-all {
-    margin-top: 4px;
+    margin-top: 8px;
     font-weight: 600;
+    font-size: 1.4rem;
+    border: 1px solid var(--color-white);
+    border-radius: 24px;
+    text-align: center;
+    margin: 2rem;
   }
 
 
@@ -769,7 +767,7 @@ code {
     padding: 12px 12px 16px;
     border-radius: 12px;
     box-shadow: none;
-    margin-top: 4px;
+    margin-top: 8px;
     max-height: none;
     overflow: visible;
     opacity: 1;
@@ -825,8 +823,8 @@ code {
 /* removed dropdown search styles */
 
 .site-footer {
-  background-color: #050509;
-  color: #f9fafb;
+  background-color: #005384;
+  color: var(--color-white);
   padding: 80px 24px 56px;
 }
 
@@ -877,27 +875,29 @@ footer img[alt="Algarve Pain Centre"] {
   width: 64px;
   height: 64px;
   border-radius: 999px;
-  background: #2563eb;
+  background: #005384;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 1rem;
 }
 
 .footer-health-address {
   margin: 0;
-  font-size: 13px;
-  color: #e5e7eb;
+  font-size: 1.2rem;
+  color: var(--color-white);
 }
 
 .footer-health-contact {
   margin-top: 4px;
+  font-size: 1.2rem;
+  color: var(--color-white);
 }
 
 .footer-column-title {
   margin: 0 0 16px;
-  font-size: 13px;
-  letter-spacing: 0.12em;
+  font-size: 1.2rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #e5e7eb;
+  color: var(--color-white);
 }
 
 .footer-column-list {
@@ -912,13 +912,14 @@ footer img[alt="Algarve Pain Centre"] {
 
 .footer-link {
   display: inline-block;
-  font-size: 13px;
-  color: #9ca3af;
+  font-size: 1rem;
+  color: var(--color-white);
   text-decoration: none;
+  padding: 4px 0;
 }
 
 .footer-link:hover {
-  color: #f9fafb;
+  color: var(--color-darkRed);
 }
 
 .site-footer-bottom {
@@ -941,20 +942,61 @@ footer img[alt="Algarve Pain Centre"] {
   width: 32px;
   height: 32px;
   border-radius: 999px;
-  background: #111827;
-  color: #f9fafb;
-  font-size: 14px;
+  background: transparent;
+  font-size: 1rem;
   text-decoration: none;
 }
 
+.footer-social-link svg {
+  width: 32px;
+  height: 32px;
+  color: var(--color-white);
+}
+
 .footer-social-link:hover {
-  background: #2563eb;
+  color: var(--color-midYellow);
 }
 
 .site-footer-meta {
+  display: flex;
   margin: 0;
-  font-size: 12px;
-  color: #6b7280;
+  font-size: 1rem;
+  color: var(--color-white);
+}
+
+.site-footer-credits {
+  display: flex;
+  align-items: center;
+}
+
+.footer-credits-link {
+  display: flex;
+  gap: 8px;
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  top: -12px;
+}
+
+.footer-credits-link span {
+  margin-top: 8px;
+  
+}
+
+.footer-credits-link:hover {
+  opacity: 1;
+}
+
+.footer-credits-link svg {
+  height: 80px;
+  width: 80px;
+  fill: currentColor;
+  margin: 0; 
+  padding: 0;
 }
 
 .sr-only {

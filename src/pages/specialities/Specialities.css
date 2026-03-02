@@ -12,7 +12,8 @@
 }
 
 .page-main {
-  padding: 0 48px 80px;
+  padding: 1rem;
+  max-width: 1200px;
 }
 
 .page-section {
@@ -247,14 +248,14 @@
 .page-footer {
   padding: 24px 48px;
   text-align: center;
-  background-color: #0b0b10;
+  background-color: #0f172a;
   color: rgba(255, 255, 255, 0.7);
   font-size: 12px;
 }
 
 @media (max-width: 1024px) {
   .page-main {
-    padding: 0 32px 64px;
+    /* padding handled by base style */
   }
 
   .specialities-grid {
@@ -273,7 +274,7 @@
 
 @media (max-width: 768px) {
   .page-main {
-    padding: 0 16px 56px;
+    /* padding handled by base style */
   }
 
   .page-section {

@@ -455,7 +455,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({ title, areaLa
           <div className="contact-visit-map">
             <iframe
               title="Algarve Pain Centre location"
-              src="https://www.google.com/maps?q=Algarve+Pain+Centre+Vale+do+Lobo&output=embed"
+              src="https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil&z=16&output=embed"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />

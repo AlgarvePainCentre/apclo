@@ -12,11 +12,11 @@
 }
 
 .page-main {
-  padding: 0 48px 80px;
+  padding: 1rem;
 }
 
 .page-section {
-  max-width: var(--container-width);
+  max-width: 1600px;
   margin: 0 auto 40px;
 }
 
@@ -547,7 +547,7 @@
 .page-footer {
   padding: 24px 48px;
   text-align: center;
-  background-color: #0b0b10;
+  background-color: #0f172a;
   color: rgba(255, 255, 255, 0.7);
   font-size: 12px;
 }
@@ -565,22 +565,26 @@
 
 @media (max-width: 768px) {
   .page-main {
-    padding: 0 16px 64px;
+    margin: 0;
   }
 
   .page-section {
-    margin: 0 auto 32px;
+    width: 100%;
+    margin: 0;
+    padding: 0.2rem;
   }
 
   .treatments-overview {
+    width: 100%;
+    max-width: 100%;
     min-height: auto;
-    margin-top: 40px;
-    padding: 24px 16px 24px;
-    border-radius: 24px;
+    margin-top: 0;
+    padding: 0;
+    border-radius: 0;
   }
 
   .treatments-overview-header {
-    padding-left: 12px;
+    padding-left: 0;
   }
 
   .treatments-highlighted-title {
@@ -589,7 +593,7 @@
   }
 
   .treatments-overview-card {
-    padding: 24px 16px 24px;
+    padding: 0;
     min-height: auto;
   }
 
