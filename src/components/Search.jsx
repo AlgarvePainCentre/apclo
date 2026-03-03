@@ -29,7 +29,7 @@ const getAllItems = () => {
 
 const searchItems = getAllItems();
 
-export default function Search({ onNavigate }) {
+export default function Search({ onNavigate, onToggle }) {
   const [query, setQuery] = useState('');
   const [isOpen, setIsOpen] = useState(false);
   const [results, setResults] = useState([]);
@@ -39,18 +39,46 @@ export default function Search({ onNavigate }) {
   const [activeIndex, setActiveIndex] = useState(-1);
   const wrapperRef = useRef(null);
   const inputRef = useRef(null);
+  const timeoutRef = useRef(null);
   const navigate = useNavigate();
+
+  const resetTimeout = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+  };
 
   useEffect(() => {
     // Click outside to close
     function handleClickOutside(event) {
       if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
         setIsOpen(false);
+      } else {
+        // Interaction inside the component, reset timeout
+        resetTimeout();
       }
     }
     document.addEventListener('mousedown', handleClickOutside);
-    return () => document.removeEventListener('mousedown', handleClickOutside);
+    document.addEventListener('touchstart', handleClickOutside);
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('touchstart', handleClickOutside);
+      resetTimeout();
+    };
   }, []);
+
+  const handleBlur = () => {
+    // Delay closing to allow for interactions to register
+    timeoutRef.current = setTimeout(() => {
+      setIsOpen(false);
+    }, 200);
+  };
+
+  const handleFocus = () => {
+    resetTimeout();
+    setIsOpen(true);
+  };
 
   useEffect(() => {
     if (query.trim() === '') {
@@ -67,6 +95,12 @@ export default function Search({ onNavigate }) {
     setResults(filtered);
     setIsOpen(true);
   }, [query]);
+
+  useEffect(() => {
+    if (onToggle) {
+      onToggle(isOpen);
+    }
+  }, [isOpen, onToggle]);
 
   const handleKeyDown = (e) => {
     if (e.key === 'ArrowDown') {
@@ -98,8 +132,11 @@ export default function Search({ onNavigate }) {
   };
 
   return (
-    <div className="navbar-search" ref={wrapperRef}>
-      <div className="navbar-search-input-wrapper">
+    <div className={`navbar-search ${isOpen ? 'search-open' : ''}`} ref={wrapperRef}>
+      <div 
+        className="navbar-search-input-wrapper"
+        onClick={() => inputRef.current?.focus()}
+      >
          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="search-icon">
           <circle cx="11" cy="11" r="8"></circle>
           <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -111,7 +148,8 @@ export default function Search({ onNavigate }) {
           placeholder="Search..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          onFocus={() => setIsOpen(true)}
+          onFocus={handleFocus}
+          onBlur={handleBlur}
           onKeyDown={handleKeyDown}
           aria-label="Search"
           aria-autocomplete="list"
@@ -121,10 +159,12 @@ export default function Search({ onNavigate }) {
         {query && (
            <button 
              className="search-clear-btn" 
-             onClick={() => {
+             onClick={(e) => {
+               e.preventDefault(); // Prevent focus loss
                setQuery('');
                inputRef.current?.focus();
              }}
+             onMouseDown={(e) => e.preventDefault()} // Ensure input stays focused
              aria-label="Clear search"
            >
              ×
@@ -133,7 +173,19 @@ export default function Search({ onNavigate }) {
       </div>
 
       {isOpen && (
-        <div className="navbar-search-dropdown" id="search-results" role="listbox">
+        <div 
+          className="navbar-search-dropdown" 
+          id="search-results" 
+          role="listbox"
+          onMouseDown={(e) => {
+            // Prevent input blur when clicking inside dropdown
+            // This is critical for mobile/touch interactions where
+            // focus logic can be flaky
+            if (e.target.tagName !== 'A' && e.target.tagName !== 'BUTTON') {
+                e.preventDefault();
+            }
+          }}
+        >
           {query === '' && (
             <div className="search-suggestions">
               <h4 className="search-suggestions-title">Popular Searches</h4>
@@ -143,6 +195,7 @@ export default function Search({ onNavigate }) {
                     <button 
                       className="search-suggestion-btn"
                       onClick={() => setQuery(term)}
+                      onMouseDown={(e) => e.preventDefault()} // Keep focus on input
                     >
                       {term}
                     </button>

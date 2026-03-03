@@ -19,6 +19,7 @@ export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mobileSection, setMobileSection] = useState(null);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const specialitiesRef = useRef(null);
   const treatmentsRef = useRef(null);
   const resourcesRef = useRef(null);
@@ -165,6 +166,7 @@ export default function Navbar() {
   }
 
   return (
+    <>
     <header ref={headerRef} className={scrolled ? 'navbar navbar-scrolled' : 'navbar'}>
       <div className="navbar-inner">
 
@@ -535,7 +537,6 @@ export default function Navbar() {
               {link.label}
             </Link>
           ))}
-          <Search />
           </div>
           <div className="navbar-menu-mobile">
             {!mobileSection && (
@@ -569,10 +570,6 @@ export default function Navbar() {
                 </button>
               </div>
               <div className="navbar-menu-mobile-main">
-                <Search onNavigate={() => {
-                  setMobileOpen(false);
-                  setMobileSection(null);
-                }} />
                 <Link
                   to="/"
                   className="navbar-menu-mobile-link-simple"
@@ -838,10 +835,20 @@ export default function Navbar() {
             }}
           />
         </div>
-        <Link to="/contact" className="navbar-cta navbar-cta-desktop">
-          Contact Us
-        </Link>
+        <div className="navbar-right">
+          <Search />
+          <Link to="/contact" className="navbar-cta navbar-cta-desktop">
+            Contact Us
+          </Link>
+        </div>
       </div>
     </header>
+    <div className={`navbar-search-mobile ${mobileSearchOpen ? 'search-open' : ''}`}>
+      <Search 
+        onNavigate={() => setMobileOpen(false)} 
+        onToggle={setMobileSearchOpen}
+      />
+    </div>
+    </>
   );
 }
