@@ -539,8 +539,6 @@ export default function Navbar() {
           ))}
           </div>
           <div className="navbar-menu-mobile">
-            {!mobileSection && (
-              <>
               <div className="navbar-menu-mobile-top">
                 <Link
                   to="/"
@@ -628,10 +626,8 @@ export default function Navbar() {
                   Contact Us
                 </Link>
               </div>
-              </>
-            )}
-            {mobileSection === 'specialities' && (
-              <div className="navbar-menu-mobile-detail">
+
+              <div className={`navbar-mobile-submenu ${mobileSection === 'specialities' ? 'navbar-mobile-submenu-open' : ''}`}>
                 <div className="navbar-menu-mobile-detail-header">
                   <button
                     type="button"
@@ -692,9 +688,8 @@ export default function Navbar() {
                   </Link>
                 </div>
               </div>
-            )}
-            {mobileSection === 'treatments' && (
-              <div className="navbar-menu-mobile-detail">
+
+              <div className={`navbar-mobile-submenu ${mobileSection === 'treatments' ? 'navbar-mobile-submenu-open' : ''}`}>
                 <div className="navbar-menu-mobile-detail-header">
                   <button
                     type="button"
@@ -755,9 +750,8 @@ export default function Navbar() {
                   </Link>
                 </div>
               </div>
-            )}
-            {mobileSection === 'resources' && (
-              <div className="navbar-menu-mobile-detail">
+
+              <div className={`navbar-mobile-submenu ${mobileSection === 'resources' ? 'navbar-mobile-submenu-open' : ''}`}>
                 <div className="navbar-menu-mobile-detail-header">
                   <button
                     type="button"
@@ -818,7 +812,6 @@ export default function Navbar() {
                   </Link>
                 </div>
               </div>
-            )}
           </div>
           </nav>
           <div

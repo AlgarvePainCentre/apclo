@@ -490,7 +490,7 @@ code {
     top: 0;
     bottom: 0;
     margin: 0;
-    padding: var(--navbar-offset, 88px) calc(20px + env(safe-area-inset-right)) 24px calc(20px + env(safe-area-inset-left));
+    padding: 1.4rem;
     width: 100%;
     height: 100vh;
     flex-direction: column;
@@ -507,6 +507,7 @@ code {
     -webkit-overflow-scrolling: touch;
     box-shadow: none;
     border-radius: 0;
+    overflow: hidden;
   }
 
   .navbar-nav-open {
@@ -651,18 +652,14 @@ code {
     gap: 10px;
   }
 
-  .navbar-menu-mobile-detail {
-    width: 100%;
-    overflow: auto;
-    scroll-behavior: smooth;
-  }
-
   .navbar-menu-mobile-detail-header {
     display: flex;
+    top: 0;
+    z-index: 31;
     align-items: center;
     justify-content: space-between;
-    padding: 14px 0;
-    margin-bottom: 1rem;
+    padding: 1.2rem 0;
+    margin-bottom: 1.8rem;
      border-bottom: 1px solid var(--color-white);
   }
 
@@ -689,12 +686,12 @@ code {
   }
 
   .navbar-menu-mobile-detail-header {
-    position: static;
-    top: -25px;
+    position: sticky;
+    top: 0;
     z-index: 31;
     background-color: #005384;
     border-bottom: 1px solid var(--color-white);
-    height: fit-content;
+    height: 90px;
   }
 
   .navbar-menu-mobile-detail-header .navbar-menu-mobile-detail-button,
@@ -795,6 +792,31 @@ code {
     justify-content: center;
     margin-top: 8px;
   }
+
+  .navbar-mobile-submenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #005384;
+    z-index: 40;
+    padding: 1.4rem;
+    padding-top: 0;
+    overflow-y: auto;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar-mobile-submenu-open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
 }
 
 .reduce-motion .navbar-nav,
@@ -825,7 +847,7 @@ code {
 .site-footer {
   background-color: #005384;
   color: var(--color-white);
-  padding: 80px 24px 56px;
+  padding: 1.4rem 24px 56px;
 }
 
 .site-footer-inner {
