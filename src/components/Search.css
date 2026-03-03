@@ -165,9 +165,8 @@
   .navbar-search-mobile {
     display: block;
     position: fixed;
-    bottom: 24px;
-    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
-    right: 24px;
+    bottom: 14px;
+    right: 0;
     left: auto;
     z-index: 29;
     padding: 0;
@@ -216,7 +215,7 @@
   .navbar-search-mobile.search-open .navbar-search-input-wrapper {
     width: 100%;
     border-radius: 24px;
-    padding: 0 16px;
+    padding: 0 16px 0 42px;
     justify-content: flex-start;
     background: #005384;
     background: rgba(0, 83, 132, 0.98);
@@ -227,12 +226,17 @@
   .navbar-search-mobile .search-icon {
     margin: 0;
     min-width: 18px;
-    transition: margin 0.3s ease;
+    transition: all 0.3s ease;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
 
   .navbar-search-mobile .navbar-search-input-wrapper:focus-within .search-icon,
   .navbar-search-mobile.search-open .search-icon {
-    margin-right: 8px;
+    left: 16px;
+    transform: translateY(-50%);
   }
 
   .navbar-search-mobile .navbar-search-input {

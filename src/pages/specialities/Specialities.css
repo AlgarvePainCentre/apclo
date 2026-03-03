@@ -274,7 +274,7 @@
 
 @media (max-width: 768px) {
   .page-main {
-    /* padding handled by base style */
+    padding: 0;
   }
 
   .page-section {

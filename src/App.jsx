@@ -1,4 +1,5 @@
 import './global.css';
+import './responsive.css';
 import { Routes, Route } from 'react-router-dom';
 import Home from './pages/home/Home';
 import Specialities from './pages/specialities/Specialities';

@@ -1,0 +1,371 @@
+/* Responsive Design System
+ * Implements specific mobile breakpoints and optimizations
+ * Overrides Global, Home, and Specialities styles
+ */
+
+/* =========================================
+   1. Global Mobile Optimizations
+   ========================================= */
+
+/* Fluid Typography Root */
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Touch Targets - Minimum 44px */
+button, 
+a, 
+input, 
+select, 
+textarea, 
+[role="button"],
+.navbar-link,
+.navbar-mobile-toggle,
+.footer-link,
+.speciality-card,
+.treatment-card-button,
+.mainpain-card-cta {
+  min-height: 44px;
+  min-width: 44px; /* Ensure minimum width for touch targets */
+}
+
+/* Image Optimization */
+img, 
+video, 
+iframe {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Prevent Horizontal Scroll */
+body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* =========================================
+   2. Variables & Breakpoints
+   ========================================= */
+
+:root {
+  --container-padding: 16px;
+  --h1-size: 2.5rem;
+  --h2-size: 2rem;
+  --body-size: 1rem;
+}
+
+/* -----------------------------------------
+   320px - Mobile S
+   ----------------------------------------- */
+@media screen and (max-width: 330px) {
+  :root {
+    --container-padding: 12px;
+    --h1-size: 1.75rem; /* ~28px */
+    --h2-size: 1.5rem;  /* ~24px */
+    --body-size: 0.875rem; /* 14px */
+  }
+  
+  .hero-title {
+    font-size: var(--h1-size) !important;
+  }
+  
+  .speciality-page-title,
+  .home-section-why-choose-title,
+  .home-section-treatment-title,
+  .specialities-teams-title,
+  .specialities-grid-title,
+  .specialities-treatments-title {
+     font-size: var(--h2-size) !important;
+  }
+}
+
+/* -----------------------------------------
+   344px - 360px - Mobile M
+   ----------------------------------------- */
+@media screen and (min-width: 331px) and (max-width: 370px) {
+  :root {
+    --container-padding: 16px;
+    --h1-size: 2rem; /* 32px */
+    --h2-size: 1.75rem; /* 28px */
+  }
+  
+  .hero-title {
+    font-size: var(--h1-size) !important;
+  }
+}
+
+/* -----------------------------------------
+   375px - 390px - Mobile L
+   ----------------------------------------- */
+@media screen and (min-width: 371px) and (max-width: 400px) {
+  :root {
+    --container-padding: 18px;
+    --h1-size: 2.25rem; /* 36px */
+  }
+}
+
+/* -----------------------------------------
+   414px - 430px - Mobile XL
+   ----------------------------------------- */
+@media screen and (min-width: 401px) and (max-width: 450px) {
+  :root {
+    --container-padding: 20px;
+    --h1-size: 2.5rem; /* 40px */
+  }
+}
+
+
+/* =========================================
+   3. Component Specific Overrides
+   ========================================= */
+
+/* General Container Padding Override */
+@media (max-width: 768px) {
+  .page-section, 
+  .hero,
+  .home-section-testimonial,
+  .home-section-mainpain-inner,
+  .home-section-treatment-inner,
+  .home-section-cards-pain-inner,
+  .home-section-why-choose-us,
+  .specialities-teams-inner,
+  .page-hero,
+  .site-footer {
+    padding-left: var(--container-padding) !important;
+    padding-right: var(--container-padding) !important;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  .page-section {
+    margin-bottom: 32px;
+  }
+}
+
+/* Navigation Mobile Tweaks */
+@media (max-width: 480px) {
+  .navbar {
+    padding: 12px var(--container-padding);
+  }
+  
+  .navbar-logo {
+    height: 32px;
+    padding-right: 16px;
+  }
+  
+  /* Ensure hamburger menu is easily tappable */
+  .navbar-mobile-toggle {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+/* Hero Section Specifics */
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 100px !important; /* Account for fixed navbar */
+    min-height: auto;
+    height: auto;
+  }
+  
+  .hero-content {
+    gap: 32px;
+  }
+  
+  .hero-right {
+    margin-top: 24px;
+    width: 100%;
+    align-items: flex-start;
+  }
+  
+  .hero-cta {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+/* Home - Testimonial Section */
+@media (max-width: 768px) {
+  .home-section-testimonial-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .home-section-testimonial-video {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 16 / 9; /* Better for mobile usually, or keep 9/16 if vertical video */
+  }
+}
+
+/* Home - Cards Pain Section */
+@media (max-width: 768px) {
+  .home-section-cards-pain-inner {
+    flex-direction: column;
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+  }
+  
+  .home-section-cards-pain-image {
+    min-height: 200px;
+    flex: none;
+    width: 100%;
+  }
+  
+  .home-section-cards-pain-cards {
+    width: 100%;
+  }
+}
+
+/* Home - Why Choose Us */
+@media (max-width: 900px) {
+  .home-section-why-choose-layout {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+  
+  .home-section-why-choose-grid {
+    grid-template-columns: 1fr;
+    padding-right: 0;
+  }
+  
+  .why-choose-card {
+    max-width: 100%;
+  }
+}
+
+/* Specialities Page - Grid Overrides */
+@media (max-width: 480px) {
+  /* Force single column for small screens */
+  .specialities-grid {
+    grid-template-columns: 1fr !important;
+    gap: 16px;
+  }
+  
+  .specialities-treatments-grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  .speciality-card {
+    flex-direction: row; /* Horizontal card for mobile list view */
+    align-items: center;
+    padding: 16px;
+    gap: 16px;
+  }
+  
+  .speciality-card-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+  
+  .speciality-card-label {
+    text-align: left;
+    font-size: 16px;
+  }
+}
+
+/* Footer Tweaks */
+@media (max-width: 768px) {
+  .site-footer-top {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .footer-health-secondary {
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .site-footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    text-align: center;
+  }
+  
+  .site-footer-social {
+    justify-content: center;
+  }
+}
+
+/* Form Elements */
+input, select, textarea {
+  font-size: 16px !important; /* Prevents iOS zoom on focus */
+  line-height: 1.5;
+}
+
+/* =========================================
+   4. Page Specific Overrides
+   ========================================= */
+
+/* Contact Page Mobile Overrides */
+@media (max-width: 768px) {
+  .contact-questions-grid {
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+  }
+
+  .contact-form-layout {
+    grid-template-columns: 1fr !important;
+    gap: 32px;
+  }
+
+  .contact-form-name-row {
+    flex-direction: column;
+    height: auto !important;
+    max-height: none !important;
+    gap: 16px;
+  }
+  
+  .contact-form-phone-row {
+    width: 100%;
+  }
+
+  .contact-visit-layout {
+    grid-template-columns: 1fr !important;
+    gap: 32px;
+  }
+
+  .contact-visit-map {
+    height: 300px;
+    width: 100%;
+  }
+  
+  .contact-visit-details {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+}
+
+/* Specialities Page Additional Overrides */
+@media (max-width: 768px) {
+  .specialities-teams-inner {
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .specialities-teams-left,
+  .specialities-teams-right {
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+/* About Page & General Text Sections */
+@media (max-width: 768px) {
+  .page-section p {
+    font-size: var(--body-size);
+    line-height: 1.6;
+  }
+  
+  .page-section h2 {
+    font-size: var(--h2-size);
+    margin-bottom: 24px;
+  }
+}

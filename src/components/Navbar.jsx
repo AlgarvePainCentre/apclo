@@ -524,18 +524,19 @@ export default function Navbar() {
             </div>
           </div>
           {mainLinks.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={
-                location.pathname === link.to
-                  ? 'navbar-link navbar-link-active'
-                  : 'navbar-link'
-              }
-              onClick={() => setMobileOpen(false)}
-            >
-              {link.label}
-            </Link>
+            <div key={link.to} className="navbar-dropdown-wrapper">
+              <Link
+                to={link.to}
+                className={
+                  location.pathname === link.to
+                    ? 'navbar-link navbar-link-active'
+                    : 'navbar-link'
+                }
+                onClick={() => setMobileOpen(false)}
+              >
+                {link.label}
+              </Link>
+            </div>
           ))}
           </div>
           <div className="navbar-menu-mobile">

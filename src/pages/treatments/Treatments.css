@@ -37,18 +37,19 @@
 .treatments-overview-header {
   width: 100%;
   max-width: 100%;
-  margin: 0 0 32px;
   text-align: left;
+  left: 4px;
   position: relative;
-  padding-left: 16px;
+  padding: 2rem 1rem;
+  margin: 0 auto;
 }
 
 .treatments-overview-header::before {
   content: '';
   position: absolute;
-  left: 0;
-  top: 2px;
-  bottom: 2px;
+  left: -10px;
+  top: 28px;
+  bottom: 28px;
   width: 4px;
   border-radius: 6px;
   background: linear-gradient(
@@ -566,6 +567,7 @@
 @media (max-width: 768px) {
   .page-main {
     margin: 0;
+    padding: 0;
   }
 
   .page-section {
