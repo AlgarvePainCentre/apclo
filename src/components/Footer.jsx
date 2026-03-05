@@ -69,7 +69,8 @@ export default function Footer() {
             </a>
             <div className="footer-health-secondary">
               <div className="footer-subcolumn">
-                <h3 className="footer-column-title">Company</h3>
+                <h3 className="footer-column-title footer-card-title-1">Company</h3>
+                <div className="footer-card-title"></div>
                 <ul className="footer-column-list">
                   <li className="footer-column-item">
                     <Link to="/about" className="footer-link">
@@ -134,7 +135,8 @@ export default function Footer() {
               className="footer-column"
               aria-label={column.title}
             >
-              <h3 className="footer-column-title">{column.title}</h3>
+              <h3 className="footer-column-title footer-card-title-1">{column.title}</h3>
+              <div className="footer-card-title"></div>
               <ul className="footer-column-list">
                 {column.items.map((item) => (
                   <li key={item.to} className="footer-column-item">

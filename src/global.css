@@ -27,6 +27,17 @@
   --warm-orange: #ff9a52;
   --warm-coral: #ff5c6e;
   --warm-rose: #e83d5b;
+  
+  /* CTA Button Variables */
+  --cta-bg-color: #f04b5e;
+  --cta-text-color: var(--color-white);
+  --cta-padding: 1.2rem 1.5rem;
+  --cta-border-radius: 999px;
+  --cta-font-size: 16px;
+  --cta-font-weight: 600;
+  --cta-letter-spacing: 0.08em;
+  --cta-height: 42px;
+  --cta-hover-gradient: linear-gradient(90deg, var(--warm-orange, #ff9a52) 40%, var(--warm-coral, #ff5c6e) 80%, var(--warm-rose, #e83d5b) 100%);
 }
 
 *,
@@ -52,6 +63,8 @@ body {
   background-color: #f7f9fc;
 }
 
+
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -69,11 +82,14 @@ code {
 
 .page-main {
   padding: 0;
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
 }
 
 .page-section {
-  max-width: var(--container-width);
-  margin: 0 auto 40px;
+  max-width: 100%;
+  margin: 0;
 }
 
 @media (max-width: 768px) {
@@ -244,22 +260,23 @@ code {
 }
 
 .navbar-cta {
-  padding: 1.4rem;
+  padding: 1.2rem 1.5rem;
   border-radius: 999px;
-  border: 1px solid var(--color-white);
+  border: none;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  height: 42px;
-  background-image: transparent;
-  color: var(--color-white);
-  font-size: 1.4rem;
-  letter-spacing: 0.08em;
-  text-transform: none;
+  height: 48px;
+  width: fit-content;
   text-decoration: none;
-  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  background-color: #f04b5e;
+  color: var(--color-white);
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   font-weight: 600;
+  cursor: pointer;
   background-size: 200% 200%;
   background-position: 0% 50%;
   transform: scale(1);
@@ -271,11 +288,17 @@ code {
 
 
 .navbar-cta:hover {
-  background-color: var(--color-midYellow);
+  background-image: var(--cta-hover-gradient);
+  background-image: linear-gradient(
+    90deg,
+    var(--warm-orange, #ff9a52) 40%,
+    var(--warm-coral, #ff5c6e) 80%,
+    var(--warm-rose, #e83d5b) 100%
+  );
   background-position: 100% 50%;
-  transform: scale(1.04);
-  color: #005384;
-  border-color: #005384;
+  transform: none;
+  text-decoration: none;
+  color: var(--color-white);
 }
 
 .navbar-cta:active {
@@ -334,7 +357,7 @@ code {
 
 .navbar-dropdown-footer-link {
   display: inline-block;
-  padding: 10px 16px;
+  padding: 12px 24px;
   border-radius: 8px;
   background: #005384;
   color: var(--color-white);
@@ -436,8 +459,7 @@ code {
     var(--warm-coral, #ff5c6e) 80%,
     var(--warm-rose, #e83d5b) 100%
   );
-  background-position: 100% 50%;
-  transform: scale(1.03);
+  
   color: #111827;
 }
 
@@ -860,12 +882,27 @@ code {
 }
 
 .site-footer-inner {
-  max-width: var(--container-width);
+  max-width: 1800px;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   gap: 64px;
 }
+
+.footer-card-title-1 {
+   width: 48px;
+  height: 2px;
+  background-color: transparent;
+  margin: 6px 0 12px;
+}
+
+.footer-card-title {
+   width: 48px;
+  height: 2px;
+  background-color: var(--color-darkRed);
+  margin: 6px 0 12px;
+}
+
 
 .site-footer-top {
   display: grid;
@@ -880,7 +917,7 @@ code {
 .footer-column-health {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 8px;
 }
 
 footer img[alt="Algarve Pain Centre"] {
@@ -913,7 +950,7 @@ footer img[alt="Algarve Pain Centre"] {
 
 .footer-health-address {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.6rem;
   color: var(--color-white);
 }
 
@@ -924,7 +961,7 @@ footer img[alt="Algarve Pain Centre"] {
 }
 
 .footer-column-title {
-  margin: 0 0 16px;
+  margin: 0 0 1.6rem;
   font-size: 1.2rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -946,7 +983,8 @@ footer img[alt="Algarve Pain Centre"] {
   font-size: 1rem;
   color: var(--color-white);
   text-decoration: none;
-  padding: 4px 0;
+  padding: 12px 0;
+  margin: 0;
 }
 
 .footer-link:hover {

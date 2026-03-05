@@ -29,6 +29,7 @@ export default function Navbar() {
   const isSpecialitiesActive = location.pathname.startsWith('/specialities');
   const isTreatmentsActive = location.pathname.startsWith('/treatments');
   const isResourcesActive = location.pathname.startsWith('/resources');
+  const isTipsForSelfCare = location.pathname === '/resources/learn/tips-for-self-care';
 
   function closeAllDropdowns() {
     setSpecialitiesOpen(false);
@@ -167,7 +168,7 @@ export default function Navbar() {
 
   return (
     <>
-    <header ref={headerRef} className={scrolled ? 'navbar navbar-scrolled' : 'navbar'}>
+    <header ref={headerRef} className={scrolled || isTipsForSelfCare ? 'navbar navbar-scrolled' : 'navbar'}>
       <div className="navbar-inner">
 
         <Link to="/" className="navbar-brand">

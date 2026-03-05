@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -10,6 +10,267 @@ export function TreatmentsMain({
   hideNonInvasive = false,
   hideSurgical = false,
 }) {
+  const carouselRef = useRef(null);
+  const [activeSlide, setActiveSlide] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+
+  // Scroll listener to update active slide state
+  useEffect(() => {
+    const carousel = carouselRef.current;
+    if (carousel) {
+      const handleScroll = () => {
+        // Debounce or check if dragging to avoid jitter if needed, 
+        // but updating active slide during drag is fine for indicators
+        const scrollPosition = carousel.scrollLeft;
+        let newActiveSlide = 0;
+        let minDiff = Infinity;
+
+        Array.from(carousel.children).forEach((child, index) => {
+          const diff = Math.abs(child.offsetLeft - scrollPosition);
+          if (diff < minDiff) {
+            minDiff = diff;
+            newActiveSlide = index;
+          }
+        });
+        
+        if (newActiveSlide !== activeSlide) {
+          setActiveSlide(newActiveSlide);
+        }
+      };
+      
+      carousel.addEventListener('scroll', handleScroll, { passive: true });
+      return () => {
+        carousel.removeEventListener('scroll', handleScroll);
+      };
+    }
+  }, [activeSlide]);
+
+  // Mouse Drag Handlers
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setStartX(e.pageX - carouselRef.current.offsetLeft);
+    setScrollLeft(carouselRef.current.scrollLeft);
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    const x = e.pageX - carouselRef.current.offsetLeft;
+    const walk = (x - startX) * 2; // Scroll-fast multiplier
+    carouselRef.current.scrollLeft = scrollLeft - walk;
+  };
+
+  const scrollToSlide = (index) => {
+    const carousel = carouselRef.current;
+    if (carousel) {
+      const card = carousel.children[index];
+      if (card) {
+        card.scrollIntoView({
+          behavior: 'smooth',
+          block: 'nearest',
+          inline: 'center'
+        });
+      }
+    }
+  };
+
+
+
+  const testimonials = [
+    {
+      quote: "“The staff are professional, kind and attentive. From the first consultation through follow‑up, I always felt listened to and supported.”",
+      initial: "C",
+      name: "Celeste Cutting",
+      location: "United Kingdom"
+    },
+    {
+      quote: "“Within a few weeks my pain was noticeably better. The team explained every option clearly so I could choose what felt right for me.”",
+      initial: "G",
+      name: "Gerald Kraftman",
+      location: "Poland"
+    },
+    {
+      quote: "“I am grateful for the calm, coordinated care I received. My mobility and confidence have improved more than I expected.”",
+      initial: "J",
+      name: "Jean‑François Cristau",
+      location: "France"
+    },
+    {
+      quote: "“The staff are professional, kind and attentive. From the first consultation through follow‑up, I always felt listened to and supported.”",
+      initial: "C",
+      name: "Celeste Cutting",
+      location: "United Kingdom"
+    },
+    {
+      quote: "“Within a few weeks my pain was noticeably better. The team explained every option clearly so I could choose what felt right for me.”",
+      initial: "G",
+      name: "Gerald Kraftman",
+      location: "Poland"
+    },
+    {
+      quote: "“I am grateful for the calm, coordinated care I received. My mobility and confidence have improved more than I expected.”",
+      initial: "J",
+      name: "Jean‑François Cristau",
+      location: "France"
+    }
+  ];
+
+  const handlePrev = () => {
+    const newIndex = activeSlide === 0 ? testimonials.length - 1 : activeSlide - 1;
+    scrollToSlide(newIndex);
+  };
+
+  const handleNext = () => {
+    const newIndex = activeSlide === testimonials.length - 1 ? 0 : activeSlide + 1;
+    scrollToSlide(newIndex);
+  };
+
+  const surgicalTreatments = [
+    {
+      title: "Tubular microsurgery",
+      link: "/treatments/surgical-treatments/tubular-microsurgery",
+      icon: "/assets/images/Icons-Specialities/Asset-S13.png",
+      category: "Surgical",
+      description: "Advanced microscopic technique for precise nerve decompression.",
+      author: "Medical Team",
+      date: "Oct 15, 2023",
+      readTime: "5 min read"
+    },
+    {
+      title: "Spinal fusion",
+      link: "/treatments/surgical-treatments/spinal-fusion",
+      icon: "/assets/images/Icons-Specialities/Asset-S14.png",
+      category: "Surgical",
+      description: "Stabilises the spine to reduce pain and improve alignment.",
+      author: "Medical Team",
+      date: "Sep 28, 2023",
+      readTime: "7 min read"
+    },
+    {
+      title: "Disc replacement",
+      link: "/treatments/surgical-treatments/disc-replacement",
+      icon: "/assets/images/Icons-Specialities/Asset-S15.png",
+      category: "Surgical",
+      description: "Preserves motion by replacing damaged discs with artificial ones.",
+      author: "Medical Team",
+      date: "Nov 05, 2023",
+      readTime: "6 min read"
+    }
+  ];
+
+  const minimallyInvasiveTreatments = [
+    {
+      title: "Vertebroplasty",
+      link: "/treatments/minimally-invasive-treatments/vertebroplasty",
+      icon: "/assets/images/Icons-Specialities/Asset-S12.png",
+      category: "Minimally Invasive",
+      description: "Reinforces fractured vertebrae using bone cement.",
+      author: "Medical Team",
+      date: "Aug 14, 2023",
+      readTime: "4 min read"
+    },
+    {
+      title: "Radiofrequency",
+      link: "/treatments/minimally-invasive-treatments/radiofrequency",
+      icon: "/assets/images/Icons-Specialities/Asset-S9.png",
+      category: "Minimally Invasive",
+      description: "Uses heat to disrupt pain signals from specific nerves.",
+      author: "Medical Team",
+      date: "Oct 02, 2023",
+      readTime: "3 min read"
+    },
+    {
+      title: "Interspinous spacers",
+      link: "/treatments/minimally-invasive-treatments/interspinous-spacers",
+      icon: "/assets/images/Icons-Specialities/Asset-S8.png",
+      category: "Minimally Invasive",
+      description: "Implants that relieve pressure on nerves in the spine.",
+      author: "Medical Team",
+      date: "Sep 10, 2023",
+      readTime: "4 min read"
+    }
+  ];
+
+  const nonInvasiveTreatments = [
+    {
+      title: "Pharmacological pain management",
+      link: "/treatments/non-invasive-treatments/pharmacological-pain-management",
+      icon: "/assets/images/Icons-Specialities/Asset-S4.png",
+      category: "Non-Invasive",
+      description: "Medication strategies tailored to your specific pain profile.",
+      author: "Medical Team",
+      date: "Nov 12, 2023",
+      readTime: "3 min read"
+    },
+    {
+      title: "Physiotherapy",
+      link: "/treatments/non-invasive-treatments/physiotherapy",
+      icon: "/assets/images/Icons-Specialities/Asset-S7.png",
+      category: "Non-Invasive",
+      description: "Physical exercises to restore movement and strength.",
+      author: "Medical Team",
+      date: "Oct 20, 2023",
+      readTime: "5 min read"
+    },
+    {
+      title: "Nutrition",
+      link: "/treatments/non-invasive-treatments/nutrition",
+      icon: "/assets/images/Icons-Specialities/Asset-S10.png",
+      category: "Non-Invasive",
+      description: "Dietary plans to support healing and reduce inflammation.",
+      author: "Medical Team",
+      date: "Sep 05, 2023",
+      readTime: "4 min read"
+    }
+  ];
+
+  const TreatmentCard = ({ item }) => (
+    <article className="treatment-highlight-card">
+      <div className="treatment-card-header">
+        <div className="treatment-highlight-illustration">
+          <img
+            src={item.icon}
+            alt=""
+            aria-hidden="true"
+            className="treatment-highlight-icon"
+            loading="lazy"
+          />
+        </div>
+        <span className="treatment-card-tag">{item.category}</span>
+      </div>
+      <div className="treatment-highlight-body">
+        <div className="treatment-card-meta">
+          <span className="treatment-card-author">{item.author}</span>
+          <span className="treatment-card-divider">•</span>
+          <span className="treatment-card-date">{item.date}</span>
+          <span className="treatment-card-divider">•</span>
+          <span className="treatment-card-read-time">{item.readTime}</span>
+        </div>
+        <h3 className="treatment-highlight-title">{item.title}</h3>
+
+        <p className="treatment-card-excerpt">{item.description}</p>
+        <Link
+          to={item.link}
+          className="treatment-highlight-link"
+          aria-label={`Learn more about ${item.title}`}
+        >
+          <span>Read Article</span>
+          <span className="treatment-highlight-link-icon">→</span>
+        </Link>
+      </div>
+    </article>
+  );
+
   return (
     <main className="page-main">
       {!hideSurgical && (
@@ -65,69 +326,9 @@ export function TreatmentsMain({
               <h2 className="treatments-highlighted-title">Highlighted surgical procedures</h2>
             </div>
             <div className="treatments-highlighted-grid">
-              <article className="treatment-highlight-card">
-                <div className="treatment-highlight-illustration">
-                  <img
-                    src="/assets/images/Icons-Specialities/Asset-S13.png"
-                    alt=""
-                    aria-hidden="true"
-                    className="treatment-highlight-icon"
-                  />
-                </div>
-                <div className="treatment-highlight-body">
-                  <h3 className="treatment-highlight-title">Tubular microsurgery</h3>
-                  <Link
-                    to="/treatments/surgical-treatments/tubular-microsurgery"
-                    className="treatment-highlight-link"
-                    aria-label="Learn more about tubular microsurgery"
-                  >
-                    <span>Learn more</span>
-                    <span className="treatment-highlight-link-icon">→</span>
-                  </Link>
-                </div>
-              </article>
-              <article className="treatment-highlight-card">
-                <div className="treatment-highlight-illustration">
-                  <img
-                    src="/assets/images/Icons-Specialities/Asset-S14.png"
-                    alt=""
-                    aria-hidden="true"
-                    className="treatment-highlight-icon"
-                  />
-                </div>
-                <div className="treatment-highlight-body">
-                  <h3 className="treatment-highlight-title">Spinal fusion</h3>
-                  <Link
-                    to="/treatments/surgical-treatments/spinal-fusion"
-                    className="treatment-highlight-link"
-                    aria-label="Learn more about spinal fusion"
-                  >
-                    <span>Learn more</span>
-                    <span className="treatment-highlight-link-icon">→</span>
-                  </Link>
-                </div>
-              </article>
-              <article className="treatment-highlight-card">
-                <div className="treatment-highlight-illustration">
-                  <img
-                    src="/assets/images/Icons-Specialities/Asset-S15.png"
-                    alt=""
-                    aria-hidden="true"
-                    className="treatment-highlight-icon"
-                  />
-                </div>
-                <div className="treatment-highlight-body">
-                  <h3 className="treatment-highlight-title">Disc replacement</h3>
-                  <Link
-                    to="/treatments/surgical-treatments/disc-replacement"
-                    className="treatment-highlight-link"
-                    aria-label="Learn more about disc replacement"
-                  >
-                    <span>Learn more</span>
-                    <span className="treatment-highlight-link-icon">→</span>
-                  </Link>
-                </div>
-              </article>
+              {surgicalTreatments.map((item, index) => (
+                <TreatmentCard key={index} item={item} />
+              ))}
             </div>
           </section>
         </>
@@ -183,69 +384,9 @@ export function TreatmentsMain({
               </h2>
             </div>
             <div className="treatments-highlighted-grid">
-              <article className="treatment-highlight-card">
-                <div className="treatment-highlight-illustration">
-                  <img
-                    src="/assets/images/Icons-Specialities/Asset-S12.png"
-                    alt=""
-                    aria-hidden="true"
-                    className="treatment-highlight-icon"
-                  />
-                </div>
-                <div className="treatment-highlight-body">
-                  <h3 className="treatment-highlight-title">Vertebroplasty</h3>
-                  <Link
-                    to="/treatments/minimally-invasive-treatments/vertebroplasty"
-                    className="treatment-highlight-link"
-                    aria-label="Learn more about vertebroplasty"
-                  >
-                    <span>Learn more</span>
-                    <span className="treatment-highlight-link-icon">→</span>
-                  </Link>
-                </div>
-              </article>
-              <article className="treatment-highlight-card">
-                <div className="treatment-highlight-illustration">
-                  <img
-                    src="/assets/images/Icons-Specialities/Asset-S9.png"
-                    alt=""
-                    aria-hidden="true"
-                    className="treatment-highlight-icon"
-                  />
-                </div>
-                <div className="treatment-highlight-body">
-                  <h3 className="treatment-highlight-title">Radiofrequency</h3>
-                  <Link
-                    to="/treatments/minimally-invasive-treatments/radiofrequency"
-                    className="treatment-highlight-link"
-                    aria-label="Learn more about radiofrequency"
-                  >
-                    <span>Learn more</span>
-                    <span className="treatment-highlight-link-icon">→</span>
-                  </Link>
-                </div>
-              </article>
-              <article className="treatment-highlight-card">
-                <div className="treatment-highlight-illustration">
-                  <img
-                    src="/assets/images/Icons-Specialities/Asset-S8.png"
-                    alt=""
-                    aria-hidden="true"
-                    className="treatment-highlight-icon"
-                  />
-                </div>
-                <div className="treatment-highlight-body">
-                  <h3 className="treatment-highlight-title">Interspinous spacers</h3>
-                  <Link
-                    to="/treatments/minimally-invasive-treatments/interspinous-spacers"
-                    className="treatment-highlight-link"
-                    aria-label="Learn more about interspinous spacers"
-                  >
-                    <span>Learn more</span>
-                    <span className="treatment-highlight-link-icon">→</span>
-                  </Link>
-                </div>
-              </article>
+              {minimallyInvasiveTreatments.map((item, index) => (
+                <TreatmentCard key={index} item={item} />
+              ))}
             </div>
           </section>
         </>
@@ -299,69 +440,9 @@ export function TreatmentsMain({
               <h2 className="treatments-highlighted-title">Highlighted non‑invasive treatments</h2>
             </div>
             <div className="treatments-highlighted-grid">
-              <article className="treatment-highlight-card">
-                <div className="treatment-highlight-illustration">
-                  <img
-                    src="/assets/images/Icons-Specialities/Asset-S4.png"
-                    alt=""
-                    aria-hidden="true"
-                    className="treatment-highlight-icon"
-                  />
-                </div>
-                <div className="treatment-highlight-body">
-                  <h3 className="treatment-highlight-title">Pharmacological pain management</h3>
-                  <Link
-                    to="/treatments/non-invasive-treatments/pharmacological-pain-management"
-                    className="treatment-highlight-link"
-                    aria-label="Learn more about pharmacological pain management"
-                  >
-                    <span>Learn more</span>
-                    <span className="treatment-highlight-link-icon">→</span>
-                  </Link>
-                </div>
-              </article>
-              <article className="treatment-highlight-card">
-                <div className="treatment-highlight-illustration">
-                  <img
-                    src="/assets/images/Icons-Specialities/Asset-S7.png"
-                    alt=""
-                    aria-hidden="true"
-                    className="treatment-highlight-icon"
-                  />
-                </div>
-                <div className="treatment-highlight-body">
-                  <h3 className="treatment-highlight-title">Physiotherapy</h3>
-                  <Link
-                    to="/treatments/non-invasive-treatments/physiotherapy"
-                    className="treatment-highlight-link"
-                    aria-label="Learn more about physiotherapy"
-                  >
-                    <span>Learn more</span>
-                    <span className="treatment-highlight-link-icon">→</span>
-                  </Link>
-                </div>
-              </article>
-              <article className="treatment-highlight-card">
-                <div className="treatment-highlight-illustration">
-                  <img
-                    src="/assets/images/Icons-Specialities/Asset-S10.png"
-                    alt=""
-                    aria-hidden="true"
-                    className="treatment-highlight-icon"
-                  />
-                </div>
-                <div className="treatment-highlight-body">
-                  <h3 className="treatment-highlight-title">Nutrition</h3>
-                  <Link
-                    to="/treatments/non-invasive-treatments/nutrition"
-                    className="treatment-highlight-link"
-                    aria-label="Learn more about nutrition"
-                  >
-                    <span>Learn more</span>
-                    <span className="treatment-highlight-link-icon">→</span>
-                  </Link>
-                </div>
-              </article>
+              {nonInvasiveTreatments.map((item, index) => (
+                <TreatmentCard key={index} item={item} />
+              ))}
             </div>
           </section>
         </>
@@ -434,50 +515,75 @@ export function TreatmentsMain({
           </article>
         </div>
       </section>
-      <section className="page-section treatments-testimonials">
+      <section 
+        className="page-section treatments-testimonials"
+        aria-roledescription="carousel"
+        aria-label="Patient Testimonials"
+      >
         <div className="treatments-testimonials-header">
           <h2 className="treatments-testimonials-title">Your opinion makes the difference</h2>
         </div>
-        <div className="treatments-testimonials-grid">
-          <article className="testimonial-card">
-            <p className="testimonial-quote">
-              “The staff are professional, kind and attentive. From the first consultation through
-              follow‑up, I always felt listened to and supported.”
-            </p>
-            <div className="testimonial-person">
-              <div className="testimonial-avatar">C</div>
-              <div className="testimonial-meta">
-                <div className="testimonial-name">Celeste Cutting</div>
-                <div className="testimonial-location">United Kingdom</div>
-              </div>
+        
+        <div className="treatments-testimonials-carousel-wrapper">
+          <div 
+            className={`treatments-testimonials-grid ${isDragging ? 'is-dragging' : ''}`}
+            ref={carouselRef}
+            role="group" 
+            aria-live="polite"
+            onMouseDown={handleMouseDown}
+            onMouseLeave={handleMouseLeave}
+            onMouseUp={handleMouseUp}
+            onMouseMove={handleMouseMove}
+          >
+            {testimonials.map((testimonial, index) => (
+              <article 
+                className="testimonial-card" 
+                key={index}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${index + 1} of ${testimonials.length}`}
+              >
+                <p className="testimonial-quote">{testimonial.quote}</p>
+                <div className="testimonial-person">
+                  <div className="testimonial-avatar" aria-hidden="true">{testimonial.initial}</div>
+                  <div className="testimonial-meta">
+                    <div className="testimonial-name">{testimonial.name}</div>
+                    <div className="testimonial-location">{testimonial.location}</div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+
+          <div className="carousel-controls">
+            <button 
+              className="carousel-nav-btn prev" 
+              onClick={handlePrev} 
+              aria-label="Previous testimonial"
+            >
+              ←
+            </button>
+            
+            <div className="carousel-dots">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  className={`carousel-dot ${activeSlide === index ? 'active' : ''}`}
+                  onClick={() => scrollToSlide(index)}
+                  aria-label={`Go to testimonial ${index + 1}`}
+                  aria-current={activeSlide === index}
+                />
+              ))}
             </div>
-          </article>
-          <article className="testimonial-card">
-            <p className="testimonial-quote">
-              “Within a few weeks my pain was noticeably better. The team explained every option
-              clearly so I could choose what felt right for me.”
-            </p>
-            <div className="testimonial-person">
-              <div className="testimonial-avatar">G</div>
-              <div className="testimonial-meta">
-                <div className="testimonial-name">Gerald Kraftman</div>
-                <div className="testimonial-location">Poland</div>
-              </div>
-            </div>
-          </article>
-          <article className="testimonial-card">
-            <p className="testimonial-quote">
-              “I am grateful for the calm, coordinated care I received. My mobility and confidence
-              have improved more than I expected.”
-            </p>
-            <div className="testimonial-person">
-              <div className="testimonial-avatar">J</div>
-              <div className="testimonial-meta">
-                <div className="testimonial-name">Jean‑François Cristau</div>
-                <div className="testimonial-location">France</div>
-              </div>
-            </div>
-          </article>
+
+            <button 
+              className="carousel-nav-btn next" 
+              onClick={handleNext} 
+              aria-label="Next testimonial"
+            >
+              →
+            </button>
+          </div>
         </div>
       </section>
     </main>
