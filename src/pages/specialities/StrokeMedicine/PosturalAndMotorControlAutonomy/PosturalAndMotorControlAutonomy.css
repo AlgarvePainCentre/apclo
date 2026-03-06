@@ -1,0 +1,9 @@
+.postural-and-motor-control-autonomy-page {
+  padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+  .postural-and-motor-control-autonomy-page {
+    padding-top: 96px;
+  }
+}

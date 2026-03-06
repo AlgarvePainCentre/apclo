@@ -1,0 +1,87 @@
+.social-share-container {
+  position: fixed;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 1000;
+  background-color: transparent;
+  animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translate(-20px, -50%); }
+  to { opacity: 1; transform: translate(0, -50%); }
+}
+
+.social-share-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: white;
+  color: #4a5568;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  padding: 10px;
+}
+
+.social-share-btn svg {
+  width: 22px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.social-share-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  color: white;
+}
+
+/* Platform specific colors on hover */
+.social-share-btn.facebook:hover { background-color: #1877f2; }
+.social-share-btn.twitter:hover { background-color: #000000; }
+.social-share-btn.linkedin:hover { background-color: #0077b5; }
+.social-share-btn.pinterest:hover { background-color: #bd081c; }
+.social-share-btn.whatsapp:hover { background-color: #25d366; }
+.social-share-btn.email:hover { background-color: #ea4335; }
+
+/* Mobile responsiveness */
+@media (max-width: 900px) {
+  .social-share-container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    top: auto;
+    width: 100%;
+    transform: none;
+    flex-direction: row;
+    justify-content: center;
+    background-color: white;
+    padding: 12px;
+    box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.05);
+    border-top: 1px solid #f0f0f0;
+    gap: 16px;
+  }
+  
+  .social-share-btn {
+    width: 44px;
+    height: 44px;
+    box-shadow: none;
+    background-color: #f8fafc;
+  }
+  
+  .social-share-btn:hover {
+    transform: translateY(-3px);
+  }
+
+  /* Reset hover colors for mobile to keep it cleaner or use brand colors? 
+     Let's keep brand colors on hover for mobile too, or active state.
+  */
+}

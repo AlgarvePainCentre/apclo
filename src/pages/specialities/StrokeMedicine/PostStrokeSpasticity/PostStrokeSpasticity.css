@@ -1,0 +1,9 @@
+.post-stroke-spasticity-page {
+  padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+  .post-stroke-spasticity-page {
+    padding-top: 96px;
+  }
+}

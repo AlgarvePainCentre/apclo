@@ -1,0 +1,1333 @@
+@font-face {
+  font-family: 'CircularStd-Book';
+  src: url('/fonts/CircularStd-Book.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --color-white: #ffffff;
+  --color-lightGrey: #888888;
+  --color-blue: #005384;
+  --color-lightYellow: #fff5db;
+  --color-midYellow: #ffdfa6;
+  --color-darkYellow: #ffc166;
+  --color-lightRed: #ffe1e5;
+  --color-midRed: #ffaeba;
+  --color-darkRed: #ff8092;
+  --color-lightBlue: #def5ff;
+  --color-midBlue: #a2d6f4;
+  --color-darkBlue: #60bbef;
+  --container-width: 1425px;
+  --nectar-border-radius: 200px;
+  --nectar-body-line-height: 16px;
+  --nectar-body-font-size: 14px;
+  --warm-cream: #ffe7b3;
+  --warm-yellow: #ffd27a;
+  --warm-orange: #ff9a52;
+  --warm-coral: #ff5c6e;
+  --warm-rose: #e83d5b;
+  
+  /* CTA Button Variables */
+  --cta-bg-color: #f04b5e;
+  --cta-text-color: var(--color-white);
+  --cta-padding: 1.2rem 1.5rem;
+  --cta-border-radius: 999px;
+  --cta-font-size: 16px;
+  --cta-font-weight: 600;
+  --cta-letter-spacing: 0.08em;
+  --cta-height: 42px;
+  --cta-hover-gradient: linear-gradient(90deg, var(--warm-orange, #ff9a52) 40%, var(--warm-coral, #ff5c6e) 80%, var(--warm-rose, #e83d5b) 100%);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'CircularStd-Book', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #111827;
+  background-color: #f7f9fc;
+}
+
+
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.App {
+  min-height: 100vh;
+}
+
+.page {
+  min-height: 100vh;
+  background-color: #ffffff;
+  color: #111827;
+}
+
+.page-main {
+  padding: 0;
+  width: 100%;
+  max-width: 1800px;
+  margin: 0 auto;
+}
+
+.page-section {
+  max-width: 100%;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+
+  .page-main {
+    margin: 0;
+  }
+
+  .page-section {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .page-section > div {
+    width: 100%;
+  }
+}
+
+.speciality-page-title {
+  margin: 0 0 16px;
+  font-size: 32px;
+  line-height: 1.3;
+  color: #111827;
+}
+
+.speciality-page-body {
+  margin: 0;
+  max-width: 720px;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+/* NAVBAR - STYLES 
+  
+    Navbar desktop & mobile version - 
+    
+*/
+
+.navbar {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 16px 32px;
+  z-index: 1000;
+  background: #005384;
+  backdrop-filter: none;
+  border-bottom: 1px solid transparent;
+  overflow: visible;
+  transition: background-color 0.24s ease, backdrop-filter 0.24s ease, box-shadow 0.24s ease, padding 0.2s ease, border-color 0.24s ease;
+}
+
+.navbar.navbar-scrolled {
+  background: #005384;
+  backdrop-filter: none;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+}
+
+.navbar-inner {
+  max-width: 1800px;
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  position: relative;
+  z-index: 40;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  width: fit-content;
+  justify-self: center;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  justify-self: end;
+}
+
+.navbar-backdrop {
+  display: none;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: flex-start;
+  justify-self: start;
+}
+
+.navbar-logo {
+  height: 42px;
+  width: auto;
+  padding-right: 32px;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  flex: 1 1 100%;
+  position: static;
+}
+
+.navbar-links-desktop {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.navbar-menu-mobile {
+  display: none;
+}
+
+.navbar-mobile-toggle {
+  display: none;
+}
+
+.navbar-cta-mobile {
+  display: none;
+}
+
+.navbar-cta-desktop {
+  display: inline-flex;
+}
+
+.navbar-link {
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+  font-weight: 600;
+  color: var(--color-white);
+  text-decoration: none;
+  opacity: none;
+  text-shadow: none;
+  transition: opacity 0.2s ease, color 0.2s ease;
+  text-transform: uppercase;
+}
+
+.navbar-link-active {
+  opacity: 1;
+}
+
+.navbar-link:hover {
+  opacity: 1;
+  color: var(--color-darkRed);
+}
+
+.navbar-link-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.navbar-link-open {
+  position: relative;
+}
+.navbar-link-open::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -10px;
+  height: 2px;
+  background: var(--color-darkRed);
+  border-radius: 2px;
+}
+
+.navbar-cta {
+  padding: 1.2rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  width: fit-content;
+  text-decoration: none;
+  background-color: #f04b5e;
+  color: var(--color-white);
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  transform: scale(1);
+  transition:
+    background-position 0.35s ease-out,
+    box-shadow 0.28s ease-out,
+    transform 0.28s ease-out;
+}
+
+
+.navbar-cta:hover {
+  background-image: var(--cta-hover-gradient);
+  background-image: linear-gradient(
+    90deg,
+    var(--warm-orange, #ff9a52) 40%,
+    var(--warm-coral, #ff5c6e) 80%,
+    var(--warm-rose, #e83d5b) 100%
+  );
+  background-position: 100% 50%;
+  transform: none;
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+.navbar-cta:active {
+  transform: translateY(0);
+}
+
+.navbar-dropdown-wrapper {
+  position: static;
+}
+
+.navbar-dropdown {
+  position: absolute;
+  top: 4rem;
+  left: 0;
+  right: 0;
+  transform: translateY(-8px);
+  background: #005384;
+  backdrop-filter: none;
+  padding: 32px 56px;
+  border-radius: 16px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.6);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  overflow-y: hidden;
+  overflow-x: hidden;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.navbar-dropdown-open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.navbar-dropdown-inner {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 32px 48px;
+}
+
+.navbar-dropdown-footer {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(148, 163, 184, 0.18);
+  text-align: left;
+}
+
+.navbar-dropdown-footer-link {
+  display: inline-block;
+  padding: 12px 24px;
+  border-radius: 8px;
+  background: #005384;
+  color: var(--color-white);
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.navbar-dropdown-footer-link:hover {
+  background: #111827;
+}
+.navbar-dropdown-column {
+  min-width: 180px;
+}
+
+.navbar-dropdown-title {
+  margin: 0 0 16px;
+  font-size: 1.2rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.navbar-dropdown-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  max-width: 100%;
+}
+
+.navbar-dropdown-item + .navbar-dropdown-item {
+  margin-top: 8px;
+}
+
+.navbar-dropdown-link {
+  font-size: 1rem;
+  color: var(--color-white);
+  padding: 8px 0;
+  text-decoration: none;
+  display: block;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.navbar-dropdown-link:hover {
+  color: var(--color-darkRed);
+}
+
+.navbar-dropdown-link:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.navbar-dropdown-cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.navbar-cta-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  max-width: 380px;
+  color: #111827;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  background-image: linear-gradient(
+    135deg,
+    var(--warm-cream, #ffe7b3) 0%,
+    var(--warm-yellow, #ffd27a) 35%,
+    var(--warm-orange, #ff9a52) 70%,
+    var(--warm-coral, #ff5c6e) 100%
+  );
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  border: 1px solid rgba(253, 244, 215, 0.9);
+  transform: scale(1);
+  transition:
+    background-position 0.35s ease-out,
+    box-shadow 0.28s ease-out,
+    transform 0.28s ease-out;
+}
+
+.navbar-cta-card:hover {
+  background-image: linear-gradient(
+    135deg,
+    var(--warm-yellow, #ffd27a) 0%,
+    var(--warm-orange, #ff9a52) 40%,
+    var(--warm-coral, #ff5c6e) 80%,
+    var(--warm-rose, #e83d5b) 100%
+  );
+  
+  color: #111827;
+}
+
+.navbar-cta-card-secondary {
+  background: linear-gradient(180deg, #111827 0%, #0b0f14 100%);
+  color: #e5e7eb;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* 
+
+NAVBAR MOBILE - STYLES 
+    
+*/
+
+@media (max-width: 1024px) {
+  .navbar {
+    padding: 1rem;
+  }
+
+  .navbar-left {
+    gap: 16px;
+  }
+
+  .navbar-nav {
+    gap: 16px;
+  }
+}
+
+@media (max-width: 910px) {
+  .navbar {
+    padding: 1rem;
+    background-color: #005384;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    backdrop-filter: none;
+  }
+  .navbar.navbar-scrolled {
+    background-color: #005384;
+    border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+    backdrop-filter: none;
+    box-shadow: none;
+  }
+
+  .navbar-inner {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: center;
+  }
+
+  .navbar-right {
+    display: none;
+  }
+
+  .navbar-left {
+    width: auto;
+    justify-content: flex-end;
+  }
+
+  .navbar-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: 0;
+    padding: 1.4rem;
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    background-color: #005384;
+    color: var(--color-white);
+    transform: translateX(100%);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 30;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: none;
+    border-radius: 0;
+    overflow: hidden;
+  }
+
+  .navbar-nav-open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+
+  .navbar-menu-mobile-link:hover,
+  .navbar-menu-mobile-link-simple:hover,
+  .navbar-menu-mobile-link-all:hover {
+    color: var(--color-white);
+  }
+
+  .navbar-mobile-toggle {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 999px;
+    border: 1px solid var(--color-white);
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .navbar-mobile-bar {
+    width: 18px;
+    height: 2px;
+    border-radius: 999px;
+    background-color: var(--color-white);
+    transition: transform 0.32s ease, opacity 0.32s ease, background-color 0.2s ease;
+  }
+
+  .navbar-mobile-bar + .navbar-mobile-bar {
+    margin-top: 4px;
+  }
+
+   .navbar-mobile-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.25);
+  }
+
+  .navbar-mobile-toggle:active {
+    transform: scale(0.96);
+  }
+
+  .navbar-mobile-toggle-open .navbar-mobile-bar:first-child {
+    transform: translateY(3px) rotate(45deg);
+  }
+
+  .navbar-mobile-toggle-open .navbar-mobile-bar:last-child {
+    transform: translateY(-3px) rotate(-45deg);
+  }
+
+  .navbar-link {
+    font-size: 13px;
+  }
+
+  .navbar-nav .navbar-link,
+  .navbar-nav .navbar-cta {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+  }
+
+  .navbar-links-desktop {
+    display: none;
+  }
+
+  .navbar-menu-mobile {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    min-height: 100%;
+    justify-content: flex-start;
+  }
+
+  .navbar-menu-mobile-main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    align-items: flex-start;
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+
+  .navbar-menu-mobile-top {
+    position: sticky;
+    top: 0;
+    z-index: 31;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0 14px;
+    border-bottom: 1px solid var(--color-border);
+    background-color: var(--color-navbar);
+  }
+
+  .navbar-menu-mobile-section-toggle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 14px 0;
+    min-height: 44px;
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    letter-spacing: 0.08em;
+    text-transform: none;
+    color: var(--color-white);
+    cursor: pointer;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  .navbar-menu-mobile-link-simple {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 1.2rem;
+    color: var(--color-white);
+    text-decoration: none;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .navbar-menu-mobile-section {
+    width: 100%;
+    padding-bottom: 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .navbar-menu-mobile-detail-header {
+    display: flex;
+    top: 0;
+    z-index: 31;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 0;
+    margin-bottom: 1.8rem;
+     border-bottom: 1px solid var(--color-white);
+  }
+
+  .navbar-menu-mobile-detail-button {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--color-white);
+    background-color: #005384;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    cursor: pointer;
+    color: var(--color-white);
+    padding: 0.8rem;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  }
+
+  .navbar-menu-mobile-detail-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-white);
+  }
+
+  .navbar-menu-mobile-detail-header {
+    position: sticky;
+    top: 0;
+    z-index: 31;
+    background-color: #005384;
+    border-bottom: 1px solid var(--color-white);
+    height: 90px;
+  }
+
+  .navbar-menu-mobile-detail-header .navbar-menu-mobile-detail-button,
+  .navbar-menu-mobile-detail-header .navbar-menu-mobile-detail-title {
+    margin-top: 0;
+  }
+
+  .navbar-menu-mobile-detail-button:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    box-shadow: inset 0 0 0 1px rgba(148, 163, 184, 0.25);
+  }
+
+  .navbar-menu-mobile-detail-button:active {
+    transform: scale(0.96);
+  }
+
+  .navbar-menu-mobile-group {
+    padding: 4px 0 6px;
+  }
+
+  .navbar-menu-mobile-group-title {
+    font-size: 1.4rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-darkYellow);
+    margin-bottom: 1rem;
+  }
+
+  .navbar-menu-mobile-link,
+  .navbar-menu-mobile-link-all {
+    display: block;
+    padding:  1rem;
+    font-size: 1rem;
+    color: var(--color-white);
+    text-decoration: none;
+  }
+
+  .navbar-menu-mobile-link-all {
+    margin-top: 8px;
+    font-weight: 600;
+    font-size: 1.4rem;
+    border: 1px solid var(--color-white);
+    border-radius: 24px;
+    text-align: center;
+    margin: 2rem;
+  }
+
+
+  .navbar-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 25;
+    background-color: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.32s ease;
+  }
+
+  .navbar-backdrop-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .navbar-dropdown {
+    position: static;
+    width: 100%;
+    max-width: 100%;
+    padding: 12px 12px 16px;
+    border-radius: 12px;
+    box-shadow: none;
+    margin-top: 8px;
+    max-height: none;
+    overflow: visible;
+    opacity: 1;
+    pointer-events: auto;
+    transform: none;
+    display: none;
+  }
+
+  .navbar-dropdown-open {
+    display: block;
+  }
+
+  .navbar-dropdown-inner {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .navbar-cta-desktop {
+    display: none;
+  }
+
+  .navbar-cta-mobile {
+    display: inline-flex;
+    align-self: stretch;
+    justify-content: center;
+    margin-top: 8px;
+  }
+
+  .navbar-mobile-submenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #005384;
+    z-index: 40;
+    padding: 1.4rem;
+    padding-top: 0;
+    overflow-y: auto;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .navbar-mobile-submenu-open {
+    transform: translateX(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+.reduce-motion .navbar-nav,
+.reduce-motion .navbar-nav-open,
+.reduce-motion .navbar-mobile-toggle,
+.reduce-motion .navbar-mobile-bar {
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .navbar-nav,
+  .navbar-nav-open,
+  .navbar-mobile-toggle,
+  .navbar-mobile-bar {
+    transition: none;
+  }
+}
+
+.navbar-link:focus-visible,
+.navbar-cta:focus-visible {
+  outline: 3px solid var(--color-darkRed);
+  outline-offset: 3px;
+  border-radius: 8px;
+}
+
+
+
+
+/* FOOTER - STYLES 
+  
+    Footer desktop & mobile version - 
+    Columns: 4
+    
+*/
+
+.site-footer {
+  background-color: #005384;
+  color: var(--color-white);
+  padding: 1.4rem 24px 56px;
+}
+
+.site-footer-inner {
+  max-width: 1800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+.footer-card-title-1 {
+  width: 48px;
+  height: 2px;
+  background-color: transparent;
+  margin: 6px 0 12px;
+}
+
+.footer-card-title {
+  width: 48px;
+  height: 2px;
+  background-color: var(--color-darkRed);
+  margin: 6px 0 12px;
+}
+
+
+.site-footer-top {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
+  gap: 48px;
+}
+
+.footer-column {
+  min-width: 0;
+}
+
+.footer-column-health {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+footer img[alt="Algarve Pain Centre"] {
+  width: 80%;
+  height: auto;
+  padding-bottom: 24px;
+}
+
+.footer-health-secondary {
+  display: flex;
+  gap: 32px;
+  margin-top: 24px;
+}
+
+.footer-subcolumn {
+  flex: 1;
+}
+
+.footer-health-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 999px;
+  background: #005384;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.footer-health-address {
+  margin: 0;
+  font-size: 1.6rem;
+  color: var(--color-white);
+}
+
+.footer-health-contact {
+  margin-top: 4px;
+  font-size: 1.2rem;
+  color: var(--color-white);
+}
+
+.footer-column-title {
+  padding-top: 24px;
+  margin: 0 0 1.6rem;
+  font-size: 1.2rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-white);
+}
+
+.footer-column-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-column-item + .footer-column-item {
+  margin-top: 0;
+}
+
+.footer-link {
+  display: inline-block;
+  font-size: 1rem;
+  color: var(--color-white);
+  text-decoration: none;
+  padding: 8px 0;
+  margin: 0;
+}
+
+.footer-link:hover {
+  color: var(--color-darkRed);
+}
+
+.site-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 24px;
+}
+
+.site-footer-social {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-social-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  background: transparent;
+  font-size: 1rem;
+  text-decoration: none;
+}
+
+.footer-social-link svg {
+  width: 32px;
+  height: 32px;
+  color: var(--color-white);
+}
+
+.footer-social-link:hover {
+  color: var(--color-midYellow);
+}
+
+.site-footer-meta {
+  display: flex;
+  margin: 0;
+  font-size: 1rem;
+  color: var(--color-white);
+}
+
+.site-footer-credits {
+  display: flex;
+  align-items: center;
+}
+
+.footer-credits-link {
+  display: flex;
+  gap: 8px;
+  color: var(--color-white);
+  text-decoration: none;
+  font-size: 0.75rem;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  top: -12px;
+}
+
+.footer-credits-link span {
+  margin-top: 8px;
+  
+}
+
+.footer-credits-link:hover {
+  opacity: 1;
+}
+
+.footer-credits-link svg {
+  height: 80px;
+  width: 80px;
+  fill: currentColor;
+  margin: 0; 
+  padding: 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 1024px) {
+  .site-footer-top {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .site-footer {
+    padding: 56px 20px 40px;
+  }
+
+  .site-footer-top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+
+  .site-footer-bottom {
+    flex-direction: column-reverse;
+    align-items: flex-start;
+  }
+
+  .footer-health-secondary {
+    flex-direction: column;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-footer-top {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+
+
+
+
+/* Container - Head Pain */
+
+/* Root section wrapper for all head pain treatment content.
+   - Uses block layout so heading and paragraph stack vertically in normal flow.
+   - Reuses the global page-section width for visual alignment with other sections.
+   - Adds background, border radius and spacing to visually group the content.
+   - Designed to be light-weight so it can be reused for multiple head pain sections.
+   - Uses only broadly supported CSS properties for maximum cross-browser compatibility. */
+.head-pain-treatment {
+  /* Keeps the section participating in standard document flow with vertical stacking. */
+  display: block;
+
+  /* Ensures the section width follows the app content width and never exceeds it. */
+  max-width: var(--container-width);
+
+  /* Centers the section horizontally and adds space below to separate from next content. */
+  margin: 0 auto 40px;
+
+  /* Adds vertical and horizontal breathing room around heading and paragraph text. */
+  padding: 32px 32px 36px;
+
+  /* Applies a subtle light background to distinguish the section from the main page. */
+  background-color: #f9fafb;
+
+  /* Softens corners so the section feels consistent with other rounded cards. */
+  border-radius: 24px;
+
+  /* Adds a thin neutral border for clear separation on light backgrounds. */
+  border: 1px solid #e5e7eb;
+
+  /* Uses the primary text color to keep contrast high and readable. */
+  color: #111827;
+
+  /* Provides a smooth transition when theme or hover states adjust visual properties. */
+  transition: background-color 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+
+  /* Converts the section into a containing block for the absolutely positioned accent. */
+  position: relative;
+}
+
+/* Head pain section heading styles.
+   - Uses a medium-large font size to establish clear hierarchy under the hero.
+   - Left-aligns text to match the treatments overview typography.
+   - Keeps copy to a single readable column width on large screens.
+   - All properties rely on widely supported CSS features. */
+.head-pain-treatment h2 {
+  /* Removes any default margin to reset browser inconsistencies. */
+  margin: 0 0 12px;
+
+  /* Sets a clear heading size large enough to stand out but below hero titles. */
+  font-size: 26px;
+
+  /* Uses comfortable line height for multi-line headings. */
+  line-height: 1.3;
+
+  /* Aligns heading text to the left for a clinical, content-first layout. */
+  text-align: left;
+
+  /* Ensures the heading color matches other major headings in the system. */
+  color: #111827;
+}
+
+/* Head pain section body text styles.
+   - Controls paragraph width for optimal readability on large screens.
+   - Uses body font sizing that aligns with other descriptive copy across the site.
+   - Provides comfortable spacing between paragraphs and surrounding elements. */
+.head-pain-treatment p {
+  /* Removes default top margin and keeps only bottom spacing to separate from next block. */
+  margin: 0 0 16px;
+
+  /* Constrains content width so long paragraphs remain easy to scan. */
+  max-width: 720px;
+
+  /* Sets base font size consistent with other body copy in treatments sections. */
+  font-size: 15px;
+
+  /* Adds generous line height for better legibility of dense medical content. */
+  line-height: 1.8;
+
+  /* Uses a softer gray to reduce eye strain while maintaining sufficient contrast. */
+  color: #4b5563;
+}
+
+/* Emphasizes linked or interactive text within head pain paragraphs.
+   - Reuses the brand accent color for visual consistency.
+   - Keeps underline off by default while preserving clear affordance via color. */
+.head-pain-treatment a {
+  /* Applies the brand teal color to link text for quick visual recognition. */
+  color: #0f766e;
+
+  /* Removes underlines to keep the clinical layout visually clean. */
+  text-decoration: none;
+
+  /* Increases font weight slightly so links are distinguishable from surrounding text. */
+  font-weight: 600;
+}
+
+/* Hover and focus styles for interactive text links inside the head pain section.
+   - Provides clear feedback when users interact via mouse or keyboard.
+   - Uses a darker shade of the brand color for accessible contrast.
+   - All properties are widely supported in modern and older evergreen browsers. */
+.head-pain-treatment a:hover,
+.head-pain-treatment a:focus-visible {
+  /* Darkens link color to indicate hover or focus without breaking brand palette. */
+  color: #0b3c6f;
+
+  /* Restores underline on interaction so links are unmistakably interactive. */
+  text-decoration: underline;
+}
+
+/* Decorative accent for head pain treatment sections.
+   - Adds a vertical gradient bar similar to the treatments overview header accent.
+   - Anchored to the left edge to visually tie the section back to the main content.
+   - Uses standard pseudo-element syntax supported in all modern browsers. */
+.head-pain-treatment::before {
+  /* Creates an empty pseudo-element purely for visual decoration. */
+  content: '';
+
+  /* Positions the accent relative to the head pain section container. */
+  position: absolute;
+
+  /* Anchors the accent to the left padding edge of the section. */
+  left: 0;
+
+  /* Keeps the accent inset from the top edge for a balanced starting point. */
+  top: 32px;
+
+  /* Extends the accent down to roughly match the text block height. */
+  bottom: 32px;
+
+  /* Sets a slim width to act as a subtle visual guide rather than a border. */
+  width: 4px;
+
+  /* Rounds the accent edges so it feels cohesive with other rounded elements. */
+  border-radius: 6px;
+
+  /* Applies a warm vertical gradient reused from other treatment accents. */
+  background: linear-gradient(
+    180deg,
+    var(--warm-yellow, #fbd38d),
+    var(--warm-orange, #f6ad55) 60%,
+    var(--warm-coral, #f58b8b)
+  );
+
+  /* Adds a soft shadow so the accent stands out against light backgrounds. */
+  box-shadow: 0 8px 16px rgba(251, 171, 80, 0.25);
+}
+
+/* Medium breakpoint adjustments for head pain sections.
+   - Reduces padding on tablets and small laptops to keep content comfortably within the viewport.
+   - Ensures border radius and background styling remain intact on all devices. */
+@media (max-width: 1024px) {
+  .head-pain-treatment {
+    /* Tightens horizontal padding so content fits smaller viewports without horizontal scrolling. */
+    padding: 28px 24px 32px;
+
+    /* Slightly reduces bottom margin to balance vertical rhythm on shorter screens. */
+    margin: 0 auto 32px;
+  }
+}
+
+/* Small breakpoint adjustments for mobile devices.
+   - Stacks content with narrower padding for thumb-friendly spacing.
+   - Ensures the accent bar remains visible without crowding text. */
+@media (max-width: 768px) {
+  .head-pain-treatment {
+    /* Uses smaller horizontal padding so text has room within narrow screens. */
+    padding: 24px 16px 28px;
+
+    /* Reduces corner radius slightly so the section still feels grounded on small devices. */
+    border-radius: 20px;
+  }
+
+  .head-pain-treatment::before {
+    /* Adjusts top spacing so the accent begins closer to smaller headings on mobile. */
+    top: 24px;
+
+    /* Adjusts bottom spacing to stay proportional to the reduced section height. */
+    bottom: 24px;
+  }
+}
+
+/* Extra-small breakpoint adjustments.
+   - Ensures the section spans the full width with comfortable content padding.
+   - Keeps all values within safe ranges for very small handheld devices. */
+@media (max-width: 480px) {
+  .head-pain-treatment {
+    /* Allows the section to use the full available width within the page padding. */
+    max-width: 100%;
+
+    /* Further reduces horizontal padding so text does not feel cramped. */
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+}

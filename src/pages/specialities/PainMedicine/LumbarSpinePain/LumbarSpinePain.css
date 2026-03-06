@@ -1,0 +1,9 @@
+.lumbar-spine-pain-page {
+  padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+  .lumbar-spine-pain-page {
+    padding-top: 96px;
+  }
+}

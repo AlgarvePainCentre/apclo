@@ -1,0 +1,9 @@
+.medical-complications-post-stroke-page {
+  padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+  .medical-complications-post-stroke-page {
+    padding-top: 96px;
+  }
+}

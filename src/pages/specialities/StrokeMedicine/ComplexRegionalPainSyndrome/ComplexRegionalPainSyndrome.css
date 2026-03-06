@@ -1,0 +1,9 @@
+.complex-regional-pain-syndrome-page {
+  padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+  .complex-regional-pain-syndrome-page {
+    padding-top: 96px;
+  }
+}

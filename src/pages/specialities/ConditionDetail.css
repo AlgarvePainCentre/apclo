@@ -1,0 +1,529 @@
+ .condition-main {
+  padding: 40px 48px 80px;
+}
+
+.condition-main .page-section {
+  margin: 0 auto 48px;
+}
+
+.condition-main .page-section:last-of-type {
+  margin-bottom: 0;
+}
+
+.condition-treatment {
+  border-radius: 32px;
+  background-color: #ffffff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  padding: 40px 40px 44px;
+  position: relative;
+  overflow: hidden;
+}
+
+.condition-treatment::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(209, 213, 219, 0.4);
+  mix-blend-mode: multiply;
+}
+
+.condition-contact,
+.condition-faq,
+.condition-syndromes {
+  background-color: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.condition-contact::before,
+.condition-faq::before,
+.condition-syndromes::before {
+  content: none;
+}
+
+.condition-approaches {
+  background-color: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 3.5rem auto 2.5rem;
+}
+
+.condition-approaches::before {
+  content: none;
+}
+
+.condition-approaches-inner {
+  background-color: transparent;
+  border-radius: 2rem;
+  padding: 2.5rem 1.5rem 3rem;
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.condition-approaches .treatments-overview-header {
+  margin: 0 0 2rem;
+}
+
+.condition-approaches-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.condition-approach-card {
+  border-radius: 18px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  transition:
+    transform 160ms ease-out,
+    box-shadow 160ms ease-out,
+    background-color 140ms ease-out;
+}
+
+.condition-approach-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+  background-color: #f9fafb;
+}
+
+.condition-approach-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: #f3f4f6;
+}
+
+.condition-approach-media-interventions {
+  background:
+    radial-gradient(circle at 50% 45%, #f97316 0, #f97316 46%, transparent 46%),
+    radial-gradient(circle at 50% 45%, #facc15 0, #facc15 52%, transparent 52%),
+    linear-gradient(#0b3c6f, #0b3c6f) 50% 60% / 18px 80px no-repeat,
+    linear-gradient(#0b3c6f, #0b3c6f) 50% 80% / 50px 12px no-repeat,
+    #ffeecd;
+}
+
+.condition-approach-media-rehab {
+  background:
+    radial-gradient(circle at 22% 22%, #f97316 0, #f97316 11%, transparent 11%),
+    radial-gradient(circle at 78% 78%, #0f766e 0, #0f766e 11%, transparent 11%),
+    linear-gradient(#facc15, #facc15) 50% 50% / 70% 16px no-repeat,
+    linear-gradient(#facc15, #facc15) 50% 50% / 16px 52% no-repeat,
+    #ffeecd;
+  background-position:
+    18% 25%,
+    80% 77%,
+    50% 50%,
+    50% 50%;
+}
+
+.condition-approach-card-body {
+  padding: 24px 22px 24px;
+  background: #fffaf0;
+  min-height: 210px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.condition-approach-card-title {
+  margin: 0 0 0.5rem;
+  font-size: 1rem;
+  line-height: 1.4;
+  color: #0b3c6f;
+  font-weight: 600;
+}
+
+.condition-approach-card-title span {
+  font-weight: 700;
+}
+
+.condition-approach-card-accent {
+  width: 2.75rem;
+  height: 0.1875rem;
+  margin: 0 auto 0.625rem;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f97316, #fb7185);
+}
+
+.condition-approach-card-text {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.condition-syndromes {
+  padding-top: 72px;
+}
+
+.condition-syndromes-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 40px;
+  align-items: stretch;
+}
+
+.condition-syndromes-header {
+  text-align: left;
+  max-width: 540px;
+  margin: 0;
+}
+
+.condition-syndromes-header-center {
+  text-align: center;
+  margin: 0 auto 32px;
+}
+
+.condition-syndromes-eyebrow {
+  margin: 0 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #0b3c6f;
+}
+
+.condition-syndromes-title {
+  margin: 0 0 12px;
+  font-size: clamp(1.75rem, 1.1vw + 1.4rem, 2.25rem);
+  line-height: 1.3;
+  color: #0b3c6f;
+}
+
+.condition-syndromes-subtitle {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.condition-syndromes-card {
+  max-width: 520px;
+  margin: 0;
+  background-color: #ffffff;
+  border-radius: 24px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  padding: 8px 0;
+}
+
+.condition-syndrome-item + .condition-syndrome-item {
+  border-top: 1px solid #e5e7eb;
+}
+
+.condition-syndrome-row {
+  width: 100%;
+  padding: 16px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-height: 44px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+}
+
+.condition-syndrome-label {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #111827;
+  text-align: left;
+}
+
+.condition-syndrome-icon {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 999px;
+  border: 1px solid #cbd5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  color: #0b3c6f;
+}
+
+.condition-syndrome-row-active .condition-syndrome-label {
+  color: #0b3c6f;
+  font-weight: 600;
+}
+
+.condition-syndrome-icon-active {
+  border-color: #0b3c6f;
+  background-color: #0b3c6f;
+  color: #ffffff;
+}
+
+.condition-syndrome-panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 32px;
+  transition:
+    max-height 0.28s ease,
+    opacity 0.2s ease;
+}
+
+.condition-syndrome-panel-open {
+  max-height: 200px;
+  opacity: 1;
+  padding-top: 4px;
+  padding-bottom: 14px;
+}
+
+.condition-syndrome-panel-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.condition-testimonials {
+  background:
+    radial-gradient(1200px 420px at 60% 50%, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 60%),
+    linear-gradient(90deg, #f7e6e1 0%, #ff4364 55%, #ff9933 100%);
+  border: none;
+  box-shadow: none;
+  border-radius: 32px;
+  padding: 56px 48px 64px;
+  color: #0b2036;
+}
+
+.condition-testimonials::before {
+  content: none;
+}
+
+.condition-testimonials-header {
+  text-align: left;
+  margin: 0 0 24px;
+}
+
+.condition-testimonials-title {
+  margin: 0;
+  font-size: clamp(1.75rem, 1.1vw + 1.4rem, 2.25rem);
+  line-height: 1.3;
+  color: #0b3c6f;
+}
+
+.condition-testimonials-underline {
+  display: inline-block;
+  width: 48px;
+  height: 4px;
+  margin-top: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #f97316, #fb7185);
+}
+
+.condition-testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.condition-testimonial {
+  position: relative;
+  margin: 0;
+  padding: 20px 20px 18px 20px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 14px 36px rgba(15, 23, 42, 0.12);
+}
+
+.condition-testimonial-quote {
+  position: absolute;
+  left: 16px;
+  top: 8px;
+  font-size: 28px;
+  color: #fb7185;
+  line-height: 1;
+}
+
+.condition-testimonial-text {
+  margin: 12px 0 16px;
+  font-size: 14px;
+  line-height: 1.7;
+  color: #374151;
+}
+
+.condition-testimonial-meta {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.condition-testimonial-author {
+  font-weight: 600;
+  color: #0b3c6f;
+  font-style: normal;
+}
+
+.condition-testimonial-location {
+  opacity: 0.9;
+}
+
+.condition-contact-layout {
+  margin-top: 24px;
+}
+
+.condition-contact-form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.condition-faq {
+  margin-top: 40px;
+}
+
+.condition-faq-inner {
+  max-width: 60rem;
+  margin: 0 auto;
+}
+
+.condition-faq-header {
+  text-align: left;
+  margin: 0 0 24px;
+}
+
+.condition-faq-title {
+  margin: 0 0 8px;
+  font-size: clamp(1.5rem, 1vw + 1.2rem, 2rem);
+  line-height: 1.35;
+  color: #0b3c6f;
+}
+
+.condition-faq-subtitle {
+  margin: 0;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.condition-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.condition-faq-item {
+  padding: 16px 18px;
+  border-radius: 16px;
+  background-color: #f9fafb;
+  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.04);
+}
+
+.condition-faq-question {
+  margin: 0 0 8px;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #111827;
+}
+
+.condition-faq-answer {
+  margin: 0;
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+@media (max-width: 1024px) {
+  .condition-main {
+    padding: 32px 32px 72px;
+  }
+
+  .condition-approaches-inner {
+    padding: 3rem 2.5rem 3.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .condition-main {
+    padding: 32px 16px 64px;
+  }
+
+  .condition-contact {
+    padding: 0;
+  }
+
+  .condition-contact-layout {
+    margin-top: 0;
+  }
+
+  .condition-approaches {
+    margin: 40px auto 32px;
+  }
+
+  .condition-approaches-inner {
+    padding: 2.5rem 1.25rem 3rem;
+    border-radius: 1.75rem;
+  }
+
+  .condition-approaches-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .condition-syndromes {
+    padding-top: 48px;
+  }
+
+  .condition-syndromes-layout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.5rem;
+  }
+
+  .condition-syndromes-card {
+    max-width: 100%;
+  }
+
+  .condition-testimonials {
+    padding: 40px 16px 48px;
+    border-radius: 24px;
+  }
+
+  .condition-testimonials-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .condition-faq-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (min-width: 1440px) {
+  .condition-main {
+    padding: 48px 72px 96px;
+  }
+
+  .condition-approaches-inner {
+    max-width: 76rem;
+  }
+
+  .condition-faq-inner {
+    max-width: 64rem;
+  }
+}
+
+@media (min-width: 1920px) {
+  .condition-main {
+    padding: 56px 96px 112px;
+  }
+
+  .condition-approaches-inner {
+    max-width: 80rem;
+  }
+
+  .condition-faq-inner {
+    max-width: 68rem;
+  }
+}

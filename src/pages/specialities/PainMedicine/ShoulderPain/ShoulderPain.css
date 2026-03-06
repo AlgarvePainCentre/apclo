@@ -1,0 +1,9 @@
+.shoulder-pain-page {
+  padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+  .shoulder-pain-page {
+    padding-top: 96px;
+  }
+}

@@ -1,0 +1,13 @@
+.cookie-policy-page {
+  padding: 80px 24px;
+}
+
+.cookie-policy-page h1 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.cookie-policy-page p {
+  max-width: 640px;
+  line-height: 1.6;
+}

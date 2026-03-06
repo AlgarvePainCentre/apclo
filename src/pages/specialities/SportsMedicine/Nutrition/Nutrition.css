@@ -1,0 +1,9 @@
+.nutrition-page {
+  padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+  .nutrition-page {
+    padding-top: 96px;
+  }
+}

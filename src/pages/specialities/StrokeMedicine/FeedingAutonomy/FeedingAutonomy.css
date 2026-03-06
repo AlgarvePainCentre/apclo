@@ -1,0 +1,9 @@
+.feeding-autonomy-page {
+  padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+  .feeding-autonomy-page {
+    padding-top: 96px;
+  }
+}

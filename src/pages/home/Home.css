@@ -1,0 +1,1138 @@
+.home-page {
+  min-height: 100vh;
+}
+
+.hero {
+  position: relative;
+  min-height: 101.4vh;
+  background-color: transparent;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  padding: 96px 48px 80px;
+  top: -96px;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.30),
+    rgba(0, 0, 0, 0.175)
+  );
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  filter: contrast(90%);
+  background: rgba(15, 23, 42, 0.08) 0% / 100% 100% no-repeat; 
+}
+
+.hero-video-el {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1800px;
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  height: 100%;
+  min-height: 80vh;
+}
+
+.hero-left {
+  max-width: fit-content;
+  align-self: flex-start;
+}
+
+.hero-title {
+  font-size: 5rem;
+  line-height: 1.1;
+  margin: 0 0 24px;
+  color: var(--color-white);
+  text-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+  margin: 0;
+  max-width: 400px;
+  color: var(--color-white);
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.hero-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  align-self: flex-end;
+  width: 280px;
+}
+
+.hero-small-text {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--color-white);
+  width: 300px;
+}
+
+.hero-cta {
+  padding: 1.2rem 1.5rem;
+  border-radius: 999px;
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  width: 280px;
+  background-color: #f04b5e;
+  color: var(--color-white);
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  cursor: pointer;
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  transform: scale(1);
+  transition:
+    background-position 0.35s ease-out,
+    box-shadow 0.28s ease-out,
+    transform 0.28s ease-out;
+}
+
+.hero-cta:hover {
+  background-image: linear-gradient(
+    90deg,
+    var(--warm-orange, #ff9a52) 40%,
+    var(--warm-coral, #ff5c6e) 80%,
+    var(--warm-rose, #e83d5b) 100%
+  );
+  background-position: 100% 50%;
+  transform: none;
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+.hero-cta:active {
+  transform: translateY(0);
+}
+
+.hero-cta:focus-visible {
+  outline: 3px solid var(--color-darkRed);
+  outline-offset: 4px;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    top: 0;
+    max-height: 100vh;
+    padding: 0 16px 56px;
+  }
+  .hero-content {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    min-height: auto;
+    gap: 0;
+  }
+  .hero-right {
+    align-self: auto;
+    align-items: flex-start;
+    margin-top: 14.6vh;
+  }
+  .hero-title {
+    font-size: 40px;
+  }
+  .hero-subtitle {
+    max-width: 100%;
+  }
+}
+
+
+
+
+
+
+
+
+.home-section-testimonial {
+  padding: 80px 48px;
+  background: transparent;
+}
+
+.home-section-testimonial-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 40px;
+  align-items: center;
+}
+
+.home-section-testimonial-copy {
+  max-width: 580px;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.home-section-testimonial-eyebrow {
+  margin: 0 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-blue);
+}
+
+.home-section-testimonial-title {
+  margin: 0 0 20px;
+  font-size: 3rem;
+  line-height: 1.3;
+  color: #111827;
+}
+
+.home-section-testimonial-body {
+  margin: 0 0 14px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.home-section-testimonial-author {
+  margin: 4px 0 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+.home-section-testimonial-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.home-section-testimonial-pill {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1f2937;
+  background-color: #eef2f7;
+  border: 1px solid #e5e7eb;
+}
+
+.home-section-testimonial-media {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.home-section-testimonial-media-inline {
+  display: none;
+}
+
+.home-section-testimonial-video {
+  position: relative;
+  width: 100%;
+  max-width: 512px;
+  aspect-ratio: 9 / 16;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+  background: #000000;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.home-section-testimonial-video-el {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home-section-testimonial-video-overlay {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 16px 20px;
+  background: linear-gradient(to top, rgba(15, 23, 42, 0.8), transparent);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.home-section-testimonial-video-cta {
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: none;
+  background-color: #ffffff;
+  color: #111827;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.home-section-testimonial-video-cta:hover {
+  background-color: #f9fafb;
+}
+
+@media (max-width: 768px) {
+  .home-section-testimonial {
+    padding: 56px 16px;
+  }
+  .home-section-testimonial-inner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .home-section-testimonial-media {
+    display: none;
+  }
+  .home-section-testimonial-media-inline {
+    display: block;
+    margin: 10px 0 14px;
+  }
+  .home-section-testimonial-video {
+    max-width: 100%;
+    aspect-ratio: 9 / 16;
+    border-radius: 16px;
+  }
+  .home-section-testimonial-copy {
+    max-width: 100%;
+  }
+  .home-section-testimonial-eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.12em;
+  }
+  .home-section-testimonial-title {
+    font-size: 28px;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+  }
+  .home-section-testimonial-body {
+    font-size: 15px;
+    line-height: 1.65;
+  }
+  .home-section-testimonial-author {
+    font-size: 13px;
+    margin: 6px 0 16px;
+  }
+  .home-section-testimonial-services {
+    gap: 8px;
+  }
+  .home-section-testimonial-pill {
+    height: 32px;
+    padding: 0 12px;
+    font-size: 12px;
+  }
+  .home-section-testimonial-video-overlay {
+    padding: 14px 16px;
+  }
+  .home-section-testimonial-video-cta {
+    min-height: 44px;
+    padding: 12px 18px;
+    font-size: 14px;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.home-main {
+  padding: 80px 48px;
+  background-color: transparent;
+  color: #111827;
+}
+
+.home-section-cards-pain {
+  max-width: var(--container-width);
+  margin: 0 auto 80px;
+}
+
+.home-section-cards-pain-inner {
+  display: flex;
+  gap: 40px;
+  align-items: stretch;
+  background: radial-gradient(circle at top left, #e0ecff, #f3f7fb 45%, #fef9c3);
+  border-radius: 28px;
+  padding: 32px 40px;
+  box-shadow: 0 22px 52px rgba(15, 23, 42, 0.12);
+}
+
+.home-section-cards-pain-image {
+  flex: 0 0 46%;
+  border-radius: 20px;
+  background: radial-gradient(circle at 0 0, rgba(59, 130, 246, 0.22), transparent 55%),
+    radial-gradient(circle at 100% 100%, rgba(239, 68, 68, 0.16), transparent 50%),
+    linear-gradient(135deg, var(--color-midBlue), var(--color-darkBlue));
+}
+
+.home-section-cards-pain-cards {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home-section-cards-pain-card {
+  padding: 10px 0;
+}
+
+.home-section-cards-pain-title {
+  margin: 0 0 8px;
+  font-size: 22px;
+  line-height: 1.35;
+  color: #111827;
+}
+
+.home-section-cards-pain-description {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.home-section-cards-pain-eyebrow {
+  margin: 0 0 6px;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-blue);
+}
+
+.home-section-cards-pain-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: 0;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #111827;
+  background-image: linear-gradient(
+    135deg,
+    var(--warm-cream, #ffe7b3) 0%,
+    var(--warm-yellow, #ffd27a) 35%,
+    var(--warm-orange, #ff9a52) 70%,
+    var(--warm-coral, #ff5c6e) 100%
+  );
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  border: 1px solid rgba(253, 244, 215, 0.9);
+  text-decoration: none;
+  outline: none;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+
+.home-section-cards-pain-link-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+}
+
+.home-section-cards-pain-link-secondary {
+  background-image: linear-gradient(
+    135deg,
+    var(--warm-cream, #ffe7b3) 0%,
+    var(--warm-yellow, #ffd27a) 35%,
+    var(--warm-orange, #ff9a52) 70%,
+    var(--warm-coral, #ff5c6e) 100%
+  );
+}
+
+.home-section-cards-pain-link:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.08);
+  background-image: linear-gradient(
+    135deg,
+    var(--warm-yellow, #ffd27a) 0%,
+    var(--warm-orange, #ff9a52) 40%,
+    var(--warm-coral, #ff5c6e) 80%,
+    var(--warm-rose, #e83d5b) 100%
+  );
+  color: #111827;
+}
+
+.home-section-cards-pain-link:focus-visible {
+  outline: 3px solid var(--color-darkRed);
+  outline-offset: 3px;
+}
+
+.home-section-cards-pain-divider {
+  height: 1px;
+  background-color: #e5e7eb;
+  margin: 12px 0;
+}
+
+.home-section-mainpain-cards {
+  padding: 80px 0;
+  background-color: transparent;
+  min-height: 100vh;
+}
+
+.home-section-mainpain-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.home-section-mainpain-header {
+  margin: 0 0 28px;
+}
+
+.home-section-testemunials-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: clamp(16px, 2.2vw, 32px);
+  overflow: visible;
+  margin: 0;
+  padding: 0;
+}
+
+.home-section-mainpain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.mainpain-card {
+  background-color: transparent;
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.mainpain-card:hover {
+  transform: translateY(-4px);
+}
+
+.mainpain-card-image {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  min-height: 190px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+.mainpain-card-image-spine {
+  background: linear-gradient(135deg, #fce7f3, #fee2e2);
+}
+
+.mainpain-card-image-knee {
+  background: linear-gradient(135deg, #e0f2fe, #dbeafe);
+}
+
+.mainpain-card-image-hip {
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+}
+
+.mainpain-card-body {
+  padding: 16px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+
+.mainpain-card-title {
+  margin: 0;
+  font-size: 18px;
+  color: var(--color-blue);
+}
+
+.mainpain-card-accent {
+  width: 48px;
+  height: 2px;
+  background-color: var(--color-darkRed);
+  margin: 6px 0 12px;
+}
+
+.mainpain-card-description {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.mainpain-card-cta-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+}
+
+.home-section-treatment-cards {
+  padding: 80px 0;
+  background-color: transparent;
+  min-height: 100vh;
+}
+
+.home-section-treatment-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 48px;
+}
+
+.home-section-treatment-header {
+  max-width: 720px;
+  margin: 0 0 28px;
+  text-align: left;
+  position: relative;
+  padding-left: 16px;
+}
+
+.home-section-treatment-header::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 2px;
+  bottom: 2px;
+  width: 4px;
+  border-radius: 6px;
+  background: linear-gradient(
+    180deg,
+    var(--warm-yellow, #fbd38d),
+    var(--warm-orange, #f6ad55) 60%,
+    var(--warm-coral, #f58b8b)
+  );
+  box-shadow: 0 8px 16px rgba(251, 171, 80, 0.25);
+}
+
+.home-section-treatment-title {
+  margin: 0 0 10px;
+  font-size: 36px;
+  line-height: 1.25;
+  color: #111827;
+  letter-spacing: -0.01em;
+}
+
+.home-section-treatment-subtitle {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.home-section-treatment-eyebrow {
+  margin: 0 0 6px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-blue);
+}
+
+@media (max-width: 768px) {
+  .home-section-treatment-title {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+  .home-section-treatment-header {
+    padding-left: 12px;
+  }
+}
+
+.home-section-treatment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.treatment-card {
+  background-color: transparent;
+  border-radius: 20px;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.treatment-card:hover {
+  transform: translateY(-4px);
+  box-shadow: none;
+}
+
+.treatment-card-illustration {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  min-height: 170px;
+  overflow: hidden;
+  background-color: #fff5db;
+  background-size: cover;
+  background-position: center;
+}
+
+.mainpain-card-video,
+.treatment-card-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.03);
+  transition: transform 400ms ease;
+}
+
+.mainpain-card:hover .mainpain-card-video,
+.treatment-card:hover .treatment-card-video {
+  transform: scale(1.08);
+}
+
+.treatment-card-illustration-non-invasive {
+  background-image: linear-gradient(135deg, #fed7aa, #fecaca);
+}
+
+.treatment-card-illustration-minimally-invasive {
+  background-image: linear-gradient(135deg, #fde68a, #fbbf24);
+}
+
+.treatment-card-illustration-surgical {
+  background-image: linear-gradient(135deg, #fca5a5, #fb7185);
+}
+
+.treatment-card-body {
+  padding: 16px 20px 18px;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+}
+
+.treatment-card-title {
+  margin: 0;
+  font-size: 18px;
+  color: var(--color-blue);
+}
+
+.treatment-card-accent {
+  width: 48px;
+  height: 2px;
+  background-color: var(--color-darkRed);
+  margin: 6px 0 12px;
+}
+
+.treatment-card-description {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.treatment-card-cta {
+  margin-top: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #6b7280;
+  text-decoration: none;
+  outline: none;
+}
+
+.treatment-card-cta:focus-visible {
+  outline: 3px solid var(--color-darkRed);
+  outline-offset: 3px;
+}
+
+.treatment-card-cta:hover {
+  color: #111827;
+}
+
+.treatment-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0 14px;
+}
+
+.treatment-chip {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #1f2937;
+  background-color: #eef2f7;
+  border: 1px solid #e5e7eb;
+}
+
+.mainpain-card-cta,
+.treatment-card-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 42px;
+  padding: 0 16px;
+  border-radius: 999px;
+  color: #111827;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.15s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  outline: none;
+}
+
+.mainpain-card-cta,
+.treatment-card-button {
+  background-image: linear-gradient(
+    135deg,
+    var(--warm-cream, #ffe7b3) 0%,
+    var(--warm-yellow, #ffd27a) 35%,
+    var(--warm-orange, #ff9a52) 70%,
+    var(--warm-coral, #ff5c6e) 100%
+  );
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  border: 1px solid rgba(253, 244, 215, 0.9);
+}
+
+.mainpain-card-cta:hover,
+.treatment-card-button:hover {
+  transform: translateY(-1px);
+  filter: saturate(1.08);
+  background-image: linear-gradient(
+    135deg,
+    var(--warm-yellow, #ffd27a) 0%,
+    var(--warm-orange, #ff9a52) 40%,
+    var(--warm-coral, #ff5c6e) 80%,
+    var(--warm-rose, #e83d5b) 100%
+  );
+  background-position: 100% 50%;
+  color: #111827;
+}
+
+.treatment-card-button:active {
+  transform: translateY(0);
+}
+
+.treatment-card-button:focus-visible,
+.home-section-cards-pain-link:focus-visible {
+  outline: 3px solid var(--color-darkRed);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mainpain-card,
+  .treatment-card {
+    transition: none;
+  }
+  .mainpain-card:hover,
+  .treatment-card:hover {
+    transform: none;
+  }
+}
+
+.treatment-card-cta-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 80px 16px 56px;
+  }
+  .home-main {
+    padding: 0;
+  }
+  .home-section-testemunials-inner {
+    padding: 0 16px;
+  }
+  .home-section-testemunials-controls {
+    right: 8px;
+    gap: 6px;
+  }
+  .home-section-testemunials-grid {
+    grid-template-columns: 1fr;
+    margin: 0;
+    padding: 0;
+  }
+  .home-section-cards-pain-inner {
+    flex-direction: column;
+    padding: 24px 20px;
+  }
+  .home-section-cards-pain-image {
+    min-height: 220px;
+  }
+  .home-section-mainpain-inner {
+    padding: 0 16px;
+  }
+  .home-section-mainpain-grid {
+    grid-template-columns: 1fr;
+  }
+  .home-section-treatment-inner {
+    padding: 0 16px;
+  }
+  .home-section-treatment-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.home-section-why-choose-us {
+  padding: 80px 48px 96px;
+}
+
+.home-section-why-choose-inner {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.home-section-why-choose-header {
+  max-width: 640px;
+  margin-bottom: 32px;
+}
+
+.home-section-why-choose-eyebrow {
+  margin: 0 0 8px;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--color-blue);
+}
+
+.home-section-why-choose-title {
+  margin: 0 0 16px;
+  font-size: 32px;
+  line-height: 1.3;
+  color: #111827;
+}
+
+.home-section-why-choose-subtitle {
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+.home-section-why-choose-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
+  gap: 32px;
+  align-items: stretch;
+}
+
+.home-section-why-choose-grid {
+  position: relative;
+  display: grid;
+  gap: 20px;
+  overflow: hidden;
+  padding: 8px 12px 32px 0;
+}
+
+.why-choose-card {
+  background-color: #ffffff;
+  border-radius: 18px;
+  padding: 18px 20px 20px;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.why-choose-card-title {
+  margin: 0 0 8px;
+  font-size: 17px;
+  color: #111827;
+}
+
+.why-choose-card-body {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.home-section-why-choose-track {
+  display: flex;
+  gap: 0;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+  transition: transform 0.45s ease;
+}
+
+.home-section-why-choose-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.home-section-why-choose-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.home-section-why-choose-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  background: rgba(148, 163, 184, 0.35);
+  padding: 0;
+}
+
+.home-section-why-choose-dot-active {
+  background: var(--color-darkRed);
+  border-color: var(--color-darkRed);
+}
+
+.home-section-why-choose-arrow {
+  width: 30px;
+  height: 30px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.9);
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.home-section-why-choose-arrow:hover {
+  background: #f9fafb;
+}
+
+.home-section-why-choose-arrow:focus-visible,
+.home-section-why-choose-dot:focus-visible {
+  outline: 2px solid var(--color-darkRed);
+  outline-offset: 2px;
+}
+
+.home-section-why-choose-visual {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  background: radial-gradient(circle at 10% 0%, #1f2937, #020617 55%);
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.55);
+  min-height: 260px;
+}
+
+.home-section-why-choose-visual-overlay {
+  position: absolute;
+  inset: 0;
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: radial-gradient(circle at top left, rgba(239, 68, 68, 0.2), transparent 55%);
+}
+
+.home-section-why-choose-visual-eyebrow {
+  margin: 0 0 6px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(249, 250, 251, 0.75);
+}
+
+.home-section-why-choose-visual-copy {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.6;
+  color: rgba(249, 250, 251, 0.9);
+}
+
+@media (max-width: 900px) {
+  .home-section-why-choose-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .home-section-why-choose-visual {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .home-section-why-choose-us {
+    padding: 56px 16px 72px;
+  }
+}
+
+.home-section {
+  max-width: var(--container-width);
+  margin: 0 auto 40px;
+}
+
+.home-footer {
+  padding: 24px 48px;
+  text-align: center;
+  background-color: #0b0b10;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+}
+
+/* Info Badge */
+.info {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}

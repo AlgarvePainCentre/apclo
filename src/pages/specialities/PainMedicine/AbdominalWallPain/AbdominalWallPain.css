@@ -1,0 +1,9 @@
+.abdominal-wall-pain-page {
+  padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+  .abdominal-wall-pain-page {
+    padding-top: 96px;
+  }
+}

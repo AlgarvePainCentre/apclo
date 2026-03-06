@@ -1,0 +1,13 @@
+.terms-of-service-page {
+  padding: 80px 24px;
+}
+
+.terms-of-service-page h1 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.terms-of-service-page p {
+  max-width: 640px;
+  line-height: 1.6;
+}

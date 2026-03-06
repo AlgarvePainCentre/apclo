@@ -1,0 +1,9 @@
+.clinical-and-secondary-prevention-of-stroke-page {
+  padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+  .clinical-and-secondary-prevention-of-stroke-page {
+    padding-top: 96px;
+  }
+}

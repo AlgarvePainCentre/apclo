@@ -1,0 +1,9 @@
+.knee-pain-page {
+  padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+  .knee-pain-page {
+    padding-top: 96px;
+  }
+}

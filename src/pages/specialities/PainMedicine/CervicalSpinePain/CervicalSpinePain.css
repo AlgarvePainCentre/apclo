@@ -1,0 +1,9 @@
+.cervical-spine-pain-page {
+  padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+  .cervical-spine-pain-page {
+    padding-top: 96px;
+  }
+}

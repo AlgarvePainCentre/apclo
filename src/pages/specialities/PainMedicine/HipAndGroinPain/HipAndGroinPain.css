@@ -1,0 +1,9 @@
+.hip-and-groin-pain-page {
+  padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+  .hip-and-groin-pain-page {
+    padding-top: 96px;
+  }
+}
