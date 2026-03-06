@@ -61,19 +61,16 @@ const AcuteAndChronicPainPage: React.FC = () => {
             Sometimes, acute pain can turn into chronic pain. This transition can happen if the initial injury doesn't heal correctly, or if pain signals sensitize the nervous system, making it more reactive. Early intervention and effective management of acute pain are crucial in preventing the development of chronic pain syndromes.
           </p>
         </section>
-
-        <section className="article-navigation">
-          <h3>Explore More Resources</h3>
-          <div className="article-links">
-            <button className="article-link-btn" onClick={() => navigate('/resources/learn/cervical-pain')}>
-              About Cervical Pain
-            </button>
-            <button className="article-link-btn" onClick={() => navigate('/resources/learn/conquering-cervical-pain')}>
-              Conquering Cervical Pain
-            </button>
-          </div>
-        </section>
       </main>
+
+      <section className="article-navigation-container">
+        <div className="article-nav-item prev" onClick={() => navigate('/resources/learn/conquering-cervical-pain')}>
+          <div className="article-nav-content">
+            <span className="article-nav-label">Previous Post</span>
+            <h2 className="article-nav-title"><span className="arrow">←</span> Conquering Cervical Pain</h2>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

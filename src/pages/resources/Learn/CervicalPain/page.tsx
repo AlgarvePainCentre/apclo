@@ -205,10 +205,12 @@ const CervicalPainPage: React.FC = () => {
         </section>
       </main>
 
-      <section className="next-article-navigation" onClick={() => navigate('/resources/learn/conquering-cervical-pain')}>
-        <div className="next-article-content">
-          <span className="next-article-label">Next Post</span>
-          <h2 className="next-article-title">Conquering Cervical Pain <span className="arrow">→</span></h2>
+      <section className="article-navigation-container">
+        <div className="article-nav-item next" onClick={() => navigate('/resources/learn/conquering-cervical-pain')}>
+          <div className="article-nav-content">
+            <span className="article-nav-label">Next Post</span>
+            <h2 className="article-nav-title">Conquering Cervical Pain <span className="arrow">→</span></h2>
+          </div>
         </div>
       </section>
     </div>

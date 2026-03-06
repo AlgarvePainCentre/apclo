@@ -213,38 +213,52 @@
   margin-bottom: 0;
 }
 
-/* Next Article Navigation */
-.next-article-navigation {
-  position: relative;
+/* Article Navigation */
+.article-navigation-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 400px;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/assets/images/learn/DSC06650.jpg');
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .article-navigation-container {
+    flex-direction: row;
+  }
+}
+
+.article-nav-item {
+  flex: 1;
+  position: relative;
+  min-height: 400px;
   background-size: cover;
   background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
   overflow: hidden;
+  transition: all 0.3s ease;
+  /* Default background matching article header */
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/assets/images/learn/1-banner-2.jpg');
 }
 
-.next-article-navigation:hover {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/images/learn/DSC06650.jpg');
+.article-nav-item:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/images/learn/1-banner-2.jpg');
 }
 
-.next-article-navigation:hover .next-article-title {
+.article-nav-item:hover .article-nav-title {
   transform: scale(1.05);
 }
 
-.next-article-content {
+.article-nav-content {
   text-align: center;
   color: #ffffff;
   z-index: 2;
   padding: 2rem;
 }
 
-.next-article-label {
+.article-nav-label {
   display: block;
   font-size: 0.9rem;
   font-weight: 600;
@@ -254,8 +268,8 @@
   opacity: 0.9;
 }
 
-.next-article-title {
-  font-size: 2.5rem;
+.article-nav-title {
+  font-size: 2rem;
   font-weight: 700;
   margin: 0;
   display: flex;
@@ -265,13 +279,19 @@
   transition: transform 0.3s ease;
 }
 
-.next-article-title .arrow {
+.article-nav-title .arrow {
   font-size: 2rem;
   font-weight: 300;
   transition: transform 0.3s ease;
 }
 
-.next-article-navigation:hover .arrow {
+/* Previous arrow animation */
+.article-nav-item.prev:hover .arrow {
+  transform: translateX(-10px);
+}
+
+/* Next arrow animation */
+.article-nav-item.next:hover .arrow {
   transform: translateX(10px);
 }
 
@@ -280,8 +300,8 @@
     font-size: 2rem;
   }
   
-  .next-article-title {
-    font-size: 1.8rem;
+  .article-nav-title {
+    font-size: 1.5rem;
   }
   
   .posture-card {

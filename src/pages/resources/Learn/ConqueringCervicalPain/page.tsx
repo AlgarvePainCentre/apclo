@@ -63,21 +63,22 @@ const ConqueringCervicalPainPage: React.FC = () => {
             <li><strong>Surgery:</strong> In severe cases involving nerve compression or structural instability, surgical options may be considered.</li>
           </ul>
         </section>
-
-
-
-        <section className="article-navigation">
-          <h3>Explore More Resources</h3>
-          <div className="article-links">
-            <button className="article-link-btn" onClick={() => navigate('/resources/learn/cervical-pain')}>
-              About Cervical Pain
-            </button>
-            <button className="article-link-btn" onClick={() => navigate('/resources/learn/acute-and-chronic-pain')}>
-              Acute vs. Chronic Pain
-            </button>
-          </div>
-        </section>
       </main>
+
+      <section className="article-navigation-container">
+        <div className="article-nav-item prev" onClick={() => navigate('/resources/learn/cervical-pain')}>
+          <div className="article-nav-content">
+            <span className="article-nav-label">Previous Post</span>
+            <h2 className="article-nav-title"><span className="arrow">←</span> Cervical Pain</h2>
+          </div>
+        </div>
+        <div className="article-nav-item next" onClick={() => navigate('/resources/learn/acute-and-chronic-pain')}>
+          <div className="article-nav-content">
+            <span className="article-nav-label">Next Post</span>
+            <h2 className="article-nav-title">Understanding Acute and Chronic Pain <span className="arrow">→</span></h2>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };
