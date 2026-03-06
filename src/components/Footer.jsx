@@ -224,9 +224,9 @@ export default function Footer() {
               rel="noopener noreferrer"
             >
               <img 
-                src="/assets/venenu-footer-lo.png" 
+                src="/assets/venenu-footer-lg.png" 
                 alt="Venenu Agency - Web Development Partner" 
-                style={{ height: '25px', width: 'auto' }}
+                style={{ height: '65px', width: 'auto' }}
               />
             </a>
           </div>

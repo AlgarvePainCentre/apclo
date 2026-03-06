@@ -655,3 +655,157 @@
   line-height: 1.6;
   margin-bottom: 0;
 }
+
+/* Acute Pain Split Section */
+.acute-pain-split-section {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.acute-pain-title {
+  text-align: center;
+  color: #003366;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  font-weight: 700;
+}
+
+.acute-pain-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-radius: 8px;
+}
+
+@media (min-width: 992px) {
+  .acute-pain-content-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+}
+
+.acute-pain-image {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+}
+
+.acute-pain-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.acute-pain-text {
+  padding: 3rem;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.acute-pain-text p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.acute-characteristics-title {
+  color: #005eb8;
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.characteristic-item {
+  margin-bottom: 1.5rem;
+}
+
+.characteristic-title {
+  display: block;
+  font-weight: 600;
+  color: #888; /* Grayish title */
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Chronic Pain Split Section */
+.chronic-pain-split-section {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.chronic-pain-title {
+  text-align: center;
+  color: #003366;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  font-weight: 700;
+}
+
+.chronic-pain-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border-radius: 8px;
+}
+
+@media (min-width: 992px) {
+  .chronic-pain-content-grid {
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+  }
+  
+  /* Alternate layout: Text Left, Image Right */
+  .chronic-pain-text {
+    order: 1;
+  }
+  .chronic-pain-image {
+    order: 2;
+  }
+}
+
+.chronic-pain-image {
+  width: 100%;
+  height: 100%;
+  min-height: 400px;
+}
+
+.chronic-pain-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.chronic-pain-text {
+  padding: 3rem;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.chronic-pain-text p {
+  color: #666;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 1rem;
+}
+
+.chronic-characteristics-title {
+  color: #005eb8; /* Match acute title color */
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}

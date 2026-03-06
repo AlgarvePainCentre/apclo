@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
@@ -9,6 +9,134 @@ export default function Resources() {
   const heroRef = useRef(null);
   const heroVideoRef = useRef(null);
   const navigate = useNavigate();
+  const [downloadStatus, setDownloadStatus] = useState('idle'); // idle, downloading, success, error
+  const [downloadProgress, setDownloadProgress] = useState(0);
+
+  // Email Gating State
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
+  const [isEmailVerified, setIsEmailVerified] = useState(false);
+  const [isSubmittingEmail, setIsSubmittingEmail] = useState(false);
+  const [honeypot, setHoneypot] = useState(''); // Anti-spam honeypot
+
+  useEffect(() => {
+    // Check if user has already unlocked the resource
+    const isUnlocked = localStorage.getItem('spine_guide_unlocked');
+    if (isUnlocked === 'true') {
+      setIsEmailVerified(true);
+    }
+  }, []);
+
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+    if (emailError) setEmailError('');
+  };
+
+  const checkRateLimit = () => {
+    const attempts = JSON.parse(localStorage.getItem('email_attempts') || '[]');
+    const now = Date.now();
+    const recentAttempts = attempts.filter(time => now - time < 60000); // Last 1 minute
+    
+    if (recentAttempts.length >= 5) {
+      return false;
+    }
+    
+    recentAttempts.push(now);
+    localStorage.setItem('email_attempts', JSON.stringify(recentAttempts));
+    return true;
+  };
+
+  const handleEmailSubmit = async (e) => {
+    e.preventDefault();
+    
+    // Honeypot check
+    if (honeypot) {
+      console.log('Bot detected');
+      return;
+    }
+
+    if (!validateEmail(email)) {
+      setEmailError('Please enter a valid email address.');
+      return;
+    }
+
+    if (!checkRateLimit()) {
+      setEmailError('Too many attempts. Please try again later.');
+      return;
+    }
+    
+    setIsSubmittingEmail(true);
+    setEmailError('');
+
+    // Simulate backend API call
+    try {
+      // Mock network delay
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Success
+      setIsEmailVerified(true);
+      localStorage.setItem('spine_guide_unlocked', 'true');
+    } catch (err) {
+      setEmailError('Something went wrong. Please try again.');
+    } finally {
+      setIsSubmittingEmail(false);
+    }
+  };
+
+  const handleDownload = async () => {
+    try {
+      setDownloadStatus('downloading');
+      setDownloadProgress(0);
+      
+      const response = await fetch('/assets/Daily-Habits-Spine-ebook.pdf');
+      if (!response.ok) throw new Error('Download failed');
+      
+      const contentLength = response.headers.get('content-length');
+      const total = contentLength ? parseInt(contentLength, 10) : 0;
+      
+      if (!response.body) throw new Error('ReadableStream not supported');
+      
+      const reader = response.body.getReader();
+      let receivedLength = 0;
+      const chunks = [];
+      
+      while(true) {
+        const {done, value} = await reader.read();
+        if (done) break;
+        
+        chunks.push(value);
+        receivedLength += value.length;
+        
+        if (total > 0) {
+          setDownloadProgress(Math.round((receivedLength / total) * 100));
+        }
+      }
+      
+      const blob = new Blob(chunks, { type: 'application/pdf' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = 'Daily-Habits-Spine-ebook.pdf';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+      
+      setDownloadStatus('success');
+      setTimeout(() => setDownloadStatus('idle'), 3000);
+      
+    } catch (error) {
+      console.error('Download error:', error);
+      setDownloadStatus('error');
+      setTimeout(() => setDownloadStatus('idle'), 3000);
+    }
+  };
 
   useEffect(() => {
     // SEO
@@ -325,16 +453,65 @@ export default function Resources() {
                 <li>Hydration & Nutrition Advice</li>
               </ul>
               <div className="center-action" style={{ marginTop: '24px' }}>
-                <button className="primary-btn" onClick={() => alert('Guide downloaded!')}>Download Now</button>
-                <button className="outline-btn" style={{ marginLeft: '16px', border: 'none' }} onClick={() => document.getElementById('featured-resource-popup').style.display = 'none'}>Close</button>
+                {!isEmailVerified ? (
+                  <form onSubmit={handleEmailSubmit} className="email-gate-form">
+                    <input
+                      type="text"
+                      name="hp_field"
+                      value={honeypot}
+                      onChange={(e) => setHoneypot(e.target.value)}
+                      style={{ display: 'none' }}
+                      tabIndex="-1"
+                      autoComplete="off"
+                    />
+                    <div className="email-input-group">
+                      <input
+                        type="email"
+                        placeholder="Enter your email to unlock"
+                        value={email}
+                        onChange={handleEmailChange}
+                        className={`email-input ${emailError ? 'error' : ''}`}
+                        disabled={isSubmittingEmail}
+                        required
+                      />
+                      <button 
+                        type="submit" 
+                        className={`primary-btn ${isSubmittingEmail ? 'loading' : ''}`}
+                        disabled={isSubmittingEmail}
+                      >
+                        {isSubmittingEmail ? 'Verifying...' : 'Unlock Download'}
+                      </button>
+                    </div>
+                    {emailError && <p className="error-message">{emailError}</p>}
+                    <p className="privacy-note">We respect your privacy. No spam.</p>
+                  </form>
+                ) : (
+                  <div className="download-actions">
+                    <button 
+                      className={`primary-btn ${downloadStatus === 'downloading' ? 'loading' : ''}`} 
+                      onClick={handleDownload}
+                      disabled={downloadStatus === 'downloading'}
+                      style={{ minWidth: '160px' }}
+                    >
+                      {downloadStatus === 'downloading' 
+                        ? `Downloading...${downloadProgress > 0 ? ` ${downloadProgress}%` : ''}` 
+                        : downloadStatus === 'success' 
+                          ? 'Downloaded!' 
+                          : downloadStatus === 'error'
+                            ? 'Try Again'
+                            : 'Download Now'}
+                    </button>
+                    <button className="outline-btn" style={{ marginLeft: '16px', border: 'none' }} onClick={() => document.getElementById('featured-resource-popup').style.display = 'none'}>Close</button>
+                  </div>
+                )}
               </div>
             </div>
             <div className="highlight-visual">
-              <div className="tip-card" style={{ transform: 'none', boxShadow: 'none', border: '2px dashed #cbd5e1' }}>
-                 <div className="tip-icon">📚</div>
-                 <h3>Exclusive Content</h3>
-                 <p>Available for a limited time only.</p>
-              </div>
+              <img 
+                src="/assets/images/resources/ebook.png" 
+                alt="Healthy Spine Ebook Cover" 
+                style={{ maxWidth: '100%', height: 'auto', borderRadius: '12px', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}
+              />
             </div>
           </div>
         </section>

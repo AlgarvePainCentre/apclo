@@ -61,6 +61,68 @@ const AcuteAndChronicPainPage: React.FC = () => {
             Sometimes, acute pain can turn into chronic pain. This transition can happen if the initial injury doesn't heal correctly, or if pain signals sensitize the nervous system, making it more reactive. Early intervention and effective management of acute pain are crucial in preventing the development of chronic pain syndromes.
           </p>
         </section>
+
+        <section className="article-section acute-pain-split-section">
+          <h2 className="acute-pain-title">What is Acute Pain?</h2>
+          <div className="acute-pain-content-grid">
+            <div className="acute-pain-image">
+              <img src="/assets/images/learn/5-injuries.jpg" alt="Acute Pain" />
+            </div>
+            <div className="acute-pain-text">
+              <p>
+                Acute pain is the body's immediate response to injury or tissue damage. It serves as a warning signal, alerting you to stop whatever is causing harm. This type of pain is usually sudden and sharp. It can result from a variety of situations, such as:
+              </p>
+              
+              <h3 className="acute-characteristics-title">Characteristics of Acute Pain</h3>
+              
+              <div className="characteristic-item">
+                <span className="characteristic-title">Short Duration</span>
+                <p>Acute pain typically lasts less than six months and subsides once the underlying cause is treated or healed.</p>
+              </div>
+              
+              <div className="characteristic-item">
+                <span className="characteristic-title">Identifiable Cause</span>
+                <p>The source of acute pain is usually clear and identifiable.</p>
+              </div>
+              
+              <div className="characteristic-item">
+                <span className="characteristic-title">Protective Function</span>
+                <p>Acute pain has a purpose—it signals you to rest and avoid further injury.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="article-section chronic-pain-split-section">
+          <h2 className="chronic-pain-title">What is Chronic Pain?</h2>
+          <div className="chronic-pain-content-grid">
+            <div className="chronic-pain-image">
+              <img src="/assets/images/learn/chronic-pain_algarve-pain-center_004.jpg" alt="Chronic Pain" />
+            </div>
+            <div className="chronic-pain-text">
+              <p>
+                Chronic pain is different. It persists long after the injury has healed, with pain signals remaining active in the nervous system for weeks, months, or even years. It can have profound physical and emotional effects, impacting daily life.
+              </p>
+              
+              <h3 className="chronic-characteristics-title">Characteristics of Chronic Pain</h3>
+              
+              <div className="characteristic-item">
+                <span className="characteristic-title">Long Duration</span>
+                <p>Chronic pain typically lasts more than 3 to 6 months, continuing beyond normal healing time.</p>
+              </div>
+              
+              <div className="characteristic-item">
+                <span className="characteristic-title">Complex Causes</span>
+                <p>It can be caused by an ongoing condition like arthritis, or may have no clear cause at all.</p>
+              </div>
+              
+              <div className="characteristic-item">
+                <span className="characteristic-title">Persistent Signals</span>
+                <p>The nervous system remains in a state of high reactivity, even without active tissue damage.</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       <section className="article-navigation-container">
