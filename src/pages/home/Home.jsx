@@ -212,7 +212,7 @@ export default function Home() {
           >
             <p className="home-section-testimonial-eyebrow">Real stories, real relief</p>
             <h2 className="home-section-testimonial-title">
-              “APC gave me back the freedom to move without fear.”
+              “Algarve Pain Centre gave me back the freedom to move without fear.”
             </h2>
             <div className="home-section-testimonial-media-inline">
               <div
@@ -238,13 +238,13 @@ export default function Home() {
                       navigate('/resources/testimonials/overcoming-sciatica-pain')
                     }
                   >
-                    Watch how APC treats complex pain
+                    Watch how Algarve Pain Centre treats complex pain
                   </button>
                 </div>
               </div>
             </div>
             <p className="home-section-testimonial-body">
-              After years of living around chronic spine pain, Ana arrived at APC exhausted,
+              After years of living around chronic spine pain, Ana arrived at Algarve Pain Centre exhausted,
               anxious, and worried about losing her independence.
             </p>
             <p className="home-section-testimonial-body">
@@ -253,7 +253,7 @@ export default function Home() {
               recovery. Today, she is back to walking, working, and enjoying time with her family.
             </p>
             <p className="home-section-testimonial-author">
-              Ana, 54 — spine pain patient at APC
+              Ana, 54 — spine pain patient at Algarve Pain Centre
             </p>
             <div className="home-section-testimonial-services">
               <div className="home-section-testimonial-pill">Comprehensive pain assessment</div>
@@ -285,7 +285,7 @@ export default function Home() {
                     navigate('/resources/testimonials/overcoming-sciatica-pain')
                   }
                 >
-                  Watch how APC treats complex pain
+                  Watch how Algarve Pain Centre treats complex pain
                 </button>
               </div>
             </div>

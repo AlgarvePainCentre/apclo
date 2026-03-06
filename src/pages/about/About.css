@@ -36,7 +36,7 @@
   display: flex;
   gap: 4rem;
   align-items: flex-start;
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
 }
 
@@ -46,6 +46,18 @@
   font-weight: 700;
   margin-bottom: 1.5rem;
   line-height: 1.2;
+}
+
+.who-we-are::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 2px;
+    bottom: 2px;
+    width: 4px;
+    border-radius: 6px;
+    background: linear-gradient(180deg, var(--warm-yellow, #fbd38d), var(--warm-orange, #f6ad55) 60%, var(--warm-coral, #f58b8b));
+    box-shadow: 0 8px 16px rgba(251, 171, 80, 0.25);
 }
 
 .section-title-col {

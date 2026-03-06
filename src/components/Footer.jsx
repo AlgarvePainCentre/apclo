@@ -167,7 +167,7 @@ export default function Footer() {
             <a
               href="https://www.instagram.com/algarvepaincentre/"
               className="footer-social-link"
-              aria-label="Visit APC on Instagram"
+              aria-label="Visit Algarve Pain Centre on Instagram"
             >
               <svg
                 fill="currentColor"
@@ -182,7 +182,7 @@ export default function Footer() {
             <a
               href="https://www.facebook.com/profile.php?id=100068862086045"
               className="footer-social-link"
-              aria-label="Visit APC on Facebook"
+              aria-label="Visit Algarve Pain Centre on Facebook"
             >
               <svg
                 fill="currentColor"
@@ -197,7 +197,7 @@ export default function Footer() {
             <a
               href="https://www.linkedin.com/company/algarve-pain-centre/"
               className="footer-social-link"
-              aria-label="Visit APC on LinkedIn"
+              aria-label="Visit Algarve Pain Centre on LinkedIn"
             >
               <svg
                 fill="currentColor"

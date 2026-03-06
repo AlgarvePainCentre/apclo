@@ -437,7 +437,8 @@ export default function About() {
              <div className="section-text-col">
 
                 <div className="section-title-col">
-                  <h2>Who we are</h2>
+                  <h2 className="title"
+                  >Who we are</h2>
                 </div>
                 <div className="section-text-col">
                   <p>Our clinic has a group of professionals specialized in different areas of health such as Pain Medicine, Sports Medicine, Physical Medicine and Rehabilitation.</p>
@@ -445,7 +446,7 @@ export default function About() {
                 </div>
 
                 <div className="section-title-col">
-                  <h2>The centre</h2>
+                  <h2 className="title">The centre</h2>
                 </div>
                 
                 <div className="mobile-video-container">
