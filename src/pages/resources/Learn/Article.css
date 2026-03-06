@@ -319,3 +319,339 @@
     padding: 0.2rem;
   }
 }
+
+/* Understanding Cervical Pain Section */
+.understanding-pain-section {
+  background-color: #f0f7fa; /* Light blue/gray background */
+  padding: 4rem 2rem;
+  margin-top: 3rem;
+  width: 100%;
+  text-align: center;
+}
+
+.understanding-pain-header {
+  max-width: 900px;
+  margin: 0 auto 3rem;
+}
+
+.understanding-pain-header h2 {
+  color: #003366;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: none; /* Remove default underline from article-section h2 */
+}
+
+.understanding-pain-header p {
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.understanding-pain-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .understanding-pain-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .understanding-pain-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.understanding-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.understanding-card img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.understanding-card h3 {
+  color: #005eb8;
+  font-size: 1.4rem;
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.title-underline {
+  width: 60px;
+  height: 3px;
+  background-color: #ff6b6b; /* Salmon color */
+  margin: 0.5rem 0 1rem;
+}
+
+.understanding-card p {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* Symptoms Section */
+.symptoms-section {
+  padding: 4rem 2rem;
+  background-color: transparent;
+}
+
+.symptoms-header {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 3rem;
+}
+
+.symptoms-header h2 {
+  color: #003366;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  border-bottom: none;
+}
+
+.symptoms-header p {
+  color: #555;
+  font-size: 1.1rem;
+}
+
+.symptoms-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (min-width: 992px) {
+  .symptoms-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.symptom-card {
+  display: flex;
+  flex-direction: column-reverse; /* Image on top on mobile, content bottom */
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.symptom-card:hover {
+  transform: translateY(-5px);
+}
+
+@media (min-width: 768px) {
+  .symptom-card {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+.symptom-content {
+  padding: 2rem;
+  flex: 1;
+}
+
+.symptom-content h3 {
+  color: #005eb8;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  margin-top: 0;
+}
+
+.symptom-content p {
+  color: #555;
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+.symptom-image {
+  flex: 1;
+  height: 100%;
+  min-height: 250px;
+}
+
+.symptom-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Pain Medicine Section */
+.pain-medicine-section {
+  background-color: #f0f7fa; /* Match Understanding section bg */
+  padding: 4rem 2rem;
+  margin-top: 3rem;
+  width: 100%;
+  text-align: center;
+}
+
+.pain-medicine-header {
+  max-width: 900px;
+  margin: 0 auto 2rem;
+}
+
+.pain-medicine-header h2 {
+  color: #003366;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: none;
+}
+
+.pain-medicine-header p {
+  color: #555;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.services-subtitle {
+  color: #003366; /* Match h2 color or slightly different */
+  font-size: 1.5rem;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.pain-medicine-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  max-width: 1400px; /* Increased max-width */
+  margin: 0 auto;
+}
+
+@media (min-width: 992px) {
+  .pain-medicine-grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 columns for desktop */
+    justify-content: center;
+  }
+}
+
+.pain-medicine-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.pain-medicine-card img {
+  width: 100%;
+  height: 350px; /* Increased height */
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.pain-medicine-card h3 {
+  color: #005eb8;
+  font-size: 1.6rem; /* Slightly larger title */
+  margin: 0 0 0.5rem;
+  font-weight: 600;
+}
+
+.pain-medicine-card p {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+  max-width: 90%; /* Limit text width for better readability */
+}
+
+/* Treatment Approaches Section */
+.treatment-approaches-section {
+  background-color: transparent;
+  padding: 8rem 2rem;
+  margin-top: 3rem;
+  width: 100%;
+}
+
+.section-title-center {
+  color: #003366;
+  font-size: 2.5rem;
+  margin-bottom: 3rem;
+  text-align: left;
+  font-weight: 700;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.treatment-approaches-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  max-width: 1400px;
+  padding-top: 8rem;
+  margin: 0 auto;
+}
+
+@media (min-width: 992px) {
+  .treatment-approaches-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .treatment-approaches-section {
+    padding: 4rem 2rem;
+    margin-top: 2rem;
+  }
+  .treatment-approaches-grid {
+    padding-top: 0;
+}
+
+}
+
+.treatment-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 2.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+}
+
+.treatment-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.treatment-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.treatment-card h3 {
+  color: #003366;
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+  font-weight: 700;
+}
+
+.treatment-card p {
+  color: #666;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+}

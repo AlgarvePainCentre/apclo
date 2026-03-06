@@ -65,6 +65,150 @@ const ConqueringCervicalPainPage: React.FC = () => {
         </section>
       </main>
 
+      <section className="article-section understanding-pain-section">
+        <div className="understanding-pain-header">
+          <h2>Understanding Cervical Pain</h2>
+          <p>There are seven vertebrae in the cervical spine, which extends from the base of the skull to your shoulders. These vertebrae support your head and allow for its range of motion. Numerous things can cause cervical pain, including:</p>
+        </div>
+        <div className="understanding-pain-grid">
+          <div className="understanding-card">
+            <img src="/assets/images/learn/2-muscle-tension.jpg" alt="Muscle Tension" />
+            <h3>Muscle Tension</h3>
+            <div className="title-underline"></div>
+            <p>This condition is frequently brought on by stress, bad posture, or extended periods of inactivity, leading to sore neck muscles and back and neck aches.</p>
+          </div>
+          <div className="understanding-card">
+            <img src="/assets/images/learn/3-improper-posture.jpg" alt="Physiotherapy" />
+            <h3>Physiotherapy</h3>
+            <div className="title-underline"></div>
+            <p>Bending forward or slouching can put excessive strain on the neck muscles, causing back and neck discomfort.</p>
+          </div>
+          <div className="understanding-card">
+            <img src="/assets/images/learn/4-disc-problems.jpg" alt="Disc Problems" />
+            <h3>Disc Problems</h3>
+            <div className="title-underline"></div>
+            <p>Herniated or degenerated discs, known as cervical spondylotic disease, can cause pain by pressing on nerves, leading to pain in the upper back neck.</p>
+          </div>
+          <div className="understanding-card">
+            <img src="/assets/images/learn/5-injuries.jpg" alt="Injuries" />
+            <h3>Injuries</h3>
+            <div className="title-underline"></div>
+            <p>Whiplash or other trauma can lead to acute cervical pain and neck strain.</p>
+          </div>
+        </div>
+      </section>
+
+      <div className="article-main">
+        <section className="article-section symptoms-section">
+          <div className="symptoms-header">
+            <h2>Symptoms of Cervical Pain</h2>
+            <p>The following are typical signs of cervical pain:</p>
+          </div>
+          <div className="symptoms-grid">
+            <div className="symptom-card">
+              <div className="symptom-content">
+                <h3>Stiffness</h3>
+                <p>Having trouble moving your neck, particularly after spending a lot of time sitting still or resting, can cause back and neck soreness.</p>
+              </div>
+              <div className="symptom-image">
+                <img src="/assets/images/learn/6-stiffness.jpg" alt="Stiffness" />
+              </div>
+            </div>
+            <div className="symptom-card">
+              <div className="symptom-content">
+                <h3>Headaches</h3>
+                <p>These frequently begin in the neck and work their way up, often due to upper back cervical pain.</p>
+              </div>
+              <div className="symptom-image">
+                <img src="/assets/images/learn/7-headaches.jpg" alt="Headaches" />
+              </div>
+            </div>
+            <div className="symptom-card">
+              <div className="symptom-content">
+                <h3>Reduced Range of Motion</h3>
+                <p>Difficulty tilting or rotating your head due to cervical and neck pain.</p>
+              </div>
+              <div className="symptom-image">
+                <img src="/assets/images/learn/8-reduced-range.jpg" alt="Reduced Range of Motion" />
+              </div>
+            </div>
+            <div className="symptom-card">
+              <div className="symptom-content">
+                <h3>Radiating Pain</h3>
+                <p>Discomfort that radiates to your upper back or down your arms, leading to lower back pain and neck strain.</p>
+              </div>
+              <div className="symptom-image">
+                <img src="/assets/images/learn/9-radiating-pain.jpg" alt="Radiating Pain" />
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <section className="article-section pain-medicine-section">
+        <div className="pain-medicine-header">
+          <h2>Pain Medicine</h2>
+          <p>At our clinic, we specialize in Pain Medicine, a field dedicated to understanding and treating the causes of pain. Our approach involves a thorough evaluation of each patient to uncover the root of their pain and develop an effective treatment plan.</p>
+        </div>
+        
+        <h3 className="services-subtitle">Our Services Include</h3>
+        
+        <div className="pain-medicine-grid">
+          <div className="pain-medicine-card">
+            <img src="/assets/images/learn/chronic-pain_algarve-pain-center_004.jpg" alt="Medications" />
+            <h3>Medications</h3>
+            <div className="title-underline"></div>
+            <p>Tailored prescriptions to manage pain effectively.</p>
+          </div>
+          <div className="pain-medicine-card">
+            <img src="/assets/images/learn/chronic-pain_algarve-pain-center_005.jpg" alt="Physiotherapy" />
+            <h3>Physiotherapy</h3>
+            <div className="title-underline"></div>
+            <p>Customised physical therapy to improve mobility and reduce discomfort.</p>
+          </div>
+          <div className="pain-medicine-card">
+            <img src="/assets/images/learn/chronic-pain_algarve-pain-center_008.jpg" alt="Minimally Invasive Procedures" />
+            <h3>Minimally Invasive Procedures</h3>
+            <div className="title-underline"></div>
+            <p>Advanced techniques to alleviate pain without major surgery.</p>
+          </div>
+        </div>
+      </section>
+
+      <section className="article-section treatment-approaches-section">
+        <h2 className="section-title-center">Our Treatment Approaches</h2>
+        <div className="treatment-approaches-grid">
+          <div className="treatment-card">
+            <div className="treatment-icon">
+              <img src="/assets/images/Icons-Specialities/Asset-S1.png" alt="Pharmacological Management" />
+            </div>
+            <h3>Pharmacological Management</h3>
+            <p>Pharmacological Management pain is commonly part of the treatment and a wide range of medicine can be used to manage pain.</p>
+          </div>
+          <div className="treatment-card">
+            <div className="treatment-icon">
+              <img src="/assets/images/Icons-Specialities/Asset-S2.png" alt="Corticosteroid Injection" />
+            </div>
+            <h3>Corticosteroid Injection</h3>
+            <p>Corticosteroid medications are used to reduce pain and inflammation and can be taken oral or through an injection</p>
+          </div>
+          <div className="treatment-card">
+            <div className="treatment-icon">
+              <img src="/assets/images/Icons-Specialities/Asset-S3.png" alt="Radio-frequency" />
+            </div>
+            <h3>Radio-frequency</h3>
+            <p>Radio-frequency ablation is a minimally invasive procedure guided for ultrasound or fluoroscopy.</p>
+          </div>
+          <div className="treatment-card">
+            <div className="treatment-icon">
+              <img src="/assets/images/Icons-Specialities/Asset-S4.png" alt="Cryoablation" />
+            </div>
+            <h3>Cryoablation</h3>
+            <p>Cryoablation is a specialized technique that freezes nerves to stop pain signals.</p>
+          </div>
+        </div>
+      </section>
+
       <section className="article-navigation-container">
         <div className="article-nav-item prev" onClick={() => navigate('/resources/learn/cervical-pain')}>
           <div className="article-nav-content">
