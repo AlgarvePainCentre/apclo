@@ -93,6 +93,8 @@ const AcuteAndChronicPainPage: React.FC = () => {
           </div>
         </section>
 
+
+
         <section className="article-section chronic-pain-split-section">
           <h2 className="chronic-pain-title">What is Chronic Pain?</h2>
           <div className="chronic-pain-content-grid">
@@ -120,6 +122,114 @@ const AcuteAndChronicPainPage: React.FC = () => {
                 <span className="characteristic-title">Persistent Signals</span>
                 <p>The nervous system remains in a state of high reactivity, even without active tissue damage.</p>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="article-section key-differences-section">
+          <h2>Key Differences Between Acute and Chronic Pain</h2>
+          <p className="section-subtitle">Understanding the distinctions between acute and chronic pain is essential for proper treatment and management:</p>
+          
+          <div className="differences-grid">
+            <div className="difference-card">
+              <div className="difference-content">
+                <h3>Duration</h3>
+                <div className="pain-type">
+                  <h4>Acute Pain</h4>
+                  <p>Short-term, typically lasting less than 3 to 6 months.</p>
+                </div>
+                <div className="pain-type">
+                  <h4>Chronic Pain</h4>
+                  <p>Long-term, lasting more than 3 to 6 months.</p>
+                </div>
+              </div>
+              <div className="difference-image">
+                <img src="/assets/images/learn/chronic-pain_algarve-pain-center_005.jpg" alt="Duration difference" />
+              </div>
+            </div>
+
+            <div className="difference-card">
+              <div className="difference-content">
+                <h3>Cause</h3>
+                <div className="pain-type">
+                  <h4>Acute Pain</h4>
+                  <p>Usually identifiable (injury, surgery, infection).</p>
+                </div>
+                <div className="pain-type">
+                  <h4>Chronic Pain</h4>
+                  <p>Ongoing conditions or sometimes unknown causes.</p>
+                </div>
+              </div>
+              <div className="difference-image">
+                <img src="/assets/images/learn/5-injuries.jpg" alt="Cause difference" />
+              </div>
+            </div>
+
+            <div className="difference-card">
+              <div className="difference-content">
+                <h3>Resolution</h3>
+                <div className="pain-type">
+                  <h4>Acute Pain</h4>
+                  <p>Disappears when the underlying cause is healed.</p>
+                </div>
+                <div className="pain-type">
+                  <h4>Chronic Pain</h4>
+                  <p>Persists beyond healing; often managed rather than cured.</p>
+                </div>
+              </div>
+              <div className="difference-image">
+                <img src="/assets/images/learn/chronic-pain_algarve-pain-center_004.jpg" alt="Resolution difference" />
+              </div>
+            </div>
+
+            <div className="difference-card">
+              <div className="difference-content">
+                <h3>Treatment</h3>
+                <div className="pain-type">
+                  <h4>Acute Pain</h4>
+                  <p>Medication, rest, and treating the injury source.</p>
+                </div>
+                <div className="pain-type">
+                  <h4>Chronic Pain</h4>
+                  <p>Multidisciplinary: therapy, lifestyle changes, support.</p>
+                </div>
+              </div>
+              <div className="difference-image">
+                <img src="/assets/images/learn/DSC07600.jpg" alt="Treatment difference" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="article-section diagnosis-section">
+          <h2>Diagnosis</h2>
+          <p className="section-subtitle">
+            Determining whether your pain is still acute or has transitioned to chronic can be essential for proper management and treatment. Here's a guide to help you understand the nature of your pain based on several key questions.
+          </p>
+
+          <div className="diagnosis-grid">
+            <div className="diagnosis-card">
+              <h3>Limits your daily life and activities?</h3>
+              <div className="diagnosis-divider"></div>
+              <p>
+                While acute pain can temporarily limit activities, it usually improves as the cause resolves. Chronic pain, however, tends to have a more significant and long-term impact on daily life, often leading to limitations in routine activities and physical function.
+              </p>
+            </div>
+
+            <div className="diagnosis-card">
+              <h3>Causes anxiety, depression or mood changes?</h3>
+              <div className="diagnosis-divider"></div>
+              <p>
+                Acute pain can cause temporary distress, but chronic pain often leads to ongoing emotional and psychological issues such as anxiety, depression, and mood changes due to its persistent and debilitating nature.
+              </p>
+            </div>
+
+            <div className="diagnosis-card">
+              <h3>Affects your sleeping quality and appetite?</h3>
+              <div className="diagnosis-divider"></div>
+              <p>
+                Sleep disturbances and changes in appetite can occur with both acute and chronic pain, but chronic pain is more likely to cause prolonged issues with sleep quality and appetite, further affecting overall well-being.
+              </p>
             </div>
           </div>
         </section>

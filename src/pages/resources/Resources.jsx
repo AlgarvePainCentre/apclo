@@ -262,70 +262,63 @@ export default function Resources() {
             <h2>Learn</h2>
             <p>Expert advice, research updates, and health news.</p>
           </div>
-          <div className="learn-grid">
-            <article className="learn-card">
-              <div className="learn-card-image-wrapper">
-                <img 
-                  src="/assets/images/specialities/head/head-1.jpg" 
-                  alt="Person touching their neck in pain" 
-                  className="learn-card-image"
-                  loading="lazy"
-                />
+          <div className="resource-nav-container">
+            <div 
+              className="article-nav-item" 
+              id="card-article-re"
+              onClick={() => navigate('/resources/learn/cervical-pain')}
+              role="button"
+              tabIndex={0}
+              aria-label="Read article about Cervical Pain"
+              onKeyDown={(e) => e.key === 'Enter' && navigate('/resources/learn/cervical-pain')}
+              style={{ backgroundImage: `url('/assets/images/specialities/head/head-1.jpg'),` }}
+            >
+              <div className="article-nav-content">
+                <span className="article-nav-label">May 15, 2024 • 5 min read</span>
+                <h3 className="article-nav-title">
+                  Cervical Pain
+                  <span className="arrow">→</span>
+                </h3>
               </div>
-              <div className="learn-card-content">
-                <div className="learn-card-meta">
-                  <span className="learn-date">May 15, 2024</span>
-                  <span className="learn-read-time">5 min read</span>
-                </div>
-                <h3>Cervical Pain</h3>
-                <p>Learn about the causes, symptoms, and comprehensive treatment options for cervical spine pain to restore mobility and comfort.</p>
-                <button className="learn-read-more" onClick={() => navigate('/resources/learn/cervical-pain')} aria-label="Read more about Cervical Pain">
-                  Read More
-                </button>
+            </div>
+
+            <div 
+              className="article-nav-item" 
+              id="card-article-re"
+              onClick={() => navigate('/resources/learn/conquering-cervical-pain')}
+              role="button"
+              tabIndex={0}
+              aria-label="Read article about Conquering Cervical Pain"
+              onKeyDown={(e) => e.key === 'Enter' && navigate('/resources/learn/conquering-cervical-pain')}
+              style={{ backgroundImage: `url('/assets/images/treatment-img/SpinePain.jpg')` }}
+            >
+              <div className="article-nav-content">
+                <span className="article-nav-label">May 10, 2024 • 7 min read</span>
+                <h3 className="article-nav-title">
+                  Conquering Cervical Pain
+                  <span className="arrow">→</span>
+                </h3>
               </div>
-            </article>
-            <article className="learn-card">
-              <div className="learn-card-image-wrapper">
-                <img 
-                  src="/assets/images/treatment-img/SpinePain.jpg" 
-                  alt="Detailed view of spine structure" 
-                  className="learn-card-image"
-                  loading="lazy"
-                />
+            </div>
+
+            <div 
+              className="article-nav-item" 
+              id="card-article-re"
+              onClick={() => navigate('/resources/learn/acute-and-chronic-pain')}
+              role="button"
+              tabIndex={0}
+              aria-label="Read article about Understanding Acute and Chronic Pain"
+              onKeyDown={(e) => e.key === 'Enter' && navigate('/resources/learn/acute-and-chronic-pain')}
+              style={{ backgroundImage: `url('/assets/images/treatment-img/KneePain.jpg')` }}
+            >
+              <div className="article-nav-content">
+                <span className="article-nav-label">May 5, 2024 • 6 min read</span>
+                <h3 className="article-nav-title">
+                  Understanding Acute and Chronic Pain
+                  <span className="arrow">→</span>
+                </h3>
               </div>
-              <div className="learn-card-content">
-                <div className="learn-card-meta">
-                  <span className="learn-date">May 10, 2024</span>
-                  <span className="learn-read-time">7 min read</span>
-                </div>
-                <h3>Conquering Cervical Pain</h3>
-                <p>Discover effective strategies and advanced therapies for managing and overcoming persistent cervical pain in your daily life.</p>
-                <button className="learn-read-more" onClick={() => navigate('/resources/learn/conquering-cervical-pain')} aria-label="Read more about Conquering Cervical Pain">
-                  Read More
-                </button>
-              </div>
-            </article>
-            <article className="learn-card">
-              <div className="learn-card-image-wrapper">
-                <img 
-                  src="/assets/images/treatment-img/KneePain.jpg" 
-                  alt="Person holding their knee in pain" 
-                  className="learn-card-image"
-                  loading="lazy"
-                />
-              </div>
-              <div className="learn-card-content">
-                <div className="learn-card-meta">
-                  <span className="learn-date">May 5, 2024</span>
-                  <span className="learn-read-time">6 min read</span>
-                </div>
-                <h3>Understanding Acute and Chronic Pain</h3>
-                <p>Explore the key differences between acute and chronic pain and how personalized treatment plans can address your specific needs.</p>
-                <button className="learn-read-more" onClick={() => navigate('/resources/learn/acute-and-chronic-pain')} aria-label="Read more about Understanding Acute and Chronic Pain">
-                  Read More
-                </button>
-              </div>
-            </article>
+            </div>
           </div>
         </section>
 
