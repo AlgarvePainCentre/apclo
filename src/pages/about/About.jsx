@@ -447,6 +447,19 @@ export default function About() {
                 <div className="section-title-col">
                   <h2>The centre</h2>
                 </div>
+                
+                <div className="mobile-video-container">
+                  <video
+                    alt="Vale do Lobo Algarve" loading="lazy"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    src="/assets/videos/clinica-2.mov"
+                  />
+                </div>
+
                 <div className="section-text-col">
                   <p>Located in one of the most beautiful regions of Portugal and one of the most luxurious tourist developments in Europe, our clinic is located inside Family Medical Centre from Dr. Thomas Kaiser, at Av. do Mar, Vale do Lobo, Algarve, We have all the necessary facilities for your well-being.</p>
                 </div>
