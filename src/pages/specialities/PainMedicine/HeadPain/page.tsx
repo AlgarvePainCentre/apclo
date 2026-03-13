@@ -1,18 +1,14 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Navbar from '../../../../components/Navbar';
-import Footer from '../../../../components/Footer';
-import './HeadPain.css';
+import { Link } from 'react-router-dom';
+import { serializeJsonForHtmlScript } from '../../../../utils/security';
 
-declare global {
-  namespace JSX {
-    interface IntrinsicElements {
-      [elemName: string]: any;
-    }
-  }
-}
+type Syndrome = {
+  id: string;
+  label: string;
+  description: string;
+};
 
-const syndromes = [
+const syndromes: Syndrome[] = [
   {
     id: 'cluster',
     label: 'Cluster Headache',
@@ -39,86 +35,103 @@ const syndromes = [
   },
 ];
 
-const HeadPainPage = () => {
-  const navigate = useNavigate();
+const HeadPainPage: React.FC = () => {
   const [activeSyndromeId, setActiveSyndromeId] = React.useState<string | null>('tension');
+  const structuredDataJson = React.useMemo(
+    () =>
+      JSON.stringify({
+        '@context': 'https://schema.org',
+        '@graph': [
+          {
+            '@type': 'MedicalWebPage',
+            url: typeof window !== 'undefined' ? window.location.href : 'https://www.algarvepaincentre.com/',
+            name: 'Head pain',
+            description:
+              'Specialist assessment and treatment for head pain at Algarve Pain Centre in Vale do Lobo, Algarve, Portugal.',
+            isPartOf: {
+              '@type': 'WebSite',
+              name: 'Algarve Pain Centre',
+              url: 'https://www.algarvepaincentre.com/',
+            },
+            publisher: {
+              '@type': 'MedicalOrganization',
+              name: 'Algarve Pain Centre',
+            },
+          },
+          {
+            '@type': 'MedicalCondition',
+            name: 'Head pain',
+            description:
+              'Specialist assessment and treatment for head pain at Algarve Pain Centre in Vale do Lobo, Algarve, Portugal.',
+            recognizingAuthority: {
+              '@type': 'MedicalOrganization',
+              name: 'Algarve Pain Centre',
+            },
+          },
+          {
+            '@type': 'MedicalTherapy',
+            name: 'Headache syndrome assessment',
+            description:
+              'Clinical evaluation to identify the most likely headache syndrome and match it to an evidence-based treatment pathway.',
+            offeredBy: {
+              '@type': 'MedicalOrganization',
+              name: 'Algarve Pain Centre',
+            },
+          },
+        ],
+      }),
+    [],
+  );
+
+  React.useEffect(() => {
+    document.title = 'Head pain | Algarve Pain Centre';
+    const description =
+      'Treatments for head pain, including common headache syndromes and specialist pathways at Algarve Pain Centre in Vale do Lobo, Algarve.';
+    const meta =
+      document.querySelector('meta[name="description"]') ??
+      (() => {
+        const el = document.createElement('meta');
+        el.setAttribute('name', 'description');
+        document.head.appendChild(el);
+        return el;
+      })();
+    meta.setAttribute('content', description);
+  }, []);
 
   return (
-    <div className="page head-pain-page">
-      <section className="hero">
-        <div className="hero-video" aria-hidden="true">
-          <video
-            className="hero-video-el"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            src="/assets/videos/banner-consulta-2.mp4"
-          />
-        </div>
-        <div className="hero-content">
-          <div className="hero-left">
-            <h1 className="hero-title">Head pain</h1>
-            <p className="hero-subtitle">
-              Head pain is a common health problem with a global prevalence of 47%.
-            </p>
-          </div>
-          <div className="hero-right">
-            <p className="hero-small-text">Relief starts with a clear plan.</p>
-            <button
-              type="button"
-              className="hero-cta"
-              aria-label="Book an appointment for head pain"
-              onClick={() => navigate('/contact')}
-            >
-              Book an appointment
-            </button>
-          </div>
-        </div>
-      </section>
-
+    <div className="head-pain-page">
       <main className="page-main head-pain-main">
 
         <section className="page-section treatments-overview">
           <div className="treatments-overview-header">
-
-            <h2 className="treatments-overview-title">
-              Treatments for head pain
-            </h2>
-
+            <h2 className="treatments-overview-title">Treatments for head pain</h2>
             <p className="treatments-overview-subtitle">
-              At Algarve Pain Centre, we offer a comprehensive range of treatments for head pain. Our team of experienced pain medicine specialists is dedicated to providing personalized care and effective solutions to help you find relief and improve your quality of life.
+              At Algarve Pain Centre, we offer a comprehensive range of treatments for head pain. Our
+              team of experienced pain medicine specialists is dedicated to providing personalised care
+              and effective solutions to help you find relief and improve your quality of life.
             </p>
-
           </div>
-
-        {/* Container - Head Pain - first */} 
           <div className="treatments-overview-layout">
             <article className="treatments-overview-card">
-              <h3 className="treatments-overview-card-title">
-                Head pain overview
-              </h3>
+              <h3 className="treatments-overview-card-title">Head pain overview</h3>
               <div className="treatments-overview-card-accent" />
               <p className="treatments-overview-card-body">
-                Head pain is a common health problem with a global prevalence of 
-                47% (symptoms occurring at least once in the past year) and 
-                women are disproportionately affected (3:1). Many factors, 
-                like stress, anxiety, injury and migraine can lead to 
-                headaches. In European populations, the annual sex-adjusted 
-                prevalence for tension-type headache is 35%, for migraine is 38%, 
-                but for cluster headache is only 0.15%. 
-                <br />
-                Consequently, sometimes the high frequency and intensity of 
-                headaches affects a patient’s quality of life and a diagnosis and 
-                effective treatment make a huge difference to the patient and can be 
-                very rewarding for the clinician. 
+                Head pain is a common health problem with a global prevalence of 47% (symptoms occurring
+                at least once in the past year), and women are disproportionately affected (3:1). Many
+                factors, like stress, anxiety, injury and migraine can lead to head pain. Estimated
+                prevalence for tension-type headache is 35%, for migraine is 38%, but for cluster headache
+                is only 0.15%.
               </p>
-  
-            {/* Container - Media */} 
+              <Link
+                to="/contact"
+                className="treatment-card-button"
+                aria-label="Book an appointment for head pain"
+              >
+                <span>Book an appointment</span>
+              </Link>
             </article>
             <div className="treatments-overview-media" aria-hidden="true">
-              <div className="treatments-overview-media-inner" style={{ objectFit: 'cover' }}>
+              <div className="treatments-overview-media-inner">
                 <video
                   className="treatments-overview-video"
                   autoPlay
@@ -135,47 +148,43 @@ const HeadPainPage = () => {
 
         <section className="page-section head-pain-treatment head-pain-approaches">
           <div className="head-pain-approaches-inner">
-             <div className="treatments-overview-header">
-
-            <h2 className="treatments-overview-title">
-              Treatment Approaches
-            </h2>
-
-            <p className="treatments-overview-subtitle">
-              We have a team of experienced pain medicine specialists who are committed to providing personalized care and effective treatments for head pain.
-            </p>
-
-          </div>
+            <header className="head-pain-approaches-header">
+              <h2 className="head-pain-approaches-title">Treatment approaches</h2>
+              <p className="head-pain-approaches-subtitle">
+                We have a team of experienced pain medicine specialists who are committed to providing
+                personalised care and effective treatments for head pain.
+              </p>
+            </header>
             <div className="head-pain-approaches-grid">
-              <article className="pain-learn-card">
+              <article className="head-pain-approach-card">
                 <div
-                  className="pain-learn-media head-pain-approach-media-botulin"
+                  className="head-pain-approach-media head-pain-approach-media-botulin"
                   aria-hidden="true"
                 />
-                <div className="pain-learn-body">
-                  <h3 className="pain-learn-title">
-                    Botulin <span>Toxin Injection</span>
+                <div className="head-pain-approach-card-body">
+                  <h3 className="head-pain-approach-card-title">
+                    Botulin <span>toxin injection</span>
                   </h3>
-                  <div className="pain-learn-accent" />
-                  <p className="pain-learn-description">
+                  <div className="head-pain-approach-card-accent" />
+                  <p className="head-pain-approach-card-text">
                     A potent neurotoxin that inhibits release of acetylcholine at the neuromuscular
                     junction and can be used to treat specific forms of head pain.
                   </p>
                 </div>
               </article>
-              <article className="pain-learn-card">
+              <article className="head-pain-approach-card">
                 <div
-                  className="pain-learn-media head-pain-approach-media-pharma"
+                  className="head-pain-approach-media head-pain-approach-media-pharma"
                   aria-hidden="true"
                 />
-                <div className="pain-learn-body">
-                  <h3 className="pain-learn-title">
-                    Pharmacological <span>Management</span>
+                <div className="head-pain-approach-card-body">
+                  <h3 className="head-pain-approach-card-title">
+                    Pharmacological <span>management</span>
                   </h3>
-                  <div className="pain-learn-accent" />
-                  <p className="pain-learn-description">
-                    Pharmacological management of pain is commonly part of treatment and a wide range
-                    of drugs can be used to manage symptoms safely and effectively.
+                  <div className="head-pain-approach-card-accent" />
+                  <p className="head-pain-approach-card-text">
+                    Pharmacological management of pain is commonly part of treatment and a wide range of
+                    drugs can be used to manage symptoms safely and effectively.
                   </p>
                 </div>
               </article>
@@ -186,12 +195,10 @@ const HeadPainPage = () => {
         <section className="page-section head-pain-treatment head-pain-syndromes">
           <div className="head-pain-syndromes-layout">
             <header className="head-pain-syndromes-header head-pain-syndromes-header-center">
-              <p className="head-pain-syndromes-eyebrow">Most Common Syndromes</p>
+              <p className="head-pain-syndromes-eyebrow">Most common syndromes</p>
               <h2 className="head-pain-syndromes-title">Treatments for head pain</h2>
               <p className="head-pain-syndromes-subtitle">
-                At Algarve Pain Centre, we offer a comprehensive range of treatments for head pain. Our
-                team of experienced pain medicine specialists is dedicated to providing personalized care
-                and effective solutions to help you find relief and improve your quality of life.
+                Explore common head pain syndromes and learn how tailored care can help you feel better.
               </p>
             </header>
             <div className="head-pain-syndromes-card" role="list">
@@ -244,18 +251,20 @@ const HeadPainPage = () => {
           </div>
         </section>
 
-  
-
         <section className="page-section head-pain-treatment head-pain-testimonials">
           <header className="head-pain-testimonials-header">
             <h2 className="head-pain-testimonials-title">Testimonials</h2>
+            <span className="head-pain-testimonials-underline" aria-hidden="true" />
           </header>
           <div className="head-pain-testimonials-grid">
             <blockquote className="head-pain-testimonial">
-              <span className="head-pain-testimonial-quote" aria-hidden="true">”</span>
+              <span className="head-pain-testimonial-quote" aria-hidden="true">
+                ”
+              </span>
               <p className="head-pain-testimonial-text">
                 Indeed we have been greatly satisfied with your team and professional support over the
-                past months. Great satisfaction with your team including the new facilities in the Centre.
+                past months. Great satisfaction with your team including the new facilities in the
+                Centre.
               </p>
               <footer className="head-pain-testimonial-meta">
                 <cite className="head-pain-testimonial-author">Jean‑François Cristau</cite>
@@ -264,7 +273,9 @@ const HeadPainPage = () => {
             </blockquote>
 
             <blockquote className="head-pain-testimonial">
-              <span className="head-pain-testimonial-quote" aria-hidden="true">”</span>
+              <span className="head-pain-testimonial-quote" aria-hidden="true">
+                ”
+              </span>
               <p className="head-pain-testimonial-text">
                 After the treatment I am only happy to say how I really feel. With some stretch exercises
                 and physiotherapy, I feel great and get on with my life. Thanking you.
@@ -376,8 +387,12 @@ const HeadPainPage = () => {
             </div>
           </div>
         </section>
-        
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: serializeJsonForHtmlScript(structuredDataJson) }}
+        />
       </main>
+    
     </div>
   );
 };

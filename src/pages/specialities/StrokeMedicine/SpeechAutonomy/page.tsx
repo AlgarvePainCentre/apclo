@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './SpeechAutonomy.css';
 
 const SpeechAutonomyPage: React.FC = () => {
   const navigate = useNavigate();

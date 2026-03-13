@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ConditionDetailPage from '../../ConditionDetailPage';
-import './FootAndAnklePain.css';
 
 const FootAndAnklePainPage: React.FC = () => {
   const navigate = useNavigate();

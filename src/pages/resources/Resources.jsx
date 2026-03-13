@@ -8,9 +8,15 @@ import './Resources.css';
 export default function Resources() {
   const heroRef = useRef(null);
   const heroVideoRef = useRef(null);
+  const tipsCarouselRef = useRef(null);
   const navigate = useNavigate();
   const [downloadStatus, setDownloadStatus] = useState('idle'); // idle, downloading, success, error
   const [downloadProgress, setDownloadProgress] = useState(0);
+  const [tipsActiveSlide, setTipsActiveSlide] = useState(0);
+  const [tipsIsDragging, setTipsIsDragging] = useState(false);
+  const [tipsStartX, setTipsStartX] = useState(0);
+  const [tipsScrollLeft, setTipsScrollLeft] = useState(0);
+  const [isTipsCarouselMobile, setIsTipsCarouselMobile] = useState(false);
 
   // Email Gating State
   const [email, setEmail] = useState('');
@@ -27,28 +33,130 @@ export default function Resources() {
     }
   }, []);
 
+  useEffect(() => {
+    if (typeof window === 'undefined' || !window.matchMedia) return;
+
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    const sync = () => setIsTipsCarouselMobile(mediaQuery.matches);
+
+    sync();
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', sync);
+      return () => mediaQuery.removeEventListener('change', sync);
+    }
+
+    mediaQuery.addListener(sync);
+    return () => mediaQuery.removeListener(sync);
+  }, []);
+
+  useEffect(() => {
+    if (!isTipsCarouselMobile) {
+      setTipsActiveSlide(0);
+      setTipsIsDragging(false);
+      return;
+    }
+
+    const carousel = tipsCarouselRef.current;
+    if (!carousel) return;
+
+    const handleScroll = () => {
+      const scrollPosition = carousel.scrollLeft;
+      let newActiveSlide = 0;
+      let minDiff = Infinity;
+
+      Array.from(carousel.children).forEach((child, index) => {
+        const diff = Math.abs(child.offsetLeft - scrollPosition);
+        if (diff < minDiff) {
+          minDiff = diff;
+          newActiveSlide = index;
+        }
+      });
+
+      setTipsActiveSlide(newActiveSlide);
+    };
+
+    carousel.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => {
+      carousel.removeEventListener('scroll', handleScroll);
+    };
+  }, [isTipsCarouselMobile]);
+
+  const scrollToTip = (index) => {
+    if (!isTipsCarouselMobile) return;
+    const carousel = tipsCarouselRef.current;
+    if (!carousel) return;
+    const card = carousel.children[index];
+    if (!card) return;
+    card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+  };
+
+  const getTipsCount = () => tipsCarouselRef.current?.children?.length ?? 0;
+
+  const handleTipsPrev = () => {
+    if (!isTipsCarouselMobile) return;
+    const count = getTipsCount();
+    if (!count) return;
+    scrollToTip(Math.max(0, tipsActiveSlide - 1));
+  };
+
+  const handleTipsNext = () => {
+    if (!isTipsCarouselMobile) return;
+    const count = getTipsCount();
+    if (!count) return;
+    scrollToTip(Math.min(count - 1, tipsActiveSlide + 1));
+  };
+
+  const handleTipsMouseDown = (e) => {
+    if (!isTipsCarouselMobile) return;
+    const carousel = tipsCarouselRef.current;
+    if (!carousel) return;
+    setTipsIsDragging(true);
+    setTipsStartX(e.pageX - carousel.offsetLeft);
+    setTipsScrollLeft(carousel.scrollLeft);
+  };
+
+  const handleTipsMouseLeave = () => setTipsIsDragging(false);
+  const handleTipsMouseUp = () => setTipsIsDragging(false);
+
+  const handleTipsMouseMove = (e) => {
+    if (!isTipsCarouselMobile) return;
+    const carousel = tipsCarouselRef.current;
+    if (!carousel || !tipsIsDragging) return;
+    e.preventDefault();
+    const x = e.pageX - carousel.offsetLeft;
+    const walk = (x - tipsStartX) * 1.8;
+    carousel.scrollLeft = tipsScrollLeft - walk;
+  };
+
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(email);
+    return re.test(email.trim());
   };
 
   const handleEmailChange = (e) => {
-    setEmail(e.target.value);
+    const next = e.target.value.slice(0, 254);
+    setEmail(next);
     if (emailError) setEmailError('');
   };
 
   const checkRateLimit = () => {
-    const attempts = JSON.parse(localStorage.getItem('email_attempts') || '[]');
-    const now = Date.now();
-    const recentAttempts = attempts.filter(time => now - time < 60000); // Last 1 minute
-    
-    if (recentAttempts.length >= 5) {
-      return false;
+    try {
+      const attempts = JSON.parse(localStorage.getItem('email_attempts') || '[]');
+      const now = Date.now();
+      const recentAttempts = attempts.filter((time) => now - time < 60000); // Last 1 minute
+
+      if (recentAttempts.length >= 5) {
+        return false;
+      }
+
+      recentAttempts.push(now);
+      localStorage.setItem('email_attempts', JSON.stringify(recentAttempts));
+      return true;
+    } catch {
+      return true;
     }
-    
-    recentAttempts.push(now);
-    localStorage.setItem('email_attempts', JSON.stringify(recentAttempts));
-    return true;
   };
 
   const handleEmailSubmit = async (e) => {
@@ -56,11 +164,11 @@ export default function Resources() {
     
     // Honeypot check
     if (honeypot) {
-      console.log('Bot detected');
       return;
     }
 
-    if (!validateEmail(email)) {
+    const trimmedEmail = email.trim();
+    if (!validateEmail(trimmedEmail)) {
       setEmailError('Please enter a valid email address.');
       return;
     }
@@ -228,39 +336,193 @@ export default function Resources() {
 
       <main className="page-main">
 
-        <section className="page-section" id="tips-for-self-care">
-          <div className="section-header">
-            <h2>Tips for Self-Care</h2>
-            <p>Empower your recovery with daily habits that make a difference.</p>
-          </div>
-          <div className="tips-grid">
-            <div className="tip-card">
-              <div className="tip-icon">🧘</div>
-              <h3>Daily Stretching</h3>
-              <p>Gentle morning stretches can improve flexibility and reduce stiffness throughout the day.</p>
-            </div>
-            <div className="tip-card">
-              <div className="tip-icon">💧</div>
-              <h3>Hydration</h3>
-              <p>Staying hydrated supports joint lubrication and overall tissue health.</p>
-            </div>
-            <div className="tip-card">
-              <div className="tip-icon">🚶</div>
-              <h3>Active Walking</h3>
-              <p>Short, frequent walks help maintain circulation and muscle tone without overexertion.</p>
-            </div>
-            <div className="tip-card">
-              <div className="tip-icon">💤</div>
-              <h3>Quality Sleep</h3>
-              <p>Rest is when your body heals. Prioritize a consistent sleep schedule for optimal recovery.</p>
+        <section className="page-section tips-carousel-section" id="tips-for-self-care">
+          <div className="tips-carousel-header">
+            <div className="tips-carousel-copy">
+              <span className="tips-carousel-eyebrow">Self-Care</span>
+              <h2>Tips for Self-Care</h2>
+              <p>Simple daily habits to reduce flare-ups, build resilience, and support your recovery.</p>
             </div>
           </div>
+
+          {isTipsCarouselMobile ? (
+            <>
+              <div className="tips-carousel-stage">
+                <div
+                  className={`tips-grid tips-carousel ${tipsIsDragging ? 'is-dragging' : ''}`}
+                  ref={tipsCarouselRef}
+                  role="region"
+                  aria-label="Self-care tips"
+                  onMouseDown={handleTipsMouseDown}
+                  onMouseLeave={handleTipsMouseLeave}
+                  onMouseUp={handleTipsMouseUp}
+                  onMouseMove={handleTipsMouseMove}
+                >
+                  <div
+                    className="tip-card"
+                    role="button"
+                    tabIndex={0}
+                    aria-label="Daily Stretching tip"
+                    style={{
+                      backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
+                    }}
+                  >
+                    <div className="article-nav-content">
+                      <span className="article-nav-label">Self-care</span>
+                      <h3 className="article-nav-title">
+                        Daily Stretching
+                        <span className="arrow">→</span>
+                      </h3>
+                    </div>
+                  </div>
+                  <div
+                    className="tip-card"
+                    role="button"
+                    tabIndex={0}
+                    aria-label="Hydration tip"
+                    style={{
+                      backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
+                    }}
+                  >
+                    <div className="article-nav-content">
+                      <span className="article-nav-label">Self-care</span>
+                      <h3 className="article-nav-title">
+                        Hydration
+                        <span className="arrow">→</span>
+                      </h3>
+                    </div>
+                  </div>
+                  <div
+                    className="tip-card"
+                    role="button"
+                    tabIndex={0}
+                    aria-label="Active Walking tip"
+                    style={{
+                      backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
+                    }}
+                  >
+                    <div className="article-nav-content">
+                      <span className="article-nav-label">Self-care</span>
+                      <h3 className="article-nav-title">
+                        Active Walking
+                        <span className="arrow">→</span>
+                      </h3>
+                    </div>
+                  </div>
+                  <div
+                    className="tip-card"
+                    role="button"
+                    tabIndex={0}
+                    aria-label="Quality Sleep tip"
+                    style={{
+                      backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
+                    }}
+                  >
+                    <div className="article-nav-content">
+                      <span className="article-nav-label">Self-care</span>
+                      <h3 className="article-nav-title">
+                        Quality Sleep
+                        <span className="arrow">→</span>
+                      </h3>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="tips-carousel-controls tips-carousel-controls--mobile" aria-label="Self-care tips navigation">
+                <button
+                  type="button"
+                  className="tips-carousel-btn"
+                  onClick={handleTipsPrev}
+                  aria-label="Previous tip"
+                  disabled={tipsActiveSlide === 0}
+                >
+                  ←
+                </button>
+                <button
+                  type="button"
+                  className="tips-carousel-btn"
+                  onClick={handleTipsNext}
+                  aria-label="Next tip"
+                  disabled={tipsActiveSlide >= getTipsCount() - 1}
+                >
+                  →
+                </button>
+              </div>
+            </>
+          ) : (
+            <div className="tips-grid tips-grid--static" role="list" aria-label="Self-care tips">
+              <div
+                className="tip-card"
+                role="listitem"
+                style={{
+                  backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
+                }}
+              >
+                <div className="article-nav-content">
+                  <span className="article-nav-label">Self-care</span>
+                  <h3 className="article-nav-title">
+                    Daily Stretching
+                    <span className="arrow">→</span>
+                  </h3>
+                </div>
+              </div>
+              <div
+                className="tip-card"
+                role="listitem"
+                style={{
+                  backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
+                }}
+              >
+                <div className="article-nav-content">
+                  <span className="article-nav-label">Self-care</span>
+                  <h3 className="article-nav-title">
+                    Hydration
+                    <span className="arrow">→</span>
+                  </h3>
+                </div>
+              </div>
+              <div
+                className="tip-card"
+                role="listitem"
+                style={{
+                  backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
+                }}
+              >
+                <div className="article-nav-content">
+                  <span className="article-nav-label">Self-care</span>
+                  <h3 className="article-nav-title">
+                    Active Walking
+                    <span className="arrow">→</span>
+                  </h3>
+                </div>
+              </div>
+              <div
+                className="tip-card"
+                role="listitem"
+                style={{
+                  backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
+                }}
+              >
+                <div className="article-nav-content">
+                  <span className="article-nav-label">Self-care</span>
+                  <h3 className="article-nav-title">
+                    Quality Sleep
+                    <span className="arrow">→</span>
+                  </h3>
+                </div>
+              </div>
+            </div>
+          )}
         </section>
 
         <section className="page-section" id="learn">
-          <div className="section-header">
-            <h2>Learn</h2>
-            <p>Expert advice, research updates, and health news.</p>
+          <div className="section-header section-header--learn">
+            <h2>Learn - Cervical Pain</h2>
+            <p>
+              Evidence-led guidance, simple next steps, and practical insights to help you move better. 
+
+            </p>
           </div>
           <div className="resource-nav-container">
             <div 
@@ -271,7 +533,7 @@ export default function Resources() {
               tabIndex={0}
               aria-label="Read article about Cervical Pain"
               onKeyDown={(e) => e.key === 'Enter' && navigate('/resources/learn/cervical-pain')}
-              style={{ backgroundImage: `url('/assets/images/specialities/head/head-1.jpg'),` }}
+              style={{ backgroundImage: `url('/assets/images/resources/Cervical-1.jpg')`, transform: 'translate3d(0, -20px, 0)',  backgroundSize: 'cover' }}
             >
               <div className="article-nav-content">
                 <span className="article-nav-label">May 15, 2024 • 5 min read</span>
@@ -290,7 +552,7 @@ export default function Resources() {
               tabIndex={0}
               aria-label="Read article about Conquering Cervical Pain"
               onKeyDown={(e) => e.key === 'Enter' && navigate('/resources/learn/conquering-cervical-pain')}
-              style={{ backgroundImage: `url('/assets/images/treatment-img/SpinePain.jpg')` }}
+              style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-2.jpg')`, transform: 'translate3d(0, -20px, 0)',  backgroundSize: 'cover' }}
             >
               <div className="article-nav-content">
                 <span className="article-nav-label">May 10, 2024 • 7 min read</span>
@@ -309,7 +571,7 @@ export default function Resources() {
               tabIndex={0}
               aria-label="Read article about Understanding Acute and Chronic Pain"
               onKeyDown={(e) => e.key === 'Enter' && navigate('/resources/learn/acute-and-chronic-pain')}
-              style={{ backgroundImage: `url('/assets/images/treatment-img/KneePain.jpg')` }}
+              style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`, backgroundSize: 'cover', transform: 'translate3d(0, -20px, 0)'}}
             >
               <div className="article-nav-content">
                 <span className="article-nav-label">May 5, 2024 • 6 min read</span>
@@ -424,7 +686,12 @@ export default function Resources() {
             </div>
           </div>
           <div className="center-action">
-            <button className="outline-btn" onClick={() => navigate('/resources')}>View All Testimonials</button>
+            <button
+              className="outline-btn"
+              onClick={() => navigate('/resources/testimonials/all-testimonials')}
+            >
+              View All Testimonials
+            </button>
           </div>
         </section>
 

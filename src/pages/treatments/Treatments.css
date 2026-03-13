@@ -1,71 +1,47 @@
-.page {
+.treatments-page-shell {
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: #fffdf5;
   color: #111827;
 }
 
-.page-hero {
-  padding-top: 120px;
-  padding-bottom: 40px;
-  padding-left: 48px;
-  padding-right: 48px;
+.treatments-page .page-section {
+  padding: 80px 48px;
 }
 
-.page-main {
-  padding: 1rem;
-}
-
-.page-section {
-  max-width: 1600px;
-  margin: 0 auto 40px;
+.treatments-page .page-section > * {
+  max-width: var(--container-width);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .treatments-overview {
-  margin-top: 56px;
-  min-height: auto;
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  padding: 32px 32px 40px;
-  border-radius: 28px;
-  background: transparent;
-  border: none;
-  box-shadow: none;
+  margin-top: 0;
+  padding: 0;
 }
 
 .treatments-overview-header {
-  width: 100%;
-  max-width: 100%;
+  max-width: 1400px;
+  margin: 0 0 28px;
   text-align: left;
-  left: 4px;
   position: relative;
-  padding: 2rem 1rem;
-  margin: 0 auto;
+  padding-left: 16px;
 }
 
 .treatments-overview-header::before {
   content: '';
   position: absolute;
-  left: -10px;
-  top: 28px;
-  bottom: 28px;
+  left: 0;
+  top: 2px;
+  bottom: 2px;
   width: 4px;
   border-radius: 6px;
-  background: linear-gradient(
-    180deg,
-    var(--warm-yellow, #fbd38d),
-    var(--warm-orange, #f6ad55) 60%,
-    var(--warm-coral, #f58b8b)
-  );
-  box-shadow: 0 8px 16px rgba(251, 171, 80, 0.25);
+  background: linear-gradient(180deg, var(--color-midBlue), var(--color-darkBlue));
+  box-shadow: 0 8px 16px rgba(37, 99, 235, 0.22);
 }
 
 .treatments-overview-title {
-  margin: 0 0 16px;
-  font-size: clamp(1.9rem, 1.4vw + 1.6rem, 2.8rem);
-  line-height: 1.3;
-  color: #111827;
+  margin: 0 0 10px;
+  color: #003366;
 }
 
 .treatments-overview-subtitle {
@@ -84,45 +60,45 @@
   min-height: auto;
 }
 
-button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobile-toggle, .footer-link, .speciality-card, .treatment-card-button, .mainpain-card-cta {
-    min-height: 24px;
-    min-width: 24px;
-}
-
 .treatments-overview-card {
-  background-color: transparent;
-  border-radius: 24px;
-  padding: 32px 32px 32px;
-  border: none;
+  background-color: #ffffff;
+  border-radius: 18px;
+  padding: 22px 22px 22px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
   box-shadow: none;
   min-height: 380px;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  backdrop-filter: blur(4px);
   transition:
-    transform 160ms ease-out,
-    box-shadow 160ms ease-out,
-    background-color 140ms ease-out;
+    transform 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease;
 }
 
 .treatments-overview-card:hover {
   transform: translateY(-2px);
-  box-shadow: none;
-  background-color: transparent;
+  background-color: rgba(15, 23, 42, 0.02);
+  border-color: rgba(15, 23, 42, 0.14);
+}
+
+.treatments-overview-card:focus-within {
+  outline: 3px solid #93c5fd;
+  outline-offset: 4px;
 }
 
 .treatments-overview-card-title {
   margin: 0 0 12px;
   font-size: 26px;
   line-height: 1.3;
-  color: #0b3c6f;
+  color: #003366;
 }
 
 .treatments-overview-card-accent {
-  width: 56px;
+  width: 48px;
   height: 2px;
-  background: linear-gradient(90deg, #f97316, #fb7185);
+  background: var(--color-darkRed);
+  border-radius: 999px;
   margin-bottom: 16px;
 }
 
@@ -154,9 +130,10 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
 }
 
 .treatments-overview-media {
-  border-radius: 24px;
+  border-radius: 22px;
   overflow: hidden;
-  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.28);
+  box-shadow: none;
+  border: 1px solid rgba(15, 23, 42, 0.08);
   position: relative;
 }
 
@@ -181,8 +158,8 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
   pointer-events: none;
 }
 .treatments-highlighted {
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .treatments-highlighted-header {
@@ -205,23 +182,34 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
 }
 
 .treatments-highlighted-mi {
-  padding-top: 56px;
+  padding-top: 0;
 }
 
 .treatments-highlighted-ni {
-  padding-top: 56px;
+  padding-top: 0;
 }
 
 .treatment-highlight-card {
-  border-radius: 24px;
+  border-radius: 20px;
   background-color: #ffffff;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+  box-shadow: none;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   height: 100%;
-  
-  border: 1px solid rgba(229, 231, 235, 0.5);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
+}
+
+.treatment-highlight-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(15, 23, 42, 0.14);
+  background-color: rgba(15, 23, 42, 0.02);
+}
+
+.treatment-highlight-card:focus-within {
+  outline: 3px solid #93c5fd;
+  outline-offset: 4px;
 }
 
 
@@ -231,7 +219,7 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
 }
 
 .treatment-highlight-illustration {
-  background-color: #f8fafc;
+  background-color: #ffffff;
   padding: 86px 24px;
   display: flex;
   align-items: center;
@@ -241,37 +229,35 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
 }
 
 .treatment-highlight-card:hover .treatment-highlight-illustration {
-  background-color: #f1f5f9;
+  background-color: rgba(15, 23, 42, 0.02);
 }
 
 .treatment-highlight-icon {
   width: 96px;
   height: 96px;
   object-fit: contain;
-  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.05));
+  transition: transform 240ms ease;
+  filter: none;
 }
 
 .treatment-highlight-card:hover .treatment-highlight-icon {
-  transform: scale(1.1) rotate(3deg);
+  transform: scale(1.06);
 }
 
 .treatment-card-tag {
   position: absolute;
   top: 16px;
   right: 16px;
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(8px);
-  padding: 6px 12px;
+  background-color: #ffd27a;
+  padding: 6px 10px;
   border-radius: 999px;
   font-size: 12px;
-  font-weight: 600;
-  color: #0b3c6f;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  font-weight: 500;
+  color: #1f2937;
   z-index: 10;
-  border: 1px solid rgba(150, 151, 153, 0.5);
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
+  border: 0;
+  text-transform: none;
+  letter-spacing: normal;
 }
 
 .treatment-highlight-body {
@@ -299,14 +285,14 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
   margin: 0 0 12px;
   font-size: 22px;
   line-height: 1.3;
-  color: #1e293b;
+  color: #003366;
   font-weight: 700;
   letter-spacing: -0.01em;
   transition: color 0.2s ease;
 }
 
 .treatment-highlight-card:hover .treatment-highlight-title {
-  color: #0b3c6f;
+  color: var(--color-blue);
 }
 
 .treatment-card-excerpt {
@@ -323,67 +309,44 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
 }
 
 .treatment-highlight-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--cta-bg-color);
-  text-decoration: none;
   margin-top: auto;
   width: fit-content;
-  padding-bottom: 2px;
-  border-bottom: 2px solid transparent;
-  transition: all 0.2s ease;
+  max-width: none;
 }
 
 .treatment-highlight-link:hover {
-  background-position: 100% 50%;
   transform: scale(1.03);
 }
 
 .treatment-highlight-link-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 999px;
-  background-color: var(--cta-bg-color);
-  color: var(--cta-text-color);
-  font-size: 14px;
-  transition: transform 0.2s ease, background-color 0.2s ease;
-}
-
-.treatment-highlight-link:hover .treatment-highlight-link-icon {
-  transform: translateX(4px);
-  background-image: var(--cta-hover-gradient);
-  background-position: 100% 50%;
+  display: none;
 }
 
 .treatments-feature {
-  padding: 16px 0 56px;
+  padding: 0;
 }
 
 .treatments-feature-mi {
-  margin-top: 32px;
+  margin-top: 0;
 }
 
 .treatments-feature-inner {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   align-items: stretch;
-  gap: 24px;
-  border-radius: 24px;
+  gap: 40px;
+  border-radius: 22px;
   overflow: hidden;
   box-shadow: none;
-  min-height: 560px;
+  min-height: 520px;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .treatments-feature-media {
   position: relative;
   background: #0b0b10;
-  min-height: 560px;
+  min-height: 520px;
 }
 
 .treatments-feature-video {
@@ -407,13 +370,14 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
   margin: 0 0 12px;
   font-size: 26px;
   line-height: 1.3;
-  color: #0b3c6f;
+  color: #003366;
 }
 
 .treatments-feature-accent {
-  width: 56px;
+  width: 48px;
   height: 2px;
-  background: linear-gradient(90deg, #f97316, #fb7185);
+  background: var(--color-darkRed);
+  border-radius: 999px;
   margin-bottom: 16px;
 }
 
@@ -453,7 +417,7 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
 }
 
 .treatments-feature-ni .treatments-feature-accent {
-  background: linear-gradient(90deg, #ef4444, #fb7185);
+  background: var(--color-darkRed);
 }
 
 .treatments-feature-ni .treatments-feature-copy {
@@ -473,7 +437,7 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
 }
 
 .treatments-pain-learn {
-  padding-top: 56px;
+  padding-top: 0;
 }
 
 .treatments-pain-learn-header {
@@ -502,8 +466,8 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
 }
 
 .treatments-testimonials {
-  padding-top: 64px;
-  padding-bottom: 72px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .treatments-testimonials-header {
@@ -522,8 +486,8 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
   display: flex;
   overflow-x: auto;
   scroll-behavior: smooth;
-  gap: 24px;
-  padding: 4px 4px 24px 4px;
+  gap: 18px;
+  padding: 4px 4px 18px 4px;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
   -ms-overflow-style: none;
@@ -534,11 +498,11 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
 }
 
 .testimonial-card {
-  border-radius: 24px;
-  padding: 48px;
+  border-radius: 20px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 32px;
+  gap: 18px;
   flex: 0 0 100%;
   min-width: 100%;
   scroll-snap-align: center;
@@ -546,31 +510,33 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
   text-align: center;
   position: relative;
   overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: #ffffff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: none;
+  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
 }
 
 .testimonial-card::before {
-  content: '“';
-  position: absolute;
-  top: -20px;
-  left: 20px;
-  font-size: 180px;
-  line-height: 1;
-  font-family: serif;
-  color: rgba(11, 60, 111, 0.04);
-  pointer-events: none;
-  z-index: 0;
+  content: none;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(15, 23, 42, 0.14);
+  background-color: rgba(15, 23, 42, 0.02);
+}
+
+.testimonial-card:focus-within {
+  outline: 3px solid #93c5fd;
+  outline-offset: 4px;
 }
 
 .testimonial-quote {
   margin: 0;
-  position: relative;
-  z-index: 1;
-  font-size: clamp(1.25rem, 2vw, 1.5rem);
-  line-height: 1.6;
-  color: #334155;
-  font-style: italic;
-  max-width: 800px;
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(15, 23, 42, 0.72);
+  max-width: 70ch;
   font-weight: 500;
 }
 
@@ -587,15 +553,15 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
   width: 72px;
   height: 72px;
   border-radius: 999px;
-  background: radial-gradient(circle at 30% 20%, #fed7aa, #fb7185);
+  background: #ffd27a;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 28px;
   font-weight: 700;
   color: #111827;
-  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  border: 4px solid #ffffff;
+  box-shadow: none;
+  border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .testimonial-name {
@@ -686,6 +652,10 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
 }
 
 @media (max-width: 900px) {
+  .treatments-page .page-section {
+    padding: 56px 16px;
+  }
+
   .treatments-overview-layout {
     grid-template-columns: minmax(0, 1fr);
     min-height: 0;
@@ -736,15 +706,8 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
 }
 
 @media (max-width: 768px) {
-  .page-main {
-    margin: 0;
-    padding: 0;
-  }
-
-  .page-section {
-    width: 100%;
-    margin: 0;
-    padding: 0.2rem;
+  .treatments-page .page-section {
+    padding: 56px 16px;
   }
 
   .treatments-overview {
@@ -757,16 +720,11 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
   }
 
   .treatments-overview-header {
-    padding-left: 0;
-  }
-
-  .treatments-highlighted-title {
-    font-size: 28px;
-    line-height: 1.3;
+    padding-left: 12px;
   }
 
   .treatments-overview-card {
-    padding: 0;
+    padding: 22px;
     min-height: auto;
   }
 
@@ -802,6 +760,25 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
 
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .treatments-overview-card,
+  .treatment-highlight-card,
+  .treatment-highlight-icon,
+  .carousel-nav-btn,
+  .carousel-dot {
+    transition: none;
+  }
+
+  .treatments-overview-card:hover,
+  .treatment-highlight-card:hover {
+    transform: none;
+  }
+
+  .treatments-testimonials-grid {
+    scroll-behavior: auto;
+  }
+}
+
 /* Drag State */
 .treatments-testimonials-grid.is-dragging {
   cursor: grabbing;
@@ -824,38 +801,24 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
 }
 
 .carousel-nav-btn {
-  background: var(--color-white);
-  border: 1px solid #e5e7eb;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: var(--color-blue);
-  font-size: 18px;
-  transition: all 0.2s ease;
-  position: relative;
-  outline-offset: 2px;
-}
-
-/* Ensure 44px touch target */
-.carousel-nav-btn::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   width: 44px;
   height: 44px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.9);
+  background: #ffffff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
   cursor: pointer;
+  color: #0f172a;
+  font-size: 16px;
+  transition: background-color 160ms ease, transform 160ms ease, border-color 160ms ease;
 }
 
 .carousel-nav-btn:hover:not(:disabled) {
-  background: var(--color-blue);
-  color: white;
-  border-color: var(--color-blue);
+  background: #f9fafb;
+  border-color: rgba(148, 163, 184, 1);
 }
 
 .carousel-nav-btn:active:not(:disabled) {
@@ -863,8 +826,8 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
 }
 
 .carousel-nav-btn:focus-visible {
-  outline: 2px solid var(--color-blue);
-  border-color: var(--color-blue);
+  outline: 2px solid var(--color-darkRed);
+  outline-offset: 2px;
 }
 
 .carousel-nav-btn:disabled {
@@ -875,22 +838,44 @@ button, a, input, select, textarea, [role="button"], .navbar-link, .navbar-mobil
 
 .carousel-dots {
   display: flex;
-  gap: 0;
+  gap: 2px;
 }
 
 .carousel-dot {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  border: none;
-  background-color: #e5e7eb;
+  width: 44px;
+  height: 44px;
+  border-radius: 999px;
+  border: 0;
+  background: transparent;
   padding: 0;
   cursor: pointer;
-  transition: background-color 0.2s ease;
-  transform: scale(0.2);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 160ms ease;
 }
 
-.carousel-dot.active {
-  background-color: var(--color-blue);
-  transform: scale(0.2);
+.carousel-dot::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.8);
+  background: rgba(148, 163, 184, 0.35);
+  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.carousel-dot:hover::before {
+  transform: scale(1.08);
+  border-color: rgba(37, 99, 235, 0.7);
+}
+
+.carousel-dot.active::before {
+  background: var(--color-blue, #2563eb);
+  border-color: var(--color-blue, #2563eb);
+}
+
+.carousel-dot:focus-visible {
+  outline: 2px solid var(--color-darkRed);
+  outline-offset: 2px;
 }

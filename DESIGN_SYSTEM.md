@@ -110,3 +110,27 @@ The `TreatmentCard` is the primary component for displaying article/treatment su
 - **ARIA**:
   - `aria-label` on "Read Article" links for context (e.g., "Read Article about Spinal Fusion").
   - `aria-hidden="true"` on decorative icons/images.
+
+## 7. Coding Standards
+
+### React
+- Prefer route-level code splitting with `React.lazy` + `Suspense` for large pages.
+- Avoid `process.env.*` in Vite; use `import.meta.env.*`.
+- Keep state derived from URL query params normalized to avoid navigation loops.
+
+### Security
+- For `target="_blank"` links, always include `rel="noopener noreferrer"`.
+- Avoid `dangerouslySetInnerHTML`; if required for JSON-LD, serialize with escaping to prevent `</script>` breakouts.
+- Redirect to HTTPS for non-localhost environments in client entrypoint code.
+
+### Forms
+- Validate and normalize user input (trim, max length) before processing.
+- Use honeypot fields and rate limiting as lightweight bot mitigation for client-only forms.
+- CSRF protection and secure authentication must be implemented server-side; client-only implementations cannot be relied on.
+
+## 8. Code Review Changes
+- Added safe JSON serialization for JSON-LD script tags to reduce XSS risk.
+- Enforced HTTPS redirects for non-localhost environments.
+- Improved external link hardening (`noopener noreferrer`) for new-tab navigation.
+- Reduced initial bundle size by lazy-loading route components.
+- Removed unused page transition utility code.

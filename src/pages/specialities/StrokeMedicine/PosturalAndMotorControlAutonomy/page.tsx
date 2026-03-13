@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ConditionDetailPage from '../../ConditionDetailPage';
-import './PosturalAndMotorControlAutonomy.css';
 
 const PosturalAndMotorControlAutonomyPage: React.FC = () => {
   const navigate = useNavigate();

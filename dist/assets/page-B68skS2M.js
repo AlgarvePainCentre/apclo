@@ -1,0 +1,1 @@
+import{j as i}from"./index-BsZsA7yt.js";const c=()=>i.jsxs("main",{className:"privacy-policy-page",children:[i.jsx("h1",{children:"Privacy policy"}),i.jsx("p",{children:"Content for Privacy policy will go here."})]});export{c as default};

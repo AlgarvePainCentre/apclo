@@ -1,6 +1,6 @@
 .page {
   min-height: 100vh;
-  background-color: #ffffff;
+  background-color: #fffdf5;
   color: #111827;
 }
 
@@ -93,7 +93,7 @@
 /* Team Grid Top */
 .team-section {
     max-width: 1200px;
-    margin: 0 auto 6rem;
+    margin: 0 auto;
 }
 
 .team-grid-top {

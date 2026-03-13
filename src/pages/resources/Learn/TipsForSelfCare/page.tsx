@@ -250,13 +250,14 @@ const TipsForSelfCarePage: React.FC = () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             setActiveSection(entry.target.id);
+            entry.target.setAttribute('data-inview', 'true');
           }
         });
       },
       { threshold: 0.5, rootMargin: '-10% 0px -40% 0px' }
     );
 
-    const sections = document.querySelectorAll('section[id]');
+    const sections = document.querySelectorAll('section.self-care-section[id]');
     sections.forEach((section) => observer.observe(section));
 
     return () => sections.forEach((section) => observer.unobserve(section));
@@ -265,7 +266,11 @@ const TipsForSelfCarePage: React.FC = () => {
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const prefersReducedMotion =
+        typeof window !== 'undefined' &&
+        window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      element.scrollIntoView({ behavior: prefersReducedMotion ? 'auto' : 'smooth' });
       setActiveSection(id);
     }
   };
@@ -316,7 +321,7 @@ const TipsForSelfCarePage: React.FC = () => {
       </nav>
 
       {/* Section 1: Physical Wellness */}
-      <section id="physical" className="self-care-section">
+      <section id="physical" className="self-care-section" data-animate="section">
         <div className="section-container">
           <div className="section-content">
             <h2>Physical Wellness</h2>
@@ -336,7 +341,7 @@ const TipsForSelfCarePage: React.FC = () => {
       </section>
 
       {/* Section 2: Mental Health */}
-      <section id="mental" className="self-care-section">
+      <section id="mental" className="self-care-section self-care-section--alt" data-animate="section">
         <div className="section-container">
           <MoodTracker />
           <div className="section-content">
@@ -355,7 +360,7 @@ const TipsForSelfCarePage: React.FC = () => {
       </section>
 
       {/* Section 3: Nutrition */}
-      <section id="nutrition" className="self-care-section">
+      <section id="nutrition" className="self-care-section" data-animate="section">
         <div className="section-container">
           <div className="section-content">
             <h2>Nutrition & Hydration</h2>
@@ -375,7 +380,7 @@ const TipsForSelfCarePage: React.FC = () => {
       </section>
 
       {/* Section 4: Sleep Hygiene */}
-      <section id="sleep" className="self-care-section">
+      <section id="sleep" className="self-care-section self-care-section--alt" data-animate="section">
         <div className="section-container">
           <SleepHygieneChecklist />
           <div className="section-content">
@@ -394,7 +399,7 @@ const TipsForSelfCarePage: React.FC = () => {
       </section>
 
       {/* Section 5: Stress Management */}
-      <section id="stress" className="self-care-section">
+      <section id="stress" className="self-care-section" data-animate="section">
         <div className="section-container">
           <div className="section-content">
             <h2>Stress Management</h2>
@@ -413,7 +418,7 @@ const TipsForSelfCarePage: React.FC = () => {
       </section>
 
       {/* Section 6: Social Connections */}
-      <section id="social" className="self-care-section">
+      <section id="social" className="self-care-section self-care-section--alt" data-animate="section">
         <div className="section-container">
           <SocialConnection />
           <div className="section-content">

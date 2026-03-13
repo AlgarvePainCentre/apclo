@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ConditionDetailPage from '../../ConditionDetailPage';
-import './FeedingAutonomy.css';
 
 const FeedingAutonomyPage: React.FC = () => {
   const navigate = useNavigate();

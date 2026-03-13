@@ -1,8 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import '../treatments/Treatments.css';
-import '../contact/Contact.css';
-import './ConditionDetail.css';
+import { Link, useLocation } from 'react-router-dom';
+import { serializeJsonForHtmlScript } from '../../utils/security';
 
 type Syndrome = {
   id: string;
@@ -13,6 +11,7 @@ type Syndrome = {
 type ConditionDetailPageProps = {
   title: string;
   areaLabel: string;
+  mainClassName?: string;
 };
 
 const DEFAULT_SYNDROMES: Syndrome[] = [
@@ -42,10 +41,91 @@ const DEFAULT_SYNDROMES: Syndrome[] = [
   },
 ];
 
-const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({ title, areaLabel }) => {
+const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({ title, areaLabel, mainClassName }) => {
   const [activeSyndromeId, setActiveSyndromeId] = React.useState<string | null>(
     DEFAULT_SYNDROMES[0]?.id ?? null,
   );
+  const location = useLocation();
+
+  const canonicalUrl = React.useMemo(() => {
+    if (typeof window === 'undefined') return '';
+    const origin = window.location.origin || 'https://www.algarvepaincentre.com';
+    return `${origin}${location.pathname}`;
+  }, [location.pathname]);
+
+  const structuredDataJson = React.useMemo(() => {
+    const organization = {
+      '@type': 'MedicalOrganization',
+      name: 'Algarve Pain Centre',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: 'Av. do Mar',
+        addressLocality: 'Vale do Lobo',
+        addressRegion: 'Algarve',
+        addressCountry: 'PT',
+      },
+    };
+
+    const pageId = canonicalUrl ? `${canonicalUrl}#webpage` : 'https://www.algarvepaincentre.com/#webpage';
+    const conditionId = canonicalUrl ? `${canonicalUrl}#condition` : 'https://www.algarvepaincentre.com/#condition';
+
+    return JSON.stringify({
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'MedicalWebPage',
+          '@id': pageId,
+          url: canonicalUrl || 'https://www.algarvepaincentre.com/',
+          name: title,
+          description: `Specialist assessment and treatment for ${areaLabel} at Algarve Pain Centre in Vale do Lobo, Algarve, Portugal.`,
+          about: { '@id': conditionId },
+          isPartOf: {
+            '@type': 'WebSite',
+            name: 'Algarve Pain Centre',
+            url: 'https://www.algarvepaincentre.com/',
+          },
+          publisher: organization,
+        },
+        {
+          '@type': 'MedicalCondition',
+          '@id': conditionId,
+          name: title,
+          description: `Specialist assessment and treatment for ${areaLabel} at Algarve Pain Centre in Vale do Lobo, Algarve, Portugal.`,
+          url: canonicalUrl || 'https://www.algarvepaincentre.com/',
+          study: {
+            '@type': 'MedicalStudy',
+            name: 'Comprehensive pain management programme',
+          },
+          guideline: {
+            '@type': 'MedicalGuideline',
+            evidenceLevel: 'Evidence-based clinical practice',
+          },
+          recognizingAuthority: organization,
+        },
+        {
+          '@type': 'MedicalTherapy',
+          name: 'Image-guided interventions',
+          description:
+            'Minimally invasive, image-guided procedures such as nerve blocks, radiofrequency ablation and joint or spine injections when clinically appropriate.',
+          offeredBy: organization,
+        },
+        {
+          '@type': 'MedicalTherapy',
+          name: 'Rehabilitation and physiotherapy',
+          description:
+            'Structured rehabilitation programmes including physiotherapy, guided exercise and functional training to restore confidence in movement and daily activities.',
+          offeredBy: organization,
+        },
+        {
+          '@type': 'MedicalTherapy',
+          name: 'Medication optimisation',
+          description:
+            'Stepwise, time-limited medication plans where needed, balancing symptom relief with safety and long-term goals.',
+          offeredBy: organization,
+        },
+      ],
+    });
+  }, [areaLabel, canonicalUrl, title]);
 
   React.useEffect(() => {
     const pageTitle = `${title} | Algarve Pain Centre`;
@@ -63,7 +143,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({ title, areaLa
   }, [title, areaLabel]);
 
   return (
-    <main className="page-main condition-main">
+    <main className={mainClassName ? `page-main condition-main ${mainClassName}` : 'page-main condition-main'}>
       <section className="page-section treatments-overview">
         <div className="treatments-overview-header">
           <h2 className="treatments-overview-title">Treatments for {areaLabel}</h2>
@@ -464,34 +544,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({ title, areaLa
       </section>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'MedicalCondition',
-            name: title,
-            description: `Specialist assessment and treatment for ${areaLabel} at Algarve Pain Centre in Vale do Lobo, Algarve, Portugal.`,
-            url: 'https://www.algarvepaincentre.com/',
-            study: {
-              '@type': 'MedicalStudy',
-              name: 'Comprehensive pain management programme',
-            },
-            guideline: {
-              '@type': 'MedicalGuideline',
-              evidenceLevel: 'Evidence-based clinical practice',
-            },
-            recognizingAuthority: {
-              '@type': 'MedicalOrganization',
-              name: 'Algarve Pain Centre',
-              address: {
-                '@type': 'PostalAddress',
-                streetAddress: 'Av. do Mar',
-                addressLocality: 'Vale do Lobo',
-                addressRegion: 'Algarve',
-                addressCountry: 'PT',
-              },
-            },
-          }),
-        }}
+        dangerouslySetInnerHTML={{ __html: serializeJsonForHtmlScript(structuredDataJson) }}
       />
     </main>
   );

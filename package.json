@@ -12,7 +12,7 @@
     "react-dom": "^19.2.4",
     "react-router-dom": "^6.30.3",
     "react-scripts": "5.0.1",
-    "vite": "^7.3.1",
+    "vite": "^6.0.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -21,7 +21,9 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:ui": "vitest"
+    "test:ui": "vitest",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "eslintConfig": {
     "extends": [
@@ -44,8 +46,14 @@
   "devDependencies": {
     "@types/react": "^19.2.14",
     "@vitejs/plugin-react": "^5.1.4",
+    "@storybook/addon-a11y": "^8.6.0",
+    "@storybook/addon-essentials": "^8.6.0",
+    "@storybook/addon-interactions": "^8.6.0",
+    "@storybook/react": "^8.6.0",
+    "@storybook/react-vite": "^8.6.0",
     "@vitest/coverage-v8": "^2.1.1",
     "jsdom": "^24.0.0",
+    "storybook": "^8.6.0",
     "vitest": "^2.1.1"
   }
 }

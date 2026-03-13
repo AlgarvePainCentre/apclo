@@ -1,131 +1,41 @@
-.overcoming-sciatica-pain-page {
-  padding: 80px 24px;
-}
+.overcoming-sciatica-pain-page { padding: 0; }
 
-/* Sciatica Section Styles */
-.sciatica-info .section-content {
-    display: flex;
-    gap: 4rem;
-    align-items: flex-start;
-    max-width: 1200px;
-    margin: 0 auto;
-}
+.overcoming-sciatica-pain-page .article-hero { padding: 0; margin-bottom: 0; background-image: none; background-color: #0b1220; }
+.overcoming-sciatica-pain-page .article-hero-media { position: relative; min-height: 50vh; display: flex; align-items: center; justify-content: center; width: 100%; padding: 4rem 2rem; color: #ffffff; text-align: center; overflow: hidden; }
+.overcoming-sciatica-pain-page .article-hero-media::before { content: ""; position: absolute; inset: 0; background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)); z-index: 1; }
+.overcoming-sciatica-pain-page .article-hero-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 0; }
+.overcoming-sciatica-pain-page .article-hero-content { position: relative; z-index: 2; max-width: 800px; }
+.overcoming-sciatica-pain-page .article-hero-content h2 { color: #ffffff; font-size: 3rem; margin: 0 0 1rem; font-weight: 700; line-height: 1.1; }
+.overcoming-sciatica-pain-page .article-hero-content p { margin: 0; font-size: 1.25rem; line-height: 1.6; opacity: 0.9; }
+.overcoming-sciatica-pain-page .article-nav-title { color: #ffffff; }
 
-.sciatica-info h2 {
-    color: #003366;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-}
-
-.intro-text {
-    font-size: 1.25rem;
-    color: #374151;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-}
-
-.info-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 2rem;
-}
-
-.info-item h3 {
-    color: #003366;
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
-    font-weight: 600;
-}
-
-.info-item p {
-    color: #4b5563;
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-.info-item.full-width {
-    grid-column: 1 / -1;
-}
-
-.sciatica-info figure {
-    margin: 0;
-}
-
-.sciatica-info figcaption {
-    text-align: center;
-    color: #6b7280;
-    font-size: 0.875rem;
-    margin-top: 0.75rem;
-    font-style: italic;
-}
-
-/* Testimonial Video Styles */
-.testimonial-video {
-    background-color: #f8fafc;
-    padding: 6rem 1rem;
-    margin-bottom: 6rem;
-}
-
-.video-container-wrapper {
-    max-width: 1000px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.testimonial-intro {
-    margin-bottom: 3rem;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.testimonial-intro h2 {
-    color: #003366;
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1.5rem;
-}
-
-.testimonial-intro p {
-    font-size: 1.125rem;
-    color: #4b5563;
-    line-height: 1.6;
-}
-
-.video-responsive {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    height: 0;
-    overflow: hidden;
-    border-radius: 12px;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-}
-
-.video-responsive iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-@media (max-width: 960px) {
-    .sciatica-info .section-content {
-        flex-direction: column;
-        gap: 3rem;
-    }
-    
-    .info-grid {
-        grid-template-columns: 1fr;
-    }
-}
+.page-section { background: #f8fafc; width: 100%; max-width: 100%; }
+.testimonial-video { display: flex; background-color: #f8fafc; padding: 0; margin: 0; width: 100%; max-width: 100%; }
+.video-container-wrapper { max-width: 1400px; height: fit-content; padding: 2rem 1rem; margin: 0 auto; text-align: left; }
+.testimonial-intro { margin-top: 3rem; margin-bottom: 3rem; max-width: 800px; margin-left: auto; margin-right: auto; }
+.testimonial-intro h2 { color: #003366; font-size: 2.5rem; font-weight: 700; margin-bottom: 1.5rem; }
+.testimonial-intro p { font-size: 1.125rem; color: #4b5563; line-height: 1.6; }
+.video-responsive { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 12px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); }
+.video-interactive { background: #0b1220; }
+.video-poster { position: absolute; inset: 0; width: 100%; height: 100%; display: grid; place-items: center; border: 0; background: transparent; cursor: pointer; transition: transform 180ms ease; }
+.video-poster:focus-visible { outline: 3px solid #93c5fd; outline-offset: 3px; }
+.video-poster img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.video-play-button { position: relative; z-index: 2; display: inline-flex; align-items: center; justify-content: center; filter: drop-shadow(0 8px 16px rgba(0,0,0,0.25)); transition: transform 160ms ease; }
+.video-poster:hover .video-play-button { transform: scale(1.06); }
+.video-poster.leaving { animation: posterOut 220ms ease forwards; }
+@keyframes posterOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(1.06); } }
+.video-loader { position: absolute; inset: 0; display: grid; place-items: center; background: radial-gradient(ellipse at center, rgba(0,0,0,0.35), rgba(0,0,0,0.55)); }
+.video-loader::after { content: ""; width: 46px; height: 46px; border: 4px solid rgba(255,255,255,0.35); border-top-color: #ffffff; border-radius: 999px; animation: spin 0.9s linear infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.video-error { position: absolute; inset: 0; display: grid; place-content: center; gap: 12px; background: rgba(255,255,255,0.9); color: #0f172a; text-align: center; padding: 24px; }
+.retry-btn { display: inline-flex; align-items: center; justify-content: center; padding: 10px 16px; border-radius: 10px; border: 1px solid #cbd5e1; background: #ffffff; color: #0f172a; }
 
 @media (max-width: 640px) {
-    .sciatica-info h2,
-    .testimonial-intro h2 {
-        font-size: 2rem;
-    }
+  .overcoming-sciatica-pain-page .article-hero-media { padding: 3.5rem 1.25rem; min-height: 46vh; }
+  .overcoming-sciatica-pain-page .article-hero-content h2 { font-size: 2.2rem; }
+  .overcoming-sciatica-pain-page .article-hero-content p { font-size: 1.05rem; }
+  .video-container-wrapper { padding: 0 0 2rem 0; margin: 0; max-width: 100%; width: 100%; }
+  .video-responsive { border-radius: 0; }
+  .testimonial-video .video-container-wrapper { padding: 0 0 2rem 0; margin: 0; max-width: 100%; width: 100%; }
+  .testimonial-video .video-responsive { border-radius: 0; }
 }

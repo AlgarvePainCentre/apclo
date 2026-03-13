@@ -58,7 +58,7 @@
 
 .contact-form-layout {
   margin-top: 16px;
-  background-color: #f3f8fd;
+  background-color: #fffdf5;
   border-radius: 24px;
   padding: 40px 56px;
   box-shadow: none;
@@ -334,10 +334,6 @@
 }
 
 @media (max-width: 768px) {
-  .page-main {
-    /* padding: 1rem; - handled by base style */
-  }
-
   .contact-input {
     height: 48px;
     max-height: 48px;

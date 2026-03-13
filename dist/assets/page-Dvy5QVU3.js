@@ -1,0 +1,1 @@
+import{j as e}from"./index-BsZsA7yt.js";const s=()=>e.jsxs("main",{className:"terms-of-service-page",children:[e.jsx("h1",{children:"Terms of Service"}),e.jsx("p",{children:"Content for Terms of Service will go here."})]});export{s as default};

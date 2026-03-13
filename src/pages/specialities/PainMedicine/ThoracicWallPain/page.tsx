@@ -1,6 +1,5 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import './ThoracicWallPain.css';
 
 const ThoracicWallPainPage: React.FC = () => {
   const navigate = useNavigate();

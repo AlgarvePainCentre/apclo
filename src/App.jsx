@@ -1,82 +1,118 @@
 import './global.css';
 import './responsive.css';
-import { Routes, Route } from 'react-router-dom';
-import Home from './pages/home/Home';
-import Specialities from './pages/specialities/Specialities';
-import Treatments from './pages/treatments/Treatments';
-import About from './pages/about/About';
-import Contact from './pages/contact/Contact';
-import Resources from './pages/resources/Resources';
+import './pages/home/Home.css';
+import './pages/specialities/MedicalSections.css';
+import { Suspense, lazy } from 'react';
+import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
-import HeadPainPage from './pages/specialities/PainMedicine/HeadPain/page';
-import CervicalSpinePainPage from './pages/specialities/PainMedicine/CervicalSpinePain/page';
-import LumbarSpinePainPage from './pages/specialities/PainMedicine/LumbarSpinePain/page';
-import ShoulderPainPage from './pages/specialities/PainMedicine/ShoulderPain/page';
-import HandAndElbowPainPage from './pages/specialities/PainMedicine/HandAndElbowPain/page';
-import HipAndGroinPainPage from './pages/specialities/PainMedicine/HipAndGroinPain/page';
-import KneePainPage from './pages/specialities/PainMedicine/KneePain/page';
-import ThoracicWallPainPage from './pages/specialities/PainMedicine/ThoracicWallPain/page';
-import AbdominalWallPainPage from './pages/specialities/PainMedicine/AbdominalWallPain/page';
-import PelvicAndGynaecologicalPage from './pages/specialities/PainMedicine/PelvicAndGynaecological/page';
-import FacialPainPage from './pages/specialities/PainMedicine/FacialPain/page';
-import FootAndAnklePainPage from './pages/specialities/PainMedicine/FootAndAnklePain/page';
-import InjuriesPage from './pages/specialities/SportsMedicine/Injuries/page';
-import PreventionPage from './pages/specialities/SportsMedicine/Prevention/page';
-import SportsRehabilitationPage from './pages/specialities/SportsMedicine/Rehabilitation/page';
-import PerformancePage from './pages/specialities/SportsMedicine/Performance/page';
-import PsychologyPage from './pages/specialities/SportsMedicine/Psychology/page';
-import NutritionPage from './pages/specialities/SportsMedicine/Nutrition/page';
-import StrokeRehabilitationPage from './pages/specialities/StrokeMedicine/Rehabilitation/page';
-import ClinicalAndSecondaryPreventionOfStrokePage from './pages/specialities/StrokeMedicine/ClinicalAndSecondaryPreventionOfStroke/page';
-import FeedingAutonomyPage from './pages/specialities/StrokeMedicine/FeedingAutonomy/page';
-import SpeechAutonomyPage from './pages/specialities/StrokeMedicine/SpeechAutonomy/page';
-import PostStrokeDepressionAndMoodDisordersPage from './pages/specialities/StrokeMedicine/PostStrokeDepressionAndMoodDisorders/page';
-import MedicalComplicationsPostStrokePage from './pages/specialities/StrokeMedicine/MedicalComplicationsPostStroke/page';
-import PostStrokeSpasticityPage from './pages/specialities/StrokeMedicine/PostStrokeSpasticity/page';
-import ComplexRegionalPainSyndromePage from './pages/specialities/StrokeMedicine/ComplexRegionalPainSyndrome/page';
-import PosturalAndMotorControlAutonomyPage from './pages/specialities/StrokeMedicine/PosturalAndMotorControlAutonomy/page';
-import CommunityReintegrationPage from './pages/specialities/StrokeMedicine/CommunityReintegration/page';
-import TubularMicrosurgeryPage from './pages/treatments/SurgicalTreatment/TubularMicrosurgery/page';
-import SpinalFusionPage from './pages/treatments/SurgicalTreatment/SpinalFusion/page';
-import DiscReplacementPage from './pages/treatments/SurgicalTreatment/DiscReplacement/page';
-import LumbarDeformitySurgeryPage from './pages/treatments/SurgicalTreatment/LumbarDeformitySurgery/page';
-import VertebroplastyPage from './pages/treatments/MinimallyInvasiveTreatments/Vertebroplasty/page';
-import RadiofrequencyPage from './pages/treatments/MinimallyInvasiveTreatments/Radiofrequency/page';
-import InterspinousSpacersPage from './pages/treatments/MinimallyInvasiveTreatments/InterspinousSpacers/page';
-import PeripheralNerveBlockPage from './pages/treatments/MinimallyInvasiveTreatments/PeripheralNerveBlock/page';
-import IntraArticularCorticosteroidsInjectionPage from './pages/treatments/MinimallyInvasiveTreatments/IntraArticularCorticosteroidsInjection/page';
-import CalcificationBarbotagePage from './pages/treatments/MinimallyInvasiveTreatments/CalcificationBarbotage/page';
-import CryoblationPage from './pages/treatments/MinimallyInvasiveTreatments/Cryoblation/page';
-import NucleoplastyPage from './pages/treatments/MinimallyInvasiveTreatments/Nucleoplasty/page';
-import PlateletsRichPlasmaInjectionPage from './pages/treatments/MinimallyInvasiveTreatments/PlateletsRichPlasmaInjection/page';
-import HydrodistentionPage from './pages/treatments/MinimallyInvasiveTreatments/Hydrodistention/page';
-import BotulinToxinInjectionPage from './pages/treatments/MinimallyInvasiveTreatments/BotulinToxinInjection/page';
-import PharmacologicalPainManagementPage from './pages/treatments/NonInvasiveTreatments/PharmacologicalPainManagement/page';
-import PhysiotherapyPage from './pages/treatments/NonInvasiveTreatments/Physiotherapy/page';
-import OsteopathyPage from './pages/treatments/NonInvasiveTreatments/Osteopathy/page';
-import OccupationTherapyPage from './pages/treatments/NonInvasiveTreatments/OccupationTherapy/page';
-import SpeechTherapyPage from './pages/treatments/NonInvasiveTreatments/SpeechTherapy/page';
-import PsychologyTreatmentPage from './pages/treatments/NonInvasiveTreatments/Psychology/page';
-import NutritionTreatmentPage from './pages/treatments/NonInvasiveTreatments/Nutrition/page';
-import ExercisePage from './pages/treatments/NonInvasiveTreatments/Exercise/page';
-import PodologyPage from './pages/treatments/NonInvasiveTreatments/Podology/page';
-import HomeCarePage from './pages/treatments/NonInvasiveTreatments/HomeCare/page';
-import TipsForSelfCarePage from './pages/resources/Learn/TipsForSelfCare/page';
-import BlogPage from './pages/resources/Learn/Blog/page';
-import CervicalPainPage from './pages/resources/Learn/CervicalPain/page';
-import ConqueringCervicalPainPage from './pages/resources/Learn/ConqueringCervicalPain/page';
-import AcuteAndChronicPainPage from './pages/resources/Learn/AcuteAndChronicPain/page';
-import OvercomingSciaticaPainPage from './pages/resources/Testimonials/OvercomingSciaticaPain/page';
-import ControlOverSpineDegenerationPage from './pages/resources/Testimonials/ControlOverSpineDegeneration/page';
-import RecoveringFromSportsInjuriesPage from './pages/resources/Testimonials/RecoveringFromSportsInjuries/page';
-import AllTestimonialsPage from './pages/resources/Testimonials/AllTestimonials/page';
-import CareersPage from './pages/company/Careers/page';
-import PressPage from './pages/company/Press/page';
-import TermsOfServicePage from './pages/company/TermsOfService/page';
-import PrivacyPolicyPage from './pages/company/PrivacyPolicy/page';
-import CookiePolicyPage from './pages/company/CookiePolicy/page';
-import AccessibilityStatementPage from './pages/company/AccessibilityStatement/page';
+
+const Home = lazy(() => import('./pages/home/Home'));
+const Specialities = lazy(() => import('./pages/specialities/Specialities'));
+const Treatments = lazy(() => import('./pages/treatments/Treatments'));
+const About = lazy(() => import('./pages/about/About'));
+const Contact = lazy(() => import('./pages/contact/Contact'));
+const Resources = lazy(() => import('./pages/resources/Resources'));
+
+const HeadPainPage = lazy(() => import('./pages/specialities/PainMedicine/HeadPain/page'));
+const CervicalSpinePainPage = lazy(() => import('./pages/specialities/PainMedicine/CervicalSpinePain/page'));
+const LumbarSpinePainPage = lazy(() => import('./pages/specialities/PainMedicine/LumbarSpinePain/page'));
+const ShoulderPainPage = lazy(() => import('./pages/specialities/PainMedicine/ShoulderPain/page'));
+const HandAndElbowPainPage = lazy(() => import('./pages/specialities/PainMedicine/HandAndElbowPain/page'));
+const HipAndGroinPainPage = lazy(() => import('./pages/specialities/PainMedicine/HipAndGroinPain/page'));
+const KneePainPage = lazy(() => import('./pages/specialities/PainMedicine/KneePain/page'));
+const ThoracicWallPainPage = lazy(() => import('./pages/specialities/PainMedicine/ThoracicWallPain/page'));
+const AbdominalWallPainPage = lazy(() => import('./pages/specialities/PainMedicine/AbdominalWallPain/page'));
+const PelvicAndGynaecologicalPage = lazy(() => import('./pages/specialities/PainMedicine/PelvicAndGynaecological/page'));
+const FacialPainPage = lazy(() => import('./pages/specialities/PainMedicine/FacialPain/page'));
+const FootAndAnklePainPage = lazy(() => import('./pages/specialities/PainMedicine/FootAndAnklePain/page'));
+
+const InjuriesPage = lazy(() => import('./pages/specialities/SportsMedicine/Injuries/page'));
+const PreventionPage = lazy(() => import('./pages/specialities/SportsMedicine/Prevention/page'));
+const SportsRehabilitationPage = lazy(() => import('./pages/specialities/SportsMedicine/Rehabilitation/page'));
+const PerformancePage = lazy(() => import('./pages/specialities/SportsMedicine/Performance/page'));
+const PsychologyPage = lazy(() => import('./pages/specialities/SportsMedicine/Psychology/page'));
+const NutritionPage = lazy(() => import('./pages/specialities/SportsMedicine/Nutrition/page'));
+
+const StrokeRehabilitationPage = lazy(() => import('./pages/specialities/StrokeMedicine/Rehabilitation/page'));
+const ClinicalAndSecondaryPreventionOfStrokePage = lazy(() =>
+  import('./pages/specialities/StrokeMedicine/ClinicalAndSecondaryPreventionOfStroke/page')
+);
+const FeedingAutonomyPage = lazy(() => import('./pages/specialities/StrokeMedicine/FeedingAutonomy/page'));
+const SpeechAutonomyPage = lazy(() => import('./pages/specialities/StrokeMedicine/SpeechAutonomy/page'));
+const PostStrokeDepressionAndMoodDisordersPage = lazy(() =>
+  import('./pages/specialities/StrokeMedicine/PostStrokeDepressionAndMoodDisorders/page')
+);
+const MedicalComplicationsPostStrokePage = lazy(() =>
+  import('./pages/specialities/StrokeMedicine/MedicalComplicationsPostStroke/page')
+);
+const PostStrokeSpasticityPage = lazy(() => import('./pages/specialities/StrokeMedicine/PostStrokeSpasticity/page'));
+const ComplexRegionalPainSyndromePage = lazy(() =>
+  import('./pages/specialities/StrokeMedicine/ComplexRegionalPainSyndrome/page')
+);
+const PosturalAndMotorControlAutonomyPage = lazy(() =>
+  import('./pages/specialities/StrokeMedicine/PosturalAndMotorControlAutonomy/page')
+);
+const CommunityReintegrationPage = lazy(() => import('./pages/specialities/StrokeMedicine/CommunityReintegration/page'));
+
+const TubularMicrosurgeryPage = lazy(() => import('./pages/treatments/SurgicalTreatment/TubularMicrosurgery/page'));
+const SpinalFusionPage = lazy(() => import('./pages/treatments/SurgicalTreatment/SpinalFusion/page'));
+const DiscReplacementPage = lazy(() => import('./pages/treatments/SurgicalTreatment/DiscReplacement/page'));
+const LumbarDeformitySurgeryPage = lazy(() => import('./pages/treatments/SurgicalTreatment/LumbarDeformitySurgery/page'));
+
+const VertebroplastyPage = lazy(() => import('./pages/treatments/MinimallyInvasiveTreatments/Vertebroplasty/page'));
+const RadiofrequencyPage = lazy(() => import('./pages/treatments/MinimallyInvasiveTreatments/Radiofrequency/page'));
+const InterspinousSpacersPage = lazy(() =>
+  import('./pages/treatments/MinimallyInvasiveTreatments/InterspinousSpacers/page')
+);
+const PeripheralNerveBlockPage = lazy(() =>
+  import('./pages/treatments/MinimallyInvasiveTreatments/PeripheralNerveBlock/page')
+);
+const IntraArticularCorticosteroidsInjectionPage = lazy(() =>
+  import('./pages/treatments/MinimallyInvasiveTreatments/IntraArticularCorticosteroidsInjection/page')
+);
+const CalcificationBarbotagePage = lazy(() =>
+  import('./pages/treatments/MinimallyInvasiveTreatments/CalcificationBarbotage/page')
+);
+const CryoblationPage = lazy(() => import('./pages/treatments/MinimallyInvasiveTreatments/Cryoblation/page'));
+const NucleoplastyPage = lazy(() => import('./pages/treatments/MinimallyInvasiveTreatments/Nucleoplasty/page'));
+const PlateletsRichPlasmaInjectionPage = lazy(() =>
+  import('./pages/treatments/MinimallyInvasiveTreatments/PlateletsRichPlasmaInjection/page')
+);
+const HydrodistentionPage = lazy(() => import('./pages/treatments/MinimallyInvasiveTreatments/Hydrodistention/page'));
+const BotulinToxinInjectionPage = lazy(() => import('./pages/treatments/MinimallyInvasiveTreatments/BotulinToxinInjection/page'));
+
+const PharmacologicalPainManagementPage = lazy(() =>
+  import('./pages/treatments/NonInvasiveTreatments/PharmacologicalPainManagement/page')
+);
+const PhysiotherapyPage = lazy(() => import('./pages/treatments/NonInvasiveTreatments/Physiotherapy/page'));
+const OsteopathyPage = lazy(() => import('./pages/treatments/NonInvasiveTreatments/Osteopathy/page'));
+const OccupationTherapyPage = lazy(() => import('./pages/treatments/NonInvasiveTreatments/OccupationTherapy/page'));
+const SpeechTherapyPage = lazy(() => import('./pages/treatments/NonInvasiveTreatments/SpeechTherapy/page'));
+const PsychologyTreatmentPage = lazy(() => import('./pages/treatments/NonInvasiveTreatments/Psychology/page'));
+const NutritionTreatmentPage = lazy(() => import('./pages/treatments/NonInvasiveTreatments/Nutrition/page'));
+const ExercisePage = lazy(() => import('./pages/treatments/NonInvasiveTreatments/Exercise/page'));
+const PodologyPage = lazy(() => import('./pages/treatments/NonInvasiveTreatments/Podology/page'));
+const HomeCarePage = lazy(() => import('./pages/treatments/NonInvasiveTreatments/HomeCare/page'));
+
+const TipsForSelfCarePage = lazy(() => import('./pages/resources/Learn/TipsForSelfCare/page'));
+const BlogPage = lazy(() => import('./pages/resources/Learn/Blog/page'));
+const BlogArticlePage = lazy(() => import('./pages/resources/Learn/Blog/articlePage'));
+const CervicalPainPage = lazy(() => import('./pages/resources/Learn/CervicalPain/page'));
+const ConqueringCervicalPainPage = lazy(() => import('./pages/resources/Learn/ConqueringCervicalPain/page'));
+const AcuteAndChronicPainPage = lazy(() => import('./pages/resources/Learn/AcuteAndChronicPain/page'));
+
+const OvercomingSciaticaPainPage = lazy(() => import('./pages/resources/Testimonials/OvercomingSciaticaPain/page'));
+const ControlOverSpineDegenerationPage = lazy(() => import('./pages/resources/Testimonials/ControlOverSpineDegeneration/page'));
+const RecoveringFromSportsInjuriesPage = lazy(() => import('./pages/resources/Testimonials/RecoveringFromSportsInjuries/page'));
+const AllTestimonialsPage = lazy(() => import('./pages/resources/Testimonials/AllTestimonials/page'));
+
+const CareersPage = lazy(() => import('./pages/company/Careers/page'));
+const PressPage = lazy(() => import('./pages/company/Press/page'));
+const TermsOfServicePage = lazy(() => import('./pages/company/TermsOfService/page'));
+const PrivacyPolicyPage = lazy(() => import('./pages/company/PrivacyPolicy/page'));
+const CookiePolicyPage = lazy(() => import('./pages/company/CookiePolicy/page'));
+const AccessibilityStatementPage = lazy(() => import('./pages/company/AccessibilityStatement/page'));
 
 function SpecialityLayout({ children }) {
   return (
@@ -88,11 +124,24 @@ function SpecialityLayout({ children }) {
   );
 }
 
+function RedirectTestimonialsTypos() {
+  const location = useLocation();
+  const pathname = location.pathname
+    .replace('/resources/testemunials', '/resources/testimonials')
+    .replace('/resources/testemunial', '/resources/testimonials');
+
+  const resolvedPathname =
+    pathname === '/resources/testimonials' ? '/resources/testimonials/all-testimonials' : pathname;
+
+  return <Navigate to={`${resolvedPathname}${location.search}${location.hash}`} replace />;
+}
+
 function App() {
   return (
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Home />} />
+      <Suspense fallback={<div className="page-loading" role="status" aria-live="polite">Loading…</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
         <Route path="/specialities" element={<Specialities />} />
         <Route
           path="/specialities/pain-medicine/head-pain"
@@ -545,6 +594,22 @@ function App() {
         />
         <Route path="/resources" element={<Resources />} />
         <Route
+          path="/blog"
+          element={
+            <SpecialityLayout>
+              <BlogPage />
+            </SpecialityLayout>
+          }
+        />
+        <Route
+          path="/blog/*"
+          element={
+            <SpecialityLayout>
+              <BlogArticlePage />
+            </SpecialityLayout>
+          }
+        />
+        <Route
           path="/resources/learn/tips-for-self-care"
           element={
             <SpecialityLayout>
@@ -554,11 +619,7 @@ function App() {
         />
         <Route
           path="/resources/learn/blog"
-          element={
-            <SpecialityLayout>
-              <BlogPage />
-            </SpecialityLayout>
-          }
+          element={<Navigate to="/blog" replace />}
         />
         <Route
           path="/resources/learn/cervical-pain"
@@ -616,6 +677,8 @@ function App() {
             </SpecialityLayout>
           }
         />
+        <Route path="/resources/testemunial/*" element={<RedirectTestimonialsTypos />} />
+        <Route path="/resources/testemunials/*" element={<RedirectTestimonialsTypos />} />
         <Route
           path="/company/careers"
           element={
@@ -664,7 +727,21 @@ function App() {
             </SpecialityLayout>
           }
         />
-      </Routes>
+        <Route
+          path="*"
+          element={
+            <SpecialityLayout>
+              <main className="page-main">
+                <section className="page-section">
+                  <h1>Page not found</h1>
+                  <p>Check the URL or return to the home page.</p>
+                </section>
+              </main>
+            </SpecialityLayout>
+          }
+        />
+        </Routes>
+      </Suspense>
     </div>
   );
 }

@@ -1,0 +1,1 @@
+import{j as s}from"./index-BsZsA7yt.js";const r=()=>s.jsxs("main",{className:"press-page",children:[s.jsx("h1",{children:"Press"}),s.jsx("p",{children:"Content for Press will go here."})]});export{r as default};

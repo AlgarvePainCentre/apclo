@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import ConditionDetailPage from '../../ConditionDetailPage';
-import './CervicalSpinePain.css';
 
 const CervicalSpinePainPage: React.FC = () => {
   const navigate = useNavigate();
@@ -40,7 +39,11 @@ const CervicalSpinePainPage: React.FC = () => {
           </div>
         </div>
       </section>
-      <ConditionDetailPage title="Cervical spine pain" areaLabel="cervical spine pain" />
+      <ConditionDetailPage
+        title="Cervical spine pain"
+        areaLabel="cervical spine pain"
+        mainClassName="cervical-spine-pain-main"
+      />
     </>
   );
 };

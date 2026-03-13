@@ -261,30 +261,32 @@ export function TreatmentsMain({
         <p className="treatment-card-excerpt">{item.description}</p>
         <Link
           to={item.link}
-          className="treatment-highlight-link"
+          className="treatment-card-button treatment-highlight-link"
           aria-label={`Learn more about ${item.title}`}
         >
-          <span>Read Article</span>
-          <span className="treatment-highlight-link-icon">→</span>
+          <span>Read article</span>
         </Link>
       </div>
     </article>
   );
 
   return (
-    <main className="page-main">
+    <main className="page-main treatments-page">
       {!hideSurgical && (
         <>
           <section className="page-section treatments-overview">
-            <div className="treatments-overview-header">
-              <h2 className="treatments-overview-title">
-                We can help you at every level of your health journey
-              </h2>
-              <p className="treatments-overview-subtitle">
-                We practice a wide variety of non‑invasive, minimally invasive and surgical treatments
-                in line with internationally leading clinics, so your plan is individually tailored.
-              </p>
-            </div>
+            <header className="home-section-treatment-header treatments-section-header">
+              <div className="home-section-treatment-header-content">
+                <p className="home-section-treatment-eyebrow">Clinically-led care plans</p>
+                <h2 className="home-section-treatment-title">
+                  We can help you at every level of your health journey
+                </h2>
+                <p className="home-section-treatment-subtitle">
+                  We practice a wide variety of non‑invasive, minimally invasive and surgical treatments
+                  in line with internationally leading clinics, so your plan is individually tailored.
+                </p>
+              </div>
+            </header>
             <div className="treatments-overview-layout">
               <article className="treatments-overview-card">
                 <h3 className="treatments-overview-card-title">Surgical procedures</h3>
@@ -299,11 +301,10 @@ export function TreatmentsMain({
                 </p>
                 <Link
                   to="/treatments/surgical-treatments/spinal-fusion"
-                  className="treatments-overview-card-link"
+                  className="treatment-card-button"
                   aria-label="Learn more about surgical spine procedures"
                 >
                   <span>Learn more</span>
-                  <span className="treatments-overview-card-link-icon">→</span>
                 </Link>
               </article>
               <div className="treatments-overview-media" aria-hidden="true">
@@ -322,9 +323,12 @@ export function TreatmentsMain({
             </div>
           </section>
           <section className="page-section treatments-highlighted">
-            <div className="treatments-highlighted-header">
-              <h2 className="treatments-highlighted-title">Highlighted surgical procedures</h2>
-            </div>
+            <header className="home-section-treatment-header treatments-section-header">
+              <div className="home-section-treatment-header-content">
+                <p className="home-section-treatment-eyebrow">Surgical procedures</p>
+                <h2 className="home-section-treatment-title">Highlighted surgical procedures</h2>
+              </div>
+            </header>
             <div className="treatments-highlighted-grid">
               {surgicalTreatments.map((item, index) => (
                 <TreatmentCard key={index} item={item} />
@@ -336,13 +340,16 @@ export function TreatmentsMain({
       {!hideMinimallyInvasive && (
         <>
           <section className="page-section treatments-feature treatments-feature-mi">
-            <div className="treatments-overview-header treatments-feature-mi-header">
-              <h2 className="treatments-overview-title">Minimally invasive treatments</h2>
-              <p className="treatments-overview-subtitle">
-                Learn about options that use small, image‑guided procedures to ease pain while limiting
-                recovery time and scarring.
-              </p>
-            </div>
+            <header className="home-section-treatment-header treatments-section-header">
+              <div className="home-section-treatment-header-content">
+                <p className="home-section-treatment-eyebrow">Minimally invasive</p>
+                <h2 className="home-section-treatment-title">Minimally invasive treatments</h2>
+                <p className="home-section-treatment-subtitle">
+                  Learn about options that use small, image‑guided procedures to ease pain while limiting
+                  recovery time and scarring.
+                </p>
+              </div>
+            </header>
             <div className="treatments-feature-inner">
               <div className="treatments-feature-media" aria-hidden="true">
                 <video
@@ -368,21 +375,23 @@ export function TreatmentsMain({
                 </p>
                 <Link
                   to="/treatments/minimally-invasive-treatments/radiofrequency"
-                  className="treatments-feature-link"
+                  className="treatment-card-button"
                   aria-label="Learn more about minimally invasive treatments"
                 >
                   <span>Learn more</span>
-                  <span className="treatments-feature-link-icon">→</span>
                 </Link>
               </div>
             </div>
           </section>
           <section className="page-section treatments-highlighted treatments-highlighted-mi">
-            <div className="treatments-highlighted-header">
-              <h2 className="treatments-highlighted-title">
-                Highlighted minimally invasive treatments
-              </h2>
-            </div>
+            <header className="home-section-treatment-header treatments-section-header">
+              <div className="home-section-treatment-header-content">
+                <p className="home-section-treatment-eyebrow">Minimally invasive</p>
+                <h2 className="home-section-treatment-title">
+                  Highlighted minimally invasive treatments
+                </h2>
+              </div>
+            </header>
             <div className="treatments-highlighted-grid">
               {minimallyInvasiveTreatments.map((item, index) => (
                 <TreatmentCard key={index} item={item} />
@@ -394,13 +403,16 @@ export function TreatmentsMain({
       {!hideNonInvasive && (
         <>
           <section className="page-section treatments-feature treatments-feature-ni">
-            <div className="treatments-overview-header treatments-feature-ni-header">
-              <h2 className="treatments-overview-title">Non‑invasive treatments</h2>
-              <p className="treatments-overview-subtitle">
-                Explore non‑invasive options that focus on assessment, movement and lifestyle before
-                considering procedures or surgery.
-              </p>
-            </div>
+            <header className="home-section-treatment-header treatments-section-header">
+              <div className="home-section-treatment-header-content">
+                <p className="home-section-treatment-eyebrow">Non‑invasive</p>
+                <h2 className="home-section-treatment-title">Non‑invasive treatments</h2>
+                <p className="home-section-treatment-subtitle">
+                  Explore non‑invasive options that focus on assessment, movement and lifestyle before
+                  considering procedures or surgery.
+                </p>
+              </div>
+            </header>
             <div className="treatments-feature-inner">
               <div className="treatments-feature-copy">
                 <h3 className="treatments-feature-title">Non‑invasive treatments</h3>
@@ -415,11 +427,10 @@ export function TreatmentsMain({
                 </p>
                 <Link
                   to="/treatments/non-invasive-treatments/physiotherapy"
-                  className="treatments-feature-link"
+                  className="treatment-card-button"
                   aria-label="See all non-invasive treatments"
                 >
                   <span>All non‑invasive treatments</span>
-                  <span className="treatments-feature-link-icon">→</span>
                 </Link>
               </div>
               <div className="treatments-feature-media" aria-hidden="true">
@@ -436,9 +447,12 @@ export function TreatmentsMain({
             </div>
           </section>
           <section className="page-section treatments-highlighted treatments-highlighted-ni">
-            <div className="treatments-highlighted-header">
-              <h2 className="treatments-highlighted-title">Highlighted non‑invasive treatments</h2>
-            </div>
+            <header className="home-section-treatment-header treatments-section-header">
+              <div className="home-section-treatment-header-content">
+                <p className="home-section-treatment-eyebrow">Non‑invasive</p>
+                <h2 className="home-section-treatment-title">Highlighted non‑invasive treatments</h2>
+              </div>
+            </header>
             <div className="treatments-highlighted-grid">
               {nonInvasiveTreatments.map((item, index) => (
                 <TreatmentCard key={index} item={item} />
@@ -447,72 +461,80 @@ export function TreatmentsMain({
           </section>
         </>
       )}
-      <section className="page-section treatments-pain-learn">
-        <div className="treatments-pain-learn-header">
-          <h2 className="treatments-pain-learn-title">Learn More About Your Pain</h2>
-          <p className="treatments-pain-learn-subtitle">Meet your medical needs and improve your life.</p>
-        </div>
-        <div className="treatments-pain-grid">
-          <article className="pain-learn-card">
-            <div className="pain-learn-media">
-              <img src="/assets/images/treatment-img/SpinePain.jpg" alt="" aria-hidden="true" />
+      <section className="page-section home-section-mainpain-cards treatments-pain-learn">
+        <div className="home-section-mainpain-inner">
+          <header className="home-section-treatment-header home-section-mainpain-header treatments-section-header">
+            <div className="home-section-treatment-header-content">
+              <p className="home-section-treatment-eyebrow">Main pain areas</p>
+              <h2 className="home-section-treatment-title">Learn More About Your Pain</h2>
+              <p className="home-section-treatment-subtitle">Meet your medical needs and improve your life.</p>
             </div>
-            <div className="pain-learn-body">
-              <h3 className="pain-learn-title">Spine Pain</h3>
-              <div className="pain-learn-accent" />
-              <p className="pain-learn-description">
-                Ease persistent spine pain with a plan designed to protect your mobility.
-              </p>
-              <Link
-                to="/specialities/pain-medicine/lumbar-spine-pain"
-                className="pain-learn-link"
-                aria-label="Learn more about spine pain"
-              >
-                <span>Learn more</span>
-                <span className="treatment-highlight-link-icon">→</span>
-              </Link>
-            </div>
-          </article>
-          <article className="pain-learn-card">
-            <div className="pain-learn-media">
-              <img src="/assets/images/treatment-img/KneePain.jpg" alt="" aria-hidden="true" />
-            </div>
-            <div className="pain-learn-body">
-              <h3 className="pain-learn-title">Knee Pain</h3>
-              <div className="pain-learn-accent" />
-              <p className="pain-learn-description">
-                Support unstable or aching knees so you can walk, climb and move confidently.
-              </p>
-              <Link
-                to="/specialities/pain-medicine/knee-pain"
-                className="pain-learn-link"
-                aria-label="Learn more about knee pain"
-              >
-                <span>Learn more</span>
-                <span className="treatment-highlight-link-icon">→</span>
-              </Link>
-            </div>
-          </article>
-          <article className="pain-learn-card">
-            <div className="pain-learn-media">
-              <img src="/assets/images/treatment-img/HipPain.jpg" alt="" aria-hidden="true" />
-            </div>
-            <div className="pain-learn-body">
-              <h3 className="pain-learn-title">Hip Pain</h3>
-              <div className="pain-learn-accent" />
-              <p className="pain-learn-description">
-                Reduce hip stiffness and pain to sit, stand and stay active more comfortably.
-              </p>
-              <Link
-                to="/specialities/pain-medicine/hip-and-groin-pain"
-                className="pain-learn-link"
-                aria-label="Learn more about hip pain"
-              >
-                <span>Learn more</span>
-                <span className="treatment-highlight-link-icon">→</span>
-              </Link>
-            </div>
-          </article>
+          </header>
+          <div className="home-section-mainpain-grid">
+            <article className="mainpain-card">
+              <div className="mainpain-card-image mainpain-card-image-spine" aria-hidden="true" />
+              <div className="mainpain-card-body">
+                <p className="mainpain-card-meta">
+                  <span>Main pain area</span>
+                  <span className="mainpain-card-meta-sep" aria-hidden="true">•</span>
+                  <span>Read</span>
+                </p>
+                <Link
+                  to="/specialities/pain-medicine/lumbar-spine-pain"
+                  className="mainpain-card-cta"
+                  aria-label="Read about Spine Pain"
+                >
+                  <h3 className="mainpain-card-title">Spine Pain</h3>
+                  <span className="mainpain-card-cta-icon" aria-hidden="true">→</span>
+                </Link>
+                <p className="mainpain-card-description sr-only">
+                  Ease persistent spine pain with a plan designed to protect your mobility.
+                </p>
+              </div>
+            </article>
+            <article className="mainpain-card">
+              <div className="mainpain-card-image mainpain-card-image-knee" aria-hidden="true" />
+              <div className="mainpain-card-body">
+                <p className="mainpain-card-meta">
+                  <span>Main pain area</span>
+                  <span className="mainpain-card-meta-sep" aria-hidden="true">•</span>
+                  <span>Read</span>
+                </p>
+                <Link
+                  to="/specialities/pain-medicine/knee-pain"
+                  className="mainpain-card-cta"
+                  aria-label="Read about Knee Pain"
+                >
+                  <h3 className="mainpain-card-title">Knee Pain</h3>
+                  <span className="mainpain-card-cta-icon" aria-hidden="true">→</span>
+                </Link>
+                <p className="mainpain-card-description sr-only">
+                  Support unstable or aching knees so you can walk, climb and move confidently.
+                </p>
+              </div>
+            </article>
+            <article className="mainpain-card">
+              <div className="mainpain-card-image mainpain-card-image-hip" aria-hidden="true" />
+              <div className="mainpain-card-body">
+                <p className="mainpain-card-meta">
+                  <span>Main pain area</span>
+                  <span className="mainpain-card-meta-sep" aria-hidden="true">•</span>
+                  <span>Read</span>
+                </p>
+                <Link
+                  to="/specialities/pain-medicine/hip-and-groin-pain"
+                  className="mainpain-card-cta"
+                  aria-label="Read about Hip Pain"
+                >
+                  <h3 className="mainpain-card-title">Hip Pain</h3>
+                  <span className="mainpain-card-cta-icon" aria-hidden="true">→</span>
+                </Link>
+                <p className="mainpain-card-description sr-only">
+                  Reduce hip stiffness and pain to sit, stand and stay active more comfortably.
+                </p>
+              </div>
+            </article>
+          </div>
         </div>
       </section>
       <section 
@@ -520,9 +542,12 @@ export function TreatmentsMain({
         aria-roledescription="carousel"
         aria-label="Patient Testimonials"
       >
-        <div className="treatments-testimonials-header">
-          <h2 className="treatments-testimonials-title">Your opinion makes the difference</h2>
-        </div>
+        <header className="home-section-treatment-header treatments-section-header">
+          <div className="home-section-treatment-header-content">
+            <p className="home-section-treatment-eyebrow">Testimonials</p>
+            <h2 className="home-section-treatment-title">Your opinion makes the difference</h2>
+          </div>
+        </header>
         
         <div className="treatments-testimonials-carousel-wrapper">
           <div 

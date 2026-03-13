@@ -234,7 +234,7 @@ export default function Contact() {
                     href="https://wa.me/351915915001"
                     className="contact-visit-link"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                   >
                     WhatsApp
                   </a>
@@ -251,7 +251,7 @@ export default function Contact() {
                     href="https://maps.google.com/?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve"
                     className="contact-visit-link"
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                   >
                     Av. do Mar, Vale do Lobo, Algarve
                   </a>

@@ -1,7 +1,6 @@
 .page {
   min-height: 100vh;
-  background-color: #ffffff;
-  color: #111827;
+  background-color: #fffdf5;
 }
 
 .page-hero {
@@ -17,7 +16,7 @@
 }
 
 .page-section {
-  max-width: var(--container-width);
+  max-width: 1600px;
   margin: 0 auto 40px;
 }
 
@@ -256,8 +255,6 @@
 @media (max-width: 1024px) {
   .page-main {
     /* padding handled by base style */
-  }
-
   .specialities-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -276,9 +273,6 @@
   .page-main {
     padding: 0;
   }
-
-  .page-section {
-    margin: 0 auto 32px;
   }
 
   .specialities-grid {
