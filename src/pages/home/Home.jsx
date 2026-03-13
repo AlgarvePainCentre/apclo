@@ -291,31 +291,7 @@ export default function Home() {
         </div>
         <div className="hero-content hero-content-home" ref={heroContentMotionRef}>
           <div className="hero-left hero-home-left">
-            <div className="hero-kicker">
-              <span className="hero-kicker-mark" aria-hidden="true">✳</span>
-              <span className="hero-kicker-text">Multidisciplinary pain clinic in the Algarve</span>
-            </div>
             <h1 className="hero-title">Your Pain Centre</h1>
-            <div className="hero-chips" role="list" aria-label="Explore">
-              <Link to="/treatments" role="listitem" className="hero-chip" onClick={() => trackEvent('nav_click', { location: 'hero-chip', to: 'treatments' })}>
-                Treatments
-              </Link>
-              <Link to="/specialities" role="listitem" className="hero-chip" onClick={() => trackEvent('nav_click', { location: 'hero-chip', to: 'specialities' })}>
-                Specialities
-              </Link>
-              <Link to="/resources" role="listitem" className="hero-chip" onClick={() => trackEvent('nav_click', { location: 'hero-chip', to: 'resources' })}>
-                Resources
-              </Link>
-              <Link to="/about" role="listitem" className="hero-chip" onClick={() => trackEvent('nav_click', { location: 'hero-chip', to: 'about' })}>
-                About
-              </Link>
-              <Link to="/contact" role="listitem" className="hero-chip hero-chip-secondary" onClick={() => trackEvent('nav_click', { location: 'hero-chip', to: 'contact' })}>
-                Contact
-              </Link>
-            </div>
-            <p className="hero-left-copy">
-              Our specialised team will find the best approach to improve your quality of life.
-            </p>
             <div className="hero-actions">
               <button
                 type="button"
@@ -329,29 +305,6 @@ export default function Home() {
                 <span className="hero-find-label">Find care</span>
                 <span className="hero-find-arrow" aria-hidden="true">↗</span>
               </button>
-              <Link
-                to="/contact"
-                className="hero-secondary-cta"
-                aria-label="Book an appointment"
-                onClick={() => trackEvent('cta_click', { location: 'hero-book' })}
-              >
-                Book appointment
-              </Link>
-            </div>
-          </div>
-          <div className="hero-right hero-home-right">
-            <div className="hero-stat hero-stat-rating" aria-label="Patient rating">
-              <div className="hero-stat-value">4.9</div>
-              <div className="hero-stat-meta">Average rating</div>
-            </div>
-            <div className="hero-stat hero-stat-customers" aria-label="Happy customers">
-              <div className="hero-avatars" aria-hidden="true">
-                <span className="hero-avatar">A</span>
-                <span className="hero-avatar">M</span>
-                <span className="hero-avatar">S</span>
-                <span className="hero-avatar hero-avatar-plus">+</span>
-              </div>
-              <div className="hero-stat-meta">Happy customers</div>
             </div>
           </div>
         </div>
