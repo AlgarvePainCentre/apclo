@@ -1,4 +1,4 @@
-import React, { useEffect, useId, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import './Blog.css';
 import { blogArticles } from './articles';
@@ -15,12 +15,8 @@ type BlogPost = {
   featuredImage: { src: string; alt: string };
   to: string;
   isFeatured?: boolean;
+  searchText: string;
 };
-
-type Suggestion =
-  | { id: string; kind: 'title'; label: string; slug: string }
-  | { id: string; kind: 'tag'; label: string; tag: string }
-  | { id: string; kind: 'category'; label: string; category: string };
 
 function formatDate(dateISO: string) {
   const date = new Date(dateISO);
@@ -30,20 +26,6 @@ function formatDate(dateISO: string) {
 function monthYearLabel(dateISO: string) {
   const date = new Date(dateISO);
   return date.toLocaleDateString(undefined, { year: 'numeric', month: 'long' });
-}
-
-function clampQuery(raw: string) {
-  if (raw.length <= 120) return raw;
-  return raw.slice(0, 120);
-}
-
-function validateQuery(query: string) {
-  const trimmed = query.trim();
-  if (!trimmed) return '';
-  if (trimmed.length > 120) return 'Search is limited to 120 characters.';
-  const hasAlphaNumeric = /[A-Za-z0-9]/.test(trimmed);
-  if (!hasAlphaNumeric) return 'Please enter letters or numbers to search.';
-  return '';
 }
 
 function estimateReadTimeMinsFromText(text: string) {
@@ -61,6 +43,18 @@ function estimateReadTimeMins(article: (typeof blogArticles)[number]) {
     });
   });
   return estimateReadTimeMinsFromText(text);
+}
+
+function buildSearchText(article: (typeof blogArticles)[number]) {
+  let text = `${article.title} ${article.description} ${article.category} ${article.tags.join(' ')} ${article.author.name} ${article.author.role}`;
+  article.sections.forEach((s) => {
+    text += ` ${s.heading}`;
+    s.blocks.forEach((b) => {
+      if (b.type === 'p' || b.type === 'h3') text += ` ${b.text}`;
+      if (b.type === 'ul') text += ` ${b.items.join(' ')}`;
+    });
+  });
+  return text.toLowerCase();
 }
 
 const getMeta = (name: string) => document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
@@ -389,32 +383,21 @@ const VirtualBlogGrid: React.FC<{ posts: BlogPost[]; isLoading?: boolean }> = ({
 const BlogPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const listboxId = useId();
   const contentId = useId();
+  const sidebarPrefix = useId();
+  const drawerPrefix = useId();
   const articlesRef = useRef<HTMLElement | null>(null);
-  const inputRef = useRef<HTMLInputElement | null>(null);
-  const suggestionRef = useRef<HTMLDivElement | null>(null);
   const mobileDrawerCloseRef = useRef<HTMLButtonElement | null>(null);
 
-  const [query, setQuery] = useState('');
-  const [activeSuggestion, setActiveSuggestion] = useState(-1);
-  const [isSuggestOpen, setIsSuggestOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
-  const [itemsPerPage, setItemsPerPage] = useState(10);
-  const [currentPage, setCurrentPage] = useState(1);
   const [isPaging, setIsPaging] = useState(false);
 
-  const [category, setCategory] = useState<string>('All');
-  const [dateFrom, setDateFrom] = useState('');
-  const [dateTo, setDateTo] = useState('');
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
-
-  const queryError = validateQuery(query);
-  const dateError =
-    dateFrom && dateTo && new Date(dateFrom).getTime() > new Date(dateTo).getTime()
-      ? 'Start date must be before end date.'
-      : '';
+  const urlQuery = useMemo(() => {
+    const params = new URLSearchParams(location.search);
+    return params.get('q') || '';
+  }, [location.search]);
+  const normalizedQuery = urlQuery.trim().toLowerCase();
 
   const posts = useMemo<BlogPost[]>(() => {
     const sorted = [...blogArticles].sort(
@@ -432,6 +415,7 @@ const BlogPage: React.FC = () => {
       featuredImage: { src: a.coverImage.src, alt: a.coverImage.alt },
       to: `/blog/${a.slug}`,
       isFeatured: idx < 3,
+      searchText: buildSearchText(a),
     }));
   }, []);
 
@@ -450,36 +434,40 @@ const BlogPage: React.FC = () => {
     return ['All', ...all];
   }, [posts]);
 
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const nextCategory = params.get('category');
-    if (!nextCategory) {
-      setCategory('All');
-      return;
-    }
-    if (categories.includes(nextCategory)) {
-      setCategory(nextCategory);
-    }
-  }, [categories, location.search]);
-
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const rawPerPage = params.get('perPage');
-    const rawPage = params.get('page');
-
-    const parsedPerPage = rawPerPage ? Number(rawPerPage) : 10;
-    const nextPerPage = [10, 20, 50].includes(parsedPerPage) ? parsedPerPage : 10;
-    setItemsPerPage(nextPerPage);
-
-    const parsedPage = rawPage ? Number(rawPage) : 1;
-    setCurrentPage(Number.isFinite(parsedPage) ? Math.max(1, Math.floor(parsedPage)) : 1);
-  }, [location.search]);
-
   const allTags = useMemo(() => {
     const set = new Set<string>();
     posts.forEach((p) => p.tags.forEach((t) => set.add(t)));
     return Array.from(set).sort((a, b) => a.localeCompare(b));
   }, [posts]);
+
+  const searchParams = useMemo(() => new URLSearchParams(location.search), [location.search]);
+  const rawCategory = searchParams.get('category') || 'All';
+  const category = categories.includes(rawCategory) ? rawCategory : 'All';
+  const rawTags = searchParams.get('tags') || '';
+  const selectedTagsKey = rawTags
+    .split(',')
+    .map((t) => t.trim())
+    .filter(Boolean)
+    .join(',');
+  const selectedTags = useMemo(() => {
+    const list = rawTags
+      .split(',')
+      .map((t) => t.trim())
+      .filter(Boolean);
+    const set = new Set<string>();
+    list.forEach((t) => {
+      if (allTags.includes(t)) set.add(t);
+    });
+    return Array.from(set).sort((a, b) => a.localeCompare(b));
+  }, [allTags, rawTags]);
+  const dateFrom = searchParams.get('from') || '';
+  const dateTo = searchParams.get('to') || '';
+  const rawPerPage = searchParams.get('perPage');
+  const parsedPerPage = rawPerPage ? Number(rawPerPage) : 10;
+  const safeItemsPerPage = [10, 20, 50].includes(parsedPerPage) ? parsedPerPage : 10;
+  const rawPage = searchParams.get('page');
+  const parsedPage = rawPage ? Number(rawPage) : 1;
+  const requestedPage = Number.isFinite(parsedPage) ? Math.max(1, Math.floor(parsedPage)) : 1;
 
   const archives = useMemo(() => {
     const map = new Map<string, { key: string; label: string; count: number }>();
@@ -497,115 +485,123 @@ const BlogPage: React.FC = () => {
 
   const featured = useMemo(() => posts.filter((p) => p.isFeatured).slice(0, 3), [posts]);
 
-  const filtered = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    const hasQuery = q.length > 0 && !queryError;
-    const tagSet = new Set(selectedTags);
-    const fromTs = dateFrom ? new Date(dateFrom).getTime() : null;
-    const toTs = dateTo ? new Date(dateTo).getTime() : null;
+  const updateSearch = useCallback(
+    (mutate: (params: URLSearchParams) => void, options: { replace?: boolean } = {}) => {
+      const params = new URLSearchParams(location.search);
+      mutate(params);
+      const nextSearch = normalizeSearchParams(params);
+      const currentSearch = normalizeSearchParams(new URLSearchParams(location.search));
+      if (nextSearch !== currentSearch) {
+        navigate(
+          { pathname: location.pathname, search: nextSearch ? `?${nextSearch}` : '' },
+          { replace: Boolean(options.replace) },
+        );
+      }
+    },
+    [location.pathname, location.search, navigate],
+  );
 
-    return posts
-      .filter((p) => (category === 'All' ? true : p.category === category))
-      .filter((p) => {
-        if (tagSet.size === 0) return true;
-        return p.tags.some((t) => tagSet.has(t));
-      })
-      .filter((p) => {
-        if (!fromTs && !toTs) return true;
-        const ts = new Date(p.dateISO).getTime();
-        if (fromTs && ts < fromTs) return false;
-        if (toTs && ts > toTs) return false;
-        return true;
-      })
-      .filter((p) => {
-        if (!hasQuery) return true;
-        const haystack = `${p.title} ${p.excerpt} ${p.category} ${p.tags.join(' ')}`.toLowerCase();
-        return haystack.includes(q);
-      })
-      .sort((a, b) => b.dateISO.localeCompare(a.dateISO));
-  }, [posts, query, queryError, category, dateFrom, dateTo, selectedTags]);
+  const [queryState, setQueryState] = useState<{
+    items: BlogPost[];
+    isLoading: boolean;
+    error: string | null;
+  }>({ items: posts, isLoading: false, error: null });
+  const queryRequestRef = useRef(0);
 
-  const totalResults = filtered.length;
-  const safeItemsPerPage = [10, 20, 50].includes(itemsPerPage) ? itemsPerPage : 10;
+  useEffect(() => {
+    const requestId = (queryRequestRef.current += 1);
+    setQueryState((prev) => ({ ...prev, isLoading: true, error: null }));
+
+    const timer = window.setTimeout(() => {
+      try {
+        const tagSet = new Set(selectedTags);
+        const fromTsRaw = dateFrom ? Date.parse(dateFrom) : Number.NaN;
+        const toTsRaw = dateTo ? Date.parse(dateTo) : Number.NaN;
+        const fromTs = Number.isFinite(fromTsRaw) ? fromTsRaw : null;
+        const toTs = Number.isFinite(toTsRaw) ? toTsRaw : null;
+        const hasQuery = normalizedQuery.length > 0;
+
+        const next = posts
+          .filter((p) => (category === 'All' ? true : p.category === category))
+          .filter((p) => {
+            if (tagSet.size === 0) return true;
+            return p.tags.some((t) => tagSet.has(t));
+          })
+          .filter((p) => {
+            if (!fromTs && !toTs) return true;
+            const ts = Date.parse(p.dateISO);
+            if (!Number.isFinite(ts)) return false;
+            if (fromTs && ts < fromTs) return false;
+            if (toTs && ts > toTs) return false;
+            return true;
+          })
+          .filter((p) => {
+            if (!hasQuery) return true;
+            return p.searchText.includes(normalizedQuery);
+          })
+          .sort((a, b) => b.dateISO.localeCompare(a.dateISO));
+
+        if (requestId !== queryRequestRef.current) return;
+        setQueryState({ items: next, isLoading: false, error: null });
+      } catch {
+        if (requestId !== queryRequestRef.current) return;
+        setQueryState({ items: [], isLoading: false, error: 'Unable to load articles.' });
+      }
+    }, 150);
+
+    return () => window.clearTimeout(timer);
+  }, [category, dateFrom, dateTo, normalizedQuery, posts, selectedTagsKey]);
+
+  const totalResults = queryState.items.length;
   const totalPages = totalResults > 0 ? Math.ceil(totalResults / safeItemsPerPage) : 0;
-  const safeCurrentPage = totalPages > 0 ? clampNumber(currentPage, 1, totalPages) : 1;
+  const safeCurrentPage = totalPages > 0 ? clampNumber(requestedPage, 1, totalPages) : 1;
 
   useEffect(() => {
-    if (safeCurrentPage !== currentPage) setCurrentPage(safeCurrentPage);
-  }, [currentPage, safeCurrentPage]);
+    if (queryState.isLoading || queryState.error) return;
 
-  const filterKey = useMemo(() => {
-    const tags = [...selectedTags].sort((a, b) => a.localeCompare(b)).join(',');
-    return `${query.trim()}|${category}|${dateFrom}|${dateTo}|${tags}`;
-  }, [query, category, dateFrom, dateTo, selectedTags]);
+    updateSearch(
+      (params) => {
+        if (safeItemsPerPage === 10) params.delete('perPage');
+        else params.set('perPage', String(safeItemsPerPage));
 
-  const prevFilterKeyRef = useRef<string | null>(null);
-  useEffect(() => {
-    if (prevFilterKeyRef.current === null) {
-      prevFilterKeyRef.current = filterKey;
-      return;
-    }
-    if (prevFilterKeyRef.current !== filterKey) {
-      prevFilterKeyRef.current = filterKey;
-      setCurrentPage(1);
-    }
-  }, [filterKey]);
+        if (safeCurrentPage <= 1) params.delete('page');
+        else params.set('page', String(safeCurrentPage));
 
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const desiredPage = safeCurrentPage <= 1 ? null : String(safeCurrentPage);
-    const desiredPerPage = safeItemsPerPage === 10 ? null : String(safeItemsPerPage);
+        if (!urlQuery.trim()) params.delete('q');
 
-    if (desiredPage) params.set('page', desiredPage);
-    else params.delete('page');
+        if (category === 'All') params.delete('category');
+        else params.set('category', category);
 
-    if (desiredPerPage) params.set('perPage', desiredPerPage);
-    else params.delete('perPage');
+        if (selectedTags.length === 0) params.delete('tags');
+        else params.set('tags', selectedTags.join(','));
 
-    const nextSearch = normalizeSearchParams(params);
-    const currentSearch = normalizeSearchParams(new URLSearchParams(location.search));
-    if (nextSearch !== currentSearch) {
-      navigate(
-        { pathname: location.pathname, search: nextSearch ? `?${nextSearch}` : '' },
-        { replace: true }
-      );
-    }
-  }, [location.pathname, location.search, navigate, safeCurrentPage, safeItemsPerPage]);
+        if (!dateFrom) params.delete('from');
+        else params.set('from', dateFrom);
+
+        if (!dateTo) params.delete('to');
+        else params.set('to', dateTo);
+      },
+      { replace: true },
+    );
+  }, [
+    category,
+    dateFrom,
+    dateTo,
+    queryState.error,
+    queryState.isLoading,
+    safeCurrentPage,
+    safeItemsPerPage,
+    selectedTags,
+    updateSearch,
+    urlQuery,
+  ]);
 
   const pageSlice = useMemo(() => {
     if (totalResults === 0) return [];
     const start = (safeCurrentPage - 1) * safeItemsPerPage;
     const end = start + safeItemsPerPage;
-    return filtered.slice(start, end);
-  }, [filtered, safeCurrentPage, safeItemsPerPage, totalResults]);
-
-  const suggestions = useMemo<Suggestion[]>(() => {
-    const q = query.trim().toLowerCase();
-    if (q.length < 2 || queryError) return [];
-
-    const byTitle = posts
-      .filter((p) => p.title.toLowerCase().includes(q))
-      .slice(0, 6)
-      .map((p) => ({ id: `t:${p.slug}`, kind: 'title' as const, label: p.title, slug: p.slug }));
-
-    const byTags = allTags
-      .filter((t) => t.toLowerCase().includes(q))
-      .slice(0, 6)
-      .map((t) => ({ id: `g:${t}`, kind: 'tag' as const, label: `Tag: ${t}`, tag: t }));
-
-    const byCategory = categories
-      .filter((c) => c !== 'All')
-      .filter((c) => c.toLowerCase().includes(q))
-      .slice(0, 4)
-      .map((c) => ({
-        id: `c:${c}`,
-        kind: 'category' as const,
-        label: `Category: ${c}`,
-        category: c,
-      }));
-
-    return [...byTitle, ...byTags, ...byCategory].slice(0, 8);
-  }, [query, queryError, posts, allTags, categories]);
+    return queryState.items.slice(start, end);
+  }, [queryState.items, safeCurrentPage, safeItemsPerPage, totalResults]);
 
   const prefersReducedMotion = useMemo(() => {
     if (typeof window === 'undefined' || !window.matchMedia) return false;
@@ -623,9 +619,15 @@ const BlogPage: React.FC = () => {
 
   const onPageChange = (nextPage: number) => {
     const next = Math.max(1, Math.floor(nextPage));
-    if (next === currentPage) return;
+    if (next === safeCurrentPage) return;
     setIsPaging(true);
-    setCurrentPage(next);
+    updateSearch(
+      (params) => {
+        if (next <= 1) params.delete('page');
+        else params.set('page', String(next));
+      },
+      { replace: false },
+    );
     schedulePagingDone();
   };
 
@@ -633,29 +635,50 @@ const BlogPage: React.FC = () => {
     const desired = [10, 20, 50].includes(next) ? next : 10;
     if (desired === safeItemsPerPage) return;
     setIsPaging(true);
-    setItemsPerPage(desired);
-    setCurrentPage(1);
+    updateSearch(
+      (params) => {
+        if (desired === 10) params.delete('perPage');
+        else params.set('perPage', String(desired));
+        params.delete('page');
+      },
+      { replace: false },
+    );
     schedulePagingDone();
   };
 
   const toggleTag = (tag: string) => {
-    setSelectedTags((prev) => {
-      const set = new Set(prev);
-      if (set.has(tag)) set.delete(tag);
-      else set.add(tag);
-      return Array.from(set);
-    });
+    updateSearch(
+      (params) => {
+        const existing = (params.get('tags') || '')
+          .split(',')
+          .map((t) => t.trim())
+          .filter(Boolean);
+        const set = new Set(existing);
+        if (set.has(tag)) set.delete(tag);
+        else set.add(tag);
+        const nextTags = Array.from(set)
+          .filter((t) => allTags.includes(t))
+          .sort((a, b) => a.localeCompare(b));
+        if (nextTags.length === 0) params.delete('tags');
+        else params.set('tags', nextTags.join(','));
+        params.delete('page');
+      },
+      { replace: false },
+    );
   };
 
   const clearFilters = () => {
-    setQuery('');
-    setCategory('All');
-    setDateFrom('');
-    setDateTo('');
-    setSelectedTags([]);
-    setActiveSuggestion(-1);
-    setIsSuggestOpen(false);
-    if (inputRef.current) inputRef.current.focus();
+    updateSearch(
+      (params) => {
+        params.delete('q');
+        params.delete('category');
+        params.delete('tags');
+        params.delete('from');
+        params.delete('to');
+        params.delete('page');
+      },
+      { replace: false },
+    );
   };
 
   const endOfMonthISO = (yearMonth: string) => {
@@ -672,35 +695,17 @@ const BlogPage: React.FC = () => {
     scrollToArticles();
   };
 
-  const onSelectSuggestion = (s: Suggestion) => {
-    if (s.kind === 'title') {
-      const post = posts.find((p) => p.slug === s.slug);
-      if (post) {
-        navigate(post.to);
-        return;
-      }
-    }
-    if (s.kind === 'tag') {
-      toggleTag(s.tag);
-    }
-    if (s.kind === 'category') {
-      setCategory(s.category);
-    }
-    setIsSuggestOpen(false);
-    setActiveSuggestion(-1);
-    scrollToArticles();
-  };
-
-  const sidebarBody = (
-    <>
+  const renderSidebarBody = (prefix: string) => {
+    return (
+      <>
       <div className="blog-sidebar-header">
         <h2 className="blog-sidebar-title">Browse</h2>
         <button
           type="button"
           className="blog-sidebar-clear-btn"
           onClick={clearFilters}
-          aria-label="Clear search and filters"
-          disabled={!query && category === 'All' && !dateFrom && !dateTo && selectedTags.length === 0}
+          aria-label="Clear filters"
+          disabled={!normalizedQuery && category === 'All' && !dateFrom && !dateTo && selectedTags.length === 0}
         >
           Clear
         </button>
@@ -715,7 +720,14 @@ const BlogPage: React.FC = () => {
               type="button"
               className={c === category ? 'blog-chip blog-chip-active' : 'blog-chip'}
               onClick={() => {
-                setCategory(c);
+                updateSearch(
+                  (params) => {
+                    if (c === 'All') params.delete('category');
+                    else params.set('category', c);
+                    params.delete('page');
+                  },
+                  { replace: false },
+                );
                 afterSidebarAction();
               }}
               aria-pressed={c === category}
@@ -789,8 +801,14 @@ const BlogPage: React.FC = () => {
                   type="button"
                   className="blog-archive-btn"
                   onClick={() => {
-                    setDateFrom(`${a.key}-01`);
-                    setDateTo(endOfMonthISO(a.key));
+                    updateSearch(
+                      (params) => {
+                        params.set('from', `${a.key}-01`);
+                        params.set('to', endOfMonthISO(a.key));
+                        params.delete('page');
+                      },
+                      { replace: false },
+                    );
                     afterSidebarAction();
                   }}
                 >
@@ -804,8 +822,9 @@ const BlogPage: React.FC = () => {
           </ul>
         </div>
       </details>
-    </>
-  );
+      </>
+    );
+  };
 
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
@@ -821,19 +840,7 @@ const BlogPage: React.FC = () => {
     if (mobileDrawerCloseRef.current) mobileDrawerCloseRef.current.focus();
   }, [sidebarOpen]);
 
-  useEffect(() => {
-    const onPointerDown = (e: MouseEvent) => {
-      if (!isSuggestOpen) return;
-      const target = e.target as Node | null;
-      if (!target) return;
-      if (suggestionRef.current && suggestionRef.current.contains(target)) return;
-      if (inputRef.current && inputRef.current.contains(target as Node)) return;
-      setIsSuggestOpen(false);
-      setActiveSuggestion(-1);
-    };
-    document.addEventListener('mousedown', onPointerDown);
-    return () => document.removeEventListener('mousedown', onPointerDown);
-  }, [isSuggestOpen]);
+  const isBusy = isPaging || queryState.isLoading;
 
   return (
     <main className="blog-page">
@@ -881,7 +888,7 @@ const BlogPage: React.FC = () => {
             className="blog-mobile-sidebar-toggle blog-mobile-sidebar-clear"
             aria-label="Clear blog filters"
             onClick={clearFilters}
-            disabled={!query && category === 'All' && !dateFrom && !dateTo && selectedTags.length === 0}
+            disabled={!normalizedQuery && category === 'All' && !dateFrom && !dateTo && selectedTags.length === 0}
           >
             Clear
           </button>
@@ -890,182 +897,11 @@ const BlogPage: React.FC = () => {
         <div className="blog-layout">
           <aside className="blog-sidebar" aria-label="Blog sidebar">
             <div className="blog-sidebar-sticky">
-              {sidebarBody}
+              {renderSidebarBody(sidebarPrefix)}
             </div>
           </aside>
 
           <div className="blog-main">
-            <section className="blog-search" aria-label="Search and filters">
-              <div className="blog-search-card">
-                <form
-                  className="blog-search-form"
-                  onSubmit={(e) => {
-                    e.preventDefault();
-                    scrollToArticles();
-                  }}
-                >
-                  <label className="blog-label" htmlFor="blog-search-input">
-                    Search articles
-                  </label>
-                  <div className="blog-search-inputRow">
-                    <div className="blog-search-inputWrap">
-                      <input
-                        id="blog-search-input"
-                        ref={inputRef}
-                        value={query}
-                        onChange={(e) => {
-                          const next = clampQuery(e.target.value);
-                          setQuery(next);
-                          setIsSuggestOpen(next.trim().length >= 2);
-                          setActiveSuggestion(-1);
-                        }}
-                        onFocus={() => {
-                          if (query.trim().length >= 2) setIsSuggestOpen(true);
-                        }}
-                        onKeyDown={(e) => {
-                          if (!isSuggestOpen || suggestions.length === 0) return;
-                          if (e.key === 'ArrowDown') {
-                            e.preventDefault();
-                            setActiveSuggestion((i) => Math.min(i + 1, suggestions.length - 1));
-                          } else if (e.key === 'ArrowUp') {
-                            e.preventDefault();
-                            setActiveSuggestion((i) => Math.max(i - 1, 0));
-                          } else if (e.key === 'Enter') {
-                            if (activeSuggestion >= 0) {
-                              e.preventDefault();
-                              onSelectSuggestion(suggestions[activeSuggestion]);
-                            }
-                          } else if (e.key === 'Escape') {
-                            setIsSuggestOpen(false);
-                            setActiveSuggestion(-1);
-                          }
-                        }}
-                        className="blog-search-input"
-                        placeholder="Try “cervical”, “sleep”, “stress”…"
-                        role="combobox"
-                        aria-autocomplete="list"
-                        aria-expanded={isSuggestOpen && suggestions.length > 0}
-                        aria-controls={listboxId}
-                        aria-activedescendant={
-                          activeSuggestion >= 0 ? suggestions[activeSuggestion]?.id : undefined
-                        }
-                      />
-                      {query && (
-                        <button
-                          type="button"
-                          className="blog-search-clear"
-                          aria-label="Clear search query"
-                          onClick={() => {
-                            setQuery('');
-                            setIsSuggestOpen(false);
-                            setActiveSuggestion(-1);
-                            if (inputRef.current) inputRef.current.focus();
-                          }}
-                        >
-                          ×
-                        </button>
-                      )}
-                    </div>
-                    <button
-                      type="submit"
-                      className="blog-search-submit"
-                      aria-label="Search blog posts"
-                      disabled={Boolean(queryError || dateError)}
-                    >
-                      Search
-                    </button>
-                  </div>
-
-                  {queryError && <p className="blog-field-error">{queryError}</p>}
-                  {dateError && <p className="blog-field-error">{dateError}</p>}
-
-                  {isSuggestOpen && suggestions.length > 0 && (
-                    <div className="blog-suggest" ref={suggestionRef}>
-                      <div id={listboxId} role="listbox" className="blog-suggest-list" aria-label="Suggestions">
-                        {suggestions.map((s, idx) => (
-                          <button
-                            key={s.id}
-                            id={s.id}
-                            type="button"
-                            role="option"
-                            aria-selected={idx === activeSuggestion}
-                            className={idx === activeSuggestion ? 'blog-suggest-item blog-suggest-item-active' : 'blog-suggest-item'}
-                            onMouseEnter={() => setActiveSuggestion(idx)}
-                            onClick={() => onSelectSuggestion(s)}
-                          >
-                            <span className="blog-suggest-label">{s.label}</span>
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="blog-filters" aria-label="Filters">
-                    <div className="blog-filter">
-                      <label className="blog-filter-label" htmlFor="blog-category">
-                        Category
-                      </label>
-                      <select
-                        id="blog-category"
-                        className="blog-select"
-                        value={category}
-                        onChange={(e) => setCategory(e.target.value)}
-                      >
-                        {categories.map((c) => (
-                          <option key={c} value={c}>
-                            {c}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-
-                    <div className="blog-filter">
-                      <label className="blog-filter-label" htmlFor="blog-from">
-                        From
-                      </label>
-                      <input
-                        id="blog-from"
-                        type="date"
-                        className="blog-date"
-                        value={dateFrom}
-                        onChange={(e) => setDateFrom(e.target.value)}
-                      />
-                    </div>
-
-                    <div className="blog-filter">
-                      <label className="blog-filter-label" htmlFor="blog-to">
-                        To
-                      </label>
-                      <input
-                        id="blog-to"
-                        type="date"
-                        className="blog-date"
-                        value={dateTo}
-                        onChange={(e) => setDateTo(e.target.value)}
-                      />
-                    </div>
-                  </div>
-
-                  <div className="blog-tagRow" aria-label="Tag filters">
-                    {Array.from(new Set([...selectedTags, ...allTags.slice(0, 12)])).map((t) => {
-                      const active = selectedTags.includes(t);
-                      return (
-                        <button
-                          key={t}
-                          type="button"
-                          className={active ? 'blog-tag blog-tag-active' : 'blog-tag'}
-                          aria-pressed={active}
-                          onClick={() => toggleTag(t)}
-                        >
-                          {t}
-                        </button>
-                      );
-                    })}
-                  </div>
-                </form>
-              </div>
-            </section>
-
             <section className="blog-featured" aria-label="Featured learning articles">
               <header className="blog-section-head">
                 <h2 className="blog-section-title">Featured learning articles</h2>
@@ -1117,14 +953,14 @@ const BlogPage: React.FC = () => {
                 articlesRef.current = el;
               }}
               aria-label="All articles"
-              aria-busy={isPaging}
+              aria-busy={isBusy}
             >
               <header className="blog-section-head blog-section-head-row">
                 <div>
                   <h2 className="blog-section-title">All articles</h2>
                   <p className="blog-section-subtitle">
                     {totalResults} result{totalResults === 1 ? '' : 's'}
-                    {query.trim() ? ` for “${query.trim()}”` : ''}
+                    {normalizedQuery ? ` for “${urlQuery.trim()}”` : ''}
                     {totalPages > 1 ? ` · Page ${safeCurrentPage} of ${totalPages}` : ''}
                   </p>
                 </div>
@@ -1138,24 +974,32 @@ const BlogPage: React.FC = () => {
                 </button>
               </header>
 
-              {isPaging ? (
+              {isBusy ? (
                 <p className="blog-pagination-status" role="status" aria-live="polite">
                   Loading…
                 </p>
               ) : null}
 
-              {totalResults === 0 ? (
+              {queryState.error ? (
+                <div className="blog-empty" role="status" aria-live="polite">
+                  <h3 className="blog-empty-title">Something went wrong</h3>
+                  <p className="blog-empty-body">{queryState.error}</p>
+                  <button type="button" className="blog-cta" onClick={clearFilters} aria-label="Clear filters">
+                    Clear filters
+                  </button>
+                </div>
+              ) : totalResults === 0 ? (
                 <div className="blog-empty" role="status" aria-live="polite">
                   <h3 className="blog-empty-title">No matches found</h3>
-                  <p className="blog-empty-body">Try a different keyword or clear filters to see more articles.</p>
+                  <p className="blog-empty-body">Clear filters to see more articles.</p>
                   <button type="button" className="blog-cta" onClick={clearFilters} aria-label="Clear filters">
                     Clear filters
                   </button>
                 </div>
               ) : pageSlice.length > 20 ? (
-                <VirtualBlogGrid posts={pageSlice} isLoading={isPaging} />
+                <VirtualBlogGrid posts={pageSlice} isLoading={isBusy} />
               ) : (
-                <div className={isPaging ? 'blog-cardGrid blog-cardGrid-loading' : 'blog-cardGrid'} role="list">
+                <div className={isBusy ? 'blog-cardGrid blog-cardGrid-loading' : 'blog-cardGrid'} role="list">
                   {pageSlice.map((p) => (
                     <BlogCardCompact key={p.slug} post={p} />
                   ))}
@@ -1168,7 +1012,7 @@ const BlogPage: React.FC = () => {
                 itemsPerPage={safeItemsPerPage}
                 onPageChange={onPageChange}
                 onItemsPerPageChange={onItemsPerPageChange}
-                isLoading={isPaging}
+                isLoading={isBusy}
                 scrollToTop={scrollToArticles}
               />
             </section>
@@ -1214,7 +1058,7 @@ const BlogPage: React.FC = () => {
                   Show results
                 </button>
               </div>
-              <div className="blog-drawer-sections">{sidebarBody}</div>
+              <div className="blog-drawer-sections">{renderSidebarBody(drawerPrefix)}</div>
             </div>
           </div>
         </div>

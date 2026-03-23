@@ -1,38 +1,25 @@
-.page {
+.about-page {
+  --psx-max: 1160px;
+  --psx-gutter: clamp(16px, 4vw, 32px);
   min-height: 100vh;
-  background-color: #fffdf5;
+  background-color: #f8fafc;
   color: #111827;
 }
 
-.page-hero {
-  padding-top: 120px;
-  padding-bottom: 40px;
-  padding-left: 48px;
-  padding-right: 48px;
-}
-
-.page-main {
+.about-page .page-main {
   padding: 4rem 1rem;
   max-width: 1400px;
   margin: 0 auto;
 }
 
-.page-section {
+.about-page .page-section {
   margin: 0 auto 6rem;
   width: 100%;
 }
 
-.page-footer {
-  padding: 24px 48px;
-  text-align: center;
-  background-color: #0f172a;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 12px;
-}
-
 /* New Sections Styles */
-.who-we-are .section-content,
-.the-centre .section-content {
+.about-page .who-we-are .section-content,
+.about-page .the-centre .section-content {
   display: flex;
   gap: 4rem;
   align-items: flex-start;
@@ -40,7 +27,8 @@
   margin: 0 auto;
 }
 
-.who-we-are h2, .the-centre h2 {
+.about-page .who-we-are h2,
+.about-page .the-centre h2 {
   color: #003366; /* Deep blue from wireframe */
   font-size: 3rem;
   font-weight: 700;
@@ -48,7 +36,7 @@
   line-height: 1.2;
 }
 
-.who-we-are::before {
+.about-page .who-we-are::before {
     content: '';
     position: absolute;
     left: 0;
@@ -60,29 +48,29 @@
     box-shadow: 0 8px 16px rgba(251, 171, 80, 0.25);
 }
 
-.section-title-col {
+.about-page .section-title-col {
   flex: 0 0 35%;
   padding-top: 2rem;
 }
 
-.section-text-col {
+.about-page .section-text-col {
   flex: 1;
   text-align: left;
   justify-content: flex-start;
 }
 
-.section-text-col p {
+.about-page .section-text-col p {
   font-size: 1.1rem;
   line-height: 1.8;
   color: #4b5563;
   margin-bottom: 1.5rem;
 }
 
-.section-video-col {
+.about-page .section-video-col {
     flex: 1;
 }
 
-.section-video-col video {
+.about-page .section-video-col video {
     width: 100%;
     height: 680px;
     border-radius: 12px;
@@ -91,42 +79,42 @@
 }
 
 /* Team Grid Top */
-.team-section {
+.about-page .team-section {
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.team-grid-top {
+.about-page .team-grid-top {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     margin-bottom: 4rem;
 }
 
-.clickable-card {
+.about-page .clickable-card {
     cursor: pointer;
     position: relative;
 }
 
-.team-card-large {
+.about-page .team-card-large {
     background-color: #fffaf0; /* Light cream/yellow background */
     text-align: left;
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.team-card-large:hover {
+.about-page .team-card-large:hover {
     transform: translateY(-5px);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-.team-image-wrapper {
+.about-page .team-image-wrapper {
     width: 100%;
     height: 400px;
     overflow: hidden;
 }
 
-.team-card-large img {
+.about-page .team-card-large img {
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -134,22 +122,22 @@
     transition: transform 0.5s ease;
 }
 
-.team-card-large:hover img {
+.about-page .team-card-large:hover img {
     transform: scale(1.05);
 }
 
-.team-info {
+.about-page .team-info {
     padding: 2rem 1.5rem;
 }
 
-.team-info h3 {
+.about-page .team-info h3 {
     color: #003366;
     margin-bottom: 0.5rem;
     font-size: 1.5rem;
     font-weight: 700;
 }
 
-.team-role {
+.about-page .team-role {
     color: #4b5563;
     font-size: 0.95rem;
     margin: 0;
@@ -158,14 +146,14 @@
 }
 
 /* Team Grid Bottom */
-.team-grid-bottom {
+.about-page .team-grid-bottom {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
 }
 
-.team-card-small {
-    background: #ffffff;
+.about-page .team-card-small {
+    background: #f8fafc;
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
@@ -173,20 +161,20 @@
     border: 1px solid #f3f4f6;
 }
 
-.team-card-small:hover {
+.about-page .team-card-small:hover {
     box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
     transform: translateY(-3px);
     border-color: #e5e7eb;
 }
 
-.team-card-small h3 {
+.about-page .team-card-small h3 {
     color: #003366;
     font-size: 1.125rem;
     margin-bottom: 0.5rem;
     font-weight: 700;
 }
 
-.team-card-small p {
+.about-page .team-card-small p {
     color: #4b5563;
     font-size: 0.875rem;
     margin: 0;
@@ -194,7 +182,7 @@
 }
 
 /* Doctor Sidebar Styles */
-.doctor-sidebar-overlay {
+.about-page .doctor-sidebar-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -209,19 +197,20 @@
   will-change: opacity;
 }
 
-.doctor-sidebar-overlay.open {
+.about-page .doctor-sidebar-overlay.open {
   opacity: 1;
   visibility: visible;
 }
 
-.doctor-sidebar {
-  position: fixed;
+.about-page .doctor-sidebar {
+  position: absolute;
   top: 0;
   right: 0;
   width: 100%;
   max-width: 480px;
-  height: 100%;
-  background-color: #ffffff;
+  height: 100vh;
+  max-height: 100vh;
+  background-color: #f8fafc;
   z-index: 9999;
   transform: translate3d(100%, 0, 0);
   transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -231,11 +220,11 @@
   will-change: transform;
 }
 
-.doctor-sidebar.open {
+.about-page .doctor-sidebar.open {
   transform: translate3d(0, 0, 0);
 }
 
-.sidebar-close-btn {
+.about-page .sidebar-close-btn {
     position: absolute;
     top: 1.5rem;
     right: 1.5rem;
@@ -252,22 +241,22 @@
     z-index: 10;
 }
 
-.sidebar-close-btn:hover {
+.about-page .sidebar-close-btn:hover {
     background-color: #f3f4f6;
     color: #111827;
 }
 
-.sidebar-content {
+.about-page .sidebar-content {
     flex: 1;
     overflow-y: auto;
     padding: 3rem 2rem 2rem;
 }
 
-.sidebar-header {
+.about-page .sidebar-header {
     margin-bottom: 2.5rem;
 }
 
-.sidebar-image-wrapper {
+.about-page .sidebar-image-wrapper {
     width: 120px;
     height: 120px;
     border-radius: 50%;
@@ -276,13 +265,13 @@
     border: 4px solid #f3f4f6;
 }
 
-.sidebar-image-wrapper img {
+.about-page .sidebar-image-wrapper img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.sidebar-name {
+.about-page .sidebar-name {
     font-size: 2rem;
     color: #003366;
     font-weight: 700;
@@ -290,13 +279,13 @@
     line-height: 1.2;
 }
 
-.sidebar-roles {
+.about-page .sidebar-roles {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
 }
 
-.sidebar-role {
+.about-page .sidebar-role {
     display: inline-block;
     background-color: #f0f9ff;
     color: #0369a1;
@@ -306,19 +295,19 @@
     font-weight: 500;
 }
 
-.sidebar-section {
+.about-page .sidebar-section {
     margin-bottom: 2.5rem;
     border-bottom: 1px solid #e5e7eb;
     padding-bottom: 2.5rem;
 }
 
-.sidebar-section:last-child {
+.about-page .sidebar-section:last-child {
     border-bottom: none;
     margin-bottom: 0;
     padding-bottom: 0;
 }
 
-.sidebar-section h3 {
+.about-page .sidebar-section h3 {
     font-size: 1.125rem;
     font-weight: 600;
     color: #111827;
@@ -327,19 +316,19 @@
     letter-spacing: 0.05em;
 }
 
-.sidebar-section p {
+.about-page .sidebar-section p {
     color: #4b5563;
     line-height: 1.7;
     font-size: 1rem;
 }
 
-.sidebar-list {
+.about-page .sidebar-list {
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
-.sidebar-list li {
+.about-page .sidebar-list li {
     position: relative;
     padding-left: 1.5rem;
     margin-bottom: 0.75rem;
@@ -347,7 +336,7 @@
     line-height: 1.5;
 }
 
-.sidebar-list li::before {
+.about-page .sidebar-list li::before {
     content: "•";
     position: absolute;
     left: 0;
@@ -355,36 +344,36 @@
     font-weight: bold;
 }
 
-.contact-item {
+.about-page .contact-item {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     margin-bottom: 0.75rem;
 }
 
-.contact-label {
+.about-page .contact-label {
     font-weight: 600;
     color: #374151;
     min-width: 60px;
 }
 
-.contact-item a {
+.about-page .contact-item a {
     color: #003366;
     text-decoration: none;
     transition: color 0.2s;
 }
 
-.contact-item a:hover {
+.about-page .contact-item a:hover {
     color: #0369a1;
     text-decoration: underline;
 }
 
-.sidebar-social-links {
+.about-page .sidebar-social-links {
     display: flex;
     gap: 1rem;
 }
 
-.sidebar-social-links a {
+.about-page .sidebar-social-links a {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -396,20 +385,20 @@
     transition: all 0.2s;
 }
 
-.sidebar-social-links a:hover {
+.about-page .sidebar-social-links a:hover {
     background-color: #003366;
     color: #ffffff;
     transform: translateY(-2px);
 }
 
 /* Mobile Video Styles */
-.mobile-video-container {
+.about-page .mobile-video-container {
     display: none;
     margin-bottom: 2rem;
     width: 100%;
 }
 
-.mobile-video-container video {
+.about-page .mobile-video-container video {
     width: 100%;
     height: 300px;
     border-radius: 12px;
@@ -420,50 +409,51 @@
 /* Team Section Styles */
 
 @media (max-width: 960px) {
-    .section-video-col {
+    .about-page .section-video-col {
         display: none;
     }
 
-    .mobile-video-container {
+    .about-page .mobile-video-container {
         display: block;
     }
 
-    .who-we-are .section-content,
-    .the-centre .section-content {
+    .about-page .who-we-are .section-content,
+    .about-page .the-centre .section-content {
         flex-direction: column;
         gap: 2rem;
     }
 
-    .who-we-are h2, .the-centre h2 {
+    .about-page .who-we-are h2,
+    .about-page .the-centre h2 {
         font-size: 2.5rem;
         margin-bottom: 1rem;
     }
     
-    .team-grid-top {
+    .about-page .team-grid-top {
         grid-template-columns: 1fr;
         gap: 2rem;
     }
 
-    .team-image-wrapper {
+    .about-page .team-image-wrapper {
         height: 350px;
     }
     
-    .team-grid-bottom {
+    .about-page .team-grid-bottom {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 640px) {
-    .team-grid-bottom {
+    .about-page .team-grid-bottom {
         grid-template-columns: 1fr;
     }
     
-    .doctor-sidebar {
+    .about-page .doctor-sidebar {
         width: 100%;
         max-width: 100%;
     }
     
-    .sidebar-content {
+    .about-page .sidebar-content {
         padding: 4rem 1.5rem 2rem;
     }
 }

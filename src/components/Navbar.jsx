@@ -1,13 +1,15 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import Search from './Search';
 import {
   specialitiesCategories,
   treatmentsCategories,
   resourceCategories,
 } from '../data/navigation';
 
-const mainLinks = [{ to: '/about', label: 'About' }];
+const mainLinks = [
+  { to: '/blog', label: 'Blog', ariaLabel: 'Blog' },
+  { to: '/about', label: 'About', ariaLabel: 'About' },
+];
 
 export { specialitiesCategories, treatmentsCategories, resourceCategories };
 
@@ -16,7 +18,6 @@ export default function Navbar() {
   const navigate = useNavigate();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [shouldFocusDropdown, setShouldFocusDropdown] = useState(false);
   const [mobileExpandedSection, setMobileExpandedSection] = useState(null);
@@ -33,7 +34,6 @@ export default function Navbar() {
   const isSpecialitiesActive = location.pathname.startsWith('/specialities');
   const isTreatmentsActive = location.pathname.startsWith('/treatments');
   const isResourcesActive = location.pathname.startsWith('/resources');
-  const isTipsForSelfCare = location.pathname === '/resources/learn/tips-for-self-care';
 
   const dropdownKeys = ['specialities', 'treatments', 'resources'];
   const hoverOpenDelayMs = 90;
@@ -128,7 +128,6 @@ export default function Navbar() {
     }, hoverCloseDelayMs);
   };
 
-  // Removed dropdown search bar and filtering
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 8);
@@ -332,7 +331,7 @@ export default function Navbar() {
       ref={headerRef}
       className={[
         'navbar',
-        scrolled || isTipsForSelfCare ? 'navbar-scrolled' : '',
+        scrolled ? 'navbar-scrolled' : '',
       ]
         .filter(Boolean)
         .join(' ')}
@@ -450,6 +449,7 @@ export default function Navbar() {
                           <Link
                             to={item.path}
                             role="menuitem"
+                            title={item.label}
                             className={
                               location.pathname === item.path
                                 ? 'navbar-dropdown-link is-active'
@@ -552,6 +552,7 @@ export default function Navbar() {
                           <Link
                             to={item.path}
                             role="menuitem"
+                            title={item.label}
                             className={
                               location.pathname === item.path
                                 ? 'navbar-dropdown-link is-active'
@@ -654,6 +655,7 @@ export default function Navbar() {
                           <Link
                             to={item.path}
                             role="menuitem"
+                            title={item.label}
                             className={
                               location.pathname === item.path
                                 ? 'navbar-dropdown-link is-active'
@@ -685,8 +687,11 @@ export default function Navbar() {
             <div key={link.to} className="navbar-dropdown-wrapper">
               <Link
                 to={link.to}
+                aria-label={link.ariaLabel}
                 className={
-                  location.pathname === link.to
+                  (link.to === '/blog'
+                    ? location.pathname === '/blog' || location.pathname.startsWith('/blog/')
+                    : location.pathname === link.to)
                     ? 'navbar-link navbar-link-active'
                     : 'navbar-link'
                 }
@@ -701,7 +706,6 @@ export default function Navbar() {
         </div>
 
         <div className="navbar-right">
-          <Search />
           <Link to="/contact" className="navbar-cta navbar-cta-desktop navbar-cta-dark">
             <span>Book Now</span>
             <span className="navbar-cta-icon" aria-hidden="true">
@@ -965,6 +969,14 @@ export default function Navbar() {
               </span>
             </Link>
             <Link
+              to="/blog"
+              className="mobile-nav-footer-link"
+              aria-label="Blog"
+              onClick={() => closeMobileNav({ restoreFocus: false })}
+            >
+              Blog
+            </Link>
+            <Link
               to="/about"
               className="mobile-nav-footer-link"
               onClick={() => closeMobileNav({ restoreFocus: false })}
@@ -1029,12 +1041,6 @@ export default function Navbar() {
         </div>
       </div>
     </header>
-    <div className={`navbar-search-mobile ${mobileSearchOpen ? 'search-open' : ''}`}>
-      <Search 
-        onNavigate={() => closeMobileNav({ restoreFocus: false })} 
-        onToggle={setMobileSearchOpen}
-      />
-    </div>
     </>
   );
 }

@@ -6,7 +6,6 @@ const SocialShare: React.FC = () => {
   const [title, setTitle] = useState('');
 
   useEffect(() => {
-    // Only access window in client-side effect
     setUrl(encodeURIComponent(window.location.href));
     setTitle(encodeURIComponent(document.title));
   }, []);
@@ -71,9 +70,6 @@ const SocialShare: React.FC = () => {
   ];
 
   const handleShare = (platform: string, shareUrl: string) => {
-    // Analytics placeholder
-    console.log(`[SocialShare] User shared on ${platform}`);
-    
     if (platform === 'Email') {
       window.location.href = shareUrl;
     } else {

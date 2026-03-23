@@ -1,1 +1,0 @@
-import{j as o}from"./index-BsZsA7yt.js";const i=()=>o.jsxs("main",{className:"cookie-policy-page",children:[o.jsx("h1",{children:"Cookie policy"}),o.jsx("p",{children:"Content for Cookie policy will go here."})]});export{i as default};

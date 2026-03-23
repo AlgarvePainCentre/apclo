@@ -1,11 +1,13 @@
-import { useEffect, useRef } from 'react';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
+import { useEffect, useRef, useState } from 'react';
 import './Contact.css';
 
 export default function Contact() {
   const heroRef = useRef(null);
   const heroVideoRef = useRef(null);
+  const mapIframeRef = useRef(null);
+  const [mapLoaded, setMapLoaded] = useState(false);
+  const mapUrl =
+    'https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil&z=16&output=embed';
 
   useEffect(() => {
     const heroEl = heroRef.current;
@@ -63,9 +65,32 @@ export default function Contact() {
     meta.content = descriptionText;
   }, []);
 
+  useEffect(() => {
+    if (mapLoaded) return undefined;
+    const iframe = mapIframeRef.current;
+    if (!iframe) return undefined;
+
+    if (!('IntersectionObserver' in window)) {
+      setMapLoaded(true);
+      return undefined;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((e) => e.isIntersecting)) {
+          setMapLoaded(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '240px 0px' },
+    );
+
+    observer.observe(iframe);
+    return () => observer.disconnect();
+  }, [mapLoaded]);
+
   return (
-    <div className="page">
-      <Navbar />
+    <div className="contact-page">
       <section className="hero" ref={heroRef}>
         <div className="hero-video" aria-hidden="true" ref={heroVideoRef}>
           <video
@@ -260,8 +285,9 @@ export default function Contact() {
             </div>
             <div className="contact-visit-map">
               <iframe
+                ref={mapIframeRef}
                 title="Algarve Pain Centre location"
-                src="https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil&z=16&output=embed"
+                src={mapLoaded ? mapUrl : undefined}
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
@@ -269,7 +295,6 @@ export default function Contact() {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

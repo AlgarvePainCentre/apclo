@@ -230,10 +230,6 @@ export const resourceCategories = [
     title: 'Learn',
     items: [
       {
-        label: 'Tips for Self-Care',
-        path: '/resources/learn/tips-for-self-care',
-      },
-      {
         label: 'Blog',
         path: '/resources/learn/blog',
       },

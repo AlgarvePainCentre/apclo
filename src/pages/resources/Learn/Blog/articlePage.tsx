@@ -259,7 +259,7 @@ const BlogArticlePage: React.FC = () => {
           <section className="article-section">
             <h2>Browse all articles</h2>
             <p>
-              Head back to the blog index to search, filter, and explore topics.
+              Head back to the blog index to filter and explore topics.
             </p>
             <Link to="/blog" className="article-inline-link">
               Go to Blog

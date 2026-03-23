@@ -4,6 +4,43 @@
   background-color: var(--color-white);
 }
 
+.article-hero-content,
+.article-main,
+.article-section,
+.article-nav-content {
+  max-width: 100%;
+}
+
+.article-hero h1,
+.article-subtitle,
+.article-section h2,
+.article-section h3,
+.article-section p,
+.article-section li,
+.article-nav-label,
+.article-nav-title {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.article-page pre {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article-page table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.article-page iframe {
+  max-width: 100%;
+}
+
 .article-hero {
   position: relative;
   min-height: 50vh;
@@ -276,6 +313,8 @@
   align-items: center;
   justify-content: center;
   gap: 1rem;
+  flex-wrap: wrap;
+  max-width: 100%;
   transition: transform 0.3s ease;
 }
 
@@ -449,7 +488,7 @@
 .symptom-card {
   display: flex;
   flex-direction: column-reverse; /* Image on top on mobile, content bottom */
-  background-color: #fff;
+  background-color: #f8fafc;
   border-radius: 12px;
   overflow: hidden;
   transition: transform 0.3s ease;
@@ -623,7 +662,7 @@
 }
 
 .treatment-approaches-grid .treatment-card {
-  background-color: #ffffff;
+  background-color: #f8fafc;
   border-radius: 12px;
   padding: 2.5rem 2rem;
   display: flex;
@@ -679,7 +718,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
-  background-color: #fff;
+  background-color: #f8fafc;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   border-radius: 8px;
@@ -707,7 +746,7 @@
 
 .acute-pain-text {
   padding: 3rem;
-  background-color: #ffffff;
+  background-color: #f8fafc;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -758,7 +797,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
-  background-color: #fff;
+  background-color: #f8fafc;
   overflow: hidden;
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   border-radius: 8px;
@@ -794,7 +833,7 @@
 
 .chronic-pain-text {
   padding: 3rem;
-  background-color: #ffffff;
+  background-color: #f8fafc;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -853,7 +892,7 @@
 
 .difference-card {
   display: flex;
-  background-color: #fff;
+  background-color: #f8fafc;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
@@ -950,7 +989,7 @@
 }
 
 .diagnosis-card {
-  background-color: #fff;
+  background-color: #f8fafc;
   border-radius: 12px;
   padding: 2.5rem 2rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -1129,7 +1168,7 @@
 }
 
 .article-author-card {
-  background: #ffffff;
+  background: #f8fafc;
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 12px;
   padding: 1.5rem;
@@ -1188,7 +1227,7 @@
   padding: 0.75rem 0.9rem;
   font-size: 1rem;
   color: #1a202c;
-  background-color: #fff;
+  background-color: #f8fafc;
 }
 
 .article-form-input:focus-visible,
@@ -1231,7 +1270,7 @@
 }
 
 .article-comment {
-  background: #ffffff;
+  background: #f8fafc;
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 12px;
   padding: 1rem 1.25rem;
@@ -1274,7 +1313,7 @@
 }
 
 .article-sidebar-card {
-  background: #ffffff;
+  background: #f8fafc;
   border: 1px solid rgba(0, 0, 0, 0.06);
   border-radius: 12px;
   padding: 1.25rem;

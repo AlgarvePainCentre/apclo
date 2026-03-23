@@ -1,1 +1,0 @@
-import{j as e}from"./index-BsZsA7yt.js";const s=()=>e.jsxs("main",{className:"accessibility-statement-page",children:[e.jsx("h1",{children:"Accessibility statement"}),e.jsx("p",{children:"Content for Accessibility statement will go here."})]});export{s as default};

@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Algarve Pain Centre</title>
     <meta name="description" content="Algarve Pain Centre is a specialised pain clinic in Vale do Lobo, Algarve, Portugal. Our multidisciplinary team treats spine, joint and nerve pain." />
     
@@ -19,10 +19,372 @@
     <meta property="twitter:title" content="Algarve Pain Centre | Multidisciplinary Pain Clinic" />
     <meta property="twitter:description" content="Algarve Pain Centre is a specialised pain clinic in Vale do Lobo, Algarve, Portugal. Our multidisciplinary team treats spine, joint and nerve pain." />
     <meta property="twitter:image" content="https://www.algarvepaincentre.com/assets/twitter-image.jpg" />
-    <script type="module" crossorigin src="/assets/index-BsZsA7yt.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-C-yyGHRu.css">
+
+    <style>
+      html,
+      body {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: hidden;
+      }
+
+      html.apc-preloader-lock,
+      body.apc-preloader-lock {
+        overflow: hidden;
+      }
+
+      .apc-preloader {
+        position: fixed;
+        inset: 0;
+        z-index: 2147483647;
+        display: block;
+        background: #000;
+        width: 100%;
+        max-width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        height: calc(var(--apc-vh, 1vh) * 100);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        overflow: hidden;
+        overflow-x: clip;
+        overscroll-behavior: none;
+        transition: opacity 1000ms ease-in-out, visibility 0s linear 1000ms;
+        animation: apcPreloaderFadeIn 220ms ease both;
+      }
+
+      .apc-preloader.apc-preloader--hidden {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .apc-preloader__video {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .apc-preloader__scrim {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0%, rgba(0, 0, 0, 0.55) 70%, rgba(0, 0, 0, 0.7) 100%);
+      }
+
+      .apc-preloader__center {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        z-index: 2;
+        pointer-events: none;
+        padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom)
+          env(safe-area-inset-left);
+      }
+
+      .apc-preloader__logo {
+        width: var(--apc-preloader-logo-width, min(52vw, 660px));
+        max-width: calc(100vw - 32px);
+        height: auto;
+        display: block;
+        transform-origin: 50% 50%;
+        filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.4));
+        animation: apcPreloaderLogoPulse 1200ms ease-in-out infinite;
+      }
+
+      @keyframes apcPreloaderLogoPulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.92;
+        }
+        50% {
+          transform: scale(1.035);
+          opacity: 1;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.92;
+        }
+      }
+
+      .apc-sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+
+      @keyframes apcPreloaderFadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .apc-preloader {
+          animation: none;
+          transition: opacity 120ms ease, visibility 0s linear 120ms;
+        }
+
+        .apc-preloader__logo {
+          animation: none;
+        }
+      }
+
+      @media (max-width: 768px) and (orientation: portrait) {
+        .apc-preloader__logo {
+          width: var(--apc-preloader-logo-width, min(74vw, 460px));
+        }
+      }
+
+      @media (max-width: 768px) and (orientation: landscape) {
+        .apc-preloader__logo {
+          width: var(--apc-preloader-logo-width, min(44vw, 340px));
+        }
+      }
+
+      @media (max-width: 360px) and (orientation: portrait) {
+        .apc-preloader__logo {
+          width: var(--apc-preloader-logo-width, min(78vw, 420px));
+        }
+      }
+    </style>
+    <noscript>
+      <style>
+        #apc-preloader {
+          display: none !important;
+        }
+        html.apc-preloader-lock,
+        body.apc-preloader-lock {
+          overflow: auto !important;
+        }
+        #root {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style>
+    </noscript>
+    <script type="module" crossorigin src="/assets/index-C55oCCuj.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DRH5oXYe.css">
   </head>
   <body>
+    <div id="apc-preloader" class="apc-preloader" role="status" aria-live="polite" aria-busy="true">
+      <video
+        id=""
+        class="apc-preloader__video"
+        muted
+        playsinline
+        autoplay
+        loop
+        preload="auto"
+        disablepictureinpicture
+        controlslist="nodownload noplaybackrate noremoteplayback"
+        aria-hidden="true"
+      >
+        <source src="/assets/videos/Sports-Medicine-Video-min-1.mp4" type="video/mp4" />
+      </video>
+           <div class="apc-preloader__scrim" aria-hidden="true"></div>
+      <div class="apc-preloader__center" aria-hidden="true">
+        <img
+          id="apc-preloader-logo"
+          class="apc-preloader__logo"
+          src="/assets/apc-branco.svg"
+          decoding="async"
+          alt=""
+        />
+      </div>
+      <span class="apc-sr-only">Loading…</span>
+    </div>
+
     <div id="root"></div>
+    <script>
+      (() => {
+        const preloader = document.getElementById("apc-preloader");
+        if (!preloader) return;
+
+        const root = document.getElementById("root");
+
+        const scheduleViewportUpdate = (() => {
+          let rafId = 0;
+          return () => {
+            if (rafId) return;
+            rafId = requestAnimationFrame(() => {
+              rafId = 0;
+              applyPreloaderViewportSizing();
+            });
+          };
+        })();
+
+        function applyPreloaderViewportSizing() {
+          const visualViewport = window.visualViewport;
+          const viewportWidth = Math.round((visualViewport?.width ?? window.innerWidth) || 0);
+          const viewportHeight = Math.round((visualViewport?.height ?? window.innerHeight) || 0);
+
+          if (viewportWidth) {
+            document.documentElement.style.setProperty("--apc-vw", `${viewportWidth}px`);
+          }
+
+          if (viewportHeight) {
+            document.documentElement.style.setProperty("--apc-vh", `${viewportHeight * 0.01}px`);
+          }
+
+          if (viewportWidth && viewportHeight) {
+            const isLandscape = viewportWidth > viewportHeight;
+            const maxLogoWidth = Math.max(240, Math.min(viewportWidth - 32, isLandscape ? 340 : 460));
+            const logoWidth = Math.round(Math.min(maxLogoWidth, viewportWidth * (isLandscape ? 0.44 : 0.74)));
+            document.documentElement.style.setProperty("--apc-preloader-logo-width", `${logoWidth}px`);
+          }
+        }
+
+        applyPreloaderViewportSizing();
+        window.addEventListener("resize", scheduleViewportUpdate, { passive: true });
+        window.addEventListener("orientationchange", scheduleViewportUpdate, { passive: true });
+        if (window.visualViewport) {
+          window.visualViewport.addEventListener("resize", scheduleViewportUpdate, { passive: true });
+          window.visualViewport.addEventListener("scroll", scheduleViewportUpdate, { passive: true });
+        }
+
+        const reduceMotion = (() => {
+          try {
+            return !!window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          } catch {
+            return false;
+          }
+        })();
+
+        document.documentElement.classList.add("apc-preloader-lock");
+        document.body.classList.add("apc-preloader-lock");
+
+        if (root) {
+          root.setAttribute("aria-hidden", "true");
+          root.setAttribute("inert", "");
+          root.style.opacity = "0";
+          root.style.willChange = "opacity";
+          try {
+            root.inert = true;
+          } catch {}
+        }
+
+        const startedAt = typeof performance !== "undefined" && performance.now ? performance.now() : Date.now();
+        const minSequenceMs = 2000;
+
+        const loadPromise = new Promise((resolve) => {
+          if (document.readyState === "complete") resolve();
+          else window.addEventListener("load", resolve, { once: true });
+        });
+
+        const fontsReadyPromise = (() => {
+          try {
+            if (document.fonts && document.fonts.ready) return document.fonts.ready.catch(() => undefined);
+          } catch {}
+          return Promise.resolve();
+        })();
+
+        const maxWaitMs = 15000;
+        const timeoutPromise = new Promise((resolve) => window.setTimeout(resolve, maxWaitMs));
+
+        let resourcesReady = false;
+
+        const readyPromise = Promise.all([loadPromise, fontsReadyPromise]).then(() => {
+          resourcesReady = true;
+        });
+
+        Promise.race([readyPromise, timeoutPromise]).then(() => {
+          resourcesReady = true;
+        });
+
+        const tick = () => {
+          const now = typeof performance !== "undefined" && performance.now ? performance.now() : Date.now();
+          const elapsedMs = now - startedAt;
+          if (resourcesReady && elapsedMs >= minSequenceMs) {
+            finish();
+            return;
+          }
+          requestAnimationFrame(tick);
+        };
+
+        requestAnimationFrame(tick);
+
+        function finish() {
+          try {
+            window.__apcPreloaderComplete = true;
+            window.dispatchEvent(new Event("apc:preloaderComplete"));
+          } catch {}
+
+          if (typeof window.__apcEntranceStart === "function") {
+            try {
+              window.__apcEntranceStart();
+              return;
+            } catch {}
+          }
+
+          window.setTimeout(hidePreloader, 200);
+        }
+
+        function hidePreloader() {
+          if (preloader.classList.contains("apc-preloader--hidden")) return;
+
+          if (preloader.getAttribute("data-apc-gsap-done") === "1") {
+            document.documentElement.classList.remove("apc-preloader-lock");
+            document.body.classList.remove("apc-preloader-lock");
+
+            if (root) {
+              root.removeAttribute("aria-hidden");
+              root.removeAttribute("inert");
+              try {
+                root.inert = false;
+              } catch {}
+            }
+
+            if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+            return;
+          }
+
+          if (root) {
+            root.style.opacity = "";
+            root.style.transform = "";
+            root.style.transformOrigin = "";
+            root.style.willChange = "";
+          }
+
+          preloader.classList.add("apc-preloader--hidden");
+
+          document.documentElement.classList.remove("apc-preloader-lock");
+          document.body.classList.remove("apc-preloader-lock");
+
+          if (root) {
+            root.removeAttribute("aria-hidden");
+            root.removeAttribute("inert");
+            try {
+              root.inert = false;
+            } catch {}
+          }
+
+          const remove = () => {
+            preloader.removeEventListener("transitionend", remove);
+            if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+          };
+
+          preloader.addEventListener("transitionend", remove);
+          window.setTimeout(remove, 1400);
+        }
+
+        try {
+          window.__apcHidePreloader = hidePreloader;
+        } catch {}
+      })();
+    </script>
   </body>
   </html>

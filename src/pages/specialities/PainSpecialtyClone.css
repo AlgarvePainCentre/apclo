@@ -1,50 +1,46 @@
-.head-pain-page {
+.psx-page {
   width: 100%;
   max-width: none;
   margin: 0;
   overflow-x: hidden;
-  background: linear-gradient(180deg, #f8fafc 0%, #f6f8fb 100%);
+  background: #f8fafc;
   color: #0f172a;
-  --hp-max: 1160px;
-  --hp-gutter: clamp(16px, 4vw, 32px);
-  --hp-radius-lg: 24px;
-  --hp-radius-md: 16px;
-  --hp-shadow-lg: 0 18px 48px rgba(2, 6, 23, 0.12);
-  --hp-shadow-md: 0 12px 32px rgba(2, 6, 23, 0.1);
-  --hp-ring: 0 0 0 4px rgba(59, 130, 246, 0.22);
+  --psx-max: 1160px;
+  --psx-gutter: clamp(16px, 4vw, 32px);
+  --psx-radius-lg: 24px;
+  --psx-radius-md: 16px;
+  --psx-shadow-lg: 0 18px 48px rgba(2, 6, 23, 0.12);
+  --psx-shadow-md: 0 12px 32px rgba(2, 6, 23, 0.1);
+  --psx-ring: 0 0 0 4px rgba(59, 130, 246, 0.22);
 }
 
-.head-pain-hero {
+.psx-hero {
   position: relative;
-  padding: clamp(56px, 8vw, 96px) var(--hp-gutter);
+  padding: clamp(56px, 8vw, 96px) var(--psx-gutter);
   padding-top: clamp(92px, 10vw, 128px);
   color: #fff;
   overflow: hidden;
 }
 
-.head-pain-hero-backdrop {
+.psx-hero-backdrop {
   position: absolute;
   inset: 0;
   background-image:
-    linear-gradient(135deg, rgba(0, 83, 132, 0.92) 0%, rgba(2, 6, 23, 0.6) 72%),
+    linear-gradient(rgba(167, 90, 13, 0.326), rgba(4, 11, 40, 0.6)),
     url('/assets/images/learn/1-banner-2.jpg');
   background-size: cover;
   background-position: center;
   filter: saturate(1.05);
 }
 
-.head-pain-hero-inner {
+.psx-hero-inner {
   position: relative;
-  max-width: var(--hp-max);
+  max-width: var(--psx-max);
   margin: 0 auto;
   padding: clamp(18px, 2.4vw, 28px);
-  border-radius: var(--hp-radius-lg);
-  background: linear-gradient(180deg, rgba(2, 6, 23, 0.5) 0%, rgba(2, 6, 23, 0.24) 100%);
-  backdrop-filter: blur(6px);
-  box-shadow: 0 18px 55px rgba(2, 6, 23, 0.32);
 }
 
-.head-pain-hero-eyebrow {
+.psx-hero-eyebrow {
   margin: 0 0 10px;
   font-size: 0.9rem;
   font-weight: 700;
@@ -53,14 +49,15 @@
   color: rgba(255, 255, 255, 0.88);
 }
 
-.head-pain-hero-title {
+.psx-hero-title {
   margin: 0 0 10px;
   font-size: clamp(2.1rem, 4.2vw, 3.3rem);
   line-height: 1.06;
   letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.98);
 }
 
-.head-pain-hero-subtitle {
+.psx-hero-subtitle {
   margin: 0;
   font-size: clamp(1.05rem, 1.6vw, 1.25rem);
   line-height: 1.6;
@@ -68,208 +65,240 @@
   color: rgba(255, 255, 255, 0.92);
 }
 
-.head-pain-hero-actions {
+.psx-hero-actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
   margin-top: 18px;
 }
 
-.head-pain-hero-actions .treatment-card-button,
-.head-pain-hero-actions .outline-btn {
-  max-width: none;
+.psx-hero-actions > a.psx-btn-outline[href^="#treatments"] {
+  display: none;
 }
 
-.head-pain-page .head-pain-main.page-main {
+.psx-btn-primary,
+.psx-btn-outline {
+  max-width: 320px;
+  background-color: var(--cta-bg-color, #f04b5e);
+  color: var(--cta-text-color, #ffffff);
+  padding: var(--cta-padding, 1.2rem 1.5rem);
+  border-radius: var(--cta-border-radius, 999px);
+  background-size: 200% 200%;
+  background-position: 0% 50%;
+  text-decoration: none;
+  text-align: center;
+  font-size: var(--cta-font-size, 16px);
+  font-weight: var(--cta-font-weight, 600);
+  letter-spacing: var(--cta-letter-spacing, 0.08em);
+  transform: scale(1);
+  transition:
+    background-position 0.35s ease-out,
+    box-shadow 0.28s ease-out,
+    transform 0.28s ease-out;
+}
+
+.psx-btn-primary:hover,
+.psx-btn-outline:hover {
+  background-image: var(
+    --cta-hover-gradient,
+    linear-gradient(
+      90deg,
+      var(--warm-orange, #ff9a52) 40%,
+      var(--warm-coral, #ff5c6e) 80%,
+      var(--warm-rose, #e83d5b) 100%
+    )
+  );
+  background-position: 100% 50%;
+  transform: scale(1.03);
+}
+
+.psx-btn-primary:focus-visible,
+.psx-btn-outline:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.28);
+}
+
+.psx-main {
   width: 100%;
-  max-width: 1600px;
+  max-width: 1440px;
   margin: 0 auto;
-  padding: clamp(24px, 5vw, 44px) var(--hp-gutter) clamp(56px, 7vw, 96px);
+  padding: clamp(24px, 5vw, 44px) var(--psx-gutter) clamp(56px, 7vw, 96px);
   background: transparent;
 }
 
-.head-pain-page .head-pain-main > .page-section {
+.psx-section {
   margin: 0;
   background: transparent;
 }
 
-.head-pain-page .head-pain-main > .page-section + .page-section {
+.psx-section + .psx-section {
   margin-top: clamp(28px, 5vw, 56px);
 }
 
-.head-pain-page .treatments-overview-header {
-  max-width: 70ch;
-  margin: 0 0 clamp(18px, 2.8vw, 28px);
+.psx-lead {
+  max-width: 140ch;
+  padding: 2rem 1rem;
+  margin: 0 auto;
   position: relative;
   padding-left: 18px;
 }
 
-.head-pain-page .treatments-overview-header::before {
+.psx-lead::before {
   content: '';
   position: absolute;
   left: 0;
-  top: 2px;
-  bottom: 2px;
+  top: 0;
+  bottom: 0;
   width: 4px;
   border-radius: 6px;
-  background: linear-gradient(180deg, rgba(162, 214, 244, 1), rgba(96, 187, 239, 1));
+  background: linear-gradient(180deg, var(--warm-yellow, #fbd38d), var(--warm-orange, #f6ad55) 60%, var(--warm-coral, #f58b8b));
   box-shadow: 0 8px 16px rgba(37, 99, 235, 0.22);
 }
 
-.head-pain-page .treatments-overview-title {
+.psx-lead-title {
   margin: 0 0 10px;
   font-size: clamp(2rem, 3.6vw, 3rem);
   line-height: 1.06;
   letter-spacing: -0.02em;
-  color: #0f172a;
+  color: #003366;
 }
 
-.head-pain-page .treatments-overview-subtitle {
+.psx-lead-subtitle {
+  display: none;
   margin: 0;
   font-size: clamp(1rem, 1.5vw, 1.15rem);
   line-height: 1.7;
-  color: rgba(15, 23, 42, 0.76);
+  color: rgba(15, 23, 42, 0.78);
 }
 
-.head-pain-page .treatments-overview-layout {
+.psx-treatments-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: clamp(16px, 3vw, 32px);
   align-items: stretch;
+  padding: 2rem 1rem;
+  margin: 0 auto;
 }
 
-.head-pain-page .treatments-overview-card {
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: var(--hp-radius-lg);
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  box-shadow: var(--hp-shadow-md);
+.psx-card {
+  background: transparent;
+  border-radius: var(--psx-radius-lg);
   padding: clamp(18px, 2.8vw, 28px);
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 14px;
-  transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
-.head-pain-page .treatments-overview-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--hp-shadow-lg);
-}
 
-.head-pain-page .treatments-overview-card:focus-within {
+.psx-card:focus-within {
   outline: none;
-  box-shadow: var(--hp-shadow-md), var(--hp-ring);
+  box-shadow: var(--psx-shadow-md), var(--psx-ring);
 }
 
-.head-pain-page .treatments-overview-card-title {
+.psx-card-title {
   margin: 0;
   font-size: clamp(1.35rem, 1.6vw, 1.7rem);
   line-height: 1.25;
   letter-spacing: -0.01em;
-  color: #0f172a;
+  color: #003366;
 }
 
-.head-pain-page .treatments-overview-card-accent {
+.psx-accent {
   width: 52px;
   height: 3px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--warm-orange, #ff9a52), var(--warm-coral, #ff5c6e), var(--warm-rose, #e83d5b));
+  background: linear-gradient(
+    90deg,
+    var(--warm-orange, #ff9a52),
+    var(--warm-coral, #ff5c6e),
+    var(--warm-rose, #e83d5b)
+  );
 }
 
-.head-pain-page .treatments-overview-card-body {
+.psx-body {
   margin: 0;
   font-size: 1rem;
   line-height: 1.8;
   color: rgba(15, 23, 42, 0.78);
 }
 
-.head-pain-page .treatments-overview-media {
-  border-radius: var(--hp-radius-lg);
+.psx-media {
+  border-radius: var(--psx-radius-lg);
   overflow: hidden;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  box-shadow: var(--hp-shadow-md);
   background: rgba(255, 255, 255, 0.92);
 }
 
-.head-pain-page .treatments-overview-media-inner {
+.psx-media-inner {
   position: relative;
   width: 100%;
   min-height: clamp(240px, 35vw, 420px);
 }
 
-.head-pain-page .treatments-overview-video {
+.psx-video {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transform: scale(2.4);
 }
 
-.head-pain-page .head-pain-approaches-inner {
-  border-radius: var(--hp-radius-lg);
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  box-shadow: var(--hp-shadow-md);
+.psx-approaches-panel {
+  border-radius: var(--psx-radius-lg);
+  background: transparent;
   padding: clamp(18px, 3vw, 34px);
 }
 
-.head-pain-page .head-pain-approaches-header {
+.psx-approaches-header {
   text-align: left;
   max-width: 70ch;
   margin: 0 0 clamp(16px, 2.4vw, 26px);
 }
 
-.head-pain-page .head-pain-approaches-title {
+.psx-approaches-title {
   margin: 0 0 10px;
   font-size: clamp(1.75rem, 2.6vw, 2.25rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: #0f172a;
+  color: #003366;
 }
 
-.head-pain-page .head-pain-approaches-subtitle {
+.psx-approaches-subtitle {
   margin: 0;
   font-size: 1rem;
   line-height: 1.7;
   color: rgba(15, 23, 42, 0.76);
 }
 
-.head-pain-page .head-pain-approaches-grid {
+.psx-approaches-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: clamp(14px, 2.6vw, 22px);
   align-items: stretch;
 }
 
-.head-pain-page .head-pain-approach-card {
-  border-radius: var(--hp-radius-lg);
+.psx-approach {
+  border-radius: var(--psx-radius-lg);
   overflow: hidden;
-  background: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  box-shadow: var(--hp-shadow-md);
+  background: transparent;
   display: flex;
   flex-direction: column;
   transition: transform 160ms ease, box-shadow 160ms ease;
 }
 
-.head-pain-page .head-pain-approach-card:hover {
-  transform: translateY(-2px);
-  box-shadow: var(--hp-shadow-lg);
-}
-
-.head-pain-page .head-pain-approach-card:focus-within {
+.psx-approach:focus-within {
   outline: none;
-  box-shadow: var(--hp-shadow-md), var(--hp-ring);
+  box-shadow: var(--psx-shadow-md), var(--psx-ring);
 }
 
-.head-pain-page .head-pain-approach-media {
+.psx-approach-media {
   width: 100%;
   aspect-ratio: 4 / 3;
-  border-bottom: 1px solid rgba(15, 23, 42, 0.08);
-  background: linear-gradient(180deg, rgba(224, 242, 254, 0.7), rgba(219, 234, 254, 0.35));
+  background: transparent;
 }
 
-.head-pain-page .head-pain-approach-media-botulin {
+.psx-approach-media-a {
   background:
     radial-gradient(circle at 50% 45%, #f97316 0, #f97316 46%, transparent 46%),
     radial-gradient(circle at 50% 45%, #facc15 0, #facc15 52%, transparent 52%),
@@ -278,7 +307,7 @@
     linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(248, 250, 252, 0.9));
 }
 
-.head-pain-page .head-pain-approach-media-pharma {
+.psx-approach-media-b {
   background:
     radial-gradient(circle at 22% 22%, #f97316 0, #f97316 11%, transparent 11%),
     radial-gradient(circle at 78% 78%, #0f766e 0, #0f766e 11%, transparent 11%),
@@ -292,14 +321,14 @@
     50% 50%;
 }
 
-.head-pain-page .head-pain-approach-card-body {
+.psx-approach-body {
   padding: 18px 18px 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.head-pain-page .head-pain-approach-card-title {
+.psx-approach-title {
   margin: 0;
   font-size: 1.05rem;
   line-height: 1.35;
@@ -308,54 +337,60 @@
   font-weight: 800;
 }
 
-.head-pain-page .head-pain-approach-card-title span {
+.psx-approach-title span {
   font-weight: 800;
 }
 
-.head-pain-page .head-pain-approach-card-accent {
-  width: 52px;
-  height: 3px;
-  border-radius: 999px;
-  background: linear-gradient(90deg, var(--warm-orange, #ff9a52), var(--warm-coral, #ff5c6e), var(--warm-rose, #e83d5b));
-}
-
-.head-pain-page .head-pain-approach-card-text {
+.psx-approach-text {
   margin: 0;
   font-size: 0.98rem;
   line-height: 1.7;
   color: rgba(15, 23, 42, 0.78);
 }
 
-.head-pain-page .head-pain-syndromes-layout {
+.psx-approach-text a {
+  color: var(--color-blue, #005384);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.psx-approach-text a:focus-visible {
+  outline: none;
+  box-shadow: var(--psx-ring);
+}
+
+.psx-patterns-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: clamp(14px, 2.8vw, 24px);
   align-items: start;
+  padding: 2rem 1rem;
+  margin: 0 auto;
 }
 
-.head-pain-page .head-pain-syndromes-header-center {
+.psx-patterns-header {
   text-align: left;
   margin: 0;
 }
 
-.head-pain-page .head-pain-syndromes-eyebrow {
+.psx-patterns-eyebrow {
   margin: 0 0 10px;
   font-size: 0.9rem;
   font-weight: 800;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(15, 23, 42, 0.82);
+  color: #005384;
 }
 
-.head-pain-page .head-pain-syndromes-title {
+.psx-patterns-title {
   margin: 0 0 10px;
   font-size: clamp(1.85rem, 2.6vw, 2.4rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
-  color: #0f172a;
+  color: #003366;
 }
 
-.head-pain-page .head-pain-syndromes-subtitle {
+.psx-patterns-subtitle {
   margin: 0;
   font-size: 1rem;
   line-height: 1.7;
@@ -363,19 +398,17 @@
   max-width: 62ch;
 }
 
-.head-pain-page .head-pain-syndromes-card {
-  background: rgba(255, 255, 255, 0.92);
-  border-radius: var(--hp-radius-lg);
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  box-shadow: var(--hp-shadow-md);
+.psx-accordion {
+  background: transparent;
+  border: none;
   padding: 8px 0;
 }
 
-.head-pain-page .head-pain-syndrome-item + .head-pain-syndrome-item {
+.psx-accordion-item + .psx-accordion-item {
   border-top: 1px solid rgba(15, 23, 42, 0.08);
 }
 
-.head-pain-page .head-pain-syndrome-row {
+.psx-accordion-trigger {
   width: 100%;
   padding: 14px 18px;
   display: flex;
@@ -390,23 +423,23 @@
   transition: background 160ms ease;
 }
 
-.head-pain-page .head-pain-syndrome-row:hover {
+.psx-accordion-trigger:hover {
   background: rgba(15, 23, 42, 0.03);
 }
 
-.head-pain-page .head-pain-syndrome-row:focus-visible {
+.psx-accordion-trigger:focus-visible {
   outline: none;
-  box-shadow: var(--hp-ring);
+  box-shadow: var(--psx-ring);
 }
 
-.head-pain-page .head-pain-syndrome-label {
+.psx-accordion-label {
   font-size: 1rem;
   line-height: 1.5;
   color: rgba(15, 23, 42, 0.92);
   text-align: left;
 }
 
-.head-pain-page .head-pain-syndrome-icon {
+.psx-accordion-icon {
   flex-shrink: 0;
   width: 28px;
   height: 28px;
@@ -421,18 +454,18 @@
   box-shadow: 0 10px 18px rgba(2, 6, 23, 0.08);
 }
 
-.head-pain-page .head-pain-syndrome-row-active .head-pain-syndrome-label {
+.psx-accordion-trigger[aria-expanded='true'] .psx-accordion-label {
   color: #0f172a;
   font-weight: 800;
 }
 
-.head-pain-page .head-pain-syndrome-icon-active {
+.psx-accordion-trigger[aria-expanded='true'] .psx-accordion-icon {
   border-color: rgba(15, 23, 42, 0.18);
   background: rgba(15, 23, 42, 0.92);
   color: #fff;
 }
 
-.head-pain-page .head-pain-syndrome-panel {
+.psx-accordion-panel {
   max-height: 0;
   overflow: hidden;
   opacity: 0;
@@ -440,37 +473,36 @@
   transition: max-height 280ms ease, opacity 200ms ease, padding 200ms ease;
 }
 
-.head-pain-page .head-pain-syndrome-panel-open {
+.psx-accordion-panel[data-open='true'] {
   max-height: 260px;
   opacity: 1;
   padding-top: 4px;
   padding-bottom: 14px;
 }
 
-.head-pain-page .head-pain-syndrome-panel-text {
+.psx-accordion-text {
   margin: 0;
   font-size: 0.98rem;
   line-height: 1.7;
   color: rgba(15, 23, 42, 0.74);
 }
 
-.head-pain-page .head-pain-testimonials {
-  border-radius: var(--hp-radius-lg);
+.psx-testimonials {
+  border-radius: var(--psx-radius-lg);
   padding: clamp(18px, 3vw, 34px);
   background-image:
     linear-gradient(135deg, rgba(0, 83, 132, 0.92) 0%, rgba(2, 6, 23, 0.6) 72%),
     radial-gradient(900px 380px at 30% 20%, rgba(96, 187, 239, 0.22), rgba(255, 255, 255, 0));
   color: #fff;
   overflow: hidden;
-  box-shadow: var(--hp-shadow-lg);
 }
 
-.head-pain-page .head-pain-testimonials-header {
+.psx-testimonials-header {
   text-align: left;
   margin: 0 0 18px;
 }
 
-.head-pain-page .head-pain-testimonials-title {
+.psx-testimonials-title {
   margin: 0;
   font-size: clamp(1.75rem, 2.6vw, 2.25rem);
   line-height: 1.1;
@@ -478,33 +510,38 @@
   color: rgba(255, 255, 255, 0.98);
 }
 
-.head-pain-page .head-pain-testimonials-underline {
+.psx-testimonials-underline {
   display: inline-block;
   width: 52px;
   height: 4px;
   margin-top: 10px;
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--warm-orange, #ff9a52), var(--warm-coral, #ff5c6e), var(--warm-rose, #e83d5b));
+  background: linear-gradient(
+    90deg,
+    var(--warm-orange, #ff9a52),
+    var(--warm-coral, #ff5c6e),
+    var(--warm-rose, #e83d5b)
+  );
 }
 
-.head-pain-page .head-pain-testimonials-grid {
+.psx-testimonials-grid {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: 16px;
 }
 
-.head-pain-page .head-pain-testimonial {
+.psx-testimonial {
   position: relative;
   margin: 0;
   padding: 18px 18px 16px;
-  border-radius: var(--hp-radius-md);
+  border-radius: var(--psx-radius-md);
   background: rgba(255, 255, 255, 0.92);
   border: 1px solid rgba(255, 255, 255, 0.34);
   box-shadow: 0 14px 36px rgba(2, 6, 23, 0.18);
   color: #0f172a;
 }
 
-.head-pain-page .head-pain-testimonial-quote {
+.psx-testimonial-quote {
   position: absolute;
   left: 14px;
   top: 8px;
@@ -513,14 +550,14 @@
   line-height: 1;
 }
 
-.head-pain-page .head-pain-testimonial-text {
+.psx-testimonial-text {
   margin: 12px 0 14px;
   font-size: 1rem;
   line-height: 1.7;
   color: rgba(15, 23, 42, 0.78);
 }
 
-.head-pain-page .head-pain-testimonial-meta {
+.psx-testimonial-meta {
   display: flex;
   gap: 8px;
   align-items: baseline;
@@ -528,76 +565,74 @@
   color: rgba(15, 23, 42, 0.64);
 }
 
-.head-pain-page .head-pain-testimonial-author {
+.psx-testimonial-author {
   font-weight: 800;
   color: rgba(15, 23, 42, 0.92);
   font-style: normal;
 }
 
-.head-pain-page .head-pain-contact-layout {
-  border-radius: var(--hp-radius-lg);
-  background: rgba(255, 255, 255, 0.92);
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  box-shadow: var(--hp-shadow-md);
+.psx-contact {
+  border-radius: var(--psx-radius-lg);
+  background: transparent;
   padding: clamp(18px, 3vw, 34px);
 }
 
-.head-pain-page .head-pain-contact-form-column {
+.psx-contact-form {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-.head-pain-page .head-pain-contact-layout .contact-visit-map {
-  border-radius: var(--hp-radius-md);
+.psx-contact .contact-visit-map {
+  border-radius: var(--psx-radius-md);
   overflow: hidden;
   border: 1px solid rgba(15, 23, 42, 0.1);
 }
 
 @media (min-width: 760px) {
-  .head-pain-page .head-pain-approaches-grid {
+  .psx-approaches-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .head-pain-page .head-pain-testimonials-grid {
+  .psx-testimonials-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 18px;
   }
 }
 
 @media (min-width: 1024px) {
-  .head-pain-page .treatments-overview-layout {
+  .psx-treatments-layout {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
   }
 
-  .head-pain-page .head-pain-syndromes-layout {
+  .psx-patterns-layout {
     grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
     align-items: stretch;
   }
 }
 
 @media (max-width: 480px) {
-  .head-pain-page .treatments-overview-header {
+  .psx-lead {
     padding-left: 14px;
   }
 
-  .head-pain-page .treatments-overview-header::before {
+  .psx-lead::before {
     width: 3px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .head-pain-page .treatments-overview-card,
-  .head-pain-page .head-pain-approach-card {
+  .psx-card,
+  .psx-approach {
     transition: none;
   }
 
-  .head-pain-page .treatments-overview-card:hover,
-  .head-pain-page .head-pain-approach-card:hover {
+  .psx-card:hover,
+  .psx-approach:hover {
     transform: none;
   }
 
-  .head-pain-page .head-pain-syndrome-panel {
+  .psx-accordion-panel {
     transition: none;
   }
 }

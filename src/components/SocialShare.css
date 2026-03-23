@@ -80,8 +80,4 @@
   .social-share-btn:hover {
     transform: translateY(-3px);
   }
-
-  /* Reset hover colors for mobile to keep it cleaner or use brand colors? 
-     Let's keep brand colors on hover for mobile too, or active state.
-  */
 }

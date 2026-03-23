@@ -1,1 +1,0 @@
-import{j as e}from"./index-BsZsA7yt.js";const s=()=>e.jsxs("main",{className:"careers-page",children:[e.jsx("h1",{children:"Careers"}),e.jsx("p",{children:"Content for Careers will go here."})]});export{s as default};

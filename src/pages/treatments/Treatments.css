@@ -1,10 +1,11 @@
 .treatments-page-shell {
   min-height: 100vh;
-  background-color: #fffdf5;
+  background-color: #f8fafc;
   color: #111827;
 }
 
 .treatments-page .page-section {
+  margin: 0 auto;
   padding: 80px 48px;
 }
 
@@ -14,13 +15,118 @@
   margin-right: auto;
 }
 
+.treatments-page {
+  max-width: 100%;
+}
+
+.treatments-page .article-breadcrumb {
+  width: 100%;
+  margin: 1rem 0 2rem;
+  padding-left: clamp(16px, 4vw, 48px);
+  padding-right: clamp(16px, 4vw, 48px);
+  box-sizing: border-box;
+}
+
+.treatments-page .article-breadcrumb-list {
+  width: 100%;
+  max-width: var(--container-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.treatments-page .article-navigation-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .treatments-page .article-navigation-container {
+    flex-direction: row;
+  }
+}
+
+.treatments-page .article-nav-item {
+  flex: 1;
+  position: relative;
+  min-height: 400px;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/assets/images/learn/1-banner-2.jpg');
+}
+
+.treatments-page .article-nav-item:hover {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/images/learn/1-banner-2.jpg');
+}
+
+.treatments-page .article-nav-item:hover .article-nav-title {
+  transform: scale(1.05);
+}
+
+.treatments-page .article-nav-content {
+  text-align: center;
+  color: #ffffff;
+  z-index: 2;
+  padding: 2rem;
+}
+
+.treatments-page .article-nav-label {
+  display: block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  opacity: 0.9;
+}
+
+.treatments-page .article-nav-title {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  max-width: 100%;
+  transition: transform 0.3s ease;
+}
+
+.treatments-page .article-nav-title .arrow {
+  font-size: 2rem;
+  font-weight: 300;
+  transition: transform 0.3s ease;
+}
+
+.treatments-page .article-nav-item.prev:hover .arrow {
+  transform: translateX(-10px);
+}
+
+.treatments-page .article-nav-item.next:hover .arrow {
+  transform: translateX(10px);
+}
+
+@media (max-width: 900px) {
+  .treatments-page .article-nav-title {
+    font-size: 1.5rem;
+  }
+}
+
 .treatments-overview {
   margin-top: 0;
   padding: 0;
 }
 
 .treatments-overview-header {
-  max-width: 1400px;
+  max-width: var(--container-width);
   margin: 0 0 28px;
   text-align: left;
   position: relative;
@@ -61,10 +167,9 @@
 }
 
 .treatments-overview-card {
-  background-color: #ffffff;
+  background-color: #f8fafc;
   border-radius: 18px;
   padding: 22px 22px 22px;
-  border: 1px solid rgba(15, 23, 42, 0.08);
   box-shadow: none;
   min-height: 380px;
   display: flex;
@@ -191,7 +296,7 @@
 
 .treatment-highlight-card {
   border-radius: 20px;
-  background-color: #ffffff;
+  background-color: #f8fafc;
   box-shadow: none;
   overflow: hidden;
   display: flex;
@@ -219,7 +324,7 @@
 }
 
 .treatment-highlight-illustration {
-  background-color: #ffffff;
+  background-color: #f8fafc;
   padding: 86px 24px;
   display: flex;
   align-items: center;
@@ -265,6 +370,7 @@
   display: flex;
   flex-direction: column;
   flex: 1;
+  background-color: #ffd37a18;
 }
 
 .treatment-card-meta {
@@ -324,6 +430,7 @@
 
 .treatments-feature {
   padding: 0;
+  margin-bottom: 0;
 }
 
 .treatments-feature-mi {
@@ -334,12 +441,12 @@
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
   align-items: stretch;
-  gap: 40px;
+  gap: 0;
   border-radius: 22px;
   overflow: hidden;
   box-shadow: none;
   min-height: 520px;
-  background: #ffffff;
+  background: #f8fafc;
   border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
@@ -347,6 +454,7 @@
   position: relative;
   background: #0b0b10;
   min-height: 520px;
+  overflow: hidden;
 }
 
 .treatments-feature-video {
@@ -355,7 +463,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-
+  object-position: center;
+  display: block;
+  min-width: 100%;
+  min-height: 100%;
+  background-color: #f8fafc;
 }
 
 .treatments-feature-copy {
@@ -364,6 +476,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  background-color: #ffd37a18;
 }
 
 .treatments-feature-title {
@@ -408,8 +521,90 @@
   border: 1px solid #e5e7eb;
 }
 
+.minimally-invasive-treatment-details-header {
+  max-width: 960px;
+  margin: 0 auto 1.5rem;
+}
+
+.minimally-invasive-treatment-details-title {
+  margin: 0 0 0.75rem;
+  color: #003366;
+  font-size: 2rem;
+}
+
+.minimally-invasive-treatment-details-intro {
+  margin: 0;
+  color: #4a5568;
+  line-height: 1.7;
+}
+
+.minimally-invasive-treatment-details-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.minimally-invasive-treatment-card {
+  background: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 16px;
+  padding: 1.25rem 1.25rem;
+}
+
+.minimally-invasive-treatment-card-title {
+  margin: 0 0 0.75rem;
+  color: #003366;
+  font-size: 1.25rem;
+}
+
+.minimally-invasive-treatment-card-body {
+  margin: 0;
+  color: #1f2937;
+  line-height: 1.7;
+}
+
+.minimally-invasive-treatment-list,
+.minimally-invasive-treatment-steps {
+  margin: 0;
+  padding-left: 1.25rem;
+  color: #1f2937;
+  line-height: 1.7;
+}
+
+.minimally-invasive-treatment-list li,
+.minimally-invasive-treatment-steps li {
+  margin-bottom: 0.5rem;
+}
+
+.minimally-invasive-treatment-cta {
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.minimally-invasive-treatment-secondary-link {
+  color: var(--color-blue);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  font-weight: 600;
+}
+
+.minimally-invasive-treatment-secondary-link:hover {
+  border-bottom-color: currentColor;
+}
+
+.minimally-invasive-treatment-secondary-link:focus-visible {
+  outline: 3px solid var(--color-lightBlue);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
 .treatments-feature-ni .treatments-feature-copy {
-  background: transparent;
+  background-color: #ffd37a18;
 }
 
 .treatments-feature-ni .treatments-feature-inner {
@@ -426,6 +621,12 @@
 
 .treatments-feature-ni .treatments-feature-media {
   order: 2;
+}
+
+@media (min-width: 900px) {
+  .minimally-invasive-treatment-details-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .treatments-feature-ni-header {
@@ -466,20 +667,29 @@
 }
 
 .treatments-testimonials {
-  padding-top: 0;
-  padding-bottom: 0;
+  padding-top: 80px;
+  padding-bottom: 96px;
+  background: #f8fafc;
 }
 
 .treatments-testimonials-header {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 56px;
 }
 
 .treatments-testimonials-title {
   margin: 0;
-  font-size: 32px;
-  line-height: 1.3;
-  color: #111827;
+  font-size: clamp(36px, 3.4vw, 52px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  font-weight: 800;
+}
+
+.treatments-testimonials-carousel-wrapper {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .treatments-testimonials-grid {
@@ -498,22 +708,21 @@
 }
 
 .testimonial-card {
-  border-radius: 20px;
-  padding: 32px;
+  border-radius: 14px;
+  padding: 20px 20px 18px;
   display: flex;
   flex-direction: column;
-  gap: 18px;
-  flex: 0 0 100%;
-  min-width: 100%;
+  gap: 14px;
+  flex: 0 0 88%;
+  min-width: 88%;
   scroll-snap-align: center;
-  align-items: center;
-  text-align: center;
+  align-items: flex-start;
+  text-align: left;
   position: relative;
   overflow: hidden;
-  background: #ffffff;
+  background: #f5f7fb;
   border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: none;
-  transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
 }
 
 .testimonial-card::before {
@@ -522,8 +731,8 @@
 
 .testimonial-card:hover {
   transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(2, 6, 23, 0.14);
   border-color: rgba(15, 23, 42, 0.14);
-  background-color: rgba(15, 23, 42, 0.02);
 }
 
 .testimonial-card:focus-within {
@@ -533,11 +742,6 @@
 
 .testimonial-quote {
   margin: 0;
-  font-size: 18px;
-  line-height: 1.7;
-  color: rgba(15, 23, 42, 0.72);
-  max-width: 70ch;
-  font-weight: 500;
 }
 
 .testimonial-person {
@@ -579,10 +783,133 @@
   text-transform: uppercase;
 }
 
+.treatments-testimonials .treatments-testimonial-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.treatments-testimonials .treatments-testimonial-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  position: relative;
+  flex: 0 0 auto;
+  background: linear-gradient(135deg, #dbeafe, #c7d2fe);
+}
+
+.treatments-testimonials .treatments-testimonial-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.treatments-testimonials .treatments-testimonial-avatar-initials {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 800;
+  color: #0b5a8e;
+  opacity: 0;
+}
+
+.treatments-testimonials .treatments-testimonial-avatar[data-image="false"] img {
+  display: none;
+}
+
+.treatments-testimonials .treatments-testimonial-avatar[data-image="false"] .treatments-testimonial-avatar-initials {
+  opacity: 1;
+}
+
+.treatments-testimonials .treatments-testimonial-identity {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.treatments-testimonials .treatments-testimonial-name {
+  font-size: 13px;
+  font-weight: 800;
+  color: #0b5a8e;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.treatments-testimonials .treatments-testimonial-location {
+  font-size: 11px;
+  color: rgba(15, 23, 42, 0.58);
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+}
+
+.treatments-testimonials .treatments-testimonial-quote {
+  position: relative;
+  width: 100%;
+}
+
+.treatments-testimonials .treatments-testimonial-quote-icon {
+  color: #ff4d6d;
+  font-weight: 800;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.treatments-testimonials .treatments-testimonial-quote-icon-start {
+  display: inline-block;
+  margin-right: 6px;
+  transform: translateY(2px);
+}
+
+.treatments-testimonials .treatments-testimonial-quote-icon-end {
+  position: absolute;
+  right: 0;
+  bottom: -8px;
+}
+
+.treatments-testimonials .treatments-testimonial-quote-text {
+  margin: 0;
+  display: inline;
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(15, 23, 42, 0.76);
+}
+
+.treatments-testimonials .treatments-testimonial-service {
+  margin-top: auto;
+  font-size: 11px;
+  color: rgba(15, 23, 42, 0.5);
+}
+
+@media (min-width: 900px) {
+  .treatments-testimonials .treatments-testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    overflow: visible;
+    padding: 0;
+    scroll-snap-type: none;
+  }
+
+  .treatments-testimonials .testimonial-card {
+    min-width: 0;
+    flex: none;
+    scroll-snap-align: none;
+  }
+}
+
 .pain-learn-card {
   border-radius: 18px;
   overflow: hidden;
-  background: #ffffff;
+  background: #f8fafc;
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
   display: flex;
   flex-direction: column;
@@ -643,14 +970,6 @@
   align-self: flex-end;
 }
 
-.page-footer {
-  padding: 24px 48px;
-  text-align: center;
-  background-color: #0f172a;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 12px;
-}
-
 @media (max-width: 900px) {
   .treatments-page .page-section {
     padding: 56px 16px;
@@ -668,14 +987,14 @@
   .treatments-highlighted-grid {
     display: flex;
     flex-direction: column;
-    gap: 24px;
+    gap: 0;
   }
 
   .treatments-feature-inner {
     display: flex;
     flex-direction: column;
     min-height: auto;
-    gap: 24px;
+    gap: 0;
     width: 100%;
   }
 
@@ -737,7 +1056,7 @@
     display: flex;
     overflow-x: auto;
     scroll-snap-type: x mandatory;
-    gap: 16px;
+    gap: 0;
     padding: 4px 4px 24px 4px;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -760,12 +1079,16 @@
 
 }
 
+@media (max-width: 900px) {
+    .treatments-feature-inner {
+        gap: 0;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .treatments-overview-card,
   .treatment-highlight-card,
-  .treatment-highlight-icon,
-  .carousel-nav-btn,
-  .carousel-dot {
+  .treatment-highlight-icon {
     transition: none;
   }
 
@@ -789,93 +1112,4 @@
 
 .treatments-testimonials-grid.is-dragging .testimonial-card {
   pointer-events: none;
-}
-
-/* Carousel Controls */
-.carousel-controls {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 16px;
-  margin-top: 24px;
-}
-
-.carousel-nav-btn {
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.9);
-  background: #ffffff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0;
-  cursor: pointer;
-  color: #0f172a;
-  font-size: 16px;
-  transition: background-color 160ms ease, transform 160ms ease, border-color 160ms ease;
-}
-
-.carousel-nav-btn:hover:not(:disabled) {
-  background: #f9fafb;
-  border-color: rgba(148, 163, 184, 1);
-}
-
-.carousel-nav-btn:active:not(:disabled) {
-  transform: scale(0.95);
-}
-
-.carousel-nav-btn:focus-visible {
-  outline: 2px solid var(--color-darkRed);
-  outline-offset: 2px;
-}
-
-.carousel-nav-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  background: #f3f4f6;
-}
-
-.carousel-dots {
-  display: flex;
-  gap: 2px;
-}
-
-.carousel-dot {
-  width: 44px;
-  height: 44px;
-  border-radius: 999px;
-  border: 0;
-  background: transparent;
-  padding: 0;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: transform 160ms ease;
-}
-
-.carousel-dot::before {
-  content: '';
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(148, 163, 184, 0.8);
-  background: rgba(148, 163, 184, 0.35);
-  transition: background-color 160ms ease, border-color 160ms ease, transform 160ms ease;
-}
-
-.carousel-dot:hover::before {
-  transform: scale(1.08);
-  border-color: rgba(37, 99, 235, 0.7);
-}
-
-.carousel-dot.active::before {
-  background: var(--color-blue, #2563eb);
-  border-color: var(--color-blue, #2563eb);
-}
-
-.carousel-dot:focus-visible {
-  outline: 2px solid var(--color-darkRed);
-  outline-offset: 2px;
 }

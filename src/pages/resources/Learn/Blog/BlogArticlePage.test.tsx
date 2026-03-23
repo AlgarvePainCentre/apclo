@@ -7,9 +7,12 @@ import BlogArticlePage from './articlePage';
 
 function renderArticle(slug: string) {
   return render(
-    <MemoryRouter initialEntries={[`/blog/${slug}`]}>
+    <MemoryRouter
+      initialEntries={[`/blog/${slug}`]}
+      future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
+    >
       <Routes>
-        <Route path="/blog/*" element={<BlogArticlePage />} />
+        <Route path="/blog/:slug" element={<BlogArticlePage />} />
       </Routes>
     </MemoryRouter>
   );

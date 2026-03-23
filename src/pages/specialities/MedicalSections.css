@@ -2,11 +2,10 @@
   --ms-css-version:1.0.0;
   --ms-font-sans:'CircularStd-Book',-apple-system,BlinkMacSystemFont,'Segoe UI','Roboto','Oxygen','Ubuntu','Cantarell','Fira Sans','Droid Sans','Helvetica Neue',sans-serif;
   --ms-text:#111827;
-  --text-color:var(--ms-text);
   --ms-muted:#4b5563;
   --ms-heading:#0b3c6f;
-  --ms-surface:#fffdf5;
-  --ms-bg:#fffdf5;
+  --ms-surface:#f8fafc;
+  --ms-bg:#f8fafc;
   --ms-border:rgba(15,23,42,.12);
   --ms-primary:#0b3c6f;
   --ms-accent:#b91c1c;
@@ -49,7 +48,7 @@
 .u-btn:focus-visible{outline:3px solid rgba(147,197,253,.9);outline-offset:3px}
 .u-btn-primary{background:var(--ms-primary);color:#fff;border-color:rgba(15,23,42,.08);padding:12px 20px}
 .u-btn-primary:hover{filter:brightness(1.05)}
-.u-btn-secondary{background:#fff;color:var(--ms-primary);border-color:rgba(11,60,111,.24);padding:12px 20px}
+.u-btn-secondary{background:#f8fafc;color:var(--ms-primary);border-color:rgba(11,60,111,.24);padding:12px 20px}
 .u-btn-secondary:hover{background:rgba(11,60,111,.06)}
 .u-btn-ghost{background:transparent;color:var(--ms-primary);border-color:transparent;padding:10px 14px}
 .u-btn-ghost:hover{background:rgba(11,60,111,.06)}
@@ -58,74 +57,69 @@
 .u-btn-block{width:100%}
 .u-btn[aria-disabled="true"],.u-btn:disabled{opacity:.55;cursor:not-allowed}
 
-@media (prefers-reduced-motion:reduce){
-  *{scroll-behavior:auto!important;transition:none!important;animation:none!important}
-}
-
-.page {
-  min-height: 100vh;
-  background: transparent;
-  background-color: transparent;
-  color: var(--text-color);
-}
-
 .ms-hero{position:relative;min-height:86vh;background-color:var(--color-white,var(--ms-surface));overflow:hidden;display:flex;align-items:center;padding:16px;top:0;border-radius:28px;margin:16px}
 .ms-hero__video{position:absolute;inset:0;width:100%;height:100%;z-index:0;will-change:transform;transform:translate3d(0,0,0);filter:contrast(90%);background:rgba(15,23,42,.08);border-radius:inherit;overflow:hidden;pointer-events:none}
 .ms-hero__video::after{content:'';position:absolute;inset:0;background:radial-gradient(120% 120% at 50% 40%,rgba(15,23,42,.35),rgba(15,23,42,.72));z-index:1}
 .ms-hero__video-el{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0}
-.ms-hero__content{position:relative;z-index:2;margin:0 auto;width:100%;max-width:1800px;display:flex;align-items:center;justify-content:space-between;gap:48px;height:72vh;min-height:540px}
+.ms-hero__content{position:relative;z-index:2;margin:0 auto;width:100%;max-width:var(--ms-container);display:flex;align-items:center;justify-content:space-between;gap:48px;height:72vh;min-height:540px}
 .ms-hero__content.hero-content-centered{justify-content:center}
 .ms-hero__left{flex:1 1 0;max-width:860px}
 .ms-hero__title{font-size:clamp(2.4rem,5vw,4.6rem);line-height:1.1;margin:0 0 24px;color:var(--color-white,#fff);text-shadow:0 0 12px rgba(0,0,0,.5);text-align:left}
 .ms-hero__subtitle{margin:0;max-width:720px;color:var(--color-white,#fff);font-size:1.1rem;line-height:1.6;text-align:left}
 .ms-hero__right{display:flex;flex-direction:column;align-items:flex-start;gap:16px;flex:0 0 auto;width:min(320px,100%)}
 .ms-hero__kicker{margin:0;font-size:1.1rem;color:var(--color-white,#fff);width:100%}
-.hero-cta,.ms-hero__cta{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;padding-right:56px;background:#f04b5e;color:var(--color-white,#fff);border-radius:999px;border:1px solid rgba(0,0,0,0.08);cursor:pointer;font-weight:700;letter-spacing:.01em;position:relative;transition:transform .18s ease,box-shadow .18s ease}
-.hero-cta::after,.ms-hero__cta::after{content:'↗';display:inline-block;background:#111827;color:#fff;width:32px;height:32px;line-height:32px;text-align:center;border-radius:999px;font-size:1rem;position:absolute;right:10px;top:50%;transform:translateY(-50%)}
-.hero-cta:hover,.ms-hero__cta:hover{transform:translateY(-1px)}
-.hero-cta:focus-visible,.ms-hero__cta:focus-visible{outline:3px solid rgba(147,197,253,.9);outline-offset:3px}
+.ms-hero__cta{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;padding-right:56px;background:#f04b5e;color:var(--color-white,#fff);border-radius:999px;border:1px solid rgba(0,0,0,0.08);cursor:pointer;font-weight:700;letter-spacing:.01em;position:relative;transition:transform .18s ease,box-shadow .18s ease}
+.ms-hero__cta::after{content:'↗';display:inline-block;background:#111827;color:#fff;width:32px;height:32px;line-height:32px;text-align:center;border-radius:999px;font-size:1rem;position:absolute;right:10px;top:50%;transform:translateY(-50%)}
+.ms-hero__cta:hover{transform:translateY(-1px)}
+.ms-hero__cta:focus-visible{outline:3px solid rgba(147,197,253,.9);outline-offset:3px}
 
-.page-main.condition-main,.page-main.head-pain-main{
+.specialities-page{--psx-max:1160px;--psx-gutter:clamp(16px,4vw,32px);--cta-bg-color:#f04b5e;--cta-text-color:#ffffff;--cta-padding:1.2rem 1.5rem;--cta-border-radius:999px;--cta-font-size:16px;--cta-font-weight:600;--cta-letter-spacing:0.08em}
+.specialities-page .hero.psx-hero{position:relative;padding:clamp(56px,8vw,96px) var(--psx-gutter);padding-top:clamp(92px,10vw,128px);color:#fff;overflow:hidden;display:block;min-height:auto;background:transparent;top:auto;border-radius:0;margin:0}
+.specialities-page .hero.psx-hero .hero-video.psx-hero-backdrop{position:absolute;inset:0;background-image:linear-gradient(rgba(167,90,13,.326),rgba(4,11,40,.6)),url('/assets/images/learn/1-banner-2.jpg');background-size:cover;background-position:center;filter:saturate(1.05);background-color:transparent}
+.specialities-page .hero.psx-hero .hero-video::after{content:none}
+.specialities-page .hero.psx-hero .hero-content{position:relative;z-index:2;max-width:var(--psx-max);margin:0 auto;padding:clamp(18px,2.4vw,28px);width:100%;display:block;height:auto;min-height:0;justify-content:flex-start;align-items:flex-start;gap:0}
+.specialities-page .hero.psx-hero .hero-center{align-items:flex-start;justify-content:flex-start;gap:12px}
+.specialities-page .hero.psx-hero .psx-hero-eyebrow{margin:0 0 10px;font-size:.9rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.88)}
+.specialities-page .hero.psx-hero .hero-title.psx-hero-title{margin:0 0 10px;font-size:clamp(2.1rem,4.2vw,3.3rem);line-height:1.06;letter-spacing:-.02em;color:rgba(255,255,255,.98);text-shadow:none;text-align:left}
+.specialities-page .hero.psx-hero .hero-subtitle.psx-hero-subtitle{margin:0;font-size:clamp(1.05rem,1.6vw,1.25rem);line-height:1.6;max-width:60ch;color:rgba(255,255,255,.92);text-align:left}
+.specialities-page .hero.psx-hero .psx-btn-primary{margin-top:18px}
+
+.page-main.condition-main,.page-main.head-pain-main,main.page-main.cervical-spine-pain-main{
   width:100%;
   margin-left:auto;
   margin-right:auto;
-  background-color: #fffdf5;
+  background-color: #f8fafc;
 }
 
-.page-section{
+.page-main.cervical-spine-pain-main{max-width:var(--ms-container)}
+
+.condition-main .page-section,.head-pain-main .page-section,.cervical-spine-pain-main .page-section{
   width: 100%;
-  max-width: 1600px;
+  max-width: var(--ms-container);
   margin:0 auto 40px;
-  background-color: #fffdf5;
+  background-color: #f8fafc;
 }
 
-main.page-main.cervical-spine-pain-main{
-  max-width:1600px;
-  width:100%;
-  margin-left:auto;
-  margin-right:auto
-}
-
-.treatments-overview,.ms-treatments{
+.condition-main .treatments-overview,.head-pain-main .treatments-overview,.cervical-spine-pain-main .treatments-overview,.ms-treatments{
   margin-top:0;
   padding:0; 
   background: transparent;
 }
 
-.treatments-overview-header,.ms-treatments__header{
-  max-width:1600px;
+.condition-main .treatments-overview-header,.head-pain-main .treatments-overview-header,.cervical-spine-pain-main .treatments-overview-header,.ms-treatments__header{
+  max-width:var(--ms-container);
   margin:0 0 28px;
   text-align:left;
   position:relative;
   padding-left:16px
 }
 
-.treatments-overview-header::before,.ms-treatments__header::before{content:'';position:absolute;left:0;top:2px;bottom:2px;width:4px;border-radius:6px;background:linear-gradient(180deg,var(--color-midBlue,#a2d6f4),var(--color-darkBlue,#60bbef));box-shadow:0 8px 16px rgba(37,99,235,.22)}
-.treatments-overview-title,.ms-treatments__title{margin:0 0 10px;color:#003366}
-.treatments-overview-subtitle,.ms-treatments__subtitle{margin:0;font-size:16px;line-height:1.7;color:var(--ms-muted);max-width:760px}
-.treatments-overview-layout,.ms-treatments__layout{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:stretch;min-height:auto}
+.condition-main .treatments-overview-header::before,.head-pain-main .treatments-overview-header::before,.cervical-spine-pain-main .treatments-overview-header::before,.ms-treatments__header::before{content:'';position:absolute;left:0;top:2px;bottom:2px;width:4px;border-radius:6px;background:linear-gradient(180deg,var(--color-midBlue,#a2d6f4),var(--color-darkBlue,#60bbef));box-shadow:0 8px 16px rgba(37,99,235,.22)}
+.condition-main .treatments-overview-title,.head-pain-main .treatments-overview-title,.cervical-spine-pain-main .treatments-overview-title,.ms-treatments__title{margin:0 0 10px;color:#003366}
+.condition-main .treatments-overview-subtitle,.head-pain-main .treatments-overview-subtitle,.cervical-spine-pain-main .treatments-overview-subtitle,.ms-treatments__subtitle{margin:0;font-size:16px;line-height:1.7;color:var(--ms-muted);max-width:760px}
+.condition-main .treatments-overview-layout,.head-pain-main .treatments-overview-layout,.cervical-spine-pain-main .treatments-overview-layout,.ms-treatments__layout{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:stretch;min-height:auto}
 
-.treatments-overview-card,.ms-treatments__card{
+.condition-main .treatments-overview-card,.head-pain-main .treatments-overview-card,.cervical-spine-pain-main .treatments-overview-card,.ms-treatments__card{
   background-color: transparent;
   border-radius: var(--ms-radius-md);
   padding: 22px;
@@ -137,14 +131,14 @@ main.page-main.cervical-spine-pain-main{
   justify-content: center;
   transition: transform 160ms ease, border-color 160ms ease, background-color 160ms ease;
 }
-.treatments-overview-card:hover,.ms-treatments__card:hover{transform:translateY(-2px);background-color:rgba(15,23,42,.02);border-color:rgba(15,23,42,.14)}
-.treatments-overview-card:focus-within,.ms-treatments__card:focus-within{outline:3px solid rgba(147,197,253,.9);outline-offset:4px}
-.treatments-overview-card-title,.ms-treatments__card-title{margin:0 0 12px;font-size:26px;line-height:1.3;color:#003366}
-.treatments-overview-card-accent,.ms-treatments__card-accent{width:48px;height:2px;background:var(--ms-accent);border-radius:999px;margin-bottom:16px}
-.treatments-overview-card-body,.ms-treatments__card-body{margin:0 0 16px;font-size:15px;line-height:1.8;color:var(--ms-muted)}
-.treatments-overview-media,.ms-treatments__media{border-radius:22px;overflow:hidden;box-shadow:none;border:1px solid rgba(15,23,42,.08);position:relative}
-.treatments-overview-media-inner,.ms-treatments__media-inner{position:relative;width:100%;height:100%;min-height:320px;background-position:center;background-size:cover;background-repeat:no-repeat}
-.treatments-overview-video,.ms-treatments__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.02);pointer-events:none}
+.condition-main .treatments-overview-card:hover,.head-pain-main .treatments-overview-card:hover,.cervical-spine-pain-main .treatments-overview-card:hover,.ms-treatments__card:hover{transform:translateY(-2px);background-color:rgba(15,23,42,.02);border-color:rgba(15,23,42,.14)}
+.condition-main .treatments-overview-card:focus-within,.head-pain-main .treatments-overview-card:focus-within,.cervical-spine-pain-main .treatments-overview-card:focus-within,.ms-treatments__card:focus-within{outline:3px solid rgba(147,197,253,.9);outline-offset:4px}
+.condition-main .treatments-overview-card-title,.head-pain-main .treatments-overview-card-title,.cervical-spine-pain-main .treatments-overview-card-title,.ms-treatments__card-title{margin:0 0 12px;font-size:26px;line-height:1.3;color:#003366}
+.condition-main .treatments-overview-card-accent,.head-pain-main .treatments-overview-card-accent,.cervical-spine-pain-main .treatments-overview-card-accent,.ms-treatments__card-accent{width:48px;height:2px;background:var(--ms-accent);border-radius:999px;margin-bottom:16px}
+.condition-main .treatments-overview-card-body,.head-pain-main .treatments-overview-card-body,.cervical-spine-pain-main .treatments-overview-card-body,.ms-treatments__card-body{margin:0 0 16px;font-size:15px;line-height:1.8;color:var(--ms-muted)}
+.condition-main .treatments-overview-media,.head-pain-main .treatments-overview-media,.cervical-spine-pain-main .treatments-overview-media,.ms-treatments__media{border-radius:22px;overflow:hidden;box-shadow:none;border:1px solid rgba(15,23,42,.08);position:relative}
+.condition-main .treatments-overview-media-inner,.head-pain-main .treatments-overview-media-inner,.cervical-spine-pain-main .treatments-overview-media-inner,.ms-treatments__media-inner{position:relative;width:100%;height:100%;min-height:320px;background-position:center;background-size:cover;background-repeat:no-repeat}
+.condition-main .treatments-overview-video,.head-pain-main .treatments-overview-video,.cervical-spine-pain-main .treatments-overview-video,.ms-treatments__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.02);pointer-events:none}
 
 .condition-main{padding:32px 16px 64px}
 .condition-main .page-section{margin:0 auto 48px}
@@ -155,10 +149,10 @@ main.page-main.cervical-spine-pain-main{
 .condition-contact::before,.condition-faq::before,.condition-syndromes::before{content:none}
 .condition-approaches{background-color:transparent;border:none;box-shadow:none;padding:0;margin:40px auto 32px}
 .condition-approaches::before{content:none}
-.condition-approaches-inner{background-color:transparent;border-radius:28px;padding:2.5rem 1.25rem 3rem;max-width:1600px;margin:0 auto}
+.condition-approaches-inner{background-color:transparent;border-radius:28px;padding:2.5rem 1.25rem 3rem;max-width:var(--ms-container);margin:0 auto}
 .condition-approaches .treatments-overview-header{margin:0 0 2rem}
 .condition-approaches-grid{display:grid;grid-template-columns:1fr;gap:24px}
-.condition-approach-card{border-radius:var(--ms-radius-md);overflow:hidden;background:#fff;box-shadow:var(--ms-shadow-md);display:flex;flex-direction:column;transition:transform 160ms ease-out,box-shadow 160ms ease-out,background-color 140ms ease-out}
+.condition-approach-card{border-radius:var(--ms-radius-md);overflow:hidden;background:#f8fafc;box-shadow:var(--ms-shadow-md);display:flex;flex-direction:column;transition:transform 160ms ease-out,box-shadow 160ms ease-out,background-color 140ms ease-out}
 .condition-approach-card:hover{transform:translateY(-2px);box-shadow:0 18px 40px rgba(15,23,42,.12);background-color:#f9fafb}
 .condition-approach-media{position:relative;width:100%;aspect-ratio:4/3;background-color:#f3f4f6}
 .condition-approach-media-interventions{background:radial-gradient(circle at 50% 45%,#f97316 0,#f97316 46%,transparent 46%),radial-gradient(circle at 50% 45%,#facc15 0,#facc15 52%,transparent 52%),linear-gradient(#0b3c6f,#0b3c6f) 50% 60%/18px 80px no-repeat,linear-gradient(#0b3c6f,#0b3c6f) 50% 80%/50px 12px no-repeat,#ffeecd}
@@ -176,7 +170,7 @@ main.page-main.cervical-spine-pain-main{
 .condition-syndromes-eyebrow{margin:0 0 8px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ms-heading)}
 .condition-syndromes-title{margin:0 0 12px;font-size:clamp(1.75rem,1.1vw + 1.4rem,2.25rem);line-height:1.3;color:var(--ms-heading)}
 .condition-syndromes-subtitle{margin:0;font-size:14px;line-height:1.7;color:var(--ms-muted)}
-.condition-syndromes-card{max-width:100%;margin:0;background-color:#fff;border-radius:var(--ms-radius-lg);box-shadow:var(--ms-shadow-md);padding:8px 0}
+.condition-syndromes-card{max-width:100%;margin:0;background-color:#f8fafc;border-radius:var(--ms-radius-lg);box-shadow:var(--ms-shadow-md);padding:8px 0}
 .condition-syndrome-item + .condition-syndrome-item{border-top:1px solid #e5e7eb}
 .condition-syndrome-row{width:100%;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;border:none;background:transparent;cursor:pointer;font:inherit}
 .condition-syndrome-label{font-size:14px;line-height:1.6;color:var(--ms-text);text-align:left}
@@ -198,7 +192,7 @@ main.page-main.cervical-spine-pain-main{
 .condition-testimonial-author{font-weight:600;color:var(--ms-heading);font-style:normal}
 .condition-testimonial-location{opacity:.9}
 .condition-faq{padding-top:0}
-.condition-faq-inner{max-width:1600px;margin:0 auto}
+.condition-faq-inner{max-width:var(--ms-container);margin:0 auto}
 .condition-faq-header{margin:0 0 24px;text-align:left}
 .condition-faq-title{margin:0 0 10px;font-size:clamp(1.6rem,1vw + 1.2rem,2.2rem);line-height:1.25;color:var(--ms-heading)}
 .condition-faq-subtitle{margin:0;font-size:14px;line-height:1.7;color:var(--ms-muted);max-width:52rem}
@@ -207,7 +201,7 @@ main.page-main.cervical-spine-pain-main{
 .condition-faq-question{margin:0 0 8px;font-size:.95rem;line-height:1.5;color:var(--ms-text)}
 .condition-faq-answer{margin:0;font-size:.8125rem;line-height:1.7;color:var(--ms-muted)}
 
-.contact-form-layout,.ms-contact{margin-top:16px;background-color:#fffdf5;border-radius:var(--ms-radius-lg);padding:24px 20px;box-shadow:none;display:grid;grid-template-columns:1fr;gap:24px}
+.contact-form-layout,.ms-contact{margin-top:16px;background-color:#f8fafc;border-radius:var(--ms-radius-lg);padding:24px 20px;box-shadow:none;display:grid;grid-template-columns:1fr;gap:24px}
 .contact-form-copy,.ms-contact__copy{max-width:none}
 .contact-form-title,.ms-contact__title{margin:0 0 10px;font-size:26px;line-height:1.3;color:var(--ms-primary)}
 .contact-form-subtitle,.ms-contact__subtitle{margin:0;font-size:14px;line-height:1.7;color:var(--ms-muted)}
@@ -216,21 +210,21 @@ main.page-main.cervical-spine-pain-main{
 .contact-form-label,.ms-contact__label{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--ms-primary)}
 .contact-label-required,.ms-contact__required{color:var(--ms-accent)}
 .contact-form-name-row,.ms-contact__name{display:flex;flex-direction:column;gap:12px}
-.contact-form-phone-row{display:flex;align-items:center;gap:8px;height:48px;padding:0 16px;border-radius:999px;border:1px solid #d1d5db;background-color:#fff;transition:border-color 160ms ease-out,box-shadow 160ms ease-out,background-color 160ms ease-out}
+.contact-form-phone-row{display:flex;align-items:center;gap:8px;height:48px;padding:0 16px;border-radius:999px;border:1px solid #d1d5db;background-color:#f8fafc;transition:border-color 160ms ease-out,box-shadow 160ms ease-out,background-color 160ms ease-out}
 .contact-phone-flag{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:999px;background-color:transparent;border:none;font-size:16px}
-.contact-input{flex:1;height:48px;padding:0 16px;border-radius:999px;border:1px solid #d1d5db;background-color:#fff;font-size:15px;transition:border-color 160ms ease-out,box-shadow 160ms ease-out,background-color 160ms ease-out}
+.contact-input{flex:1;height:48px;padding:0 16px;border-radius:999px;border:1px solid #d1d5db;background-color:#f8fafc;font-size:15px;transition:border-color 160ms ease-out,box-shadow 160ms ease-out,background-color 160ms ease-out}
 .contact-input::placeholder{color:#9ca3af}
 .contact-input:focus-visible{outline:none;border-color:var(--ms-primary);box-shadow:0 0 0 1px rgba(37,99,235,.15);background-color:#f9fbff}
 .contact-form-phone-row .contact-input{border:none;background-color:transparent;height:100%;padding:0;box-shadow:none}
 .contact-form-phone-row:focus-within{border-color:var(--ms-primary);box-shadow:0 0 0 1px rgba(37,99,235,.15);background-color:#f9fbff}
 .contact-form-phone-row .contact-input:focus-visible{outline:none;box-shadow:none}
-.contact-textarea{width:100%;min-height:160px;padding:14px 18px;border-radius:24px;border:1px solid #d1d5db;background-color:#fff;font-size:15px;resize:vertical;transition:border-color 160ms ease-out,box-shadow 160ms ease-out,background-color 160ms ease-out}
+.contact-textarea{width:100%;min-height:160px;padding:14px 18px;border-radius:24px;border:1px solid #d1d5db;background-color:#f8fafc;font-size:15px;resize:vertical;transition:border-color 160ms ease-out,box-shadow 160ms ease-out,background-color 160ms ease-out}
 .contact-textarea::placeholder{color:#9ca3af}
 .contact-textarea:focus-visible{outline:none;border-color:var(--ms-primary);box-shadow:0 0 0 1px rgba(37,99,235,.15);background-color:#f9fbff}
 .contact-form-footer-row{margin-top:12px;padding:0;display:flex;align-items:flex-start;justify-content:flex-start;gap:16px;flex-wrap:wrap;border-radius:0;background-color:transparent}
 .contact-form-human{display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--ms-muted)}
 .contact-human-checkbox{width:18px;height:18px}
-.contact-form-captcha-placeholder{flex:1 1 auto;height:82px;border-radius:8px;border:1px solid #d1d5db;background-color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;color:#6b7280}
+.contact-form-captcha-placeholder{flex:1 1 auto;height:82px;border-radius:8px;border:1px solid #d1d5db;background-color:#f8fafc;display:flex;align-items:center;justify-content:center;font-size:12px;color:#6b7280}
 .contact-form-actions{margin-top:24px;display:flex;justify-content:center}
 .contact-form-submit{border:none;cursor:pointer;min-height:48px;padding:0 40px;border-radius:999px}
 .contact-visit-layout{margin-top:16px;background-color:#f4f9ff;border-radius:var(--ms-radius-lg);padding:24px 20px;box-shadow:var(--ms-shadow-lg);display:grid;grid-template-columns:1fr;gap:24px}
@@ -244,7 +238,7 @@ main.page-main.cervical-spine-pain-main{
 .contact-visit-map{border-radius:18px;overflow:hidden;min-height:220px;background-color:#e5e7eb}
 .contact-visit-map iframe{width:100%;height:100%;border:0}
 
-.head-pain-page{min-height:100vh;max-width:1480px;margin:0 auto;background-color:#fff;color:var(--ms-text)}
+.head-pain-page{min-height:100vh;max-width:1480px;margin:0 auto;background-color:#f8fafc;color:var(--ms-text)}
 .head-pain-page .treatments-overview-header::before{content:none}
 .head-pain-main{padding:32px 16px 64px}
 .head-pain-treatment.head-pain-contact{background-color:transparent;border:none;box-shadow:none}
@@ -258,7 +252,7 @@ main.page-main.cervical-spine-pain-main{
 .head-pain-syndromes-eyebrow{margin:0 0 8px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ms-heading)}
 .head-pain-syndromes-title{margin:0 0 12px;font-size:28px;line-height:1.3;color:var(--ms-heading)}
 .head-pain-syndromes-subtitle{margin:0;font-size:14px;line-height:1.7;color:var(--ms-muted)}
-.head-pain-syndromes-card{max-width:100%;margin:0;background-color:#fff;border-radius:var(--ms-radius-lg);box-shadow:var(--ms-shadow-md);padding:8px 0}
+.head-pain-syndromes-card{max-width:100%;margin:0;background-color:#f8fafc;border-radius:var(--ms-radius-lg);box-shadow:var(--ms-shadow-md);padding:8px 0}
 .head-pain-syndrome-item + .head-pain-syndrome-item{border-top:1px solid #e5e7eb}
 .head-pain-syndrome-row{width:100%;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px;border:none;background:transparent;cursor:pointer;font:inherit}
 .head-pain-syndrome-label{font-size:14px;line-height:1.6;color:var(--ms-text);text-align:left}
@@ -309,6 +303,6 @@ main.page-main.cervical-spine-pain-main{
 
 @media (min-width:1440px){
   .condition-main{padding:48px 72px 96px}
-  .condition-approaches-inner{max-width:1600px}
-  .condition-faq-inner{max-width:1600px}
+  .condition-approaches-inner{max-width:var(--ms-container)}
+  .condition-faq-inner{max-width:var(--ms-container)}
 }

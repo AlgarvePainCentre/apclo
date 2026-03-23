@@ -37,6 +37,7 @@ This document outlines the design system used for the article card ecosystem and
   --warm-yellow: #fbd38d;
   --warm-orange: #f6ad55;
   --warm-coral: #f58b8b;
+  --background-color: #fafafa;
 }
 ```
 

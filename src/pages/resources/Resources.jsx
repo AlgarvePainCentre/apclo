@@ -1,22 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
 import '../home/Home.css';
 import './Resources.css';
 
 export default function Resources() {
-  const heroRef = useRef(null);
-  const heroVideoRef = useRef(null);
-  const tipsCarouselRef = useRef(null);
   const navigate = useNavigate();
   const [downloadStatus, setDownloadStatus] = useState('idle'); // idle, downloading, success, error
   const [downloadProgress, setDownloadProgress] = useState(0);
-  const [tipsActiveSlide, setTipsActiveSlide] = useState(0);
-  const [tipsIsDragging, setTipsIsDragging] = useState(false);
-  const [tipsStartX, setTipsStartX] = useState(0);
-  const [tipsScrollLeft, setTipsScrollLeft] = useState(0);
-  const [isTipsCarouselMobile, setIsTipsCarouselMobile] = useState(false);
 
   // Email Gating State
   const [email, setEmail] = useState('');
@@ -32,103 +22,6 @@ export default function Resources() {
       setIsEmailVerified(true);
     }
   }, []);
-
-  useEffect(() => {
-    if (typeof window === 'undefined' || !window.matchMedia) return;
-
-    const mediaQuery = window.matchMedia('(max-width: 768px)');
-    const sync = () => setIsTipsCarouselMobile(mediaQuery.matches);
-
-    sync();
-
-    if (mediaQuery.addEventListener) {
-      mediaQuery.addEventListener('change', sync);
-      return () => mediaQuery.removeEventListener('change', sync);
-    }
-
-    mediaQuery.addListener(sync);
-    return () => mediaQuery.removeListener(sync);
-  }, []);
-
-  useEffect(() => {
-    if (!isTipsCarouselMobile) {
-      setTipsActiveSlide(0);
-      setTipsIsDragging(false);
-      return;
-    }
-
-    const carousel = tipsCarouselRef.current;
-    if (!carousel) return;
-
-    const handleScroll = () => {
-      const scrollPosition = carousel.scrollLeft;
-      let newActiveSlide = 0;
-      let minDiff = Infinity;
-
-      Array.from(carousel.children).forEach((child, index) => {
-        const diff = Math.abs(child.offsetLeft - scrollPosition);
-        if (diff < minDiff) {
-          minDiff = diff;
-          newActiveSlide = index;
-        }
-      });
-
-      setTipsActiveSlide(newActiveSlide);
-    };
-
-    carousel.addEventListener('scroll', handleScroll, { passive: true });
-    handleScroll();
-    return () => {
-      carousel.removeEventListener('scroll', handleScroll);
-    };
-  }, [isTipsCarouselMobile]);
-
-  const scrollToTip = (index) => {
-    if (!isTipsCarouselMobile) return;
-    const carousel = tipsCarouselRef.current;
-    if (!carousel) return;
-    const card = carousel.children[index];
-    if (!card) return;
-    card.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-  };
-
-  const getTipsCount = () => tipsCarouselRef.current?.children?.length ?? 0;
-
-  const handleTipsPrev = () => {
-    if (!isTipsCarouselMobile) return;
-    const count = getTipsCount();
-    if (!count) return;
-    scrollToTip(Math.max(0, tipsActiveSlide - 1));
-  };
-
-  const handleTipsNext = () => {
-    if (!isTipsCarouselMobile) return;
-    const count = getTipsCount();
-    if (!count) return;
-    scrollToTip(Math.min(count - 1, tipsActiveSlide + 1));
-  };
-
-  const handleTipsMouseDown = (e) => {
-    if (!isTipsCarouselMobile) return;
-    const carousel = tipsCarouselRef.current;
-    if (!carousel) return;
-    setTipsIsDragging(true);
-    setTipsStartX(e.pageX - carousel.offsetLeft);
-    setTipsScrollLeft(carousel.scrollLeft);
-  };
-
-  const handleTipsMouseLeave = () => setTipsIsDragging(false);
-  const handleTipsMouseUp = () => setTipsIsDragging(false);
-
-  const handleTipsMouseMove = (e) => {
-    if (!isTipsCarouselMobile) return;
-    const carousel = tipsCarouselRef.current;
-    if (!carousel || !tipsIsDragging) return;
-    e.preventDefault();
-    const x = e.pageX - carousel.offsetLeft;
-    const walk = (x - tipsStartX) * 1.8;
-    carousel.scrollLeft = tipsScrollLeft - walk;
-  };
 
   const validateEmail = (email) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -258,263 +151,32 @@ export default function Resources() {
       meta.content = 'Explore practical advice, expert insights, and real patient stories about pain management and recovery at Algarve Pain Centre.';
       document.head.appendChild(meta);
     }
-
-    const heroEl = heroRef.current;
-    const heroVideoEl = heroVideoRef.current;
-    if (!heroEl || !heroVideoEl) {
-      return undefined;
-    }
-
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    if (prefersReducedMotion || isMobile) {
-      return undefined;
-    }
-
-    let ticking = false;
-
-    const updateParallax = () => {
-      const viewportHeight = window.innerHeight || 1;
-      const heroRect = heroEl.getBoundingClientRect();
-      const heroProgress = Math.min(Math.max(heroRect.top / viewportHeight, -1), 1);
-      const heroOffset = heroProgress * -110;
-      heroVideoEl.style.transform = `translate3d(0, ${heroOffset}px, 0)`;
-      ticking = false;
-    };
-
-    const onScroll = () => {
-      if (!ticking) {
-        window.requestAnimationFrame(updateParallax);
-        ticking = true;
-      }
-    };
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    updateParallax();
-
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      heroVideoEl.style.transform = '';
-    };
   }, []);
 
   return (
-    <div className="page">
-      <Navbar />
-      <section className="hero" ref={heroRef}>
-        <div className="hero-video" aria-hidden="true" ref={heroVideoRef}>
-          <video
-            className="hero-video-el"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            src="/assets/videos/Appointment-Video.mp4"
-          />
-        </div>
-        <div className="hero-content">
-          <div className="hero-left">
-            <h1 className="hero-title">Resources</h1>
-            <p className="hero-subtitle">
-              Learn, read and explore practical advice and real patient stories.
-            </p>
-          </div>
-          <div className="hero-right">
-            <p className="hero-small-text">Guidance to support your care between visits.</p>
+    <div className="resources-page">
+      <header className="psx-hero resources-hero" aria-label="Resources hero section">
+        <div className="psx-hero-backdrop" aria-hidden="true" />
+        <div className="psx-hero-inner">
+          <p className="psx-hero-eyebrow">Resources</p>
+          <h1 className="psx-hero-title">Resources</h1>
+          <p className="psx-hero-subtitle">
+            Learn, read and explore practical advice and real patient stories. Guidance to support your care between visits.
+          </p>
+          <div className="psx-hero-actions">
             <button
               type="button"
-              className="hero-cta"
-              aria-label="Browse resources or contact us"
+              className="psx-btn-primary"
+              aria-label="Book an appointment"
               onClick={() => navigate('/contact')}
             >
-              Book an appointment
+              <span>Book an appointment</span>
             </button>
           </div>
         </div>
-      </section>
+      </header>
 
       <main className="page-main">
-
-        <section className="page-section tips-carousel-section" id="tips-for-self-care">
-          <div className="tips-carousel-header">
-            <div className="tips-carousel-copy">
-              <span className="tips-carousel-eyebrow">Self-Care</span>
-              <h2>Tips for Self-Care</h2>
-              <p>Simple daily habits to reduce flare-ups, build resilience, and support your recovery.</p>
-            </div>
-          </div>
-
-          {isTipsCarouselMobile ? (
-            <>
-              <div className="tips-carousel-stage">
-                <div
-                  className={`tips-grid tips-carousel ${tipsIsDragging ? 'is-dragging' : ''}`}
-                  ref={tipsCarouselRef}
-                  role="region"
-                  aria-label="Self-care tips"
-                  onMouseDown={handleTipsMouseDown}
-                  onMouseLeave={handleTipsMouseLeave}
-                  onMouseUp={handleTipsMouseUp}
-                  onMouseMove={handleTipsMouseMove}
-                >
-                  <div
-                    className="tip-card"
-                    role="button"
-                    tabIndex={0}
-                    aria-label="Daily Stretching tip"
-                    style={{
-                      backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
-                    }}
-                  >
-                    <div className="article-nav-content">
-                      <span className="article-nav-label">Self-care</span>
-                      <h3 className="article-nav-title">
-                        Daily Stretching
-                        <span className="arrow">→</span>
-                      </h3>
-                    </div>
-                  </div>
-                  <div
-                    className="tip-card"
-                    role="button"
-                    tabIndex={0}
-                    aria-label="Hydration tip"
-                    style={{
-                      backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
-                    }}
-                  >
-                    <div className="article-nav-content">
-                      <span className="article-nav-label">Self-care</span>
-                      <h3 className="article-nav-title">
-                        Hydration
-                        <span className="arrow">→</span>
-                      </h3>
-                    </div>
-                  </div>
-                  <div
-                    className="tip-card"
-                    role="button"
-                    tabIndex={0}
-                    aria-label="Active Walking tip"
-                    style={{
-                      backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
-                    }}
-                  >
-                    <div className="article-nav-content">
-                      <span className="article-nav-label">Self-care</span>
-                      <h3 className="article-nav-title">
-                        Active Walking
-                        <span className="arrow">→</span>
-                      </h3>
-                    </div>
-                  </div>
-                  <div
-                    className="tip-card"
-                    role="button"
-                    tabIndex={0}
-                    aria-label="Quality Sleep tip"
-                    style={{
-                      backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
-                    }}
-                  >
-                    <div className="article-nav-content">
-                      <span className="article-nav-label">Self-care</span>
-                      <h3 className="article-nav-title">
-                        Quality Sleep
-                        <span className="arrow">→</span>
-                      </h3>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div className="tips-carousel-controls tips-carousel-controls--mobile" aria-label="Self-care tips navigation">
-                <button
-                  type="button"
-                  className="tips-carousel-btn"
-                  onClick={handleTipsPrev}
-                  aria-label="Previous tip"
-                  disabled={tipsActiveSlide === 0}
-                >
-                  ←
-                </button>
-                <button
-                  type="button"
-                  className="tips-carousel-btn"
-                  onClick={handleTipsNext}
-                  aria-label="Next tip"
-                  disabled={tipsActiveSlide >= getTipsCount() - 1}
-                >
-                  →
-                </button>
-              </div>
-            </>
-          ) : (
-            <div className="tips-grid tips-grid--static" role="list" aria-label="Self-care tips">
-              <div
-                className="tip-card"
-                role="listitem"
-                style={{
-                  backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
-                }}
-              >
-                <div className="article-nav-content">
-                  <span className="article-nav-label">Self-care</span>
-                  <h3 className="article-nav-title">
-                    Daily Stretching
-                    <span className="arrow">→</span>
-                  </h3>
-                </div>
-              </div>
-              <div
-                className="tip-card"
-                role="listitem"
-                style={{
-                  backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
-                }}
-              >
-                <div className="article-nav-content">
-                  <span className="article-nav-label">Self-care</span>
-                  <h3 className="article-nav-title">
-                    Hydration
-                    <span className="arrow">→</span>
-                  </h3>
-                </div>
-              </div>
-              <div
-                className="tip-card"
-                role="listitem"
-                style={{
-                  backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
-                }}
-              >
-                <div className="article-nav-content">
-                  <span className="article-nav-label">Self-care</span>
-                  <h3 className="article-nav-title">
-                    Active Walking
-                    <span className="arrow">→</span>
-                  </h3>
-                </div>
-              </div>
-              <div
-                className="tip-card"
-                role="listitem"
-                style={{
-                  backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`,
-                }}
-              >
-                <div className="article-nav-content">
-                  <span className="article-nav-label">Self-care</span>
-                  <h3 className="article-nav-title">
-                    Quality Sleep
-                    <span className="arrow">→</span>
-                  </h3>
-                </div>
-              </div>
-            </div>
-          )}
-        </section>
 
         <section className="page-section" id="learn">
           <div className="section-header section-header--learn">
@@ -776,7 +438,6 @@ export default function Resources() {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

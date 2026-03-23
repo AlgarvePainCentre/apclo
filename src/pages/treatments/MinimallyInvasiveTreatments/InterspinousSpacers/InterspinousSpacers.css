@@ -1,13 +1,11 @@
 .interspinous-spacers-page {
-  padding: 80px 24px;
+  background: #fff;
 }
 
-.interspinous-spacers-page h1 {
-  font-size: 32px;
-  margin-bottom: 16px;
-}
-
-.interspinous-spacers-page p {
-  max-width: 640px;
-  line-height: 1.6;
+.interspinous-spacers-hero .psx-hero-backdrop {
+  background-image:
+    linear-gradient(120deg, rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.55)),
+    url('/assets/images/illustrative/pain-medicine-algarve-min.jpg');
+  background-size: cover;
+  background-position: center;
 }

@@ -12,6 +12,9 @@ type ConditionDetailPageProps = {
   title: string;
   areaLabel: string;
   mainClassName?: string;
+  variant?: 'default' | 'pain-specialty-clone';
+  heroSubtitle?: string;
+  heroEyebrow?: string;
 };
 
 const DEFAULT_SYNDROMES: Syndrome[] = [
@@ -41,11 +44,30 @@ const DEFAULT_SYNDROMES: Syndrome[] = [
   },
 ];
 
-const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({ title, areaLabel, mainClassName }) => {
+const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
+  title,
+  areaLabel,
+  mainClassName,
+  variant = 'default',
+  heroSubtitle,
+  heroEyebrow,
+}) => {
   const [activeSyndromeId, setActiveSyndromeId] = React.useState<string | null>(
     DEFAULT_SYNDROMES[0]?.id ?? null,
   );
   const location = useLocation();
+  const slugBase = React.useMemo(
+    () =>
+      title
+        .toLowerCase()
+        .trim()
+        .replace(/['’]/g, '')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, ''),
+    [title],
+  );
+  const treatmentsSectionId = `${slugBase}-treatments`;
+  const contactIdPrefix = `${slugBase}-contact`;
 
   const canonicalUrl = React.useMemo(() => {
     if (typeof window === 'undefined') return '';
@@ -141,6 +163,345 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({ title, areaLa
     }
     meta.content = description;
   }, [title, areaLabel]);
+
+  if (variant === 'pain-specialty-clone') {
+    return (
+      <div className="psx-page" id={`psx-${slugBase}`}>
+        <header className="psx-hero">
+          <div className="psx-hero-backdrop" aria-hidden="true" />
+          <div className="psx-hero-inner">
+            <p className="psx-hero-eyebrow">{heroEyebrow ?? 'Speciality'}</p>
+            <h1 className="psx-hero-title">{title}</h1>
+            <p className="psx-hero-subtitle">
+              {heroSubtitle ??
+                `Specialist assessment and treatment pathways for ${areaLabel}—personalised care that helps you find relief and return to daily life with confidence.`}
+            </p>
+            <div className="psx-hero-actions">
+              <Link to="/contact" className="psx-btn-primary" aria-label={`Book an appointment for ${areaLabel}`}>
+                <span>Book an appointment</span>
+              </Link>
+              <a
+                href={`#${treatmentsSectionId}`}
+                className="psx-btn-outline"
+                aria-label={`Explore treatments for ${areaLabel}`}
+              >
+                Explore treatments
+              </a>
+            </div>
+          </div>
+        </header>
+        <main className={mainClassName ? `psx-main ${mainClassName}` : 'psx-main'}>
+          <section id={treatmentsSectionId} className="psx-section psx-treatments">
+            <div className="psx-lead">
+              <h2 className="psx-lead-title">Treatments for {areaLabel}</h2>
+              <p className="psx-lead-subtitle">
+                At Algarve Pain Centre in Vale do Lobo, Algarve, we offer a comprehensive range of
+                evidence-based treatments for {areaLabel}. Our multidisciplinary team of pain medicine
+                physicians, spine surgeons, rehabilitation specialists and psychologists works together
+                so that your plan is built from multiple expert perspectives, not just one.
+              </p>
+              <p className="psx-lead-subtitle">
+                Whether your pain is recent or long‑standing, we focus on understanding how it affects
+                your daily life and long‑term goals. This helps us decide when simple measures are
+                enough and when more advanced interventions are needed.
+              </p>
+            </div>
+            <div className="psx-treatments-layout">
+              <article className="psx-card">
+                <h3 className="psx-card-title">{title} overview</h3>
+                <div className="psx-accent" />
+                <p className="psx-body">
+                  Pain in this area can have many causes, including joint, muscle, nerve and postural
+                  factors. During your first consultation we explore how your symptoms started, how they
+                  have evolved over time and which movements or activities make them better or worse.
+                  Understanding this pattern allows us to reach an accurate diagnosis and design a
+                  treatment plan that combines the most appropriate interventions for you.
+                </p>
+                <p className="psx-body">
+                  We also look carefully at your medical history, lifestyle and previous treatments. Some
+                  people come to us after years of trying isolated approaches without a clear plan. Others
+                  seek support early, when symptoms are starting to interfere with work, sport or sleep.
+                </p>
+                <p className="psx-body">
+                  Common goals include reducing flare‑ups, improving confidence in movement and protecting
+                  long‑term joint and spine health. Many people benefit from a combination of these
+                  elements over time.
+                </p>
+                <Link to="/contact" className="psx-btn-primary" aria-label={`Book an appointment for ${areaLabel}`}>
+                  <span>Book an appointment</span>
+                </Link>
+              </article>
+              <div className="psx-media" aria-hidden="true">
+                <div className="psx-media-inner">
+                  <video
+                    className="psx-video"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                    src="/assets/videos/post-43.mp4"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section className="psx-section psx-approaches">
+            <div className="psx-approaches-panel">
+              <header className="psx-approaches-header">
+                <h2 className="psx-approaches-title">Treatment approaches</h2>
+                <p className="psx-approaches-subtitle">
+                  We combine minimally invasive procedures, rehabilitation and medication when needed to
+                  create a thoughtful treatment pathway rather than a single isolated procedure.
+                </p>
+              </header>
+              <div className="psx-approaches-grid">
+                <article className="psx-approach">
+                  <div className="psx-approach-media psx-approach-media-a" aria-hidden="true" />
+                  <div className="psx-approach-body">
+                    <h3 className="psx-approach-title">
+                      Targeted <span>interventions</span>
+                    </h3>
+                    <div className="psx-accent" />
+                    <p className="psx-approach-text">
+                      Image‑guided procedures such as nerve blocks,{' '}
+                      <Link to="/treatments/minimally-invasive-treatments/radiofrequency">
+                        radiofrequency ablation
+                      </Link>{' '}
+                      or joint and spine injections can be used to reduce pain while preserving function
+                      and supporting rehabilitation. These minimally invasive treatments are usually
+                      performed as day‑case procedures in our clinic.
+                    </p>
+                    <p className="psx-approach-text">
+                      For some conditions, surgical options such as{' '}
+                      <Link to="/treatments/surgical-treatments/tubular-microsurgery">
+                        tubular microsurgery
+                      </Link>{' '}
+                      or decompression may be considered. When this is the case, you will meet with a
+                      spine surgeon to discuss risks, benefits and alternatives in detail.
+                    </p>
+                  </div>
+                </article>
+                <article className="psx-approach">
+                  <div className="psx-approach-media psx-approach-media-b" aria-hidden="true" />
+                  <div className="psx-approach-body">
+                    <h3 className="psx-approach-title">
+                      Pharmacological and <span>rehabilitation</span>
+                    </h3>
+                    <div className="psx-accent" />
+                    <p className="psx-approach-text">
+                      Medication, physiotherapy and lifestyle measures frequently work together, helping
+                      you to move with more confidence and regain autonomy in daily activities. We favour
+                      stepwise, time‑limited use of medicines where possible, always balancing symptom
+                      relief with safety.
+                    </p>
+                    <p className="psx-approach-text">
+                      Our rehabilitation team provides structured programmes that may include{' '}
+                      <Link to="/treatments/non-invasive-treatments/physiotherapy">physiotherapy</Link>, guided
+                      exercise and functional training. When emotional or behavioural factors play a role,
+                      we can also involve{' '}
+                      <Link to="/treatments/non-invasive-treatments/psychology">psychology</Link> or{' '}
+                      <Link to="/treatments/non-invasive-treatments/nutrition">nutrition</Link> support so
+                      that your plan addresses the whole person, not just the painful area.
+                    </p>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section className="psx-section psx-patterns">
+            <div className="psx-patterns-layout">
+              <header className="psx-patterns-header">
+                <p className="psx-patterns-eyebrow">Most common patterns</p>
+                <h2 className="psx-patterns-title">How {areaLabel} can present</h2>
+                <p className="psx-patterns-subtitle">
+                  People experience pain in different ways. Exploring the pattern of your symptoms helps
+                  us match you with the most appropriate investigation and treatment.
+                </p>
+              </header>
+              <div className="psx-accordion" role="list">
+                {DEFAULT_SYNDROMES.map((syndrome) => {
+                  const isActive = activeSyndromeId === syndrome.id;
+                  const rowId = `psx-accordion-${slugBase}-${syndrome.id}`;
+                  const panelId = `psx-accordion-panel-${slugBase}-${syndrome.id}`;
+                  return (
+                    <div key={syndrome.id} className="psx-accordion-item" role="listitem">
+                      <button
+                        id={rowId}
+                        type="button"
+                        className="psx-accordion-trigger"
+                        aria-expanded={isActive}
+                        aria-controls={panelId}
+                        onClick={() =>
+                          setActiveSyndromeId((current) => (current === syndrome.id ? null : syndrome.id))
+                        }
+                      >
+                        <span className="psx-accordion-label">{syndrome.label}</span>
+                        <span className="psx-accordion-icon" aria-hidden="true">
+                          +
+                        </span>
+                      </button>
+                      <div
+                        id={panelId}
+                        className="psx-accordion-panel"
+                        data-open={isActive ? 'true' : 'false'}
+                        role="region"
+                        aria-labelledby={rowId}
+                        aria-hidden={!isActive}
+                      >
+                        <p className="psx-accordion-text">{syndrome.description}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </section>
+
+          <section className="psx-section psx-testimonials">
+            <header className="psx-testimonials-header">
+              <h2 className="psx-testimonials-title">Testimonials</h2>
+              <span className="psx-testimonials-underline" aria-hidden="true" />
+            </header>
+            <div className="psx-testimonials-grid">
+              <blockquote className="psx-testimonial">
+                <span className="psx-testimonial-quote" aria-hidden="true">
+                  ”
+                </span>
+                <p className="psx-testimonial-text">
+                  “From the first consultation I felt that my concerns were listened to and that there was
+                  a clear plan for how to move forward.”
+                </p>
+                <footer className="psx-testimonial-meta">
+                  <cite className="psx-testimonial-author">Jean‑François Cristau</cite>
+                  <span className="psx-testimonial-location">France</span>
+                </footer>
+              </blockquote>
+              <blockquote className="psx-testimonial">
+                <span className="psx-testimonial-quote" aria-hidden="true">
+                  ”
+                </span>
+                <p className="psx-testimonial-text">
+                  “After treatment and guided exercises I can now get on with my life with much less pain
+                  and more confidence.”
+                </p>
+                <footer className="psx-testimonial-meta">
+                  <cite className="psx-testimonial-author">Carole Lee</cite>
+                  <span className="psx-testimonial-location">The Netherlands</span>
+                </footer>
+              </blockquote>
+            </div>
+          </section>
+
+          <section className="psx-section psx-contact">
+            <div className="contact-visit-layout psx-contact-layout">
+              <div className="psx-contact-form">
+                <h2 className="contact-form-title">Talk to our team</h2>
+                <p className="contact-form-subtitle">
+                  Share your symptoms and questions, and we will help you understand the cause and plan
+                  the next step in your care.
+                </p>
+                <form
+                  className="contact-form"
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                  }}
+                >
+                  <div className="contact-form-field">
+                    <label className="contact-form-label" htmlFor={`${contactIdPrefix}-first-name`}>
+                      Name
+                    </label>
+                    <div className="contact-form-name-row">
+                      <input
+                        id={`${contactIdPrefix}-first-name`}
+                        type="text"
+                        className="contact-input"
+                        placeholder="First Name"
+                      />
+                      <input
+                        id={`${contactIdPrefix}-last-name`}
+                        type="text"
+                        className="contact-input"
+                        placeholder="Last Name"
+                      />
+                    </div>
+                  </div>
+                  <div className="contact-form-field">
+                    <label className="contact-form-label" htmlFor={`${contactIdPrefix}-email`}>
+                      Email <span className="contact-label-required">*</span>
+                    </label>
+                    <input
+                      id={`${contactIdPrefix}-email`}
+                      type="email"
+                      className="contact-input"
+                      placeholder="you@example.com"
+                      required
+                    />
+                  </div>
+                  <div className="contact-form-field">
+                    <label className="contact-form-label" htmlFor={`${contactIdPrefix}-phone`}>
+                      Phone
+                    </label>
+                    <div className="contact-form-phone-row">
+                      <span className="contact-phone-flag" aria-hidden="true">
+                        🇵🇹
+                      </span>
+                      <input
+                        id={`${contactIdPrefix}-phone`}
+                        type="tel"
+                        className="contact-input"
+                        placeholder="+351 000 000 000"
+                      />
+                    </div>
+                  </div>
+                  <div className="contact-form-field">
+                    <label className="contact-form-label" htmlFor={`${contactIdPrefix}-message`}>
+                      Message <span className="contact-label-required">*</span>
+                    </label>
+                    <textarea
+                      id={`${contactIdPrefix}-message`}
+                      className="contact-textarea"
+                      placeholder="Tell us more about your pain, symptoms or questions..."
+                      rows={4}
+                      required
+                    />
+                  </div>
+                  <div className="contact-form-footer-row">
+                    <label className="contact-form-human">
+                      <input type="checkbox" className="contact-human-checkbox" />
+                      <span>I am human</span>
+                    </label>
+                    <div className="contact-form-captcha-placeholder" aria-hidden="true">
+                      <span>reCAPTCHA</span>
+                    </div>
+                  </div>
+                  <div className="contact-form-actions">
+                    <button type="submit" className="contact-form-submit psx-btn-primary">
+                      <span>Submit</span>
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <div className="contact-visit-map">
+                <iframe
+                  title="Algarve Pain Centre location"
+                  src="https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil&z=16&output=embed"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+            </div>
+          </section>
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: serializeJsonForHtmlScript(structuredDataJson) }}
+          />
+        </main>
+      </div>
+    );
+  }
 
   return (
     <main className={mainClassName ? `page-main condition-main ${mainClassName}` : 'page-main condition-main'}>

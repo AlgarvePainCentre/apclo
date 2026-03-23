@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
-import Navbar from '../../components/Navbar';
-import Footer from '../../components/Footer';
 import { serializeJsonForHtmlScript } from '../../utils/security';
 
 
@@ -18,6 +15,7 @@ export default function Home() {
   const testimonialCopyRef = useRef(null);
   const [enableStoryVideo, setEnableStoryVideo] = useState(false);
   const [heroVariant, setHeroVariant] = useState('A');
+  const [heroSearchQuery, setHeroSearchQuery] = useState('');
   const navigate = useNavigate();
   const whyChooseItems = [
     {
@@ -253,7 +251,6 @@ export default function Home() {
 
   return (
     <div className="home-page">
-      <Navbar />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
@@ -286,25 +283,45 @@ export default function Home() {
             playsInline
             preload="metadata"
             poster="/assets/images/medical/DSC06176.jpg"
-            src="/assets/videos/Banner-Services.mp4"
+            src="/assets/videos/Sports-Medicine-Video-min-1.mp4"
           />
         </div>
-        <div className="hero-content hero-content-home" ref={heroContentMotionRef}>
+        <div className="hero-content hero-content-home hero-content-centered" ref={heroContentMotionRef}>
           <div className="hero-left hero-home-left">
             <h1 className="hero-title">Your Pain Centre</h1>
-            <div className="hero-actions">
-              <button
-                type="button"
-                className="hero-find"
-                aria-label="Find care"
-                onClick={() => {
-                  trackEvent('cta_click', { location: 'hero-find' });
-                  navigate('/treatments');
+            <div className="heroSearch">
+              <form
+                className="heroSearch-inline"
+                role="search"
+                aria-label="Site search"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const q = heroSearchQuery.trim();
+                  if (!q) return;
+                  navigate(`/blog?q=${encodeURIComponent(q)}`);
                 }}
               >
-                <span className="hero-find-label">Find care</span>
-                <span className="hero-find-arrow" aria-hidden="true">↗</span>
-              </button>
+                <span className="heroSearch-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="20" height="20" focusable="false" aria-hidden="true">
+                    <path
+                      d="M10.5 3a7.5 7.5 0 1 1 4.72 13.35l4.22 4.22a1 1 0 0 1-1.42 1.42l-4.22-4.22A7.5 7.5 0 0 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11Z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                </span>
+                <input
+                  type="search"
+                  className="heroSearch-input"
+                  value={heroSearchQuery}
+                  onChange={(e) => setHeroSearchQuery(e.target.value)}
+                  placeholder="Search articles and resources…"
+                  aria-label="Search"
+                  autoComplete="off"
+                />
+                <button type="submit" className="heroSearch-submit" aria-label="Submit search">
+                  Search
+                </button>
+              </form>
             </div>
           </div>
         </div>
@@ -831,15 +848,13 @@ export default function Home() {
             <div className="home-section-treatment-grid">
               <article className="treatment-card">
                 <div className="treatment-card-illustration treatment-card-illustration-non-invasive">
-                  <video
+                  <img
                     className="treatment-card-video"
-                    aria-hidden="true"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    data-src="/assets/videos/test.mp4"
+                    src="/assets/images/illustrative/Physiotherapy-min.jpg"
+                    alt="Physiotherapy session representing non-invasive pain treatments."
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
                   />
                 </div>
                 <div className="treatment-card-body">
@@ -865,15 +880,13 @@ export default function Home() {
               </article>
               <article className="treatment-card">
                 <div className="treatment-card-illustration treatment-card-illustration-minimally-invasive">
-                  <video
+                  <img
                     className="treatment-card-video"
-                    aria-hidden="true"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    data-src="/assets/videos/test.mp4"
+                    src="/assets/images/illustrative/pain-medicine-algarve-min.jpg"
+                    alt="Clinical pain procedure setting representing minimally invasive treatments."
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
                   />
                 </div>
                 <div className="treatment-card-body">
@@ -899,15 +912,13 @@ export default function Home() {
               </article>
               <article className="treatment-card">
                 <div className="treatment-card-illustration treatment-card-illustration-surgical">
-                  <video
+                  <img
                     className="treatment-card-video"
-                    aria-hidden="true"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    data-src="/assets/videos/test.mp4"
+                    src="/assets/images/illustrative/Lumber-Spine-Pain-min.jpg"
+                    alt="Spine-related imagery representing surgical spine treatments."
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
                   />
                 </div>
                 <div className="treatment-card-body">
@@ -1194,7 +1205,6 @@ export default function Home() {
         </section>
 
       </main>
-      <Footer />
     </div>
   );
 }

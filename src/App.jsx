@@ -1,9 +1,11 @@
 import './global.css';
 import './responsive.css';
 import './pages/home/Home.css';
+import './pages/treatments/Treatments.css';
 import './pages/specialities/MedicalSections.css';
-import { Suspense, lazy } from 'react';
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import './pages/specialities/PainSpecialtyClone.css';
+import { Component, Suspense, lazy } from 'react';
+import { Link, Navigate, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -95,7 +97,6 @@ const ExercisePage = lazy(() => import('./pages/treatments/NonInvasiveTreatments
 const PodologyPage = lazy(() => import('./pages/treatments/NonInvasiveTreatments/Podology/page'));
 const HomeCarePage = lazy(() => import('./pages/treatments/NonInvasiveTreatments/HomeCare/page'));
 
-const TipsForSelfCarePage = lazy(() => import('./pages/resources/Learn/TipsForSelfCare/page'));
 const BlogPage = lazy(() => import('./pages/resources/Learn/Blog/page'));
 const BlogArticlePage = lazy(() => import('./pages/resources/Learn/Blog/articlePage'));
 const CervicalPainPage = lazy(() => import('./pages/resources/Learn/CervicalPain/page'));
@@ -113,12 +114,14 @@ const TermsOfServicePage = lazy(() => import('./pages/company/TermsOfService/pag
 const PrivacyPolicyPage = lazy(() => import('./pages/company/PrivacyPolicy/page'));
 const CookiePolicyPage = lazy(() => import('./pages/company/CookiePolicy/page'));
 const AccessibilityStatementPage = lazy(() => import('./pages/company/AccessibilityStatement/page'));
+const SupportPage = lazy(() => import('./pages/gethelp/Support/page'));
+const PricingPage = lazy(() => import('./pages/gethelp/Pricing/page'));
 
-function SpecialityLayout({ children }) {
+function ShellLayout() {
   return (
     <div className="page">
       <Navbar />
-      {children}
+      <Outlet />
       <Footer />
     </div>
   );
@@ -136,612 +139,161 @@ function RedirectTestimonialsTypos() {
   return <Navigate to={`${resolvedPathname}${location.search}${location.hash}`} replace />;
 }
 
+class AppErrorBoundary extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { hasError: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { hasError: true };
+  }
+
+  componentDidCatch() {}
+
+  render() {
+    if (!this.state.hasError) return this.props.children;
+
+    return (
+      <div className="page">
+        <Navbar />
+        <main className="page-main">
+          <section className="page-section">
+            <h1>Something went wrong</h1>
+            <p>Try refreshing the page or return to the home page.</p>
+            <p>
+              <Link to="/">Go to Home</Link>
+            </p>
+          </section>
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+}
+
+function NotFoundPage() {
+  return (
+    <main className="page-main">
+      <section className="page-section">
+        <h1>Page not found</h1>
+        <p>Check the URL or return to the home page.</p>
+        <p>
+          <Link to="/">Go to Home</Link>
+        </p>
+      </section>
+    </main>
+  );
+}
+
 function App() {
+  const location = useLocation();
+
   return (
     <div className="App">
-      <Suspense fallback={<div className="page-loading" role="status" aria-live="polite">Loading…</div>}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-        <Route path="/specialities" element={<Specialities />} />
-        <Route
-          path="/specialities/pain-medicine/head-pain"
-          element={
-            <SpecialityLayout>
-              <HeadPainPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/pain-medicine/cervical-spine-pain"
-          element={
-            <SpecialityLayout>
-              <CervicalSpinePainPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/pain-medicine/lumbar-spine-pain"
-          element={
-            <SpecialityLayout>
-              <LumbarSpinePainPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/pain-medicine/shoulder-pain"
-          element={
-            <SpecialityLayout>
-              <ShoulderPainPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/pain-medicine/hand-and-elbow-pain"
-          element={
-            <SpecialityLayout>
-              <HandAndElbowPainPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/pain-medicine/hip-and-groin-pain"
-          element={
-            <SpecialityLayout>
-              <HipAndGroinPainPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/pain-medicine/knee-pain"
-          element={
-            <SpecialityLayout>
-              <KneePainPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/pain-medicine/thoracic-wall-pain"
-          element={
-            <SpecialityLayout>
-              <ThoracicWallPainPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/pain-medicine/abdominal-wall-pain"
-          element={
-            <SpecialityLayout>
-              <AbdominalWallPainPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/pain-medicine/pelvic-and-gynaecological"
-          element={
-            <SpecialityLayout>
-              <PelvicAndGynaecologicalPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/pain-medicine/facial-pain"
-          element={
-            <SpecialityLayout>
-              <FacialPainPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/pain-medicine/foot-and-ankle-pain"
-          element={
-            <SpecialityLayout>
-              <FootAndAnklePainPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/sports-medicine/injuries"
-          element={
-            <SpecialityLayout>
-              <InjuriesPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/sports-medicine/prevention"
-          element={
-            <SpecialityLayout>
-              <PreventionPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/sports-medicine/rehabilitation"
-          element={
-            <SpecialityLayout>
-              <SportsRehabilitationPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/sports-medicine/performance"
-          element={
-            <SpecialityLayout>
-              <PerformancePage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/sports-medicine/psychology"
-          element={
-            <SpecialityLayout>
-              <PsychologyPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/sports-medicine/nutrition"
-          element={
-            <SpecialityLayout>
-              <NutritionPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/stroke-medicine/rehabilitation"
-          element={
-            <SpecialityLayout>
-              <StrokeRehabilitationPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/stroke-medicine/clinical-and-secondary-prevention-of-stroke"
-          element={
-            <SpecialityLayout>
-              <ClinicalAndSecondaryPreventionOfStrokePage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/stroke-medicine/feeding-autonomy"
-          element={
-            <SpecialityLayout>
-              <FeedingAutonomyPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/stroke-medicine/speech-autonomy"
-          element={
-            <SpecialityLayout>
-              <SpeechAutonomyPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/stroke-medicine/post-stroke-depression-and-mood-disorders"
-          element={
-            <SpecialityLayout>
-              <PostStrokeDepressionAndMoodDisordersPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/stroke-medicine/medical-complications-post-stroke"
-          element={
-            <SpecialityLayout>
-              <MedicalComplicationsPostStrokePage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/stroke-medicine/post-stroke-spasticity"
-          element={
-            <SpecialityLayout>
-              <PostStrokeSpasticityPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/stroke-medicine/complex-regional-pain-syndrome"
-          element={
-            <SpecialityLayout>
-              <ComplexRegionalPainSyndromePage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/stroke-medicine/postural-and-motor-control-autonomy"
-          element={
-            <SpecialityLayout>
-              <PosturalAndMotorControlAutonomyPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/specialities/stroke-medicine/community-reintegration"
-          element={
-            <SpecialityLayout>
-              <CommunityReintegrationPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route path="/treatments" element={<Treatments />} />
-        <Route
-          path="/treatments/surgical-treatments/tubular-microsurgery"
-          element={
-            <SpecialityLayout>
-              <TubularMicrosurgeryPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/surgical-treatments/spinal-fusion"
-          element={
-            <SpecialityLayout>
-              <SpinalFusionPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/surgical-treatments/disc-replacement"
-          element={
-            <SpecialityLayout>
-              <DiscReplacementPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/surgical-treatments/lumbar-deformity-surgery"
-          element={
-            <SpecialityLayout>
-              <LumbarDeformitySurgeryPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/minimally-invasive-treatments/vertebroplasty"
-          element={
-            <SpecialityLayout>
-              <VertebroplastyPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/minimally-invasive-treatments/radiofrequency"
-          element={
-            <SpecialityLayout>
-              <RadiofrequencyPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/minimally-invasive-treatments/interspinous-spacers"
-          element={
-            <SpecialityLayout>
-              <InterspinousSpacersPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/minimally-invasive-treatments/peripheral-nerve-block"
-          element={
-            <SpecialityLayout>
-              <PeripheralNerveBlockPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/minimally-invasive-treatments/intra-articular-corticosteroids-injection"
-          element={
-            <SpecialityLayout>
-              <IntraArticularCorticosteroidsInjectionPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/minimally-invasive-treatments/calcification-barbotage"
-          element={
-            <SpecialityLayout>
-              <CalcificationBarbotagePage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/minimally-invasive-treatments/cryoblation"
-          element={
-            <SpecialityLayout>
-              <CryoblationPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/minimally-invasive-treatments/nucleoplasty"
-          element={
-            <SpecialityLayout>
-              <NucleoplastyPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/minimally-invasive-treatments/platelets-rich-plasma-injection"
-          element={
-            <SpecialityLayout>
-              <PlateletsRichPlasmaInjectionPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/minimally-invasive-treatments/hydrodistention"
-          element={
-            <SpecialityLayout>
-              <HydrodistentionPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/minimally-invasive-treatments/botulin-toxin-injection"
-          element={
-            <SpecialityLayout>
-              <BotulinToxinInjectionPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/non-invasive-treatments/pharmacological-pain-management"
-          element={
-            <SpecialityLayout>
-              <PharmacologicalPainManagementPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/non-invasive-treatments/physiotherapy"
-          element={
-            <SpecialityLayout>
-              <PhysiotherapyPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/non-invasive-treatments/osteopathy"
-          element={
-            <SpecialityLayout>
-              <OsteopathyPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/non-invasive-treatments/occupation-therapy"
-          element={
-            <SpecialityLayout>
-              <OccupationTherapyPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/non-invasive-treatments/speech-therapy"
-          element={
-            <SpecialityLayout>
-              <SpeechTherapyPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/non-invasive-treatments/psychology"
-          element={
-            <SpecialityLayout>
-              <PsychologyTreatmentPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/non-invasive-treatments/nutrition"
-          element={
-            <SpecialityLayout>
-              <NutritionTreatmentPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/non-invasive-treatments/exercise"
-          element={
-            <SpecialityLayout>
-              <ExercisePage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/non-invasive-treatments/podology"
-          element={
-            <SpecialityLayout>
-              <PodologyPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/treatments/non-invasive-treatments/home-care"
-          element={
-            <SpecialityLayout>
-              <HomeCarePage />
-            </SpecialityLayout>
-          }
-        />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
-        <Route
-          path="/support"
-          element={
-            <SpecialityLayout>
-              <main className="support-page">
-                <h1>Support</h1>
-                <p>Content for Support will go here.</p>
-              </main>
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/pricing"
-          element={
-            <SpecialityLayout>
-              <main className="pricing-page">
-                <h1>Pricing</h1>
-                <p>Content for Pricing will go here.</p>
-              </main>
-            </SpecialityLayout>
-          }
-        />
-        <Route path="/resources" element={<Resources />} />
-        <Route
-          path="/blog"
-          element={
-            <SpecialityLayout>
-              <BlogPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/blog/*"
-          element={
-            <SpecialityLayout>
-              <BlogArticlePage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/resources/learn/tips-for-self-care"
-          element={
-            <SpecialityLayout>
-              <TipsForSelfCarePage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/resources/learn/blog"
-          element={<Navigate to="/blog" replace />}
-        />
-        <Route
-          path="/resources/learn/cervical-pain"
-          element={
-            <SpecialityLayout>
-              <CervicalPainPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/resources/learn/conquering-cervical-pain"
-          element={
-            <SpecialityLayout>
-              <ConqueringCervicalPainPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/resources/learn/acute-and-chronic-pain"
-          element={
-            <SpecialityLayout>
-              <AcuteAndChronicPainPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/resources/testimonials/overcoming-sciatica-pain"
-          element={
-            <SpecialityLayout>
-              <OvercomingSciaticaPainPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/resources/testimonials/control-over-spine-degeneration"
-          element={
-            <SpecialityLayout>
-              <ControlOverSpineDegenerationPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/resources/testimonials/recovering-from-sports-injuries"
-          element={
-            <SpecialityLayout>
-              <RecoveringFromSportsInjuriesPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/resources/testimonials/all-testimonials"
-          element={
-            <SpecialityLayout>
-              <AllTestimonialsPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route path="/resources/testemunial/*" element={<RedirectTestimonialsTypos />} />
-        <Route path="/resources/testemunials/*" element={<RedirectTestimonialsTypos />} />
-        <Route
-          path="/company/careers"
-          element={
-            <SpecialityLayout>
-              <CareersPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/company/press"
-          element={
-            <SpecialityLayout>
-              <PressPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/company/terms-of-service"
-          element={
-            <SpecialityLayout>
-              <TermsOfServicePage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/company/privacy-policy"
-          element={
-            <SpecialityLayout>
-              <PrivacyPolicyPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/company/cookie-policy"
-          element={
-            <SpecialityLayout>
-              <CookiePolicyPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="/company/accessibility-statement"
-          element={
-            <SpecialityLayout>
-              <AccessibilityStatementPage />
-            </SpecialityLayout>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <SpecialityLayout>
-              <main className="page-main">
-                <section className="page-section">
-                  <h1>Page not found</h1>
-                  <p>Check the URL or return to the home page.</p>
-                </section>
-              </main>
-            </SpecialityLayout>
-          }
-        />
-        </Routes>
-      </Suspense>
+      <AppErrorBoundary key={location.key}>
+        <Suspense fallback={<div className="page-loading" role="status" aria-live="polite">Loading…</div>}>
+          <Routes>
+            <Route path="/resources/testemunial/*" element={<RedirectTestimonialsTypos />} />
+            <Route path="/resources/testemunials/*" element={<RedirectTestimonialsTypos />} />
+            <Route path="/resources/learn/blog" element={<Navigate to="/blog" replace />} />
+
+            <Route element={<ShellLayout />}>
+              <Route path="/" element={<Home />} />
+              <Route path="/specialities" element={<Specialities />} />
+              <Route path="/treatments" element={<Treatments />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/resources" element={<Resources />} />
+
+              <Route path="/specialities/pain-medicine/head-pain" element={<HeadPainPage />} />
+              <Route path="/specialities/pain-medicine/cervical-spine-pain" element={<CervicalSpinePainPage />} />
+              <Route path="/specialities/pain-medicine/lumbar-spine-pain" element={<LumbarSpinePainPage />} />
+              <Route path="/specialities/pain-medicine/shoulder-pain" element={<ShoulderPainPage />} />
+              <Route path="/specialities/pain-medicine/hand-and-elbow-pain" element={<HandAndElbowPainPage />} />
+              <Route path="/specialities/pain-medicine/hip-and-groin-pain" element={<HipAndGroinPainPage />} />
+              <Route path="/specialities/pain-medicine/knee-pain" element={<KneePainPage />} />
+              <Route path="/specialities/pain-medicine/thoracic-wall-pain" element={<ThoracicWallPainPage />} />
+              <Route path="/specialities/pain-medicine/abdominal-wall-pain" element={<AbdominalWallPainPage />} />
+              <Route path="/specialities/pain-medicine/pelvic-and-gynaecological" element={<PelvicAndGynaecologicalPage />} />
+              <Route path="/specialities/pain-medicine/facial-pain" element={<FacialPainPage />} />
+              <Route path="/specialities/pain-medicine/foot-and-ankle-pain" element={<FootAndAnklePainPage />} />
+
+              <Route path="/specialities/sports-medicine/injuries" element={<InjuriesPage />} />
+              <Route path="/specialities/sports-medicine/prevention" element={<PreventionPage />} />
+              <Route path="/specialities/sports-medicine/rehabilitation" element={<SportsRehabilitationPage />} />
+              <Route path="/specialities/sports-medicine/performance" element={<PerformancePage />} />
+              <Route path="/specialities/sports-medicine/psychology" element={<PsychologyPage />} />
+              <Route path="/specialities/sports-medicine/nutrition" element={<NutritionPage />} />
+
+              <Route path="/specialities/stroke-medicine/rehabilitation" element={<StrokeRehabilitationPage />} />
+              <Route path="/specialities/stroke-medicine/clinical-and-secondary-prevention-of-stroke" element={<ClinicalAndSecondaryPreventionOfStrokePage />} />
+              <Route path="/specialities/stroke-medicine/feeding-autonomy" element={<FeedingAutonomyPage />} />
+              <Route path="/specialities/stroke-medicine/speech-autonomy" element={<SpeechAutonomyPage />} />
+              <Route path="/specialities/stroke-medicine/post-stroke-depression-and-mood-disorders" element={<PostStrokeDepressionAndMoodDisordersPage />} />
+              <Route path="/specialities/stroke-medicine/medical-complications-post-stroke" element={<MedicalComplicationsPostStrokePage />} />
+              <Route path="/specialities/stroke-medicine/post-stroke-spasticity" element={<PostStrokeSpasticityPage />} />
+              <Route path="/specialities/stroke-medicine/complex-regional-pain-syndrome" element={<ComplexRegionalPainSyndromePage />} />
+              <Route path="/specialities/stroke-medicine/postural-and-motor-control-autonomy" element={<PosturalAndMotorControlAutonomyPage />} />
+              <Route path="/specialities/stroke-medicine/community-reintegration" element={<CommunityReintegrationPage />} />
+
+              <Route path="/treatments/surgical-treatments/tubular-microsurgery" element={<TubularMicrosurgeryPage />} />
+              <Route path="/treatments/surgical-treatments/spinal-fusion" element={<SpinalFusionPage />} />
+              <Route path="/treatments/surgical-treatments/disc-replacement" element={<DiscReplacementPage />} />
+              <Route path="/treatments/surgical-treatments/lumbar-deformity-surgery" element={<LumbarDeformitySurgeryPage />} />
+
+              <Route path="/treatments/minimally-invasive-treatments/vertebroplasty" element={<VertebroplastyPage />} />
+              <Route path="/treatments/minimally-invasive-treatments/radiofrequency" element={<RadiofrequencyPage />} />
+              <Route path="/treatments/minimally-invasive-treatments/interspinous-spacers" element={<InterspinousSpacersPage />} />
+              <Route path="/treatments/minimally-invasive-treatments/peripheral-nerve-block" element={<PeripheralNerveBlockPage />} />
+              <Route path="/treatments/minimally-invasive-treatments/intra-articular-corticosteroids-injection" element={<IntraArticularCorticosteroidsInjectionPage />} />
+              <Route path="/treatments/minimally-invasive-treatments/calcification-barbotage" element={<CalcificationBarbotagePage />} />
+              <Route path="/treatments/minimally-invasive-treatments/cryoblation" element={<CryoblationPage />} />
+              <Route path="/treatments/minimally-invasive-treatments/nucleoplasty" element={<NucleoplastyPage />} />
+              <Route path="/treatments/minimally-invasive-treatments/platelets-rich-plasma-injection" element={<PlateletsRichPlasmaInjectionPage />} />
+              <Route path="/treatments/minimally-invasive-treatments/hydrodistention" element={<HydrodistentionPage />} />
+              <Route path="/treatments/minimally-invasive-treatments/botulin-toxin-injection" element={<BotulinToxinInjectionPage />} />
+
+              <Route path="/treatments/non-invasive-treatments/pharmacological-pain-management" element={<PharmacologicalPainManagementPage />} />
+              <Route path="/treatments/non-invasive-treatments/physiotherapy" element={<PhysiotherapyPage />} />
+              <Route path="/treatments/non-invasive-treatments/osteopathy" element={<OsteopathyPage />} />
+              <Route path="/treatments/non-invasive-treatments/occupation-therapy" element={<OccupationTherapyPage />} />
+              <Route path="/treatments/non-invasive-treatments/speech-therapy" element={<SpeechTherapyPage />} />
+              <Route path="/treatments/non-invasive-treatments/psychology" element={<PsychologyTreatmentPage />} />
+              <Route path="/treatments/non-invasive-treatments/nutrition" element={<NutritionTreatmentPage />} />
+              <Route path="/treatments/non-invasive-treatments/exercise" element={<ExercisePage />} />
+              <Route path="/treatments/non-invasive-treatments/podology" element={<PodologyPage />} />
+              <Route path="/treatments/non-invasive-treatments/home-care" element={<HomeCarePage />} />
+
+              <Route path="/support" element={<SupportPage />} />
+              <Route path="/pricing" element={<PricingPage />} />
+
+              <Route path="/blog" element={<BlogPage />} />
+              <Route path="/blog/:slug" element={<BlogArticlePage />} />
+              <Route path="/blog/*" element={<BlogArticlePage />} />
+
+              <Route path="/resources/learn/tips-for-self-care" element={<Navigate to="/resources" replace />} />
+              <Route path="/resources/learn/cervical-pain" element={<CervicalPainPage />} />
+              <Route path="/resources/learn/conquering-cervical-pain" element={<ConqueringCervicalPainPage />} />
+              <Route path="/resources/learn/acute-and-chronic-pain" element={<AcuteAndChronicPainPage />} />
+
+              <Route path="/resources/testimonials/overcoming-sciatica-pain" element={<OvercomingSciaticaPainPage />} />
+              <Route path="/resources/testimonials/control-over-spine-degeneration" element={<ControlOverSpineDegenerationPage />} />
+              <Route path="/resources/testimonials/recovering-from-sports-injuries" element={<RecoveringFromSportsInjuriesPage />} />
+              <Route path="/resources/testimonials/all-testimonials" element={<AllTestimonialsPage />} />
+
+              <Route path="/company/careers" element={<CareersPage />} />
+              <Route path="/company/press" element={<PressPage />} />
+              <Route path="/company/terms-of-service" element={<TermsOfServicePage />} />
+              <Route path="/company/privacy-policy" element={<PrivacyPolicyPage />} />
+              <Route path="/company/cookie-policy" element={<CookiePolicyPage />} />
+              <Route path="/company/accessibility-statement" element={<AccessibilityStatementPage />} />
+
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
+          </Routes>
+        </Suspense>
+      </AppErrorBoundary>
     </div>
   );
 }

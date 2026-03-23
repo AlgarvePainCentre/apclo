@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { serializeJsonForHtmlScript } from '../../../../utils/security';
+import './HeadPain.css';
 
 type Syndrome = {
   id: string;
@@ -100,9 +101,28 @@ const HeadPainPage: React.FC = () => {
 
   return (
     <div className="head-pain-page">
+      <header className="head-pain-hero">
+        <div className="head-pain-hero-backdrop" aria-hidden="true" />
+        <div className="head-pain-hero-inner">
+          <p className="head-pain-hero-eyebrow">Pain medicine speciality</p>
+          <h1 className="head-pain-hero-title">Head pain</h1>
+          <p className="head-pain-hero-subtitle">
+            Specialist assessment and treatment pathways for headache syndromes—personalised care that
+            helps you find relief and return to daily life with confidence.
+          </p>
+          <div className="head-pain-hero-actions">
+            <Link to="/contact" className="treatment-card-button" aria-label="Book an appointment for head pain">
+              <span>Book an appointment</span>
+            </Link>
+            <a href="#head-pain-treatments" className="outline-btn" aria-label="Explore treatments for head pain">
+              Explore treatments
+            </a>
+          </div>
+        </div>
+      </header>
       <main className="page-main head-pain-main">
 
-        <section className="page-section treatments-overview">
+        <section id="head-pain-treatments" className="page-section treatments-overview">
           <div className="treatments-overview-header">
             <h2 className="treatments-overview-title">Treatments for head pain</h2>
             <p className="treatments-overview-subtitle">
