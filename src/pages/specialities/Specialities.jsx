@@ -7,10 +7,6 @@ export default function Specialities() {
   const heroVideoRef = useRef(null);
   const heroContentMotionRef = useRef(null);
   const navigate = useNavigate();
-  const [expandedGalleryItem, setExpandedGalleryItem] = useState(null);
-  const galleryTransitionTimeoutRef = useRef(null);
-  const galleryTransitionLockedRef = useRef(false);
-  const pendingGalleryItemRef = useRef(null);
   const opinionTrackRef = useRef(null);
   const [opinionActiveSlide, setOpinionActiveSlide] = useState(0);
   const [isOpinionDragging, setIsOpinionDragging] = useState(false);
@@ -319,29 +315,6 @@ export default function Specialities() {
     }
     img.dataset.fallbackApplied = 'true';
     img.src = fallbackSpecialityImageSrc;
-  };
-
-  const onGalleryItemRequest = (key) => {
-    if (galleryTransitionLockedRef.current) {
-      pendingGalleryItemRef.current = key;
-      return;
-    }
-
-    galleryTransitionLockedRef.current = true;
-    if (galleryTransitionTimeoutRef.current) {
-      window.clearTimeout(galleryTransitionTimeoutRef.current);
-    }
-
-    setExpandedGalleryItem((current) => (current === key ? null : key));
-
-    galleryTransitionTimeoutRef.current = window.setTimeout(() => {
-      galleryTransitionLockedRef.current = false;
-      const pending = pendingGalleryItemRef.current;
-      pendingGalleryItemRef.current = null;
-      if (pending && pending !== key) {
-        onGalleryItemRequest(pending);
-      }
-    }, 420);
   };
 
   const opinions = [
@@ -850,12 +823,14 @@ export default function Specialities() {
           </div>
         </div>
       </section>
+
       <main className="home-main treatments-page">
+
         <section className="page-section treatments-feature treatments-feature-mi" aria-labelledby="speciality-pain-medicine">
           <header className="home-section-treatment-header treatments-section-header">
             <div className="home-section-treatment-header-content">
-              <p className="home-section-treatment-eyebrow">Pain Medicine</p>
-              <h2 className="home-section-treatment-title" id="speciality-pain-medicine">Pain Medicine</h2>
+              <p className="home-section-treatment-eyebrow home-stories-eyebrow">Pain Medicine</p>
+              <h2 className="home-section-treatment-title home-stories-title" id="speciality-pain-medicine">Pain Medicine</h2>
               <p className="home-section-treatment-subtitle">
                 Specialist assessment and coordinated care plans for acute and chronic pain conditions.
               </p>
@@ -1408,8 +1383,8 @@ export default function Specialities() {
         <section className="page-section treatments-feature treatments-feature-mi" aria-labelledby="speciality-sports-medicine">
           <header className="home-section-treatment-header treatments-section-header">
             <div className="home-section-treatment-header-content">
-              <p className="home-section-treatment-eyebrow">Sports medicine</p>
-              <h2 className="home-section-treatment-title" id="speciality-sports-medicine">Sports Medicine</h2>
+              <p className="home-section-treatment-eyebrow home-stories-eyebrow">Sports medicine</p>
+              <h2 className="home-section-treatment-title home-stories-title" id="speciality-sports-medicine">Sports Medicine</h2>
               <p className="home-section-treatment-subtitle">
                 Diagnosis, rehabilitation and performance-focused care for sports injuries and overuse conditions.
               </p>
@@ -1745,8 +1720,8 @@ export default function Specialities() {
         <section className="page-section treatments-feature treatments-feature-mi" aria-labelledby="speciality-stroke-medicine">
           <header className="home-section-treatment-header treatments-section-header">
             <div className="home-section-treatment-header-content">
-              <p className="home-section-treatment-eyebrow">Stroke medicine</p>
-              <h2 className="home-section-treatment-title" id="speciality-stroke-medicine">Stroke Medicine</h2>
+              <p className="home-section-treatment-eyebrow home-stories-eyebrow">Stroke medicine</p>
+              <h2 className="home-section-treatment-title home-stories-title" id="speciality-stroke-medicine">Stroke Medicine</h2>
               <p className="home-section-treatment-subtitle">
                 Integrated rehabilitation and follow-up for neurological recovery and long-term independence.
               </p>
@@ -1804,117 +1779,34 @@ export default function Specialities() {
               </div>
             </header>
             <div className="home-section-mainpain-grid">
-              {strokeTopics.map((topic) => (
-                <div
-                  key={topic.id}
-                  id={topic.id}
-                  className={[
-                    'stroke-topic',
-                    topic.id,
-                    expandedGalleryItem?.startsWith(`${topic.id}:`) ? 'stroke-topic-has-expanded' : '',
-                  ]
-                    .filter(Boolean)
-                    .join(' ')}
-                >
-                  {(() => {
-                    const isExpanded = expandedGalleryItem?.startsWith(`${topic.id}:`);
-                    const parsedIndex = isExpanded ? Number(expandedGalleryItem.split(':')[1]) : 0;
-                    const activeIndex = Number.isFinite(parsedIndex) ? parsedIndex : 0;
-                    const activeImage = topic.images[activeIndex] ?? topic.images[0];
-                    const contentId = `${topic.id}-content`;
-                    const activeKey = `${topic.id}:${activeIndex}`;
-                    return (
-                      <>
-                        <button
-                          type="button"
-                          className="stroke-topic-wireframe"
-                          aria-label={`Open ${topic.title}`}
-                          aria-expanded={Boolean(isExpanded)}
-                          aria-controls={contentId}
-                          onClick={() => onGalleryItemRequest(activeKey)}
-                        >
-                          <img
-                            className="stroke-topic-wireframe-image"
-                            src={activeImage.src}
-                            alt={activeImage.alt}
-                            loading="lazy"
-                            decoding="async"
-                            fetchPriority="low"
-                          />
-                          <div className="stroke-topic-wireframe-overlay" aria-hidden="true">
-                            <span className="stroke-topic-wireframe-badge">Stroke medicine</span>
-                            <div className="stroke-topic-wireframe-row">
-                              <span className="stroke-topic-wireframe-title">{topic.title}</span>
-                              <span className="stroke-topic-wireframe-arrow">→</span>
-                            </div>
-                          </div>
-                        </button>
-
-                        <div
-                          id={contentId}
-                          className="stroke-topic-wireframe-content"
-                          aria-hidden={!isExpanded}
-                        >
-                          <p className="stroke-topic-wireframe-summary">{topic.summary}</p>
-                          <div
-                            className="stroke-topic-wireframe-thumbs"
-                            role="list"
-                            aria-label={`${topic.title} images`}
-                          >
-                            {topic.images.map((image, index) => {
-                              const thumbKey = `${topic.id}:${index}`;
-                              const isActiveThumb = Boolean(isExpanded) && activeIndex === index;
-                              return (
-                                <button
-                                  key={image.src}
-                                  type="button"
-                                  className={[
-                                    'stroke-topic-wireframe-thumb',
-                                    isActiveThumb ? 'stroke-topic-wireframe-thumb-active' : '',
-                                  ]
-                                    .filter(Boolean)
-                                    .join(' ')}
-                                  aria-label={`Select ${image.title}`}
-                                  aria-pressed={isActiveThumb}
-                                  onClick={() => onGalleryItemRequest(thumbKey)}
-                                >
-                                  <img
-                                    className="stroke-topic-wireframe-thumb-image"
-                                    src={image.src}
-                                    alt={image.alt}
-                                    loading="lazy"
-                                    decoding="async"
-                                    fetchPriority="low"
-                                  />
-                                </button>
-                              );
-                            })}
-                          </div>
-                          <Link
-                            to={topic.to}
-                            className="stroke-topic-wireframe-cta"
-                            aria-label={`Explore ${topic.title}`}
-                            onClick={() =>
-                              trackEvent('nav_click', { location: 'specialities-stroke-topics', to: topic.to })
-                            }
-                          >
-                            <span>Explore</span>
-                            <span aria-hidden="true">→</span>
-                          </Link>
-                        </div>
-                      </>
-                    );
-                  })()}
-                </div>
-              ))}
+              <nav className="stroke-topic-nav" aria-label="Stroke medicine topics">
+                {strokeTopics.map((topic) => (
+                  <Link
+                    key={topic.id}
+                    to={topic.to}
+                    className="stroke-topic-navLink"
+                    aria-label={`Explore ${topic.title}`}
+                    onClick={() => trackEvent('nav_click', { location: 'specialities-stroke-topics', to: topic.to })}
+                    style={{
+                      backgroundImage:
+                        Array.isArray(topic.images) && topic.images.length > 0
+                          ? `url(${topic.images[0].src})`
+                          : undefined,
+                    }}
+                  >
+                    {topic.title}
+                  </Link>
+                ))}
+              </nav>
             </div>
           </div>
         </section>
+
         <section className="home-section-team">
           <div className="home-section-team-inner">
             <header className="home-section-team-header">
-              <p className="home-section-team-eyebrow">Meet our clinicians</p>
-              <h2 className="home-section-team-title">Your care team</h2>
+              <p className="home-section-team-eyebrow home-stories-eyebrow">Meet our clinicians</p>
+              <h2 className="home-section-team-title home-stories-title">Your care team</h2>
               <p className="home-section-team-subtitle">
                 Experienced specialists working together to relieve your pain.
               </p>
@@ -1922,7 +1814,7 @@ export default function Specialities() {
             <div className="home-team-grid">
               <article className="home-team-card">
                 <div className="home-team-image">
-                  <img src="/assets/images/team/miguel-costa-min.jpg" alt="Dr. Miguel Costa" loading="lazy" />
+                  <img src="/assets/images/team/dr-miguel-costa-algarve-pain-centre.jpg" alt="Dr. Miguel Costa" loading="lazy" />
                 </div>
                 <div className="home-team-body">
                   <h3 className="home-team-name">Dr. Miguel Costa</h3>
@@ -1931,11 +1823,20 @@ export default function Specialities() {
               </article>
               <article className="home-team-card">
                 <div className="home-team-image">
-                  <img src="/assets/images/team/Miguel-Baptista-min.jpg" alt="Dr. Miguel Baptista" loading="lazy" />
+                  <img src="/assets/images/team/dr-miguel-batista-algarve-pain-centre.jpg" alt="Dr. Miguel Baptista" loading="lazy" />
                 </div>
                 <div className="home-team-body">
                   <h3 className="home-team-name">Dr. Miguel Baptista</h3>
                   <p className="home-team-role">Neuroradiology</p>
+                </div>
+              </article>
+              <article className="home-team-card">
+                <div className="home-team-image">
+                  <img src="/assets/images/team/dr-ricardo-frada-algarve-pain-centre.jpg" alt="Dr. Ricardo Frada" loading="lazy" />
+                </div>
+                <div className="home-team-body">
+                  <h3 className="home-team-name">Dr. Ricardo Frada</h3>
+                  <p className="home-team-role">Orthopedic Surgery</p>
                 </div>
               </article>
               <article className="home-team-card">
@@ -1959,12 +1860,13 @@ export default function Specialities() {
             </div>
           </div>
         </section>
+
         <section className="home-section-treatment-cards">
           <div className="home-section-treatment-inner">
             <header className="home-section-treatment-header">
               <div className="home-section-treatment-header-content">
-                <p className="home-section-treatment-eyebrow">Clinically-led care plans</p>
-                <h2 className="home-section-treatment-title">Our Treatment Approaches</h2>
+                <p className="home-section-treatment-eyebrow home-stories-eyebrow">Clinically-led care plans</p>
+                <h2 className="home-section-treatment-title home-stories-title">Our Treatment Approaches</h2>
                 <p className="home-section-treatment-subtitle">
                   Evidence-based pathways from conservative care to advanced procedures—designed to relieve pain,
                   restore function and help you return to the activities you love.
@@ -2074,6 +1976,7 @@ export default function Specialities() {
             </div>
           </div>
         </section>
+
         <section className="home-section-treatment-testimonials">
           <div className="home-section-treatment-inner">
             <header className="opinion-header">
@@ -2258,6 +2161,7 @@ export default function Specialities() {
             </div>
           </div>
         </section>
+
       </main>
     </div>
   );

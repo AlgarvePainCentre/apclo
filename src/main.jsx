@@ -19,6 +19,16 @@ reactRoot.render(
   </React.StrictMode>
 );
 
+if (import.meta.env.PROD && typeof window !== 'undefined' && 'serviceWorker' in navigator) {
+  window.addEventListener(
+    'load',
+    () => {
+      navigator.serviceWorker.register('/sw.js').catch(() => {});
+    },
+    { once: true }
+  );
+}
+
 const reduceMotion = (() => {
   try {
     return !!window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;

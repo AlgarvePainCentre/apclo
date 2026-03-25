@@ -76,20 +76,11 @@
 .resources-page .section-header.section-header--learn h2 {
   position: relative;
   display: inline-block;
-  padding-bottom: 12px;
-}
-
-.resources-page .section-header.section-header--learn h2::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  width: 284px;
-  height: 3px;
-  border-radius: 999px;
-  background: var(--accent-color);
-  opacity: 0.95;
+  text-decoration-line: underline;
+  text-decoration-color: var(--accent-color, #f59e0b);
+  text-decoration-thickness: 3px;
+  text-underline-offset: 0.35em;
+  text-decoration-skip-ink: none;
 }
 
 .resources-page .section-header.section-header--learn p {

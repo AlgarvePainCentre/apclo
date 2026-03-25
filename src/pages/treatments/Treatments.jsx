@@ -295,8 +295,8 @@ export function TreatmentsMain({
 
             <header className="home-section-treatment-header treatments-section-header">
               <div className="home-section-treatment-header-content">
-                <p className="home-section-treatment-eyebrow">Clinically-led care plans</p>
-                <h2 className="home-section-treatment-title">
+                <p className="home-section-treatment-eyebrow home-stories-eyebrow">Clinically-led care plans</p>
+                <h2 className="home-section-treatment-title home-stories-title">
                    Surgical Procedures
                 </h2>
                 <p className="home-section-treatment-subtitle">
@@ -529,8 +529,8 @@ export function TreatmentsMain({
           <section className="page-section treatments-feature treatments-feature-mi">
             <header className="home-section-treatment-header treatments-section-header">
               <div className="home-section-treatment-header-content">
-                <p className="home-section-treatment-eyebrow">Minimally invasive</p>
-                <h2 className="home-section-treatment-title">Minimally invasive treatments</h2>
+                <p className="home-section-treatment-eyebrow home-stories-eyebrow">Minimally invasive</p>
+                <h2 className="home-section-treatment-title home-stories-title">Minimally invasive treatments</h2>
                 <p className="home-section-treatment-subtitle">
                   Learn about options that use small, image‑guided procedures to ease pain while limiting
                   recovery time and scarring.
@@ -1026,9 +1026,9 @@ export function TreatmentsMain({
           <section className="page-section treatments-feature treatments-feature-ni">
             <header className="home-section-treatment-header treatments-section-header">
               <div className="home-section-treatment-header-content">
-                <p className="home-section-treatment-eyebrow">Non‑invasive</p>
-                <h2 className="home-section-treatment-title">
-                  Highlighted non‑invasive treatments</h2>
+                <p className="home-section-treatment-eyebrow home-stories-eyebrow">Non‑invasive</p>
+                <h2 className="home-section-treatment-title home-stories-title">
+                   Non‑invasive treatments</h2>
                 <p className="home-section-treatment-subtitle">
                   Explore non‑invasive options that focus on assessment, movement and lifestyle before
                   considering procedures or surgery.

@@ -844,6 +844,13 @@ export default function Home() {
         </section>
 
         <section className="home-section-treatment-cards">
+          <header className="home-section-team-header">
+              <p className="home-section-team-eyebrow">Meet our treatment options</p>
+              <h2 className="home-section-team-title home-stories-title">Our Treatments</h2>
+              <p className="home-section-team-subtitle">
+                Exploit the latest technologies to provide you with the best possible care.
+              </p>
+            </header>
           <div className="home-section-treatment-inner">
             <div className="home-section-treatment-grid">
               <article className="treatment-card">
@@ -951,7 +958,7 @@ export default function Home() {
             <header className="home-section-treatment-header home-section-mainpain-header">
               <div className="home-section-treatment-header-content">
                 <p className="home-section-treatment-eyebrow">Main pain areas</p>
-                <h2 className="home-section-treatment-title">Our Main Pain Areas</h2>
+                <h2 className="home-section-treatment-title home-stories-title">Our Main Pain Areas</h2>
                 <p className="home-section-treatment-subtitle">
                   Meet your medical needs and improve your life.
                 </p>
@@ -1073,7 +1080,7 @@ export default function Home() {
           <div className="home-section-team-inner">
             <header className="home-section-team-header">
               <p className="home-section-team-eyebrow">Meet our clinicians</p>
-              <h2 className="home-section-team-title">Your care team</h2>
+              <h2 className="home-section-team-title home-stories-title">Our care team</h2>
               <p className="home-section-team-subtitle">
                 Experienced specialists working together to relieve your pain.
               </p>
@@ -1081,7 +1088,7 @@ export default function Home() {
             <div className="home-team-grid">
               <article className="home-team-card">
                 <div className="home-team-image">
-                  <img src="/assets/images/team/miguel-costa-min.jpg" alt="Dr. Miguel Costa" loading="lazy" />
+                  <img src="/assets/images/team/dr-miguel-costa-algarve-pain-centre.jpg" alt="Dr. Miguel Costa" loading="lazy" />
                 </div>
                 <div className="home-team-body">
                   <h3 className="home-team-name">Dr. Miguel Costa</h3>
@@ -1090,11 +1097,20 @@ export default function Home() {
               </article>
               <article className="home-team-card">
                 <div className="home-team-image">
-                  <img src="/assets/images/team/Miguel-Baptista-min.jpg" alt="Dr. Miguel Baptista" loading="lazy" />
+                  <img src="/assets/images/team/dr-miguel-batista-algarve-pain-centre.jpg" alt="Dr. Miguel Baptista" loading="lazy" />
                 </div>
                 <div className="home-team-body">
                   <h3 className="home-team-name">Dr. Miguel Baptista</h3>
                   <p className="home-team-role">Neuroradiology</p>
+                </div>
+              </article>
+              <article className="home-team-card">
+                <div className="home-team-image">
+                  <img src="/assets/images/team/dr-ricardo-frada-algarve-pain-centre.jpg" alt="Dr. Ricardo Frada" loading="lazy" />
+                </div>
+                <div className="home-team-body">
+                  <h3 className="home-team-name">Dr. Ricardo Frada</h3>
+                  <p className="home-team-role">Orthopedic Surgery</p>
                 </div>
               </article>
               <article className="home-team-card">
