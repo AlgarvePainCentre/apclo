@@ -29,7 +29,18 @@ export default function Navbar() {
   const mobileOpenRef = useRef(false);
   const mobileDialogRef = useRef(null);
   const mobileToggleRef = useRef(null);
+  const mobilePanelRef = useRef(null);
   const headerRef = useRef(null);
+  const swipeRef = useRef({
+    active: false,
+    pointerId: null,
+    startX: 0,
+    startY: 0,
+    lastX: 0,
+    lastY: 0,
+  });
+  const [panelDragX, setPanelDragX] = useState(0);
+  const [isPanelDragging, setIsPanelDragging] = useState(false);
 
   const isSpecialitiesActive = location.pathname.startsWith('/specialities');
   const isTreatmentsActive = location.pathname.startsWith('/treatments');
@@ -53,6 +64,8 @@ export default function Navbar() {
     const shouldRestoreFocus = restoreFocus && mobileOpenRef.current;
     setMobileOpen(false);
     setMobileExpandedSection(null);
+    setPanelDragX(0);
+    setIsPanelDragging(false);
     if (shouldRestoreFocus) setTimeout(() => focusMobileToggle(), 0);
   };
 
@@ -324,6 +337,61 @@ export default function Navbar() {
   useEffect(() => {
     mobileOpenRef.current = mobileOpen;
   }, [mobileOpen]);
+
+  const onMobilePanelPointerDown = (e) => {
+    if (!mobileOpen) return;
+    if (e.pointerType !== 'touch') return;
+    swipeRef.current = {
+      active: true,
+      pointerId: e.pointerId,
+      startX: e.clientX,
+      startY: e.clientY,
+      lastX: e.clientX,
+      lastY: e.clientY,
+    };
+    setIsPanelDragging(true);
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {}
+  };
+
+  const onMobilePanelPointerMove = (e) => {
+    const s = swipeRef.current;
+    if (!s.active) return;
+    if (s.pointerId !== e.pointerId) return;
+
+    const dx = e.clientX - s.startX;
+    const dy = e.clientY - s.startY;
+    s.lastX = e.clientX;
+    s.lastY = e.clientY;
+
+    const absX = Math.abs(dx);
+    const absY = Math.abs(dy);
+    if (absX < absY + 10) return;
+
+    if (dx > 0) {
+      e.preventDefault();
+      setPanelDragX(dx);
+    }
+  };
+
+  const onMobilePanelPointerUp = (e) => {
+    const s = swipeRef.current;
+    if (!s.active) return;
+    if (s.pointerId !== e.pointerId) return;
+    swipeRef.current.active = false;
+    setIsPanelDragging(false);
+
+    const dx = e.clientX - s.startX;
+    const panelWidth = mobilePanelRef.current ? mobilePanelRef.current.getBoundingClientRect().width : 0;
+    const threshold = Math.max(90, panelWidth * 0.25);
+
+    if (dx > threshold) {
+      closeMobileNav();
+      return;
+    }
+    setPanelDragX(0);
+  };
 
   return (
     <>
@@ -730,19 +798,19 @@ export default function Navbar() {
           if (e.target === e.currentTarget) closeMobileNav();
         }}
       >
-        <div className="mobile-nav-panel">
-          <video
-            className="mobile-nav-background-video"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="metadata"
-            poster="/assets/images/illustrative/services-home-min-1.jpg"
-            src="/assets/videos/post-43.mp4"
-            aria-hidden="true"
-            tabIndex={-1}
-          />
+        <div
+          ref={mobilePanelRef}
+          className="mobile-nav-panel"
+          style={
+            mobileOpen
+              ? { transform: `translateX(${Math.max(0, panelDragX)}px)`, transition: isPanelDragging ? 'none' : undefined }
+              : undefined
+          }
+          onPointerDown={onMobilePanelPointerDown}
+          onPointerMove={onMobilePanelPointerMove}
+          onPointerUp={onMobilePanelPointerUp}
+          onPointerCancel={onMobilePanelPointerUp}
+        >
           <div className="mobile-nav-background-overlay" aria-hidden="true" />
           <div className="mobile-nav-header">
             <Link
@@ -772,6 +840,7 @@ export default function Navbar() {
             <button
               type="button"
               className="mobile-nav-section-toggle"
+              id="mobile-section-specialities-toggle"
               aria-expanded={mobileExpandedSection === 'specialities'}
               aria-controls="mobile-section-specialities"
               onClick={() =>
@@ -797,6 +866,8 @@ export default function Navbar() {
             </button>
             <div
               id="mobile-section-specialities"
+              role="region"
+              aria-labelledby="mobile-section-specialities-toggle"
               className={
                 mobileExpandedSection === 'specialities'
                   ? 'mobile-nav-section-panel mobile-nav-section-panel-open'
@@ -830,6 +901,7 @@ export default function Navbar() {
             <button
               type="button"
               className="mobile-nav-section-toggle"
+              id="mobile-section-treatments-toggle"
               aria-expanded={mobileExpandedSection === 'treatments'}
               aria-controls="mobile-section-treatments"
               onClick={() =>
@@ -855,6 +927,8 @@ export default function Navbar() {
             </button>
             <div
               id="mobile-section-treatments"
+              role="region"
+              aria-labelledby="mobile-section-treatments-toggle"
               className={
                 mobileExpandedSection === 'treatments'
                   ? 'mobile-nav-section-panel mobile-nav-section-panel-open'
@@ -888,6 +962,7 @@ export default function Navbar() {
             <button
               type="button"
               className="mobile-nav-section-toggle"
+              id="mobile-section-resources-toggle"
               aria-expanded={mobileExpandedSection === 'resources'}
               aria-controls="mobile-section-resources"
               onClick={() =>
@@ -913,6 +988,8 @@ export default function Navbar() {
             </button>
             <div
               id="mobile-section-resources"
+              role="region"
+              aria-labelledby="mobile-section-resources-toggle"
               className={
                 mobileExpandedSection === 'resources'
                   ? 'mobile-nav-section-panel mobile-nav-section-panel-open'
