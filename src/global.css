@@ -795,8 +795,7 @@ NAVBAR MOBILE - STYLES
     background-color: #002f4a;
     background-image:
       radial-gradient(1200px 720px at 10% 10%, rgba(96, 187, 239, 0.22) 0%, rgba(0, 0, 0, 0) 55%),
-      radial-gradient(900px 520px at 80% 40%, rgba(240, 75, 94, 0.18) 0%, rgba(0, 0, 0, 0) 60%),
-      url('/assets/images/illustrative/services-home-min-1.jpg');
+      radial-gradient(900px 520px at 80% 40%, rgba(240, 75, 94, 0.18) 0%, rgba(0, 0, 0, 0) 60%);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
