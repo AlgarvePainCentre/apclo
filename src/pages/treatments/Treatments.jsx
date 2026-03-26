@@ -3,6 +3,43 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../home/Home.css';
 import './Treatments.css';
 
+export const treatmentNavOrder = [
+  { title: 'Tubular microsurgery', to: '/treatments/surgical-treatments/tubular-microsurgery' },
+  { title: 'Spinal fusion', to: '/treatments/surgical-treatments/spinal-fusion' },
+  { title: 'Disc replacement', to: '/treatments/surgical-treatments/disc-replacement' },
+  { title: 'Lumbar deformity surgery', to: '/treatments/surgical-treatments/lumbar-deformity-surgery' },
+  { title: 'Vertebroplasty', to: '/treatments/minimally-invasive-treatments/vertebroplasty' },
+  { title: 'Radiofrequency', to: '/treatments/minimally-invasive-treatments/radiofrequency' },
+  { title: 'Interspinous spacers', to: '/treatments/minimally-invasive-treatments/interspinous-spacers' },
+  { title: 'Peripheral nerve block', to: '/treatments/minimally-invasive-treatments/peripheral-nerve-block' },
+  {
+    title: 'Intra-articular corticosteroids injection',
+    to: '/treatments/minimally-invasive-treatments/intra-articular-corticosteroids-injection',
+  },
+  { title: 'Calcification barbotage', to: '/treatments/minimally-invasive-treatments/calcification-barbotage' },
+  { title: 'Cryoblation', to: '/treatments/minimally-invasive-treatments/cryoblation' },
+  { title: 'Nucleoplasty', to: '/treatments/minimally-invasive-treatments/nucleoplasty' },
+  {
+    title: 'Platelets rich plasma injection',
+    to: '/treatments/minimally-invasive-treatments/platelets-rich-plasma-injection',
+  },
+  { title: 'Hydrodistention', to: '/treatments/minimally-invasive-treatments/hydrodistention' },
+  { title: 'Botulin toxin injection', to: '/treatments/minimally-invasive-treatments/botulin-toxin-injection' },
+  {
+    title: 'Pharmacological pain management',
+    to: '/treatments/non-invasive-treatments/pharmacological-pain-management',
+  },
+  { title: 'Physiotherapy', to: '/treatments/non-invasive-treatments/physiotherapy' },
+  { title: 'Osteopathy', to: '/treatments/non-invasive-treatments/osteopathy' },
+  { title: 'Occupational therapy', to: '/treatments/non-invasive-treatments/occupation-therapy' },
+  { title: 'Speech therapy', to: '/treatments/non-invasive-treatments/speech-therapy' },
+  { title: 'Psychology', to: '/treatments/non-invasive-treatments/psychology' },
+  { title: 'Nutrition', to: '/treatments/non-invasive-treatments/nutrition' },
+  { title: 'Exercise', to: '/treatments/non-invasive-treatments/exercise' },
+  { title: 'Podology', to: '/treatments/non-invasive-treatments/podology' },
+  { title: 'Home care', to: '/treatments/non-invasive-treatments/home-care' },
+];
+
 export function TreatmentsMain({
   hideMinimallyInvasive = false,
   hideNonInvasive = false,
@@ -21,43 +58,6 @@ export function TreatmentsMain({
     if (pathname.length > 1 && pathname.endsWith('/')) return pathname.slice(0, -1);
     return pathname;
   };
-
-  const treatmentNavOrder = [
-    { title: 'Tubular microsurgery', to: '/treatments/surgical-treatments/tubular-microsurgery' },
-    { title: 'Spinal fusion', to: '/treatments/surgical-treatments/spinal-fusion' },
-    { title: 'Disc replacement', to: '/treatments/surgical-treatments/disc-replacement' },
-    { title: 'Lumbar deformity surgery', to: '/treatments/surgical-treatments/lumbar-deformity-surgery' },
-    { title: 'Vertebroplasty', to: '/treatments/minimally-invasive-treatments/vertebroplasty' },
-    { title: 'Radiofrequency', to: '/treatments/minimally-invasive-treatments/radiofrequency' },
-    { title: 'Interspinous spacers', to: '/treatments/minimally-invasive-treatments/interspinous-spacers' },
-    { title: 'Peripheral nerve block', to: '/treatments/minimally-invasive-treatments/peripheral-nerve-block' },
-    {
-      title: 'Intra-articular corticosteroids injection',
-      to: '/treatments/minimally-invasive-treatments/intra-articular-corticosteroids-injection',
-    },
-    { title: 'Calcification barbotage', to: '/treatments/minimally-invasive-treatments/calcification-barbotage' },
-    { title: 'Cryoblation', to: '/treatments/minimally-invasive-treatments/cryoblation' },
-    { title: 'Nucleoplasty', to: '/treatments/minimally-invasive-treatments/nucleoplasty' },
-    {
-      title: 'Platelets rich plasma injection',
-      to: '/treatments/minimally-invasive-treatments/platelets-rich-plasma-injection',
-    },
-    { title: 'Hydrodistention', to: '/treatments/minimally-invasive-treatments/hydrodistention' },
-    { title: 'Botulin toxin injection', to: '/treatments/minimally-invasive-treatments/botulin-toxin-injection' },
-    {
-      title: 'Pharmacological pain management',
-      to: '/treatments/non-invasive-treatments/pharmacological-pain-management',
-    },
-    { title: 'Physiotherapy', to: '/treatments/non-invasive-treatments/physiotherapy' },
-    { title: 'Osteopathy', to: '/treatments/non-invasive-treatments/osteopathy' },
-    { title: 'Occupational therapy', to: '/treatments/non-invasive-treatments/occupation-therapy' },
-    { title: 'Speech therapy', to: '/treatments/non-invasive-treatments/speech-therapy' },
-    { title: 'Psychology', to: '/treatments/non-invasive-treatments/psychology' },
-    { title: 'Nutrition', to: '/treatments/non-invasive-treatments/nutrition' },
-    { title: 'Exercise', to: '/treatments/non-invasive-treatments/exercise' },
-    { title: 'Podology', to: '/treatments/non-invasive-treatments/podology' },
-    { title: 'Home care', to: '/treatments/non-invasive-treatments/home-care' },
-  ];
 
   const currentTreatmentIndex = treatmentNavOrder.findIndex(
     (item) => item.to === normalizePathname(location.pathname),

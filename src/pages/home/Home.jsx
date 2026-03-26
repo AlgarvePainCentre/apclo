@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './Home.css';
 import { serializeJsonForHtmlScript } from '../../utils/security';
+import Search from '../../components/Search';
 
 
 
@@ -15,7 +16,6 @@ export default function Home() {
   const testimonialCopyRef = useRef(null);
   const [enableStoryVideo, setEnableStoryVideo] = useState(false);
   const [heroVariant, setHeroVariant] = useState('A');
-  const [heroSearchQuery, setHeroSearchQuery] = useState('');
   const navigate = useNavigate();
   const whyChooseItems = [
     {
@@ -289,40 +289,7 @@ export default function Home() {
         <div className="hero-content hero-content-home hero-content-centered" ref={heroContentMotionRef}>
           <div className="hero-left hero-home-left">
             <h1 className="hero-title">Your Pain Centre</h1>
-            <div className="heroSearch">
-              <form
-                className="heroSearch-inline"
-                role="search"
-                aria-label="Site search"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  const q = heroSearchQuery.trim();
-                  if (!q) return;
-                  navigate(`/blog?q=${encodeURIComponent(q)}`);
-                }}
-              >
-                <span className="heroSearch-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" width="20" height="20" focusable="false" aria-hidden="true">
-                    <path
-                      d="M10.5 3a7.5 7.5 0 1 1 4.72 13.35l4.22 4.22a1 1 0 0 1-1.42 1.42l-4.22-4.22A7.5 7.5 0 0 1 10.5 3Zm0 2a5.5 5.5 0 1 0 0 11a5.5 5.5 0 0 0 0-11Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                </span>
-                <input
-                  type="search"
-                  className="heroSearch-input"
-                  value={heroSearchQuery}
-                  onChange={(e) => setHeroSearchQuery(e.target.value)}
-                  placeholder="Search articles and resources…"
-                  aria-label="Search"
-                  autoComplete="off"
-                />
-                <button type="submit" className="heroSearch-submit" aria-label="Submit search">
-                  Search
-                </button>
-              </form>
-            </div>
+            <Search variant="hero" containerId="hero-search" dropdownId="hero-search-dropdown" />
           </div>
         </div>
       </section>

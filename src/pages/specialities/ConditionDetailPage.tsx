@@ -46,7 +46,7 @@ const DEFAULT_SYNDROMES: Syndrome[] = [
   },
 ];
 
-const SPECIALITIES_NAV_ITEMS = [
+export const SPECIALITIES_NAV_ITEMS = [
   { to: '/specialities/pain-medicine/head-pain', title: 'Head pain' },
   { to: '/specialities/pain-medicine/cervical-spine-pain', title: 'Cervical spine pain' },
   { to: '/specialities/pain-medicine/lumbar-spine-pain', title: 'Lumbar spine pain' },

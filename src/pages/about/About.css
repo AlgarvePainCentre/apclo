@@ -82,36 +82,55 @@
 .about-page .team-section {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 1.5rem;
 }
 
 .about-page .team-grid-top {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
-    margin-bottom: 4rem;
+    gap: 2.5rem;
+    margin-bottom: 5rem;
 }
 
 .about-page .clickable-card {
     cursor: pointer;
     position: relative;
+    border-radius: 16px;
+    background-color: #ffffff;
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid #f1f5f9;
+}
+
+.about-page .clickable-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -15px rgba(0, 51, 102, 0.15);
+    border-color: #e2e8f0;
 }
 
 .about-page .team-card-large {
-    background-color: #fffaf0; /* Light cream/yellow background */
     text-align: left;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.about-page .team-card-large:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    display: flex;
+    flex-direction: column;
 }
 
 .about-page .team-image-wrapper {
     width: 100%;
-    height: 400px;
+    height: 380px;
     overflow: hidden;
+    position: relative;
+}
+
+.about-page .team-image-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30%;
+    background: linear-gradient(to top, rgba(0,0,0,0.05), transparent);
+    pointer-events: none;
 }
 
 .about-page .team-card-large img {
@@ -119,22 +138,27 @@
     height: 100%;
     object-fit: cover;
     object-position: top;
-    transition: transform 0.5s ease;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .about-page .team-card-large:hover img {
-    transform: scale(1.05);
+    transform: scale(1.08);
 }
 
 .about-page .team-info {
-    padding: 2rem 1.5rem;
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .about-page .team-info h3 {
     color: #003366;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: 800;
+    letter-spacing: -0.01em;
 }
 
 .about-page .team-role {
@@ -153,242 +177,28 @@
 }
 
 .about-page .team-card-small {
-    background: #f8fafc;
-    padding: 2rem;
-    border-radius: 12px;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
-    transition: all 0.3s ease;
-    border: 1px solid #f3f4f6;
-}
-
-.about-page .team-card-small:hover {
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    transform: translateY(-3px);
-    border-color: #e5e7eb;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 .about-page .team-card-small h3 {
     color: #003366;
     font-size: 1.125rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.75rem;
     font-weight: 700;
+    letter-spacing: -0.01em;
 }
 
 .about-page .team-card-small p {
-    color: #4b5563;
-    font-size: 0.875rem;
+    color: #64748b;
+    font-size: 0.9rem;
     margin: 0;
     line-height: 1.4;
-}
-
-/* Doctor Sidebar Styles */
-.about-page .doctor-sidebar-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9998;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
-  backdrop-filter: blur(2px);
-  will-change: opacity;
-}
-
-.about-page .doctor-sidebar-overlay.open {
-  opacity: 1;
-  visibility: visible;
-}
-
-.about-page .doctor-sidebar {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  max-width: 480px;
-  height: 100vh;
-  max-height: 100vh;
-  background-color: #f8fafc;
-  z-index: 9999;
-  transform: translate3d(100%, 0, 0);
-  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
-  display: flex;
-  flex-direction: column;
-  will-change: transform;
-}
-
-.about-page .doctor-sidebar.open {
-  transform: translate3d(0, 0, 0);
-}
-
-.about-page .sidebar-close-btn {
-    position: absolute;
-    top: 1.5rem;
-    right: 1.5rem;
-    background: none;
-    border: none;
-    color: #6b7280;
-    cursor: pointer;
-    padding: 0.5rem;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.2s, color 0.2s;
-    z-index: 10;
-}
-
-.about-page .sidebar-close-btn:hover {
-    background-color: #f3f4f6;
-    color: #111827;
-}
-
-.about-page .sidebar-content {
-    flex: 1;
-    overflow-y: auto;
-    padding: 3rem 2rem 2rem;
-}
-
-.about-page .sidebar-header {
-    margin-bottom: 2.5rem;
-}
-
-.about-page .sidebar-image-wrapper {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin-bottom: 1.5rem;
-    border: 4px solid #f3f4f6;
-}
-
-.about-page .sidebar-image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.about-page .sidebar-name {
-    font-size: 2rem;
-    color: #003366;
-    font-weight: 700;
-    margin-bottom: 0.75rem;
-    line-height: 1.2;
-}
-
-.about-page .sidebar-roles {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-}
-
-.about-page .sidebar-role {
-    display: inline-block;
-    background-color: #f0f9ff;
-    color: #0369a1;
-    padding: 0.25rem 0.75rem;
-    border-radius: 9999px;
-    font-size: 0.875rem;
     font-weight: 500;
-}
-
-.about-page .sidebar-section {
-    margin-bottom: 2.5rem;
-    border-bottom: 1px solid #e5e7eb;
-    padding-bottom: 2.5rem;
-}
-
-.about-page .sidebar-section:last-child {
-    border-bottom: none;
-    margin-bottom: 0;
-    padding-bottom: 0;
-}
-
-.about-page .sidebar-section h3 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #111827;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-}
-
-.about-page .sidebar-section p {
-    color: #4b5563;
-    line-height: 1.7;
-    font-size: 1rem;
-}
-
-.about-page .sidebar-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.about-page .sidebar-list li {
-    position: relative;
-    padding-left: 1.5rem;
-    margin-bottom: 0.75rem;
-    color: #4b5563;
-    line-height: 1.5;
-}
-
-.about-page .sidebar-list li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: #003366;
-    font-weight: bold;
-}
-
-.about-page .contact-item {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    margin-bottom: 0.75rem;
-}
-
-.about-page .contact-label {
-    font-weight: 600;
-    color: #374151;
-    min-width: 60px;
-}
-
-.about-page .contact-item a {
-    color: #003366;
-    text-decoration: none;
-    transition: color 0.2s;
-}
-
-.about-page .contact-item a:hover {
-    color: #0369a1;
-    text-decoration: underline;
-}
-
-.about-page .sidebar-social-links {
-    display: flex;
-    gap: 1rem;
-}
-
-.about-page .sidebar-social-links a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background-color: #f3f4f6;
-    color: #4b5563;
-    transition: all 0.2s;
-}
-
-.about-page .sidebar-social-links a:hover {
-    background-color: #003366;
-    color: #ffffff;
-    transform: translateY(-2px);
 }
 
 /* Mobile Video Styles */
@@ -447,13 +257,28 @@
     .about-page .team-grid-bottom {
         grid-template-columns: 1fr;
     }
-    
-    .about-page .doctor-sidebar {
-        width: 100%;
-        max-width: 100%;
+
+    .about-page .doctor-overlay-surface {
+        --doctor-info-width: 100vw;
     }
-    
-    .about-page .sidebar-content {
-        padding: 4rem 1.5rem 2rem;
+
+    .about-page .doctor-overlay-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto min(44vh, 360px);
+    }
+
+    .about-page .doctor-overlay-info {
+        padding: 28px 18px 22px;
+    }
+
+    .about-page .doctor-overlay-close {
+        top: 18px;
+        right: 18px;
+        left: auto;
+        transform: none;
+    }
+
+    .about-page .doctor-overlay-close:hover {
+        transform: none;
     }
 }

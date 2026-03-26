@@ -36,8 +36,9 @@
 }
 
 .minimally-invasive-treatment-card {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: transparent;
+  border: 0;
+  box-shadow: none;
   border-radius: 16px;
   padding: 1.25rem 1.25rem;
 }

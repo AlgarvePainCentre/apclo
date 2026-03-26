@@ -231,7 +231,7 @@ export const resourceCategories = [
     items: [
       {
         label: 'Blog',
-        path: '/resources/learn/blog',
+        path: '/blog',
       },
     ],
   },

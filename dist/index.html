@@ -96,6 +96,54 @@
         animation: apcPreloaderLogoPulse 1200ms ease-in-out infinite;
       }
 
+      .apc-preloader__hud {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 24px;
+        z-index: 3;
+        display: grid;
+        place-items: center;
+        gap: 10px;
+        padding: 0 16px;
+        pointer-events: none;
+      }
+
+      .apc-preloader__countdown {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 6px;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+        font-size: 14px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.92);
+      }
+
+      .apc-preloader__countdown strong {
+        font-size: 18px;
+        letter-spacing: 0.04em;
+      }
+
+      .apc-preloader__progress {
+        width: min(520px, calc(100vw - 32px));
+        height: 6px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.18);
+        overflow: hidden;
+        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
+      }
+
+      .apc-preloader__progressBar {
+        height: 100%;
+        width: 0%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #60bbef, #ffd27a, #f04b5e);
+        transform-origin: left;
+        transition: width 180ms ease;
+        will-change: width;
+      }
+
       @keyframes apcPreloaderLogoPulse {
         0% {
           transform: scale(1);
@@ -176,8 +224,8 @@
         }
       </style>
     </noscript>
-    <script type="module" crossorigin src="/assets/index-C55oCCuj.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-DRH5oXYe.css">
+    <script type="module" crossorigin src="/assets/index-B8ZL8Ut9.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-C1O2WnGY.css">
   </head>
   <body>
     <div id="apc-preloader" class="apc-preloader" role="status" aria-live="polite" aria-busy="true">
@@ -205,6 +253,16 @@
           alt=""
         />
       </div>
+      <div class="apc-preloader__hud">
+        <div class="apc-preloader__progress" aria-hidden="true">
+          <div id="apc-preloader-progress-bar" class="apc-preloader__progressBar"></div>
+        </div>
+        <div class="apc-preloader__countdown" aria-hidden="true">
+          <span>Entering in</span>
+          <strong id="apc-preloader-count">3</strong>
+          <span>s</span>
+        </div>
+      </div>
       <span class="apc-sr-only">Loading…</span>
     </div>
 
@@ -215,6 +273,9 @@
         if (!preloader) return;
 
         const root = document.getElementById("root");
+        const countdownEl = document.getElementById("apc-preloader-count");
+        const progressEl = document.getElementById("apc-preloader-progress-bar");
+        const srEl = preloader.querySelector(".apc-sr-only");
 
         const scheduleViewportUpdate = (() => {
           let rafId = 0;
@@ -248,6 +309,64 @@
           }
         }
 
+        function getCookie(name) {
+          try {
+            const value = `; ${document.cookie}`;
+            const parts = value.split(`; ${name}=`);
+            if (parts.length !== 2) return null;
+            return parts.pop().split(";").shift() || null;
+          } catch {
+            return null;
+          }
+        }
+
+        function setCookie(name, value, maxAgeSeconds) {
+          try {
+            const maxAge = Math.max(0, Math.floor(maxAgeSeconds || 0));
+            document.cookie = `${name}=${encodeURIComponent(String(value))}; Path=/; Max-Age=${maxAge}; SameSite=Lax`;
+          } catch {}
+        }
+
+        function markComplete() {
+          try {
+            window.__apcPreloaderComplete = true;
+            window.dispatchEvent(new Event("apc:preloaderComplete"));
+          } catch {}
+        }
+
+        function hardRemovePreloader() {
+          try {
+            if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+          } catch {}
+        }
+
+        const pathname = window.location && typeof window.location.pathname === "string" ? window.location.pathname : "/";
+        const isHome = pathname === "/" || pathname === "";
+        const cookieKey = "apcHomePreloaderUntil";
+        const ttlMs = 24 * 60 * 60 * 1000;
+        const now = Date.now();
+
+        const cookieUntil = Number(getCookie(cookieKey) || "");
+        let storageUntil = 0;
+        try {
+          storageUntil = Number(window.localStorage.getItem(cookieKey) || "");
+        } catch {}
+
+        const alreadySeen = (Number.isFinite(cookieUntil) && cookieUntil > now) || (Number.isFinite(storageUntil) && storageUntil > now);
+        const shouldShow = isHome && !alreadySeen;
+
+        if (!shouldShow) {
+          markComplete();
+          hardRemovePreloader();
+          return;
+        }
+
+        const until = now + ttlMs;
+        setCookie(cookieKey, String(until), ttlMs / 1000);
+        try {
+          window.localStorage.setItem(cookieKey, String(until));
+        } catch {}
+
         applyPreloaderViewportSizing();
         window.addEventListener("resize", scheduleViewportUpdate, { passive: true });
         window.addEventListener("orientationchange", scheduleViewportUpdate, { passive: true });
@@ -255,14 +374,6 @@
           window.visualViewport.addEventListener("resize", scheduleViewportUpdate, { passive: true });
           window.visualViewport.addEventListener("scroll", scheduleViewportUpdate, { passive: true });
         }
-
-        const reduceMotion = (() => {
-          try {
-            return !!window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-          } catch {
-            return false;
-          }
-        })();
 
         document.documentElement.classList.add("apc-preloader-lock");
         document.body.classList.add("apc-preloader-lock");
@@ -278,7 +389,7 @@
         }
 
         const startedAt = typeof performance !== "undefined" && performance.now ? performance.now() : Date.now();
-        const minSequenceMs = 2000;
+        const maxDurationMs = 3000;
 
         const loadPromise = new Promise((resolve) => {
           if (document.readyState === "complete") resolve();
@@ -292,36 +403,101 @@
           return Promise.resolve();
         })();
 
-        const maxWaitMs = 15000;
-        const timeoutPromise = new Promise((resolve) => window.setTimeout(resolve, maxWaitMs));
+        const conn = navigator && navigator.connection ? navigator.connection : null;
+        const saveData = Boolean(conn && conn.saveData);
+        const effectiveType = conn && typeof conn.effectiveType === "string" ? conn.effectiveType : "";
+        const allowHeavy = !saveData && !/2g/.test(effectiveType);
 
-        let resourcesReady = false;
+        const urlsToCache = (() => {
+          const set = new Set();
+          try {
+            const styles = Array.from(document.querySelectorAll('link[rel="stylesheet"][href]'));
+            styles.forEach((l) => set.add(l.href));
+            const scripts = Array.from(document.querySelectorAll('script[type="module"][src]'));
+            scripts.forEach((s) => set.add(new URL(s.getAttribute("src"), window.location.origin).toString()));
+          } catch {}
 
-        const readyPromise = Promise.all([loadPromise, fontsReadyPromise]).then(() => {
-          resourcesReady = true;
-        });
+          set.add(new URL("/assets/apc-branco.svg", window.location.origin).toString());
+          set.add(new URL("/assets/apc-preto.svg", window.location.origin).toString());
+          set.add(new URL("/fonts/CircularStd-Book.otf", window.location.origin).toString());
+          set.add(new URL("/assets/og-image.jpg", window.location.origin).toString());
+          set.add(new URL("/assets/twitter-image.jpg", window.location.origin).toString());
 
-        Promise.race([readyPromise, timeoutPromise]).then(() => {
-          resourcesReady = true;
-        });
-
-        const tick = () => {
-          const now = typeof performance !== "undefined" && performance.now ? performance.now() : Date.now();
-          const elapsedMs = now - startedAt;
-          if (resourcesReady && elapsedMs >= minSequenceMs) {
-            finish();
-            return;
+          if (allowHeavy) {
+            set.add(new URL("/assets/videos/Sports-Medicine-Video-min-1.mp4", window.location.origin).toString());
+            set.add(new URL("/assets/images/illustrative/pain-medicine-algarve-min.jpg", window.location.origin).toString());
+            set.add(new URL("/assets/images/illustrative/services-home-min-1.jpg", window.location.origin).toString());
           }
-          requestAnimationFrame(tick);
+
+          return Array.from(set);
+        })();
+
+        let completed = 0;
+        const total = Math.max(1, urlsToCache.length);
+        const updateProgress = () => {
+          const ratio = Math.max(0, Math.min(1, completed / total));
+          if (progressEl) progressEl.style.width = `${Math.round(ratio * 100)}%`;
         };
 
-        requestAnimationFrame(tick);
+        updateProgress();
+
+        const prefetchPromise = (async () => {
+          if (!urlsToCache.length) return;
+
+          let cache = null;
+          try {
+            if (window.caches && typeof window.caches.open === "function") {
+              cache = await window.caches.open("apc-preloader-v1");
+            }
+          } catch {}
+
+          await Promise.allSettled(
+            urlsToCache.map(async (u) => {
+              try {
+                const req = new Request(u, { credentials: "same-origin", cache: "force-cache" });
+                if (cache) {
+                  const hit = await cache.match(req);
+                  if (hit) return;
+                }
+                const res = await fetch(req);
+                if (cache && res && res.ok) {
+                  await cache.put(req, res.clone());
+                }
+              } catch {
+              } finally {
+                completed += 1;
+                updateProgress();
+              }
+            })
+          );
+        })();
+
+        const countdownTimer = window.setInterval(() => {
+          const nowMs = typeof performance !== "undefined" && performance.now ? performance.now() : Date.now();
+          const remainingMs = Math.max(0, maxDurationMs - (nowMs - startedAt));
+          const remainingSec = Math.max(0, Math.ceil(remainingMs / 1000));
+          if (countdownEl) countdownEl.textContent = String(remainingSec);
+          if (srEl) srEl.textContent = `Loading… ${remainingSec}s`;
+        }, 80);
+
+        let finished = false;
+        const finishOnce = () => {
+          if (finished) return;
+          finished = true;
+          window.clearInterval(countdownTimer);
+          if (countdownEl) countdownEl.textContent = "0";
+          if (srEl) srEl.textContent = "Loading…";
+          if (progressEl) progressEl.style.width = "100%";
+          finish();
+        };
+
+        const allAssetsReady = Promise.all([loadPromise, fontsReadyPromise, prefetchPromise]).catch(() => undefined);
+        const maxTimer = new Promise((resolve) => window.setTimeout(resolve, maxDurationMs));
+
+        Promise.race([allAssetsReady, maxTimer]).then(() => finishOnce());
 
         function finish() {
-          try {
-            window.__apcPreloaderComplete = true;
-            window.dispatchEvent(new Event("apc:preloaderComplete"));
-          } catch {}
+          markComplete();
 
           if (typeof window.__apcEntranceStart === "function") {
             try {
@@ -330,7 +506,7 @@
             } catch {}
           }
 
-          window.setTimeout(hidePreloader, 200);
+          window.setTimeout(hidePreloader, 180);
         }
 
         function hidePreloader() {
@@ -348,7 +524,7 @@
               } catch {}
             }
 
-            if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+            hardRemovePreloader();
             return;
           }
 
@@ -374,7 +550,7 @@
 
           const remove = () => {
             preloader.removeEventListener("transitionend", remove);
-            if (preloader.parentNode) preloader.parentNode.removeChild(preloader);
+            hardRemovePreloader();
           };
 
           preloader.addEventListener("transitionend", remove);

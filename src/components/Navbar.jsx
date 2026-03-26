@@ -5,6 +5,7 @@ import {
   treatmentsCategories,
   resourceCategories,
 } from '../data/navigation';
+import Search from './Search';
 
 const mainLinks = [
   { to: '/blog', label: 'Blog', ariaLabel: 'Blog' },
@@ -1118,6 +1119,7 @@ export default function Navbar() {
         </div>
       </div>
     </header>
+    <Search variant="nav" />
     </>
   );
 }

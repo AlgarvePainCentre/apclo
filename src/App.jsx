@@ -28,6 +28,7 @@ const Home = lazyWithPreload(() => import('./pages/home/Home'));
 const Specialities = lazyWithPreload(() => import('./pages/specialities/Specialities'));
 const Treatments = lazyWithPreload(() => import('./pages/treatments/Treatments'));
 const About = lazyWithPreload(() => import('./pages/about/About'));
+const DoctorDetail = lazyWithPreload(() => import('./pages/doctor/DoctorDetail'));
 const Contact = lazyWithPreload(() => import('./pages/contact/Contact'));
 const Resources = lazyWithPreload(() => import('./pages/resources/Resources'));
 
@@ -234,6 +235,7 @@ function App() {
       { path: '/specialities', preload: Specialities.preload },
       { path: '/treatments', preload: Treatments.preload },
       { path: '/about', preload: About.preload },
+      { path: '/doctor/:id', preload: DoctorDetail.preload },
       { path: '/contact', preload: Contact.preload },
       { path: '/resources', preload: Resources.preload },
 
@@ -600,6 +602,7 @@ function App() {
               <Route path="/specialities" element={<Specialities />} />
               <Route path="/treatments" element={<Treatments />} />
               <Route path="/about" element={<About />} />
+              <Route path="/doctor/:id" element={<DoctorDetail />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/resources" element={<Resources />} />
 
