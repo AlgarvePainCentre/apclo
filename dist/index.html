@@ -8,17 +8,55 @@
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.algarvepaincentre.com/" />
+    <meta property="og:url" content="https://apc.venenu.com/" />
     <meta property="og:title" content="Algarve Pain Centre | Multidisciplinary Pain Clinic" />
     <meta property="og:description" content="Algarve Pain Centre is a specialised pain clinic in Vale do Lobo, Algarve, Portugal. Our multidisciplinary team treats spine, joint and nerve pain." />
-    <meta property="og:image" content="https://www.algarvepaincentre.com/assets/og-image.jpg" />
+    <meta property="og:image" content="https://apc.venenu.com/assets/images/medical/about-us-header-og.jpg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Algarve Pain Centre team and clinic" />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://www.algarvepaincentre.com/" />
+    <meta property="twitter:url" content="https://apc.venenu.com/" />
     <meta property="twitter:title" content="Algarve Pain Centre | Multidisciplinary Pain Clinic" />
     <meta property="twitter:description" content="Algarve Pain Centre is a specialised pain clinic in Vale do Lobo, Algarve, Portugal. Our multidisciplinary team treats spine, joint and nerve pain." />
-    <meta property="twitter:image" content="https://www.algarvepaincentre.com/assets/twitter-image.jpg" />
+    <meta property="twitter:image" content="https://apc.venenu.com/assets/images/medical/about-us-header-og.jpg" />
+    <meta property="twitter:image:alt" content="Algarve Pain Centre team and clinic" />
+    <link rel="canonical" href="https://apc.venenu.com/"/>
+    <meta name="robots" content="index,follow"/>
+    <meta name="theme-color" content="#005384"/>
+    <link rel="icon" href="/assets/logo.png" type="image/png" />
+    <link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png" />
+    <link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180" />
+    <link rel="icon" href="/android-chrome-192x192.png" sizes="192x192" type="image/png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Algarve Pain Centre",
+        "url": "https://apc.venenu.com/",
+        "logo": "https://apc.venenu.com/assets/logo.png",
+        "sameAs": [
+          "https://www.facebook.com/",
+          "https://www.linkedin.com/"
+        ]
+      }
+    </script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Algarve Pain Centre",
+        "url": "https://apc.venenu.com/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://apc.venenu.com/blog?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
 
     <style>
       html,
@@ -125,25 +163,6 @@
         letter-spacing: 0.04em;
       }
 
-      .apc-preloader__progress {
-        width: min(520px, calc(100vw - 32px));
-        height: 6px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.18);
-        overflow: hidden;
-        box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
-      }
-
-      .apc-preloader__progressBar {
-        height: 100%;
-        width: 0%;
-        border-radius: 999px;
-        background: linear-gradient(90deg, #60bbef, #ffd27a, #f04b5e);
-        transform-origin: left;
-        transition: width 180ms ease;
-        will-change: width;
-      }
-
       @keyframes apcPreloaderLogoPulse {
         0% {
           transform: scale(1);
@@ -224,8 +243,8 @@
         }
       </style>
     </noscript>
-    <script type="module" crossorigin src="/assets/index-B8ZL8Ut9.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-C1O2WnGY.css">
+    <script type="module" crossorigin src="/assets/index-yCECHny9.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-xVPh6q5o.css">
   </head>
   <body>
     <div id="apc-preloader" class="apc-preloader" role="status" aria-live="polite" aria-busy="true">
@@ -236,7 +255,7 @@
         playsinline
         autoplay
         loop
-        preload="auto"
+        preload="metadata"
         disablepictureinpicture
         controlslist="nodownload noplaybackrate noremoteplayback"
         aria-hidden="true"
@@ -254,9 +273,6 @@
         />
       </div>
       <div class="apc-preloader__hud">
-        <div class="apc-preloader__progress" aria-hidden="true">
-          <div id="apc-preloader-progress-bar" class="apc-preloader__progressBar"></div>
-        </div>
         <div class="apc-preloader__countdown" aria-hidden="true">
           <span>Entering in</span>
           <strong id="apc-preloader-count">3</strong>
@@ -274,7 +290,6 @@
 
         const root = document.getElementById("root");
         const countdownEl = document.getElementById("apc-preloader-count");
-        const progressEl = document.getElementById("apc-preloader-progress-bar");
         const srEl = preloader.querySelector(".apc-sr-only");
 
         const scheduleViewportUpdate = (() => {
@@ -389,7 +404,7 @@
         }
 
         const startedAt = typeof performance !== "undefined" && performance.now ? performance.now() : Date.now();
-        const maxDurationMs = 3000;
+        const maxDurationMs = 15000;
 
         const loadPromise = new Promise((resolve) => {
           if (document.readyState === "complete") resolve();
@@ -432,14 +447,36 @@
           return Array.from(set);
         })();
 
-        let completed = 0;
-        const total = Math.max(1, urlsToCache.length);
-        const updateProgress = () => {
-          const ratio = Math.max(0, Math.min(1, completed / total));
-          if (progressEl) progressEl.style.width = `${Math.round(ratio * 100)}%`;
+        const tasks = {
+          domContentLoaded: { weight: 0.8, done: false },
+          windowLoad: { weight: 1.0, done: false },
+          fontsReady: { weight: 0.6, done: false },
+          appMounted: { weight: 1.0, done: false },
+          prefetch: { weight: 2.6, done: 0, total: Math.max(1, urlsToCache.length) },
         };
 
-        updateProgress();
+        const computeTotalWeight = () =>
+          tasks.domContentLoaded.weight +
+          tasks.windowLoad.weight +
+          tasks.fontsReady.weight +
+          tasks.appMounted.weight +
+          tasks.prefetch.weight;
+
+        const computeDoneWeight = () => {
+          const prefetchRatio = Math.max(0, Math.min(1, tasks.prefetch.done / tasks.prefetch.total));
+          return (
+            (tasks.domContentLoaded.done ? tasks.domContentLoaded.weight : 0) +
+            (tasks.windowLoad.done ? tasks.windowLoad.weight : 0) +
+            (tasks.fontsReady.done ? tasks.fontsReady.weight : 0) +
+            (tasks.appMounted.done ? tasks.appMounted.weight : 0) +
+            tasks.prefetch.weight * prefetchRatio
+          );
+        };
+
+        let lastDoneWeight = 0;
+        let lastProgressAt = startedAt;
+        let smoothedRemainingMs = 6000;
+        let lastShownSec = 3;
 
         const prefetchPromise = (async () => {
           if (!urlsToCache.length) return;
@@ -465,29 +502,94 @@
                 }
               } catch {
               } finally {
-                completed += 1;
-                updateProgress();
+                tasks.prefetch.done += 1;
               }
             })
           );
         })();
 
+        if (document.readyState !== "loading") {
+          tasks.domContentLoaded.done = true;
+        } else {
+          window.addEventListener(
+            "DOMContentLoaded",
+            () => {
+              tasks.domContentLoaded.done = true;
+            },
+            { once: true }
+          );
+        }
+
+        if (document.readyState === "complete") {
+          tasks.windowLoad.done = true;
+        } else {
+          window.addEventListener(
+            "load",
+            () => {
+              tasks.windowLoad.done = true;
+            },
+            { once: true }
+          );
+        }
+
+        fontsReadyPromise.then(() => {
+          tasks.fontsReady.done = true;
+        });
+
+        const markAppMounted = () => {
+          tasks.appMounted.done = true;
+        };
+        if (window.__apcAppMounted) markAppMounted();
+        window.addEventListener("apc:app-mounted", markAppMounted, { once: true });
+
+        const resourceErrorHandler = (event) => {
+          try {
+            const target = event && event.target ? event.target : null;
+            if (!target) return;
+            const tag = String(target.tagName || "").toLowerCase();
+            if (tag !== "script" && tag !== "link" && tag !== "img") return;
+            lastProgressAt = typeof performance !== "undefined" && performance.now ? performance.now() : Date.now();
+          } catch {}
+        };
+        window.addEventListener("error", resourceErrorHandler, true);
+
         const countdownTimer = window.setInterval(() => {
           const nowMs = typeof performance !== "undefined" && performance.now ? performance.now() : Date.now();
-          const remainingMs = Math.max(0, maxDurationMs - (nowMs - startedAt));
-          const remainingSec = Math.max(0, Math.ceil(remainingMs / 1000));
+          const totalWeight = computeTotalWeight();
+          const doneWeight = computeDoneWeight();
+
+          if (doneWeight > lastDoneWeight + 0.001) {
+            lastDoneWeight = doneWeight;
+            lastProgressAt = nowMs;
+          }
+
+          const elapsed = Math.max(1, nowMs - startedAt);
+          const speed = doneWeight > 0.02 ? doneWeight / elapsed : 0;
+          const remainingWeight = Math.max(0, totalWeight - doneWeight);
+
+          let estimatedRemaining = speed > 0 ? (remainingWeight / speed) : 8000;
+          estimatedRemaining = Math.max(0, Math.min(12000, estimatedRemaining));
+          smoothedRemainingMs = smoothedRemainingMs * 0.72 + estimatedRemaining * 0.28;
+
+          const stalled = nowMs - lastProgressAt > 1200 && doneWeight < totalWeight * 0.95;
+          const nextSec = Math.max(0, Math.ceil(smoothedRemainingMs / 1000));
+          const remainingSec = stalled ? lastShownSec : Math.max(0, Math.min(lastShownSec + 1, Math.max(lastShownSec - 1, nextSec)));
+          lastShownSec = remainingSec;
+
           if (countdownEl) countdownEl.textContent = String(remainingSec);
-          if (srEl) srEl.textContent = `Loading… ${remainingSec}s`;
-        }, 80);
+          if (srEl) srEl.textContent = stalled ? "Loading…" : `Loading… ${remainingSec}s`;
+
+          if (remainingWeight <= 0.02) finishOnce();
+        }, 120);
 
         let finished = false;
         const finishOnce = () => {
           if (finished) return;
           finished = true;
           window.clearInterval(countdownTimer);
+          window.removeEventListener("error", resourceErrorHandler, true);
           if (countdownEl) countdownEl.textContent = "0";
           if (srEl) srEl.textContent = "Loading…";
-          if (progressEl) progressEl.style.width = "100%";
           finish();
         };
 

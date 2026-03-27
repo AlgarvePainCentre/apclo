@@ -5,3 +5,74 @@ RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /index.html [L]
 
+# Apache configuration for SPA on cPanel (public_html)
+Options -MultiViews
+Options -Indexes
+
+RewriteEngine On
+
+# MIME types for video (improves cross-browser playback)
+<IfModule mod_mime.c>
+  AddType video/mp4 .mp4 .m4v
+  AddType video/webm .webm
+  AddType video/ogg .ogv
+  AddType video/quicktime .mov
+</IfModule>
+
+# Serve existing files/directories as-is
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Error documents
+# Use a relative path so it works even when deployed in a subfolder docroot.
+# For SPAs, serve index.html on 404 so refresh/deep-links work even if mod_rewrite is unavailable.
+ErrorDocument 404 index.html
+ErrorDocument 500 500.html
+
+# SPA fallback to index.html for all non-file routes
+RewriteRule . index.html [L]
+
+# Compression (Brotli preferred, then Deflate)
+<IfModule mod_brotli.c>
+  AddOutputFilterByType BROTLI_COMPRESS text/html text/plain text/xml text/css application/javascript application/json application/xml image/svg+xml
+</IfModule>
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css application/javascript application/json application/xml image/svg+xml
+  # Remove gzip for problematic old browsers
+  BrowserMatch ^Mozilla/4 gzip-only-text/html
+  BrowserMatch ^Mozilla/4\.0[678] no-gzip
+  BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</IfModule>
+
+# Caching: long-lived for static hashed assets; shorter for HTML
+<IfModule mod_expires.c>
+  ExpiresActive On
+  # 1 year for static assets
+  ExpiresByType application/javascript "access plus 1 year"
+  ExpiresByType text/javascript "access plus 1 year"
+  ExpiresByType text/css "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/avif "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType font/woff2 "access plus 1 year"
+  # HTML short cache
+  ExpiresByType text/html "access plus 5 minutes"
+</IfModule>
+
+<IfModule mod_headers.c>
+  # Cache-Control headers
+  <FilesMatch "\.(js|mjs|css|png|jpg|jpeg|gif|svg|webp|avif|woff2|mp4|m4v|webm|ogv|mov)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  <FilesMatch "\.(html)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate"
+  </FilesMatch>
+  # Font CORS
+  <FilesMatch "\.(woff2?)$">
+    Header set Access-Control-Allow-Origin "*"
+  </FilesMatch>
+</IfModule>

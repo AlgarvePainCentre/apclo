@@ -17,6 +17,30 @@
   width: 100%;
 }
 
+/* About hero video background */
+.about-page .psx-hero .psx-hero-backdrop {
+  background-image: none;
+  background-size: cover;
+  background-position: center;
+  filter: none;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.about-page .psx-hero .psx-hero-backdrop.video-bg::after {
+  content: none;
+}
+
+.about-page .psx-hero .psx-hero-backdrop .psx-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: none;
+}
+
 /* New Sections Styles */
 .about-page .who-we-are .section-content,
 .about-page .the-centre .section-content {
@@ -70,7 +94,8 @@
     flex: 1;
 }
 
-.about-page .section-video-col video {
+.about-page .section-video-col video,
+.about-page .section-video-col img {
     width: 100%;
     height: 680px;
     border-radius: 12px;
@@ -208,7 +233,8 @@
     width: 100%;
 }
 
-.about-page .mobile-video-container video {
+.about-page .mobile-video-container video,
+.about-page .mobile-video-container img {
     width: 100%;
     height: 300px;
     border-radius: 12px;

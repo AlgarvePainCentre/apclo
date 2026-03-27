@@ -1273,12 +1273,14 @@ footer img[alt="Algarve Pain Centre"] {
   background: transparent;
   font-size: 1rem;
   text-decoration: none;
+  color: var(--color-white);
 }
 
 .footer-social-link svg {
   width: 32px;
   height: 32px;
-  color: var(--color-white);
+  display: block;
+  fill: currentColor;
 }
 
 .footer-social-link:hover {

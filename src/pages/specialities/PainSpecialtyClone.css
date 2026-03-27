@@ -133,6 +133,43 @@
   background: transparent;
 }
 
+.psx-hero-backdrop.video-bg {
+  background-image: none;
+  background-color: #040b28;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.psx-hero-backdrop.video-bg::after { content: none; }
+
+.psx-hero-backdrop.video-bg .psx-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: none;
+}
+
+/* Treatments page: remove image background and allow video cover */
+#psx-treatments .psx-hero .psx-hero-backdrop {
+  background-image: none;
+  filter: none;
+  pointer-events: none;
+}
+
+#psx-treatments .psx-hero .psx-hero-backdrop .psx-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: none;
+}
+
 .psx-section + .psx-section {
   margin-top: clamp(28px, 5vw, 56px);
 }

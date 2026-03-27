@@ -998,8 +998,10 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                     playsInline
                     preload="metadata"
                     poster={heroImage}
-                    src="/assets/videos/post-43.mp4"
-                  />
+                  >
+                    <source src="/assets/videos/post-43.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
                 </div>
               </div>
             </div>

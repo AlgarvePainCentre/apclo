@@ -4,7 +4,6 @@ import './index.css';
 import App from './App';
 import { BrowserRouter } from 'react-router-dom';
 import { enforceHttpsRedirect } from './utils/security';
-import { gsap } from 'gsap';
 
 enforceHttpsRedirect();
 
@@ -18,6 +17,11 @@ reactRoot.render(
     </BrowserRouter>
   </React.StrictMode>
 );
+
+try {
+  window.__apcAppMounted = true;
+  window.dispatchEvent(new Event('apc:app-mounted'));
+} catch {}
 
 if (import.meta.env.PROD && typeof window !== 'undefined' && 'serviceWorker' in navigator) {
   window.addEventListener(
@@ -89,6 +93,7 @@ if (!window.__apcEntranceOrchestratorInitialized) {
 
     if (!preloader) {
       try {
+        const { gsap } = await import('gsap');
         gsap.set(rootEl, { clearProps: 'opacity,transform,willChange' });
       } catch {}
       cleanup();
@@ -112,6 +117,7 @@ if (!window.__apcEntranceOrchestratorInitialized) {
     preloader.style.willChange = 'opacity, transform';
     rootEl.style.willChange = 'opacity';
 
+    const { gsap } = await import('gsap');
     gsap.set(rootEl, { opacity: 0, force3D: true });
     if (heroEl) gsap.set(heroEl, { opacity: 0 });
     if (navbarEl) {

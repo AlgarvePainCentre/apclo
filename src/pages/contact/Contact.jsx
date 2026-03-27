@@ -25,6 +25,41 @@ export default function Contact() {
   }, []);
 
   useEffect(() => {
+    try {
+      const layout = document.querySelector('.contact-two-col');
+      if (!layout) {
+        console.warn('[Contact] contact-two-col container not found');
+        return;
+      }
+
+      const media = layout.querySelector('.contact-help-video');
+      if (media) {
+        media.remove();
+        console.info('[Contact] Removed contact help media container');
+      } else {
+        console.warn('[Contact] contact-help-video container not found');
+      }
+
+      const primaryCard = layout.querySelector('article.psx-card');
+      if (primaryCard) {
+        primaryCard.style.width = '100%';
+        primaryCard.style.maxWidth = '100%';
+        console.info('[Contact] Expanded primary card to full width');
+      } else {
+        console.warn('[Contact] Primary card element not found');
+      }
+
+      const secondaryMedia = document.querySelector('.contact-help-video-2');
+      if (secondaryMedia) {
+        secondaryMedia.remove();
+        console.info('[Contact] Removed secondary contact help media container');
+      }
+    } catch (err) {
+      console.warn('[Contact] Failed to update contact layout', err);
+    }
+  }, []);
+
+  useEffect(() => {
     const titleText = 'Contact Algarve Pain Centre | Book a pain clinic appointment in the Algarve';
     const descriptionText =
       'Contact Algarve Pain Centre in Vale do Lobo, Algarve to discuss your pain symptoms, request an assessment or plan treatment. Call, message or use our contact form to reach our multidisciplinary pain clinic.';
@@ -73,7 +108,20 @@ export default function Contact() {
       }}
     >
       <header className="psx-hero" ref={heroRef}>
-        <div className="psx-hero-backdrop" aria-hidden="true" />
+        <div className="psx-hero-backdrop video-bg" aria-hidden="true">
+          <video
+            className="psx-hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/assets/images/illustrative/services-home-min-1.jpg"
+          >
+            <source src="/assets/videos/banner-Contact-us.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
         <div className="psx-hero-inner">
           <p className="psx-hero-eyebrow">Contact</p>
           <h1 className="psx-hero-title">Contact Us</h1>
@@ -128,34 +176,18 @@ export default function Contact() {
               </div>
             </article>
             <div className="contact-help-video" aria-hidden="true">
-              <video
+              <img
                 className="contact-help-video-el"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                src="/assets/videos/Appointment-Video.mp4"
+                src="/assets/images/illustrative/services-home-min-1.jpg"
+                alt=""
+                decoding="async"
               />
             </div>
           </div>
         </section>
 
         <section id="contact-form" className="psx-section">
-          <div className="psx-treatments-layout">
-
-            <div className="contact-help-video-2" aria-hidden="true">
-              <video
-                className="contact-help-video-el"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                src="/assets/videos/Appointment-Video.mp4"
-              />
-            </div>
-
+          <div className="psx-treatments-layout contact-form-two-col">
             <article className="psx-card">
               <h2 className="psx-card-title">Contact form</h2>
               <div className="psx-accent" />
@@ -220,6 +252,15 @@ export default function Contact() {
                 </div>
               </form>
             </article>
+            <figure className="contact-form-media">
+              <img
+                className="contact-form-media-img"
+                src="/assets/images/illustrative/pain-medicine-algarve-min.jpg"
+                alt="Algarve Pain Centre clinical setting in Vale do Lobo, Algarve"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
           </div>
         </section>
         <section className="home-section-location" aria-labelledby="contact-location-title">

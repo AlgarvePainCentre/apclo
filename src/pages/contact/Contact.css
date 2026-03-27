@@ -1,11 +1,25 @@
 .psx-page#psx-contact .psx-hero { position: relative; overflow: hidden; }
 .psx-page#psx-contact .psx-hero .psx-hero-backdrop {
-  background-image:
-    linear-gradient(rgba(167, 90, 13, 0.326), rgba(4, 11, 40, 0.6)),
-    var(--psx-hero-image, url('/assets/images/learn/1-banner-2.jpg'));
+  background-image: none;
   background-size: cover;
   background-position: center;
-  filter: saturate(1.05);
+  filter: none;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.psx-page#psx-contact .psx-hero .psx-hero-backdrop.video-bg::after {
+  content: none;
+}
+
+.psx-page#psx-contact .psx-hero .psx-hero-backdrop .psx-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  filter: none;
 }
 .psx-page#psx-contact .psx-media {
   position: absolute;
@@ -35,10 +49,43 @@
   align-items: stretch;
 }
 
+.contact-form-two-col {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(16px, 3vw, 32px);
+  align-items: stretch;
+}
+
 @media (min-width: 900px) {
-  .contact-two-col {
+  .contact-form-two-col {
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
   }
+}
+
+.contact-form-media {
+  position: relative;
+  min-height: 420px;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  background: #e5e7eb;
+  margin: 0;
+}
+
+@media (max-width: 900px) {
+  .contact-form-media {
+    min-height: 280px;
+  }
+}
+
+.contact-form-media-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .contact-help-video {
@@ -56,6 +103,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 .contact-help-video-2 {
@@ -65,14 +113,6 @@
   overflow: hidden;
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
   background: #e5e7eb;
-}
-
-.contact-help-video-2-el {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 
 @media (max-width: 900px) {

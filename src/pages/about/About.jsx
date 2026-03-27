@@ -16,7 +16,20 @@ export default function About() {
   return (
     <div className="about-page">
       <header className="psx-hero about-hero" aria-label="About hero section">
-        <div className="psx-hero-backdrop" aria-hidden="true" />
+        <div className="psx-hero-backdrop video-bg" aria-hidden="true">
+          <video
+            className="psx-hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/assets/images/illustrative/services-home-min-1.jpg"
+          >
+            <source src="/assets/videos/banner-About.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
         <div className="psx-hero-inner">
           <p className="psx-hero-eyebrow">About</p>
           <h1 className="psx-hero-title">About Algarve Pain Centre</h1>
@@ -56,14 +69,12 @@ export default function About() {
                 </div>
                 
                 <div className="mobile-video-container">
-                  <video
-                    alt="Vale do Lobo Algarve" loading="lazy"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    src="/assets/videos/clinica-2.mov"
+                  <img
+                    className="section-image-el"
+                    src="/assets/images/illustrative/pain-medicine-algarve-min.jpg"
+                    alt="Vale do Lobo Algarve"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
 
@@ -74,15 +85,12 @@ export default function About() {
             </div>
 
             <div className="section-video-col">
-              <video
-                alt="Vale do Lobo Algarve" loading="lazy"
+              <img
                 className="section-image-el"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                src="/assets/videos/clinica-2.mov"
+                src="/assets/images/illustrative/pain-medicine-algarve-min.jpg"
+                alt="Vale do Lobo Algarve"
+                loading="lazy"
+                decoding="async"
               />
 
             </div>

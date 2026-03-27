@@ -335,8 +335,10 @@ export function TreatmentsMain({
                     loop
                     playsInline
                     preload="metadata"
-                    src="/assets/videos/Appointment-Video.mp4"
-                  />
+                    poster="/assets/images/illustrative/services-home-min-1.jpg"
+                  >
+                    <source src="/assets/videos/banner-consulta-2.mp4" type="video/mp4" />
+                  </video>
                 </div>
               </div>
             </div>
@@ -546,8 +548,10 @@ export function TreatmentsMain({
                   loop
                   playsInline
                   preload="metadata"
-                  src="/assets/videos/Appointment-Video.mp4"
-                />
+                  poster="/assets/images/illustrative/services-home-min-1.jpg"
+                >
+                  <source src="/assets/videos/Appointment-Video.mp4" type="video/mp4" />
+                </video>
               </div>
               <div className="treatments-feature-copy">
                 <h3 className="treatments-feature-title">Minimally Invasive Treatments</h3>
@@ -1063,8 +1067,10 @@ export function TreatmentsMain({
                   loop
                   playsInline
                   preload="metadata"
-                  src="/assets/videos/Appointment-Video.mp4"
-                />
+                  poster="/assets/images/illustrative/services-home-min-1.jpg"
+                >
+                  <source src="/assets/videos/Appointment-Video.mp4" type="video/mp4" />
+                </video>
               </div>
             </div>
           </section>
@@ -1646,7 +1652,20 @@ export default function Treatments() {
   return (
     <div className="psx-page" id="psx-treatments">
       <header className="psx-hero">
-        <div className="psx-hero-backdrop" aria-hidden="true" />
+        <div className="psx-hero-backdrop video-bg" aria-hidden="true">
+          <video
+            className="psx-hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/assets/images/illustrative/services-home-min-1.jpg"
+          >
+            <source src="/assets/videos/banner-consulta-2.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
         <div className="psx-hero-inner">
           <p className="psx-hero-eyebrow">Treatments</p>
           <h1 className="psx-hero-title">Treatments</h1>

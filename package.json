@@ -14,7 +14,8 @@
     "build": "vite build",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:ui": "vitest"
+    "test:ui": "vitest",
+    "perf:build": "vite build && lhci autorun || true"
   },
   "browserslist": {
     "production": [
@@ -29,6 +30,7 @@
     ]
   },
   "devDependencies": {
+    "@lhci/cli": "^0.12.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",

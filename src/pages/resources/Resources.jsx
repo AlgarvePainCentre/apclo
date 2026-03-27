@@ -181,10 +181,6 @@ export default function Resources() {
         <section className="page-section" id="learn">
           <div className="section-header section-header--learn">
             <h2>Learn - Cervical Pain</h2>
-            <p>
-              Evidence-led guidance, simple next steps, and practical insights to help you move better. 
-
-            </p>
           </div>
           <div className="resource-nav-container">
             <div 

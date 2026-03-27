@@ -525,6 +525,57 @@ export default function Specialities() {
   }, []);
 
   useEffect(() => {
+    const heroEl = heroRef.current;
+    const videoLayer = heroVideoRef.current;
+    if (!heroEl || !videoLayer) return undefined;
+
+    const videoEl = videoLayer.querySelector('video');
+    if (!videoEl) return undefined;
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return undefined;
+
+    let didLoad = false;
+    let io;
+
+    const loadAndPlay = async () => {
+      if (didLoad) return;
+      didLoad = true;
+
+      const dataSrc = videoEl.getAttribute('data-src');
+      if (dataSrc) {
+        videoEl.src = dataSrc;
+      }
+
+      try {
+        const maybePromise = videoEl.play();
+        if (maybePromise && typeof maybePromise.then === 'function') {
+          await maybePromise;
+        }
+      } catch {}
+    };
+
+    try {
+      io = new IntersectionObserver(
+        (entries) => {
+          const entry = entries[0];
+          if (!entry || !entry.isIntersecting) return;
+          loadAndPlay();
+          if (io) io.disconnect();
+        },
+        { threshold: 0.05 }
+      );
+      io.observe(heroEl);
+    } catch {
+      loadAndPlay();
+    }
+
+    return () => {
+      if (io) io.disconnect();
+    };
+  }, []);
+
+  useEffect(() => {
     const track = opinionTrackRef.current;
     if (!track) return undefined;
 
@@ -801,7 +852,20 @@ export default function Specialities() {
   return (
     <div className="home-page specialities-page">
       <section className="hero psx-hero" ref={heroRef}>
-        <div className="hero-video psx-hero-backdrop" aria-hidden="true" ref={heroVideoRef} />
+        <div className="hero-video psx-hero-backdrop" aria-hidden="true" ref={heroVideoRef}>
+          <video
+            className="specialities-hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="/assets/images/illustrative/services-home-min-1.jpg"
+            data-src="/assets/videos/Pain-Medicine-min.mp4"
+          >
+            Your browser does not support the video tag.
+          </video>
+        </div>
         <div className="hero-content hero-content-centered" ref={heroContentMotionRef}>
           <div className="hero-center">
             <p className="psx-hero-eyebrow">Specialities</p>
