@@ -42,6 +42,7 @@ export const treatmentNavOrder = [
 
 export function TreatmentsMain({
   hideMinimallyInvasive = false,
+  hideHighlightedMinimallyInvasive = false,
   hideNonInvasive = false,
   hideSurgical = false,
 }) {
@@ -62,6 +63,7 @@ export function TreatmentsMain({
   const currentTreatmentIndex = treatmentNavOrder.findIndex(
     (item) => item.to === normalizePathname(location.pathname),
   );
+  const isTreatmentsLandingPage = normalizePathname(location.pathname) === '/treatments';
   const previousTreatment = currentTreatmentIndex > 0 ? treatmentNavOrder[currentTreatmentIndex - 1] : null;
   const nextTreatment =
     currentTreatmentIndex >= 0 && currentTreatmentIndex < treatmentNavOrder.length - 1
@@ -291,7 +293,7 @@ export function TreatmentsMain({
     <main className="page-main treatments-page">
       {!hideSurgical && (
         <>
-          <section className="page-section treatments-overview">
+          <section id="treatments-surgical" className="page-section treatments-overview">
 
             <header className="home-section-treatment-header treatments-section-header">
               <div className="home-section-treatment-header-content">
@@ -528,7 +530,7 @@ export function TreatmentsMain({
       )}
       {!hideMinimallyInvasive && (
         <>
-          <section className="page-section treatments-feature treatments-feature-mi">
+          <section id="treatments-minimally-invasive" className="page-section treatments-feature treatments-feature-mi">
             <header className="home-section-treatment-header treatments-section-header">
               <div className="home-section-treatment-header-content">
                 <p className="home-section-treatment-eyebrow home-stories-eyebrow">Minimally invasive</p>
@@ -1008,26 +1010,28 @@ export function TreatmentsMain({
             </div>
           </section>
 
-          <section className="page-section treatments-highlighted treatments-highlighted-mi">
-            <header className="home-section-treatment-header treatments-section-header">
-              <div className="home-section-treatment-header-content">
-                <p className="home-section-treatment-eyebrow">Minimally invasive</p>
-                <h2 className="home-section-treatment-title">
-                  Highlighted minimally invasive treatments
-                </h2>
+          {isTreatmentsLandingPage && !hideHighlightedMinimallyInvasive && (
+            <section className="page-section treatments-highlighted treatments-highlighted-mi">
+              <header className="home-section-treatment-header treatments-section-header">
+                <div className="home-section-treatment-header-content">
+                  <p className="home-section-treatment-eyebrow">Minimally invasive</p>
+                  <h2 className="home-section-treatment-title">
+                    Highlighted minimally invasive treatments
+                  </h2>
+                </div>
+              </header>
+              <div className="treatments-highlighted-grid">
+                {minimallyInvasiveTreatments.map((item, index) => (
+                  <TreatmentCard key={index} item={item} />
+                ))}
               </div>
-            </header>
-            <div className="treatments-highlighted-grid">
-              {minimallyInvasiveTreatments.map((item, index) => (
-                <TreatmentCard key={index} item={item} />
-              ))}
-            </div>
-          </section>
+            </section>
+          )}
         </>
       )}
       {!hideNonInvasive && (
         <>
-          <section className="page-section treatments-feature treatments-feature-ni">
+          <section id="treatments-non-invasive" className="page-section treatments-feature treatments-feature-ni">
             <header className="home-section-treatment-header treatments-section-header">
               <div className="home-section-treatment-header-content">
                 <p className="home-section-treatment-eyebrow home-stories-eyebrow">Non‑invasive</p>
@@ -1464,20 +1468,21 @@ export function TreatmentsMain({
             </div>
           </section>
 
-
-          <section className="page-section treatments-highlighted treatments-highlighted-ni">
-            <header className="home-section-treatment-header treatments-section-header">
-              <div className="home-section-treatment-header-content">
-                <p className="home-section-treatment-eyebrow">Non‑invasive</p>
-                <h2 className="home-section-treatment-title">Highlighted non‑invasive treatments</h2>
+          {isTreatmentsLandingPage && (
+            <section className="page-section treatments-highlighted treatments-highlighted-ni">
+              <header className="home-section-treatment-header treatments-section-header">
+                <div className="home-section-treatment-header-content">
+                  <p className="home-section-treatment-eyebrow">Non‑invasive</p>
+                  <h2 className="home-section-treatment-title">Highlighted non‑invasive treatments</h2>
+                </div>
+              </header>
+              <div className="treatments-highlighted-grid">
+                {nonInvasiveTreatments.map((item, index) => (
+                  <TreatmentCard key={index} item={item} />
+                ))}
               </div>
-            </header>
-            <div className="treatments-highlighted-grid">
-              {nonInvasiveTreatments.map((item, index) => (
-                <TreatmentCard key={index} item={item} />
-              ))}
-            </div>
-          </section>
+            </section>
+          )}
         </>
       )}
       <section 

@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { serializeJsonForHtmlScript } from '../../utils/security';
 import ArticleBreadcrumb from '../../components/ArticleBreadcrumb';
 import ArticlePrevNextNav from '../../components/ArticlePrevNextNav';
+import LumbarInterventions from '../../components/LumbarInterventions';
 
 type Syndrome = {
   id: string;
@@ -123,11 +124,11 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'lumbar-spine-pain': {
-    heroImage: "/assets/images/illustrative/Lumber-Spine-Pain-min.jpg",
+    heroImage: "/assets/images/lumbar/hero-banner.jpg",
     overview: [
-      'Lumbar spine pain (lower back pain) can be mechanical, inflammatory, or related to discs, joints and nerves. It may present as local back pain, stiffness, or pain that travels into the buttock or leg.',
-      'We assess how your symptoms behave with walking, sitting, bending and lifting, and whether there are sciatica-type features. This guides whether rehabilitation, medication optimisation, or image-guided procedures are most appropriate.',
-      'Many people benefit from a combined plan that supports confidence in movement, improves load tolerance, and targets pain generators when needed.',
+      'Lumbar spine pain refers to pain that is felt in the lower back, specifically in the area of the lumbar vertebrae.',
+      'The lumbar region is the lower portion of the spine and consists of five vertebrae that are responsible for supporting the weight of the upper body and providing flexibility and range of motion for the lower body.',
+      'Chronic low back pain is one of the most common pain syndromes and represents an important burden and cost generator for society.',
     ],
     patterns: [
       {
@@ -755,6 +756,156 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
   },
 };
 
+const KNEE_MOST_COMMON_SYNDROMES: Syndrome[] = [
+  {
+    id: 'patellar-subluxation',
+    label: 'Patellar subluxation or dislocation',
+    description:
+      'The kneecap (patella) can partially shift or fully dislocate, often causing sudden pain, swelling, and a feeling of instability or “giving way”.',
+  },
+  {
+    id: 'osgood-schlatter',
+    label: 'Osgood–Schlatter lesion',
+    description:
+      'A common cause of knee pain in active adolescents, linked to traction at the tibial tuberosity and tenderness just below the kneecap.',
+  },
+  {
+    id: 'patellar-tendinitis',
+    label: 'Patellar tendinitis',
+    description:
+      'Pain at the patellar tendon (often below the kneecap) that can worsen with jumping, stairs, and load—frequently associated with overuse or rapid training changes.',
+  },
+  {
+    id: 'patellofemoral-pain',
+    label: 'Patellofemoral pain syndrome',
+    description:
+      'Pain around or behind the kneecap, often aggravated by stairs, squatting, running, or prolonged sitting, and influenced by load tolerance and biomechanics.',
+  },
+  {
+    id: 'collateral-ligament-sprain',
+    label: 'Medial / Lateral collateral ligament sprain',
+    description:
+      'Injury to the ligaments on the inside (MCL) or outside (LCL) of the knee, commonly from a twist or impact, causing localized pain and tenderness.',
+  },
+  {
+    id: 'meniscal-tear',
+    label: 'Medial / Lateral meniscal tear',
+    description:
+      'Meniscus injuries can cause joint‑line pain, swelling, catching, or locking sensations. Presentation varies by tear type and activity demands.',
+  },
+  {
+    id: 'pes-anserine-bursitis',
+    label: 'Pes anserine bursitis',
+    description:
+      'Pain and tenderness on the inner side of the knee below the joint line, sometimes associated with tendon irritation and load sensitivity.',
+  },
+  {
+    id: 'itb-tendinopathy',
+    label: 'Iliotibial band tendinitis',
+    description:
+      'Common in runners and cyclists, presenting as pain on the outside of the knee that worsens with repetitive bending and loading.',
+  },
+  {
+    id: 'bakers-cyst',
+    label: "Baker's cyst",
+    description:
+      'A fluid‑filled swelling behind the knee that can be associated with underlying joint irritation. It may cause tightness, pain, or reduced range of motion.',
+  },
+  {
+    id: 'knee-osteoarthritis',
+    label: 'Knee Osteoarthritis',
+    description:
+      'Degenerative joint changes can lead to pain, stiffness, swelling, and reduced function—often influenced by activity levels, strength, and overall load tolerance.',
+  },
+];
+
+const HIP_MOST_COMMON_SYNDROMES: Syndrome[] = [
+  {
+    id: 'meralgia-paresthetica',
+    label: 'Meralgia paresthetica',
+    description:
+      'Burning, tingling, or numbness on the outer thigh due to irritation of the lateral femoral cutaneous nerve, sometimes influenced by posture, load, or compression.',
+  },
+  {
+    id: 'athletic-pubalgia',
+    label: 'Athletic pubalgia',
+    description:
+      'Groin pain linked to the pubic region and surrounding soft tissues, commonly in athletes and often aggravated by sprinting, cutting, or kicking.',
+  },
+  {
+    id: 'femoral-neck-fracture',
+    label: 'Femoral neck fracture/stress fracture',
+    description:
+      'Hip or groin pain that can worsen with weight‑bearing and may follow trauma or repetitive load. Prompt assessment is important when suspected.',
+  },
+  {
+    id: 'fai',
+    label: 'Femoroacetabular impingement',
+    description:
+      'Hip joint impingement that can cause groin pain, stiffness, and reduced range of motion, often worse with sitting, squatting, or rotation.',
+  },
+  {
+    id: 'labral-tear',
+    label: 'Hip labral tear',
+    description:
+      'Pain often felt in the groin with clicking, catching, or giving‑way sensations. Symptoms may vary with activity and hip position.',
+  },
+  {
+    id: 'iliopsoas-bursitis',
+    label: 'Iliopsoas bursitis (internal snapping hip)',
+    description:
+      'Anterior hip or groin discomfort with snapping sensations during hip flexion/extension, sometimes linked to tendon irritation and load sensitivity.',
+  },
+  {
+    id: 'legg-calve-perthes',
+    label: 'Legg–Calvé–Perthes disease',
+    description:
+      'A childhood condition affecting the femoral head that can cause hip/groin pain, stiffness, and a limp. Specialist assessment guides management.',
+  },
+  {
+    id: 'oa-on',
+    label: 'Osteoarthritis/Osteonecrosis of the hip',
+    description:
+      'Joint‑related pain and stiffness that can limit walking and daily activity. In older adults, osteoarthritis is a common cause of hip pain.',
+  },
+  {
+    id: 'transient-synovitis',
+    label: 'Transient synovitis',
+    description:
+      'Temporary hip joint inflammation (more common in children) that can cause pain and limp, usually improving over time with appropriate care.',
+  },
+  {
+    id: 'external-snapping',
+    label: 'External snapping hip',
+    description:
+      'Snapping sensation on the outside of the hip, often related to the iliotibial band or surrounding soft tissues moving over bony landmarks.',
+  },
+  {
+    id: 'gtps',
+    label: 'Greater trochanteric pain syndrome',
+    description:
+      'Lateral hip pain linked to gluteal tendons and bursa irritation, often worse with walking, stairs, side‑lying, or prolonged standing.',
+  },
+  {
+    id: 'muscle-tear',
+    label: 'Muscle tear or avulsion',
+    description:
+      'Acute pain after a sudden load or sprinting, sometimes with bruising or weakness. Assessment helps confirm the involved structure and guide return to activity.',
+  },
+  {
+    id: 'si-joint',
+    label: 'Sacroiliac joint dysfunction',
+    description:
+      'Pain around the buttock and pelvis that can refer to the groin or thigh, influenced by posture and load. Targeted examination helps confirm likely sources.',
+  },
+  {
+    id: 'piriformis',
+    label: 'Piriformis syndrome',
+    description:
+      'Buttock pain with possible leg symptoms related to irritation near the sciatic nerve. Symptoms often vary with sitting, hip position, and activity.',
+  },
+];
+
 const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
   title,
   areaLabel,
@@ -778,7 +929,16 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
   const syndromes = variant === 'pain-specialty-clone' && PAIN_MEDICINE_PAGE_CONTENT[slugBase]
     ? PAIN_MEDICINE_PAGE_CONTENT[slugBase].patterns
     : DEFAULT_SYNDROMES;
-  const [activeSyndromeId, setActiveSyndromeId] = React.useState<string | null>(() => syndromes[0]?.id ?? null);
+  const accordionSyndromes =
+    slugBase === 'knee-pain'
+      ? KNEE_MOST_COMMON_SYNDROMES
+      : slugBase === 'hip-and-groin-pain'
+        ? HIP_MOST_COMMON_SYNDROMES
+        : syndromes;
+  const [activeSyndromeId, setActiveSyndromeId] = React.useState<string | null>(() => accordionSyndromes[0]?.id ?? null);
+  React.useEffect(() => {
+    setActiveSyndromeId(accordionSyndromes[0]?.id ?? null);
+  }, [accordionSyndromes]);
   const treatmentsSectionId = `${slugBase}-treatments`;
   const contactIdPrefix = `${slugBase}-contact`;
 
@@ -1005,7 +1165,519 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                 </div>
               </div>
             </div>
+            {slugBase === 'sports-injuries' && (
+              <section className="psx-approaches" aria-labelledby="sports-approaches-title">
+                <header className="psx-approaches-header">
+                  <h2 id="sports-approaches-title" className="psx-approaches-title">
+                    Our Treatment Approaches
+                  </h2>
+                  <p className="psx-approaches-subtitle">We can help you at every level of your health journey.</p>
+                </header>
+                <div className="psx-approaches-grid" role="list" aria-label="Treatment approaches">
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/treatment-img/No-Invasive.png"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Non–Invasive Treatments</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Quick and non‑committing steps we can take together to improve your health.
+                      </p>
+                      <Link
+                        to="/treatments#treatments-non-invasive"
+                        className="psx-approach-link"
+                        aria-label="Learn more about non-invasive treatments"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/treatment-img/Minimally-Invasive.png"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Minimally Invasive Treatments</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Procedures with reduced surgical risks that promote quicker recovery times.
+                      </p>
+                      <Link
+                        to="/treatments#treatments-minimally-invasive"
+                        className="psx-approach-link"
+                        aria-label="Learn more about minimally invasive treatments"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/treatment-img/Surgical.png"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Surgical Treatments</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Comprehensive procedures tailored to address complex health issues with precision.
+                      </p>
+                      <Link
+                        to="/treatments#treatments-surgical"
+                        className="psx-approach-link"
+                        aria-label="Learn more about surgical treatments"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            )}
+            {slugBase === 'hip-and-groin-pain' && (
+              <>
+                <div className="psx-lead">
+                  <h2 id="hip-interventions-title" className="psx-lead-title">
+                    Intervention Options
+                  </h2>
+                  <p className="psx-lead-subtitle">
+                    Explore common procedures that can support pain relief and rehabilitation.
+                  </p>
+                </div>
+                <div className="lumbar-cards-wrap" aria-label="Hip and groin intervention options">
+                  <LumbarInterventions />
+                </div>
+                <div className="psx-syndromes-accordion" aria-labelledby="hip-syndromes-title">
+                  <header className="psx-syndromes-accordion-header">
+                    <h2 id="hip-syndromes-title" className="psx-syndromes-accordion-title">
+                      Most Common Syndromes
+                    </h2>
+                    <p className="psx-syndromes-accordion-subtitle">
+                      Hip osteoarthritis is one of the most common causes of hip pain in the older population.
+                    </p>
+                  </header>
+                  <div className="psx-syndromes-accordion-card">
+                    <div className="psx-accordion" role="list" aria-label="Most common hip syndromes">
+                      {accordionSyndromes.map((syndrome) => {
+                        const isActive = activeSyndromeId === syndrome.id;
+                        const rowId = `psx-hip-syndrome-${syndrome.id}`;
+                        const panelId = `psx-hip-syndrome-panel-${syndrome.id}`;
+                        return (
+                          <div key={syndrome.id} className="psx-accordion-item" role="listitem">
+                            <button
+                              id={rowId}
+                              type="button"
+                              className="psx-accordion-trigger"
+                              aria-expanded={isActive}
+                              aria-controls={panelId}
+                              onClick={() =>
+                                setActiveSyndromeId((current) => (current === syndrome.id ? null : syndrome.id))
+                              }
+                            >
+                              <span className="psx-accordion-label">{syndrome.label}</span>
+                              <span className="psx-accordion-icon" aria-hidden="true">
+                                {isActive ? '−' : '+'}
+                              </span>
+                            </button>
+                            <div
+                              id={panelId}
+                              className="psx-accordion-panel"
+                              data-open={isActive ? 'true' : 'false'}
+                              role="region"
+                              aria-labelledby={rowId}
+                              aria-hidden={!isActive}
+                            >
+                              <p className="psx-accordion-text">{syndrome.description}</p>
+                            </div>
+                          </div>
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+                <div className="psx-hip-interventional-note" aria-label="Hip and groin interventional pain management information">
+                  <div className="psx-hip-interventional-note-inner">
+                    <h3 className="psx-hip-interventional-note-title">Interventional Pain Management</h3>
+                    <p className="psx-hip-interventional-note-text">
+                      Percutaneous interventional pain management is a good alternative treatment.
+                    </p>
+                    <p className="psx-hip-interventional-note-text">
+                      The hip joint is the more stable joint of the human body and is composed of femoral head and acetabulum. It is made of
+                      cartilage, ligaments and fluid. Muscles and tendons help the hip joint move. It can withstand repeated motion and a fair
+                      amount of wear and tear.
+                    </p>
+                    <p className="psx-hip-interventional-note-text">
+                      For that reason, one of the main diseases of the hip is osteoarthritis and, as in the knee, the ultimate treatment is
+                      prosthetic surgery. Despite that, percutaneous interventional pain management (Steroid, Platelet Rich Plasma or Hyaluronic
+                      Acid Injection) are a good alternative treatment for some patients who are not eligible for an operation or experience
+                      persistent or intense pain after surgery or while waiting for surgery.
+                    </p>
+                  </div>
+                </div>
+              </>
+            )}
           </section>
+          {slugBase === 'knee-pain' && (
+            <section className="psx-section" aria-labelledby="knee-interventions-title">
+              <div className="psx-lead">
+                <h2 id="knee-interventions-title" className="psx-lead-title">
+                  Intervention Options
+                </h2>
+                <p className="psx-lead-subtitle">
+                  Explore common procedures that can support pain relief and rehabilitation.
+                </p>
+              </div>
+              <div className="lumbar-cards-wrap">
+                <LumbarInterventions />
+              </div>
+            </section>
+          )}
+          {slugBase === 'knee-pain' && (
+            <section className="psx-section psx-syndromes-accordion" aria-labelledby="knee-syndromes-title">
+              <header className="psx-syndromes-accordion-header">
+                <h2 id="knee-syndromes-title" className="psx-syndromes-accordion-title">
+                  Most Common Syndromes
+                </h2>
+                <p className="psx-syndromes-accordion-subtitle">
+                  Knee pain is a very prevalent symptom, either in younger and in older people. It can have many sources, some of which are
+                  described next.
+                </p>
+              </header>
+              <div className="psx-syndromes-accordion-card">
+                <div className="psx-accordion" role="list" aria-label="Most common knee syndromes">
+                  {accordionSyndromes.map((syndrome) => {
+                    const isActive = activeSyndromeId === syndrome.id;
+                    const rowId = `psx-knee-syndrome-${syndrome.id}`;
+                    const panelId = `psx-knee-syndrome-panel-${syndrome.id}`;
+                    return (
+                      <div key={syndrome.id} className="psx-accordion-item" role="listitem">
+                        <button
+                          id={rowId}
+                          type="button"
+                          className="psx-accordion-trigger"
+                          aria-expanded={isActive}
+                          aria-controls={panelId}
+                          onClick={() =>
+                            setActiveSyndromeId((current) => (current === syndrome.id ? null : syndrome.id))
+                          }
+                        >
+                          <span className="psx-accordion-label">{syndrome.label}</span>
+                          <span className="psx-accordion-icon" aria-hidden="true">
+                            {isActive ? '−' : '+'}
+                          </span>
+                        </button>
+                        <div
+                          id={panelId}
+                          className="psx-accordion-panel"
+                          data-open={isActive ? 'true' : 'false'}
+                          role="region"
+                          aria-labelledby={rowId}
+                          aria-hidden={!isActive}
+                        >
+                          <p className="psx-accordion-text">{syndrome.description}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </section>
+          )}
+          {slugBase === 'lumbar-spine-pain' && (
+            <section className="psx-section psx-edu">
+              <div className="psx-edu-row">
+                <h3 className="psx-edu-heading">Symptoms & Diagnosis</h3>
+                <div className="psx-edu-copy">
+                  <p className="psx-edu-paragraph">Symptoms of lumbar spine pain can vary widely depending on the underlying cause and may include localized pain in the lower back, as well as radiating pain, numbness, or tingling sensations in the legs or feet.</p>
+                  <p className="psx-edu-paragraph">Lumbar spine pain can be caused by a variety of factors, including injury, poor posture, arthritis, or degenerative disc disease. In some cases, the pain may be acute and resolve on its own with rest and conservative treatments. However, in other cases, the pain may be chronic and require more aggressive interventions, such as surgery.</p>
+                  <p className="psx-edu-paragraph">Diagnostic tests for lumbar spine pain may include X‑rays, CT scans, MRIs, and nerve conduction studies to help identify the underlying cause and guide treatment decisions.</p>
+                </div>
+              </div>
+            </section>
+          )}
+          {slugBase === 'lumbar-spine-pain' && (
+            <section className="psx-section psx-syndromes">
+              <header className="psx-syndromes-header">
+                <h2 className="psx-syndromes-title">Most Common Syndromes</h2>
+                <p className="psx-syndromes-subtitle">
+                  Lumbar facet joints constitute a common source of pain and remain a misunderstood, misdiagnosed and
+                  improperly treated pathology.
+                </p>
+                <p className="psx-syndromes-subtitle">
+                  Facet osteoarthritis is the most frequent form of facet pathology.
+                </p>
+              </header>
+              <div className="psx-syndromes-layout">
+                <article className="psx-syndrome-card">
+                  <h3 className="psx-syndrome-heading">Radicular Pain</h3>
+                  <div className="psx-syndrome-accent" />
+                  <div className="psx-syndrome-copy">
+                    <p>
+                      Radicular pain is a term applied to describe pain that results from the stimulation of, or a
+                      disorder of, a nerve root. Irritation of the nerves in the spine can cause a variety of symptoms,
+                      which differ from person to person.
+                    </p>
+                    <p>
+                      Common symptoms include: pain and increased sensitivity; pins and needles; and numbness; muscle
+                      weakness; altered sensations such as trickling water.
+                    </p>
+                    <p>
+                      Nerve pain is usually described as burning in nature, and normally spreads below the knee or
+                      elbow in the affected limb. Often nerve pain and back pain are present at the same time.
+                    </p>
+                  </div>
+                  <Link to="/resources/learn/cervical-pain" className="psx-syndrome-link" aria-label="Learn more about radicular pain">
+                    <span>Learn more</span>
+                    <span aria-hidden="true">›</span>
+                  </Link>
+                </article>
+                <figure className="psx-syndrome-media" aria-hidden="true">
+                  <img
+                    src="/assets/images/lumbar-cards/RadicularPain.jpg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="psx-syndrome-image"
+                  />
+                </figure>
+              </div>
+              <div className="psx-syndromes-layout">
+                <figure className="psx-syndrome-media" aria-hidden="true">
+                  <img
+                    src="/assets/images/lumbar-cards/FacetJointSyndrome.jpg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="psx-syndrome-image"
+                  />
+                </figure>
+                <article className="psx-syndrome-card">
+                  <h3 className="psx-syndrome-heading">Facet Joint Syndrome</h3>
+                  <div className="psx-syndrome-accent" />
+                  <div className="psx-syndrome-copy">
+                    <p>
+                      Lumbar facet joints (FJs) constitute a common source of pain and remain a misunderstood,
+                      misdiagnosed and improperly treated pathology. Facet osteoarthritis is the most frequent form of
+                      facet pathology.
+                    </p>
+                    <p>
+                      FJ pain may be referred distally into the lower limb, thereby mimicking sciatica.
+                    </p>
+                    <p>
+                      “Pseudo‑radicular” lumbar pain typically radiates uni‑ or bilaterally to the buttock and the
+                      trochanteric region, the groin and the thighs, ending above the knee, without neurological
+                      deficits.
+                    </p>
+                  </div>
+                </article>
+              </div>
+              <div className="psx-syndromes-layout">
+                <article className="psx-syndrome-card">
+                  <h3 className="psx-syndrome-heading">Sacroiliac Joint Pain</h3>
+                  <div className="psx-syndrome-accent" />
+                  <div className="psx-syndrome-copy">
+                    <p>
+                      Patients experiencing sacroiliac joint pain may present with a wide variety of complaints.
+                      Gluteal pain near or surrounding the posterior superior iliac spine is the most common region.
+                    </p>
+                    <p>
+                      Other symptoms include groin pain, pain radiating into the lower extremity, numbness, and clicking
+                      or popping in the posterior pelvis.
+                    </p>
+                    <p>
+                      Pain, clicking, or both with transitional activities such as getting up from a chair or in and
+                      out of a car may also be noted.
+                    </p>
+                  </div>
+                </article>
+                <figure className="psx-syndrome-media" aria-hidden="true">
+                  <img
+                    src="/assets/images/lumbar-cards/SacroiliacJointPain.jpg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="psx-syndrome-image"
+                  />
+                </figure>
+              </div>
+              <div className="psx-syndromes-layout">
+                <figure className="psx-syndrome-media" aria-hidden="true">
+                  <img
+                    src="/assets/images/lumbar-cards/LumbarSpinalStenosis.jpg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="psx-syndrome-image"
+                  />
+                </figure>
+                <article className="psx-syndrome-card">
+                  <h3 className="psx-syndrome-heading">Lumbar Spinal Stenosis</h3>
+                  <div className="psx-syndrome-accent" />
+                  <div className="psx-syndrome-copy">
+                    <p>
+                      The term lumbar spinal stenosis refers to the anatomical narrowing of the spinal canal and is
+                      associated with a plethora of clinical symptoms.
+                    </p>
+                    <p>
+                      The clinical features of the condition are heterogeneous, and often, but not always, include
+                      neurological symptoms. Typically, patient symptoms comprise unilateral or bilateral (exertional)
+                      back and leg pain, which slowly develops and persists over several months, or even years.
+                    </p>
+                    <p>
+                      The back pain is localized to the lumbar spine and can radiate towards the gluteal region, groin
+                      and legs, frequently displaying a pseudo radicular pattern.
+                    </p>
+                  </div>
+                </article>
+              </div>
+              <div className="psx-syndromes-layout">
+                <article className="psx-syndrome-card">
+                  <h3 className="psx-syndrome-heading">Discogenic Pain</h3>
+                  <div className="psx-syndrome-accent" />
+                  <div className="psx-syndrome-copy">
+                    <p>
+                      Discogenic pain shares clinical signs with lumbosacral radicular pain. There are no specific
+                      characteristics in the patient&apos;s history that confirm or disprove the diagnosis of discogenic
+                      low back pain.
+                    </p>
+                    <p>
+                      More typical features include persistent, nociceptive low back, groin and/or leg pain that
+                      worsens with axial loading and improves with recumbence.
+                    </p>
+                  </div>
+                </article>
+                <figure className="psx-syndrome-media" aria-hidden="true">
+                  <img
+                    src="/assets/images/lumbar-cards/DiscogenicPain.jpg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    className="psx-syndrome-image"
+                  />
+                </figure>
+              </div>
+            </section>
+          )}
+          {slugBase === 'lumbar-spine-pain' && (
+            <section className="psx-section" aria-labelledby="lumbar-interventions-title">
+              <div className="psx-lead">
+                <h2 id="lumbar-interventions-title" className="psx-lead-title">Intervention Options</h2>
+                <p className="psx-lead-subtitle">Explore common procedures that can support pain relief and rehabilitation.</p>
+              </div>
+              <div className="lumbar-cards-wrap">
+                <LumbarInterventions />
+              </div>
+            </section>
+          )}
+
+          {slugBase === 'lumbar-spine-pain' && (
+            <section className="psx-section psx-tips" aria-labelledby="lumbar-tips-title">
+              <header className="psx-tips-header">
+                <h2 id="lumbar-tips-title" className="psx-tips-title">Tips for maintaining a healthy spine</h2>
+                <p className="psx-tips-subtitle">
+                  Maintaining a healthy spine supports overall wellbeing. These practical habits can help reduce strain and improve movement over time.
+                </p>
+              </header>
+              <div className="psx-tips-grid" role="list" aria-label="Healthy spine tips">
+                <article className="psx-tip" role="listitem">
+                  <p className="psx-tip-number">1.</p>
+                  <h3 className="psx-tip-title">Practice Good Posture</h3>
+                  <div className="psx-tip-divider" aria-hidden="true" />
+                  <p className="psx-tip-body">
+                    Keep a neutral spine when sitting or standing. Avoid slouching and long periods in one position.
+                  </p>
+                </article>
+                <article className="psx-tip" role="listitem">
+                  <p className="psx-tip-number">2.</p>
+                  <h3 className="psx-tip-title">Exercise Regularly</h3>
+                  <div className="psx-tip-divider" aria-hidden="true" />
+                  <p className="psx-tip-body">
+                    Build strength and mobility with low‑impact activity such as walking, swimming or cycling.
+                  </p>
+                </article>
+                <article className="psx-tip" role="listitem">
+                  <p className="psx-tip-number">3.</p>
+                  <h3 className="psx-tip-title">Maintain a Healthy Weight</h3>
+                  <div className="psx-tip-divider" aria-hidden="true" />
+                  <p className="psx-tip-body">
+                    Reducing excess load on the spine can ease symptoms and support long‑term joint health.
+                  </p>
+                </article>
+                <article className="psx-tip" role="listitem">
+                  <p className="psx-tip-number">4.</p>
+                  <h3 className="psx-tip-title">Use Proper Lifting Techniques</h3>
+                  <div className="psx-tip-divider" aria-hidden="true" />
+                  <p className="psx-tip-body">
+                    Bend at the hips and knees, keep the load close, and avoid twisting when lifting.
+                  </p>
+                </article>
+                <article className="psx-tip" role="listitem">
+                  <p className="psx-tip-number">5.</p>
+                  <h3 className="psx-tip-title">Take Breaks from Sitting</h3>
+                  <div className="psx-tip-divider" aria-hidden="true" />
+                  <p className="psx-tip-body">
+                    Stand up, stretch and move every 30–60 minutes to reduce stiffness and pressure.
+                  </p>
+                </article>
+                <article className="psx-tip" role="listitem">
+                  <p className="psx-tip-number">6.</p>
+                  <h3 className="psx-tip-title">Practice Stress Reduction</h3>
+                  <div className="psx-tip-divider" aria-hidden="true" />
+                  <p className="psx-tip-body">
+                    Sleep, breathing and relaxation techniques can reduce muscle tension and improve recovery.
+                  </p>
+                </article>
+              </div>
+            </section>
+          )}
+
+          {slugBase === 'lumbar-spine-pain' && (
+            <section className="psx-section psx-help" aria-labelledby="lumbar-help-title">
+              <div className="psx-help-layout">
+                <h2 id="lumbar-help-title" className="psx-help-title">Let us help you</h2>
+                <div className="psx-help-copy">
+                  <p className="psx-help-paragraph">
+                    If you&apos;re experiencing lumbar spine pain, consulting a healthcare provider is essential. This type of pain may signal serious underlying issues like herniated discs, spinal stenosis, or spondylolisthesis, which can lead to nerve damage or spinal cord compression if left untreated. Early intervention is crucial to prevent long‑term complications and manage pain effectively.
+                  </p>
+                  <p className="psx-help-paragraph">
+                    Lumbar spine pain can also significantly impact daily activities, such as walking or sitting, and interfere with work and recreational pursuits. Seeking treatment not only helps alleviate pain but also improves functionality, preventing the condition from becoming chronic. A healthcare provider can also address risk factors or lifestyle issues contributing to the pain, offering recommendations such as posture‑improving exercises or weight loss strategies.
+                  </p>
+                  <p className="psx-help-paragraph">
+                    Remember, timely treatment is key to maintaining your quality of life and preventing more invasive interventions later.
+                  </p>
+                </div>
+              </div>
+            </section>
+          )}
 
           <section className="psx-section">
             <div className="psx-treatments-layout">
@@ -1036,118 +1708,56 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
             </div>
           </section>
 
-          <section className="psx-section psx-approaches">
-            <div className="psx-approaches-panel">
-              <header className="psx-approaches-header">
-                <h2 className="psx-approaches-title">Treatment approaches</h2>
-                <p className="psx-approaches-subtitle">
-                  We combine minimally invasive procedures, rehabilitation and medication when needed to
-                  create a thoughtful treatment pathway rather than a single isolated procedure.
-                </p>
-              </header>
-              <div className="psx-approaches-grid">
-                <article className="psx-approach">
-                  <div className="psx-approach-media psx-approach-media-a" aria-hidden="true" />
-                  <div className="psx-approach-body">
-                    <h3 className="psx-approach-title">
-                      Targeted <span>interventions</span>
-                    </h3>
-                    <div className="psx-accent" />
-                    <p className="psx-approach-text">
-                      Image‑guided procedures such as nerve blocks,{' '}
-                      <Link to="/treatments/minimally-invasive-treatments/radiofrequency">
-                        radiofrequency ablation
-                      </Link>{' '}
-                      or joint and spine injections can be used to reduce pain while preserving function
-                      and supporting rehabilitation. These minimally invasive treatments are usually
-                      performed as day‑case procedures in our clinic.
-                    </p>
-                    <p className="psx-approach-text">
-                      For some conditions, surgical options such as{' '}
-                      <Link to="/treatments/surgical-treatments/tubular-microsurgery">
-                        tubular microsurgery
-                      </Link>{' '}
-                      or decompression may be considered. When this is the case, you will meet with a
-                      spine surgeon to discuss risks, benefits and alternatives in detail.
-                    </p>
-                  </div>
-                </article>
-                <article className="psx-approach">
-                  <div className="psx-approach-media psx-approach-media-b" aria-hidden="true" />
-                  <div className="psx-approach-body">
-                    <h3 className="psx-approach-title">
-                      Pharmacological and <span>rehabilitation</span>
-                    </h3>
-                    <div className="psx-accent" />
-                    <p className="psx-approach-text">
-                      Medication, physiotherapy and lifestyle measures frequently work together, helping
-                      you to move with more confidence and regain autonomy in daily activities. We favour
-                      stepwise, time‑limited use of medicines where possible, always balancing symptom
-                      relief with safety.
-                    </p>
-                    <p className="psx-approach-text">
-                      Our rehabilitation team provides structured programmes that may include{' '}
-                      <Link to="/treatments/non-invasive-treatments/physiotherapy">physiotherapy</Link>, guided
-                      exercise and functional training. When emotional or behavioural factors play a role,
-                      we can also involve{' '}
-                      <Link to="/treatments/non-invasive-treatments/psychology">psychology</Link> or{' '}
-                      <Link to="/treatments/non-invasive-treatments/nutrition">nutrition</Link> support so
-                      that your plan addresses the whole person, not just the painful area.
-                    </p>
-                  </div>
-                </article>
-              </div>
-            </div>
-          </section>
-
-          <section className="psx-section psx-patterns">
-            <div className="psx-patterns-layout">
-              <header className="psx-patterns-header">
-                <p className="psx-patterns-eyebrow">Most common patterns</p>
-                <h2 className="psx-patterns-title">How {areaLabel} can present</h2>
-                <p className="psx-patterns-subtitle">
-                  People experience pain in different ways. Exploring the pattern of your symptoms helps
-                  us match you with the most appropriate investigation and treatment.
-                </p>
-              </header>
-              <div className="psx-accordion" role="list">
-                {syndromes.map((syndrome) => {
-                  const isActive = activeSyndromeId === syndrome.id;
-                  const rowId = `psx-accordion-${slugBase}-${syndrome.id}`;
-                  const panelId = `psx-accordion-panel-${slugBase}-${syndrome.id}`;
-                  return (
-                    <div key={syndrome.id} className="psx-accordion-item" role="listitem">
-                      <button
-                        id={rowId}
-                        type="button"
-                        className="psx-accordion-trigger"
-                        aria-expanded={isActive}
-                        aria-controls={panelId}
-                        onClick={() =>
-                          setActiveSyndromeId((current) => (current === syndrome.id ? null : syndrome.id))
-                        }
-                      >
-                        <span className="psx-accordion-label">{syndrome.label}</span>
-                        <span className="psx-accordion-icon" aria-hidden="true">
-                          +
-                        </span>
-                      </button>
-                      <div
-                        id={panelId}
-                        className="psx-accordion-panel"
-                        data-open={isActive ? 'true' : 'false'}
-                        role="region"
-                        aria-labelledby={rowId}
-                        aria-hidden={!isActive}
-                      >
-                        <p className="psx-accordion-text">{syndrome.description}</p>
+          {slugBase !== 'knee-pain' && slugBase !== 'hip-and-groin-pain' && (
+            <section className="psx-section psx-patterns">
+              <div className="psx-patterns-layout">
+                <header className="psx-patterns-header">
+                  <p className="psx-patterns-eyebrow">Most common patterns</p>
+                  <h2 className="psx-patterns-title">How {areaLabel} can present</h2>
+                  <p className="psx-patterns-subtitle">
+                    People experience pain in different ways. Exploring the pattern of your symptoms helps
+                    us match you with the most appropriate investigation and treatment.
+                  </p>
+                </header>
+                <div className="psx-accordion" role="list">
+                  {syndromes.map((syndrome) => {
+                    const isActive = activeSyndromeId === syndrome.id;
+                    const rowId = `psx-accordion-${slugBase}-${syndrome.id}`;
+                    const panelId = `psx-accordion-panel-${slugBase}-${syndrome.id}`;
+                    return (
+                      <div key={syndrome.id} className="psx-accordion-item" role="listitem">
+                        <button
+                          id={rowId}
+                          type="button"
+                          className="psx-accordion-trigger"
+                          aria-expanded={isActive}
+                          aria-controls={panelId}
+                          onClick={() =>
+                            setActiveSyndromeId((current) => (current === syndrome.id ? null : syndrome.id))
+                          }
+                        >
+                          <span className="psx-accordion-label">{syndrome.label}</span>
+                          <span className="psx-accordion-icon" aria-hidden="true">
+                            +
+                          </span>
+                        </button>
+                        <div
+                          id={panelId}
+                          className="psx-accordion-panel"
+                          data-open={isActive ? 'true' : 'false'}
+                          role="region"
+                          aria-labelledby={rowId}
+                          aria-hidden={!isActive}
+                        >
+                          <p className="psx-accordion-text">{syndrome.description}</p>
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          </section>
+            </section>
+          )}
 
           {pageContent?.citations && pageContent.citations.length > 0 ? (
             <section className="psx-section">

@@ -4,7 +4,54 @@ import { TreatmentsMain } from '../../Treatments';
 import '../../Treatments.css';
 import './PeripheralNerveBlock.css';
 
+type PeripheralNerveBlockFaqItem = {
+  id: string;
+  question: string;
+  answer: string;
+};
+
+const PERIPHERAL_NERVE_BLOCK_FAQ: PeripheralNerveBlockFaqItem[] = [
+  {
+    id: 'used-for',
+    question: 'What is a peripheral nerve block used for?',
+    answer:
+      'Peripheral nerve blocks are used to manage pain during and after procedures, and for selected chronic pain patterns. By reducing nerve signalling for a period of time, they can improve comfort and support movement and rehabilitation.',
+  },
+  {
+    id: 'what-is',
+    question: 'What is a peripheral nerve block?',
+    answer:
+      'It is an image‑guided injection that places local anaesthetic close to a specific nerve or nerve bundle. This temporarily reduces pain signalling from that nerve distribution and can cause numbness or heaviness in the area supplied.',
+  },
+  {
+    id: 'how-long-effect',
+    question: 'How long does the effect of a peripheral nerve block last?',
+    answer:
+      'Duration varies by the medication used, the dose, and the nerve targeted. Many blocks last several hours, while some may last longer. Your clinician will explain typical timing for your specific block.',
+  },
+  {
+    id: 'safe',
+    question: 'Are peripheral nerve blocks safe?',
+    answer:
+      'They are generally safe when performed by trained clinicians using appropriate monitoring and image guidance. As with any procedure, there are risks, and your clinician will review these based on your health profile and the nerve being targeted.',
+  },
+  {
+    id: 'pain-during',
+    question: 'Will I feel any pain during the procedure?',
+    answer:
+      'You may feel a brief sting with local anaesthetic and some pressure during the injection. Most people tolerate the procedure well. Comfort can be improved with careful technique and, in some settings, light sedation.',
+  },
+  {
+    id: 'how-long-lasts',
+    question: 'How long will a peripheral nerve block last?',
+    answer:
+      'Numbness often wears off over hours as the anaesthetic effect fades. If you notice prolonged weakness, increasing pain, fever, or unusual symptoms, contact your clinician for advice.',
+  },
+];
+
 const PeripheralNerveBlockPage: React.FC = () => {
+  const [activeFaqId, setActiveFaqId] = React.useState<string | null>(() => PERIPHERAL_NERVE_BLOCK_FAQ[0]?.id ?? null);
+
   React.useEffect(() => {
     const pageTitle = 'Peripheral nerve block in Algarve | Targeted pain injections';
     document.title = pageTitle;
@@ -105,6 +152,319 @@ const PeripheralNerveBlockPage: React.FC = () => {
                   Book an appointment
                 </Link>
               </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="page-section pnb-process" aria-labelledby="pnb-process-title">
+          <div className="pnb-process-inner">
+            <div className="pnb-process-top">
+              <h2 id="pnb-process-title" className="pnb-process-title">
+                What is a Peripheral
+                <br />
+                Nerve Block?
+              </h2>
+              <div className="pnb-process-copy">
+                <p className="pnb-process-paragraph">
+                  A peripheral nerve block is an image‑guided injection that places local anaesthetic close to specific nerves to numb a
+                  target area of the body.
+                </p>
+                <p className="pnb-process-paragraph">
+                  This technique is often used to manage pain during and after surgical procedures, particularly for limbs, and it can
+                  also be used for certain head, neck, back, abdominal, collarbone, and hip pain patterns.
+                </p>
+                <p className="pnb-process-paragraph">Here is an overview of the procedure:</p>
+              </div>
+            </div>
+
+            <h2 className="pnb-process-steps-title">How the Procedure is Done</h2>
+
+            <div className="pnb-steps-grid" role="list" aria-label="Peripheral nerve block steps">
+              <article className="pnb-step-card" role="listitem" aria-label="Step 1 preparation">
+                <p className="pnb-step-number">1.</p>
+                <h3 className="pnb-step-title">Preparation</h3>
+                <div className="pnb-step-divider" aria-hidden="true" />
+                <p className="pnb-step-body">
+                  You will receive instructions on how to prepare, which may include fasting and adjusting any medications you are taking.
+                  Your clinician will also discuss your medical history, including any past issues with anaesthesia.
+                </p>
+              </article>
+
+              <article className="pnb-step-card" role="listitem" aria-label="Step 2 procedure">
+                <p className="pnb-step-number">2.</p>
+                <h3 className="pnb-step-title">Procedure</h3>
+                <div className="pnb-step-divider" aria-hidden="true" />
+                <p className="pnb-step-body">
+                  During the procedure, an ultrasound or nerve stimulator is used to locate the target nerve. The skin is numbed and a
+                  needle is guided near the nerve to deliver local anaesthetic. Some discomfort can occur, but the procedure is generally
+                  well tolerated.
+                </p>
+              </article>
+
+              <article className="pnb-step-card" role="listitem" aria-label="Step 3 during surgery">
+                <p className="pnb-step-number">3.</p>
+                <h3 className="pnb-step-title">During Surgery</h3>
+                <div className="pnb-step-divider" aria-hidden="true" />
+                <p className="pnb-step-body">
+                  Depending on the type of surgery, the nerve block may be used alongside general anaesthesia or sedation. Sometimes, the
+                  nerve block alone provides enough pain control to keep you comfortable during the operation.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="page-section pnb-aftercare" aria-labelledby="pnb-aftercare2-title">
+          <header className="pnb-aftercare-header">
+            <h2 id="pnb-aftercare2-title" className="pnb-aftercare-title">What to Expect From the Procedure</h2>
+            <p className="pnb-aftercare-subtitle">
+              Post‑procedure, most people experience meaningful pain reduction. For some, the full effect develops over the next few hours.
+            </p>
+            <p className="pnb-aftercare-subtitle">Here&apos;s a breakdown of what you can expect:</p>
+          </header>
+
+          <div className="pnb-aftercare-layout" aria-label="Post-procedure expectations">
+            <figure className="pnb-aftercare-media" aria-hidden="true">
+              <div className="pnb-aftercare-poster">
+                <img
+                  className="pnb-aftercare-image"
+                  src="/assets/images/medical/DSC05016.jpg"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            </figure>
+
+            <div className="pnb-aftercare-panel" role="list" aria-label="Post-procedure expectations">
+              <article className="pnb-aftercare-item" role="listitem">
+                <h3 className="pnb-aftercare-item-title">Immediate Effects</h3>
+                <p className="pnb-aftercare-item-body">
+                  Numbness from the anaesthetic usually lasts several hours depending on the nerve and medication. Tingling or warmth can
+                  occur as the block sets in.
+                </p>
+              </article>
+              <div className="pnb-aftercare-divider" aria-hidden="true" />
+              <article className="pnb-aftercare-item" role="listitem">
+                <h3 className="pnb-aftercare-item-title">Recovery</h3>
+                <p className="pnb-aftercare-item-body">
+                  You will be monitored and can typically go home once stable. Mild soreness or a heavy sensation in the limb may occur as
+                  feeling returns.
+                </p>
+              </article>
+              <div className="pnb-aftercare-divider" aria-hidden="true" />
+              <article className="pnb-aftercare-item" role="listitem">
+                <h3 className="pnb-aftercare-item-title">Follow‑Up</h3>
+                <p className="pnb-aftercare-item-body">
+                  Your clinician will advise on activity progression, limb protection while numb, and when it is safe to drive or return to
+                  work.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="page-section pnb-benefits" aria-labelledby="pnb-benefits-section-title">
+          <div className="pnb-benefits-inner">
+            <header className="pnb-benefits-header">
+              <h2 id="pnb-benefits-section-title" className="pnb-benefits-title">Benefits of Peripheral Nerve Blocks</h2>
+              <p className="pnb-benefits-subtitle">Peripheral nerve blocks can offer several benefits, such as:</p>
+            </header>
+
+            <div className="pnb-benefits-grid" role="list" aria-label="Benefits of peripheral nerve blocks">
+              <article className="pnb-benefit-card pnb-benefit-card--highlight" role="listitem">
+                <h3 className="pnb-benefit-title">Effective Pain Control</h3>
+                <div className="pnb-benefit-divider" aria-hidden="true" />
+                <p className="pnb-benefit-body">
+                  Provides excellent relief during and after procedures, often reducing the need for systemic pain medication and their
+                  side effects such as nausea or drowsiness.
+                </p>
+              </article>
+
+              <article className="pnb-benefit-card" role="listitem">
+                <h3 className="pnb-benefit-title">Reduced Recovery Time</h3>
+                <div className="pnb-benefit-divider" aria-hidden="true" />
+                <p className="pnb-benefit-body">
+                  Targeted pain relief helps people mobilise earlier and participate in physiotherapy more comfortably.
+                </p>
+              </article>
+
+              <article className="pnb-benefit-card" role="listitem">
+                <h3 className="pnb-benefit-title">Decreased Need for General Anaesthesia</h3>
+                <div className="pnb-benefit-divider" aria-hidden="true" />
+                <p className="pnb-benefit-body">
+                  In selected cases, nerve blocks can be used with lighter sedation or as an alternative to general anaesthesia, which may
+                  be preferable for people with certain medical conditions.
+                </p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="page-section pnb-conditions" aria-labelledby="pnb-conditions-title">
+          <div className="pnb-conditions-inner">
+            <header className="pnb-conditions-header">
+              <h2 id="pnb-conditions-title" className="pnb-conditions-title">
+                Conditions Treated with Peripheral
+                <br />
+                Nerve Blocks
+              </h2>
+            </header>
+
+            <div className="pnb-conditions-grid" role="list" aria-label="Conditions treated with peripheral nerve blocks">
+              <article className="pnb-condition-card" role="listitem">
+                <div className="pnb-condition-text">
+                  <h3 className="pnb-condition-title">Postoperative Pain</h3>
+                  <p className="pnb-condition-body">
+                    Nerve blocks can help manage pain after surgery, supporting earlier movement and recovery with reduced discomfort for
+                    some patients.
+                  </p>
+                </div>
+                <div className="pnb-condition-media" aria-hidden="true">
+                  <img
+                    className="pnb-condition-image"
+                    src="/assets/images/medical/DSC05129.jpg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </article>
+
+              <article className="pnb-condition-card pnb-condition-card--reverse" role="listitem">
+                <div className="pnb-condition-text">
+                  <h3 className="pnb-condition-title">Neuropathy</h3>
+                  <p className="pnb-condition-body">
+                    Targeted blocks may be used in selected cases for nerve‑related pain patterns affecting the arms, legs, or face.
+                  </p>
+                </div>
+                <div className="pnb-condition-media" aria-hidden="true">
+                  <img
+                    className="pnb-condition-image"
+                    src="/assets/images/medical/DSC04194.jpg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </article>
+
+              <article className="pnb-condition-card pnb-condition-card--reverse" role="listitem">
+                <div className="pnb-condition-text">
+                  <h3 className="pnb-condition-title">
+                    Shoulder &amp; Rotator Cuff
+                    <br />
+                    Pain
+                  </h3>
+                  <p className="pnb-condition-body">
+                    In shoulder procedures and certain shoulder pain patterns, nerve blocks can reduce pain and improve comfort for early
+                    rehabilitation.
+                  </p>
+                </div>
+                <div className="pnb-condition-media" aria-hidden="true">
+                  <img
+                    className="pnb-condition-image"
+                    src="/assets/images/medical/DSC01735.jpg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </article>
+
+              <article className="pnb-condition-card" role="listitem">
+                <div className="pnb-condition-text">
+                  <h3 className="pnb-condition-title">Hip &amp; Lower Limb Pain</h3>
+                  <p className="pnb-condition-body">
+                    Nerve blocks may support pain control for hip and lower‑limb procedures and selected pain patterns, depending on the
+                    target nerve.
+                  </p>
+                </div>
+                <div className="pnb-condition-media" aria-hidden="true">
+                  <img
+                    className="pnb-condition-image"
+                    src="/assets/images/medical/DSC05906.jpg"
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section className="page-section pnb-help" aria-labelledby="pnb-help-title">
+          <div className="pnb-help-inner">
+            <h2 id="pnb-help-title" className="pnb-help-title">
+              Risks and Side Effects
+            </h2>
+            <div className="pnb-help-copy">
+              <p className="pnb-help-paragraph">
+                While generally safe, peripheral nerve blocks do carry some risks, including:
+              </p>
+              <ul className="pnb-help-list" aria-label="Risks and side effects of peripheral nerve blocks">
+                <li>Bruising or bleeding at the injection site.</li>
+                <li>Temporary nerve symptoms, like hoarseness or blurred vision (depending on the nerve targeted).</li>
+                <li>Rare but serious risks like infection, nerve damage, or complications if local anaesthetic enters the bloodstream.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="pnb-help-cta" aria-label="Get help call to action">
+            <div className="pnb-help-cta-inner">
+              <h2 className="pnb-help-cta-title">Learn how we can help you</h2>
+              <p className="pnb-help-cta-subtitle">
+                If you&apos;re having symptoms described in this article, it&apos;s crucial to seek professional medical advice.
+              </p>
+              <Link to="/contact" className="pnb-help-cta-button" aria-label="Get help now">
+                Get Help Now
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        <section className="page-section pnb-faq" aria-labelledby="pnb-faq-title">
+          <div className="pnb-faq-inner">
+            <header className="pnb-faq-header">
+              <h2 id="pnb-faq-title" className="pnb-faq-title">
+                Peripheral Nerve Blocks FAQ
+              </h2>
+            </header>
+            <div className="pnb-faq-card" role="list" aria-label="Peripheral nerve blocks frequently asked questions">
+              {PERIPHERAL_NERVE_BLOCK_FAQ.map((item) => {
+                const isActive = activeFaqId === item.id;
+                const rowId = `pnb-faq-${item.id}`;
+                const panelId = `pnb-faq-panel-${item.id}`;
+
+                return (
+                  <div key={item.id} className="pnb-faq-item" role="listitem">
+                    <button
+                      id={rowId}
+                      type="button"
+                      className="pnb-faq-trigger"
+                      aria-expanded={isActive}
+                      aria-controls={panelId}
+                      onClick={() => setActiveFaqId((current) => (current === item.id ? null : item.id))}
+                    >
+                      <span className="pnb-faq-question">{item.question}</span>
+                      <span className="pnb-faq-icon" aria-hidden="true">
+                        {isActive ? '−' : '+'}
+                      </span>
+                    </button>
+                    <div
+                      id={panelId}
+                      className="pnb-faq-panel"
+                      data-open={isActive ? 'true' : 'false'}
+                      role="region"
+                      aria-labelledby={rowId}
+                      aria-hidden={!isActive}
+                    >
+                      <p className="pnb-faq-answer">{item.answer}</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>

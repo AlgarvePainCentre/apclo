@@ -9,3 +9,582 @@
   background-size: cover;
   background-position: center;
 }
+
+.cryoblation-page .cryo-understanding {
+  padding: clamp(28px, 6vw, 72px) 0;
+  background: #f1f5f9;
+}
+
+.cryoblation-page .cryo-understanding-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 32px);
+  display: grid;
+  gap: clamp(18px, 4vw, 40px);
+}
+
+.cryoblation-page .cryo-understanding-top {
+  display: grid;
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+  gap: clamp(18px, 4vw, 72px);
+  align-items: start;
+}
+
+.cryoblation-page .cryo-understanding-title {
+  margin: 0;
+  font-size: clamp(2rem, 3.6vw, 3rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: #003366;
+}
+
+.cryoblation-page .cryo-understanding-copy {
+  display: grid;
+  gap: 14px;
+}
+
+.cryoblation-page .cryo-understanding-paragraph {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+.cryoblation-page .cryo-steps-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 2.6vw, 24px);
+}
+
+.cryoblation-page .cryo-step-card {
+  background: #ffffff;
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 220px;
+  transition: all 0.3s ease-in-out;
+}
+
+.cryoblation-page .cryo-step-card:hover {
+  background: #fff5db;
+}
+
+.cryoblation-page .cryo-step-number {
+  margin: 0;
+  font-weight: 700;
+  color: #003366;
+}
+
+.cryoblation-page .cryo-step-title {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.2;
+  color: #003366;
+}
+
+.cryoblation-page .cryo-step-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.12);
+}
+
+.cryoblation-page .cryo-step-body {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+@media (min-width: 901px) {
+  .cryoblation-page .cryo-steps-grid .cryo-step-card:nth-child(4) {
+    grid-column: 2;
+  }
+  .cryoblation-page .cryo-steps-grid .cryo-step-card:nth-child(5) {
+    grid-column: 3;
+  }
+}
+
+@media (max-width: 900px) {
+  .cryoblation-page .cryo-understanding-top {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  .cryoblation-page .cryo-steps-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 980px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cryoblation-page .cryo-steps-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.cryoblation-page .cryo-aftercare {
+  padding: clamp(28px, 6vw, 72px) 0;
+  background: transparent;
+}
+
+.cryoblation-page .cryo-aftercare-header {
+  max-width: 980px;
+  margin: 0 auto clamp(18px, 4vw, 32px);
+  padding: 0 clamp(16px, 4vw, 32px);
+  text-align: center;
+}
+
+.cryoblation-page .cryo-aftercare-title {
+  margin: 0 0 10px;
+  font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+    text-decoration-color: var(--warm-yellow, #fbd38d);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.15em;
+    text-decoration-skip-ink: none;
+}
+
+.cryoblation-page .cryo-aftercare-subtitle {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+.cryoblation-page .cryo-aftercare-subtitle + .cryo-aftercare-subtitle {
+  margin-top: 10px;
+}
+
+.cryoblation-page .cryo-aftercare-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 32px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+  align-items: stretch;
+  background: transparent;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.cryoblation-page .cryo-aftercare-media {
+  margin: 0;
+  padding: clamp(22px, 3vw, 34px);
+  background:
+    radial-gradient(900px 360px at 15% 20%, rgba(0, 51, 102, 0.14), rgba(255, 255, 255, 0)),
+    linear-gradient(120deg, rgba(15, 23, 42, 0.06), rgba(15, 23, 42, 0));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+}
+
+.cryoblation-page .cryo-aftercare-poster {
+    width: 100%;
+    aspect-ratio: auto;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.cryoblation-page .cryo-aftercare-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.cryoblation-page .cryo-aftercare-panel {
+  padding: clamp(22px, 3vw, 34px);
+  display: grid;
+  gap: 0;
+}
+
+.cryoblation-page .cryo-aftercare-item {
+  padding: 8px 2px 16px;
+}
+
+.cryoblation-page .cryo-aftercare-item-title {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  color: #003366;
+}
+
+.cryoblation-page .cryo-aftercare-item-body {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+.cryoblation-page .cryo-aftercare-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.1);
+}
+
+@media (max-width: 900px) {
+  .cryoblation-page .cryo-aftercare-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .cryoblation-page .cryo-aftercare-poster {
+    width: clamp(180px, 48vw, 280px);
+  }
+}
+
+@media (max-width: 600px) {
+  .cryoblation-page .cryo-aftercare-header {
+    text-align: left;
+  }
+  .cryoblation-page .cryo-aftercare-layout {
+    padding: 0;
+  }
+  .cryoblation-page .cryo-aftercare-media {
+    padding: 18px;
+  }
+  .cryoblation-page .cryo-aftercare-panel {
+    padding: 18px;
+  }
+}
+
+.cryoblation-page .cryo-benefits {
+  padding: clamp(32px, 6vw, 84px) 0;
+  background: #f1f5f9;
+}
+
+.cryoblation-page .cryo-benefits-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 32px);
+}
+
+.cryoblation-page .cryo-benefits-header {
+  max-width: 980px;
+  margin: 0 auto clamp(18px, 4vw, 32px);
+  text-align: center;
+}
+
+.cryoblation-page .cryo-benefits-title {
+  margin: 0 0 10px;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+    text-decoration-color: var(--warm-yellow, #fbd38d);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 0.15em;
+    text-decoration-skip-ink: none;
+}
+
+.cryoblation-page .cryo-benefits-subtitle {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+.cryoblation-page .cryo-benefits-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(14px, 2.6vw, 24px);
+}
+
+.cryoblation-page .cryo-benefit-card {
+  background: #f8fafc;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 220px;
+}
+
+.cryoblation-page .cryo-benefit-card:hover {
+  background: #fff5db;
+}
+
+.cryoblation-page .cryo-benefit-title {
+  margin: 0;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  color: #003366;
+}
+
+.cryoblation-page .cryo-benefit-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(239, 68, 68, 0.95), rgba(239, 68, 68, 0.05));
+}
+
+.cryoblation-page .cryo-benefit-body {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+@media (max-width: 900px) {
+  .cryoblation-page .cryo-benefits-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 980px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cryoblation-page .cryo-benefits-header {
+    text-align: left;
+  }
+  .cryoblation-page .cryo-benefits-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.cryoblation-page .cryo-help {
+  padding: clamp(28px, 6vw, 72px) 0 0;
+  background: #f8fafc;
+}
+
+.cryoblation-page .cryo-help-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 32px) clamp(28px, 6vw, 72px);
+  display: grid;
+  grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+  gap: clamp(18px, 4vw, 72px);
+  align-items: start;
+}
+
+.cryoblation-page .cryo-help-title {
+  margin: 0;
+  font-size: clamp(2rem, 3.6vw, 3rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  color: #003366;
+}
+
+.cryoblation-page .cryo-help-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.cryoblation-page .cryo-help-paragraph {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+.cryoblation-page .cryo-help-cta {
+  background: #ffd37a18;
+  padding: clamp(28px, 5vw, 56px) 0;
+  border-radius: 22px;
+
+}
+
+.cryoblation-page .cryo-help-cta-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 32px);
+  text-align: center;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+.cryoblation-page .cryo-help-cta-title {
+  margin: 0;
+  font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #003366;
+}
+
+.cryoblation-page .cryo-help-cta-subtitle {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: rgba(15, 23, 66, 0.72);
+  max-width: 70ch;
+}
+
+.cryoblation-page .cryo-help-cta-button {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: #f04b5e;
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 16px 30px rgba(2, 6, 23, 0.22);
+  transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+}
+
+.cryoblation-page .cryo-help-cta-button:hover {
+  transform: translateY(-1px);
+  background: #ff5c6e;
+  box-shadow: 0 18px 34px rgba(2, 6, 23, 0.26);
+}
+
+.cryoblation-page .cryo-help-cta-button:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(41, 95, 182, 0.28), 0 18px 34px rgba(2, 6, 23, 0.26);
+}
+
+@media (max-width: 900px) {
+  .cryoblation-page .cryo-help-inner {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+  .cryoblation-page .cryo-help-title {
+    color: #003366;
+  }
+}
+
+.cryoblation-page .cryo-faq {
+  padding: clamp(32px, 6vw, 84px) 0;
+  background: #f8fafc;
+}
+
+.cryoblation-page .cryo-faq-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 32px);
+}
+
+.cryoblation-page .cryo-faq-header {
+  max-width: 980px;
+  margin: 0 auto clamp(18px, 4vw, 32px);
+  text-align: center;
+}
+
+.cryoblation-page .cryo-faq-title {
+  margin: 0;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #374151;
+}
+
+.cryoblation-page .cryo-faq-card {
+  max-width: 980px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.cryoblation-page .cryo-faq-item + .cryo-faq-item {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.cryoblation-page .cryo-faq-trigger {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: background 160ms ease;
+}
+
+.cryoblation-page .cryo-faq-trigger:hover {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.cryoblation-page .cryo-faq-trigger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(41, 95, 182, 0.22);
+}
+
+.cryoblation-page .cryo-faq-question {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(15, 23, 42, 0.6);
+  font-weight: 700;
+  text-align: left;
+}
+
+.cryoblation-page .cryo-faq-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 51, 102, 0.28);
+  background: rgba(255, 255, 255, 0.95);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  color: rgba(0, 51, 102, 0.9);
+  box-shadow: 0 10px 18px rgba(2, 6, 23, 0.08);
+}
+
+.cryoblation-page .cryo-faq-trigger[aria-expanded='true'] .cryo-faq-question {
+  color: #003366;
+  font-weight: 800;
+}
+
+.cryoblation-page .cryo-faq-trigger[aria-expanded='true'] .cryo-faq-icon {
+  border-color: rgba(0, 51, 102, 0.25);
+  background: rgba(0, 51, 102, 0.92);
+  color: #ffffff;
+}
+
+.cryoblation-page .cryo-faq-panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 24px;
+  transition: max-height 280ms ease, opacity 200ms ease, padding 200ms ease;
+}
+
+.cryoblation-page .cryo-faq-panel[data-open='true'] {
+  max-height: 520px;
+  opacity: 1;
+  padding-top: 4px;
+  padding-bottom: 18px;
+}
+
+.cryoblation-page .cryo-faq-answer {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+@media (max-width: 600px) {
+  .cryoblation-page .cryo-faq-header {
+    text-align: left;
+  }
+  .cryoblation-page .cryo-faq-trigger {
+    padding: 18px 18px;
+  }
+  .cryoblation-page .cryo-faq-panel {
+    padding: 0 18px;
+  }
+  .cryoblation-page .cryo-faq-panel[data-open='true'] {
+    padding-bottom: 16px;
+  }
+}
