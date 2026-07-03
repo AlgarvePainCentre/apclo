@@ -1,0 +1,517 @@
+.specialities-page .treatments-feature {
+  padding-block: clamp(48px, 6vw, 96px);
+}
+
+.specialities-page .treatments-feature + .treatments-feature {
+  border-top: 1px solid rgba(17, 24, 39, 0.08);
+}
+
+.specialities-page .treatments-feature-inner {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(18px, 3vw, 36px);
+  align-items: start;
+  max-width: 1600px;
+  margin-inline: auto;
+}
+
+
+.specialities-page .treatments-feature {
+  content-visibility: auto;
+  contain-intrinsic-size: 860px;
+}
+
+.specialities-page .treatments-feature-inner-grid {
+  grid-template-columns: 1fr;
+  align-items: stretch;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.specialities-page .pain-area-grid-panel {
+  border-radius: 22px;
+  padding: clamp(20px, 4vw, 34px);
+  background: transparent;
+}
+
+.specialities-page .pain-area-grid-title {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: #111827;
+}
+
+.specialities-page .pain-area-grid {
+  list-style: none;
+  padding: 0;
+  margin: clamp(22px, 4vw, 34px) 0 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.specialities-page .pain-area-grid-item {
+  margin: 0;
+}
+
+.specialities-page .pain-area-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 32px 24px;
+    border-radius: 12px;
+    background: #f8fafc;
+    border: none;
+    box-shadow: none;
+    text-decoration: none;
+    transform: translateZ(0);
+    transition: transform 180ms ease, background-color 180ms ease;
+}
+
+.specialities-page .pain-area-card:hover {
+  transform: translateY(-2px);
+  background: #f1f5f9;
+}
+
+.specialities-page .pain-area-card:focus-visible {
+  outline: 4px solid rgba(96, 187, 239, 0.7);
+  outline-offset: 3px;
+}
+
+.specialities-page .pain-area-card-icon {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+}
+
+.specialities-page .pain-area-card-icon img {
+  width: 100px;
+  height: 100px;
+  display: block;
+  object-fit: contain;
+}
+
+.specialities-page .pain-area-card-label {
+  font-weight: 700;
+  text-align: left;
+  font-size: 1.15rem;
+  line-height: 1.3;
+  color: #034b72;
+}
+
+/* Sports Care Grid */
+.specialities-page .sports-care-grid-panel {
+  border-radius: 22px;
+  padding: clamp(20px, 4vw, 34px);
+  background: transparent;
+}
+
+.specialities-page .sports-care-grid-title {
+  margin: 0;
+  text-align: center;
+  font-size: clamp(1.6rem, 3.4vw, 2.3rem);
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  color: #4b5563;
+}
+
+.specialities-page .sports-care-grid {
+  list-style: none;
+  padding: 0;
+  margin: clamp(22px, 4vw, 34px) 0 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+.specialities-page .sports-care-grid-item {
+  margin: 0;
+}
+
+.specialities-page .sports-care-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column-reverse;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 12px 26px rgba(3, 7, 18, 0.06);
+  text-decoration: none;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.specialities-page .sports-care-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 44px rgba(3, 7, 18, 0.12);
+}
+
+.specialities-page .sports-care-card:focus-visible {
+  outline: 4px solid rgba(96, 187, 239, 0.7);
+  outline-offset: 3px;
+}
+
+.specialities-page .sports-care-card-content {
+  flex: 1;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 24px;
+}
+
+.specialities-page .sports-care-card-title {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #034b72;
+}
+
+.specialities-page .sports-care-card-link {
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #eb5757;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.specialities-page .sports-care-card-image {
+  flex: 1;
+  position: relative;
+  min-height: 220px;
+}
+
+.specialities-page .sports-care-card-image img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@media (min-width: 768px) {
+  .specialities-page .sports-care-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+  .specialities-page .sports-care-card {
+    flex-direction: row;
+  }
+  .specialities-page .sports-care-card-image {
+    min-height: auto;
+  }
+}
+
+.specialities-page .stroke-care-grid-panel {
+  background: #f8fafc;
+}
+
+.specialities-page .stroke-care-grid-item:last-child {
+  grid-column: 1 / -1;
+  max-width: calc(50% - 12px); /* Matches half width of grid minus half gap */
+}
+
+@media (max-width: 767px) {
+  .specialities-page .stroke-care-grid-item:last-child {
+    max-width: 100%;
+  }
+}
+
+/* What is Pain Medicine Section */
+.specialities-page .specialities-what-is-section {
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-block: clamp(64px, 8vw, 120px);
+  background-color: #f0f7fa;
+  overflow-x: clip;
+}
+
+.specialities-page .specialities-what-is-inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(24px, 5vw, 48px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.specialities-page .specialities-what-is-title {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: #3f3f46;
+  line-height: 1.2;
+}
+
+.specialities-page .specialities-what-is-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.specialities-page .specialities-what-is-content p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+@media (min-width: 768px) {
+  .specialities-page .specialities-what-is-inner {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: center;
+  }
+}
+
+/* Our Treatment Approaches Section */
+.specialities-page .specialities-treatment-approaches-section {
+  padding-block: clamp(60px, 8vw, 100px);
+  background-color: #f8fafc;
+}
+
+.specialities-page .specialities-treatment-approaches-inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 40px);
+}
+
+.specialities-page .specialities-treatment-approaches-header {
+  text-align: center;
+  margin-bottom: clamp(40px, 6vw, 60px);
+}
+
+.specialities-page .specialities-treatment-approaches-title {
+  margin: 0 0 16px;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: #4b4b4b;
+  line-height: 1.1;
+}
+
+.specialities-page .specialities-treatment-approaches-subtitle {
+  margin: 0;
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  color: #034b72;
+}
+
+.specialities-page .specialities-treatment-approaches-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+.specialities-page .specialities-treatment-approach-card {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  text-decoration: none;
+  box-shadow: 0 12px 26px rgba(3, 7, 18, 0.06);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.specialities-page .specialities-treatment-approach-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 44px rgba(3, 7, 18, 0.12);
+}
+
+.specialities-page .specialities-treatment-approach-image {
+  width: 100%;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+}
+
+.specialities-page .specialities-treatment-approach-image-yellow {
+  background-color: #fff8e1;
+}
+
+.specialities-page .specialities-treatment-approach-image img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.specialities-page .specialities-treatment-approach-content {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.specialities-page .specialities-treatment-approach-card-title {
+  margin: 0 0 16px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #034b72;
+  line-height: 1.2;
+}
+
+.specialities-page .specialities-treatment-approach-divider {
+  height: 1px;
+  background-color: #fca5a5;
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.specialities-page .specialities-treatment-approach-body {
+  margin: 0 0 32px;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4b5563;
+  flex: 1;
+}
+
+.specialities-page .specialities-treatment-approach-link {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: #9ca3af;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+@media (min-width: 768px) {
+  .specialities-page .specialities-treatment-approaches-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Testimonials Section */
+.specialities-page .specialities-testimonials-section {
+  padding-block: clamp(60px, 8vw, 100px);
+  background-color: #f8fafc;
+}
+
+.specialities-page .specialities-testimonials-inner {
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(20px, 5vw, 40px);
+}
+
+.specialities-page .specialities-testimonials-header {
+  text-align: center;
+  margin-bottom: clamp(40px, 6vw, 60px);
+}
+
+.specialities-page .specialities-testimonials-title {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  color: #4b4b4b;
+  line-height: 1.1;
+}
+
+.specialities-page .specialities-testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .specialities-page .specialities-testimonials-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.specialities-page .specialities-testimonial-card {
+  background-color: #f8fafc;
+  border-radius: 8px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+}
+
+.specialities-page .specialities-testimonial-quote {
+  margin: 0 0 32px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #4b5563;
+  flex: 1;
+}
+
+.specialities-page .specialities-testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.specialities-page .specialities-testimonial-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.specialities-page .specialities-testimonial-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.specialities-page .specialities-testimonial-name {
+  font-weight: 700;
+  color: #4b4b4b;
+  font-size: 1rem;
+  margin-bottom: 4px;
+}
+
+.specialities-page .specialities-testimonial-location {
+  font-size: 0.9rem;
+  color: #9ca3af;
+}
+
+@media (min-width: 760px) {
+  .specialities-page .treatments-feature-inner {
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    align-items: center;
+  }
+
+  .specialities-page .treatments-feature-inner-grid {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
+  .specialities-page .pain-area-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px;
+  }
+
+  .specialities-page .stroke-topic-nav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+  }
+}
+
+@media (min-width: 1100px) {
+  .specialities-page .pain-area-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .specialities-page .stroke-topic-nav {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .specialities-page .pain-area-card {
+    transition: none;
+  }
+
+  .specialities-page .stroke-topic-navLink {
+    transition: none;
+  }
+}

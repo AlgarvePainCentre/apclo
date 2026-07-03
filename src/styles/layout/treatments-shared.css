@@ -1,0 +1,12 @@
+@import '../../pages/treatments/Treatments.css';
+@import '../base/treatment-timeline-base.css';
+@import './treatments-legacy-grids.css';
+@import '../components/TreatmentUnderstandingStepsLayout.css';
+@import '../components/TreatmentAftercare.css';
+@import '../components/TreatmentUnderstandingTimeline.css';
+@import '../components/TreatmentSteps.css';
+@import '../components/TreatmentUnderstanding.css';
+@import '../components/TreatmentSimpleCards.css';
+@import '../components/TreatmentHelpCTA.css';
+@import '../components/TreatmentRightForYou.css';
+@import '../components/TreatmentFaqAccordion.css';

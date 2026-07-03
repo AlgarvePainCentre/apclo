@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SocialShare from '../../../../components/SocialShare';
-import '../Article.css';
+import '../../../../styles/layout/article-layout.css';
 
 const ConqueringCervicalPainPage: React.FC = () => {
   const navigate = useNavigate();
@@ -72,25 +72,25 @@ const ConqueringCervicalPainPage: React.FC = () => {
         </div>
         <div className="understanding-pain-grid">
           <div className="understanding-card">
-            <img src="/assets/images/learn/2-muscle-tension.jpg" alt="Muscle Tension" />
+            <img src="/assets/images/learn/2-muscle-tension.webp" alt="Muscle Tension" />
             <h3>Muscle Tension</h3>
             <div className="title-underline"></div>
             <p>This condition is frequently brought on by stress, bad posture, or extended periods of inactivity, leading to sore neck muscles and back and neck aches.</p>
           </div>
           <div className="understanding-card">
-            <img src="/assets/images/learn/3-improper-posture.jpg" alt="Physiotherapy" />
+            <img src="/assets/images/learn/3-improper-posture.webp" alt="Physiotherapy" />
             <h3>Physiotherapy</h3>
             <div className="title-underline"></div>
             <p>Bending forward or slouching can put excessive strain on the neck muscles, causing back and neck discomfort.</p>
           </div>
           <div className="understanding-card">
-            <img src="/assets/images/learn/4-disc-problems.jpg" alt="Disc Problems" />
+            <img src="/assets/images/learn/4-disc-problems.webp" alt="Disc Problems" />
             <h3>Disc Problems</h3>
             <div className="title-underline"></div>
             <p>Herniated or degenerated discs, known as cervical spondylotic disease, can cause pain by pressing on nerves, leading to pain in the upper back neck.</p>
           </div>
           <div className="understanding-card">
-            <img src="/assets/images/learn/5-injuries.jpg" alt="Injuries" />
+            <img src="/assets/images/learn/5-injuries.webp" alt="Injuries" />
             <h3>Injuries</h3>
             <div className="title-underline"></div>
             <p>Whiplash or other trauma can lead to acute cervical pain and neck strain.</p>
@@ -111,7 +111,7 @@ const ConqueringCervicalPainPage: React.FC = () => {
                 <p>Having trouble moving your neck, particularly after spending a lot of time sitting still or resting, can cause back and neck soreness.</p>
               </div>
               <div className="symptom-image">
-                <img src="/assets/images/learn/6-stiffness.jpg" alt="Stiffness" />
+                <img src="/assets/images/learn/6-stiffness.webp" alt="Stiffness" />
               </div>
             </div>
             <div className="symptom-card">
@@ -120,7 +120,7 @@ const ConqueringCervicalPainPage: React.FC = () => {
                 <p>These frequently begin in the neck and work their way up, often due to upper back cervical pain.</p>
               </div>
               <div className="symptom-image">
-                <img src="/assets/images/learn/7-headaches.jpg" alt="Headaches" />
+                <img src="/assets/images/learn/7-headaches.webp" alt="Headaches" />
               </div>
             </div>
             <div className="symptom-card">
@@ -129,7 +129,7 @@ const ConqueringCervicalPainPage: React.FC = () => {
                 <p>Difficulty tilting or rotating your head due to cervical and neck pain.</p>
               </div>
               <div className="symptom-image">
-                <img src="/assets/images/learn/8-reduced-range.jpg" alt="Reduced Range of Motion" />
+                <img src="/assets/images/learn/8-reduced-range.webp" alt="Reduced Range of Motion" />
               </div>
             </div>
             <div className="symptom-card">
@@ -138,7 +138,7 @@ const ConqueringCervicalPainPage: React.FC = () => {
                 <p>Discomfort that radiates to your upper back or down your arms, leading to lower back pain and neck strain.</p>
               </div>
               <div className="symptom-image">
-                <img src="/assets/images/learn/9-radiating-pain.jpg" alt="Radiating Pain" />
+                <img src="/assets/images/learn/9-radiating-pain.webp" alt="Radiating Pain" />
               </div>
             </div>
           </div>
@@ -155,19 +155,19 @@ const ConqueringCervicalPainPage: React.FC = () => {
         
         <div className="pain-medicine-grid">
           <div className="pain-medicine-card">
-            <img src="/assets/images/learn/chronic-pain_algarve-pain-center_004.jpg" alt="Medications" />
+            <img src="/assets/images/learn/chronic-pain_algarve-pain-center_004.webp" alt="Medications" />
             <h3>Medications</h3>
             <div className="title-underline"></div>
             <p>Tailored prescriptions to manage pain effectively.</p>
           </div>
           <div className="pain-medicine-card">
-            <img src="/assets/images/learn/chronic-pain_algarve-pain-center_005.jpg" alt="Physiotherapy" />
+            <img src="/assets/images/learn/chronic-pain_algarve-pain-center_005.webp" alt="Physiotherapy" />
             <h3>Physiotherapy</h3>
             <div className="title-underline"></div>
             <p>Customised physical therapy to improve mobility and reduce discomfort.</p>
           </div>
           <div className="pain-medicine-card">
-            <img src="/assets/images/learn/chronic-pain_algarve-pain-center_008.jpg" alt="Minimally Invasive Procedures" />
+            <img src="/assets/images/learn/chronic-pain_algarve-pain-center_008.webp" alt="Minimally Invasive Procedures" />
             <h3>Minimally Invasive Procedures</h3>
             <div className="title-underline"></div>
             <p>Advanced techniques to alleviate pain without major surgery.</p>
@@ -180,28 +180,28 @@ const ConqueringCervicalPainPage: React.FC = () => {
         <div className="treatment-approaches-grid">
           <div className="treatment-card">
             <div className="treatment-icon">
-              <img src="/assets/images/Icons-Specialities/Asset-S1.png" alt="Pharmacological Management" />
+              <img src="/assets/images/Icons-Specialities/Asset-S1.webp" alt="Pharmacological Management" />
             </div>
             <h3>Pharmacological Management</h3>
             <p>Pharmacological Management pain is commonly part of the treatment and a wide range of medicine can be used to manage pain.</p>
           </div>
           <div className="treatment-card">
             <div className="treatment-icon">
-              <img src="/assets/images/Icons-Specialities/Asset-S2.png" alt="Corticosteroid Injection" />
+              <img src="/assets/images/Icons-Specialities/Asset-S2.webp" alt="Corticosteroid Injection" />
             </div>
             <h3>Corticosteroid Injection</h3>
             <p>Corticosteroid medications are used to reduce pain and inflammation and can be taken oral or through an injection</p>
           </div>
           <div className="treatment-card">
             <div className="treatment-icon">
-              <img src="/assets/images/Icons-Specialities/Asset-S3.png" alt="Radio-frequency" />
+              <img src="/assets/images/Icons-Specialities/Asset-S3.webp" alt="Radio-frequency" />
             </div>
             <h3>Radio-frequency</h3>
             <p>Radio-frequency ablation is a minimally invasive procedure guided for ultrasound or fluoroscopy.</p>
           </div>
           <div className="treatment-card">
             <div className="treatment-icon">
-              <img src="/assets/images/Icons-Specialities/Asset-S4.png" alt="Cryoablation" />
+              <img src="/assets/images/Icons-Specialities/Asset-S4.webp" alt="Cryoablation" />
             </div>
             <h3>Cryoablation</h3>
             <p>Cryoablation is a specialized technique that freezes nerves to stop pain signals.</p>

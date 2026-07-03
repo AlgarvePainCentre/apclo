@@ -20,38 +20,59 @@
   padding-top: clamp(92px, 10vw, 128px);
   color: #fff;
   overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  min-height: 400px;
 }
 
 .title-decoration {
-    text-decoration-line: underline;
-    text-decoration-color: var(--warm-yellow, #fbd38d);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.15em;
-    text-decoration-skip-ink: none;
+  text-decoration: none;
 }
 
 .psx-hero-backdrop {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(167, 90, 13, 0.326), rgba(4, 11, 40, 0.6)),
-    var(--psx-hero-image, url('/assets/images/learn/1-banner-2.jpg'));
+  z-index: 0;
+  background-color: #020617;
+  background-image: var(--psx-hero-image, url('/assets/images/learn/1-banner-2.webp'));
+  background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  filter: saturate(1.05);
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.psx-hero-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(2, 6, 23, 0.42), rgba(2, 6, 23, 0.72));
 }
 
 .psx-hero-inner {
   position: relative;
+  width: 100%;
   max-width: var(--psx-max);
   margin: 0 auto;
   padding: clamp(18px, 2.4vw, 28px);
-  top: 2rem;
+  text-align: center;
+}
+
+.psx-page[id^='psx-']:not(#psx-contact):not(#psx-treatments) .psx-hero-inner {
+  align-items: center;
+  justify-content: center;
+}
+
+.psx-page[id^='psx-']:not(#psx-contact):not(#psx-treatments) .psx-hero-actions {
+  margin-top: 18px;
+  justify-content: center;
 }
 
 .psx-hero-eyebrow {
   margin: 0 0 10px;
-  font-size: 0.9rem;
+  font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.08em;
   text-transform: uppercase;
@@ -60,25 +81,23 @@
 
 .psx-hero-title {
   margin: 0 0 10px;
-  font-size: clamp(2.1rem, 4.2vw, 3.3rem);
+  font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.06;
+  font-weight: 700;
+  color: #fff;
   letter-spacing: -0.02em;
-  color: rgba(255, 255, 255, 0.98);
 }
 
 .psx-hero-subtitle {
   margin: 0;
-  font-size: clamp(1.05rem, 1.6vw, 1.25rem);
-  line-height: 1.6;
-  max-width: 60ch;
+  font-size: clamp(1.2rem, 1.8vw, 1.4rem);
+  line-height: 1.5;
   color: rgba(255, 255, 255, 0.92);
+  max-width: 60ch;
 }
 
 .psx-hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 18px;
+  display: none;
 }
 
 .psx-hero-actions > a.psx-btn-outline[href^="#treatments"] {
@@ -378,225 +397,6 @@
   }
 }
 
-.psx-page .home-section-discovery {
-  width: 100%;
-  max-width: 100%;
-  padding: 64px 48px;
-  margin: 2rem 0;
-  background: #dbeafe;
-  border-radius: 24px;
-}
-
-.psx-page .home-section-discovery-inner {
-  max-width: 1600px;
-  margin: 0 auto;
-}
-
-.psx-page .home-discovery-layout {
-  display: grid;
-  grid-template-columns: minmax(0, 380px) minmax(0, 1fr);
-  gap: clamp(18px, 3vw, 40px);
-  align-items: center;
-}
-
-.psx-page .home-discovery-header {
-  max-width: 420px;
-}
-
-.psx-page .home-discovery-title {
-  margin: 0 0 10px;
-  font-size: clamp(28px, 3vw, 40px);
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: #0f172a;
-}
-
-.psx-page .home-discovery-subtitle {
-  margin: 0;
-  font-size: 15px;
-  line-height: 1.7;
-  color: rgba(15, 23, 42, 0.72);
-}
-
-.psx-page .home-discovery-carousel {
-  position: relative;
-  width: 100%;
-}
-
-.psx-page .home-discovery-radio {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-.psx-page .home-discovery-viewport {
-  --slide-size: 240px;
-  --slide-gap: 18px;
-  overflow: hidden;
-  padding: 6px 6px 44px;
-}
-
-.psx-page .home-discovery-track {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: var(--slide-gap);
-  align-items: stretch;
-  transform: translate3d(calc(var(--home-discovery-index, 0) * -1 * (var(--slide-size) + var(--slide-gap))), 0, 0);
-  transition: transform 420ms ease;
-  will-change: transform;
-}
-
-.psx-page .home-discovery-slide {
-  flex: 0 0 var(--slide-size);
-  max-width: var(--slide-size);
-  display: flex;
-}
-
-.psx-page .home-discovery-card {
-  width: 100%;
-  min-height: 200px;
-  background: #f8fafc;
-  border: 1px solid rgba(15, 23, 42, 0.1);
-  border-radius: 18px;
-  padding: 18px 18px 20px;
-  margin-bottom: 48px;
-  text-decoration: none;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
-}
-
-.psx-page .home-discovery-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(37, 99, 235, 0.22);
-  box-shadow: 0 20px 50px rgba(15, 23, 42, 0.12);
-}
-
-.psx-page .home-discovery-card:focus-visible {
-  outline: 3px solid #93c5fd;
-  outline-offset: 4px;
-}
-
-.psx-page .home-discovery-card-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: var(--color-blue, #2563eb);
-  color: #ffffff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.22);
-}
-
-.psx-page .home-discovery-card-title {
-  margin: 0;
-  font-size: 20px;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-  color: var(--color-blue, #2563eb);
-}
-
-.psx-page .home-discovery-card-body {
-  margin: 0;
-  font-size: 14px;
-  line-height: 1.65;
-  color: rgba(15, 23, 42, 0.72);
-}
-
-.psx-page .home-discovery-controls {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 14px;
-}
-
-.psx-page .home-discovery-arrows {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  padding-right: 6px;
-}
-
-.psx-page .home-discovery-arrow-set {
-  display: none;
-  gap: 10px;
-}
-
-.psx-page .home-discovery-arrow {
-  width: 36px;
-  height: 36px;
-  border-radius: 999px;
-  border: 1px solid rgba(15, 23, 42, 0.22);
-  background: rgba(255, 255, 255, 0.86);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  color: rgba(15, 23, 42, 0.75);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
-  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
-}
-
-.psx-page .home-discovery-arrow:hover {
-  transform: translateY(-1px);
-  border-color: rgba(37, 99, 235, 0.32);
-  background: rgba(255, 255, 255, 0.98);
-}
-
-.psx-page .home-discovery-dots {
-  display: flex;
-  justify-content: center;
-  gap: 10px;
-}
-
-.psx-page .home-discovery-dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  border: 2px solid rgba(37, 99, 235, 0.45);
-  background: transparent;
-  cursor: pointer;
-  transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease;
-}
-
-.psx-page .home-discovery-dot:hover {
-  transform: scale(1.08);
-  border-color: rgba(37, 99, 235, 0.7);
-}
-
-@media (max-width: 900px) {
-  .psx-page .home-section-discovery {
-    padding: 56px 16px;
-  }
-  .psx-page .home-discovery-layout {
-    grid-template-columns: minmax(0, 1fr);
-    justify-items: center;
-    text-align: center;
-  }
-  .psx-page .home-discovery-header {
-    max-width: 520px;
-  }
-  .psx-page .home-discovery-viewport {
-    --slide-size: min(78vw, 320px);
-    --slide-gap: 16px;
-    padding: 6px 6px 44px;
-  }
-}
-
 /* Lumbar interventions grid (10 cards) */
 .lumbar-cards-wrap { max-width: 1600px; margin: 0 auto; padding: 0 clamp(16px, 4vw, 32px); }
 .lumbar-cards {
@@ -646,7 +446,14 @@
   pointer-events: none;
 }
 
-.psx-hero-backdrop.video-bg::after { content: none; }
+.psx-hero-backdrop.video-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7));
+  z-index: 1;
+  pointer-events: none;
+}
 
 .psx-hero-backdrop.video-bg .psx-hero-video {
   position: absolute;
@@ -703,6 +510,42 @@
   margin-right: calc(50% - 50vw);
 }
 
+.psx-page .article-navigation-container[data-nav-has-hero="true"] {
+  background-color: #000000;
+}
+
+.psx-page .article-nav-hero-layer {
+  position: absolute;
+  inset: 0;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  transform: translateZ(0);
+}
+
+.psx-page .article-nav-hero-layer-base {
+  z-index: 0;
+  opacity: 1;
+}
+
+.psx-page .article-nav-hero-layer-incoming {
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 260ms ease;
+}
+
+.psx-page .article-navigation-container[data-nav-phase="fading"] .article-nav-hero-layer-incoming {
+  opacity: 1;
+}
+
+.psx-page .article-nav-hero-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  background: linear-gradient(rgba(0, 0, 0, 0.74), rgba(0, 0, 0, 0.74));
+  pointer-events: none;
+}
+
 @media (min-width: 768px) {
   .psx-page .article-navigation-container {
     flex-direction: row;
@@ -713,19 +556,20 @@
   flex: 1;
   position: relative;
   min-height: 400px;
-  background-size: cover;
-  background-position: center;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   overflow: hidden;
   transition: all 0.3s ease;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/assets/images/learn/1-banner-2.jpg');
+  z-index: 3;
+  background-size: cover;
+  background-position: center;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), var(--nav-bg-image, none);
 }
 
 .psx-page .article-nav-item:hover {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/images/learn/1-banner-2.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), var(--nav-bg-image, none);
 }
 
 .psx-page .article-nav-item:focus-visible {
@@ -834,11 +678,7 @@
   line-height: 1.06;
   letter-spacing: -0.02em;
   color: #003366;
-  text-decoration-line: underline;
-    text-decoration-color: var(--warm-yellow, #fbd38d);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.15em;
-    text-decoration-skip-ink: none;
+  text-decoration: none;
 }
 
 .psx-lead-subtitle {
@@ -870,11 +710,7 @@
   letter-spacing: -0.02em;
   color: #003366;
   padding: 4rem 1rem;
-  text-decoration-line: underline;
-    text-decoration-color: var(--warm-yellow, #fbd38d);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.15em;
-    text-decoration-skip-ink: none;
+  text-decoration: none;
 }
 
 .psx-tips-subtitle {
@@ -972,11 +808,7 @@
   line-height: 1.06;
   letter-spacing: -0.02em;
   color: #003366;
-  text-decoration-line: underline;
-    text-decoration-color: var(--warm-yellow, #fbd38d);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.15em;
-    text-decoration-skip-ink: none;
+  text-decoration: none;
 }
 
 .psx-help-copy {
@@ -1242,12 +1074,7 @@
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: #003366;
-  text-decoration-line: underline;
-    text-decoration-color: var(--warm-yellow, #fbd38d);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 0.15em;
-    text-decoration-skip-ink: none;
-   
+  text-decoration: none;
 }
 
 .psx-patterns-subtitle {
@@ -1366,11 +1193,7 @@
   line-height: 1.12;
   letter-spacing: -0.02em;
   color: #003366;
-  text-decoration-line: underline;
-  text-decoration-color: var(--warm-yellow, #fbd38d);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.15em;
-  text-decoration-skip-ink: none;
+  text-decoration: none;
 }
 
 .psx-syndromes-accordion-subtitle {
@@ -1453,11 +1276,7 @@
   line-height: 1.1;
   letter-spacing: -0.02em;
   color: #003366;
-  text-decoration-line: underline;
-  text-decoration-color: var(--warm-yellow, #fbd38d);
-  text-decoration-thickness: 2px;
-  text-underline-offset: 0.15em;
-  text-decoration-skip-ink: none;
+  text-decoration: none;
 }
 
 .psx-approaches-subtitle {
@@ -1473,6 +1292,358 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
+}
+
+.psx-approaches--head .psx-approaches-grid {
+  max-width: 980px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.psx-approaches--head .psx-approach-illustration {
+  min-height: 260px;
+}
+
+.psx-approaches--head .psx-approach-icon {
+  width: min(260px, 78%);
+}
+
+.psx-approaches--cervical .psx-approach-illustration {
+  min-height: 260px;
+}
+
+.psx-approaches--cervical .psx-approach-icon {
+  width: min(260px, 78%);
+}
+
+.psx-approaches--shoulder .psx-approach-illustration {
+  min-height: 260px;
+}
+
+.psx-approaches--shoulder .psx-approach-icon {
+  width: min(260px, 78%);
+}
+
+.psx-approaches--hand-elbow .psx-approach-illustration {
+  min-height: 260px;
+}
+
+.psx-approaches--hand-elbow .psx-approach-icon {
+  width: min(260px, 78%);
+}
+
+.psx-approaches--thoracic .psx-approaches-grid {
+  max-width: 980px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.psx-approaches--thoracic .psx-approach-illustration {
+  min-height: 260px;
+}
+
+.psx-approaches--thoracic .psx-approach-icon {
+  width: min(260px, 78%);
+}
+
+.psx-approaches--abdominal .psx-approaches-grid {
+  max-width: 980px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.psx-approaches--abdominal .psx-approach-illustration {
+  min-height: 260px;
+}
+
+.psx-approaches--abdominal .psx-approach-icon {
+  width: min(260px, 78%);
+}
+
+.psx-approaches--pelvic .psx-approaches-grid {
+  max-width: 980px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.psx-approaches--pelvic .psx-approach-illustration {
+  min-height: 260px;
+}
+
+.psx-approaches--pelvic .psx-approach-icon {
+  width: min(260px, 78%);
+}
+
+.psx-approaches--facial .psx-approaches-grid {
+  max-width: 980px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.psx-approaches--facial .psx-approach-illustration {
+  min-height: 260px;
+}
+
+.psx-approaches--facial .psx-approach-icon {
+  width: min(260px, 78%);
+}
+
+.psx-approaches--foot-ankle .psx-approach-illustration {
+  min-height: 260px;
+}
+
+.psx-approaches--foot-ankle .psx-approach-icon {
+  width: min(260px, 78%);
+}
+
+.psx-facial-note {
+  padding: 3.5rem 1rem;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.psx-facial-note-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+  display: grid;
+  gap: 12px;
+}
+
+.psx-facial-note-title {
+  margin: 0 0 4px;
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #003366;
+}
+
+.psx-facial-note-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+@media (max-width: 600px) {
+  .psx-facial-note-inner {
+    text-align: left;
+  }
+}
+
+.psx-pelvic-note {
+  padding: 3.5rem 1rem;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.psx-pelvic-note-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+  display: grid;
+  gap: 12px;
+}
+
+.psx-pelvic-note-title {
+  margin: 0 0 4px;
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #003366;
+}
+
+.psx-pelvic-note-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+@media (max-width: 600px) {
+  .psx-pelvic-note-inner {
+    text-align: left;
+  }
+}
+
+.psx-abdominal-note {
+  padding: 3.5rem 1rem;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.psx-abdominal-note-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+  display: grid;
+  gap: 12px;
+}
+
+.psx-abdominal-note-title {
+  margin: 0 0 4px;
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #003366;
+}
+
+.psx-abdominal-note-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+@media (max-width: 600px) {
+  .psx-abdominal-note-inner {
+    text-align: left;
+  }
+}
+@media (max-width: 900px) {
+  .psx-approaches--cervical .psx-approaches-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .psx-approaches--hand-elbow .psx-approaches-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .psx-approaches--thoracic .psx-approaches-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .psx-approaches--abdominal .psx-approaches-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .psx-approaches--pelvic .psx-approaches-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .psx-approaches--facial .psx-approaches-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .psx-approaches--foot-ankle .psx-approaches-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .psx-approaches--cervical .psx-approaches-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .psx-approaches--hand-elbow .psx-approaches-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .psx-approaches--thoracic .psx-approaches-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .psx-approaches--abdominal .psx-approaches-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .psx-approaches--pelvic .psx-approaches-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .psx-approaches--facial .psx-approaches-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .psx-approaches--foot-ankle .psx-approaches-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.psx-head-note {
+  padding: 3.5rem 1rem;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.psx-head-note-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+  display: grid;
+  gap: 12px;
+}
+
+.psx-head-note-title {
+  margin: 0 0 4px;
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #003366;
+}
+
+.psx-head-note-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+@media (max-width: 600px) {
+  .psx-head-note-inner {
+    text-align: left;
+  }
+}
+
+.psx-cervical-note {
+  padding: 3.5rem 1rem;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.psx-cervical-note-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.psx-cervical-note-title {
+  margin: 0 0 8px;
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #003366;
+}
+
+.psx-cervical-note-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+@media (max-width: 600px) {
+  .psx-cervical-note-inner {
+    text-align: left;
+  }
+}
+
+.psx-hand-elbow-note {
+  padding: 3.5rem 1rem;
+  margin: 0 auto;
+  background: transparent;
+}
+
+.psx-hand-elbow-note-inner {
+  max-width: 980px;
+  margin: 0 auto;
+  text-align: center;
+  display: grid;
+  gap: 12px;
+}
+
+.psx-hand-elbow-note-title {
+  margin: 0 0 4px;
+  font-size: clamp(1.4rem, 2.4vw, 1.8rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #003366;
+}
+
+.psx-hand-elbow-note-text {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.8;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+@media (max-width: 600px) {
+  .psx-hand-elbow-note-inner {
+    text-align: left;
+  }
 }
 
 .psx-approach-card {

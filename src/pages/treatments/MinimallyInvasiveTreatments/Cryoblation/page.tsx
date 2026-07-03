@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { TreatmentsMain } from '../../Treatments';
-import '../../Treatments.css';
+import { initTreatmentStepsTimelines } from '../../animations/treatmentTimelineAnimations';
+import { TreatmentBreadcrumb } from '../../components/detail/TreatmentBreadcrumb';
 import './Cryoblation.css';
 
 type CryoblationFaqItem = {
@@ -92,17 +92,19 @@ const CryoblationPage: React.FC = () => {
     meta.content = description;
   }, []);
 
-  const heroBackdropStyle: React.CSSProperties = {
-    backgroundImage:
-      "linear-gradient(120deg, rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.55)), url('/assets/images/illustrative/Thoracic-Wall-Pain-min.jpg')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  };
+  React.useEffect(() => {
+    const scope = document.getElementById('psx-cryoblation') ?? document;
+    return initTreatmentStepsTimelines(scope);
+  }, []);
 
   return (
-    <div className="psx-page cryoblation-page" id="psx-cryoblation">
-      <header className="psx-hero cryoblation-hero" aria-label="Cryoablation hero section">
-        <div className="psx-hero-backdrop" aria-hidden="true" style={heroBackdropStyle} />
+    <div className="psx-page cryoblation-page page-cryoblation" id="psx-cryoblation">
+      <header className="treatment-page-hero cryoblation-hero" aria-label="Cryoablation hero section">
+        <div
+          className="psx-hero-backdrop"
+          aria-hidden="true"
+          style={{ backgroundImage: "url('/assets/images/illustrative/Thoracic-Wall-Pain-min.webp')" }}
+        />
         <div className="psx-hero-inner">
           <p className="psx-hero-eyebrow">Treatment</p>
           <h1 className="psx-hero-title">Cryoblation</h1>
@@ -112,31 +114,15 @@ const CryoblationPage: React.FC = () => {
         </div>
       </header>
 
-      <main className="page-main treatments-page">
-        <nav className="article-breadcrumb" aria-label="Breadcrumb">
-          <ol className="article-breadcrumb-list">
-            <li>
-              <Link to="/" className="article-breadcrumb-link">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li>
-              <Link to="/treatments" className="article-breadcrumb-link">
-                Treatments
-              </Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li aria-current="page">Cryoblation</li>
-          </ol>
-        </nav>
+      <TreatmentsMain.PageMain>
+        <TreatmentBreadcrumb currentLabel="Cryoblation" />
 
         <section className="page-section treatments-feature minimally-invasive-treatment-feature" aria-labelledby="cryo-what-to-expect">
           <div className="treatments-feature-inner">
             <div className="treatments-feature-media">
               <img
                 className="treatments-feature-video"
-                src="/assets/images/illustrative/Thoracic-Wall-Pain-min.jpg"
+                src="/assets/images/illustrative/Thoracic-Wall-Pain-min.webp"
                 alt="Image representing chest wall nerve pain patterns that may be treated with image-guided cryoablation in selected cases (illustrative)."
                 decoding="async"
                 loading="lazy"
@@ -161,14 +147,6 @@ const CryoblationPage: React.FC = () => {
                 guidance on gradual return to exercise.
               </p>
 
-              <div className="minimally-invasive-treatment-cta">
-                <Link to="/blog/interventional-pain/cryoablation" className="treatment-card-button" aria-label="Learn more about cryoablation in our blog">
-                  <span>Learn More About Cryoablation</span>
-                </Link>
-                <Link to="/contact" className="minimally-invasive-treatment-secondary-link" aria-label="Book an appointment">
-                  Book an appointment
-                </Link>
-              </div>
             </div>
           </div>
         </section>
@@ -263,7 +241,7 @@ const CryoblationPage: React.FC = () => {
               <div className="cryo-aftercare-poster">
                 <img
                   className="cryo-aftercare-image"
-                  src="/assets/images/illustrative/DSC02128-1536x1536.jpg"
+                  src="/assets/images/illustrative/DSC02128-1536x1536.webp"
                   alt=""
                   loading="lazy"
                   decoding="async"
@@ -463,18 +441,6 @@ const CryoblationPage: React.FC = () => {
               </p>
             </div>
           </div>
-
-          <div className="cryo-help-cta" aria-label="Get help call to action">
-            <div className="cryo-help-cta-inner">
-              <h2 className="cryo-help-cta-title">Learn how we can help you</h2>
-              <p className="cryo-help-cta-subtitle">
-                If you&apos;re having symptoms described in this article, it&apos;s crucial to seek professional medical advice.
-              </p>
-              <Link to="/contact" className="cryo-help-cta-button" aria-label="Get help now">
-                Get Help Now
-              </Link>
-            </div>
-          </div>
         </section>
 
         <section className="page-section cryo-faq" aria-labelledby="cryo-faq-title">
@@ -520,10 +486,10 @@ const CryoblationPage: React.FC = () => {
           </div>
         </section>
 
-        <div id="treatments">
+        <div id="treatments" className="treatments-page">
           <TreatmentsMain hideSurgical hideNonInvasive />
         </div>
-      </main>
+      </TreatmentsMain.PageMain>
     </div>
   );
 };

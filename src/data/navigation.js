@@ -227,15 +227,6 @@ export const treatmentsCategories = [
 
 export const resourceCategories = [
   {
-    title: 'Learn',
-    items: [
-      {
-        label: 'Blog',
-        path: '/blog',
-      },
-    ],
-  },
-  {
     title: 'Testimonials',
     items: [
       {
@@ -249,10 +240,6 @@ export const resourceCategories = [
       {
         label: 'Recovering from Sports Injuries',
         path: '/resources/testimonials/recovering-from-sports-injuries',
-      },
-      {
-        label: 'All Testimonials',
-        path: '/resources/testimonials/all-testimonials',
       },
     ],
   },

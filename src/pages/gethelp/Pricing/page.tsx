@@ -1,5 +1,5 @@
 import React from 'react';
-import './Pricing.css';
+import '../../../styles/pages/gethelp/pricing-page.css';
 
 const PricingPage: React.FC = () => {
   return (

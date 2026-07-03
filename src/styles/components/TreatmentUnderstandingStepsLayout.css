@@ -1,0 +1,48 @@
+.treatments-page
+  :is([class$='-overview-inner'], [class$='-understanding-inner'], [class$='-process-inner'], [class$='-procedure-inner']) {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+  max-width: 1600px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+@media (min-width: 768px) {
+  .treatments-page
+    :is([class$='-overview-inner'], [class$='-understanding-inner'], [class$='-process-inner'], [class$='-procedure-inner']) {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+}
+
+.treatments-page :is([class$='-understanding-top'], [class$='-understanding']) {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  align-self: start;
+  justify-self: stretch;
+}
+
+.treatments-page :is([class$='-understanding-copy']) {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.treatments-page :is([class$='-understanding-paragraph']) {
+  margin: 0;
+}
+
+.treatments-page :is([class$='-steps-grid']) {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+@media (min-width: 768px) {
+  .treatments-page :is([class$='-steps-grid']) {
+    gap: 32px;
+  }
+}

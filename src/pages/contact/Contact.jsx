@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import './Contact.css';
+import '../../styles/pages/contact-page.css';
 
 export default function Contact() {
   const heroRef = useRef(null);
@@ -104,7 +104,7 @@ export default function Contact() {
       className="psx-page"
       id="psx-contact"
       style={{
-        '--psx-hero-image': "url('/assets/images/learn/1-banner-2.jpg')",
+        '--psx-hero-image': "url('/assets/images/learn/1-banner-2.webp')",
       }}
     >
       <header className="psx-hero" ref={heroRef}>
@@ -116,9 +116,10 @@ export default function Contact() {
             loop
             playsInline
             preload="metadata"
-            poster="/assets/images/illustrative/services-home-min-1.jpg"
+            poster="/assets/images/illustrative/services-home-min-1.webp"
           >
-            <source src="/assets/videos/banner-Contact-us.mp4" type="video/mp4" />
+            <source src="/assets/videos/banner-Contact-us.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
+            <source src="/assets/videos/banner-Contact-us.h264.mp4" type='video/mp4; codecs="avc1.42E01E"' />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -178,7 +179,7 @@ export default function Contact() {
             <div className="contact-help-video" aria-hidden="true">
               <img
                 className="contact-help-video-el"
-                src="/assets/images/illustrative/services-home-min-1.jpg"
+                src="/assets/images/illustrative/services-home-min-1.webp"
                 alt=""
                 decoding="async"
               />
@@ -255,7 +256,7 @@ export default function Contact() {
             <figure className="contact-form-media">
               <img
                 className="contact-form-media-img"
-                src="/assets/images/illustrative/pain-medicine-algarve-min.jpg"
+                src="/assets/images/illustrative/pain-medicine-algarve-min.webp"
                 alt="Algarve Pain Centre clinical setting in Vale do Lobo, Algarve"
                 loading="lazy"
                 decoding="async"
@@ -269,37 +270,7 @@ export default function Contact() {
               <h2 className="location-title" id="contact-location-title">Our Location</h2>
               <div className="location-title-rule" aria-hidden="true" />
             </header>
-            <div className="location-grid">
-              <div className="location-details" aria-label="Address and opening hours">
-                <address className="location-address">
-                  Av. do Mar
-                  <br />
-                  8135-107, Portugal
-                </address>
-                <a className="location-phone" href="tel:+351915915001" aria-label="Call +351 915 915 001">
-                  <span className="location-phone-text">+351 915 915 001</span>
-                </a>
-                <div className="location-hours" aria-label="Hours of operation">
-                  <div className="location-hours-title">Hours of Operation:</div>
-                  <div className="location-hours-list" role="list">
-                    {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'].map((day) => (
-                      <div className="location-hours-row" role="listitem" key={day}>
-                        <span className="location-hours-day">{day}</span>
-                        <span className="location-hours-time">09:00 - 18:00</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <a className="navbar-cta navbar-cta-desktop navbar-cta-dark location-book-cta" aria-label="Book now" href="/contact">
-                  <span>Book Now</span>
-                  <span className="navbar-cta-icon" aria-hidden="true">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                      <line x1="7" y1="17" x2="17" y2="7"></line>
-                      <polyline points="7 7 17 7 17 17"></polyline>
-                    </svg>
-                  </span>
-                </a>
-              </div>
+            <div className="location-grid location-grid--map-only">
               <div className="location-map" aria-label="Map">
                 <iframe
                   ref={mapIframeRef}

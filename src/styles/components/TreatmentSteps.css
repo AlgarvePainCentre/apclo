@@ -1,0 +1,91 @@
+/* Treatment Steps / Timeline Cards */
+
+:where([class*='-step-card']) {
+  position: relative;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 0 40px 64px !important;
+  margin: 0 !important;
+  z-index: 2;
+  display: block !important;
+}
+
+:where([class*='-step-card']:last-child) {
+  padding-bottom: 0 !important;
+}
+
+:where([class$='-step-number']) {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--treatment-timeline-accent, #0f4681);
+  color: #ffffff !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  border: 4px solid var(--treatment-timeline-surface, #f8fafc);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.1);
+  z-index: 3;
+}
+
+:where([class$='-step-title']) {
+  margin: 0 0 12px 0 !important;
+  padding-top: 8px;
+  position: relative;
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: #0f4681;
+}
+
+:where([class$='-step-title'])::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin-top: 12px;
+  border-radius: 999px;
+  background: var(--color-darkRed, #cc0000);
+  transform-origin: left center;
+  transform: scaleX(var(--treatment-red-line-scale, 1));
+  opacity: var(--treatment-red-line-opacity, 1);
+  will-change: transform, opacity;
+}
+
+:where([class$='-step-divider']) {
+  display: none !important;
+}
+
+:where([class$='-step-body']) {
+  margin: 0;
+  color: var(--treatment-timeline-text, #4b5563);
+  font-size: 1.125rem;
+  line-height: 1.6;
+}
+
+:where([class*='-step-card'][data-step-state='upcoming']) {
+  opacity: 0.6;
+}
+
+:where([class*='-step-card'][data-step-state='current']) {
+  opacity: 1;
+}
+
+@media (min-width: 768px) {
+  :where([class$='-step-number']) {
+    width: 56px;
+    height: 56px;
+    font-size: 1.5rem;
+  }
+
+  :where([class*='-step-card']) {
+    padding: 0 0 48px 88px !important;
+  }
+}

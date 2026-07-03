@@ -1,0 +1,577 @@
+.nucleoplasty-page {
+  background: #f8fafc;
+}
+
+.nucleoplasty-hero .psx-hero-backdrop {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/assets/images/learn/4-disc-problems.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.nucleoplasty-page .np-overview {
+  background: #f8fafc;
+}
+
+.nucleoplasty-page .np-overview-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(36px, 6vw, 72px);
+}
+
+.nucleoplasty-page .np-understanding {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(22px, 4vw, 56px);
+  align-items: start;
+}
+
+.nucleoplasty-page .np-understanding-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 4.6vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #003366;
+}
+
+.nucleoplasty-page .np-understanding-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.nucleoplasty-page .np-understanding-paragraph {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  line-height: 1.85;
+  font-size: 1rem;
+}
+
+.nucleoplasty-page .np-procedure-header {
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.nucleoplasty-page .np-procedure-title {
+  margin: 0;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.nucleoplasty-page .np-procedure-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.nucleoplasty-page .np-procedure-card {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  padding: 22px 22px 24px;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  gap: 10px;
+  transition: background 200ms ease;
+}
+
+.nucleoplasty-page .np-procedure-card:hover {
+  background: #fff5db;
+}
+
+.nucleoplasty-page .np-procedure-number {
+  margin: 0;
+  color: #1e40af;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.nucleoplasty-page .np-procedure-card-title {
+  margin: 0;
+  color: #003366;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.nucleoplasty-page .np-procedure-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.12);
+}
+
+.nucleoplasty-page .np-procedure-card-body {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
+  .nucleoplasty-page .np-understanding {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .nucleoplasty-page .np-procedure-header {
+    text-align: left;
+  }
+
+  .nucleoplasty-page .np-procedure-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.nucleoplasty-page .np-expect-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.nucleoplasty-page .np-expect-header {
+  text-align: center;
+  max-width: 980px;
+  margin: 0 auto 34px;
+}
+
+.nucleoplasty-page .np-expect-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.nucleoplasty-page .np-expect-subtitle {
+  margin: 16px auto 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #0b4a7a;
+  max-width: 70ch;
+}
+
+.nucleoplasty-page .np-expect-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0;
+  align-items: stretch;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+}
+
+.nucleoplasty-page .np-expect-media {
+  position: relative;
+  min-height: 360px;
+  background: #e2e8f0;
+}
+
+.nucleoplasty-page .np-expect-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.nucleoplasty-page .np-expect-card {
+  padding: 24px 26px;
+  background: #ffffff;
+  display: grid;
+  align-content: center;
+}
+
+.nucleoplasty-page .np-expect-item {
+  padding: 14px 0;
+}
+
+.nucleoplasty-page .np-expect-item-title {
+  margin: 0;
+  color: #0b4a7a;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.nucleoplasty-page .np-expect-item-body {
+  margin: 10px 0 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 60ch;
+}
+
+.nucleoplasty-page .np-expect-divider {
+  height: 1px;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.12);
+}
+
+@media (max-width: 900px) {
+  .nucleoplasty-page .np-expect-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .nucleoplasty-page .np-expect-media {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 600px) {
+  .nucleoplasty-page .np-expect-header {
+    text-align: left;
+    margin-bottom: 22px;
+  }
+
+  .nucleoplasty-page .np-expect-card {
+    padding: 18px 18px;
+  }
+}
+
+.nucleoplasty-page .np-benefits-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.nucleoplasty-page .np-benefits-header {
+  text-align: center;
+  max-width: 980px;
+  margin: 0 auto 36px;
+}
+
+.nucleoplasty-page .np-benefits-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+}
+
+.nucleoplasty-page .np-benefits-subtitle {
+  margin: 14px auto 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #0b4a7a;
+  max-width: 70ch;
+}
+
+.nucleoplasty-page .np-benefits-grid-top {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.nucleoplasty-page .np-benefits-grid-bottom {
+  max-width: 760px;
+  margin: 18px auto 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.nucleoplasty-page .np-benefit-card {
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  padding: 26px 24px 28px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+  display: grid;
+  gap: 12px;
+  min-height: 210px;
+}
+
+.nucleoplasty-page .np-benefit-card-title {
+  margin: 0;
+  color: #003366;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.nucleoplasty-page .np-benefit-divider {
+  width: 100%;
+  height: 2px;
+  max-width: 220px;
+  background: #f04b5e;
+  border-radius: 999px;
+}
+
+.nucleoplasty-page .np-benefit-card-body {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  max-width: 56ch;
+}
+
+.nucleoplasty-page .np-conditions-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.nucleoplasty-page .np-conditions-header {
+  text-align: center;
+  margin: 0 0 32px;
+}
+
+.nucleoplasty-page .np-conditions-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+}
+
+.nucleoplasty-page .np-conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.nucleoplasty-page .np-condition-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  align-items: stretch;
+  min-height: 180px;
+}
+
+.nucleoplasty-page .np-condition-copy {
+  padding: 20px 20px 22px;
+  display: grid;
+  gap: 10px;
+  align-content: center;
+  min-width: 0;
+  background: #f8fafc;
+}
+
+.nucleoplasty-page .np-condition-title {
+  margin: 0;
+  color: #0b4a7a;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+.nucleoplasty-page .np-condition-body {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 52ch;
+}
+
+.nucleoplasty-page .np-condition-media {
+  background: #eef2f7;
+  position: relative;
+}
+
+.nucleoplasty-page .np-condition-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .nucleoplasty-page .np-benefits-grid-top {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .nucleoplasty-page .np-benefits-grid-bottom {
+    max-width: unset;
+  }
+
+  .nucleoplasty-page .np-conditions-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .nucleoplasty-page .np-benefits-header {
+    text-align: left;
+    margin-bottom: 26px;
+  }
+
+  .nucleoplasty-page .np-benefits-grid-top {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .nucleoplasty-page .np-benefits-grid-bottom {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .nucleoplasty-page .np-benefit-card {
+    padding: 22px 18px 24px;
+    min-height: unset;
+  }
+
+  .nucleoplasty-page .np-conditions-header {
+    text-align: left;
+  }
+
+  .nucleoplasty-page .np-condition-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .nucleoplasty-page .np-condition-media {
+    min-height: 220px;
+  }
+}
+
+.nucleoplasty-page .np-faq {
+  background: #f8fafc;
+}
+
+.nucleoplasty-page .np-faq-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.nucleoplasty-page .np-faq-header {
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.nucleoplasty-page .np-faq-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.nucleoplasty-page .np-faq-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.nucleoplasty-page .np-faq-item + .np-faq-item {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.nucleoplasty-page .np-faq-trigger {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: background 160ms ease;
+}
+
+.nucleoplasty-page .np-faq-trigger:hover {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.nucleoplasty-page .np-faq-trigger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.22);
+}
+
+.nucleoplasty-page .np-faq-question {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(15, 23, 42, 0.55);
+  font-weight: 700;
+  text-align: left;
+}
+
+.nucleoplasty-page .np-faq-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.22);
+  background: rgba(255, 255, 255, 0.96);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  color: rgba(15, 23, 42, 0.62);
+}
+
+.nucleoplasty-page .np-faq-trigger[aria-expanded='true'] .np-faq-question {
+  color: #0b4a7a;
+  font-weight: 800;
+}
+
+.nucleoplasty-page .np-faq-trigger[aria-expanded='true'] .np-faq-icon {
+  border-color: rgba(11, 74, 122, 0.55);
+  color: rgba(11, 74, 122, 0.95);
+}
+
+.nucleoplasty-page .np-faq-panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 24px;
+  transition: max-height 280ms ease, opacity 200ms ease, padding 200ms ease;
+}
+
+.nucleoplasty-page .np-faq-panel[data-open='true'] {
+  max-height: 640px;
+  opacity: 1;
+  padding-top: 4px;
+  padding-bottom: 18px;
+}
+
+.nucleoplasty-page .np-faq-answer {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+@media (max-width: 600px) {
+  .nucleoplasty-page .np-faq-header {
+    text-align: left;
+  }
+  .nucleoplasty-page .np-faq-trigger {
+    padding: 18px 18px;
+  }
+  .nucleoplasty-page .np-faq-panel {
+    padding: 0 18px;
+  }
+  .nucleoplasty-page .np-faq-panel[data-open='true'] {
+    padding-bottom: 16px;
+  }
+}

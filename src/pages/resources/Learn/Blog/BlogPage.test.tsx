@@ -2,14 +2,18 @@ import React from 'react';
 import { describe, it, expect } from 'vitest';
 import { fireEvent, render, screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { Provider } from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
+import { store } from '../../../../app/store';
 import BlogPage from './page';
 
 function renderPage() {
   return render(
-    <MemoryRouter initialEntries={['/blog']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-      <BlogPage />
-    </MemoryRouter>
+    <Provider store={store}>
+      <MemoryRouter initialEntries={['/blog']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <BlogPage />
+      </MemoryRouter>
+    </Provider>
   );
 }
 
@@ -46,9 +50,11 @@ describe('BlogPage', () => {
 
   it('filters results by search query from the URL', async () => {
     render(
-      <MemoryRouter initialEntries={['/blog?q=plantar']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <BlogPage />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/blog?q=plantar']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <BlogPage />
+        </MemoryRouter>
+      </Provider>
     );
 
     expect(await screen.findByRole('heading', { name: /foot and ankle pain/i })).toBeInTheDocument();
@@ -56,9 +62,11 @@ describe('BlogPage', () => {
 
   it('clamps out-of-range page numbers from the URL', async () => {
     render(
-      <MemoryRouter initialEntries={['/blog?page=999']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <BlogPage />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/blog?page=999']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <BlogPage />
+        </MemoryRouter>
+      </Provider>
     );
 
     expect(await screen.findByText(/page 6 of 6/i)).toBeInTheDocument();
@@ -67,9 +75,11 @@ describe('BlogPage', () => {
 
   it('respects perPage from the URL', async () => {
     render(
-      <MemoryRouter initialEntries={['/blog?perPage=50']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <BlogPage />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/blog?perPage=50']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <BlogPage />
+        </MemoryRouter>
+      </Provider>
     );
 
     expect(await screen.findByText(/showing 1–50 of 55 articles/i)).toBeInTheDocument();
@@ -77,9 +87,11 @@ describe('BlogPage', () => {
 
   it('handles zero results with large page numbers', async () => {
     render(
-      <MemoryRouter initialEntries={['/blog?q=zzzzzzzz&page=999']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
-        <BlogPage />
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/blog?q=zzzzzzzz&page=999']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+          <BlogPage />
+        </MemoryRouter>
+      </Provider>
     );
 
     expect(await screen.findByRole('heading', { name: /no matches found/i })).toBeInTheDocument();

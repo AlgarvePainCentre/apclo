@@ -1,0 +1,9 @@
+{
+  "meta": {
+    "tagline": "Fundacao escalavel de backend"
+  },
+  "messages": {
+    "greeting": "Bem-vindo ao Algarve Pain Centre",
+    "healthOk": "O servico esta saudavel"
+  }
+}

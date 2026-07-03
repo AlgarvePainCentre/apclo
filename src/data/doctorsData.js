@@ -4,7 +4,7 @@ export const doctorsData = [
     id: 'miguel-costa',
     name: 'Dr. Miguel Costa',
     roles: ['Physical Rehabilitation', 'Sports Medicine'],
-    image: '/assets/images/team/dr-miguel-costa-algarve-pain-centre.jpg',
+    image: '/assets/images/team/dr-miguel-costa-algarve-pain-centre.webp',
     isLarge: true,
     bio: 'Dr. Miguel Costa is a leading specialist in Physical Rehabilitation and Sports Medicine with over 15 years of experience helping athletes and patients recover from complex injuries. His approach combines cutting-edge rehabilitation techniques with a deep understanding of biomechanics.',
     education: [
@@ -19,8 +19,8 @@ export const doctorsData = [
   {
     id: 'ricardo-frada',
     name: 'Dr. Ricardo Frada',
-    roles: ['Orthopaedic Surgery'],
-    image: '/assets/images/team/dr-ricardo-frada-algarve-pain-centre.jpg',
+    roles: ['Ortopedia - Coluna', 'Head Surgeon'],
+    image: '/assets/images/team/dr-ricardo-frada-algarve-pain-centre.webp',
     isLarge: true,
     bio: 'Dr. Ricardo Frada is a renowned Orthopaedic Surgeon specializing in joint replacement and arthroscopic surgery. He is dedicated to providing personalized care plans that focus on restoring mobility and improving quality of life for his patients.',
     education: [
@@ -34,9 +34,9 @@ export const doctorsData = [
   },
   {
     id: 'miguel-batista',
-    name: 'Dr. Miguel Batista',
-    roles: ['Neuroradiology'],
-    image: '/assets/images/team/dr-miguel-batista-algarve-pain-centre.jpg',
+    name: 'Dr. Miguel Baptista',
+    roles: ['Neuroradiologia', 'Intervenção Minimamente Invasiva da Coluna'],
+    image: '/assets/images/team/dr-miguel-batista-algarve-pain-centre.webp',
     isLarge: true,
     bio: 'Dr. Miguel Batista is an expert in Neuroradiology, focusing on the diagnosis and treatment of disorders affecting the nervous system. His precise diagnostic skills are crucial in formulating effective treatment strategies for chronic pain conditions.',
     education: [
@@ -96,7 +96,7 @@ export const doctorsData = [
   {
     id: 'edgar-semedo',
     name: 'Dr. Edgar Semedo',
-    roles: ['Anesthesiologist'],
+    roles: ['Consultor em Dor Crónica', 'Anestesista'],
     isLarge: false,
     bio: 'Dr. Edgar Semedo is an experienced Anesthesiologist specializing in pain management and perioperative care.',
     education: ['Medical Degree - University of Coimbra'],
@@ -107,9 +107,9 @@ export const doctorsData = [
   {
     id: 'javier-duran',
     name: 'Dr. Javier Duran',
-    roles: ['Neuroradiology'],
+    roles: ['Consultor em Dor Crónica', 'Anestesista'],
     isLarge: false,
-    bio: 'Dr. Javier Duran brings extensive experience in Neuroradiology, contributing to the precise diagnosis and treatment planning for our patients.',
+    bio: 'Dr. Javier Duran is an experienced anesthetist focused on chronic pain assessment and evidence-based pain management strategies.',
     education: ['Medical Degree - University of Madrid'],
     experience: '9 Years',
     contact: { email: 'info@algarvepaincentre.com', phone: '+351 915 915 001' },
@@ -191,5 +191,75 @@ export const doctorsData = [
     experience: '6 Years',
     contact: { email: 'info@algarvepaincentre.com', phone: '+351 915 915 001' },
     social: { linkedin: '#' }
+  },
+  {
+    id: 'gisela-leandro',
+    name: 'Dr. Gisela Leandro',
+    roles: ['Medicina da Dor e Medicina Desportiva', 'Algarve Migraine & Neurotherapy Centre'],
+    isLarge: false,
+    bio: 'Dr. Gisela Leandro supports pain and sports medicine care, with a special interest in migraine and neurotherapy pathways.',
+  },
+  {
+    id: 'nuno-lica',
+    name: 'Dr. Nuno Liça',
+    roles: ['Clínica Geral e Medicina 3.0'],
+    isLarge: false,
+    bio: 'Dr. Nuno Liça provides general medical care with a modern, preventative and patient-centred approach.',
+  },
+  {
+    id: 'pedro-sousa-neves',
+    name: 'Dr. Pedro Sousa Neves',
+    roles: ['Ortopedia - Coluna'],
+    isLarge: false,
+    bio: 'Dr. Pedro Sousa Neves focuses on orthopaedic spine care with an emphasis on restoring function and mobility.',
+  },
+  {
+    id: 'joao-ricardo-soares',
+    name: 'Dr. João Ricardo Soares',
+    roles: ['Ortopedia - Coluna', 'Ortopedia - Anca e Joelho'],
+    isLarge: false,
+    bio: 'Dr. João Ricardo Soares specialises in orthopaedic care for spine, hip and knee conditions, supporting recovery and long-term mobility.',
+  },
+  {
+    id: 'tiago-bessa',
+    name: 'Dr. Tiago Bessa',
+    roles: ['Ortopedia - Anca e Joelho'],
+    isLarge: false,
+    bio: 'Dr. Tiago Bessa provides orthopaedic care for hip and knee conditions, from assessment through rehabilitation planning.',
+  },
+  {
+    id: 'diogo-gomes',
+    name: 'Dr. Diogo Gomes',
+    roles: ['Ortopedia - Ombro'],
+    isLarge: false,
+    bio: 'Dr. Diogo Gomes focuses on shoulder assessment and treatment, with a goal of restoring strength and comfortable movement.',
+  },
+  {
+    id: 'joao-vide',
+    name: 'Dr. João Vide',
+    roles: ['Ortopedia - Pé e Tornozelo'],
+    isLarge: false,
+    bio: 'Dr. João Vide specialises in foot and ankle orthopaedic care, supporting stability, gait and daily activity.',
+  },
+  {
+    id: 'joana-madeira',
+    name: 'Enf. Joana Madeira',
+    roles: ['Enfermeira'],
+    isLarge: false,
+    bio: 'Enf. Joana Madeira supports clinical care coordination and patient follow-up throughout your treatment pathway.',
+  },
+  {
+    id: 'joana-ferreira',
+    name: 'Enf. Joana Ferreira',
+    roles: ['Enfermeira'],
+    isLarge: false,
+    bio: 'Enf. Joana Ferreira provides nursing support across consultations and procedures, focusing on comfort and safety.',
+  },
+  {
+    id: 'raquel-antao',
+    name: 'Enf. Raquel Antão',
+    roles: ['Enfermeira'],
+    isLarge: false,
+    bio: 'Enf. Raquel Antão supports patient care and continuity, helping you navigate next steps with clarity.',
   }
 ];

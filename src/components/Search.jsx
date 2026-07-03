@@ -2,7 +2,7 @@ import { useId, useLayoutEffect, useMemo, useState, useEffect, useRef } from 're
 import { Link, useNavigate } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { specialitiesCategories, treatmentsCategories, resourceCategories } from '../data/navigation';
-import './Search.css';
+import '../styles/components/search-component.css';
 
 const getAllItems = () => {
   const items = [];
@@ -118,9 +118,18 @@ export default function Search({ onNavigate, onToggle, variant = 'nav', containe
 
   useEffect(() => {
     if (!isOpen) return;
-    const onScrollOrResize = () => computeDropdownPosition();
-    window.addEventListener('scroll', onScrollOrResize, true);
-    window.addEventListener('resize', onScrollOrResize);
+    let ticking = false;
+    const onScrollOrResize = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          computeDropdownPosition();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', onScrollOrResize, { capture: true, passive: true });
+    window.addEventListener('resize', onScrollOrResize, { passive: true });
     return () => {
       window.removeEventListener('scroll', onScrollOrResize, true);
       window.removeEventListener('resize', onScrollOrResize);

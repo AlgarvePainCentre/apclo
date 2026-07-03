@@ -1,5 +1,5 @@
 import React from 'react';
-import './TermsOfService.css';
+import '../../../styles/pages/company/terms-of-service-page.css';
 
 const TermsOfServicePage: React.FC = () => {
   return (

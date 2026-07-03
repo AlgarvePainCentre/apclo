@@ -148,16 +148,16 @@ body {
 /* Navigation Mobile Tweaks */
 @media (max-width: 480px) {
   .navbar {
-    padding: 12px var(--container-padding);
+    padding: 0 16px;
   }
   
   .navbar-logo {
-    height: 32px;
-    padding-right: 16px;
+    height: 28px;
+    padding-right: 0;
   }
   
   /* Ensure hamburger menu is easily tappable */
-  .navbar-mobile-toggle {
+  .mobile-nav-toggle {
     width: 48px;
     height: 48px;
   }

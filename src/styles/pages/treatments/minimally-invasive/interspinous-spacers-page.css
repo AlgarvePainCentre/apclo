@@ -1,0 +1,626 @@
+.interspinous-spacers-page {
+  background: #f8fafc;
+}
+
+.interspinous-spacers-hero .psx-hero-backdrop {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/assets/images/learn/9-radiating-pain.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.interspinous-spacers-page .iss-overview {
+  background: #f8fafc;
+}
+
+.interspinous-spacers-page .iss-overview-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(36px, 6vw, 72px);
+}
+
+.interspinous-spacers-page .iss-understanding {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(22px, 4vw, 56px);
+  align-items: start;
+}
+
+.interspinous-spacers-page .iss-understanding-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 4.6vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #003366;
+}
+
+.interspinous-spacers-page .iss-understanding-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.interspinous-spacers-page .iss-understanding-paragraph {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  line-height: 1.85;
+  font-size: 1rem;
+}
+
+.interspinous-spacers-page .iss-procedure-header {
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.interspinous-spacers-page .iss-procedure-title {
+  margin: 0;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.interspinous-spacers-page .iss-procedure-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.interspinous-spacers-page .iss-procedure-card {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  padding: 22px 22px 24px;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  gap: 10px;
+  transition: all 0.3s ease-in-out;
+
+}
+
+.interspinous-spacers-page .iss-procedure-number {
+  margin: 0;
+  color: #1e40af;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.interspinous-spacers-page .iss-procedure-card-title {
+  margin: 0;
+  color: #003366;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.interspinous-spacers-page .iss-procedure-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.12);
+}
+
+.interspinous-spacers-page .iss-procedure-card-body {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.interspinous-spacers-page .iss-procedure-card:hover {
+  background: #fff5db;
+}
+
+/*.interspinous-spacers-page .iss-procedure-card:nth-child(1) {
+  background: #fff5db;
+}*/
+
+@media (max-width: 900px) {
+  .interspinous-spacers-page .iss-understanding {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .interspinous-spacers-page .iss-procedure-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .interspinous-spacers-page .iss-procedure-header {
+    text-align: left;
+  }
+
+  .interspinous-spacers-page .iss-procedure-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.interspinous-spacers-page .iss-expect-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.interspinous-spacers-page .iss-expect-header {
+  text-align: center;
+  max-width: 980px;
+  margin: 0 auto 34px;
+}
+
+.interspinous-spacers-page .iss-expect-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.interspinous-spacers-page .iss-expect-subtitle {
+  margin: 16px auto 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #0b4a7a;
+  max-width: 70ch;
+}
+
+.interspinous-spacers-page .iss-expect-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0;
+  align-items: stretch;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+}
+
+.interspinous-spacers-page .iss-expect-media {
+  position: relative;
+  min-height: 360px;
+  background: #e2e8f0;
+}
+
+.interspinous-spacers-page .iss-expect-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.interspinous-spacers-page .iss-expect-card {
+  padding: 24px 26px;
+  background: #ffffff;
+  display: grid;
+  align-content: center;
+}
+
+.interspinous-spacers-page .iss-expect-item {
+  padding: 14px 0;
+}
+
+.interspinous-spacers-page .iss-expect-item-title {
+  margin: 0;
+  color: #0b4a7a;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.interspinous-spacers-page .iss-expect-item-body {
+  margin: 10px 0 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 60ch;
+}
+
+.interspinous-spacers-page .iss-expect-divider {
+  height: 1px;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.12);
+}
+
+@media (max-width: 900px) {
+  .interspinous-spacers-page .iss-expect-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .interspinous-spacers-page .iss-expect-media {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 600px) {
+  .interspinous-spacers-page .iss-expect-header {
+    text-align: left;
+    margin-bottom: 22px;
+  }
+
+  .interspinous-spacers-page .iss-expect-card {
+    padding: 18px 18px;
+  }
+}
+
+.interspinous-spacers-page .iss-benefits {
+  background: #ffffff;
+}
+
+.interspinous-spacers-page .iss-benefits-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.interspinous-spacers-page .iss-benefits-header {
+  text-align: center;
+  max-width: 980px;
+  margin: 0 auto 34px;
+}
+
+.interspinous-spacers-page .iss-benefits-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.interspinous-spacers-page .iss-benefits-subtitle {
+  margin: 16px auto 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #0b4a7a;
+  max-width: 70ch;
+}
+
+.interspinous-spacers-page .iss-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.interspinous-spacers-page .iss-benefit-card {
+  background: #f8fafc;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  padding: 22px 22px 24px;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 12px;
+}
+
+.interspinous-spacers-page .iss-benefit-card-title {
+  margin: 0;
+  color: #0b4a7a;
+  font-size: 1.3rem;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+}
+
+.interspinous-spacers-page .iss-benefit-divider {
+  width: 100%;
+  height: 2px;
+  background: rgba(239, 68, 68, 0.55);
+}
+
+.interspinous-spacers-page .iss-benefit-card-body {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.interspinous-spacers-page .iss-conditions {
+  background: #ffffff;
+}
+
+.interspinous-spacers-page .iss-conditions-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.interspinous-spacers-page .iss-conditions-header {
+  text-align: center;
+  margin: 0 auto 28px;
+}
+
+.interspinous-spacers-page .iss-conditions-title {
+  margin: 0;
+  font-size: clamp(2rem, 3.8vw, 2.8rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.interspinous-spacers-page .iss-conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.interspinous-spacers-page .iss-condition-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  align-items: stretch;
+  background: #f8fafc;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+}
+
+.interspinous-spacers-page .iss-condition-copy {
+  padding: 18px 18px 18px;
+  display: grid;
+  gap: 10px;
+  align-content: start;
+}
+
+.interspinous-spacers-page .iss-condition-title {
+  margin: 0;
+  color: #0b4a7a;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.interspinous-spacers-page .iss-condition-body {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 0.92rem;
+  line-height: 1.65;
+}
+
+.interspinous-spacers-page .iss-condition-media {
+  position: relative;
+  background: #e2e8f0;
+}
+
+.interspinous-spacers-page .iss-condition-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .interspinous-spacers-page .iss-benefits-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .interspinous-spacers-page .iss-conditions-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .interspinous-spacers-page .iss-benefits-header,
+  .interspinous-spacers-page .iss-conditions-header {
+    text-align: left;
+    margin-bottom: 22px;
+  }
+
+  .interspinous-spacers-page .iss-condition-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .interspinous-spacers-page .iss-condition-media {
+    min-height: 180px;
+  }
+}
+
+.interspinous-spacers-page .iss-right-for-you {
+  background: #f8fafc;
+}
+
+.interspinous-spacers-page .iss-right-for-you-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.interspinous-spacers-page .iss-right-for-you-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(22px, 4vw, 56px);
+  align-items: start;
+}
+
+.interspinous-spacers-page .iss-right-for-you-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 4.6vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: rgba(15, 23, 42, 0.82);
+}
+
+.interspinous-spacers-page .iss-right-for-you-copy {
+  display: grid;
+  gap: 16px;
+}
+
+.interspinous-spacers-page .iss-right-for-you-paragraph {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  line-height: 1.85;
+  font-size: 1rem;
+}
+
+.interspinous-spacers-page .iss-right-for-you-list {
+  margin: 0;
+  padding-left: 18px;
+  display: grid;
+  gap: 10px;
+  color: rgba(15, 23, 42, 0.72);
+  line-height: 1.75;
+}
+
+.interspinous-spacers-page .iss-right-for-you-list-item {
+  margin: 0;
+  font-size: 0.98rem;
+}
+
+@media (max-width: 900px) {
+  .interspinous-spacers-page .iss-right-for-you-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.interspinous-spacers-page .iss-faq {
+  background: #f8fafc;
+}
+
+.interspinous-spacers-page .iss-faq-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.interspinous-spacers-page .iss-faq-header {
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.interspinous-spacers-page .iss-faq-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.interspinous-spacers-page .iss-faq-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.interspinous-spacers-page .iss-faq-item + .iss-faq-item {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.interspinous-spacers-page .iss-faq-trigger {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: background 160ms ease;
+}
+
+.interspinous-spacers-page .iss-faq-trigger:hover {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.interspinous-spacers-page .iss-faq-trigger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.22);
+}
+
+.interspinous-spacers-page .iss-faq-question {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(15, 23, 42, 0.55);
+  font-weight: 700;
+  text-align: left;
+}
+
+.interspinous-spacers-page .iss-faq-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.22);
+  background: rgba(255, 255, 255, 0.96);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  color: rgba(15, 23, 42, 0.62);
+}
+
+.interspinous-spacers-page .iss-faq-trigger[aria-expanded="true"] .iss-faq-question {
+  color: #0b4a7a;
+  font-weight: 800;
+}
+
+.interspinous-spacers-page .iss-faq-trigger[aria-expanded="true"] .iss-faq-icon {
+  border-color: rgba(11, 74, 122, 0.55);
+  color: rgba(11, 74, 122, 0.95);
+}
+
+.interspinous-spacers-page .iss-faq-panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 24px;
+  transition: max-height 280ms ease, opacity 200ms ease, padding 200ms ease;
+}
+
+.interspinous-spacers-page .iss-faq-panel[data-open="true"] {
+  max-height: 520px;
+  opacity: 1;
+  padding-top: 4px;
+  padding-bottom: 18px;
+}
+
+.interspinous-spacers-page .iss-faq-answer {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+@media (max-width: 600px) {
+  .interspinous-spacers-page .iss-faq-header {
+    text-align: left;
+  }
+
+  .interspinous-spacers-page .iss-faq-trigger {
+    padding: 18px 18px;
+  }
+
+  .interspinous-spacers-page .iss-faq-panel {
+    padding: 0 18px;
+  }
+
+  .interspinous-spacers-page .iss-faq-panel[data-open="true"] {
+    padding-bottom: 16px;
+  }
+}

@@ -1,0 +1,89 @@
+/* Base timeline helpers shared across treatment pages */
+
+:root {
+  --treatment-timeline-track: #e2e8f0;
+  --treatment-timeline-accent: #f04b5e;
+  --treatment-timeline-surface: #f8fafc;
+  --treatment-timeline-text: #4b5563;
+}
+
+.treatment-steps-progress {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.treatment-steps-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 24px;
+  width: 2px;
+}
+
+@media (min-width: 768px) {
+  .treatment-steps-line {
+    left: 28px;
+  }
+}
+
+.treatment-steps-line-progress {
+  position: absolute;
+  inset: 0;
+  background: var(--treatment-timeline-accent);
+  transform-origin: top;
+  transform: scaleY(0);
+}
+
+.treatment-steps-marker {
+  position: absolute;
+  top: 0;
+  left: 25px;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--treatment-timeline-accent);
+  border: 2px solid var(--treatment-timeline-surface);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.14);
+  transform: translateX(-50%);
+}
+
+@media (min-width: 768px) {
+  .treatment-steps-marker {
+    left: 29px;
+  }
+}
+
+.treatment-steps-controls {
+  position: absolute;
+  top: -8px;
+  right: 0;
+  display: inline-flex;
+  gap: 10px;
+  pointer-events: auto;
+}
+
+.treatment-steps-control {
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: rgba(15, 23, 42, 0.04);
+  color: var(--treatment-timeline-accent);
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 10px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.treatment-steps-control:hover {
+  background: rgba(15, 23, 42, 0.07);
+  border-color: rgba(15, 23, 42, 0.16);
+}
+
+@media (max-width: 600px) {
+  .treatment-steps-controls {
+    display: none;
+  }
+}

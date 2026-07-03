@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { TreatmentsMain } from '../../Treatments';
-import '../../Treatments.css';
+import { initTreatmentStepsTimelines } from '../../animations/treatmentTimelineAnimations';
+import { TreatmentBreadcrumb } from '../../components/detail/TreatmentBreadcrumb';
 import './PeripheralNerveBlock.css';
 
 type PeripheralNerveBlockFaqItem = {
@@ -68,18 +69,18 @@ const PeripheralNerveBlockPage: React.FC = () => {
     meta.content = description;
   }, []);
 
+  React.useEffect(() => {
+    const scope = document.getElementById('psx-peripheral-nerve-block') ?? document;
+    return initTreatmentStepsTimelines(scope);
+  }, []);
+
   return (
-    <div className="psx-page peripheral-nerve-block-page" id="psx-peripheral-nerve-block">
-      <header className="psx-hero peripheral-nerve-block-hero" aria-label="Peripheral nerve block hero section">
+    <div className="psx-page peripheral-nerve-block-page page-peripheralnerveblock" id="psx-peripheral-nerve-block">
+      <header className="treatment-page-hero peripheral-nerve-block-hero" aria-label="Peripheral nerve block hero section">
         <div
           className="psx-hero-backdrop"
           aria-hidden="true"
-          style={{
-            backgroundImage:
-              "linear-gradient(120deg, rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.55)), url('/assets/images/learn/9-radiating-pain.jpg')",
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
+          style={{ backgroundImage: "url('/assets/images/learn/9-radiating-pain.webp')" }}
         />
         <div className="psx-hero-inner">
           <p className="psx-hero-eyebrow">Treatment</p>
@@ -90,31 +91,15 @@ const PeripheralNerveBlockPage: React.FC = () => {
         </div>
       </header>
 
-      <main className="page-main treatments-page">
-        <nav className="article-breadcrumb" aria-label="Breadcrumb">
-          <ol className="article-breadcrumb-list">
-            <li>
-              <Link to="/" className="article-breadcrumb-link">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li>
-              <Link to="/treatments" className="article-breadcrumb-link">
-                Treatments
-              </Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li aria-current="page">Peripheral nerve block</li>
-          </ol>
-        </nav>
+      <TreatmentsMain.PageMain>
+        <TreatmentBreadcrumb currentLabel="Peripheral nerve block" />
 
         <section className="page-section treatments-feature minimally-invasive-treatment-feature" aria-labelledby="pnb-what-to-expect">
           <div className="treatments-feature-inner">
             <div className="treatments-feature-media">
               <img
                 className="treatments-feature-video"
-                src="/assets/images/learn/9-radiating-pain.jpg"
+                src="/assets/images/learn/9-radiating-pain.webp"
                 alt="Illustration showing radiating pain patterns that may be treated with a targeted peripheral nerve block (illustrative)."
                 decoding="async"
                 loading="lazy"
@@ -139,19 +124,6 @@ const PeripheralNerveBlockPage: React.FC = () => {
                 You may feel numbness, warmth, or heaviness in the area supplied by the nerve for several hours. It’s important to protect
                 the numb limb, avoid risky activities, and follow aftercare guidance to reduce falls and injury risk.
               </p>
-
-              <div className="minimally-invasive-treatment-cta">
-                <Link
-                  to="/blog/interventional-pain/peripheral-nerve-block"
-                  className="treatment-card-button"
-                  aria-label="Learn more about peripheral nerve blocks in our blog"
-                >
-                  <span>Learn More About Peripheral Nerve Blocks</span>
-                </Link>
-                <Link to="/contact" className="minimally-invasive-treatment-secondary-link" aria-label="Book an appointment">
-                  Book an appointment
-                </Link>
-              </div>
             </div>
           </div>
         </section>
@@ -176,8 +148,6 @@ const PeripheralNerveBlockPage: React.FC = () => {
                 <p className="pnb-process-paragraph">Here is an overview of the procedure:</p>
               </div>
             </div>
-
-            <h2 className="pnb-process-steps-title">How the Procedure is Done</h2>
 
             <div className="pnb-steps-grid" role="list" aria-label="Peripheral nerve block steps">
               <article className="pnb-step-card" role="listitem" aria-label="Step 1 preparation">
@@ -228,7 +198,7 @@ const PeripheralNerveBlockPage: React.FC = () => {
               <div className="pnb-aftercare-poster">
                 <img
                   className="pnb-aftercare-image"
-                  src="/assets/images/medical/DSC05016.jpg"
+                  src="/assets/images/medical/DSC05016.webp"
                   alt=""
                   loading="lazy"
                   decoding="async"
@@ -302,28 +272,28 @@ const PeripheralNerveBlockPage: React.FC = () => {
         </section>
 
         <section className="page-section pnb-conditions" aria-labelledby="pnb-conditions-title">
-          <div className="pnb-conditions-inner">
-            <header className="pnb-conditions-header">
-              <h2 id="pnb-conditions-title" className="pnb-conditions-title">
+          <div className="pnb-conditions-inner tms-conditions-inner">
+            <header className="pnb-conditions-header tms-conditions-header">
+              <h2 id="pnb-conditions-title" className="pnb-conditions-title tms-conditions-title">
                 Conditions Treated with Peripheral
                 <br />
                 Nerve Blocks
               </h2>
             </header>
 
-            <div className="pnb-conditions-grid" role="list" aria-label="Conditions treated with peripheral nerve blocks">
-              <article className="pnb-condition-card" role="listitem">
-                <div className="pnb-condition-text">
-                  <h3 className="pnb-condition-title">Postoperative Pain</h3>
-                  <p className="pnb-condition-body">
+            <div className="pnb-conditions-grid tms-conditions-grid" role="list" aria-label="Conditions treated with peripheral nerve blocks">
+              <article className="pnb-condition-card tms-conditions-card" role="listitem">
+                <div className="pnb-condition-text tms-conditions-copy">
+                  <h3 className="pnb-condition-title tms-conditions-card-title">Postoperative Pain</h3>
+                  <p className="pnb-condition-body tms-conditions-card-body">
                     Nerve blocks can help manage pain after surgery, supporting earlier movement and recovery with reduced discomfort for
                     some patients.
                   </p>
                 </div>
-                <div className="pnb-condition-media" aria-hidden="true">
+                <div className="pnb-condition-media tms-conditions-media" aria-hidden="true">
                   <img
-                    className="pnb-condition-image"
-                    src="/assets/images/medical/DSC05129.jpg"
+                    className="pnb-condition-image tms-conditions-image"
+                    src="/assets/images/medical/DSC05129.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -332,16 +302,16 @@ const PeripheralNerveBlockPage: React.FC = () => {
               </article>
 
               <article className="pnb-condition-card pnb-condition-card--reverse" role="listitem">
-                <div className="pnb-condition-text">
-                  <h3 className="pnb-condition-title">Neuropathy</h3>
-                  <p className="pnb-condition-body">
+                <div className="pnb-condition-text tms-conditions-copy">
+                  <h3 className="pnb-condition-title tms-conditions-card-title">Neuropathy</h3>
+                  <p className="pnb-condition-body tms-conditions-card-body">
                     Targeted blocks may be used in selected cases for nerve‑related pain patterns affecting the arms, legs, or face.
                   </p>
                 </div>
-                <div className="pnb-condition-media" aria-hidden="true">
+                <div className="pnb-condition-media tms-conditions-media" aria-hidden="true">
                   <img
-                    className="pnb-condition-image"
-                    src="/assets/images/medical/DSC04194.jpg"
+                    className="pnb-condition-image tms-conditions-image"
+                    src="/assets/images/medical/DSC04194.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -350,21 +320,21 @@ const PeripheralNerveBlockPage: React.FC = () => {
               </article>
 
               <article className="pnb-condition-card pnb-condition-card--reverse" role="listitem">
-                <div className="pnb-condition-text">
-                  <h3 className="pnb-condition-title">
+                <div className="pnb-condition-text tms-conditions-copy">
+                  <h3 className="pnb-condition-title tms-conditions-card-title">
                     Shoulder &amp; Rotator Cuff
                     <br />
                     Pain
                   </h3>
-                  <p className="pnb-condition-body">
+                  <p className="pnb-condition-body tms-conditions-card-body">
                     In shoulder procedures and certain shoulder pain patterns, nerve blocks can reduce pain and improve comfort for early
                     rehabilitation.
                   </p>
                 </div>
-                <div className="pnb-condition-media" aria-hidden="true">
+                <div className="pnb-condition-media tms-conditions-media" aria-hidden="true">
                   <img
-                    className="pnb-condition-image"
-                    src="/assets/images/medical/DSC01735.jpg"
+                    className="pnb-condition-image tms-conditions-image"
+                    src="/assets/images/medical/DSC01735.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -372,18 +342,18 @@ const PeripheralNerveBlockPage: React.FC = () => {
                 </div>
               </article>
 
-              <article className="pnb-condition-card" role="listitem">
-                <div className="pnb-condition-text">
-                  <h3 className="pnb-condition-title">Hip &amp; Lower Limb Pain</h3>
-                  <p className="pnb-condition-body">
+              <article className="pnb-condition-card tms-conditions-card" role="listitem">
+                <div className="pnb-condition-text tms-conditions-copy">
+                  <h3 className="pnb-condition-title tms-conditions-card-title">Hip &amp; Lower Limb Pain</h3>
+                  <p className="pnb-condition-body tms-conditions-card-body">
                     Nerve blocks may support pain control for hip and lower‑limb procedures and selected pain patterns, depending on the
                     target nerve.
                   </p>
                 </div>
-                <div className="pnb-condition-media" aria-hidden="true">
+                <div className="pnb-condition-media tms-conditions-media" aria-hidden="true">
                   <img
-                    className="pnb-condition-image"
-                    src="/assets/images/medical/DSC05906.jpg"
+                    className="pnb-condition-image tms-conditions-image"
+                    src="/assets/images/medical/DSC05906.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -408,18 +378,6 @@ const PeripheralNerveBlockPage: React.FC = () => {
                 <li>Temporary nerve symptoms, like hoarseness or blurred vision (depending on the nerve targeted).</li>
                 <li>Rare but serious risks like infection, nerve damage, or complications if local anaesthetic enters the bloodstream.</li>
               </ul>
-            </div>
-          </div>
-
-          <div className="pnb-help-cta" aria-label="Get help call to action">
-            <div className="pnb-help-cta-inner">
-              <h2 className="pnb-help-cta-title">Learn how we can help you</h2>
-              <p className="pnb-help-cta-subtitle">
-                If you&apos;re having symptoms described in this article, it&apos;s crucial to seek professional medical advice.
-              </p>
-              <Link to="/contact" className="pnb-help-cta-button" aria-label="Get help now">
-                Get Help Now
-              </Link>
             </div>
           </div>
         </section>
@@ -553,10 +511,10 @@ const PeripheralNerveBlockPage: React.FC = () => {
           </div>
         </section>
 
-        <div id="treatments">
+        <div id="treatments" className="treatments-page">
           <TreatmentsMain hideSurgical hideNonInvasive />
         </div>
-      </main>
+      </TreatmentsMain.PageMain>
     </div>
   );
 };

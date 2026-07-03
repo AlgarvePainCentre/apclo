@@ -1,6 +1,6 @@
 import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { doctorsData } from '../../data/doctorsData';
-import './DoctorDetail.css';
+import '../../styles/pages/doctor-detail-page.css';
 
 export default function DoctorDetail() {
   const { id } = useParams();
@@ -109,9 +109,6 @@ export default function DoctorDetail() {
               </div>
             )}
 
-            <a href="/contact" className="psx-btn-primary doctor-detail-cta">
-              <span>Book Appointment</span>
-            </a>
           </div>
         </section>
 
@@ -119,7 +116,42 @@ export default function DoctorDetail() {
           {doctor.image ? (
             <img src={doctor.image} alt="" />
           ) : (
-            <div className="doctor-detail-media-placeholder" />
+            <div className="doctor-detail-media-placeholder">
+              <video
+                className="doctor-detail-media-bgVideo"
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster=""
+                onCanPlay={(e) => {
+                  try {
+                    e.currentTarget.parentElement?.setAttribute('data-video-ready', 'true');
+                    const maybePromise = e.currentTarget.play();
+                    if (maybePromise && typeof maybePromise.catch === 'function') {
+                      maybePromise.catch(() => {});
+                    }
+                  } catch {}
+                }}
+                onError={(e) => {
+                  e.currentTarget.parentElement?.setAttribute('data-video-error', 'true');
+                }}
+                onEnded={(e) => {
+                  try {
+                    e.currentTarget.currentTime = 0;
+                    const maybePromise = e.currentTarget.play();
+                    if (maybePromise && typeof maybePromise.catch === 'function') {
+                      maybePromise.catch(() => {});
+                    }
+                  } catch {}
+                }}
+              >
+                <source src="/assets/videos/Cir.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
+                <source src="/assets/videos/Cir.h264.mp4" type='video/mp4; codecs="avc1.42E01E"' />
+              </video>
+          
+            </div>
           )}
         </div>
       </div>

@@ -1,0 +1,207 @@
+
+.treatment-breadcrumb-root {
+  width: 100vw;
+  max-width: 100vw;
+  margin: 1rem 0 1.5rem;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  padding-left: clamp(16px, 4vw, 48px);
+  padding-right: clamp(16px, 4vw, 48px);
+  box-sizing: border-box;
+}
+
+.treatment-breadcrumb-root .article-breadcrumb-list {
+  width: 100%;
+  max-width: 100%;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.treatment-related-nav {
+  width: 100vw;
+  max-width: 100vw;
+  padding-left: clamp(16px, 4vw, 48px);
+  padding-right: clamp(16px, 4vw, 48px);
+  margin: 0 0 2.5rem;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  box-sizing: border-box;
+}
+
+.treatment-related-nav-shell {
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.treatment-related-nav-control {
+  width: 44px;
+  height: 44px;
+  border: none;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #0f172a;
+  display: inline-grid;
+  place-items: center;
+  box-shadow:
+    inset 0 0 0 1px rgba(15, 23, 42, 0.08),
+    0 8px 24px rgba(15, 23, 42, 0.08);
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease,
+    background-color 180ms ease,
+    color 180ms ease;
+}
+
+.treatment-related-nav-control:hover:not(:disabled) {
+  transform: translateY(-1px);
+  background: #f8fafc;
+}
+
+.treatment-related-nav-control:focus-visible {
+  outline: 3px solid rgba(15, 70, 129, 0.24);
+  outline-offset: 3px;
+}
+
+.treatment-related-nav-control:disabled {
+  opacity: 0.45;
+  cursor: default;
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.06);
+}
+
+.treatment-related-nav-control span {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.treatment-related-nav-list {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.treatment-related-nav-list::-webkit-scrollbar {
+  display: none;
+}
+
+.treatment-related-nav-item {
+  min-width: 0;
+  flex: 0 0 clamp(110px, 10vw, 132px);
+  scroll-snap-align: start;
+}
+
+.treatment-related-nav-link {
+  display: grid;
+  justify-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: #334155;
+  border-radius: 22px;
+  padding: 8px 6px;
+  transition:
+    transform 180ms ease,
+    color 180ms ease,
+    background-color 180ms ease;
+}
+
+.treatment-related-nav-link:hover {
+  color: #0f172a;
+  transform: translateY(-2px);
+}
+
+.treatment-related-nav-link:focus-visible {
+  outline: 3px solid rgba(15, 70, 129, 0.24);
+  outline-offset: 3px;
+}
+
+.treatment-related-nav-icon-shell {
+  width: clamp(72px, 9vw, 96px);
+  aspect-ratio: 1;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #dff0fb 0%, #cfe6f7 100%);
+  display: block;
+  overflow: hidden;
+  box-shadow: inset 0 0 0 1px rgba(15, 70, 129, 0.08);
+}
+
+.treatment-related-nav-icon {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.treatment-related-nav-label {
+  font-size: 0.875rem;
+  line-height: 1.35;
+  text-align: center;
+  width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.treatment-related-nav-link.is-active {
+  color: #0f172a;
+}
+
+.treatment-related-nav-link.is-active .treatment-related-nav-icon-shell {
+  background: linear-gradient(180deg, #d4ebfb 0%, #c5e1f8 100%);
+  box-shadow:
+    inset 0 0 0 1px rgba(15, 70, 129, 0.14),
+    0 10px 24px rgba(15, 23, 42, 0.08);
+}
+
+.treatment-related-nav-link.is-active .treatment-related-nav-label {
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .treatment-related-nav {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .treatment-related-nav-shell {
+    gap: 0;
+  }
+
+  .treatment-related-nav-control {
+    width: 40px;
+    height: 40px;
+    display: none;
+  }
+
+  .treatment-related-nav-list {
+    gap: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .treatment-related-nav-list {
+    scroll-behavior: auto;
+  }
+
+  .treatment-related-nav-control {
+    transition: none;
+  }
+
+  .treatment-related-nav-link {
+    transition: none;
+  }
+}

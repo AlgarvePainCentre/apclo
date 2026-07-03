@@ -1,11 +1,25 @@
-.calcification-barbotage-page {
-  background: #fff;
+/* Isolated CSS for CalcificationBarbotage */
+@import '../../components/detail/TreatmentHero.css';
+@import '../../components/detail/TreatmentBreadcrumb.css';
+@import '../../components/detail/TreatmentFeature.css';
+@import '../../components/detail/TreatmentDetailsGrid.css';
+@import '../../components/detail/TreatmentFaq.css';
+
+.page-calcificationbarbotage {
+  /* Page specific styles */
+  background-color: #f8fafc;
+  color: #111827;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-.calcification-barbotage-hero .psx-hero-backdrop {
-  background-image:
-    linear-gradient(120deg, rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.55)),
-    url('/assets/images/illustrative/pain-medicine-algarve-min.jpg');
-  background-size: cover;
-  background-position: center;
+/* Ensure the main container mirrors specialities layout */
+.page-calcificationbarbotage .page-main {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.page-calcificationbarbotage .cb-condition-image,
+.page-calcificationbarbotage .tms-conditions-image {
+  height: 380px;
+  border-radius: 18px;
 }

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SocialShare from '../../../../components/SocialShare';
-import '../Article.css';
+import '../../../../styles/layout/article-layout.css';
 
 const CervicalPainPage: React.FC = () => {
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ const CervicalPainPage: React.FC = () => {
                 <p>Keep your back straight and shoulders back. Ensure your feet are flat on the floor.</p>
               </div>
               <div className="posture-image">
-                <img src="/assets/images/learn/Artboard-1.jpg" alt="Sitting posture" />
+                <img src="/assets/images/learn/Artboard-1.webp" alt="Sitting posture" />
               </div>
             </div>
 
@@ -76,7 +76,7 @@ const CervicalPainPage: React.FC = () => {
                 <p>Distribute your weight evenly on both feet. Avoid slouching.</p>
               </div>
               <div className="posture-image">
-                <img src="/assets/images/learn/Artboard-2.jpg" alt="Standing posture" />
+                <img src="/assets/images/learn/Artboard-2.webp" alt="Standing posture" />
               </div>
             </div>
 
@@ -86,7 +86,7 @@ const CervicalPainPage: React.FC = () => {
                 <p>Use a pillow that supports the natural curve of your neck.</p>
               </div>
               <div className="posture-image">
-                <img src="/assets/images/learn/Artboard-3.jpg" alt="Sleeping posture" />
+                <img src="/assets/images/learn/Artboard-3.webp" alt="Sleeping posture" />
               </div>
             </div>
 
@@ -96,7 +96,7 @@ const CervicalPainPage: React.FC = () => {
                 <p>Regularly stretching and strengthening your neck muscles can alleviate pain.</p>
               </div>
               <div className="posture-image">
-                <img src="/assets/images/learn/Artboard-4.jpg" alt="Stretching and exercising" />
+                <img src="/assets/images/learn/Artboard-4.webp" alt="Stretching and exercising" />
               </div>
             </div>
 
@@ -106,7 +106,7 @@ const CervicalPainPage: React.FC = () => {
                 <p>Gently tilt your head forward, backward, and side to side to relieve back and neck discomfort.</p>
               </div>
               <div className="posture-image">
-                <img src="/assets/images/learn/Artboard-5.jpg" alt="Neck stretching" />
+                <img src="/assets/images/learn/Artboard-5.webp" alt="Neck stretching" />
               </div>
             </div>
 
@@ -116,7 +116,7 @@ const CervicalPainPage: React.FC = () => {
                 <p>Perform chin tucks and shoulder shrugs to build muscle support and reduce upper back cervical pain.</p>
               </div>
               <div className="posture-image">
-                <img src="/assets/images/learn/Artboard-1-1.jpg" alt="Strengthening exercises" />
+                <img src="/assets/images/learn/Artboard-1-1.webp" alt="Strengthening exercises" />
               </div>
             </div>
           </div>
@@ -133,7 +133,7 @@ const CervicalPainPage: React.FC = () => {
                 <p>Use a warm towel or heating pad for 15-20 minutes to relax tight muscles.</p>
               </div>
               <div className="posture-image">
-                <img src="/assets/images/learn/DSC06795-1.jpg" alt="Heat Packs" />
+                <img src="/assets/images/learn/DSC06795-1.webp" alt="Heat Packs" />
               </div>
             </div>
 
@@ -143,7 +143,7 @@ const CervicalPainPage: React.FC = () => {
                 <p>Apply an ice pack wrapped in a cloth for 15-20 minutes to reduce inflammation.</p>
               </div>
               <div className="posture-image">
-                <img src="/assets/images/learn/DSC06795-2.jpg" alt="Ice Packs" />
+                <img src="/assets/images/learn/DSC06795-2.webp" alt="Ice Packs" />
               </div>
             </div>
           </div>
@@ -160,7 +160,7 @@ const CervicalPainPage: React.FC = () => {
                 <p>Keep your computer at eye level. Use a chair that supports your lower back.</p>
               </div>
               <div className="posture-image">
-                <img src="/assets/images/learn/DSC06650.jpg" alt="Desk Setup" />
+                <img src="/assets/images/learn/DSC06650.webp" alt="Desk Setup" />
               </div>
             </div>
 
@@ -170,7 +170,7 @@ const CervicalPainPage: React.FC = () => {
                 <p>Take short breaks to stretch and move around.</p>
               </div>
               <div className="posture-image">
-                <img src="/assets/images/learn/DSC06795.jpg" alt="Frequent Breaks" />
+                <img src="/assets/images/learn/DSC06795.webp" alt="Frequent Breaks" />
               </div>
             </div>
           </div>

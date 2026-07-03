@@ -1,8 +1,13 @@
-import { useEffect, useRef, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './Home.css';
+import { Suspense, lazy, useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import '../../styles/layout/site-sections.css';
+import { trackEvent } from '../../utils/analytics';
 import { serializeJsonForHtmlScript } from '../../utils/security';
-import Search from '../../components/Search';
+import { ArticleFeedSkeleton, ImageGridSkeleton } from '../../components/LoadingSkeletons';
+import { useHeroParallax } from '../../app/useHeroParallax';
+
+const TestimonialSection = lazy(() => import('./components/TestimonialSection'));
+const StoriesSection = lazy(() => import('./components/StoriesSection'));
 
 
 
@@ -10,13 +15,8 @@ export default function Home() {
   const heroRef = useRef(null);
   const heroVideoRef = useRef(null);
   const heroContentMotionRef = useRef(null);
-  const testimonialSectionRef = useRef(null);
-  const testimonialVideoInlineRef = useRef(null);
-  const testimonialVideoSideRef = useRef(null);
-  const testimonialCopyRef = useRef(null);
+  const videoLoadTimersRef = useRef(new Map());
   const [enableStoryVideo, setEnableStoryVideo] = useState(false);
-  const [heroVariant, setHeroVariant] = useState('A');
-  const navigate = useNavigate();
   const whyChooseItems = [
     {
       title: 'Specialised multidisciplinary team',
@@ -35,48 +35,43 @@ export default function Home() {
       body: 'Your care team follows you over time, explains each step in clear language and coordinates with your other doctors, so you never feel alone in your treatment journey.',
     },
   ];
-  // Lightweight analytics helper
-  const trackEvent = (event, params = {}) => {
-    try {
-      const payload = { event, ...params, ts: Date.now() };
-      if (window.dataLayer && Array.isArray(window.dataLayer)) {
-        window.dataLayer.push(payload);
-      } else {
-        if (import.meta.env.DEV) {
-          // eslint-disable-next-line no-console
-          console.debug('[analytics]', payload);
-        }
-      }
-    } catch {}
+  const handleVideoEnter = (e) => {
+    const video = e.currentTarget.querySelector('video');
+    if (video) {
+      try {
+        video.currentTime = 0;
+        video.play().catch(() => {});
+      } catch {}
+    }
   };
 
-  // Assign persistent A/B testing variant
   useEffect(() => {
-    const url = new URL(window.location.href);
-    const forced = url.searchParams.get('variant');
-    const key = 'homeHeroCtaVariant';
-    let v = forced || window.localStorage.getItem(key);
-    if (v !== 'A' && v !== 'B') {
-      v = Math.random() < 0.5 ? 'A' : 'B';
-    }
-    setHeroVariant(v);
-    try {
-      window.localStorage.setItem(key, v);
-    } catch {}
-  }, []);
-
-  useEffect(() => {
+    let ticking = false;
     const setVh = () => {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty('--vh', `${vh}px`);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const vh = window.innerHeight * 0.01;
+          document.documentElement.style.setProperty('--vh', `${vh}px`);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    setVh();
-    window.addEventListener('resize', setVh);
-    window.addEventListener('orientationchange', setVh);
+    
+    // Stabilize dynamic layout calculation
+    if (document.readyState === 'complete') {
+      setVh();
+    } else {
+      window.addEventListener('load', setVh);
+    }
+    
+    window.addEventListener('resize', setVh, { passive: true });
+    window.addEventListener('orientationchange', setVh, { passive: true });
     if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', setVh);
+      window.visualViewport.addEventListener('resize', setVh, { passive: true });
     }
     return () => {
+      window.removeEventListener('load', setVh);
       window.removeEventListener('resize', setVh);
       window.removeEventListener('orientationchange', setVh);
       if (window.visualViewport) {
@@ -95,43 +90,70 @@ export default function Home() {
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hasLoadedSource = (el) => Boolean(el.getAttribute('src') || el.querySelector('source[src]'));
+    const clearVideoTimer = (el) => {
+      const timer = videoLoadTimersRef.current.get(el);
+      if (!timer) return;
+      window.clearTimeout(timer);
+      videoLoadTimersRef.current.delete(el);
+    };
+
+    const startVideoPlayback = (el) => {
+      const sourceEls = Array.from(el.querySelectorAll('source[data-src]'));
+      if (sourceEls.length) {
+        sourceEls.forEach((sourceEl) => {
+          const dataSrc = sourceEl.getAttribute('data-src');
+          if (dataSrc && !sourceEl.getAttribute('src')) {
+            sourceEl.setAttribute('src', dataSrc);
+          }
+        });
+        el.load();
+      } else {
+        const dataSrc = el.getAttribute('data-src');
+        if (dataSrc && !el.getAttribute('src')) {
+          el.setAttribute('src', dataSrc);
+        }
+      }
+      el.play().catch(() => {});
+    };
+
     if (prefersReducedMotion) {
-      const vids = [
-        heroVideoRef.current,
-        testimonialVideoInlineRef.current,
-        testimonialVideoSideRef.current,
-        ...Array.from(document.querySelectorAll('.home-section-cards-pain-video')),
-        ...Array.from(document.querySelectorAll('.mainpain-card-video')),
-        ...Array.from(document.querySelectorAll('.treatment-card-video')),
-        ...Array.from(document.querySelectorAll('.home-section-testimonial-video-el')),
-      ].filter(Boolean);
+      const vids = Array.from(
+        document.querySelectorAll(
+          'video.hero-video-el, video.home-section-testimonial-video-el, video.home-section-cards-pain-video, video.mainpain-card-video, video.treatment-card-video'
+        )
+      );
       vids.forEach((v) => {
+        clearVideoTimer(v);
         try {
           v.pause();
         } catch {}
       });
       return undefined;
     }
-    const videos = [
-      heroVideoRef.current,
-      testimonialVideoInlineRef.current,
-      testimonialVideoSideRef.current,
-      ...Array.from(document.querySelectorAll('.home-section-cards-pain-video')),
-      ...Array.from(document.querySelectorAll('.mainpain-card-video')),
-      ...Array.from(document.querySelectorAll('.treatment-card-video')),
-      ...Array.from(document.querySelectorAll('.home-section-testimonial-video-el')),
-    ].filter(Boolean);
+    const videos = Array.from(
+      document.querySelectorAll(
+        'video.hero-video-el, video.home-section-testimonial-video-el, video.home-section-cards-pain-video, video.mainpain-card-video, video.treatment-card-video'
+      )
+    );
     const onIntersect = (entries) => {
       entries.forEach((entry) => {
         const el = entry.target;
         if (!(el instanceof HTMLVideoElement)) return;
         if (entry.isIntersecting) {
-          const dataSrc = el.getAttribute('data-src');
-          if (dataSrc && !el.getAttribute('src')) {
-            el.setAttribute('src', dataSrc);
+          const deferMs = Number(el.dataset.deferMs || 0);
+          if (deferMs > 0 && !hasLoadedSource(el)) {
+            if (videoLoadTimersRef.current.has(el)) return;
+            const timer = window.setTimeout(() => {
+              videoLoadTimersRef.current.delete(el);
+              startVideoPlayback(el);
+            }, deferMs);
+            videoLoadTimersRef.current.set(el, timer);
+            return;
           }
-          el.play().catch(() => {});
+          startVideoPlayback(el);
         } else {
+          clearVideoTimer(el);
           try {
             el.pause();
           } catch {}
@@ -140,17 +162,12 @@ export default function Home() {
     };
     const io = new IntersectionObserver(onIntersect, { threshold: 0.25 });
     videos.forEach((v) => io.observe(v));
-    return () => io.disconnect();
+    return () => {
+      io.disconnect();
+      videoLoadTimersRef.current.forEach((timer) => window.clearTimeout(timer));
+      videoLoadTimersRef.current.clear();
+    };
   }, []);
-  const handleVideoEnter = (e) => {
-    const video = e.currentTarget.querySelector('video');
-    if (video) {
-      try {
-        video.currentTime = 0;
-        video.play().catch(() => {});
-      } catch {}
-    }
-  };
 
   useEffect(() => {
     const titleText =
@@ -170,84 +187,12 @@ export default function Home() {
     trackEvent('page_view', { page: 'home' });
   }, []);
 
-  useEffect(() => {
-    const heroEl = heroRef.current;
-    const videoLayer = heroVideoRef.current;
-    const contentLayer = heroContentMotionRef.current;
-    if (!heroEl || !videoLayer || !contentLayer) return undefined;
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const isMobile = window.matchMedia('(max-width: 768px)').matches;
-    const hasRAF = typeof window.requestAnimationFrame === 'function';
-    const supports3d = typeof window.CSS !== 'undefined' && CSS.supports && CSS.supports('transform', 'translate3d(0,0,0)');
-    if (prefersReducedMotion) return undefined;
-    let latestY = window.scrollY || 0;
-    let animating = false;
-    let rafId = 0;
-    let io;
-    const ratios = isMobile ? { content: -24 } : { content: -42 };
-    videoLayer.style.transform = '';
-    const applyTransform = (el, y) => {
-      if (supports3d) {
-        el.style.transform = `translate3d(0, ${y}px, 0)`;
-      } else {
-        el.style.transform = `translateY(${y}px)`;
-      }
-    };
-    const tick = () => {
-      const vh = window.innerHeight || 1;
-      const rect = heroEl.getBoundingClientRect();
-      const progress = Math.min(Math.max(rect.top / vh, -1), 1);
-      applyTransform(contentLayer, progress * ratios.content);
-      animating = false;
-    };
-    const onScroll = () => {
-      latestY = window.scrollY || 0;
-      if (animating) return;
-      animating = true;
-      if (hasRAF) {
-        rafId = window.requestAnimationFrame(tick);
-      } else {
-        setTimeout(tick, 16);
-      }
-    };
-    const onResize = () => {
-      onScroll();
-    };
-    const observe = () => {
-      if (!('IntersectionObserver' in window)) {
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', onResize, { passive: true });
-        onScroll();
-        return;
-      }
-      io = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              window.addEventListener('scroll', onScroll, { passive: true });
-              window.addEventListener('resize', onResize, { passive: true });
-              onScroll();
-            } else {
-              window.removeEventListener('scroll', onScroll);
-              window.removeEventListener('resize', onResize);
-            }
-          });
-        },
-        { threshold: 0, rootMargin: '200px 0px 200px 0px' }
-      );
-      io.observe(heroEl);
-    };
-    observe();
-    onScroll();
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onResize);
-      if (rafId) cancelAnimationFrame(rafId);
-      if (io) io.disconnect();
-      videoLayer.style.transform = '';
-      contentLayer.style.transform = '';
-    };
-  }, []);
+  useHeroParallax({
+    rootRef: heroRef,
+    contentRef: heroContentMotionRef,
+    mediaRef: heroVideoRef,
+    mediaY: -28,
+  });
 
   return (
     <div className="home-page">
@@ -282,533 +227,45 @@ export default function Home() {
             loop
             playsInline
             preload="metadata"
-            poster="/assets/images/medical/DSC06176.jpg"
-            src="/assets/videos/Sports-Medicine-Video-min-1.mp4"
-          />
+            data-defer-ms="1400"
+          >
+            <source data-src="/assets/videos/Sports-Medicine-Video-min-1.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
+            <source data-src="/assets/videos/Sports-Medicine-Video-min-1.h264.mp4" type='video/mp4; codecs="avc1.42E01E"' />
+          </video>
         </div>
-        <div className="hero-content hero-content-home hero-content-centered" ref={heroContentMotionRef}>
-          <div className="hero-left hero-home-left">
-            <h1 className="hero-title">Your Pain Centre</h1>
-            <Search variant="hero" containerId="hero-search" dropdownId="hero-search-dropdown" />
+        <div className="hero-content hero-content-home" ref={heroContentMotionRef}>
+          <div className="home-hero-layout">
+            <div className="home-hero-main">
+              <div className="hero-left hero-home-left home-hero-copy-block">
+                <p className="home-hero-kicker">Multidisciplinary pain care in the Algarve</p>
+                <h1 className="home-hero-title">Your Pain Centre</h1>
+                <p className="home-hero-subtitle">
+                  Our specialized team will find the best approach to improve your quality of life.
+                </p>
+                <div className="home-hero-actions">
+                  <Link className="home-hero-primary-cta" to="/contact">
+                    <span>Book Now</span>
+                  </Link>
+                  <Link className="home-hero-icon-cta" to="/treatments" aria-label="Explore treatments">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                      <line x1="7" y1="17" x2="17" y2="7" />
+                      <polyline points="7 7 17 7 17 17" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <main className="home-main">
-
-        <section className="home-section-testimonial" ref={testimonialSectionRef}>
-        <div className="home-section-testimonial-inner">
-          <div
-            className="home-section-testimonial-copy"
-            ref={testimonialCopyRef}
-          >
-            <p className="home-section-testimonial-eyebrow">Real stories, real relief</p>
-            <h2 className="home-section-testimonial-title">
-              “Algarve Pain Centre gave me back the freedom to move without fear.”
-            </h2>
-            <div className="home-section-testimonial-media-inline">
-              <div
-                className="home-section-testimonial-video"
-                ref={testimonialVideoInlineRef}
-                onMouseEnter={handleVideoEnter}
-                onFocus={handleVideoEnter}
-              >
-                <video
-                  className="home-section-testimonial-video-el"
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  poster="/assets/images/illustrative/services-home-min-1.jpg"
-                  data-src="/assets/videos/post-43.mp4"
-                />
-                <div className="home-section-testimonial-video-overlay">
-                  <button
-                    type="button"
-                    className="home-section-testimonial-video-cta"
-                    onClick={() => {
-                      trackEvent('cta_click', { location: 'testimonial-video' });
-                      navigate('/resources/testimonials/overcoming-sciatica-pain');
-                    }}
-                  >
-                    Watch how Algarve Pain Centre treats complex pain
-                  </button>
-                </div>
-              </div>
-            </div>
-            <p className="home-section-testimonial-body">
-              After years of living around chronic spine pain, Ana arrived at Algarve Pain Centre exhausted,
-              anxious, and worried about losing her independence.
-            </p>
-            <p className="home-section-testimonial-body">
-              Working closely with our spine specialists, pain medicine doctors, and rehab team,
-              she followed a tailored plan that combined minimally invasive treatments with guided
-              recovery. Today, she is back to walking, working, and enjoying time with her family.
-            </p>
-            <p className="home-section-testimonial-author">
-              Ana, 54 — spine pain patient at Algarve Pain Centre
-            </p>
-            <div className="home-section-testimonial-services">
-              <div className="home-section-testimonial-pill">Comprehensive pain assessment</div>
-              <div className="home-section-testimonial-pill">Minimally invasive procedures</div>
-              <div className="home-section-testimonial-pill">Ongoing rehabilitation support</div>
-            </div>
-          </div>
-          <div className="home-section-testimonial-media">
-            <div
-              className="home-section-testimonial-video"
-              ref={testimonialVideoSideRef}
-              onMouseEnter={handleVideoEnter}
-              onFocus={handleVideoEnter}
-            >
-              <video
-                className="home-section-testimonial-video-el"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                poster="/assets/images/illustrative/services-home-min-1.jpg"
-                data-src="/assets/videos/post-43.mp4"
-              />
-              <div className="home-section-testimonial-video-overlay">
-                <button
-                  type="button"
-                  className="home-section-testimonial-video-cta"
-                  onClick={() => {
-                    trackEvent('cta_click', { location: 'testimonial-video' });
-                    navigate('/resources/testimonials/overcoming-sciatica-pain');
-                  }}
-                >
-                  Watch how Algarve Pain Centre treats complex pain
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        </section>
-
-        <section className="home-section-cards-pain">
-          <div className="home-section-cards-pain-inner">
-            <div
-              className="home-section-cards-pain-image"
-              onMouseEnter={handleVideoEnter}
-              onFocus={handleVideoEnter}
-            >
-              <video
-                className="home-section-cards-pain-video"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-                poster="/assets/images/medical/DSC06176.jpg"
-                data-src="/assets/videos/Pain-Medicine-min.mp4"
-                aria-hidden="true"
-              />
-            </div>
-            <div className="home-section-cards-pain-cards">
-              <article className="home-section-cards-pain-card">
-                <p className="home-section-cards-pain-eyebrow">Personalised pain pathways</p>
-                <h3 className="home-section-cards-pain-title">All pain areas we treat</h3>
-                <p className="home-section-cards-pain-description">
-                  From spine and joint pain to complex neurological conditions, our multidisciplinary team
-                  understands the root cause of your pain and builds a plan around you.
-                </p>
-                <Link
-                  to="/specialities"
-                  className="home-section-cards-pain-link"
-                  onClick={() => trackEvent('nav_click', { location: 'home-cards', to: 'specialities' })}
-                >
-                  {heroVariant === 'B' ? 'Find your condition' : 'Explore pain areas'}
-                  <span className="home-section-cards-pain-link-icon">→</span>
-                </Link>
-              </article>
-              <div className="home-section-cards-pain-divider" />
-              <article className="home-section-cards-pain-card">
-                <p className="home-section-cards-pain-eyebrow">Evidence-based treatments</p>
-                <h3 className="home-section-cards-pain-title">Advanced pain treatments</h3>
-                <p className="home-section-cards-pain-description">
-                  Access a full spectrum of options—from non-invasive therapies to image‑guided procedures
-                  and advanced spine interventions—delivered in one coordinated centre.
-                </p>
-                <Link
-                  to="/treatments"
-                  className="home-section-cards-pain-link home-section-cards-pain-link-secondary"
-                  onClick={() => trackEvent('nav_click', { location: 'home-cards', to: 'treatments' })}
-                >
-                  See treatment options
-                  <span className="home-section-cards-pain-link-icon">→</span>
-                </Link>
-              </article>
-              <div className="home-quick-appointment" role="group" aria-label="Quick appointment options">
-                <a
-                  className="home-quick-appointment-link"
-                  href="tel:+351915915001"
-                  onClick={() => trackEvent('call_click', { location: 'home-quick-appointment' })}
-                >
-                  Call now
-                </a>
-                <Link
-                  className="home-quick-appointment-link home-quick-appointment-secondary"
-                  to="/contact"
-                  onClick={() => trackEvent('cta_click', { location: 'home-quick-appointment' })}
-                >
-                  Book appointment
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="home-section-stories" aria-labelledby="stories-title">
-          <div className="home-section-stories-inner">
-            <header className="home-stories-header">
-              <h2 id="stories-title" className="home-stories-title">Stories from our patients</h2>
-              <p className="home-stories-subtitle">Real experiences of people who regained control over their lives.</p>
-            </header>
-            <div className="home-stories-grid" role="list">
-              <Link
-                to="/resources/testimonials/overcoming-sciatica-pain"
-                className="story-card"
-                role="listitem"
-                aria-label="Read Ana's story: Overcoming Sciatica Pain"
-                onClick={() => trackEvent('nav_click', { location: 'stories', to: 'overcoming-sciatica-pain' })}
-              >
-                <div className="story-card-visual" aria-hidden="true">
-                  {enableStoryVideo && (
-                    <iframe
-                      className="story-card-video-bg"
-                      src="https://www.youtube.com/embed/uK77XrRzGYA?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&loop=1&playlist=uK77XrRzGYA&modestbranding=1&playsinline=1"
-                      title="Patient story background"
-                      tabIndex={-1}
-                      allow="autoplay; encrypted-media"
-                    />
-                  )}
-                </div>
-                <div className="story-card-content">
-                  <blockquote className="story-card-quote">
-                    From not being able to lift even small weight and having pain from sitting down to being 80% fully recovered, they both experience a life free of pain
-                  </blockquote>
-                  <footer className="story-card-meta">
-                    <span className="story-card-author">Filomena and Roland</span>
-                  </footer>
-                </div>
-              </Link>
-
-              <Link
-                to="/resources/testimonials/overcoming-sciatica-pain"
-                className="story-card"
-                role="listitem"
-                aria-label="Read Ghislaine Renault's story: Overcoming Sciatica Pain"
-                onClick={() => trackEvent('nav_click', { location: 'stories', to: 'overcoming-sciatica-pain' })}
-              >
-                <div className="story-card-visual" aria-hidden="true">
-                  {enableStoryVideo && (
-                    <iframe
-                      className="story-card-video-bg"
-                      src="https://www.youtube.com/embed/bkbLgNoKhkY?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&loop=1&playlist=bkbLgNoKhkY&modestbranding=1&playsinline=1"
-                      title="Patient story background"
-                      tabIndex={-1}
-                      allow="autoplay; encrypted-media"
-                    />
-                  )}
-                </div>
-                <div className="story-card-content">
-                  <blockquote className="story-card-quote">
-                    Ghislaine Renault shares her experience of her medical journey, how her life led to having Sciatica and excruciating pain.
-                  </blockquote>
-                  <footer className="story-card-meta">
-                    <span className="story-card-author">Ghislaine Renault </span>
-                  </footer>
-                </div>
-              </Link>
-
-              <Link
-                to="/resources"
-                className="story-card"
-                role="listitem"
-                aria-label="Explore more patient stories"
-                onClick={() => trackEvent('nav_click', { location: 'stories', to: 'more-stories' })}
-              >
-                <div className="story-card-visual" aria-hidden="true">
-                  {enableStoryVideo && (
-                    <iframe
-                      className="story-card-video-bg"
-                      src="https://www.youtube.com/embed/ANY7DTXlMRA?autoplay=1&mute=1&controls=0&rel=0&showinfo=0&loop=1&playlist=ANY7DTXlMRA&modestbranding=1&playsinline=1"
-                      title="Patient story background"
-                      tabIndex={-1}
-                      allow="autoplay; encrypted-media"
-                    />
-                  )}
-                </div>
-                <div className="story-card-content">
-                  <blockquote className="story-card-quote">
-                    “But, although you may feel like brand new the day after the procedure,
-                     You will only be totally healed a few months after.
-                    The body takes time to adjust.”
-                  </blockquote>
-                  <footer className="story-card-meta">
-                    <span className="story-card-author">Sid Richardson</span>
-                  </footer>
-                </div>
-              </Link>
-            </div>
-          </div>
-        </section>
-
-        <section className="home-section-discovery" aria-labelledby="discovery-title">
-          <div className="home-section-discovery-inner">
-            <div className="home-discovery-layout">
-              <header className="home-discovery-header">
-                <h2 id="discovery-title" className="home-discovery-title">
-                  Clinic services
-                </h2>
-                <p className="home-discovery-subtitle">
-                  A multidisciplinary team and evidence‑based pathways—so you can move with confidence again.
-                </p>
-              </header>
-
-              <div className="home-discovery-carousel" role="region" aria-roledescription="carousel" aria-label="Clinic services carousel">
-                <input
-                  className="home-discovery-radio"
-                  type="radio"
-                  name="home-discovery"
-                  id="home-discovery-1"
-                  defaultChecked
-                />
-                <input className="home-discovery-radio" type="radio" name="home-discovery" id="home-discovery-2" />
-                <input className="home-discovery-radio" type="radio" name="home-discovery" id="home-discovery-3" />
-                <input className="home-discovery-radio" type="radio" name="home-discovery" id="home-discovery-4" />
-                <input className="home-discovery-radio" type="radio" name="home-discovery" id="home-discovery-5" />
-                <input className="home-discovery-radio" type="radio" name="home-discovery" id="home-discovery-6" />
-
-                <div className="home-discovery-viewport">
-                  <ul className="home-discovery-track" role="list">
-                    <li className="home-discovery-slide" role="listitem">
-                      <Link
-                        to="/specialities/pain-medicine/lumbar-spine-pain"
-                        className="home-discovery-card"
-                        aria-label="Explore pain medicine services"
-                        onClick={() => trackEvent('nav_click', { location: 'home-discovery', to: 'pain-medicine' })}
-                      >
-                        <span className="home-discovery-card-icon" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M10.5 2.75h3v2.6l1.85 1.07 2.25-1.3 1.5 2.6-2.25 1.3v2.15l2.25 1.3-1.5 2.6-2.25-1.3-1.85 1.07v2.6h-3v-2.6l-1.85-1.07-2.25 1.3-1.5-2.6 2.25-1.3V8.72L4.9 7.42l1.5-2.6 2.25 1.3L10.5 5.35v-2.6Z"
-                              stroke="currentColor"
-                              strokeWidth="1.6"
-                              strokeLinejoin="round"
-                            />
-                            <path
-                              d="M9.2 12.05c0-1.55 1.25-2.8 2.8-2.8s2.8 1.25 2.8 2.8-1.25 2.8-2.8 2.8-2.8-1.25-2.8-2.8Z"
-                              stroke="currentColor"
-                              strokeWidth="1.6"
-                            />
-                          </svg>
-                        </span>
-                        <h3 className="home-discovery-card-title">Pain medicine</h3>
-                        <p className="home-discovery-card-body">
-                          Personalised plans combining assessment, rehabilitation and targeted procedures.
-                        </p>
-                      </Link>
-                    </li>
-
-                    <li className="home-discovery-slide" role="listitem">
-                      <Link
-                        to="/treatments/non-invasive-treatments/physiotherapy"
-                        className="home-discovery-card"
-                        aria-label="Explore physiotherapy and rehabilitation services"
-                        onClick={() => trackEvent('nav_click', { location: 'home-discovery', to: 'physiotherapy' })}
-                      >
-                        <span className="home-discovery-card-icon" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M7.5 12.5c1.6-2.6 3.3-3.9 5.1-3.9 2.7 0 4.4 2.9 6.9 2.9"
-                              stroke="currentColor"
-                              strokeWidth="1.7"
-                              strokeLinecap="round"
-                            />
-                            <path
-                              d="M6.5 16.5c1.9 0 2.7-1.8 4.6-1.8s2.6 1.8 4.5 1.8 2.6-1.8 4.4-1.8"
-                              stroke="currentColor"
-                              strokeWidth="1.7"
-                              strokeLinecap="round"
-                            />
-                          </svg>
-                        </span>
-                        <h3 className="home-discovery-card-title">Physiotherapy</h3>
-                        <p className="home-discovery-card-body">
-                          Guided exercise programmes to rebuild strength, mobility and resilience.
-                        </p>
-                      </Link>
-                    </li>
-
-                    <li className="home-discovery-slide" role="listitem">
-                      <Link
-                        to="/treatments/minimally-invasive-treatments/radiofrequency"
-                        className="home-discovery-card"
-                        aria-label="Explore minimally invasive pain procedures"
-                        onClick={() => trackEvent('nav_click', { location: 'home-discovery', to: 'minimally-invasive' })}
-                      >
-                        <span className="home-discovery-card-icon" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M12 3v7"
-                              stroke="currentColor"
-                              strokeWidth="1.7"
-                              strokeLinecap="round"
-                            />
-                            <path
-                              d="M9.4 10.2h5.2l-1.4 10.8h-2.4L9.4 10.2Z"
-                              stroke="currentColor"
-                              strokeWidth="1.7"
-                              strokeLinejoin="round"
-                            />
-                          </svg>
-                        </span>
-                        <h3 className="home-discovery-card-title">Image‑guided procedures</h3>
-                        <p className="home-discovery-card-body">
-                          Targeted interventions such as radiofrequency and ultrasound‑guided injections.
-                        </p>
-                      </Link>
-                    </li>
-
-                    <li className="home-discovery-slide" role="listitem">
-                      <Link
-                        to="/treatments/surgical-treatments/tubular-microsurgery"
-                        className="home-discovery-card"
-                        aria-label="Explore spine surgery services"
-                        onClick={() => trackEvent('nav_click', { location: 'home-discovery', to: 'spine-surgery' })}
-                      >
-                        <span className="home-discovery-card-icon" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M7 6.5h10M7 10.5h10M7 14.5h10M7 18.5h10"
-                              stroke="currentColor"
-                              strokeWidth="1.7"
-                              strokeLinecap="round"
-                            />
-                            <path
-                              d="M9 4.8v14.4M15 4.8v14.4"
-                              stroke="currentColor"
-                              strokeWidth="1.2"
-                              strokeLinecap="round"
-                              opacity="0.8"
-                            />
-                          </svg>
-                        </span>
-                        <h3 className="home-discovery-card-title">Spine surgery</h3>
-                        <p className="home-discovery-card-body">
-                          Precise surgical options when conservative care is not enough.
-                        </p>
-                      </Link>
-                    </li>
-
-                    <li className="home-discovery-slide" role="listitem">
-                      <Link
-                        to="/specialities/sports-medicine/injuries"
-                        className="home-discovery-card"
-                        aria-label="Explore sports medicine services"
-                        onClick={() => trackEvent('nav_click', { location: 'home-discovery', to: 'sports-medicine' })}
-                      >
-                        <span className="home-discovery-card-icon" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M8.2 13.1c1.2-2.7 2.9-4.1 5-4.1 2.9 0 4.3 2.5 6.3 2.5"
-                              stroke="currentColor"
-                              strokeWidth="1.7"
-                              strokeLinecap="round"
-                            />
-                            <path
-                              d="M5.6 18c1.7 0 2.6-1.7 4.3-1.7s2.4 1.7 4.2 1.7 2.4-1.7 4.1-1.7"
-                              stroke="currentColor"
-                              strokeWidth="1.7"
-                              strokeLinecap="round"
-                            />
-                          </svg>
-                        </span>
-                        <h3 className="home-discovery-card-title">Sports medicine</h3>
-                        <p className="home-discovery-card-body">
-                          Injury care, performance support and return‑to‑activity plans.
-                        </p>
-                      </Link>
-                    </li>
-
-                    <li className="home-discovery-slide" role="listitem">
-                      <Link
-                        to="/specialities/stroke-medicine/rehabilitation"
-                        className="home-discovery-card"
-                        aria-label="Explore stroke rehabilitation services"
-                        onClick={() => trackEvent('nav_click', { location: 'home-discovery', to: 'stroke-rehab' })}
-                      >
-                        <span className="home-discovery-card-icon" aria-hidden="true">
-                          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                              d="M7.5 18.5V7.7c0-1 .8-1.8 1.8-1.8h5.4c1 0 1.8.8 1.8 1.8v10.8"
-                              stroke="currentColor"
-                              strokeWidth="1.6"
-                              strokeLinejoin="round"
-                            />
-                            <path
-                              d="M6 18.5h12"
-                              stroke="currentColor"
-                              strokeWidth="1.6"
-                              strokeLinecap="round"
-                            />
-                          </svg>
-                        </span>
-                        <h3 className="home-discovery-card-title">Rehabilitation</h3>
-                        <p className="home-discovery-card-body">
-                          Structured stroke rehabilitation and long‑term recovery support.
-                        </p>
-                      </Link>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="home-discovery-controls" aria-label="Carousel controls">
-                  <div className="home-discovery-arrows" aria-hidden="true">
-                    <div className="home-discovery-arrow-set home-discovery-arrow-set-1">
-                      <label className="home-discovery-arrow" htmlFor="home-discovery-6">‹</label>
-                      <label className="home-discovery-arrow" htmlFor="home-discovery-2">›</label>
-                    </div>
-                    <div className="home-discovery-arrow-set home-discovery-arrow-set-2">
-                      <label className="home-discovery-arrow" htmlFor="home-discovery-1">‹</label>
-                      <label className="home-discovery-arrow" htmlFor="home-discovery-3">›</label>
-                    </div>
-                    <div className="home-discovery-arrow-set home-discovery-arrow-set-3">
-                      <label className="home-discovery-arrow" htmlFor="home-discovery-2">‹</label>
-                      <label className="home-discovery-arrow" htmlFor="home-discovery-4">›</label>
-                    </div>
-                    <div className="home-discovery-arrow-set home-discovery-arrow-set-4">
-                      <label className="home-discovery-arrow" htmlFor="home-discovery-3">‹</label>
-                      <label className="home-discovery-arrow" htmlFor="home-discovery-5">›</label>
-                    </div>
-                    <div className="home-discovery-arrow-set home-discovery-arrow-set-5">
-                      <label className="home-discovery-arrow" htmlFor="home-discovery-4">‹</label>
-                      <label className="home-discovery-arrow" htmlFor="home-discovery-6">›</label>
-                    </div>
-                    <div className="home-discovery-arrow-set home-discovery-arrow-set-6">
-                      <label className="home-discovery-arrow" htmlFor="home-discovery-5">‹</label>
-                      <label className="home-discovery-arrow" htmlFor="home-discovery-1">›</label>
-                    </div>
-                  </div>
-
-                  <div className="home-discovery-dots" aria-label="Choose a service">
-                    <label className="home-discovery-dot" htmlFor="home-discovery-1" aria-label="Pain medicine" />
-                    <label className="home-discovery-dot" htmlFor="home-discovery-2" aria-label="Physiotherapy" />
-                    <label className="home-discovery-dot" htmlFor="home-discovery-3" aria-label="Image-guided procedures" />
-                    <label className="home-discovery-dot" htmlFor="home-discovery-4" aria-label="Spine surgery" />
-                    <label className="home-discovery-dot" htmlFor="home-discovery-5" aria-label="Sports medicine" />
-                    <label className="home-discovery-dot" htmlFor="home-discovery-6" aria-label="Rehabilitation" />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Suspense fallback={<ImageGridSkeleton count={3} className="page-section" />}>
+          <TestimonialSection handleVideoEnter={handleVideoEnter} />
+        </Suspense>
+        <Suspense fallback={<ArticleFeedSkeleton count={3} className="page-section" />}>
+          <StoriesSection enableStoryVideo={enableStoryVideo} />
+        </Suspense>
 
         <section className="home-section-treatment-cards">
           <header className="home-section-team-header">
@@ -824,7 +281,7 @@ export default function Home() {
                 <div className="treatment-card-illustration treatment-card-illustration-non-invasive">
                   <img
                     className="treatment-card-video"
-                    src="/assets/images/illustrative/Physiotherapy-min.jpg"
+                    src="/assets/images/Homepage/NonInvasive.webp"
                     alt="Physiotherapy session representing non-invasive pain treatments."
                     loading="lazy"
                     decoding="async"
@@ -856,7 +313,7 @@ export default function Home() {
                 <div className="treatment-card-illustration treatment-card-illustration-minimally-invasive">
                   <img
                     className="treatment-card-video"
-                    src="/assets/images/illustrative/pain-medicine-algarve-min.jpg"
+                    src="/assets/images/Homepage/MinimallyInvasive.webp"
                     alt="Clinical pain procedure setting representing minimally invasive treatments."
                     loading="lazy"
                     decoding="async"
@@ -888,7 +345,7 @@ export default function Home() {
                 <div className="treatment-card-illustration treatment-card-illustration-surgical">
                   <img
                     className="treatment-card-video"
-                    src="/assets/images/illustrative/Lumber-Spine-Pain-min.jpg"
+                    src="/assets/images/Homepage/Surgical.webp"
                     alt="Spine-related imagery representing surgical spine treatments."
                     loading="lazy"
                     decoding="async"
@@ -1055,7 +512,7 @@ export default function Home() {
             <div className="home-team-grid">
               <article className="home-team-card">
                 <div className="home-team-image">
-                  <img src="/assets/images/team/dr-miguel-costa-algarve-pain-centre.jpg" alt="Dr. Miguel Costa" loading="lazy" />
+                  <img src="/assets/images/team/dr-miguel-costa-algarve-pain-centre.webp" alt="Dr. Miguel Costa" loading="lazy" />
                 </div>
                 <div className="home-team-body">
                   <h3 className="home-team-name">Dr. Miguel Costa</h3>
@@ -1064,7 +521,7 @@ export default function Home() {
               </article>
               <article className="home-team-card">
                 <div className="home-team-image">
-                  <img src="/assets/images/team/dr-miguel-batista-algarve-pain-centre.jpg" alt="Dr. Miguel Baptista" loading="lazy" />
+                  <img src="/assets/images/team/dr-miguel-batista-algarve-pain-centre.webp" alt="Dr. Miguel Baptista" loading="lazy" />
                 </div>
                 <div className="home-team-body">
                   <h3 className="home-team-name">Dr. Miguel Baptista</h3>
@@ -1073,7 +530,7 @@ export default function Home() {
               </article>
               <article className="home-team-card">
                 <div className="home-team-image">
-                  <img src="/assets/images/team/dr-ricardo-frada-algarve-pain-centre.jpg" alt="Dr. Ricardo Frada" loading="lazy" />
+                  <img src="/assets/images/team/dr-ricardo-frada-algarve-pain-centre.webp" alt="Dr. Ricardo Frada" loading="lazy" />
                 </div>
                 <div className="home-team-body">
                   <h3 className="home-team-name">Dr. Ricardo Frada</h3>
@@ -1082,7 +539,7 @@ export default function Home() {
               </article>
               <article className="home-team-card">
                 <div className="home-team-image">
-                  <img src="/assets/images/illustrative/Physiotherapy-min.jpg" alt="Physiotherapy Team" loading="lazy" />
+                  <img src="/assets/images/illustrative/Physiotherapy-min.webp" alt="Physiotherapy Team" loading="lazy" />
                 </div>
                 <div className="home-team-body">
                   <h3 className="home-team-name">Rehabilitation Team</h3>
@@ -1094,6 +551,85 @@ export default function Home() {
               <Link to="/about" className="home-team-link" onClick={() => trackEvent('nav_click', { to: 'about', location: 'home-team' })}>
                 Meet the full team <span aria-hidden="true">→</span>
               </Link>
+            </div>
+
+            <div className="home-centers" role="region" aria-labelledby="home-centers-title">
+              <header className="home-centers-header">
+                <p className="home-centers-eyebrow">Our network</p>
+                <h3 id="home-centers-title" className="home-centers-title">Our Centers</h3>
+                <p className="home-centers-subtitle">
+                  Explore our specialist centres in the Algarve and contact our team for appointments and referrals.
+                </p>
+              </header>
+
+              <ul className="home-centers-grid" role="list" aria-label="Medical centres">
+                <li className="home-centers-item" role="listitem">
+                  <Link
+                    to="/contact"
+                    className="home-centers-card"
+                    aria-label="Contact Algarve Spine Center"
+                    onClick={() => trackEvent('nav_click', { to: 'contact', location: 'home-centers', center: 'algarve-spine-center' })}
+                  >
+                    <article className="home-centers-card-inner">
+                      <div className="home-centers-card-media" aria-hidden="true">
+                        <img
+                          src="/assets/SpineCenter.webp"
+                          alt=""
+                          loading="lazy"
+                          decoding="async"
+                          className="home-centers-card-mediaImage"
+                        />
+                      </div>
+                      <div className="home-centers-card-logoWrap">
+                        <img
+                          src="/assets/asc-preto.svg"
+                          alt="Algarve Spine Center"
+                          loading="lazy"
+                          decoding="async"
+                          className="home-centers-card-logo"
+                        />
+                        <span className="sr-only">Algarve Spine Center</span>
+                      </div>
+                      <p className="home-centers-card-body">
+                        Spine diagnostics, minimally invasive interventions, and surgical pathways coordinated by our team.
+                      </p>
+                      <span className="home-centers-card-cta" aria-hidden="true">Contact centre →</span>
+                    </article>
+                  </Link>
+                </li>
+                <li className="home-centers-item" role="listitem">
+                  <Link
+                    to="/contact"
+                    className="home-centers-card"
+                    aria-label="Contact Algarve Medical Center"
+                    onClick={() => trackEvent('nav_click', { to: 'contact', location: 'home-centers', center: 'algarve-medical-center' })}
+                  >
+                    <article className="home-centers-card-inner">
+                      <h4 className="home-centers-card-title">Algarve Medical Center</h4>
+                      <p className="home-centers-card-body">
+                        Multidisciplinary consultations with fast access to imaging, rehabilitation, and follow-up care.
+                      </p>
+                      <span className="home-centers-card-cta" aria-hidden="true">Contact centre →</span>
+                    </article>
+                  </Link>
+                </li>
+                <li className="home-centers-item" role="listitem">
+                  <Link
+                    to="/contact"
+                    className="home-centers-card"
+                    aria-label="Contact Algarve Pain Centre"
+                    onClick={() => trackEvent('nav_click', { to: 'contact', location: 'home-centers', center: 'algarve-pain-centre' })}
+                  >
+                    <article className="home-centers-card-inner">
+                      <h4 className="home-centers-card-title">Algarve Pain Centre</h4>
+                      <p className="home-centers-card-body">
+                        Evidence-based pain medicine with integrated rehabilitation and long-term care planning.
+                      </p>
+                      <span className="home-centers-card-cta" aria-hidden="true">Contact centre →</span>
+                    </article>
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
         </section>

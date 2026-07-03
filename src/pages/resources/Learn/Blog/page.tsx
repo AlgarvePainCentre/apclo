@@ -1,7 +1,11 @@
 import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import './Blog.css';
+import '../../../../styles/pages/blog-page.css';
 import { blogArticles } from './articles';
+import { ArticleFeedSkeleton } from '../../../../components/LoadingSkeletons';
+import { useAppSelector } from '../../../../app/hooks';
+import { useGetBlogArticlesQuery } from '../../../../features/content/contentApi';
+import { selectFeaturedBlogArticles } from '../../../../features/content/selectors';
 
 type BlogPost = {
   slug: string;
@@ -17,6 +21,23 @@ type BlogPost = {
   isFeatured?: boolean;
   searchText: string;
 };
+
+function mapArticleToPost(article: (typeof blogArticles)[number], index = 0): BlogPost {
+  return {
+    slug: article.slug,
+    title: article.title,
+    excerpt: article.description,
+    category: article.category,
+    tags: article.tags,
+    author: { name: article.author.name, role: article.author.role },
+    readTimeMins: estimateReadTimeMins(article),
+    dateISO: article.dateISO,
+    featuredImage: { src: article.coverImage.src, alt: article.coverImage.alt },
+    to: `/blog/${article.slug}`,
+    isFeatured: index < 3,
+    searchText: buildSearchText(article),
+  };
+}
 
 function formatDate(dateISO: string) {
   const date = new Date(dateISO);
@@ -384,10 +405,10 @@ const BlogPage: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const contentId = useId();
-  const sidebarPrefix = useId();
-  const drawerPrefix = useId();
   const articlesRef = useRef<HTMLElement | null>(null);
   const mobileDrawerCloseRef = useRef<HTMLButtonElement | null>(null);
+  const { data: blogArticleData = [], isLoading: isArticlesLoading } = useGetBlogArticlesQuery(undefined);
+  const featuredArticles = useAppSelector(selectFeaturedBlogArticles);
 
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
@@ -400,24 +421,11 @@ const BlogPage: React.FC = () => {
   const normalizedQuery = urlQuery.trim().toLowerCase();
 
   const posts = useMemo<BlogPost[]>(() => {
-    const sorted = [...blogArticles].sort(
+    const sorted = [...blogArticleData].sort(
       (a, b) => new Date(b.dateISO).getTime() - new Date(a.dateISO).getTime()
     );
-    return sorted.map((a, idx) => ({
-      slug: a.slug,
-      title: a.title,
-      excerpt: a.description,
-      category: a.category,
-      tags: a.tags,
-      author: { name: a.author.name, role: a.author.role },
-      readTimeMins: estimateReadTimeMins(a),
-      dateISO: a.dateISO,
-      featuredImage: { src: a.coverImage.src, alt: a.coverImage.alt },
-      to: `/blog/${a.slug}`,
-      isFeatured: idx < 3,
-      searchText: buildSearchText(a),
-    }));
-  }, []);
+    return sorted.map((article, index) => mapArticleToPost(article, index));
+  }, [blogArticleData]);
 
   useEffect(() => {
     document.title = 'Blog | Algarve Pain Centre';
@@ -483,7 +491,13 @@ const BlogPage: React.FC = () => {
     return Array.from(map.values()).sort((a, b) => b.key.localeCompare(a.key));
   }, [posts]);
 
-  const featured = useMemo(() => posts.filter((p) => p.isFeatured).slice(0, 3), [posts]);
+  const featured = useMemo(
+    () =>
+      featuredArticles.length > 0
+        ? featuredArticles.map((article, index) => mapArticleToPost(article, index))
+        : posts.filter((p) => p.isFeatured).slice(0, 3),
+    [featuredArticles, posts]
+  );
 
   const updateSearch = useCallback(
     (mutate: (params: URLSearchParams) => void, options: { replace?: boolean } = {}) => {
@@ -695,7 +709,7 @@ const BlogPage: React.FC = () => {
     scrollToArticles();
   };
 
-  const renderSidebarBody = (prefix: string) => {
+  const renderSidebarBody = () => {
     return (
       <>
       <div className="blog-sidebar-header">
@@ -897,7 +911,7 @@ const BlogPage: React.FC = () => {
         <div className="blog-layout">
           <aside className="blog-sidebar" aria-label="Blog sidebar">
             <div className="blog-sidebar-sticky">
-              {renderSidebarBody(sidebarPrefix)}
+              {renderSidebarBody()}
             </div>
           </aside>
 
@@ -910,41 +924,45 @@ const BlogPage: React.FC = () => {
                 </p>
               </header>
 
-              <div className="blog-cardGrid blog-cardGrid-featured" role="list">
-                {featured.map((p) => (
-                  <article key={p.slug} className="blog-card" role="listitem">
-                    <div className="blog-card-media">
-                      <img
-                        src={p.featuredImage.src}
-                        alt={p.featuredImage.alt}
-                        loading="lazy"
-                        decoding="async"
-                        className="blog-card-img"
-                      />
-                    </div>
-                    <div className="blog-card-body">
-                      <p className="blog-card-meta">
-                        <span className="blog-pill">{p.category}</span>
-                        <span aria-hidden="true"> · </span>
-                        <span>{formatDate(p.dateISO)}</span>
-                        <span aria-hidden="true"> · </span>
-                        <span>{p.readTimeMins} min read</span>
-                      </p>
-                      <h3 className="blog-card-title">{p.title}</h3>
-                      <p className="blog-card-excerpt">{p.excerpt}</p>
-                      <div className="blog-card-footer">
-                        <p className="blog-card-author">
-                          <span className="blog-author-name">{p.author.name}</span>
-                          <span className="blog-author-role">{p.author.role}</span>
-                        </p>
-                        <Link className="blog-readMore" to={p.to} aria-label={`Read more: ${p.title}`}>
-                          Read More <span aria-hidden="true">→</span>
-                        </Link>
+              {isArticlesLoading ? (
+                <ArticleFeedSkeleton count={3} />
+              ) : (
+                <div className="blog-cardGrid blog-cardGrid-featured" role="list">
+                  {featured.map((p) => (
+                    <article key={p.slug} className="blog-card" role="listitem">
+                      <div className="blog-card-media">
+                        <img
+                          src={p.featuredImage.src}
+                          alt={p.featuredImage.alt}
+                          loading="lazy"
+                          decoding="async"
+                          className="blog-card-img"
+                        />
                       </div>
-                    </div>
-                  </article>
-                ))}
-              </div>
+                      <div className="blog-card-body">
+                        <p className="blog-card-meta">
+                          <span className="blog-pill">{p.category}</span>
+                          <span aria-hidden="true"> · </span>
+                          <span>{formatDate(p.dateISO)}</span>
+                          <span aria-hidden="true"> · </span>
+                          <span>{p.readTimeMins} min read</span>
+                        </p>
+                        <h3 className="blog-card-title">{p.title}</h3>
+                        <p className="blog-card-excerpt">{p.excerpt}</p>
+                        <div className="blog-card-footer">
+                          <p className="blog-card-author">
+                            <span className="blog-author-name">{p.author.name}</span>
+                            <span className="blog-author-role">{p.author.role}</span>
+                          </p>
+                          <Link className="blog-readMore" to={p.to} aria-label={`Read more: ${p.title}`}>
+                            Read More <span aria-hidden="true">→</span>
+                          </Link>
+                        </div>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              )}
             </section>
 
             <section
@@ -974,7 +992,9 @@ const BlogPage: React.FC = () => {
                 </button>
               </header>
 
-              {isBusy ? (
+              {isArticlesLoading ? (
+                <ArticleFeedSkeleton count={safeItemsPerPage >= 20 ? 6 : 3} />
+              ) : isBusy ? (
                 <p className="blog-pagination-status" role="status" aria-live="polite">
                   Loading…
                 </p>
@@ -1058,7 +1078,7 @@ const BlogPage: React.FC = () => {
                   Show results
                 </button>
               </div>
-              <div className="blog-drawer-sections">{renderSidebarBody(drawerPrefix)}</div>
+              <div className="blog-drawer-sections">{renderSidebarBody()}</div>
             </div>
           </div>
         </div>

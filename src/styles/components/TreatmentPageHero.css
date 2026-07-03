@@ -1,0 +1,92 @@
+.treatment-page-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  align-items: flex-start;
+  min-height: 68vh;
+  min-height: 68svh;
+  overflow: clip;
+  color: #e5e7eb;
+  background: #020617;
+}
+
+.treatment-page-hero .psx-hero-inner {
+  position: relative;
+  z-index: 2;
+  width: min(100%, var(--container-width, 1600px));
+  min-height: inherit;
+  margin: 0 auto;
+  padding: clamp(56px, 8vw, 96px) 4%;
+  padding-top: clamp(92px, 10vw, 128px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  text-align: center;
+  transform: translateY(clamp(20px, 3vh, 40px));
+}
+
+.treatment-page-hero .psx-hero-backdrop {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-color: #020617;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+.treatment-page-hero .psx-hero-backdrop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(2, 6, 23, 0.42), rgba(2, 6, 23, 0.72));
+}
+
+.treatment-page-hero .psx-hero-eyebrow {
+  margin: 0 0 10px;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.treatment-page-hero .psx-hero-title {
+  margin: 0 0 12px;
+  max-width: 14ch;
+  font-size: clamp(2.75rem, 5vw, 4.5rem);
+  line-height: 1.02;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: #ffffff;
+}
+
+.treatment-page-hero .psx-hero-subtitle {
+  margin: 0;
+  max-width: 60ch;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+@media (max-width: 767px) {
+  .treatment-page-hero {
+    min-height: 62vh;
+    min-height: 62svh;
+  }
+
+  .treatment-page-hero .psx-hero-inner {
+    padding-top: clamp(88px, 18vw, 120px);
+    transform: translateY(clamp(12px, 2vh, 24px));
+  }
+
+  .treatment-page-hero .psx-hero-title {
+    max-width: 100%;
+  }
+}

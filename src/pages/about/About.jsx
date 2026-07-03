@@ -1,17 +1,80 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { doctorsData } from '../../data/doctorsData';
-import '../home/Home.css';
-import './About.css';
+import '../../styles/layout/site-sections.css';
+import '../../styles/pages/about-page.css';
 
 export default function About() {
   const navigate = useNavigate();
 
-  const handleCardClick = (doctor) => {
-    navigate(`/doctor/${doctor.id}`);
-  };
-
   const largeCards = doctorsData.filter(d => d.isLarge);
-  const smallCards = doctorsData.filter(d => !d.isLarge);
+  const doctorsById = new Map(doctorsData.map((doctor) => [doctor.id, doctor]));
+  const getDoctor = (id) => doctorsById.get(id);
+
+  const teamCategories = [
+    {
+      id: 'medicina-dor-desportiva',
+      title: 'Medicina da Dor e Medicina Desportiva',
+      meta: { label: 'Diretor Clínico', doctorId: 'miguel-costa' },
+      groups: [
+        {
+          id: 'medicina-dor-desportiva',
+          doctorIds: ['miguel-costa', 'gisela-leandro'],
+        },
+      ],
+    },
+    {
+      id: 'neuroradiologia',
+      title: 'Neuroradiologia',
+      groups: [
+        {
+          id: 'intervencao-minimamente-invasiva-coluna',
+          title: 'Intervenção Minimamente Invasiva da Coluna',
+          doctorIds: ['miguel-batista'],
+        },
+      ],
+    },
+    {
+      id: 'clinica-geral',
+      title: 'Clínica Geral e Medicina 3.0',
+      groups: [{ id: 'clinica-geral', doctorIds: ['nuno-lica'] }],
+    },
+    {
+      id: 'ortopedia',
+      title: 'Ortopedia',
+      groups: [
+        {
+          id: 'coluna',
+          title: 'Coluna',
+          doctorIds: ['ricardo-frada', 'pedro-sousa-neves', 'joao-ricardo-soares'],
+        },
+        {
+          id: 'anca-e-joelho',
+          title: 'Anca e Joelho',
+          doctorIds: ['joao-ricardo-soares', 'tiago-bessa'],
+        },
+        {
+          id: 'ombro',
+          title: 'Ombro',
+          doctorIds: ['diogo-gomes'],
+        },
+        {
+          id: 'pe-e-tornozelo',
+          title: 'Pé e Tornozelo',
+          doctorIds: ['joao-vide'],
+        },
+      ],
+    },
+    {
+      id: 'enfermeira',
+      title: 'Enfermeira',
+      groups: [{ id: 'enfermeira', doctorIds: ['joana-madeira', 'joana-ferreira', 'raquel-antao'] }],
+    },
+    {
+      id: 'dor-cronica',
+      title: 'Consultor em Dor Crónica',
+      groups: [{ id: 'dor-cronica', doctorIds: ['javier-duran', 'edgar-semedo'] }],
+    },
+  ];
 
   return (
     <div className="about-page">
@@ -24,9 +87,10 @@ export default function About() {
             loop
             playsInline
             preload="metadata"
-            poster="/assets/images/illustrative/services-home-min-1.jpg"
+            poster="/assets/images/illustrative/services-home-min-1.webp"
           >
-            <source src="/assets/videos/banner-About.mp4" type="video/mp4" />
+            <source src="/assets/videos/banner-About.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
+            <source src="/assets/videos/banner-About.h264.mp4" type='video/mp4; codecs="avc1.42E01E"' />
             Your browser does not support the video tag.
           </video>
         </div>
@@ -71,7 +135,7 @@ export default function About() {
                 <div className="mobile-video-container">
                   <img
                     className="section-image-el"
-                    src="/assets/images/illustrative/pain-medicine-algarve-min.jpg"
+                    src="/assets/images/illustrative/pain-medicine-algarve-min.webp"
                     alt="Vale do Lobo Algarve"
                     loading="lazy"
                     decoding="async"
@@ -87,7 +151,7 @@ export default function About() {
             <div className="section-video-col">
               <img
                 className="section-image-el"
-                src="/assets/images/illustrative/pain-medicine-algarve-min.jpg"
+                src="/assets/images/illustrative/pain-medicine-algarve-min.webp"
                 alt="Vale do Lobo Algarve"
                 loading="lazy"
                 decoding="async"
@@ -102,18 +166,10 @@ export default function About() {
 
            <div className="team-grid-top">
               {largeCards.map(doctor => (
-                <div 
+                <Link
                   key={doctor.id} 
                   className="team-card-large clickable-card"
-                  onClick={() => handleCardClick(doctor)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      handleCardClick(doctor);
-                    }
-                  }}
+                  to={`/doctor/${doctor.id}`}
                   aria-label={`View details for ${doctor.name}`}
                 >
                    <div className="team-image-wrapper">
@@ -125,31 +181,65 @@ export default function About() {
                         <p key={idx} className="team-role">{role}</p>
                       ))}
                    </div>
-                </div>
+                </Link>
               ))}
            </div>
 
            <div className="team-grid-bottom">
-              {smallCards.map(doctor => (
-                <div 
-                  key={doctor.id} 
-                  className="team-card-small clickable-card"
-                  onClick={() => handleCardClick(doctor)}
-                  role="button"
-                  tabIndex={0}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      e.preventDefault();
-                      handleCardClick(doctor);
-                    }
-                  }}
-                  aria-label={`View details for ${doctor.name}`}
-                >
-                   <h3>{doctor.name}</h3>
-                   {doctor.roles.map((role, idx) => (
-                     <p key={idx}>{role}</p>
-                   ))}
-                </div>
+              {teamCategories.map((category) => (
+                <section key={category.id} className="team-category" aria-labelledby={`team-category-${category.id}`}>
+                  <header className="team-category-header">
+                    <h3 className="team-category-title" id={`team-category-${category.id}`}>
+                      {category.title}
+                    </h3>
+                    {category.meta ? (
+                      (() => {
+                        const metaDoctor = getDoctor(category.meta.doctorId);
+                        if (!metaDoctor) return null;
+                        return (
+                          <p className="team-category-meta">
+                            <span className="team-category-meta-label">{category.meta.label}:</span>{' '}
+                            <Link
+                              to={`/doctor/${metaDoctor.id}`}
+                              className="team-category-meta-link"
+                              aria-label={`View details for ${metaDoctor.name}`}
+                            >
+                              {metaDoctor.name}
+                            </Link>
+                          </p>
+                        );
+                      })()
+                    ) : null}
+                  </header>
+                  {category.groups.map((group) => (
+                    <div key={group.id} className="team-subcategory">
+                      {group.title ? <h4 className="team-subcategory-title">{group.title}</h4> : null}
+                      <div className="team-category-grid">
+                        {group.doctorIds.map((doctorId) => {
+                          const doctor = getDoctor(doctorId);
+                          if (!doctor) return null;
+                          return (
+                            <Link
+                              key={`${group.id}-${doctor.id}`}
+                              className="team-card-small clickable-card"
+                              to={`/doctor/${doctor.id}`}
+                              aria-label={`View details for ${doctor.name}`}
+                            >
+                              <h5 className="team-card-name">{doctor.name}</h5>
+                              <div className="team-card-tags">
+                                {doctor.roles.map((role, idx) => (
+                                  <span key={idx} className="team-card-tag">
+                                    {role}
+                                  </span>
+                                ))}
+                              </div>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ))}
+                </section>
               ))}
            </div>
         </section>

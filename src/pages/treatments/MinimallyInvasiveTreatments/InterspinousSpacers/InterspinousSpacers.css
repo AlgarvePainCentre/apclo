@@ -1,11 +1,19 @@
-.interspinous-spacers-page {
-  background: #fff;
+/* Isolated CSS for InterspinousSpacers */
+@import '../../components/detail/TreatmentHero.css';
+@import '../../components/detail/TreatmentBreadcrumb.css';
+@import '../../components/detail/TreatmentFeature.css';
+@import '../../components/detail/TreatmentDetailsGrid.css';
+@import '../../components/detail/TreatmentFaq.css';
+
+.page-interspinousspacers {
+  /* Page specific styles */
+  background-color: #f8fafc;
+  color: #111827;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
-.interspinous-spacers-hero .psx-hero-backdrop {
-  background-image:
-    linear-gradient(120deg, rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.55)),
-    url('/assets/images/illustrative/pain-medicine-algarve-min.jpg');
-  background-size: cover;
-  background-position: center;
+/* Ensure the main container mirrors specialities layout */
+.page-interspinousspacers .page-main {
+  width: 100%;
+  margin: 0 auto;
 }

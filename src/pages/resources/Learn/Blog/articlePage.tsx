@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import SocialShare from '../../../../components/SocialShare';
-import '../Article.css';
+import '../../../../styles/layout/article-layout.css';
 import { blogArticles, getBlogArticleBySlug } from './articles';
 
 type Comment = {
@@ -426,13 +426,21 @@ const BlogArticlePage: React.FC = () => {
                         <figure key={idx} className="article-figure">
                           <video
                             className="article-figure-img"
-                            src={b.src}
                             controls
                             preload="none"
                             playsInline
                             aria-label={b.title}
                             poster={b.poster}
-                          />
+                          >
+                            <source
+                              src={b.src.includes('.av1.mp4') ? b.src : b.src.replace(/\.(h264\.)?mp4$|\.mov$/i, '.av1.mp4')}
+                              type='video/mp4; codecs="av01.0.05M.08"'
+                            />
+                            <source
+                              src={b.src.includes('.h264.mp4') ? b.src : b.src.replace(/\.(av1\.)?mp4$|\.mov$/i, '.h264.mp4')}
+                              type='video/mp4; codecs="avc1.42E01E"'
+                            />
+                          </video>
                           {b.caption ? <figcaption className="article-figure-caption">{b.caption}</figcaption> : null}
                         </figure>
                       );

@@ -1,0 +1,586 @@
+.botulin-toxin-injection-page {
+  background: #fff;
+}
+
+.botulin-toxin-injection-hero .psx-hero-backdrop {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/assets/images/illustrative/Post-Stroke-min-1.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.botulin-toxin-injection-page .btx-overview {
+  background: #f8fafc;
+}
+
+.botulin-toxin-injection-page .btx-overview-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(36px, 6vw, 72px);
+}
+
+.botulin-toxin-injection-page .btx-understanding {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(22px, 4vw, 56px);
+  align-items: start;
+}
+
+.botulin-toxin-injection-page .btx-understanding-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 4.6vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #003366;
+}
+
+.botulin-toxin-injection-page .btx-understanding-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.botulin-toxin-injection-page .btx-understanding-paragraph {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  line-height: 1.85;
+  font-size: 1rem;
+}
+
+.botulin-toxin-injection-page .btx-process-header {
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.botulin-toxin-injection-page .btx-process-title {
+  margin: 0;
+  font-size: clamp(1.9rem, 4.2vw, 2.6rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.botulin-toxin-injection-page .btx-process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.botulin-toxin-injection-page .btx-process-card {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  padding: 22px 22px 24px;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  gap: 10px;
+}
+
+.botulin-toxin-injection-page .btx-process-number {
+  margin: 0;
+  color: #1e40af;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.botulin-toxin-injection-page .btx-process-card-title {
+  margin: 0;
+  color: #003366;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.botulin-toxin-injection-page .btx-process-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.12);
+}
+
+.botulin-toxin-injection-page .btx-process-card-body {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
+  .botulin-toxin-injection-page .btx-understanding {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .botulin-toxin-injection-page .btx-process-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .botulin-toxin-injection-page .btx-process-header {
+    text-align: left;
+  }
+
+  .botulin-toxin-injection-page .btx-process-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.botulin-toxin-injection-page .btx-expect {
+  background: #f8fafc;
+}
+
+.botulin-toxin-injection-page .btx-expect-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.botulin-toxin-injection-page .btx-expect-header {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 34px;
+}
+
+.botulin-toxin-injection-page .btx-expect-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.botulin-toxin-injection-page .btx-expect-subtitle {
+  margin: 16px auto 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #0b4a7a;
+  max-width: 72ch;
+}
+
+.botulin-toxin-injection-page .btx-expect-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.08);
+}
+
+.botulin-toxin-injection-page .btx-expect-media {
+  position: relative;
+  background: #e5e7eb;
+  min-height: 420px;
+}
+
+.botulin-toxin-injection-page .btx-expect-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.botulin-toxin-injection-page .btx-expect-card {
+  background: #ffffff;
+  display: grid;
+}
+
+.botulin-toxin-injection-page .btx-expect-item {
+  padding: 22px 26px;
+}
+
+.botulin-toxin-injection-page .btx-expect-item-title {
+  margin: 0;
+  color: #0b4a7a;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  font-weight: 800;
+}
+
+.botulin-toxin-injection-page .btx-expect-item-body {
+  margin: 8px 0 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  max-width: 62ch;
+}
+
+.botulin-toxin-injection-page .btx-expect-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.1);
+}
+
+@media (max-width: 900px) {
+  .botulin-toxin-injection-page .btx-expect-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .botulin-toxin-injection-page .btx-expect-media {
+    min-height: 260px;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 600px) {
+  .botulin-toxin-injection-page .btx-expect-header {
+    text-align: left;
+    margin-bottom: 22px;
+  }
+
+  .botulin-toxin-injection-page .btx-expect-item {
+    padding: 18px 18px;
+  }
+}
+
+.botulin-toxin-injection-page .btx-benefits-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.botulin-toxin-injection-page .btx-benefits-header {
+  text-align: center;
+  max-width: 980px;
+  margin: 0 auto 40px;
+}
+
+.botulin-toxin-injection-page .btx-benefits-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.botulin-toxin-injection-page .btx-benefits-subtitle {
+  margin: 16px auto 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #0b4a7a;
+  max-width: 70ch;
+}
+
+.botulin-toxin-injection-page .btx-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.botulin-toxin-injection-page .btx-benefit-card {
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  padding: 26px 24px 28px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+  display: grid;
+  gap: 12px;
+  min-height: 210px;
+}
+
+.botulin-toxin-injection-page .btx-benefit-card:nth-child(-n + 3) {
+  grid-column: span 4;
+}
+
+.botulin-toxin-injection-page .btx-benefit-card:nth-child(n + 4) {
+  grid-column: span 6;
+}
+
+.botulin-toxin-injection-page .btx-benefit-card-title {
+  margin: 0;
+  color: #003366;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.botulin-toxin-injection-page .btx-benefit-divider {
+  width: 100%;
+  height: 2px;
+  max-width: 220px;
+  background: #f04b5e;
+  border-radius: 999px;
+}
+
+.botulin-toxin-injection-page .btx-benefit-card-body {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  max-width: 56ch;
+}
+
+@media (max-width: 960px) {
+  .botulin-toxin-injection-page .btx-benefits-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .botulin-toxin-injection-page .btx-benefit-card {
+    grid-column: auto !important;
+    min-height: unset;
+  }
+}
+
+@media (max-width: 560px) {
+  .botulin-toxin-injection-page .btx-benefits-header {
+    text-align: left;
+    margin-bottom: 26px;
+  }
+
+  .botulin-toxin-injection-page .btx-benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .botulin-toxin-injection-page .btx-benefit-card {
+    padding: 22px 18px 24px;
+  }
+}
+
+.botulin-toxin-injection-page .btx-conditions-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.botulin-toxin-injection-page .btx-conditions-header {
+  text-align: center;
+  margin: 0 0 32px;
+}
+
+.botulin-toxin-injection-page .btx-conditions-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.botulin-toxin-injection-page .btx-conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.botulin-toxin-injection-page .btx-condition-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  align-items: stretch;
+  min-height: 180px;
+}
+
+.botulin-toxin-injection-page .btx-condition-copy {
+  padding: 20px 20px 22px;
+  display: grid;
+  gap: 10px;
+  align-content: center;
+  min-width: 0;
+  background: #f8fafc;
+}
+
+.botulin-toxin-injection-page .btx-condition-title {
+  margin: 0;
+  color: #0b4a7a;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+.botulin-toxin-injection-page .btx-condition-body {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 52ch;
+}
+
+.botulin-toxin-injection-page .btx-condition-media {
+  background: #eef2f7;
+  position: relative;
+}
+
+.botulin-toxin-injection-page .btx-condition-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .botulin-toxin-injection-page .btx-conditions-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .botulin-toxin-injection-page .btx-conditions-header {
+    text-align: left;
+  }
+
+  .botulin-toxin-injection-page .btx-condition-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .botulin-toxin-injection-page .btx-condition-media {
+    min-height: 220px;
+  }
+}
+
+.botulin-toxin-injection-page .btx-faq {
+  background: #f8fafc;
+}
+
+.botulin-toxin-injection-page .btx-faq-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.botulin-toxin-injection-page .btx-faq-header {
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.botulin-toxin-injection-page .btx-faq-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.botulin-toxin-injection-page .btx-faq-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.botulin-toxin-injection-page .btx-faq-item + .btx-faq-item {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.botulin-toxin-injection-page .btx-faq-trigger {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: background 160ms ease;
+}
+
+.botulin-toxin-injection-page .btx-faq-trigger:hover {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.botulin-toxin-injection-page .btx-faq-trigger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.22);
+}
+
+.botulin-toxin-injection-page .btx-faq-question {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(15, 23, 42, 0.55);
+  font-weight: 700;
+  text-align: left;
+}
+
+.botulin-toxin-injection-page .btx-faq-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.22);
+  background: rgba(255, 255, 255, 0.96);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  color: rgba(15, 23, 42, 0.62);
+}
+
+.botulin-toxin-injection-page .btx-faq-trigger[aria-expanded='true'] .btx-faq-question {
+  color: #0b4a7a;
+  font-weight: 800;
+}
+
+.botulin-toxin-injection-page .btx-faq-trigger[aria-expanded='true'] .btx-faq-icon {
+  border-color: rgba(11, 74, 122, 0.55);
+  color: rgba(11, 74, 122, 0.95);
+}
+
+.botulin-toxin-injection-page .btx-faq-panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 24px;
+  transition: max-height 280ms ease, opacity 200ms ease, padding 200ms ease;
+}
+
+.botulin-toxin-injection-page .btx-faq-panel[data-open='true'] {
+  max-height: 520px;
+  opacity: 1;
+  padding-top: 4px;
+  padding-bottom: 18px;
+}
+
+.botulin-toxin-injection-page .btx-faq-answer {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+@media (max-width: 600px) {
+  .botulin-toxin-injection-page .btx-faq-header {
+    text-align: left;
+  }
+  .botulin-toxin-injection-page .btx-faq-trigger {
+    padding: 18px 18px;
+  }
+  .botulin-toxin-injection-page .btx-faq-panel {
+    padding: 0 18px;
+  }
+  .botulin-toxin-injection-page .btx-faq-panel[data-open='true'] {
+    padding-bottom: 16px;
+  }
+}

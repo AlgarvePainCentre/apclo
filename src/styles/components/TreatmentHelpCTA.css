@@ -1,0 +1,74 @@
+/* Treatment Help CTA Component */
+
+.pt-help-cta-button,
+.st-help-cta-button,
+.hd-help-cta-button,
+.ost-help-cta-button,
+.cryo-help-cta-button,
+.ot-help-cta-button,
+.btx-help-cta-button,
+.hc-help-cta-button,
+.prp-help-cta-button,
+.np-help-cta-button,
+.cb-help-cta-button,
+.iacsi-help-cta-button,
+.ppm-help-cta-button,
+.pnb-help-cta-button,
+.rfa-help-cta-button,
+.iss-help-cta-button,
+.tms-help-cta-button,
+.sf-help-cta-button,
+.dr-help-cta-button,
+.lds-help-cta-button,
+.vp-help-cta-button {
+  padding: 1.2rem 1.5rem !important;
+  border-radius: 999px !important;
+  border: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  height: 48px !important;
+  width: fit-content !important;
+  text-decoration: none !important;
+  background-color: #f04b5e !important;
+  color: #ffffff !important;
+  font-size: 16px !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  background-size: 200% 200% !important;
+  background-position: 0% 50% !important;
+  transform: scale(1) !important;
+  transition: background-position 0.35s ease-out, box-shadow 0.28s ease-out, transform 0.28s ease-out !important;
+  margin-top: 24px !important;
+}
+
+.pt-help-cta-button:hover,
+.st-help-cta-button:hover,
+.hd-help-cta-button:hover,
+.ost-help-cta-button:hover,
+.cryo-help-cta-button:hover,
+.ot-help-cta-button:hover,
+.btx-help-cta-button:hover,
+.hc-help-cta-button:hover,
+.prp-help-cta-button:hover,
+.np-help-cta-button:hover,
+.cb-help-cta-button:hover,
+.iacsi-help-cta-button:hover,
+.ppm-help-cta-button:hover,
+.pnb-help-cta-button:hover,
+.rfa-help-cta-button:hover,
+.iss-help-cta-button:hover,
+.tms-help-cta-button:hover,
+.sf-help-cta-button:hover,
+.dr-help-cta-button:hover,
+.lds-help-cta-button:hover,
+.vp-help-cta-button:hover {
+  background-image: linear-gradient(90deg, #ff9a52 40%, #ff5c6e 80%, #e83d5b 100%) !important;
+  background-position: 100% 50% !important;
+  transform: none !important;
+  text-decoration: none !important;
+  color: #ffffff !important;
+}

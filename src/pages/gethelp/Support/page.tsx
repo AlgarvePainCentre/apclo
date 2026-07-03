@@ -1,5 +1,5 @@
 import React from 'react';
-import './Support.css';
+import '../../../styles/pages/gethelp/support-page.css';
 
 const SupportPage: React.FC = () => {
   return (

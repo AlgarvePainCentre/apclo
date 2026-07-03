@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { TreatmentsMain } from '../../Treatments';
-import '../../Treatments.css';
+import { initTreatmentStepsTimelines } from '../../animations/treatmentTimelineAnimations';
+import { TreatmentBreadcrumb } from '../../components/detail/TreatmentBreadcrumb';
 import './PlateletsRichPlasmaInjection.css';
 
 type PrpFaqItem = {
@@ -63,17 +64,19 @@ const PlateletsRichPlasmaInjectionPage: React.FC = () => {
     meta.content = description;
   }, []);
 
-  const heroBackdropStyle: React.CSSProperties = {
-    backgroundImage:
-      "linear-gradient(120deg, rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.55)), url('/assets/images/medical/1-platelets-plasma-injection.jpg')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  };
+  React.useEffect(() => {
+    const scope = document.getElementById('psx-platelets-rich-plasma-injection') ?? document;
+    return initTreatmentStepsTimelines(scope);
+  }, []);
 
   return (
-    <div className="psx-page platelets-rich-plasma-injection-page" id="psx-platelets-rich-plasma-injection">
-      <header className="psx-hero platelets-rich-plasma-injection-hero" aria-label="Platelet-rich plasma injection hero section">
-        <div className="psx-hero-backdrop" aria-hidden="true" style={heroBackdropStyle} />
+    <div className="psx-page platelets-rich-plasma-injection-page page-plateletsrichplasmainjection" id="psx-platelets-rich-plasma-injection">
+      <header className="treatment-page-hero platelets-rich-plasma-injection-hero" aria-label="Platelets rich plasma injection hero section">
+        <div
+          className="psx-hero-backdrop"
+          aria-hidden="true"
+          style={{ backgroundImage: "url('/assets/images/medical/1-platelets-plasma-injection.webp')" }}
+        />
         <div className="psx-hero-inner">
           <p className="psx-hero-eyebrow">Treatment</p>
           <h1 className="psx-hero-title">Platelets rich plasma injection</h1>
@@ -83,31 +86,15 @@ const PlateletsRichPlasmaInjectionPage: React.FC = () => {
         </div>
       </header>
 
-      <main className="page-main treatments-page">
-        <nav className="article-breadcrumb" aria-label="Breadcrumb">
-          <ol className="article-breadcrumb-list">
-            <li>
-              <Link to="/" className="article-breadcrumb-link">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li>
-              <Link to="/treatments" className="article-breadcrumb-link">
-                Treatments
-              </Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li aria-current="page">Platelets rich plasma injection</li>
-          </ol>
-        </nav>
+      <TreatmentsMain.PageMain>
+        <TreatmentBreadcrumb currentLabel="Platelets rich plasma injection" />
 
         <section className="page-section treatments-feature minimally-invasive-treatment-feature" aria-labelledby="prp-what-to-expect">
           <div className="treatments-feature-inner">
             <div className="treatments-feature-media">
               <img
                 className="treatments-feature-video"
-                src="/assets/images/medical/1-platelets-plasma-injection.jpg"
+                src="/assets/images/medical/1-platelets-plasma-injection.webp"
                 alt="Platelet-rich plasma (PRP) preparation for injection used in regenerative medicine for joints, tendons, and ligaments (illustrative)."
                 decoding="async"
                 loading="lazy"
@@ -132,15 +119,6 @@ const PlateletsRichPlasmaInjectionPage: React.FC = () => {
                 Aftercare typically involves short relative rest followed by a structured graded loading and rehabilitation plan. This
                 combination is often central to longer‑term improvement.
               </p>
-
-              <div className="minimally-invasive-treatment-cta">
-                <Link to="/blog/interventional-pain/prp-injection" className="treatment-card-button" aria-label="Learn more about PRP injection in our blog">
-                  <span>Learn More About PRP Injection</span>
-                </Link>
-                <Link to="/contact" className="minimally-invasive-treatment-secondary-link" aria-label="Book an appointment">
-                  Book an appointment
-                </Link>
-              </div>
             </div>
           </div>
         </section>
@@ -172,10 +150,9 @@ const PlateletsRichPlasmaInjectionPage: React.FC = () => {
                   By increasing the concentration of these growth factors, PRP injections can help stimulate tissue repair and reduce
                   inflammation at the injury site in selected diagnoses.
                 </p>
+                <p className="prp-process-paragraph">Here is how the procedure is done:</p>
               </div>
             </div>
-
-            <h2 className="prp-process-steps-title">How the Procedure is Done</h2>
 
             <div className="prp-steps-grid" role="list" aria-label="Platelet-rich plasma injection steps">
               <article className="prp-step-card" role="listitem" aria-label="Step 1 blood draw">
@@ -218,7 +195,7 @@ const PlateletsRichPlasmaInjectionPage: React.FC = () => {
               <div className="prp-aftercare-poster">
                 <img
                   className="prp-aftercare-image"
-                  src="/assets/images/medical/1-platelets-plasma-injection.jpg"
+                  src="/assets/images/medical/1-platelets-plasma-injection.webp"
                   alt=""
                   loading="lazy"
                   decoding="async"
@@ -290,28 +267,28 @@ const PlateletsRichPlasmaInjectionPage: React.FC = () => {
         </section>
 
         <section className="page-section prp-conditions" aria-labelledby="prp-conditions-title">
-          <div className="prp-conditions-inner">
-            <header className="prp-conditions-header">
-              <h2 id="prp-conditions-title" className="prp-conditions-title">
+          <div className="prp-conditions-inner tms-conditions-inner">
+            <header className="prp-conditions-header tms-conditions-header">
+              <h2 id="prp-conditions-title" className="prp-conditions-title tms-conditions-title">
                 Conditions Treated with PRP
                 <br />
                 Injections
               </h2>
             </header>
 
-            <div className="prp-conditions-grid" role="list" aria-label="Conditions treated with PRP injections">
-              <article className="prp-condition-card" role="listitem">
-                <div className="prp-condition-text">
-                  <h3 className="prp-condition-title">Chronic Tendon Injuries</h3>
-                  <p className="prp-condition-body">
+            <div className="prp-conditions-grid tms-conditions-grid" role="list" aria-label="Conditions treated with PRP injections">
+              <article className="prp-condition-card tms-conditions-card" role="listitem">
+                <div className="prp-condition-text tms-conditions-copy">
+                  <h3 className="prp-condition-title tms-conditions-card-title">Chronic Tendon Injuries</h3>
+                  <p className="prp-condition-body tms-conditions-card-body">
                     Conditions such as tennis elbow, Achilles tendinitis, and patellar tendinitis can benefit from PRP therapy in selected
                     cases.
                   </p>
                 </div>
-                <div className="prp-condition-media" aria-hidden="true">
+                <div className="prp-condition-media tms-conditions-media" aria-hidden="true">
                   <img
-                    className="prp-condition-image"
-                    src="/assets/images/medical/ankle-pain-min.jpg"
+                    className="prp-condition-image tms-conditions-image"
+                    src="/assets/images/medical/ankle-pain-min.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -320,17 +297,17 @@ const PlateletsRichPlasmaInjectionPage: React.FC = () => {
               </article>
 
               <article className="prp-condition-card prp-condition-card--reverse" role="listitem">
-                <div className="prp-condition-text">
-                  <h3 className="prp-condition-title">Acute Ligament &amp; Muscle Injuries</h3>
-                  <p className="prp-condition-body">
+                <div className="prp-condition-text tms-conditions-copy">
+                  <h3 className="prp-condition-title tms-conditions-card-title">Acute Ligament &amp; Muscle Injuries</h3>
+                  <p className="prp-condition-body tms-conditions-card-body">
                     PRP is used in treating selected sports injuries such as pulled muscles and sprains, based on diagnosis and stage of
                     healing.
                   </p>
                 </div>
-                <div className="prp-condition-media" aria-hidden="true">
+                <div className="prp-condition-media tms-conditions-media" aria-hidden="true">
                   <img
-                    className="prp-condition-image"
-                    src="/assets/images/medical/DSC01749.jpg"
+                    className="prp-condition-image tms-conditions-image"
+                    src="/assets/images/medical/DSC01749.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -339,17 +316,17 @@ const PlateletsRichPlasmaInjectionPage: React.FC = () => {
               </article>
 
               <article className="prp-condition-card prp-condition-card--reverse" role="listitem">
-                <div className="prp-condition-text">
-                  <h3 className="prp-condition-title">Osteoarthritis</h3>
-                  <p className="prp-condition-body">
+                <div className="prp-condition-text tms-conditions-copy">
+                  <h3 className="prp-condition-title tms-conditions-card-title">Osteoarthritis</h3>
+                  <p className="prp-condition-body tms-conditions-card-body">
                     Early studies show promise for selected joint pain and stiffness patterns, and PRP may be considered alongside a graded
                     strengthening plan.
                   </p>
                 </div>
-                <div className="prp-condition-media" aria-hidden="true">
+                <div className="prp-condition-media tms-conditions-media" aria-hidden="true">
                   <img
-                    className="prp-condition-image"
-                    src="/assets/images/medical/DSC02128.jpg"
+                    className="prp-condition-image tms-conditions-image"
+                    src="/assets/images/medical/DSC02128.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -357,18 +334,18 @@ const PlateletsRichPlasmaInjectionPage: React.FC = () => {
                 </div>
               </article>
 
-              <article className="prp-condition-card" role="listitem">
-                <div className="prp-condition-text">
-                  <h3 className="prp-condition-title">Post‑Surgical Healing</h3>
-                  <p className="prp-condition-body">
+              <article className="prp-condition-card tms-conditions-card" role="listitem">
+                <div className="prp-condition-text tms-conditions-copy">
+                  <h3 className="prp-condition-title tms-conditions-card-title">Post‑Surgical Healing</h3>
+                  <p className="prp-condition-body tms-conditions-card-body">
                     PRP can be used to support recovery in some surgical contexts involving tendons, ligaments, and muscles, when
                     clinically appropriate.
                   </p>
                 </div>
-                <div className="prp-condition-media" aria-hidden="true">
+                <div className="prp-condition-media tms-conditions-media" aria-hidden="true">
                   <img
-                    className="prp-condition-image"
-                    src="/assets/images/medical/DSC05906.jpg"
+                    className="prp-condition-image tms-conditions-image"
+                    src="/assets/images/medical/DSC05906.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -404,18 +381,6 @@ const PlateletsRichPlasmaInjectionPage: React.FC = () => {
                 By consulting with your clinician, you can determine whether PRP aligns with your diagnosis, symptom severity, and
                 long‑term health goals.
               </p>
-            </div>
-          </div>
-
-          <div className="prp-help-cta" aria-label="Get help call to action">
-            <div className="prp-help-cta-inner">
-              <h2 className="prp-help-cta-title">Learn how we can help you</h2>
-              <p className="prp-help-cta-subtitle">
-                If you&apos;re having symptoms described in this article, it&apos;s crucial to seek professional medical advice.
-              </p>
-              <Link to="/contact" className="prp-help-cta-button" aria-label="Get help now">
-                Get Help Now
-              </Link>
             </div>
           </div>
         </section>
@@ -548,10 +513,10 @@ const PlateletsRichPlasmaInjectionPage: React.FC = () => {
           </div>
         </section>
 
-        <div id="treatments">
+        <div id="treatments" className="treatments-page">
           <TreatmentsMain hideSurgical hideNonInvasive />
         </div>
-      </main>
+      </TreatmentsMain.PageMain>
     </div>
   );
 };

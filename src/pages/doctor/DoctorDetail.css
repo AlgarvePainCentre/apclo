@@ -169,6 +169,34 @@ a.doctor-detail-meta-value:hover {
   width: 100%;
   height: 100%;
   background-color: #00bcd4;
+  position: relative;
+}
+
+.doctor-detail-media-bgVideo,
+.doctor-detail-media-fallback {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.doctor-detail-media-bgVideo {
+  object-position: center;
+  z-index: 0;
+}
+
+.doctor-detail-media-fallback {
+  object-position: center;
+  z-index: 0;
+}
+
+.doctor-detail-media-placeholder[data-video-ready="true"] .doctor-detail-media-fallback {
+  display: none;
+}
+
+.doctor-detail-media-placeholder[data-video-error="true"] .doctor-detail-media-bgVideo {
+  display: none;
 }
 
 @media (max-width: 960px) {

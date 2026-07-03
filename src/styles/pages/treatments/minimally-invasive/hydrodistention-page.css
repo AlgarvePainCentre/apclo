@@ -1,0 +1,590 @@
+.hydrodistention-page {
+  background: #f8fafc;
+}
+
+.hydrodistention-hero .psx-hero-backdrop {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/assets/images/illustrative/Shoulder-Pain-min-1.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.hydrodistention-page .hd-overview {
+  background: #f8fafc;
+}
+
+.hydrodistention-page .hd-overview-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(22px, 4vw, 56px);
+  align-items: start;
+}
+
+.hydrodistention-page .hd-understanding-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 4.6vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #003366;
+}
+
+.hydrodistention-page .hd-understanding-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.hydrodistention-page .hd-understanding-paragraph {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  line-height: 1.85;
+  font-size: 1rem;
+}
+
+@media (max-width: 900px) {
+  .hydrodistention-page .hd-overview-inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.hydrodistention-page .hd-procedure {
+  background: #f8fafc;
+}
+
+.hydrodistention-page .hd-procedure-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hydrodistention-page .hd-procedure-header {
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.hydrodistention-page .hd-procedure-title {
+  margin: 0;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.hydrodistention-page .hd-procedure-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.hydrodistention-page .hd-procedure-card {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  padding: 22px 22px 24px;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  gap: 10px;
+}
+
+.hydrodistention-page .hd-procedure-number {
+  margin: 0;
+  color: #1e40af;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.hydrodistention-page .hd-procedure-card-title {
+  margin: 0;
+  color: #003366;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.hydrodistention-page .hd-procedure-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.12);
+}
+
+.hydrodistention-page .hd-procedure-card-body {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.hydrodistention-page .hd-procedure-card:nth-child(4) {
+  grid-column: 2 / span 1;
+}
+
+.hydrodistention-page .hd-procedure-card:nth-child(5) {
+  grid-column: 3 / span 1;
+}
+
+@media (max-width: 900px) {
+  .hydrodistention-page .hd-procedure-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hydrodistention-page .hd-procedure-card:nth-child(4),
+  .hydrodistention-page .hd-procedure-card:nth-child(5) {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .hydrodistention-page .hd-procedure-header {
+    text-align: left;
+  }
+
+  .hydrodistention-page .hd-procedure-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.hydrodistention-page .hd-expect {
+  background: #f8fafc;
+}
+
+.hydrodistention-page .hd-expect-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hydrodistention-page .hd-expect-header {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 34px;
+}
+
+.hydrodistention-page .hd-expect-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.hydrodistention-page .hd-expect-subtitle {
+  margin: 16px auto 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #0b4a7a;
+  max-width: 72ch;
+}
+
+.hydrodistention-page .hd-expect-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.08);
+}
+
+.hydrodistention-page .hd-expect-media {
+  position: relative;
+  background: #e5e7eb;
+  min-height: 420px;
+}
+
+.hydrodistention-page .hd-expect-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hydrodistention-page .hd-expect-card {
+  background: #ffffff;
+  display: grid;
+}
+
+.hydrodistention-page .hd-expect-item {
+  padding: 22px 26px;
+}
+
+.hydrodistention-page .hd-expect-item-title {
+  margin: 0;
+  color: #0b4a7a;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  font-weight: 800;
+}
+
+.hydrodistention-page .hd-expect-item-body {
+  margin: 8px 0 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  max-width: 62ch;
+}
+
+.hydrodistention-page .hd-expect-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.1);
+}
+
+@media (max-width: 900px) {
+  .hydrodistention-page .hd-expect-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hydrodistention-page .hd-expect-media {
+    min-height: 260px;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+@media (max-width: 600px) {
+  .hydrodistention-page .hd-expect-header {
+    text-align: left;
+    margin-bottom: 22px;
+  }
+
+  .hydrodistention-page .hd-expect-item {
+    padding: 18px 18px;
+  }
+}
+
+.hydrodistention-page .hd-benefits-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hydrodistention-page .hd-benefits-header {
+  text-align: center;
+  max-width: 980px;
+  margin: 0 auto 40px;
+}
+
+.hydrodistention-page .hd-benefits-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.hydrodistention-page .hd-benefits-subtitle {
+  margin: 16px auto 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #0b4a7a;
+  max-width: 70ch;
+}
+
+.hydrodistention-page .hd-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.hydrodistention-page .hd-benefit-card {
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  padding: 26px 24px 28px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+  display: grid;
+  gap: 12px;
+  min-height: 210px;
+}
+
+.hydrodistention-page .hd-benefit-card-title {
+  margin: 0;
+  color: #003366;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.hydrodistention-page .hd-benefit-divider {
+  width: 100%;
+  height: 2px;
+  max-width: 220px;
+  background: #f04b5e;
+  border-radius: 999px;
+}
+
+.hydrodistention-page .hd-benefit-card-body {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  max-width: 56ch;
+}
+
+.hydrodistention-page .hd-conditions-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hydrodistention-page .hd-conditions-header {
+  text-align: center;
+  margin: 0 0 32px;
+}
+
+.hydrodistention-page .hd-conditions-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.hydrodistention-page .hd-conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.hydrodistention-page .hd-condition-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  align-items: stretch;
+  min-height: 180px;
+}
+
+.hydrodistention-page .hd-condition-copy {
+  padding: 20px 20px 22px;
+  display: grid;
+  gap: 10px;
+  align-content: center;
+  min-width: 0;
+  background: #f8fafc;
+}
+
+.hydrodistention-page .hd-condition-title {
+  margin: 0;
+  color: #0b4a7a;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+.hydrodistention-page .hd-condition-body {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 52ch;
+}
+
+.hydrodistention-page .hd-condition-media {
+  background: #eef2f7;
+  position: relative;
+}
+
+.hydrodistention-page .hd-condition-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .hydrodistention-page .hd-benefits-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .hydrodistention-page .hd-conditions-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .hydrodistention-page .hd-benefits-header {
+    text-align: left;
+    margin-bottom: 26px;
+  }
+
+  .hydrodistention-page .hd-benefits-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hydrodistention-page .hd-benefit-card {
+    padding: 22px 18px 24px;
+    min-height: unset;
+  }
+
+  .hydrodistention-page .hd-conditions-header {
+    text-align: left;
+  }
+
+  .hydrodistention-page .hd-condition-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hydrodistention-page .hd-condition-media {
+    min-height: 220px;
+  }
+}
+
+.hydrodistention-page .hd-faq {
+  background: #f8fafc;
+}
+
+.hydrodistention-page .hd-faq-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.hydrodistention-page .hd-faq-header {
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.hydrodistention-page .hd-faq-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.hydrodistention-page .hd-faq-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.hydrodistention-page .hd-faq-item + .hd-faq-item {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.hydrodistention-page .hd-faq-trigger {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: background 160ms ease;
+}
+
+.hydrodistention-page .hd-faq-trigger:hover {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.hydrodistention-page .hd-faq-trigger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.22);
+}
+
+.hydrodistention-page .hd-faq-question {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(15, 23, 42, 0.55);
+  font-weight: 700;
+  text-align: left;
+}
+
+.hydrodistention-page .hd-faq-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.22);
+  background: rgba(255, 255, 255, 0.96);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  color: rgba(15, 23, 42, 0.62);
+}
+
+.hydrodistention-page .hd-faq-trigger[aria-expanded='true'] .hd-faq-question {
+  color: #0b4a7a;
+  font-weight: 800;
+}
+
+.hydrodistention-page .hd-faq-trigger[aria-expanded='true'] .hd-faq-icon {
+  border-color: rgba(11, 74, 122, 0.55);
+  color: rgba(11, 74, 122, 0.95);
+}
+
+.hydrodistention-page .hd-faq-panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 24px;
+  transition: max-height 280ms ease, opacity 200ms ease, padding 200ms ease;
+}
+
+.hydrodistention-page .hd-faq-panel[data-open='true'] {
+  max-height: 520px;
+  opacity: 1;
+  padding-top: 4px;
+  padding-bottom: 18px;
+}
+
+.hydrodistention-page .hd-faq-answer {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+@media (max-width: 600px) {
+  .hydrodistention-page .hd-faq-header {
+    text-align: left;
+  }
+  .hydrodistention-page .hd-faq-trigger {
+    padding: 18px 18px;
+  }
+  .hydrodistention-page .hd-faq-panel {
+    padding: 0 18px;
+  }
+  .hydrodistention-page .hd-faq-panel[data-open='true'] {
+    padding-bottom: 16px;
+  }
+}

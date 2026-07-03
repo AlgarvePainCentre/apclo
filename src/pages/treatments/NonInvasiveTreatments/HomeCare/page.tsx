@@ -1,10 +1,48 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { TreatmentsMain } from '../../Treatments';
-import '../../Treatments.css';
+import { TreatmentBreadcrumb } from '../../components/detail/TreatmentBreadcrumb';
 import './HomeCare.css';
 
 const HomeCarePage: React.FC = () => {
+  const faqItems = React.useMemo(
+    () => [
+      {
+        id: 'services',
+        question: 'What services are typically provided in home care?',
+        answer:
+          'Home care commonly includes help with personal care, mobility support, meal preparation, medication reminders, and home safety guidance. The exact support is tailored to your needs and goals.',
+      },
+      {
+        id: 'long-term',
+        question: 'Is home care suitable for long-term use?',
+        answer:
+          'Yes. Home care can be a long-term solution, offering consistent support that can be adjusted as health, mobility, or routines change over time.',
+      },
+      {
+        id: 'family',
+        question: 'How does home care support family members?',
+        answer:
+          'Home care can reduce caregiver stress by sharing day-to-day responsibilities, providing structure, and helping families plan safe routines while maintaining privacy and dignity.',
+      },
+      {
+        id: 'mobility',
+        question: 'Can home care providers help with mobility issues?',
+        answer:
+          'Yes. Providers can assist with transfers and walking, support the safe use of equipment, and help reduce falls risk through practical strategies and home set-up recommendations.',
+      },
+      {
+        id: 'insurance',
+        question: 'Is home care covered by insurance?',
+        answer:
+          'Coverage varies by insurer and policy. It’s best to confirm with your provider, and our team can help with documentation if your insurer requests it.',
+      },
+    ],
+    [],
+  );
+
+  const [activeFaqId, setActiveFaqId] = React.useState<string | null>(faqItems[0]?.id ?? null);
+
   React.useEffect(() => {
     const pageTitle = 'Home care in Algarve | Support for recovery and independence';
     document.title = pageTitle;
@@ -21,17 +59,14 @@ const HomeCarePage: React.FC = () => {
     meta.content = description;
   }, []);
 
-  const heroBackdropStyle: React.CSSProperties = {
-    backgroundImage:
-      "linear-gradient(120deg, rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.55)), url('/assets/images/illustrative/Home-Care-min.jpg')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  };
-
   return (
-    <div className="psx-page home-care-page" id="psx-home-care">
-      <header className="psx-hero home-care-hero" aria-label="Home care hero section">
-        <div className="psx-hero-backdrop" aria-hidden="true" style={heroBackdropStyle} />
+    <div className="psx-page home-care-page page-homecare" id="psx-home-care">
+      <header className="treatment-page-hero home-care-hero" aria-label="Home care hero section">
+        <div
+          className="psx-hero-backdrop"
+          aria-hidden="true"
+          style={{ backgroundImage: "url('/assets/images/illustrative/Home-Care-min.webp')" }}
+        />
         <div className="psx-hero-inner">
           <p className="psx-hero-eyebrow">Treatment</p>
           <h1 className="psx-hero-title">Home care</h1>
@@ -41,31 +76,15 @@ const HomeCarePage: React.FC = () => {
         </div>
       </header>
 
-      <main className="page-main treatments-page">
-        <nav className="article-breadcrumb" aria-label="Breadcrumb">
-          <ol className="article-breadcrumb-list">
-            <li>
-              <Link to="/" className="article-breadcrumb-link">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li>
-              <Link to="/treatments" className="article-breadcrumb-link">
-                Treatments
-              </Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li aria-current="page">Home care</li>
-          </ol>
-        </nav>
+      <TreatmentsMain.PageMain>
+        <TreatmentBreadcrumb currentLabel="Home care" />
 
         <section className="page-section treatments-feature non-invasive-treatment-feature" aria-labelledby="hc-what-to-expect">
           <div className="treatments-feature-inner">
             <div className="treatments-feature-media">
               <img
                 className="treatments-feature-video"
-                src="/assets/images/illustrative/Home-Care-min.jpg"
+                src="/assets/images/illustrative/Home-Care-min.webp"
                 alt="Home care support for recovery, mobility, and daily activities delivered in a familiar home environment (illustrative)."
                 decoding="async"
                 loading="lazy"
@@ -90,107 +109,174 @@ const HomeCarePage: React.FC = () => {
                 Home care often works alongside physiotherapy, occupational therapy, and medical follow‑up. The aim is independence where
                 possible, and safe, compassionate support when assistance is needed.
               </p>
-
-              <div className="minimally-invasive-treatment-cta">
-                <Link to="/blog/rehabilitation-therapies/home-care" className="treatment-card-button" aria-label="Learn more about home care in our blog">
-                  <span>Learn More About Home Care</span>
-                </Link>
-                <Link to="/contact" className="minimally-invasive-treatment-secondary-link" aria-label="Book an appointment">
-                  Book an appointment
-                </Link>
-              </div>
             </div>
           </div>
         </section>
 
-        <section className="page-section minimally-invasive-treatment-details" aria-labelledby="hc-details-title">
-          <header className="minimally-invasive-treatment-details-header">
-            <h2 id="hc-details-title" className="minimally-invasive-treatment-details-title">
-              Home care: technique, benefits, steps, risks, and recovery
+        <div className="page-section home-care-conditions tms-conditions-inner" aria-labelledby="hc-conditions-title">
+          <header className="pt-conditions-header tms-conditions-header">
+            <h2 id="hc-conditions-title" className="pt-conditions-title tms-conditions-title">
+              Conditions Treated with Home Care
             </h2>
-            <p className="minimally-invasive-treatment-details-intro">
-              Home care is designed around safety and dignity. Your care plan should be reviewed regularly, especially after hospital
-              discharge or changes in mobility, medication, or cognition.
-            </p>
           </header>
 
-          <div className="minimally-invasive-treatment-details-grid">
-            <article className="minimally-invasive-treatment-card" aria-labelledby="hc-technique-title">
-              <h3 id="hc-technique-title" className="minimally-invasive-treatment-card-title">
-                Technique (how it works)
-              </h3>
-              <p className="minimally-invasive-treatment-card-body">
-                Home care combines practical assistance with safety strategies: mobility support, hygiene help, meal preparation, medication
-                reminders, and home environment adjustments. The level of support can be short‑term during recovery or longer‑term for chronic
-                needs.
-              </p>
+          <div className="pt-conditions-grid tms-conditions-grid" role="list" aria-label="Conditions treated with home care">
+            <article className="pt-condition-card tms-conditions-card" role="listitem" aria-labelledby="hc-condition-mobility-title">
+              <div className="pt-condition-text tms-conditions-copy">
+                <h3 id="hc-condition-mobility-title" className="pt-condition-title tms-conditions-card-title">
+                  Mobility Limitations
+                </h3>
+                <p className="pt-condition-body tms-conditions-card-body">
+                  Individuals who have trouble moving around due to age, injury, or disability often find substantial support in home care.
+                </p>
+              </div>
+              <div className="pt-condition-media tms-conditions-media" aria-hidden="true">
+                <img
+                  className="pt-condition-image tms-conditions-image"
+                  src="/assets/images/HomeCare/DSC06795.webp"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </article>
 
-            <article className="minimally-invasive-treatment-card" aria-labelledby="hc-benefits-title">
-              <h3 id="hc-benefits-title" className="minimally-invasive-treatment-card-title">
-                Medical benefits
-              </h3>
-              <ul className="minimally-invasive-treatment-list" aria-label="Medical benefits of home care">
-                <li>Safer recovery at home with reduced falls risk.</li>
-                <li>Support with daily tasks, improving comfort and quality of life.</li>
-                <li>Improved adherence to rehabilitation routines and medications when appropriate.</li>
-                <li>Reduced caregiver burden through structured support and planning.</li>
-              </ul>
+            <article className="pt-condition-card tms-conditions-card" role="listitem" aria-labelledby="hc-condition-chronic-title">
+              <div className="pt-condition-text tms-conditions-copy">
+                <h3 id="hc-condition-chronic-title" className="pt-condition-title tms-conditions-card-title">
+                  Chronic Conditions
+                </h3>
+                <p className="pt-condition-body tms-conditions-card-body">
+                  Conditions like diabetes, hypertension, and arthritis are easier to manage with help in medication administration, dietary
+                  support, and regular health monitoring.
+                </p>
+              </div>
+              <div className="pt-condition-media tms-conditions-media" aria-hidden="true">
+                <img
+                  className="pt-condition-image tms-conditions-image"
+                  src="/assets/images/HomeCare/DSC07125.webp"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </article>
 
-            <article className="minimally-invasive-treatment-card" aria-labelledby="hc-steps-title">
-              <h3 id="hc-steps-title" className="minimally-invasive-treatment-card-title">
-                Procedural steps
-              </h3>
-              <ol className="minimally-invasive-treatment-steps" aria-label="Home care steps">
-                <li>Initial assessment: needs, risks, preferences, and goals.</li>
-                <li>Care plan creation: schedule, tasks, and safety measures.</li>
-                <li>Home set‑up recommendations (equipment, lighting, trip hazards).</li>
-                <li>Ongoing support and monitoring of changes in function.</li>
-                <li>Regular review and coordination with clinicians and family.</li>
-              </ol>
+            <article className="pt-condition-card tms-conditions-card" role="listitem" aria-labelledby="hc-condition-postsurgery-title">
+              <div className="pt-condition-text tms-conditions-copy">
+                <h3 id="hc-condition-postsurgery-title" className="pt-condition-title tms-conditions-card-title">
+                  Post‑Surgery Recovery
+                </h3>
+                <p className="pt-condition-body tms-conditions-card-body">
+                  Home care provides an ideal environment for healing, offering assistance with wound care, pain management, and mobility as
+                  one regains strength.
+                </p>
+              </div>
+              <div className="pt-condition-media tms-conditions-media" aria-hidden="true">
+                <img
+                  className="pt-condition-image tms-conditions-image"
+                  src="/assets/images/HomeCare/DSC07641.webp"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </article>
 
-            <article className="minimally-invasive-treatment-card" aria-labelledby="hc-risks-title">
-              <h3 id="hc-risks-title" className="minimally-invasive-treatment-card-title">
-                Risks and complications
-              </h3>
-              <ul className="minimally-invasive-treatment-list" aria-label="Risks of home care">
-                <li>Falls risk if mobility assistance or equipment is not used correctly.</li>
-                <li>Medication errors if responsibility is unclear; plans should be explicit.</li>
-                <li>Skin problems if mobility is limited and repositioning needs are not met.</li>
-                <li>Delayed escalation if symptoms worsen; carers should know red flags.</li>
-              </ul>
+            <article className="pt-condition-card tms-conditions-card" role="listitem" aria-labelledby="hc-condition-neuro-title">
+              <div className="pt-condition-text tms-conditions-copy">
+                <h3 id="hc-condition-neuro-title" className="pt-condition-title tms-conditions-card-title">
+                  Neurological Disorders
+                </h3>
+                <p className="pt-condition-body tms-conditions-card-body">
+                  For patients with dementia, Parkinson’s, or other neurological conditions, home care can provide essential support,
+                  structure, and companionship.
+                </p>
+              </div>
+              <div className="pt-condition-media tms-conditions-media" aria-hidden="true">
+                <img
+                  className="pt-condition-image tms-conditions-image"
+                  src="/assets/images/HomeCare/DSC07698-Edit.webp"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </article>
 
-            <article className="minimally-invasive-treatment-card" aria-labelledby="hc-prep-title">
-              <h3 id="hc-prep-title" className="minimally-invasive-treatment-card-title">
-                Preparation and aftercare
-              </h3>
-              <ul className="minimally-invasive-treatment-list" aria-label="Preparation and aftercare for home care">
-                <li>Prepare a medication list and emergency contact information.</li>
-                <li>Review the home for trip hazards and ensure adequate lighting.</li>
-                <li>Agree on care tasks and boundaries to protect privacy and dignity.</li>
-                <li>Seek urgent help for chest pain, severe shortness of breath, sudden weakness, or confusion.</li>
-              </ul>
+            <article className="pt-condition-card tms-conditions-card" role="listitem" aria-labelledby="hc-condition-mental-title">
+              <div className="pt-condition-text tms-conditions-copy">
+                <h3 id="hc-condition-mental-title" className="pt-condition-title tms-conditions-card-title">
+                  Mental Health &amp; <br /> Emotional Support
+                </h3>
+                <p className="pt-condition-body tms-conditions-card-body">
+                  Home care can benefit individuals struggling with depression or loneliness by providing companionship and ensuring they
+                  have a stable routine and engagement.
+                </p>
+              </div>
+              <div className="pt-condition-media tms-conditions-media" aria-hidden="true">
+                <img
+                  className="pt-condition-image tms-conditions-image"
+                  src="/assets/images/HomeCare/DSC06895.webp"
+                  alt=""
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
             </article>
+          </div>
+        </div>
 
-            <article className="minimally-invasive-treatment-card" aria-labelledby="hc-recovery-title">
-              <h3 id="hc-recovery-title" className="minimally-invasive-treatment-card-title">
-                Recovery timeline
-              </h3>
-              <p className="minimally-invasive-treatment-card-body">
-                Home care timelines vary. After procedures or illness, support may be needed for days to weeks. Longer‑term care can be
-                adjusted as independence changes, with regular reviews to match needs.
-              </p>
-            </article>
+        <section className="page-section hc-faq" aria-labelledby="hc-faq-title">
+          <div className="hc-faq-inner">
+            <header className="hc-faq-header">
+              <h2 id="hc-faq-title" className="hc-faq-title">
+                Home Care FAQ
+              </h2>
+            </header>
+
+            <div className="hc-faq-card" role="list" aria-label="Home care frequently asked questions">
+              {faqItems.map((item) => {
+                const isActive = activeFaqId === item.id;
+                const rowId = `hc-faq-${item.id}`;
+                const panelId = `hc-faq-panel-${item.id}`;
+
+                return (
+                  <div key={item.id} className="hc-faq-item" role="listitem">
+                    <button
+                      id={rowId}
+                      type="button"
+                      className="hc-faq-trigger"
+                      aria-expanded={isActive}
+                      aria-controls={panelId}
+                      onClick={() => setActiveFaqId((current) => (current === item.id ? null : item.id))}
+                    >
+                      <span className="hc-faq-question">{item.question}</span>
+                      <span className="hc-faq-icon" aria-hidden="true">
+                        {isActive ? '−' : '+'}
+                      </span>
+                    </button>
+                    <div
+                      id={panelId}
+                      className="hc-faq-panel"
+                      data-open={isActive ? 'true' : 'false'}
+                      role="region"
+                      aria-labelledby={rowId}
+                      aria-hidden={!isActive}
+                    >
+                      <p className="hc-faq-answer">{item.answer}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </section>
 
-        <div id="treatments">
+        <div id="treatments" className="treatments-page">
           <TreatmentsMain hideSurgical hideMinimallyInvasive />
         </div>
-      </main>
+      </TreatmentsMain.PageMain>
     </div>
   );
 };

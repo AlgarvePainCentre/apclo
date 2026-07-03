@@ -48,7 +48,7 @@
   align-items: center;
   justify-content: center;
   background-color: var(--color-blue);
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/images/learn/1-banner-2.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/images/learn/1-banner-2.webp');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -76,7 +76,7 @@
 }
 
 .article-main {
-  max-width: 1400px;
+  max-width: var(--container-width);
   margin: 0 auto;
   padding: 2rem;
 }
@@ -277,11 +277,11 @@
   overflow: hidden;
   transition: all 0.3s ease;
   /* Default background matching article header */
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/assets/images/learn/1-banner-2.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), var(--nav-bg-image, url('/assets/images/learn/1-banner-2.webp'));
 }
 
 .article-nav-item:hover {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/images/learn/1-banner-2.jpg');
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), var(--nav-bg-image, url('/assets/images/learn/1-banner-2.webp'));
 }
 
 .article-nav-item:hover .article-nav-title {
@@ -576,7 +576,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 3rem;
-  max-width: 1400px; /* Increased max-width */
+  max-width: var(--container-width);
   margin: 0 auto;
 }
 
@@ -631,7 +631,7 @@
   margin-bottom: 3rem;
   text-align: left;
   font-weight: 700;
-  max-width: 1400px;
+  max-width: var(--container-width);
   margin: 0 auto;
 }
 
@@ -639,7 +639,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
-  max-width: 1400px;
+  max-width: var(--container-width);
   padding-top: 8rem;
   margin: 0 auto;
 }

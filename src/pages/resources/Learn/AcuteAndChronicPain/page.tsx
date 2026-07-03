@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SocialShare from '../../../../components/SocialShare';
-import '../Article.css';
+import '../../../../styles/layout/article-layout.css';
 
 const AcuteAndChronicPainPage: React.FC = () => {
   const navigate = useNavigate();
@@ -66,7 +66,7 @@ const AcuteAndChronicPainPage: React.FC = () => {
           <h2 className="acute-pain-title">What is Acute Pain?</h2>
           <div className="acute-pain-content-grid">
             <div className="acute-pain-image">
-              <img src="/assets/images/learn/5-injuries.jpg" alt="Acute Pain" />
+              <img src="/assets/images/learn/5-injuries.webp" alt="Acute Pain" />
             </div>
             <div className="acute-pain-text">
               <p>
@@ -99,7 +99,7 @@ const AcuteAndChronicPainPage: React.FC = () => {
           <h2 className="chronic-pain-title">What is Chronic Pain?</h2>
           <div className="chronic-pain-content-grid">
             <div className="chronic-pain-image">
-              <img src="/assets/images/learn/chronic-pain_algarve-pain-center_004.jpg" alt="Chronic Pain" />
+              <img src="/assets/images/learn/chronic-pain_algarve-pain-center_004.webp" alt="Chronic Pain" />
             </div>
             <div className="chronic-pain-text">
               <p>
@@ -144,7 +144,7 @@ const AcuteAndChronicPainPage: React.FC = () => {
                 </div>
               </div>
               <div className="difference-image">
-                <img src="/assets/images/learn/chronic-pain_algarve-pain-center_005.jpg" alt="Duration difference" />
+                <img src="/assets/images/learn/chronic-pain_algarve-pain-center_005.webp" alt="Duration difference" />
               </div>
             </div>
 
@@ -161,7 +161,7 @@ const AcuteAndChronicPainPage: React.FC = () => {
                 </div>
               </div>
               <div className="difference-image">
-                <img src="/assets/images/learn/5-injuries.jpg" alt="Cause difference" />
+                <img src="/assets/images/learn/5-injuries.webp" alt="Cause difference" />
               </div>
             </div>
 
@@ -178,7 +178,7 @@ const AcuteAndChronicPainPage: React.FC = () => {
                 </div>
               </div>
               <div className="difference-image">
-                <img src="/assets/images/learn/chronic-pain_algarve-pain-center_004.jpg" alt="Resolution difference" />
+                <img src="/assets/images/learn/chronic-pain_algarve-pain-center_004.webp" alt="Resolution difference" />
               </div>
             </div>
 
@@ -195,7 +195,7 @@ const AcuteAndChronicPainPage: React.FC = () => {
                 </div>
               </div>
               <div className="difference-image">
-                <img src="/assets/images/learn/DSC07600.jpg" alt="Treatment difference" />
+                <img src="/assets/images/learn/DSC07600.webp" alt="Treatment difference" />
               </div>
             </div>
           </div>

@@ -1,0 +1,13 @@
+
+.treatment-faq-root {
+  padding-block: clamp(60px, 8vw, 100px);
+  background-color: #f8fafc;
+}
+.treatment-faq-root .treatment-faq__card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  overflow: hidden;
+}

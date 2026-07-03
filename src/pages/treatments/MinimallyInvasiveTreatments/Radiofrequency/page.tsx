@@ -1,7 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { TreatmentsMain } from '../../Treatments';
-import '../../Treatments.css';
+import { initTreatmentStepsTimelines } from '../../animations/treatmentTimelineAnimations';
+import { TreatmentBreadcrumb } from '../../components/detail/TreatmentBreadcrumb';
 import './Radiofrequency.css';
 
 type RadiofrequencyFaqItem = {
@@ -92,17 +92,19 @@ const RadiofrequencyPage: React.FC = () => {
     meta.content = description;
   }, []);
 
-  const heroBackdropStyle: React.CSSProperties = {
-    backgroundImage:
-      "linear-gradient(120deg, rgb(0 51 102 / 45%), rgb(102 97 0 / 12%)), url('/assets/images/radiofrequency/DSC04190-1536x1229.jpg')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  };
+  React.useEffect(() => {
+    const scope = document.getElementById('psx-radiofrequency') ?? document;
+    return initTreatmentStepsTimelines(scope);
+  }, []);
 
   return (
-    <div className="psx-page radiofrequency-page" id="psx-radiofrequency">
-      <header className="psx-hero radiofrequency-hero" aria-label="Radiofrequency ablation hero section">
-        <div className="psx-hero-backdrop" aria-hidden="true" style={heroBackdropStyle} />
+    <div className="psx-page radiofrequency-page page-radiofrequency" id="psx-radiofrequency">
+      <header className="treatment-page-hero radiofrequency-hero" aria-label="Radiofrequency ablation hero section">
+        <div
+          className="psx-hero-backdrop"
+          aria-hidden="true"
+          style={{ backgroundImage: "url('/assets/images/learn/3-Facet-Joint-Pain.webp')" }}
+        />
         <div className="psx-hero-inner">
           <p className="psx-hero-eyebrow">Treatment</p>
           <h1 className="psx-hero-title">Radiofrequency</h1>
@@ -112,31 +114,15 @@ const RadiofrequencyPage: React.FC = () => {
         </div>
       </header>
 
-      <main className="page-main treatments-page">
-        <nav className="article-breadcrumb" aria-label="Breadcrumb">
-          <ol className="article-breadcrumb-list">
-            <li>
-              <Link to="/" className="article-breadcrumb-link">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li>
-              <Link to="/treatments" className="article-breadcrumb-link">
-                Treatments
-              </Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li aria-current="page">Radiofrequency</li>
-          </ol>
-        </nav>
+      <TreatmentsMain.PageMain>
+        <TreatmentBreadcrumb currentLabel="Radiofrequency" />
 
         <section className="page-section treatments-feature minimally-invasive-treatment-feature" aria-labelledby="rfa-what-to-expect">
           <div className="treatments-feature-inner">
             <div className="treatments-feature-media">
               <img
                 className="treatments-feature-video"
-                src="/assets/images/learn/3-Facet-Joint-Pain.jpg"
+                src="/assets/images/learn/3-Facet-Joint-Pain.webp"
                 alt="Illustration representing facet joint pain and the targeted nerve pathways treated with radiofrequency ablation (illustrative)."
                 decoding="async"
                 loading="lazy"
@@ -160,28 +146,23 @@ const RadiofrequencyPage: React.FC = () => {
                 After the procedure, most people resume light activities quickly. Rehabilitation focuses on restoring movement capacity and
                 building a plan to reduce flare‑ups and improve resilience.
               </p>
-
-              <div className="minimally-invasive-treatment-cta">
-                <Link
-                  to="/blog/interventional-pain/radiofrequency-ablation"
-                  className="treatment-card-button"
-                  aria-label="Learn more about radiofrequency ablation in our blog"
-                >
-                  <span>Learn More About Radiofrequency Ablation</span>
-                </Link>
-                <Link to="/contact" className="minimally-invasive-treatment-secondary-link" aria-label="Book an appointment">
-                  Book an appointment
-                </Link>
-              </div>
             </div>
           </div>
         </section>
 
         <section className="page-section rfa-procedure" aria-labelledby="rfa-procedure-title">
-          <header className="rfa-procedure-header">
-            <h2 id="rfa-procedure-title" className="rfa-procedure-title">How the procedure is done</h2>
-          </header>
-          <div className="rfa-steps-grid" role="list" aria-label="Radiofrequency procedure steps">
+          <div className="rfa-procedure-inner">
+            <div className="rfa-procedure-top">
+              <h2 id="rfa-procedure-title" className="rfa-procedure-title">How the procedure is done</h2>
+              <div className="rfa-procedure-copy">
+                <p className="rfa-procedure-paragraph">
+                  Radiofrequency ablation uses image guidance and controlled heat to target pain-generating nerves with precision. Here is
+                  how the procedure is done:
+                </p>
+              </div>
+            </div>
+
+            <div className="rfa-steps-grid" role="list" aria-label="Radiofrequency procedure steps">
             <article className="rfa-step-card" role="listitem" aria-label="Step 1 preparation">
               <p className="rfa-step-number">1.</p>
               <h3 className="rfa-step-title">Preparation</h3>
@@ -233,6 +214,7 @@ const RadiofrequencyPage: React.FC = () => {
                 The procedure typically takes 30–60 minutes, depending on how many levels or nerves are treated.
               </p>
             </article>
+            </div>
           </div>
         </section>
 
@@ -245,7 +227,7 @@ const RadiofrequencyPage: React.FC = () => {
             <figure className="rfa-aftercare-media" aria-hidden="true">
               <img
                 className="rfa-aftercare-image"
-                src="/assets/images/radiofrequency/DSC04190-1536x1229.jpg"
+                src="/assets/images/radiofrequency/DSC04190-1536x1229.webp"
                 alt=""
                 loading="lazy"
                 decoding="async"
@@ -320,81 +302,81 @@ const RadiofrequencyPage: React.FC = () => {
           </div>
         </section>
 
-        <section className="page-section rfa-conditions" aria-labelledby="rfa-conditions-title">
-          <header className="rfa-conditions-header">
-            <h2 id="rfa-conditions-title" className="rfa-conditions-title">Conditions Treated with Radiofrequency Ablation (RFA)</h2>
+        <div className="page-section rfa-conditions tms-conditions-inner" aria-labelledby="rfa-conditions-title">
+          <header className="rfa-conditions-header tms-conditions-header">
+            <h2 id="rfa-conditions-title" className="rfa-conditions-title tms-conditions-title">Conditions Treated with Radiofrequency Ablation (RFA)</h2>
           </header>
-          <div className="rfa-conditions-grid" role="list" aria-label="Conditions treated with radiofrequency ablation">
-            <article className="rfa-condition" role="listitem">
-              <div className="rfa-condition-body">
-                <h3 className="rfa-condition-title">Facet Joint Pain</h3>
-                <p className="rfa-condition-desc">
+          <div className="rfa-conditions-grid tms-conditions-grid" role="list" aria-label="Conditions treated with radiofrequency ablation">
+            <article className="rfa-condition-card tms-conditions-card" role="listitem" aria-labelledby="rfa-condition-facet-title">
+              <div className="rfa-condition-copy tms-conditions-copy">
+                <h3 id="rfa-condition-facet-title" className="rfa-condition-title tms-conditions-card-title">Facet Joint Pain</h3>
+                <p className="rfa-condition-body tms-conditions-card-body">
                   Chronic pain from irritated facet joints; RFA targets the nerves transmitting those pain signals.
                 </p>
               </div>
-              <figure className="rfa-condition-media" aria-hidden="true">
+              <div className="rfa-condition-media tms-conditions-media" aria-hidden="true">
                 <img
-                  className="rfa-condition-image"
-                  src="/assets/images/radiofrequency/3-Facet-Joint-Pain.jpg"
+                  className="rfa-condition-image tms-conditions-image"
+                  src="/assets/images/radiofrequency/3-Facet-Joint-Pain.webp"
                   alt=""
                   loading="lazy"
                   decoding="async"
                 />
-              </figure>
+              </div>
             </article>
-            <article className="rfa-condition" role="listitem">
-              <div className="rfa-condition-body">
-                <h3 className="rfa-condition-title">Sacroiliac Joint Pain</h3>
-                <p className="rfa-condition-desc">
+            <article className="rfa-condition-card tms-conditions-card" role="listitem" aria-labelledby="rfa-condition-si-title">
+              <div className="rfa-condition-copy tms-conditions-copy">
+                <h3 id="rfa-condition-si-title" className="rfa-condition-title tms-conditions-card-title">Sacroiliac Joint Pain</h3>
+                <p className="rfa-condition-body tms-conditions-card-body">
                   Pain where the spine meets the pelvis; RFA can reduce nerve signalling from the SI joint region.
                 </p>
               </div>
-              <figure className="rfa-condition-media" aria-hidden="true">
+              <div className="rfa-condition-media tms-conditions-media" aria-hidden="true">
                 <img
-                  className="rfa-condition-image"
-                  src="/assets/images/radiofrequency/4-Sacroiliac-Joint-Pain.jpg"
+                  className="rfa-condition-image tms-conditions-image"
+                  src="/assets/images/radiofrequency/4-Sacroiliac-Joint-Pain.webp"
                   alt=""
                   loading="lazy"
                   decoding="async"
                 />
-              </figure>
+              </div>
             </article>
-            <article className="rfa-condition" role="listitem">
-              <div className="rfa-condition-body">
-                <h3 className="rfa-condition-title">Trigeminal Neuralgia</h3>
-                <p className="rfa-condition-desc">
+            <article className="rfa-condition-card tms-conditions-card" role="listitem" aria-labelledby="rfa-condition-trigeminal-title">
+              <div className="rfa-condition-copy tms-conditions-copy">
+                <h3 id="rfa-condition-trigeminal-title" className="rfa-condition-title tms-conditions-card-title">Trigeminal Neuralgia</h3>
+                <p className="rfa-condition-body tms-conditions-card-body">
                   Severe facial pain; selected cases may benefit from targeted radiofrequency procedures after specialist review.
                 </p>
               </div>
-              <figure className="rfa-condition-media" aria-hidden="true">
+              <div className="rfa-condition-media tms-conditions-media" aria-hidden="true">
                 <img
-                  className="rfa-condition-image"
-                  src="/assets/images/radiofrequency/5-Trigeminal-Neuralgia.jpg"
+                  className="rfa-condition-image tms-conditions-image"
+                  src="/assets/images/radiofrequency/5-Trigeminal-Neuralgia.webp"
                   alt=""
                   loading="lazy"
                   decoding="async"
                 />
-              </figure>
+              </div>
             </article>
-            <article className="rfa-condition" role="listitem">
-              <div className="rfa-condition-body">
-                <h3 className="rfa-condition-title">Chronic Back Pain</h3>
-                <p className="rfa-condition-desc">
+            <article className="rfa-condition-card tms-conditions-card" role="listitem" aria-labelledby="rfa-condition-back-title">
+              <div className="rfa-condition-copy tms-conditions-copy">
+                <h3 id="rfa-condition-back-title" className="rfa-condition-title tms-conditions-card-title">Chronic Back Pain</h3>
+                <p className="rfa-condition-body tms-conditions-card-body">
                   For selected persistent spine pain, RFA can reduce pain signals from identified target nerves.
                 </p>
               </div>
-              <figure className="rfa-condition-media" aria-hidden="true">
+              <div className="rfa-condition-media tms-conditions-media" aria-hidden="true">
                 <img
-                  className="rfa-condition-image"
-                  src="/assets/images/radiofrequency/6-Chronic-Back-Pain.jpg"
+                  className="rfa-condition-image tms-conditions-image"
+                  src="/assets/images/radiofrequency/6-Chronic-Back-Pain.webp"
                   alt=""
                   loading="lazy"
                   decoding="async"
                 />
-              </figure>
+              </div>
             </article>
           </div>
-        </section>
+        </div>
 
         <section className="page-section minimally-invasive-treatment-details" aria-labelledby="rfa-details-title">
           <header className="minimally-invasive-treatment-details-header">
@@ -538,10 +520,10 @@ const RadiofrequencyPage: React.FC = () => {
           </div>
         </section>
 
-        <div id="treatments">
-          <TreatmentsMain hideSurgical hideNonInvasive hideHighlightedMinimallyInvasive />
+        <div id="treatments" className="treatments-page">
+          <TreatmentsMain hideSurgical hideNonInvasive />
         </div>
-      </main>
+      </TreatmentsMain.PageMain>
     </div>
   );
 };

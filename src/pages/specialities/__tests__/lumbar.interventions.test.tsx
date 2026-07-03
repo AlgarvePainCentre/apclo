@@ -28,6 +28,23 @@ describe('LumbarInterventions', () => {
     }
   });
 
+  it('renders the full intervention set when requested', () => {
+    render(
+      <MemoryRouter>
+        <LumbarInterventions variant="full" />
+      </MemoryRouter>
+    );
+    const titles = [
+      'Nucleoplasty',
+      'Hydrodistention',
+      'Calcification Barbotage',
+      'Botulinum Toxin Injection',
+    ];
+    for (const t of titles) {
+      expect(screen.getByRole('heading', { name: t })).toBeInTheDocument();
+    }
+  });
+
   it('pushes analytics event on card click', () => {
     render(
       <MemoryRouter>

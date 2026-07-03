@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { TreatmentsMain } from '../../Treatments';
-import '../../Treatments.css';
+import { TreatmentBreadcrumb } from '../../components/detail/TreatmentBreadcrumb';
 import './Vertebroplasty.css';
 
 const VertebroplastyPage: React.FC = () => {
@@ -21,17 +21,14 @@ const VertebroplastyPage: React.FC = () => {
     meta.content = description;
   }, []);
 
-  const heroBackdropStyle: React.CSSProperties = {
-    backgroundImage:
-      "linear-gradient(120deg, rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.55)), url('/assets/images/medical/2-vertebroplasty.jpg')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  };
-
   return (
-    <div className="psx-page vertebroplasty-page" id="psx-vertebroplasty">
-      <header className="psx-hero vertebroplasty-hero" aria-label="Vertebroplasty hero section">
-        <div className="psx-hero-backdrop" aria-hidden="true" style={heroBackdropStyle} />
+    <div className="psx-page vertebroplasty-page page-vertebroplasty" id="psx-vertebroplasty">
+      <header className="treatment-page-hero vertebroplasty-hero" aria-label="Vertebroplasty hero section">
+        <div
+          className="psx-hero-backdrop"
+          aria-hidden="true"
+          style={{ backgroundImage: "url('/assets/images/medical/1-vertebroplasty.webp')" }}
+        />
         <div className="psx-hero-inner">
           <p className="psx-hero-eyebrow">Treatment</p>
           <h1 className="psx-hero-title">Vertebroplasty</h1>
@@ -41,31 +38,15 @@ const VertebroplastyPage: React.FC = () => {
         </div>
       </header>
 
-      <main className="page-main treatments-page">
-        <nav className="article-breadcrumb" aria-label="Breadcrumb">
-          <ol className="article-breadcrumb-list">
-            <li>
-              <Link to="/" className="article-breadcrumb-link">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li>
-              <Link to="/treatments" className="article-breadcrumb-link">
-                Treatments
-              </Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li aria-current="page">Vertebroplasty</li>
-          </ol>
-        </nav>
+      <TreatmentsMain.PageMain>
+        <TreatmentBreadcrumb currentLabel="Vertebroplasty" />
 
         <section className="page-section treatments-feature minimally-invasive-treatment-feature" aria-labelledby="vp-what-to-expect">
           <div className="treatments-feature-inner">
             <div className="treatments-feature-media">
               <img
                 className="treatments-feature-video"
-                src="/assets/images/medical/1-vertebroplasty.jpg"
+                src="/assets/images/medical/1-vertebroplasty.webp"
                 alt="Image-guided vertebroplasty procedure using a needle to inject cement into a fractured vertebra (illustrative)."
                 decoding="async"
                 loading="lazy"
@@ -90,15 +71,6 @@ const VertebroplastyPage: React.FC = () => {
                 After the procedure, recovery typically focuses on safe mobility, gradual return to activity, and bone health measures such
                 as osteoporosis assessment and prevention strategies when relevant.
               </p>
-
-              <div className="minimally-invasive-treatment-cta">
-                <Link to="/blog/spine-surgery/vertebroplasty" className="treatment-card-button" aria-label="Learn more about vertebroplasty in our blog">
-                  <span>Learn More About Vertebroplasty</span>
-                </Link>
-                <Link to="/contact" className="minimally-invasive-treatment-secondary-link" aria-label="Book an appointment">
-                  Book an appointment
-                </Link>
-              </div>
             </div>
           </div>
         </section>
@@ -186,10 +158,10 @@ const VertebroplastyPage: React.FC = () => {
           </div>
         </section>
 
-        <div id="treatments">
+        <div id="treatments" className="treatments-page">
           <TreatmentsMain hideSurgical hideNonInvasive />
         </div>
-      </main>
+      </TreatmentsMain.PageMain>
     </div>
   );
 };

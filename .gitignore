@@ -2,22 +2,37 @@
 
 # dependencies
 /node_modules
+/backend/node_modules
 /.pnp
 .pnp.js
 
 # testing
 /coverage
+/backend/coverage
 
 # production
 /build
 /dist
 
+# lighthouse / perf artifacts
+/.lhci
+/.lighthouseci
+dist-artifacts.zip
+
 # misc
 .DS_Store
+.env
+.env.*
+!.env.example
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+/backend/.env
+/backend/.env.*
+!/backend/.env.example
+/backend/.env.local
+/backend/.env.*.local
 
 npm-debug.log*
 yarn-debug.log*

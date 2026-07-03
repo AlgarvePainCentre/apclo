@@ -13,4 +13,6 @@ const ThoracicWallPainPage: React.FC = () => {
   );
 };
 
+
+
 export default ThoracicWallPainPage;

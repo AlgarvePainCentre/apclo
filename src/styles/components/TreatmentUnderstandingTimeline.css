@@ -1,0 +1,101 @@
+/* Understanding + Timeline Component */
+
+:where([class$='-understanding-inner'], [class$='-process-inner'], .rfa-procedure-inner) {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: clamp(32px, 5vw, 56px) !important;
+  width: min(100%, var(--container-width, 1600px));
+  margin: 0 auto !important;
+  padding: 0 !important;
+  align-items: start !important;
+}
+
+:where([class$='-understanding-top'], [class$='-process-top'], .rfa-procedure-top) {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: clamp(22px, 3vw, 32px) !important;
+  align-items: start !important;
+}
+
+:where([class$='-understanding-title'], [class$='-process-title'], .rfa-procedure-title) {
+  margin: 0 !important;
+  font-size: clamp(2rem, 3vw, 2.5rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.15 !important;
+  letter-spacing: -0.02em !important;
+  color: #0f4681 !important;
+  text-align: left !important;
+  max-width: 14ch;
+}
+
+:where([class$='-understanding-copy'], [class$='-process-copy'], .rfa-procedure-copy) {
+  display: grid !important;
+  gap: clamp(18px, 2vw, 24px) !important;
+  max-width: 72ch;
+}
+
+:where([class$='-understanding-paragraph'], [class$='-process-paragraph'], .rfa-procedure-paragraph) {
+  margin: 0 !important;
+  color: #4b5563 !important;
+  font-size: 1.125rem !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.01em !important;
+  text-align: left !important;
+}
+
+:where([class$='-steps-grid']) {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  position: relative;
+  width: min(100%, 800px);
+  margin: 0 auto !important;
+  padding: 20px 0;
+}
+
+:where([class$='-steps-grid'])::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 24px;
+  width: 2px;
+  background: transparent;
+  z-index: 1;
+}
+
+@media (min-width: 768px) {
+  :where([class$='-steps-grid'])::before {
+    left: 28px;
+  }
+}
+
+@media (min-width: 992px) {
+  :where([class$='-understanding-inner'], [class$='-process-inner'], .rfa-procedure-inner) {
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr) !important;
+    gap: clamp(48px, 6vw, 72px) !important;
+  }
+
+  :where([class$='-understanding-top'], [class$='-process-top'], .rfa-procedure-top) {
+    gap: clamp(24px, 3vw, 36px) !important;
+  }
+}
+
+@media (max-width: 767px) {
+  :where([class$='-understanding-title'], [class$='-process-title'], .rfa-procedure-title) {
+    max-width: none;
+  }
+
+  :where([class$='-understanding-copy'], [class$='-process-copy'], .rfa-procedure-copy) {
+    max-width: none;
+  }
+
+  :where([class$='-understanding-paragraph'], [class$='-process-paragraph'], .rfa-procedure-paragraph) {
+    font-size: 1rem !important;
+    line-height: 1.75 !important;
+  }
+
+  :where([class$='-steps-grid']) {
+    width: 100%;
+  }
+}

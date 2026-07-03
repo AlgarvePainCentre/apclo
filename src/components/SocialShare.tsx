@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './SocialShare.css';
+import '../styles/components/social-share-component.css';
 
 const SocialShare: React.FC = () => {
   const [url, setUrl] = useState('');

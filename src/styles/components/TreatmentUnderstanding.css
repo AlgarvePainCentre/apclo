@@ -1,0 +1,59 @@
+/* Shared treatment typography for non-understanding sections */
+
+:where(
+  [class$='-understanding-subtitle'],
+  [class$='-aftercare-subtitle'],
+  [class$='-benefits-subtitle'],
+  [class$='-conditions-subtitle'],
+  [class$='-expect-subtitle'],
+  [class$='-process-subtitle'],
+  [class$='-procedure-subtitle']
+) {
+  margin: 0;
+  color: #4b5563 !important;
+  font-size: 1.125rem !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.01em !important;
+  text-align: left !important;
+}
+
+:where(
+  [class$='-understanding-body'],
+  [class$='-aftercare-body'],
+  [class$='-benefits-body'],
+  [class$='-conditions-body'],
+  [class$='-expect-body'],
+  [class$='-process-body'],
+  [class$='-procedure-body'],
+  [class$='-understanding-item-body'],
+  [class$='-aftercare-item-body'],
+  [class$='-benefits-item-body'],
+  [class$='-conditions-item-body'],
+  [class$='-expect-item-body'],
+  [class$='-process-item-body'],
+  [class$='-procedure-item-body'],
+  .posture-correction p
+) {
+  margin: 0 !important;
+  color: #4b5563 !important;
+  font-size: 1.125rem !important;
+  line-height: 1.8 !important;
+  letter-spacing: 0.01em !important;
+  text-align: left !important;
+}
+
+:where(
+  [class$='-aftercare-title'],
+  [class$='-benefits-title'],
+  [class$='-conditions-title'],
+  [class$='-expect-title'],
+  [class$='-process-title'],
+  [class$='-procedure-title']
+) {
+  margin: 0 0 24px 0 !important;
+  color: #0f4681 !important;
+  font-size: clamp(2rem, 3vw, 2.5rem) !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  text-align: left !important;
+}

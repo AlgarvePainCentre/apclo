@@ -1,0 +1,204 @@
+@font-face {
+  font-family: 'CircularStd-Book';
+  src: url('/fonts/CircularStd-Book.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'CircularStd-Book', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #111827;
+  background-color: #f8fafc;
+  overflow-x: hidden;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+code {
+  font-family: 'CircularStd-Book', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Generic responsive video wrapper */
+.video-responsive {
+  position: relative;
+  height: 0;
+  padding-bottom: 56.25%;
+  overflow: hidden;
+  border-radius: 12px;
+}
+.video-responsive iframe,
+.video-responsive .video-iframe,
+.video-responsive video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Responsive video containment and stacking rules to prevent overlaps */
+@media (max-width: 1316px) {
+  /* Create isolated stacking contexts for common video wrappers */
+  .hero-video,
+  .home-section-testimonial-video,
+  .home-section-cards-pain-image,
+  .video-responsive,
+  .treatments-overview-media,
+  .section-video,
+  .story-card-visual {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    z-index: 0;
+    border-radius: inherit;
+  }
+
+  /* Ensure the actual media stays behind foreground UI within its container */
+  .hero-video-el,
+  .home-section-testimonial-video-el,
+  .home-section-cards-pain-video,
+  .video-iframe,
+  .story-card-video-bg,
+  .treatments-overview-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+
+  /* Foreground content above media */
+  .hero-content,
+  .home-section-testimonial-copy,
+  .home-section-cards-pain-cards,
+  .story-card-content,
+  .video-overlay-close,
+  .section-header,
+  .section-content,
+  .highlight-content {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Keep sensible aspect and spacing for key wrappers */
+  .hero-video,
+  .home-section-testimonial-video,
+  .treatments-overview-media,
+  .home-section-cards-pain-image {
+    min-height: 320px;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* Additional guard rails at common breakpoints */
+@media (max-width: 1200px) {
+  .hero-video,
+  .home-section-testimonial-video,
+  .treatments-overview-media {
+    min-height: 300px;
+  }
+}
+@media (max-width: 992px) {
+  .hero-video,
+  .home-section-testimonial-video,
+  .treatments-overview-media {
+    min-height: 280px;
+  }
+}
+@media (max-width: 768px) {
+  .hero-video,
+  .home-section-testimonial-video,
+  .treatments-overview-media,
+  .home-section-cards-pain-image {
+    min-height: 240px;
+  }
+}
+@media (max-width: 480px) {
+  .hero-video,
+  .home-section-testimonial-video,
+  .treatments-overview-media,
+  .home-section-cards-pain-image {
+    min-height: 200px;
+  }
+}
+
+.psx-media-cover-container,
+.treatments-feature-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.psx-media-cover,
+.psx-media-cover-container > img,
+.psx-media-cover-container > video,
+.treatments-feature-media > img,
+.treatments-feature-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.article-breadcrumb {
+  margin: 1rem 0 2rem;
+}
+
+.article-breadcrumb-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 0;
+  margin: 0;
+  color: #4a5568;
+}
+
+.article-breadcrumb-link {
+  color: var(--color-blue);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+}
+
+.article-breadcrumb-link:hover {
+  border-bottom-color: currentColor;
+}
+
+.article-breadcrumb-link:focus-visible {
+  outline: 3px solid var(--color-lightBlue);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.article-nav-title {
+  color: rgba(255, 255, 255, 0.98);
+}
+
+.article-nav-title .arrow {
+  color: inherit;
+}

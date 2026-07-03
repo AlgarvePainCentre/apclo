@@ -1,12 +1,16 @@
-import { useEffect, useRef, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../home/Home.css';
-import './Resources.css';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import '../../styles/layout/site-sections.css';
+import '../../styles/pages/resources-page.css';
+
+const RESOURCE_UNLOCK_KEY = 'spine_guide_unlocked';
+const EMAIL_ATTEMPTS_KEY = 'email_attempts';
 
 export default function Resources() {
   const navigate = useNavigate();
   const [downloadStatus, setDownloadStatus] = useState('idle'); // idle, downloading, success, error
   const [downloadProgress, setDownloadProgress] = useState(0);
+  const [isFeaturedGuideVisible, setIsFeaturedGuideVisible] = useState(true);
 
   // Email Gating State
   const [email, setEmail] = useState('');
@@ -14,13 +18,36 @@ export default function Resources() {
   const [isEmailVerified, setIsEmailVerified] = useState(false);
   const [isSubmittingEmail, setIsSubmittingEmail] = useState(false);
   const [honeypot, setHoneypot] = useState(''); // Anti-spam honeypot
+  const statusResetTimerRef = useRef(null);
 
   useEffect(() => {
-    // Check if user has already unlocked the resource
-    const isUnlocked = localStorage.getItem('spine_guide_unlocked');
-    if (isUnlocked === 'true') {
-      setIsEmailVerified(true);
+    try {
+      const isUnlocked = window.localStorage.getItem(RESOURCE_UNLOCK_KEY);
+      if (isUnlocked === 'true') {
+        setIsEmailVerified(true);
+      }
+    } catch {
+      // Ignore storage failures and keep the guide locked.
     }
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      if (statusResetTimerRef.current) {
+        window.clearTimeout(statusResetTimerRef.current);
+      }
+    };
+  }, []);
+
+  const scheduleStatusReset = useCallback(() => {
+    if (statusResetTimerRef.current) {
+      window.clearTimeout(statusResetTimerRef.current);
+    }
+
+    statusResetTimerRef.current = window.setTimeout(() => {
+      setDownloadStatus('idle');
+      setDownloadProgress(0);
+    }, 3000);
   }, []);
 
   const validateEmail = (email) => {
@@ -36,7 +63,7 @@ export default function Resources() {
 
   const checkRateLimit = () => {
     try {
-      const attempts = JSON.parse(localStorage.getItem('email_attempts') || '[]');
+      const attempts = JSON.parse(window.localStorage.getItem(EMAIL_ATTEMPTS_KEY) || '[]');
       const now = Date.now();
       const recentAttempts = attempts.filter((time) => now - time < 60000); // Last 1 minute
 
@@ -45,7 +72,7 @@ export default function Resources() {
       }
 
       recentAttempts.push(now);
-      localStorage.setItem('email_attempts', JSON.stringify(recentAttempts));
+      window.localStorage.setItem(EMAIL_ATTEMPTS_KEY, JSON.stringify(recentAttempts));
       return true;
     } catch {
       return true;
@@ -77,11 +104,11 @@ export default function Resources() {
     // Simulate backend API call
     try {
       // Mock network delay
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      await new Promise((resolve) => setTimeout(resolve, 1500));
       
       // Success
       setIsEmailVerified(true);
-      localStorage.setItem('spine_guide_unlocked', 'true');
+      window.localStorage.setItem(RESOURCE_UNLOCK_KEY, 'true');
     } catch (err) {
       setEmailError('Something went wrong. Please try again.');
     } finally {
@@ -89,7 +116,7 @@ export default function Resources() {
     }
   };
 
-  const handleDownload = async () => {
+  const handleDownload = useCallback(async () => {
     try {
       setDownloadStatus('downloading');
       setDownloadProgress(0);
@@ -130,14 +157,13 @@ export default function Resources() {
       document.body.removeChild(a);
       
       setDownloadStatus('success');
-      setTimeout(() => setDownloadStatus('idle'), 3000);
+      scheduleStatusReset();
       
     } catch (error) {
-      console.error('Download error:', error);
       setDownloadStatus('error');
-      setTimeout(() => setDownloadStatus('idle'), 3000);
+      scheduleStatusReset();
     }
-  };
+  }, [scheduleStatusReset]);
 
   useEffect(() => {
     // SEO
@@ -183,15 +209,11 @@ export default function Resources() {
             <h2>Learn - Cervical Pain</h2>
           </div>
           <div className="resource-nav-container">
-            <div 
+            <Link
               className="article-nav-item" 
-              id="card-article-re"
-              onClick={() => navigate('/resources/learn/cervical-pain')}
-              role="button"
-              tabIndex={0}
+              to="/resources/learn/cervical-pain"
               aria-label="Read article about Cervical Pain"
-              onKeyDown={(e) => e.key === 'Enter' && navigate('/resources/learn/cervical-pain')}
-              style={{ backgroundImage: `url('/assets/images/resources/Cervical-1.jpg')`, transform: 'translate3d(0, -20px, 0)',  backgroundSize: 'cover' }}
+              style={{ backgroundImage: `url('/assets/images/resources/Cervical-1.webp')`, transform: 'translate3d(0, -20px, 0)',  backgroundSize: 'cover' }}
             >
               <div className="article-nav-content">
                 <span className="article-nav-label">May 15, 2024 • 5 min read</span>
@@ -200,17 +222,13 @@ export default function Resources() {
                   <span className="arrow">→</span>
                 </h3>
               </div>
-            </div>
+            </Link>
 
-            <div 
+            <Link
               className="article-nav-item" 
-              id="card-article-re"
-              onClick={() => navigate('/resources/learn/conquering-cervical-pain')}
-              role="button"
-              tabIndex={0}
+              to="/resources/learn/conquering-cervical-pain"
               aria-label="Read article about Conquering Cervical Pain"
-              onKeyDown={(e) => e.key === 'Enter' && navigate('/resources/learn/conquering-cervical-pain')}
-              style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-2.jpg')`, transform: 'translate3d(0, -20px, 0)',  backgroundSize: 'cover' }}
+              style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-2.webp')`, transform: 'translate3d(0, -20px, 0)',  backgroundSize: 'cover' }}
             >
               <div className="article-nav-content">
                 <span className="article-nav-label">May 10, 2024 • 7 min read</span>
@@ -219,17 +237,13 @@ export default function Resources() {
                   <span className="arrow">→</span>
                 </h3>
               </div>
-            </div>
+            </Link>
 
-            <div 
+            <Link
               className="article-nav-item" 
-              id="card-article-re"
-              onClick={() => navigate('/resources/learn/acute-and-chronic-pain')}
-              role="button"
-              tabIndex={0}
+              to="/resources/learn/acute-and-chronic-pain"
               aria-label="Read article about Understanding Acute and Chronic Pain"
-              onKeyDown={(e) => e.key === 'Enter' && navigate('/resources/learn/acute-and-chronic-pain')}
-              style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-3.jpg')`, backgroundSize: 'cover', transform: 'translate3d(0, -20px, 0)'}}
+              style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-3.webp')`, backgroundSize: 'cover', transform: 'translate3d(0, -20px, 0)'}}
             >
               <div className="article-nav-content">
                 <span className="article-nav-label">May 5, 2024 • 6 min read</span>
@@ -238,7 +252,7 @@ export default function Resources() {
                   <span className="arrow">→</span>
                 </h3>
               </div>
-            </div>
+            </Link>
           </div>
         </section>
 
@@ -354,7 +368,8 @@ export default function Resources() {
         </section>
 
         {/* Featured Resource Popup - Example of viewport centering */}
-        <section className="page-section viewport-centered-section" id="featured-resource-popup">
+        {isFeaturedGuideVisible && (
+          <section className="page-section viewport-centered-section" id="featured-resource-popup">
           <div className="section-header">
             <h2>Free Guide: 5 Daily Habits for a Healthy Spine</h2>
             <p>Download our exclusive guide and start your journey to a pain-free life today.</p>
@@ -405,7 +420,8 @@ export default function Resources() {
                   </form>
                 ) : (
                   <div className="download-actions">
-                    <button 
+                    <button
+                      type="button"
                       className={`primary-btn ${downloadStatus === 'downloading' ? 'loading' : ''}`} 
                       onClick={handleDownload}
                       disabled={downloadStatus === 'downloading'}
@@ -419,20 +435,28 @@ export default function Resources() {
                             ? 'Try Again'
                             : 'Download Now'}
                     </button>
-                    <button className="outline-btn" style={{ marginLeft: '16px', border: 'none' }} onClick={() => document.getElementById('featured-resource-popup').style.display = 'none'}>Close</button>
+                    <button
+                      type="button"
+                      className="outline-btn"
+                      style={{ marginLeft: '16px', border: 'none' }}
+                      onClick={() => setIsFeaturedGuideVisible(false)}
+                    >
+                      Close
+                    </button>
                   </div>
                 )}
               </div>
             </div>
             <div className="highlight-visual">
               <img 
-                src="/assets/images/resources/ebook.png" 
+                src="/assets/images/resources/ebook.webp" 
                 alt="Healthy Spine Ebook Cover" 
                 style={{ maxWidth: '100%', height: 'auto', borderRadius: '12px', boxShadow: '0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)' }}
               />
             </div>
           </div>
-        </section>
+          </section>
+        )}
       </main>
     </div>
   );

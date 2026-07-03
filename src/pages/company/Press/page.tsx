@@ -1,5 +1,5 @@
 import React from 'react';
-import './Press.css';
+import '../../../styles/pages/company/press-page.css';
 
 const PressPage: React.FC = () => {
   return (

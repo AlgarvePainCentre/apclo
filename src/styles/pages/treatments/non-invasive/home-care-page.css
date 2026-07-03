@@ -1,0 +1,342 @@
+.home-care-page {
+  background: #fff;
+}
+
+.home-care-hero .psx-hero-backdrop {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/assets/images/illustrative/Home-Care-min.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.home-care-benefits-header {
+  text-align: center;
+  max-width: 980px;
+  margin: 0 auto 36px;
+}
+
+.home-care-benefits {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.home-care-benefits-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  color: #003366;
+  letter-spacing: -0.02em;
+}
+
+.home-care-benefits-subtitle {
+  margin: 14px auto 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #0b4a7a;
+  max-width: 70ch;
+}
+
+.home-care-benefits-subtitle-highlight {
+  color: #1f5fff;
+  font-weight: 600;
+}
+
+.home-care-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+  margin: 0 auto;
+}
+
+.home-care-benefit-card {
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  padding: 26px 24px 28px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+  min-height: 210px;
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.home-care-benefit-card:nth-child(-n + 3) {
+  grid-column: span 4;
+}
+
+.home-care-benefit-card:nth-child(n + 4) {
+  grid-column: span 6;
+}
+
+.home-care-benefit-card-title {
+  margin: 0;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  color: #003366;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+.home-care-benefit-card-accent {
+  width: 100%;
+  height: 2px;
+  max-width: 220px;
+  background: #f04b5e;
+  border-radius: 999px;
+}
+
+.home-care-benefit-card-body {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  color: rgba(15, 23, 42, 0.72);
+  max-width: 56ch;
+}
+
+@media (max-width: 960px) {
+  .home-care-benefits-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .home-care-benefit-card {
+    grid-column: auto !important;
+  }
+}
+
+@media (max-width: 560px) {
+  .home-care-benefits-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-care-benefit-card-title {
+    font-size: 24px;
+  }
+}
+
+.home-care-conditions-header {
+  text-align: center;
+  max-width: 980px;
+  margin: 0 auto;
+}
+
+.home-care-conditions-title {
+  margin: 0;
+  font-size: clamp(28px, 3.6vw, 40px);
+  line-height: 1.15;
+  color: #111827;
+  letter-spacing: -0.02em;
+}
+
+.home-care-conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin: 42px auto 0;
+}
+
+.home-care-condition-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+  min-height: 210px;
+}
+
+.home-care-condition-card-copy {
+  padding: 22px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-width: 0;
+}
+
+.home-care-condition-card-title {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+  color: #0b4a7a;
+}
+
+.home-care-condition-card-body {
+  margin: 10px 0 0;
+  font-size: 13px;
+  line-height: 1.8;
+  color: #4b5563;
+  max-width: 52ch;
+}
+
+.home-care-condition-card-media {
+  background: #eef2f7;
+}
+
+.home-care-condition-card-media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.home-care-condition-card-wide {
+  grid-column: 1 / -1;
+  max-width: 720px;
+  justify-self: center;
+}
+
+@media (max-width: 960px) {
+  .home-care-conditions-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .home-care-condition-card-wide {
+    max-width: none;
+    justify-self: stretch;
+  }
+}
+
+@media (max-width: 560px) {
+  .home-care-condition-card {
+    grid-template-columns: 1fr;
+  }
+
+  .home-care-condition-card-media {
+    height: 220px;
+  }
+}
+
+.home-care-page .hc-faq {
+  padding: clamp(32px, 6vw, 84px) 0;
+  background: #f8fafc;
+}
+
+.home-care-page .hc-faq-inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 32px);
+}
+
+.home-care-page .hc-faq-header {
+  max-width: 980px;
+  margin: 0 auto clamp(18px, 4vw, 32px);
+  text-align: center;
+}
+
+.home-care-page .hc-faq-title {
+  margin: 0;
+  font-size: clamp(2rem, 3.6vw, 2.8rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #111827;
+  font-weight: 700;
+}
+
+.home-care-page .hc-faq-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.home-care-page .hc-faq-item + .hc-faq-item {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.home-care-page .hc-faq-trigger {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: background 160ms ease;
+}
+
+.home-care-page .hc-faq-trigger:hover {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.home-care-page .hc-faq-trigger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.22);
+}
+
+.home-care-page .hc-faq-question {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(15, 23, 42, 0.55);
+  font-weight: 700;
+  text-align: left;
+}
+
+.home-care-page .hc-faq-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.22);
+  background: rgba(255, 255, 255, 0.96);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  color: rgba(15, 23, 42, 0.62);
+}
+
+.home-care-page .hc-faq-trigger[aria-expanded='true'] .hc-faq-question {
+  color: #0b4a7a;
+  font-weight: 800;
+}
+
+.home-care-page .hc-faq-trigger[aria-expanded='true'] .hc-faq-icon {
+  border-color: rgba(11, 74, 122, 0.55);
+  color: rgba(11, 74, 122, 0.95);
+}
+
+.home-care-page .hc-faq-panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 24px;
+  transition: max-height 280ms ease, opacity 200ms ease, padding 200ms ease;
+}
+
+.home-care-page .hc-faq-panel[data-open='true'] {
+  max-height: 520px;
+  opacity: 1;
+  padding-top: 4px;
+  padding-bottom: 18px;
+}
+
+.home-care-page .hc-faq-answer {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+@media (max-width: 600px) {
+  .home-care-page .hc-faq-header {
+    text-align: left;
+  }
+  .home-care-page .hc-faq-trigger {
+    padding: 18px 18px;
+  }
+  .home-care-page .hc-faq-panel {
+    padding: 0 18px;
+  }
+  .home-care-page .hc-faq-panel[data-open='true'] {
+    padding-bottom: 16px;
+  }
+}

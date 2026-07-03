@@ -1,5 +1,5 @@
 import React from 'react';
-import './Careers.css';
+import '../../../styles/pages/company/careers-page.css';
 
 const CareersPage: React.FC = () => {
   return (

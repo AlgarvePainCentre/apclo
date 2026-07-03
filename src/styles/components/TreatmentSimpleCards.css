@@ -1,0 +1,475 @@
+/* Treatment Simple Cards Typography Component */
+
+.rfa-benefits-grid,
+.iss-benefits-grid,
+.pnb-benefits-grid,
+.iacsi-benefits-grid,
+.cb-benefits-grid,
+.cryo-benefits-grid,
+.np-benefits-grid,
+.prp-benefits-grid,
+.hd-benefits-grid,
+.btx-benefits-grid,
+.ppm-benefits-grid,
+.hc-benefits-grid,
+.ost-benefits-grid,
+.st-benefits-grid,
+.pt-benefits-grid,
+.ot-benefits-grid,
+.tms-benefits-grid,
+.sf-benefits-grid,
+.dr-benefits-grid,
+.lds-benefits-grid {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) !important;
+  gap: clamp(18px, 2vw, 24px) !important;
+  align-items: stretch;
+}
+
+.rfa-benefit,
+.rfa-benefit-card,
+.rfa-condition-card,
+.iss-benefit-card,
+.iss-condition-card,
+.pnb-benefit-card,
+.pnb-condition-card,
+.iacsi-benefit-card,
+.iacsi-condition-card,
+.cb-benefit-card,
+.cb-condition-card,
+.cryo-benefit-card,
+.cryo-condition-card,
+.np-benefit-card,
+.np-condition-card,
+.prp-benefit-card,
+.prp-condition-card,
+.hd-benefit-card,
+.hd-condition-card,
+.btx-benefit-card,
+.btx-condition-card,
+.ppm-benefit-card,
+.ppm-condition-card,
+.hc-benefit-card,
+.hc-condition-card,
+.ost-benefit-card,
+.ost-condition-card,
+.st-benefit-card,
+.st-condition-card,
+.pt-benefit-card,
+.pt-condition-card,
+.ot-benefit-card,
+.ot-condition-card,
+.tms-benefit-card,
+.tms-condition-card,
+.sf-benefit-card,
+.sf-condition-card,
+.dr-benefit-card,
+.dr-condition-card,
+.lds-benefit-card,
+.lds-condition-card {
+  background: #ffd37a18 !important;
+  padding: 2rem 4% !important;
+  margin: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px;
+}
+
+.rfa-benefit-title,
+.rfa-condition-title,
+.iss-benefit-title,
+.iss-condition-title,
+.pnb-benefit-title,
+.pnb-condition-title,
+.iacsi-benefit-title,
+.iacsi-condition-title,
+.cb-benefit-title,
+.cb-condition-title,
+.cryo-benefit-title,
+.cryo-condition-title,
+.np-benefit-title,
+.np-condition-title,
+.prp-benefit-title,
+.prp-condition-title,
+.hd-benefit-title,
+.hd-condition-title,
+.btx-benefit-title,
+.btx-condition-title,
+.ppm-benefit-title,
+.ppm-condition-title,
+.hc-benefit-title,
+.hc-condition-title,
+.ost-benefit-title,
+.ost-condition-title,
+.st-benefit-title,
+.st-condition-title,
+.pt-benefit-title,
+.pt-condition-title,
+.ot-benefit-title,
+.ot-condition-title,
+.tms-benefit-title,
+.tms-condition-title,
+.sf-benefit-title,
+.sf-condition-title,
+.dr-benefit-title,
+.dr-condition-title,
+.lds-benefit-title,
+.lds-condition-title {
+  margin: 0 0 8px !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+  color: #0f4681 !important;
+}
+
+.rfa-benefit-title::after,
+.rfa-condition-title::after,
+.iss-benefit-title::after,
+.iss-condition-title::after,
+.pnb-benefit-title::after,
+.pnb-condition-title::after,
+.iacsi-benefit-title::after,
+.iacsi-condition-title::after,
+.cb-benefit-title::after,
+.cb-condition-title::after,
+.cryo-benefit-title::after,
+.cryo-condition-title::after,
+.np-benefit-title::after,
+.np-condition-title::after,
+.prp-benefit-title::after,
+.prp-condition-title::after,
+.hd-benefit-title::after,
+.hd-condition-title::after,
+.btx-benefit-title::after,
+.btx-condition-title::after,
+.ppm-benefit-title::after,
+.ppm-condition-title::after,
+.hc-benefit-title::after,
+.hc-condition-title::after,
+.ost-benefit-title::after,
+.ost-condition-title::after,
+.st-benefit-title::after,
+.st-condition-title::after,
+.pt-benefit-title::after,
+.pt-condition-title::after,
+.ot-benefit-title::after,
+.ot-condition-title::after,
+.tms-benefit-title::after,
+.tms-condition-title::after,
+.sf-benefit-title::after,
+.sf-condition-title::after,
+.dr-benefit-title::after,
+.dr-condition-title::after,
+.lds-benefit-title::after,
+.lds-condition-title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin-top: 12px;
+  border-radius: 999px;
+  background: var(--color-darkRed, #cc0000);
+  transform-origin: left center;
+  transform: scaleX(var(--treatment-red-line-scale, 1));
+  opacity: var(--treatment-red-line-opacity, 1);
+  will-change: transform, opacity;
+}
+
+.rfa-benefit-body,
+.rfa-condition-body,
+.iss-benefit-body,
+.iss-condition-body,
+.pnb-benefit-body,
+.pnb-condition-body,
+.iacsi-benefit-body,
+.iacsi-condition-body,
+.cb-benefit-body,
+.cb-condition-body,
+.cryo-benefit-body,
+.cryo-condition-body,
+.np-benefit-body,
+.np-condition-body,
+.prp-benefit-body,
+.prp-condition-body,
+.hd-benefit-body,
+.hd-condition-body,
+.btx-benefit-body,
+.btx-condition-body,
+.ppm-benefit-body,
+.ppm-condition-body,
+.hc-benefit-body,
+.hc-condition-body,
+.ost-benefit-body,
+.ost-condition-body,
+.st-benefit-body,
+.st-condition-body,
+.pt-benefit-body,
+.pt-condition-body,
+.ot-benefit-body,
+.ot-condition-body,
+.tms-benefit-body,
+.tms-condition-body,
+.sf-benefit-body,
+.sf-condition-body,
+.dr-benefit-body,
+.dr-condition-body,
+.lds-benefit-body,
+.lds-condition-body {
+  margin: 0 !important;
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+  color: #4b5563 !important;
+}
+
+.rfa-benefit-divider,
+.rfa-condition-divider,
+.iss-benefit-divider,
+.iss-condition-divider,
+.pnb-benefit-divider,
+.pnb-condition-divider,
+.iacsi-benefit-divider,
+.iacsi-condition-divider,
+.cb-benefit-divider,
+.cb-condition-divider,
+.cryo-benefit-divider,
+.cryo-condition-divider,
+.np-benefit-divider,
+.np-condition-divider,
+.prp-benefit-divider,
+.prp-condition-divider,
+.hd-benefit-divider,
+.hd-condition-divider,
+.btx-benefit-divider,
+.btx-condition-divider,
+.ppm-benefit-divider,
+.ppm-condition-divider,
+.hc-benefit-divider,
+.hc-condition-divider,
+.ost-benefit-divider,
+.ost-condition-divider,
+.st-benefit-divider,
+.st-condition-divider,
+.pt-benefit-divider,
+.pt-condition-divider,
+.ot-benefit-divider,
+.ot-condition-divider,
+.tms-benefit-divider,
+.tms-condition-divider,
+.sf-benefit-divider,
+.sf-condition-divider,
+.dr-benefit-divider,
+.dr-condition-divider,
+.lds-benefit-divider,
+.lds-condition-divider {
+  display: none !important;
+}
+
+.treatment-benefits-carousel-controls {
+  display: none;
+}
+
+.treatment-benefits-carousel-dots,
+.treatment-benefits-carousel-dot {
+  display: none !important;
+}
+
+.treatment-benefits-carousel-status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.treatment-benefits-carousel-button span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .rfa-benefits-grid,
+  .iss-benefits-grid,
+  .pnb-benefits-grid,
+  .iacsi-benefits-grid,
+  .cb-benefits-grid,
+  .cryo-benefits-grid,
+  .np-benefits-grid,
+  .prp-benefits-grid,
+  .hd-benefits-grid,
+  .btx-benefits-grid,
+  .ppm-benefits-grid,
+  .hc-benefits-grid,
+  .ost-benefits-grid,
+  .st-benefits-grid,
+  .pt-benefits-grid,
+  .ot-benefits-grid,
+  .tms-benefits-grid,
+  .sf-benefits-grid,
+  .dr-benefits-grid,
+  .lds-benefits-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (min-width: 1100px) {
+  .rfa-benefits-grid,
+  .iss-benefits-grid,
+  .pnb-benefits-grid,
+  .iacsi-benefits-grid,
+  .cb-benefits-grid,
+  .cryo-benefits-grid,
+  .np-benefits-grid,
+  .prp-benefits-grid,
+  .hd-benefits-grid,
+  .btx-benefits-grid,
+  .ppm-benefits-grid,
+  .hc-benefits-grid,
+  .ost-benefits-grid,
+  .st-benefits-grid,
+  .pt-benefits-grid,
+  .ot-benefits-grid,
+  .tms-benefits-grid,
+  .sf-benefits-grid,
+  .dr-benefits-grid,
+  .lds-benefits-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .rfa-benefits-grid.is-mobile-benefits-carousel,
+  .iss-benefits-grid.is-mobile-benefits-carousel,
+  .pnb-benefits-grid.is-mobile-benefits-carousel,
+  .iacsi-benefits-grid.is-mobile-benefits-carousel,
+  .cb-benefits-grid.is-mobile-benefits-carousel,
+  .cryo-benefits-grid.is-mobile-benefits-carousel,
+  .np-benefits-grid.is-mobile-benefits-carousel,
+  .prp-benefits-grid.is-mobile-benefits-carousel,
+  .hd-benefits-grid.is-mobile-benefits-carousel,
+  .btx-benefits-grid.is-mobile-benefits-carousel,
+  .ppm-benefits-grid.is-mobile-benefits-carousel,
+  .hc-benefits-grid.is-mobile-benefits-carousel,
+  .ost-benefits-grid.is-mobile-benefits-carousel,
+  .st-benefits-grid.is-mobile-benefits-carousel,
+  .pt-benefits-grid.is-mobile-benefits-carousel,
+  .ot-benefits-grid.is-mobile-benefits-carousel,
+  .tms-benefits-grid.is-mobile-benefits-carousel,
+  .sf-benefits-grid.is-mobile-benefits-carousel,
+  .dr-benefits-grid.is-mobile-benefits-carousel,
+  .lds-benefits-grid.is-mobile-benefits-carousel {
+    display: flex !important;
+    gap: 0 !important;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pinch-zoom;
+    overscroll-behavior-x: contain;
+    scroll-behavior: auto;
+    align-items: stretch;
+    transition: height 300ms ease-in-out;
+  }
+
+  .rfa-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .iss-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .pnb-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .iacsi-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .cb-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .cryo-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .np-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .prp-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .hd-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .btx-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .ppm-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .hc-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .ost-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .st-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .pt-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .ot-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .tms-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .sf-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .dr-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar,
+  .lds-benefits-grid.is-mobile-benefits-carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .treatment-benefits-carousel-slide {
+    flex: 0 0 100%;
+    min-width: 100%;
+    height: fit-content !important;
+    align-self: flex-start;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    content-visibility: auto;
+    contain-intrinsic-size: 320px;
+  }
+
+  .treatment-benefits-carousel-controls {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 18px;
+  }
+
+  .treatment-benefits-carousel-button {
+    width: 46px;
+    height: 46px;
+    border: 1px solid #0f4681;
+    border-radius: 999px;
+    background: #0f4681;
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0;
+    line-height: 1;
+    cursor: pointer;
+    transition:
+      background-color 180ms ease,
+      border-color 180ms ease,
+      color 180ms ease,
+      transform 180ms ease,
+      box-shadow 180ms ease;
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+  }
+
+  .treatment-benefits-carousel-button::before {
+    font-size: 1.5rem;
+    line-height: 1;
+    color: #ffffff;
+  }
+
+  .treatment-benefits-carousel-button--previous::before {
+    content: '‹';
+  }
+
+  .treatment-benefits-carousel-button--next::before {
+    content: '›';
+  }
+
+  .treatment-benefits-carousel-button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .treatment-benefits-carousel-button:hover:not(:disabled),
+  .treatment-benefits-carousel-button:focus-visible {
+    background: #0b3767;
+    border-color: #0b3767;
+    color: #ffffff;
+    outline: none;
+    transform: translateY(-1px);
+  }
+
+  .treatment-benefits-carousel-button:not(:disabled):active {
+    transform: scale(0.96);
+  }
+}

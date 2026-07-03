@@ -1,5 +1,5 @@
 import React from 'react';
-import './AccessibilityStatement.css';
+import '../../../styles/pages/company/accessibility-statement-page.css';
 
 const AccessibilityStatementPage: React.FC = () => {
   return (

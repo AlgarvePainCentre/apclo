@@ -1,0 +1,618 @@
+.calcification-barbotage-page {
+  background: #fff;
+}
+
+.calcification-barbotage-hero .psx-hero-backdrop {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url('/assets/images/illustrative/shoulder-pain-min.webp');
+  background-size: cover;
+  background-position: center;
+}
+
+.calcification-barbotage-page .cb-overview {
+  background: #f8fafc;
+}
+
+.calcification-barbotage-page .cb-overview-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  gap: clamp(36px, 6vw, 72px);
+}
+
+.calcification-barbotage-page .cb-understanding {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(22px, 4vw, 56px);
+  align-items: start;
+}
+
+.calcification-barbotage-page .cb-understanding-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 4.6vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #003366;
+}
+
+.calcification-barbotage-page .cb-understanding-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.calcification-barbotage-page .cb-understanding-paragraph {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  line-height: 1.85;
+  font-size: 1rem;
+}
+
+.calcification-barbotage-page .cb-procedure-header {
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.calcification-barbotage-page .cb-procedure-title {
+  margin: 0;
+  font-size: clamp(2rem, 3.8vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.calcification-barbotage-page .cb-procedure-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.calcification-barbotage-page .cb-procedure-card {
+  grid-column: span 2;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  padding: 22px 22px 24px;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  gap: 10px;
+  transition: background 200ms ease;
+}
+
+.calcification-barbotage-page .cb-procedure-card:hover {
+  background: #fff5db;
+}
+
+.calcification-barbotage-page .cb-procedure-number {
+  margin: 0;
+  color: #1e40af;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.calcification-barbotage-page .cb-procedure-card-title {
+  margin: 0;
+  color: #003366;
+  font-size: 1.35rem;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.calcification-barbotage-page .cb-procedure-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.12);
+}
+
+.calcification-barbotage-page .cb-procedure-card-body {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+@media (min-width: 901px) {
+  .calcification-barbotage-page .cb-procedure-card:nth-child(4) {
+    grid-column: 2 / span 2;
+  }
+
+  .calcification-barbotage-page .cb-procedure-card:nth-child(5) {
+    grid-column: 4 / span 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .calcification-barbotage-page .cb-understanding {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .calcification-barbotage-page .cb-procedure-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .calcification-barbotage-page .cb-procedure-card {
+    grid-column: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .calcification-barbotage-page .cb-procedure-header {
+    text-align: left;
+  }
+
+  .calcification-barbotage-page .cb-procedure-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.calcification-barbotage-page .cb-expect-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.calcification-barbotage-page .cb-expect-header {
+  text-align: center;
+  max-width: 980px;
+  margin: 0 auto 34px;
+}
+
+.calcification-barbotage-page .cb-expect-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.calcification-barbotage-page .cb-expect-subtitle {
+  margin: 16px auto 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #0b4a7a;
+  max-width: 70ch;
+}
+
+.calcification-barbotage-page .cb-expect-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0;
+  align-items: stretch;
+  border-radius: 18px;
+  overflow: hidden;
+  background: transparent;
+}
+
+.calcification-barbotage-page .cb-expect-media {
+  position: relative;
+  min-height: 360px;
+  background: transparent;
+}
+
+.calcification-barbotage-page .cb-expect-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.calcification-barbotage-page .cb-expect-card {
+  padding: 24px 26px;
+  background: transparent;
+  display: grid;
+  align-content: center;
+}
+
+.calcification-barbotage-page .cb-expect-item {
+  padding: 14px 0;
+}
+
+.calcification-barbotage-page .cb-expect-item-title {
+  margin: 0;
+  color: #0b4a7a;
+  font-size: 1.05rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.calcification-barbotage-page .cb-expect-item-body {
+  margin: 10px 0 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 60ch;
+}
+
+.calcification-barbotage-page .cb-expect-divider {
+  height: 1px;
+  width: 100%;
+  background: rgba(15, 23, 42, 0.12);
+}
+
+@media (max-width: 900px) {
+  .calcification-barbotage-page .cb-expect-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .calcification-barbotage-page .cb-expect-media {
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 600px) {
+  .calcification-barbotage-page .cb-expect-header {
+    text-align: left;
+    margin-bottom: 22px;
+  }
+
+  .calcification-barbotage-page .cb-expect-card {
+    padding: 18px 18px;
+  }
+}
+
+.calcification-barbotage-page .cb-benefits-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.calcification-barbotage-page .cb-benefits-header {
+  text-align: center;
+  max-width: 980px;
+  margin: 0 auto 36px;
+}
+
+.calcification-barbotage-page .cb-benefits-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+}
+
+.calcification-barbotage-page .cb-benefits-subtitle {
+  margin: 14px auto 0;
+  font-size: 1rem;
+  line-height: 1.75;
+  color: #0b4a7a;
+  max-width: 78ch;
+}
+
+.calcification-barbotage-page .cb-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.calcification-barbotage-page .cb-benefit-card {
+  background: #f8fafc;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 18px;
+  padding: 26px 24px 28px;
+  box-shadow: 0 14px 30px rgba(15, 23, 42, 0.06);
+  display: grid;
+  gap: 12px;
+  min-height: 210px;
+}
+
+.calcification-barbotage-page .cb-benefit-card-title {
+  margin: 0;
+  color: #003366;
+  font-size: 1.2rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.calcification-barbotage-page .cb-benefit-divider {
+  width: 100%;
+  height: 2px;
+  max-width: 220px;
+  background: #f04b5e;
+  border-radius: 999px;
+}
+
+.calcification-barbotage-page .cb-benefit-card-body {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.75;
+  max-width: 58ch;
+}
+
+.calcification-barbotage-page .cb-conditions-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.calcification-barbotage-page .cb-conditions-header {
+  text-align: center;
+  margin: 0 0 32px;
+}
+
+.calcification-barbotage-page .cb-conditions-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+}
+
+.calcification-barbotage-page .cb-conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.calcification-barbotage-page .cb-condition-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+  align-items: stretch;
+  min-height: 180px;
+}
+
+.calcification-barbotage-page .cb-condition-copy {
+  padding: 20px 20px 22px;
+  display: grid;
+  gap: 10px;
+  align-content: center;
+  min-width: 0;
+  background: #f8fafc;
+}
+
+.calcification-barbotage-page .cb-condition-title {
+  margin: 0;
+  color: #0b4a7a;
+  font-size: 1.05rem;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+.calcification-barbotage-page .cb-condition-body {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  max-width: 52ch;
+}
+
+.calcification-barbotage-page .cb-condition-media {
+  background: #eef2f7;
+  position: relative;
+}
+
+.calcification-barbotage-page .cb-condition-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .calcification-barbotage-page .cb-benefits-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .calcification-barbotage-page .cb-conditions-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .calcification-barbotage-page .cb-right-for-you-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .calcification-barbotage-page .cb-benefits-header {
+    text-align: left;
+    margin-bottom: 26px;
+  }
+
+  .calcification-barbotage-page .cb-benefits-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .calcification-barbotage-page .cb-benefit-card {
+    padding: 22px 18px 24px;
+    min-height: unset;
+  }
+
+  .calcification-barbotage-page .cb-conditions-header {
+    text-align: left;
+  }
+
+  .calcification-barbotage-page .cb-condition-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .calcification-barbotage-page .cb-condition-media {
+    min-height: 220px;
+  }
+}
+
+.calcification-barbotage-page .cb-right-for-you {
+  background: #f8fafc;
+}
+
+.calcification-barbotage-page .cb-right-for-you-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.calcification-barbotage-page .cb-right-for-you-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(22px, 4vw, 56px);
+  align-items: start;
+}
+
+.calcification-barbotage-page .cb-right-for-you-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 4.6vw, 3.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #003366;
+}
+
+.calcification-barbotage-page .cb-right-for-you-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.calcification-barbotage-page .cb-right-for-you-paragraph {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.72);
+  line-height: 1.85;
+  font-size: 1rem;
+}
+
+.calcification-barbotage-page .cb-faq {
+  background: #f8fafc;
+}
+
+.calcification-barbotage-page .cb-faq-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.calcification-barbotage-page .cb-faq-header {
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.calcification-barbotage-page .cb-faq-title {
+  margin: 0;
+  font-size: clamp(2.1rem, 4vw, 3rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.calcification-barbotage-page .cb-faq-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+}
+
+.calcification-barbotage-page .cb-faq-item + .cb-faq-item {
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.calcification-barbotage-page .cb-faq-trigger {
+  width: 100%;
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font: inherit;
+  color: inherit;
+  transition: background 160ms ease;
+}
+
+.calcification-barbotage-page .cb-faq-trigger:hover {
+  background: rgba(15, 23, 42, 0.03);
+}
+
+.calcification-barbotage-page .cb-faq-trigger:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.22);
+}
+
+.calcification-barbotage-page .cb-faq-question {
+  font-size: 1rem;
+  line-height: 1.5;
+  color: rgba(15, 23, 42, 0.55);
+  font-weight: 700;
+  text-align: left;
+}
+
+.calcification-barbotage-page .cb-faq-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.22);
+  background: rgba(255, 255, 255, 0.96);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  line-height: 1;
+  color: rgba(15, 23, 42, 0.62);
+}
+
+.calcification-barbotage-page .cb-faq-trigger[aria-expanded="true"] .cb-faq-question {
+  color: #0b4a7a;
+  font-weight: 800;
+}
+
+.calcification-barbotage-page .cb-faq-trigger[aria-expanded="true"] .cb-faq-icon {
+  border-color: rgba(11, 74, 122, 0.55);
+  color: rgba(11, 74, 122, 0.95);
+}
+
+.calcification-barbotage-page .cb-faq-panel {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 24px;
+  transition: max-height 280ms ease, opacity 200ms ease, padding 200ms ease;
+}
+
+.calcification-barbotage-page .cb-faq-panel[data-open='true'] {
+  max-height: 640px;
+  opacity: 1;
+  padding-top: 4px;
+  padding-bottom: 18px;
+}
+
+.calcification-barbotage-page .cb-faq-answer {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: rgba(15, 23, 42, 0.72);
+}
+
+@media (max-width: 600px) {
+  .calcification-barbotage-page .cb-faq-header {
+    text-align: left;
+  }
+  .calcification-barbotage-page .cb-faq-trigger {
+    padding: 18px 18px;
+  }
+  .calcification-barbotage-page .cb-faq-panel {
+    padding: 0 18px;
+  }
+  .calcification-barbotage-page .cb-faq-panel[data-open='true'] {
+    padding-bottom: 16px;
+  }
+}

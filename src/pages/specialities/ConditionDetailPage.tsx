@@ -4,6 +4,7 @@ import { serializeJsonForHtmlScript } from '../../utils/security';
 import ArticleBreadcrumb from '../../components/ArticleBreadcrumb';
 import ArticlePrevNextNav from '../../components/ArticlePrevNextNav';
 import LumbarInterventions from '../../components/LumbarInterventions';
+import '../../styles/layout/specialities-layout.css';
 
 type Syndrome = {
   id: string;
@@ -78,6 +79,15 @@ export const SPECIALITIES_NAV_ITEMS = [
   { to: '/specialities/stroke-medicine/community-reintegration', title: 'Community reintegration' },
 ] as const;
 
+export function getSpecialitiesNavItemsWithHero() {
+  return SPECIALITIES_NAV_ITEMS.map((item) => {
+    const slug = item.to.split('/').filter(Boolean).slice(-1)[0];
+    const heroImage =
+      slug && PAIN_MEDICINE_PAGE_CONTENT[slug] ? PAIN_MEDICINE_PAGE_CONTENT[slug].heroImage : undefined;
+    return { ...item, heroImage };
+  });
+}
+
 const PAIN_MEDICINE_PAGE_CONTENT: Record<
   string,
   {
@@ -90,7 +100,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
   }
 > = {
   'cervical-spine-pain': {
-    heroImage: "/assets/images/resources/Cervical-1.jpg",
+    heroImage: "/assets/images/resources/Cervical-1.webp",
     overview: [
       'Cervical spine pain (neck pain) is often linked to joints, muscles, discs or nerves. Symptoms can include stiffness, reduced range of motion, headache, and pain that may travel into the shoulder blade or arm.',
       'During your first consultation we focus on the pattern of symptoms—what triggers flare-ups, what eases them, and whether there are any nerve-related features such as tingling or weakness. This helps guide the next step, from simple measures to more targeted investigations or interventions.',
@@ -124,7 +134,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'lumbar-spine-pain': {
-    heroImage: "/assets/images/lumbar/hero-banner.jpg",
+    heroImage: "/assets/images/lumbar/hero-banner.webp",
     overview: [
       'Lumbar spine pain refers to pain that is felt in the lower back, specifically in the area of the lumbar vertebrae.',
       'The lumbar region is the lower portion of the spine and consists of five vertebrae that are responsible for supporting the weight of the upper body and providing flexibility and range of motion for the lower body.',
@@ -158,7 +168,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'shoulder-pain': {
-    heroImage: "/assets/images/illustrative/Shoulder-Pain-min-1.jpg",
+    heroImage: "/assets/images/illustrative/Shoulder-Pain-min-1.webp",
     overview: [
       'Shoulder pain can arise from the rotator cuff, bursa, joint irritation, tendon overload, or stiffness. It often affects reaching, dressing, lifting and sleep.',
       'We look at when the pain occurs (overhead movement, behind-the-back reach, lying on the shoulder) and whether weakness or reduced range of motion is present. This helps clarify whether rehabilitation, injections or other targeted treatments may help.',
@@ -195,7 +205,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'hand-and-elbow-pain': {
-    heroImage: "/assets/images/illustrative/Hand-and-Elbow-Pain-min.jpg",
+    heroImage: "/assets/images/illustrative/Hand-and-Elbow-Pain-min.webp",
     overview: [
       'Hand and elbow pain can be driven by tendon overload, joint irritation, nerve entrapment or post-injury stiffness. It can affect grip, fine motor tasks, work and sport.',
       'We assess how symptoms relate to gripping, lifting, typing and sport-specific activity, and whether there is any numbness or tingling. This helps guide rehabilitation, splinting strategies, or targeted interventions when appropriate.',
@@ -229,7 +239,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'hip-and-groin-pain': {
-    heroImage: "/assets/images/illustrative/Hip-and-Groin-Pain-min.jpg",
+    heroImage: "/assets/images/illustrative/Hip-and-Groin-Pain-min.webp",
     overview: [
       'Hip and groin pain can come from the hip joint, tendons, bursa, muscle overload, or referral from the lumbar spine. It may affect walking, stairs, sport and sleep.',
       'We explore where you feel pain (groin, side of hip, buttock), how it behaves with sitting, walking or rotation, and whether there is stiffness or weakness. This helps guide rehabilitation and targeted treatments when needed.',
@@ -263,7 +273,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'knee-pain': {
-    heroImage: "/assets/images/illustrative/Knee-Pain-min.jpg",
+    heroImage: "/assets/images/illustrative/Knee-Pain-min.webp",
     overview: [
       'Knee pain may be related to joint irritation, cartilage changes, tendon overload, or biomechanics during walking, stairs and sport. It can affect confidence, fitness and daily activity.',
       'We assess where the pain sits (front, inside, outside, back of knee), whether swelling or instability is present, and how symptoms behave with load. This guides rehabilitation, lifestyle strategies and targeted interventions when indicated.',
@@ -300,7 +310,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'thoracic-wall-pain': {
-    heroImage: "/assets/images/illustrative/Thoracic-Wall-Pain-min.jpg",
+    heroImage: "/assets/images/illustrative/Thoracic-Wall-Pain-min.webp",
     overview: [
       'Thoracic wall pain is felt around the ribs, upper back or chest wall. It is commonly linked to posture, muscle overload, joint irritation, or nerve sensitivity.',
       'We assess breathing-related triggers, movement patterns, and whether the pain is localised to the chest wall. This helps identify treatable causes and reduce unnecessary worry when serious causes have been excluded.',
@@ -334,7 +344,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'abdominal-wall-pain': {
-    heroImage: "/assets/images/illustrative/pain-medicine-algarve-min.jpg",
+    heroImage: "/assets/images/illustrative/pain-medicine-algarve-min.webp",
     overview: [
       'Abdominal wall pain is pain originating from the muscles, fascia or nerves of the abdominal wall rather than from internal organs. It can feel sharp, localised and tender to touch.',
       'Because it can mimic internal abdominal problems, we focus on a careful clinical assessment to confirm the likely source and rule out warning features that require medical investigation.',
@@ -368,7 +378,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'pelvic-and-gynaecological-pain': {
-    heroImage: "/assets/images/illustrative/pelvic-pain-min.jpg",
+    heroImage: "/assets/images/illustrative/pelvic-pain-min.webp",
     overview: [
       'Pelvic and gynaecological pain can have multiple contributors, including pelvic floor muscle tension, nerve sensitivity, joint or connective tissue irritation, and gynaecological or urological factors.',
       'We take a respectful, whole-person history to understand symptom triggers and impact on daily life, sleep and wellbeing. When needed, we coordinate with relevant specialists to ensure appropriate investigation and care.',
@@ -405,7 +415,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'head-pain': {
-    heroImage: "/assets/images/illustrative/Head-Pain-min.jpg",
+    heroImage: "/assets/images/illustrative/Head-Pain-min.webp",
     overview: [
       'Head pain can include migraine, tension-type headache, cluster headache and other primary headache disorders. It may also be secondary to conditions affecting the neck, jaw, sinuses or nerves.',
       'We focus on the pattern: onset, frequency, triggers, associated symptoms (nausea, light sensitivity, tearing, nasal congestion), and any red flags. This helps match you to the most appropriate evidence-based pathway.',
@@ -451,7 +461,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'facial-pain': {
-    heroImage: "/assets/images/illustrative/Head-Pain-min.jpg",
+    heroImage: "/assets/images/illustrative/Head-Pain-min.webp",
     overview: [
       'Facial pain can be complex and distressing. It may be related to nerve irritation, jaw and muscle tension, dental or sinus referral, or headache syndromes.',
       'We focus on the quality and timing of pain—short electric-shock episodes versus persistent aching or burning—and whether there are triggers such as chewing, touch or cold air. This helps determine the most appropriate pathway.',
@@ -488,7 +498,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'foot-and-ankle-pain': {
-    heroImage: "/assets/images/medical/ankle-pain-min.jpg",
+    heroImage: "/assets/images/medical/ankle-pain-min.webp",
     overview: [
       'Foot and ankle pain can come from tendon and ligament overload, joint irritation, plantar fascia strain, nerve irritation, or lingering symptoms after a sprain.',
       'We assess your walking pattern, footwear and activity demands, and whether pain is localised (heel, arch, ankle, forefoot) or associated with swelling, instability or nerve symptoms.',
@@ -526,7 +536,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
   },
   // Sports Medicine
   'sports-injuries': {
-    heroImage: "/assets/images/illustrative/injuries-min.jpg",
+    heroImage: "/assets/images/illustrative/injuries-min.webp",
     overview: [
       'Sports injuries range from sprains and strains to tendon tears and stress reactions. Understanding the mechanism and load context guides safe return to play.',
       'We assess movement patterns, sport-specific demands and tissue healing timelines to tailor rehabilitation and decide when imaging or procedures may help.',
@@ -543,7 +553,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'injury-prevention': {
-    heroImage: "/assets/images/illustrative/prevention-min.jpg",
+    heroImage: "/assets/images/illustrative/prevention-min.webp",
     overview: [
       'Injury prevention combines screening for modifiable risk factors with education, load planning and neuromuscular training.',
       'Programmes are tailored to sport, position and season, embedding proven warm‑up and strength components without overloading schedules.',
@@ -560,7 +570,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'sports-rehabilitation': {
-    heroImage: "/assets/images/illustrative/rehabilitation-min.jpg",
+    heroImage: "/assets/images/illustrative/rehabilitation-min.webp",
     overview: [
       'Sports rehabilitation rebuilds capacity through staged strength, control and conditioning, aligned to tissue healing and performance demands.',
       'We integrate pain‑management when needed so progressive loading remains possible and safe.',
@@ -577,7 +587,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'sports-performance': {
-    heroImage: "/assets/images/illustrative/performance-min.jpg",
+    heroImage: "/assets/images/illustrative/performance-min.webp",
     overview: [
       'Performance support aligns strength, conditioning and skill work with recovery and nutrition to sustain adaptation.',
       'We emphasise progressive overload, movement efficiency and monitoring to inform training decisions.',
@@ -591,7 +601,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'sports-psychology': {
-    heroImage: "/assets/images/illustrative/Psychology-min-1.jpg",
+    heroImage: "/assets/images/illustrative/Psychology-min-1.webp",
     overview: [
       'Sports psychology supports motivation, confidence and coping under pressure, especially after injury or performance dips.',
       'We build practical strategies for goal‑setting, imagery, arousal regulation and returning to competition.',
@@ -608,7 +618,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'sports-nutrition': {
-    heroImage: "/assets/images/illustrative/Nutrition-min-1.jpg",
+    heroImage: "/assets/images/illustrative/Nutrition-min-1.webp",
     overview: [
       'Sports nutrition optimises training adaptation, recovery and body composition while considering health and performance goals.',
       'We customise fuelling around sessions and events, and address energy availability, hydration and supplementation when appropriate.',
@@ -626,7 +636,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
   },
   // Stroke Medicine
   'clinical-and-secondary-prevention-of-stroke': {
-    heroImage: "/assets/images/illustrative/stroke-prevention-min.jpg",
+    heroImage: "/assets/images/illustrative/stroke-prevention-min.webp",
     overview: [
       'Secondary prevention aims to reduce the risk of recurrent stroke or TIA through medication optimisation and lifestyle interventions.',
       'We work with your medical team to address blood pressure, lipids, antithrombotic therapy and risk factors such as smoking and diabetes.',
@@ -643,7 +653,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'feeding-autonomy': {
-    heroImage: "/assets/images/learn/DSC07089.jpg",
+    heroImage: "/assets/images/learn/DSC07089.webp",
     overview: [
       'Feeding autonomy focuses on safe, independent eating and drinking after stroke while managing dysphagia risk.',
       'We coordinate swallow assessment, texture modifications, posture, and caregiver training as needed.',
@@ -657,7 +667,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'speech-autonomy': {
-    heroImage: "/assets/images/illustrative/Speech-Therapy-min-1.jpg",
+    heroImage: "/assets/images/illustrative/Speech-Therapy-min-1.webp",
     overview: [
       'Speech autonomy supports communication and swallowing after stroke, including aphasia, dysarthria and apraxia of speech.',
       'We build personalised therapy around functional goals with assistive strategies and caregiver involvement.',
@@ -671,7 +681,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'post-stroke-depression-and-mood-disorders': {
-    heroImage: "/assets/images/illustrative/mood-disorders-min.jpg",
+    heroImage: "/assets/images/illustrative/mood-disorders-min.webp",
     overview: [
       'Mood disorders after stroke are common and treatable. We screen for depression and anxiety and coordinate care across teams.',
       'Management includes psychoeducation, psychological therapies and medication when indicated, with monitoring for response and safety.',
@@ -685,7 +695,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'medical-complications-post-stroke': {
-    heroImage: "/assets/images/illustrative/post-stroke-min.jpg",
+    heroImage: "/assets/images/illustrative/post-stroke-min.webp",
     overview: [
       'Medical complications post-stroke (e.g., infections, DVT, pressure injuries) can impede rehabilitation and must be proactively managed.',
       'We coordinate surveillance and communication with medical teams to reduce avoidable complications and support early interventions.',
@@ -699,7 +709,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'post-stroke-spasticity': {
-    heroImage: "/assets/images/learn/DSC07598-1.jpg",
+    heroImage: "/assets/images/learn/DSC07598-1.webp",
     overview: [
       'Spasticity after stroke can impair movement and function. Management blends therapy with medications and injections when indicated.',
       'We prioritise functional goals, positioning and splinting, and coordinate botulinum toxin or other interventions in selected cases.',
@@ -713,7 +723,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'complex-regional-pain-syndrome': {
-    heroImage: "/assets/images/illustrative/Hand-and-Elbow-Pain-min.jpg",
+    heroImage: "/assets/images/illustrative/Hand-and-Elbow-Pain-min.webp",
     overview: [
       'Complex Regional Pain Syndrome (CRPS) is a chronic pain condition often following injury or immobilisation, marked by pain disproportionate to the inciting event.',
       'Management emphasises education, graded exposure, desensitisation, and when needed medication and interventional pain approaches.',
@@ -727,7 +737,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'postural-and-motor-control-autonomy': {
-    heroImage: "/assets/images/learn/DSC07600.jpg",
+    heroImage: "/assets/images/learn/DSC07600.webp",
     overview: [
       'Postural and motor control autonomy focuses on regaining safe, independent movement and balance after stroke.',
       'Training targets trunk and limb control, sit‑to‑stand, stepping and gait with task‑specific practice and progression.',
@@ -741,7 +751,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'community-reintegration': {
-    heroImage: "/assets/images/illustrative/rehabilitation-min.jpg",
+    heroImage: "/assets/images/illustrative/rehabilitation-min.webp",
     overview: [
       'Community reintegration supports return to home, work, leisure and social participation after stroke.',
       'We identify environmental barriers, build confidence in real‑world tasks, and coordinate supports and transport where needed.',
@@ -906,6 +916,345 @@ const HIP_MOST_COMMON_SYNDROMES: Syndrome[] = [
   },
 ];
 
+const HEAD_MOST_COMMON_SYNDROMES: Syndrome[] = [
+  {
+    id: 'cluster-headache',
+    label: 'Cluster Headache',
+    description:
+      'Severe, one‑sided headache attacks with autonomic symptoms such as tearing or nasal congestion, often occurring in clusters over weeks.',
+  },
+  {
+    id: 'tension-headache',
+    label: 'Tension Headache',
+    description:
+      'A common headache pattern often described as a pressing or tightening sensation, sometimes associated with stress, sleep, and muscle tension.',
+  },
+  {
+    id: 'paroxysmal-hemicrania',
+    label: 'Paroxysmal Hemicrania',
+    description:
+      'Short, frequent, one‑sided headache attacks that can respond strongly to specific anti‑inflammatory medication under medical supervision.',
+  },
+  {
+    id: 'sunha',
+    label: 'Short‑lasting unilateral neuralgiform headache attacks',
+    description:
+      'Brief, sharp attacks of head pain with prominent autonomic features. Care focuses on confirming the diagnosis and choosing an appropriate treatment plan.',
+  },
+];
+
+const CERVICAL_MOST_COMMON_SYNDROMES: Syndrome[] = [
+  {
+    id: 'whiplash-injury',
+    label: '“Whiplash” Injury',
+    description:
+      'Whiplash‑associated disorders (WAD) can follow acceleration–deceleration injury (for example, a rear‑end collision). Symptoms may include neck pain and stiffness, headache, and sensitivity with movement.',
+  },
+  {
+    id: 'fractures-dislocations',
+    label: 'Fractures and fracture dislocations',
+    description:
+      'Neck pain after trauma requires careful assessment. When suspected, imaging and specialist review help confirm stability and guide safe management.',
+  },
+  {
+    id: 'degenerative-disease',
+    label: 'Cervical disk and facet joint degenerative disease',
+    description:
+      'Age‑related changes in discs and facet joints can contribute to stiffness, local neck pain, and referred pain into the shoulder blade region, especially with sustained posture or rotation.',
+  },
+  {
+    id: 'inflammatory-joint-disease',
+    label: 'Inflammatory joint diseases (ankylosing spondylitis)',
+    description:
+      'Inflammatory conditions can cause persistent pain and morning stiffness. Treatment often combines medication optimisation with rehabilitation and posture strategies.',
+  },
+  {
+    id: 'muscle-contractures',
+    label: 'Cervical Muscles Contractures',
+    description:
+      'Muscle spasm or protective guarding can limit range of motion and amplify pain. Plans typically include education, graded movement, and strengthening to restore tolerance.',
+  },
+];
+
+const SHOULDER_MOST_COMMON_SYNDROMES: Syndrome[] = [
+  {
+    id: 'subacromial-impingement',
+    label: 'Subacromial impingement (tendinopathy, bursitis)',
+    description:
+      'Pain with overhead reaching or side‑lying that can reflect rotator cuff tendon overload and bursa irritation. Management typically combines load guidance, exercise, and selected injections.',
+  },
+  {
+    id: 'rotator-cuff-tear',
+    label: 'Rotator Cuff Tear',
+    description:
+      'Weakness and pain with lifting or reaching can indicate a tendon tear. Assessment helps determine severity and whether rehabilitation, injections, or surgical referral is appropriate.',
+  },
+  {
+    id: 'suprascapular-neuropathy',
+    label: 'Suprascapular neuropathy',
+    description:
+      'Irritation of the suprascapular nerve can contribute to shoulder pain and weakness, sometimes linked to overhead activity or cysts near the labrum.',
+  },
+  {
+    id: 'shoulder-instability',
+    label: 'Shoulder instability (Multi–directional; Uni–directional)',
+    description:
+      'A feeling of slipping, catching, or apprehension can reflect instability. Treatment focuses on stability, strength, and movement control; imaging helps when structural injury is suspected.',
+  },
+  {
+    id: 'labral-slap',
+    label: 'Labral/SLAP tears',
+    description:
+      'Labral injuries can cause deep shoulder pain, clicking, or reduced performance with overhead tasks. Plans range from rehabilitation to targeted injections or surgical review depending on function.',
+  },
+  {
+    id: 'biceps-tendinopathy',
+    label: 'Biceps tendinopathy, ruptures or subluxation',
+    description:
+      'Front‑of‑shoulder pain can relate to the long head of biceps tendon. Management includes load modification and strengthening; imaging can help confirm tears or tendon instability.',
+  },
+  {
+    id: 'ac-arthropathy',
+    label: 'AC arthropathy/instability',
+    description:
+      'Pain on top of the shoulder, especially with cross‑body movements, can relate to the acromioclavicular joint. Treatment may include rehabilitation and image‑guided injections.',
+  },
+  {
+    id: 'glenohumeral-arthropathy',
+    label: 'Glenohumeral joint arthropathy',
+    description:
+      'Arthritis in the main shoulder joint can cause stiffness, night pain, and reduced range of motion. Care combines exercise, pain control, injections, and surgical options when needed.',
+  },
+  {
+    id: 'scapulothoracic-dyskinesis',
+    label: 'Scapulo–thoracic dyskinesis',
+    description:
+      'Altered shoulder blade control can increase load on shoulder tissues. Rehabilitation targets posture, strength, and coordination to improve movement efficiency.',
+  },
+];
+
+const HAND_ELBOW_MOST_COMMON_SYNDROMES: Syndrome[] = [
+  {
+    id: 'epicondylitis',
+    label: 'Lateral/Medial epicondylitis',
+    description:
+      'Common tendon overload conditions around the elbow (often called tennis elbow or golfer’s elbow). Symptoms can be triggered by gripping, lifting, typing, and repetitive wrist or forearm activity. Management typically includes load modification, progressive strengthening, and targeted symptom control.',
+  },
+  {
+    id: 'pronator-syndrome',
+    label: 'Pronator syndrome',
+    description:
+      'Median nerve irritation in the forearm that can cause aching pain and altered sensation. Assessment focuses on symptom pattern, provoking positions, and functional triggers to guide rehabilitation and, when needed, targeted intervention.',
+  },
+  {
+    id: 'radial-tunnel',
+    label: 'Radial tunnel syndrome',
+    description:
+      'Pain in the forearm related to irritation around the radial nerve, sometimes overlapping with lateral elbow symptoms. Treatment can include activity changes, strengthening, and nerve‑sensitive load progression.',
+  },
+  {
+    id: 'cubital-tunnel',
+    label: 'Cubital tunnel syndrome',
+    description:
+      'Ulnar nerve irritation at the elbow that may cause numbness or tingling in the ring and little fingers. Management often includes posture and sleep positioning strategies, splinting, and graded strengthening.',
+  },
+  {
+    id: 'carpal-tunnel',
+    label: 'Carpal tunnel syndrome',
+    description:
+      'Median nerve compression at the wrist that can cause numbness, tingling, and night symptoms. Treatment may include splinting, ergonomic changes, rehabilitation, injections, or surgical referral when indicated.',
+  },
+  {
+    id: 'de-quervain',
+    label: 'De Quervain’s tenosynovitis',
+    description:
+      'Pain on the thumb side of the wrist linked to tendon sheath irritation, often worsened by gripping and lifting. Care typically includes load management, splinting, and targeted procedures when needed.',
+  },
+  {
+    id: 'ganglion-cysts',
+    label: 'Ganglion cysts',
+    description:
+      'Fluid‑filled swellings that can cause discomfort or limit movement depending on location. Management depends on symptoms and may include observation, aspiration, or other targeted treatment.',
+  },
+  {
+    id: 'rheumatoid-arthritis',
+    label: 'Rheumatoid arthritis',
+    description:
+      'Inflammatory joint disease that can affect the hands and wrists with pain, swelling, and morning stiffness. Treatment often requires coordinated medical management alongside rehabilitation and activity planning.',
+  },
+];
+
+const THORACIC_WALL_MOST_COMMON_SYNDROMES: Syndrome[] = [
+  {
+    id: 'costochondritis',
+    label: 'Costochondritis',
+    description:
+      'Inflammation of the costal cartilage at the articulation of the ribs and sternum. Usually benign and often presents with insidious chest wall pain, sometimes with tenderness over affected joints. Pain control with anti‑inflammatory strategies may help.',
+  },
+  {
+    id: 'intercostal-strain',
+    label: 'Pectoral or intercostal muscles strains',
+    description:
+      'Strain of chest wall muscles can follow coughing, lifting, or twisting. Management focuses on load guidance, mobility, breathing mechanics, and progressive strengthening.',
+  },
+  {
+    id: 'lower-rib-pain',
+    label: 'Lower rib pain syndrome',
+    description:
+      'Irritation of lower rib attachments can cause focal chest wall pain, sometimes with movement or breathing. Treatment combines reassurance, activity modification, and targeted symptom relief.',
+  },
+  {
+    id: 'sternalis-syndrome',
+    label: 'Sternalis syndrome',
+    description:
+      'A less common source of anterior chest wall pain related to sternal or parasternal tissues. Assessment helps exclude serious causes and guide conservative management.',
+  },
+  {
+    id: 'costovertebral-pain',
+    label: 'Pain from thoracic spine/costovertebral joints',
+    description:
+      'Facet and costovertebral joint irritation can refer pain to the chest wall. Plans often include posture strategies, mobility, strengthening, and selected interventions when appropriate.',
+  },
+];
+
+const ABDOMINAL_WALL_MOST_COMMON_SYNDROMES: Syndrome[] = [
+  {
+    id: 'acnes',
+    label: 'Anterior cutaneous nerve entrapment syndrome',
+    description:
+      'This syndrome is a common and frequently missed cause of chronic abdominal pain, characterized by the entrapment of cutaneous branches of intercostal nerves. The pain is usually aggravated by any movement of abdominal muscles and treatment should begin with ultrasound-guided nerve blocks.',
+  },
+  {
+    id: 'thoracic-radiculopathy',
+    label: 'Thoracic nerve radiculopathy',
+    description:
+      'Irritation of a thoracic spinal nerve can refer pain to the chest or abdominal wall. Assessment looks for posture, movement, and nerve-related features to guide rehabilitation and targeted treatment.',
+  },
+  {
+    id: 'lower-rib-pain-syndromes',
+    label: 'Lower rib pain syndromes',
+    description:
+      'Pain arising from lower rib and costal margin structures can mimic abdominal pain. Treatment often includes reassurance, load modification, mobility, and targeted symptom control.',
+  },
+];
+
+const PELVIC_MOST_COMMON_SYNDROMES: Syndrome[] = [
+  {
+    id: 'fibromyalgia',
+    label: 'Fibromyalgia',
+    description:
+      'Fibromyalgia is a condition where pain-conducting systems transmit information in an erroneous manner. In approaching this type of pain, it is important to understand that it is a benign condition and, although it is not to be depreciated, the patient should be reassured. Physical exercise, medication and physiotherapy may help reduce the pain.',
+  },
+  {
+    id: 'pelvic-floor-tension',
+    label: 'Pelvic floor muscle tension',
+    description:
+      'Increased pelvic floor muscle tone can contribute to pelvic pain, urinary or bowel symptoms, and pain with sitting or activity. Treatment commonly includes education, pelvic floor–informed rehabilitation, and graded exposure to comfortable movement.',
+  },
+  {
+    id: 'pubic-symphysis-inflammation',
+    label: 'Inflammation of the pubic joint (pubic symphysis)',
+    description:
+      'Irritation around the pubic symphysis can cause pain in the groin or lower abdomen, sometimes worsened with walking, stairs, or rolling in bed. A stepwise plan often includes load management and targeted rehabilitation.',
+  },
+  {
+    id: 'chronic-pelvic-inflammatory-disease',
+    label: 'Chronic pelvic inflammatory disease',
+    description:
+      'Inflammatory conditions affecting pelvic structures can contribute to persistent pain. Care may require coordinated assessment with appropriate specialists alongside symptom control and rehabilitation strategies.',
+  },
+];
+
+const FACIAL_MOST_COMMON_SYNDROMES: Syndrome[] = [
+  {
+    id: 'trigeminal-neuralgia',
+    label: 'Trigeminal neuralgia',
+    description:
+      'Classically presents as brief, severe “electric shock” pain in the face, often triggered by touch, chewing, or cold air. Management focuses on confirming the diagnosis and optimising neuropathic pain treatment.',
+  },
+  {
+    id: 'post-herpetic-neuralgia',
+    label: 'Post‑herpetic neuralgia',
+    description:
+      'Persistent burning or sensitive pain that can follow shingles. Treatment aims to reduce nerve pain, improve sleep, and restore confidence with daily activities.',
+  },
+  {
+    id: 'tmj-disorder',
+    label: 'Temporomandibular disorder (jaw-related pain)',
+    description:
+      'Jaw and facial pain linked to muscle tension, clenching, joint irritation, or clicking. Care often includes education, muscle and jaw load strategies, and coordinated dental assessment when needed.',
+  },
+  {
+    id: 'persistent-idiopathic-facial-pain',
+    label: 'Persistent idiopathic facial pain',
+    description:
+      'Ongoing facial pain without a clear structural cause after appropriate evaluation. A multidisciplinary plan can help reduce symptoms and improve function over time.',
+  },
+];
+
+const FOOT_ANKLE_MOST_COMMON_SYNDROMES: Syndrome[] = [
+  {
+    id: 'achilles',
+    label: 'Achilles Tendonitys / Tendon rupture',
+    description:
+      'Achilles pain can reflect tendon overload or, less commonly, rupture after a sudden load. Assessment focuses on onset, swelling, strength, and function to guide safe treatment.',
+  },
+  {
+    id: 'avulsion-fracture',
+    label: 'Avulsion fracture',
+    description:
+      'A small bone fragment can be pulled off where a tendon or ligament attaches, often after a twist or impact. Imaging may be needed to confirm and guide management.',
+  },
+  {
+    id: 'gout',
+    label: 'Gout',
+    description:
+      'A sudden, very painful, swollen joint (often the big toe) caused by urate crystal inflammation. Treatment focuses on acute control and prevention when recurrent.',
+  },
+  {
+    id: 'hammertoe',
+    label: 'Hammertoe and mallet toe',
+    description:
+      'Toe deformities that can cause pressure points, corns, and pain in footwear. Treatment may include footwear changes, splinting, orthoses, and specialist review when severe.',
+  },
+  {
+    id: 'mortons-neuroma',
+    label: "Morton's neuroma",
+    description:
+      'Forefoot pain or burning between toes due to nerve irritation, often worse in tight shoes. Care includes footwear strategies, load changes, and targeted interventions when needed.',
+  },
+  {
+    id: 'plantar-fasciitis',
+    label: 'Plantar fasciitis',
+    description:
+      'Heel pain that is often worse with first steps and improves with movement. Management focuses on progressive loading, calf/foot strengthening, and footwear advice.',
+  },
+  {
+    id: 'rheumatoid-arthritis-foot',
+    label: 'Rheumatoid arthritis',
+    description:
+      'Inflammatory joint disease can affect the feet and ankles with pain, swelling, and stiffness. Coordinated medical care and rehabilitation help protect function and comfort.',
+  },
+  {
+    id: 'tarsal-tunnel',
+    label: 'Tarsal tunnel syndrome',
+    description:
+      'Tingling, burning, or shooting pain in the foot due to tibial nerve irritation near the ankle. Treatment may include load modification, footwear changes, and targeted care.',
+  },
+  {
+    id: 'sprained-ankle',
+    label: 'Sprained ankle',
+    description:
+      'Ligament injury after a twist can lead to pain, swelling, and instability. Rehabilitation focuses on strength, balance, and confidence to reduce recurrence.',
+  },
+  {
+    id: 'stress-fractures',
+    label: 'Stress fractures',
+    description:
+      'Overuse bone stress can cause focal pain that worsens with activity. Early recognition, load management, and imaging when indicated help prevent progression.',
+  },
+];
+
 const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
   title,
   areaLabel,
@@ -929,16 +1278,28 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
   const syndromes = variant === 'pain-specialty-clone' && PAIN_MEDICINE_PAGE_CONTENT[slugBase]
     ? PAIN_MEDICINE_PAGE_CONTENT[slugBase].patterns
     : DEFAULT_SYNDROMES;
-  const accordionSyndromes =
-    slugBase === 'knee-pain'
-      ? KNEE_MOST_COMMON_SYNDROMES
-      : slugBase === 'hip-and-groin-pain'
-        ? HIP_MOST_COMMON_SYNDROMES
-        : syndromes;
-  const [activeSyndromeId, setActiveSyndromeId] = React.useState<string | null>(() => accordionSyndromes[0]?.id ?? null);
+  const accordionSyndromes = React.useMemo(() => {
+    if (slugBase === 'knee-pain') return KNEE_MOST_COMMON_SYNDROMES;
+    if (slugBase === 'hip-and-groin-pain') return HIP_MOST_COMMON_SYNDROMES;
+    if (slugBase === 'head-pain') return HEAD_MOST_COMMON_SYNDROMES;
+    if (slugBase === 'cervical-spine-pain') return CERVICAL_MOST_COMMON_SYNDROMES;
+    if (slugBase === 'shoulder-pain') return SHOULDER_MOST_COMMON_SYNDROMES;
+    if (slugBase === 'hand-and-elbow-pain') return HAND_ELBOW_MOST_COMMON_SYNDROMES;
+    if (slugBase === 'thoracic-wall-pain') return THORACIC_WALL_MOST_COMMON_SYNDROMES;
+    if (slugBase === 'abdominal-wall-pain') return ABDOMINAL_WALL_MOST_COMMON_SYNDROMES;
+    if (slugBase === 'pelvic-and-gynaecological-pain') return PELVIC_MOST_COMMON_SYNDROMES;
+    if (slugBase === 'facial-pain') return FACIAL_MOST_COMMON_SYNDROMES;
+    if (slugBase === 'foot-and-ankle-pain') return FOOT_ANKLE_MOST_COMMON_SYNDROMES;
+    return syndromes;
+  }, [slugBase, syndromes]);
+  const initialActiveSyndromeId = React.useMemo(() => {
+    if (slugBase === 'head-pain' || slugBase === 'shoulder-pain') return null;
+    return accordionSyndromes[0]?.id ?? null;
+  }, [accordionSyndromes, slugBase]);
+  const [activeSyndromeId, setActiveSyndromeId] = React.useState<string | null>(() => initialActiveSyndromeId);
   React.useEffect(() => {
-    setActiveSyndromeId(accordionSyndromes[0]?.id ?? null);
-  }, [accordionSyndromes]);
+    setActiveSyndromeId(initialActiveSyndromeId);
+  }, [initialActiveSyndromeId]);
   const treatmentsSectionId = `${slugBase}-treatments`;
   const contactIdPrefix = `${slugBase}-contact`;
 
@@ -1069,7 +1430,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
   }, []);
 
   if (variant === 'pain-specialty-clone') {
-    const defaultHeroImage = '/assets/images/illustrative/pain-medicine-algarve-min.jpg';
+    const defaultHeroImage = '/assets/images/illustrative/pain-medicine-algarve-min.webp';
     const defaultOverview = [
       'Pain in this area can have many causes, including joint, muscle, nerve and postural factors. During your first consultation we explore how your symptoms started, how they have evolved over time and which movements or activities make them better or worse.',
       'We also look carefully at your medical history, lifestyle and previous treatments. Some people come to us after years of trying isolated approaches without a clear plan. Others seek support early, when symptoms are starting to interfere with work, sport or sleep.',
@@ -1080,17 +1441,13 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
     const overviewParagraphs = pageContent?.overview ?? defaultOverview;
 
     return (
-      <div
-        className="psx-page"
-        id={`psx-${slugBase}`}
-        style={
-          {
-            '--psx-hero-image': `url('${heroImage}')`,
-          } as React.CSSProperties
-        }
-      >
+      <div className="psx-page" id={`psx-${slugBase}`}>
         <header className="psx-hero">
-          <div className="psx-hero-backdrop" aria-hidden="true" />
+          <div
+            className="psx-hero-backdrop"
+            aria-hidden="true"
+            style={{ backgroundImage: `url('${heroImage}')` }}
+          />
           <div className="psx-hero-inner">
             <p className="psx-hero-eyebrow">{heroEyebrow ?? 'Speciality'}</p>
             <h1 className="psx-hero-title">{title}</h1>
@@ -1110,6 +1467,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                 Explore treatments
               </a>
             </div>
+
           </div>
         </header>
         <main className={mainClassName ? `psx-main ${mainClassName}` : 'psx-main'}>
@@ -1159,12 +1517,1499 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                     preload="metadata"
                     poster={heroImage}
                   >
-                    <source src="/assets/videos/post-43.mp4" type="video/mp4" />
+                    <source src="/assets/videos/post-43.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
+                    <source src="/assets/videos/post-43.h264.mp4" type='video/mp4; codecs="avc1.42E01E"' />
                     Your browser does not support the video tag.
                   </video>
                 </div>
               </div>
             </div>
+            {slugBase === 'foot-and-ankle-pain' && (
+              <div className="psx-syndromes-accordion" aria-labelledby="foot-ankle-syndromes-title">
+                <header className="psx-syndromes-accordion-header">
+                  <h2 id="foot-ankle-syndromes-title" className="psx-syndromes-accordion-title">
+                    Most Common Syndromes
+                  </h2>
+                  <p className="psx-syndromes-accordion-subtitle">
+                    Foot and ankle pain can come from very different structures and have several etiologies, some of the most common are described here.
+                  </p>
+                </header>
+                <div className="psx-syndromes-accordion-card">
+                  <div className="psx-accordion" role="list" aria-label="Most common foot and ankle pain syndromes">
+                    {accordionSyndromes.map((syndrome) => {
+                      const isActive = activeSyndromeId === syndrome.id;
+                      const rowId = `psx-foot-ankle-syndrome-${syndrome.id}`;
+                      const panelId = `psx-foot-ankle-syndrome-panel-${syndrome.id}`;
+                      return (
+                        <div key={syndrome.id} className="psx-accordion-item" role="listitem">
+                          <button
+                            id={rowId}
+                            type="button"
+                            className="psx-accordion-trigger"
+                            aria-expanded={isActive}
+                            aria-controls={panelId}
+                            onClick={() =>
+                              setActiveSyndromeId((current) => (current === syndrome.id ? null : syndrome.id))
+                            }
+                          >
+                            <span className="psx-accordion-label">{syndrome.label}</span>
+                            <span className="psx-accordion-icon" aria-hidden="true">
+                              {isActive ? '−' : '+'}
+                            </span>
+                          </button>
+                          <div
+                            id={panelId}
+                            className="psx-accordion-panel"
+                            data-open={isActive ? 'true' : 'false'}
+                            role="region"
+                            aria-labelledby={rowId}
+                            aria-hidden={!isActive}
+                          >
+                            <p className="psx-accordion-text">{syndrome.description}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+            {slugBase === 'foot-and-ankle-pain' && (
+              <section className="psx-approaches psx-approaches--foot-ankle" aria-labelledby="foot-ankle-approaches-title">
+                <header className="psx-approaches-header">
+                  <h2 id="foot-ankle-approaches-title" className="psx-approaches-title">
+                    Treatment Approaches
+                  </h2>
+                </header>
+                <div className="psx-approaches-grid" role="list" aria-label="Foot and ankle pain treatment approaches">
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Corticosteroid.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Corticosteroids Injection</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Targeted anti-inflammatory injection to reduce pain and support movement while rehabilitation progresses.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/intra-articular-corticosteroids-injection"
+                        className="psx-approach-link"
+                        aria-label="Learn more about corticosteroids injection"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">›</span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/PeripheralNerveBlocks.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Peripheric Nerve Block</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Local anaesthetic near nerves for diagnostic clarity or therapeutic relief when symptoms suggest nerve-related pain.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/peripheral-nerve-block"
+                        className="psx-approach-link"
+                        aria-label="Learn more about peripheric nerve block"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">›</span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Crioblation.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Crioablation</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Cold-based nerve modulation to interrupt pain signalling, guided by ultrasound or fluoroscopy when appropriate.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/cryoblation"
+                        className="psx-approach-link"
+                        aria-label="Learn more about crioablation"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">›</span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Pharmacological.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Pharmacological Management</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Pharmacological management pain is commonly part of the treatment and a wide range of drugs can be used to manage pain.
+                      </p>
+                      <Link
+                        to="/treatments/non-invasive-treatments/pharmacological-pain-management"
+                        className="psx-approach-link"
+                        aria-label="Learn more about pharmacological management"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">›</span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/PlateletRichPlasma.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Plasma Injection</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        PRP (platelet rich plasma) contains 2-5 times the usual number of platelets and have a regenerative effect on the tissues.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/platelets-rich-plasma-injection"
+                        className="psx-approach-link"
+                        aria-label="Learn more about plasma injection"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">›</span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Radiofrequency.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Radiofrequency</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Radiofrequency ablation is a minimally invasive procedure guided for ultrasound or fluoroscopy.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/radiofrequency"
+                        className="psx-approach-link"
+                        aria-label="Learn more about radiofrequency"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">›</span>
+                      </Link>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            )}
+            {slugBase === 'facial-pain' && (
+              <div className="psx-syndromes-accordion" aria-labelledby="facial-syndromes-title">
+                <header className="psx-syndromes-accordion-header">
+                  <h2 id="facial-syndromes-title" className="psx-syndromes-accordion-title">
+                    Most Common Syndromes
+                  </h2>
+                  <p className="psx-syndromes-accordion-subtitle">
+                    After excluding dental and sinus causes, neuropathic facial pain syndromes should be kept in mind.
+                  </p>
+                </header>
+                <div className="psx-syndromes-accordion-card">
+                  <div className="psx-accordion" role="list" aria-label="Most common facial pain syndromes">
+                    {accordionSyndromes.map((syndrome) => {
+                      const isActive = activeSyndromeId === syndrome.id;
+                      const rowId = `psx-facial-syndrome-${syndrome.id}`;
+                      const panelId = `psx-facial-syndrome-panel-${syndrome.id}`;
+                      return (
+                        <div key={syndrome.id} className="psx-accordion-item" role="listitem">
+                          <button
+                            id={rowId}
+                            type="button"
+                            className="psx-accordion-trigger"
+                            aria-expanded={isActive}
+                            aria-controls={panelId}
+                            onClick={() =>
+                              setActiveSyndromeId((current) => (current === syndrome.id ? null : syndrome.id))
+                            }
+                          >
+                            <span className="psx-accordion-label">{syndrome.label}</span>
+                            <span className="psx-accordion-icon" aria-hidden="true">
+                              {isActive ? '−' : '+'}
+                            </span>
+                          </button>
+                          <div
+                            id={panelId}
+                            className="psx-accordion-panel"
+                            data-open={isActive ? 'true' : 'false'}
+                            role="region"
+                            aria-labelledby={rowId}
+                            aria-hidden={!isActive}
+                          >
+                            <p className="psx-accordion-text">{syndrome.description}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+            {slugBase === 'facial-pain' && (
+              <section className="psx-approaches psx-approaches--facial" aria-labelledby="facial-approaches-title">
+                <header className="psx-approaches-header">
+                  <h2 id="facial-approaches-title" className="psx-approaches-title">
+                    Treatment Approaches
+                  </h2>
+                </header>
+                <div className="psx-approaches-grid" role="list" aria-label="Facial pain treatment approaches">
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Corticosteroid.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Corticosteroids Injection</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Corticosteroids medications are used to reduce pain and inflammation and can be taken oral or through an injection.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/intra-articular-corticosteroids-injection"
+                        className="psx-approach-link"
+                        aria-label="Learn more about corticosteroids injection"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Pharmacological.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Pharmacological Management</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Pharmacological management pain is commonly part of the treatment and a wide range of drugs can be used to manage
+                        pain.
+                      </p>
+                      <Link
+                        to="/treatments/non-invasive-treatments/pharmacological-pain-management"
+                        className="psx-approach-link"
+                        aria-label="Learn more about pharmacological management"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            )}
+            {slugBase === 'facial-pain' && (
+              <div className="psx-facial-note" aria-label="Facial pain information">
+                <div className="psx-facial-note-inner">
+                  <h3 className="psx-facial-note-title">Complex Facial Pain</h3>
+                  <p className="psx-facial-note-text">
+                    Facial pain can be caused by numerous factors: nerve damage (for example after dental procedures), various pathologies
+                    (including TMJ disorders) or be derived from a previous surgery. Other times the origin can be myofascial, in the jaw and
+                    facial muscles. It is often a complex phenomenon, as it tends to involve problems related to sleep, stress and quality of
+                    life. This circumstance makes the treatment of facial pain very challenging.
+                  </p>
+                </div>
+              </div>
+            )}
+            {slugBase === 'pelvic-and-gynaecological-pain' && (
+              <div className="psx-syndromes-accordion" aria-labelledby="pelvic-syndromes-title">
+                <header className="psx-syndromes-accordion-header">
+                  <h2 id="pelvic-syndromes-title" className="psx-syndromes-accordion-title">
+                    Most Common Syndromes
+                  </h2>
+                  <p className="psx-syndromes-accordion-subtitle">
+                    In the presence of pelvic pain, having been excluded visceral origin for the pain, other causes should be kept in mind.
+                  </p>
+                </header>
+                <div className="psx-syndromes-accordion-card">
+                  <div className="psx-accordion" role="list" aria-label="Most common pelvic and gynaecological pain syndromes">
+                    {accordionSyndromes.map((syndrome) => {
+                      const isActive = activeSyndromeId === syndrome.id;
+                      const rowId = `psx-pelvic-syndrome-${syndrome.id}`;
+                      const panelId = `psx-pelvic-syndrome-panel-${syndrome.id}`;
+                      return (
+                        <div key={syndrome.id} className="psx-accordion-item" role="listitem">
+                          <button
+                            id={rowId}
+                            type="button"
+                            className="psx-accordion-trigger"
+                            aria-expanded={isActive}
+                            aria-controls={panelId}
+                            onClick={() =>
+                              setActiveSyndromeId((current) => (current === syndrome.id ? null : syndrome.id))
+                            }
+                          >
+                            <span className="psx-accordion-label">{syndrome.label}</span>
+                            <span className="psx-accordion-icon" aria-hidden="true">
+                              {isActive ? '−' : '+'}
+                            </span>
+                          </button>
+                          <div
+                            id={panelId}
+                            className="psx-accordion-panel"
+                            data-open={isActive ? 'true' : 'false'}
+                            role="region"
+                            aria-labelledby={rowId}
+                            aria-hidden={!isActive}
+                          >
+                            <p className="psx-accordion-text">{syndrome.description}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+            {slugBase === 'pelvic-and-gynaecological-pain' && (
+              <section className="psx-approaches psx-approaches--pelvic" aria-labelledby="pelvic-approaches-title">
+                <header className="psx-approaches-header">
+                  <h2 id="pelvic-approaches-title" className="psx-approaches-title">
+                    Treatment Approaches
+                  </h2>
+                </header>
+                <div className="psx-approaches-grid" role="list" aria-label="Pelvic and gynaecological pain treatment approaches">
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Corticosteroid.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Corticosteroids Injection</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Corticosteroids medications are used to reduce pain and inflammation and can be taken oral or through an injection.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/intra-articular-corticosteroids-injection"
+                        className="psx-approach-link"
+                        aria-label="Learn more about corticosteroids injection"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Pharmacological.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Pharmacological Management</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Pharmacological management pain is commonly part of the treatment and a wide range of drugs can be used to manage
+                        pain.
+                      </p>
+                      <Link
+                        to="/treatments/non-invasive-treatments/pharmacological-pain-management"
+                        className="psx-approach-link"
+                        aria-label="Learn more about pharmacological management"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            )}
+            {slugBase === 'pelvic-and-gynaecological-pain' && (
+              <div className="psx-pelvic-note" aria-label="Pelvic pain information">
+                <div className="psx-pelvic-note-inner">
+                  <h3 className="psx-pelvic-note-title">Chronic Pelvic Pain</h3>
+                  <p className="psx-pelvic-note-text">
+                    This clinical scenario can be caused by numerous factors: the result of nerve damage, such as pudendal, caused by cycling,
+                    various pathologies (such as endometriosis) or derived from a previous surgery. Other times the origin can be myofascial,
+                    in the pelvic floor area. It is often a complex phenomenon, as it tends up involving problems related to sedestation,
+                    defecation, sexuality... This circumstance makes the treatment of pelvic pain very challenging.
+                  </p>
+                </div>
+              </div>
+            )}
+            {slugBase === 'abdominal-wall-pain' && (
+              <div className="psx-syndromes-accordion" aria-labelledby="abdominal-syndromes-title">
+                <header className="psx-syndromes-accordion-header">
+                  <h2 id="abdominal-syndromes-title" className="psx-syndromes-accordion-title">
+                    Most Common Syndromes
+                  </h2>
+                  <p className="psx-syndromes-accordion-subtitle">
+                    There are a few overlooked yet common causes for abdominal wall pain, which should be sought in the presence of chronic
+                    abdominal pain.
+                  </p>
+                </header>
+                <div className="psx-syndromes-accordion-card">
+                  <div className="psx-accordion" role="list" aria-label="Most common abdominal wall pain syndromes">
+                    {accordionSyndromes.map((syndrome) => {
+                      const isActive = activeSyndromeId === syndrome.id;
+                      const rowId = `psx-abdominal-syndrome-${syndrome.id}`;
+                      const panelId = `psx-abdominal-syndrome-panel-${syndrome.id}`;
+                      return (
+                        <div key={syndrome.id} className="psx-accordion-item" role="listitem">
+                          <button
+                            id={rowId}
+                            type="button"
+                            className="psx-accordion-trigger"
+                            aria-expanded={isActive}
+                            aria-controls={panelId}
+                            onClick={() =>
+                              setActiveSyndromeId((current) => (current === syndrome.id ? null : syndrome.id))
+                            }
+                          >
+                            <span className="psx-accordion-label">{syndrome.label}</span>
+                            <span className="psx-accordion-icon" aria-hidden="true">
+                              {isActive ? '−' : '+'}
+                            </span>
+                          </button>
+                          <div
+                            id={panelId}
+                            className="psx-accordion-panel"
+                            data-open={isActive ? 'true' : 'false'}
+                            role="region"
+                            aria-labelledby={rowId}
+                            aria-hidden={!isActive}
+                          >
+                            <p className="psx-accordion-text">{syndrome.description}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+            {slugBase === 'abdominal-wall-pain' && (
+              <section className="psx-approaches psx-approaches--abdominal" aria-labelledby="abdominal-approaches-title">
+                <header className="psx-approaches-header">
+                  <h2 id="abdominal-approaches-title" className="psx-approaches-title">
+                    Treatment Approaches
+                  </h2>
+                </header>
+                <div className="psx-approaches-grid" role="list" aria-label="Abdominal wall pain treatment approaches">
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/PeripheralNerveBlocks.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Peripheric Nerve Block</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        This minimally invasive procedure, as radiofrequency ablation and cryoablation, should be guided for ultrasound or
+                        fluoroscopy.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/peripheral-nerve-block"
+                        className="psx-approach-link"
+                        aria-label="Learn more about peripheric nerve block"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Pharmacological.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Pharmacological Management</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Pharmacological management pain is commonly part of the treatment and a wide range of drugs can be used to manage
+                        pain.
+                      </p>
+                      <Link
+                        to="/treatments/non-invasive-treatments/pharmacological-pain-management"
+                        className="psx-approach-link"
+                        aria-label="Learn more about pharmacological management"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            )}
+            {slugBase === 'abdominal-wall-pain' && (
+              <div className="psx-abdominal-note" aria-label="Abdominal wall pain information">
+                <div className="psx-abdominal-note-inner">
+                  <h3 className="psx-abdominal-note-title">Chronic Abdominal Wall Pain</h3>
+                  <p className="psx-abdominal-note-text">
+                    There are several reasons that can result in severe pain in the chronic abdominal wall: post‑surgical pain,
+                    peripheral nerve entrapment, muscle problems. Other than oral medication, there are other weapons to control this pain:
+                    ultrasound‑guided percutaneous techniques. TAP block (Transversus Abdominal Plane), Thermal Radiofrequency or
+                    Crioablation of peripherical nerves, are just a few examples in our clinical practice.
+                  </p>
+                </div>
+              </div>
+            )}
+            {slugBase === 'thoracic-wall-pain' && (
+              <section className="psx-approaches psx-approaches--thoracic" aria-labelledby="thoracic-approaches-title">
+                <header className="psx-approaches-header">
+                  <h2 id="thoracic-approaches-title" className="psx-approaches-title">
+                    Treatment Approaches
+                  </h2>
+                </header>
+                <div className="psx-approaches-grid" role="list" aria-label="Thoracic wall pain treatment approaches">
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/PeripheralNerveBlocks.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Peripheric Nerve Block</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        This minimally invasive procedure, as radiofrequency ablation and cryoablation, should be guided for ultrasound or
+                        fluoroscopy.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/peripheral-nerve-block"
+                        className="psx-approach-link"
+                        aria-label="Learn more about peripheric nerve block"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Pharmacological.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Pharmacological Management</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Pharmacological management pain is commonly part of the treatment and a wide range of drugs can be used to manage
+                        pain.
+                      </p>
+                      <Link
+                        to="/treatments/non-invasive-treatments/pharmacological-pain-management"
+                        className="psx-approach-link"
+                        aria-label="Learn more about pharmacological management"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            )}
+            {slugBase === 'thoracic-wall-pain' && (
+              <div className="psx-syndromes-accordion" aria-labelledby="thoracic-syndromes-title">
+                <header className="psx-syndromes-accordion-header">
+                  <h2 id="thoracic-syndromes-title" className="psx-syndromes-accordion-title">
+                    Most Common Syndromes
+                  </h2>
+                  <p className="psx-syndromes-accordion-subtitle">
+                    Post‑herpetic pain among post‑surgical syndromes are two of the main causes for Thoracic Pain.
+                  </p>
+                </header>
+                <div className="psx-syndromes-accordion-card">
+                  <div className="psx-accordion" role="list" aria-label="Most common thoracic wall pain syndromes">
+                    {accordionSyndromes.map((syndrome) => {
+                      const isActive = activeSyndromeId === syndrome.id;
+                      const rowId = `psx-thoracic-syndrome-${syndrome.id}`;
+                      const panelId = `psx-thoracic-syndrome-panel-${syndrome.id}`;
+                      return (
+                        <div key={syndrome.id} className="psx-accordion-item" role="listitem">
+                          <button
+                            id={rowId}
+                            type="button"
+                            className="psx-accordion-trigger"
+                            aria-expanded={isActive}
+                            aria-controls={panelId}
+                            onClick={() =>
+                              setActiveSyndromeId((current) => (current === syndrome.id ? null : syndrome.id))
+                            }
+                          >
+                            <span className="psx-accordion-label">{syndrome.label}</span>
+                            <span className="psx-accordion-icon" aria-hidden="true">
+                              {isActive ? '−' : '+'}
+                            </span>
+                          </button>
+                          <div
+                            id={panelId}
+                            className="psx-accordion-panel"
+                            data-open={isActive ? 'true' : 'false'}
+                            role="region"
+                            aria-labelledby={rowId}
+                            aria-hidden={!isActive}
+                          >
+                            <p className="psx-accordion-text">{syndrome.description}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+            {slugBase === 'hand-and-elbow-pain' && (
+              <div className="psx-syndromes-accordion" aria-labelledby="hand-elbow-syndromes-title">
+                <header className="psx-syndromes-accordion-header">
+                  <h2 id="hand-elbow-syndromes-title" className="psx-syndromes-accordion-title">
+                    Most Common Syndromes
+                  </h2>
+                </header>
+                <div className="psx-syndromes-accordion-card">
+                  <div className="psx-accordion" role="list" aria-label="Most common hand and elbow pain syndromes">
+                    {accordionSyndromes.map((syndrome) => {
+                      const isActive = activeSyndromeId === syndrome.id;
+                      const rowId = `psx-hand-elbow-syndrome-${syndrome.id}`;
+                      const panelId = `psx-hand-elbow-syndrome-panel-${syndrome.id}`;
+                      return (
+                        <div key={syndrome.id} className="psx-accordion-item" role="listitem">
+                          <button
+                            id={rowId}
+                            type="button"
+                            className="psx-accordion-trigger"
+                            aria-expanded={isActive}
+                            aria-controls={panelId}
+                            onClick={() =>
+                              setActiveSyndromeId((current) => (current === syndrome.id ? null : syndrome.id))
+                            }
+                          >
+                            <span className="psx-accordion-label">{syndrome.label}</span>
+                            <span className="psx-accordion-icon" aria-hidden="true">
+                              {isActive ? '−' : '+'}
+                            </span>
+                          </button>
+                          <div
+                            id={panelId}
+                            className="psx-accordion-panel"
+                            data-open={isActive ? 'true' : 'false'}
+                            role="region"
+                            aria-labelledby={rowId}
+                            aria-hidden={!isActive}
+                          >
+                            <p className="psx-accordion-text">{syndrome.description}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+            {slugBase === 'hand-and-elbow-pain' && (
+              <section className="psx-approaches psx-approaches--hand-elbow" aria-labelledby="hand-elbow-approaches-title">
+                <header className="psx-approaches-header">
+                  <h2 id="hand-elbow-approaches-title" className="psx-approaches-title">
+                    Treatment Approaches
+                  </h2>
+                </header>
+                <div className="psx-approaches-grid" role="list" aria-label="Hand and elbow pain treatment approaches">
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Radiofrequency.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Radiofrequency</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">Radiofrequency ablation is a minimally invasive procedure guided for ultrasound or fluoroscopy.</p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/radiofrequency"
+                        className="psx-approach-link"
+                        aria-label="Learn more about radiofrequency"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/PlateletRichPlasma.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Plasma Injection</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        PRP (platelet rich plasma) contains 2-5 times the usual number of platelets and have a regenerative effect on the tissues.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/platelets-rich-plasma-injection"
+                        className="psx-approach-link"
+                        aria-label="Learn more about plasma injection"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Pharmacological.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Pharmacological Management</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Pharmacological management pain is commonly part of the treatment and a wide range of drugs can be used to manage pain.
+                      </p>
+                      <Link
+                        to="/treatments/non-invasive-treatments/pharmacological-pain-management"
+                        className="psx-approach-link"
+                        aria-label="Learn more about pharmacological management"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/PeripheralNerveBlocks.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Peripheric Nerve Block</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Local anaesthetic near nerves for diagnostic clarity or therapeutic relief when symptoms suggest nerve-related pain.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/peripheral-nerve-block"
+                        className="psx-approach-link"
+                        aria-label="Learn more about peripheric nerve block"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Corticosteroid.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Corticosteroids Injection</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Targeted anti-inflammatory injection to reduce pain and support movement while rehabilitation progresses.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/intra-articular-corticosteroids-injection"
+                        className="psx-approach-link"
+                        aria-label="Learn more about corticosteroids injection"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Crioblation.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Crioablation</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Cold-based nerve modulation to interrupt pain signalling, guided by ultrasound or fluoroscopy when appropriate.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/cryoblation"
+                        className="psx-approach-link"
+                        aria-label="Learn more about crioablation"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            )}
+            {slugBase === 'hand-and-elbow-pain' && (
+              <div className="psx-hand-elbow-note" aria-label="Hand and elbow information">
+                <div className="psx-hand-elbow-note-inner">
+                  <h3 className="psx-hand-elbow-note-title">Hand &amp; Elbow Anatomy</h3>
+                  <p className="psx-hand-elbow-note-text">
+                    The hand is a wondrously complex structure of bones, muscles, ligaments, and tendons which work together to perform
+                    tasks. The wrist and elbow are stabilizing joints that support the steady use of the hand and provide attachment points
+                    for the muscles that control the hand and wrist. All three of these areas are prone to injury from overuse or trauma.
+                    Their complexity requires the skills of an expert for proper diagnosis and recover from injury.
+                  </p>
+                </div>
+              </div>
+            )}
+            {slugBase === 'shoulder-pain' && (
+              <div className="psx-syndromes-accordion" aria-labelledby="shoulder-syndromes-title">
+                <header className="psx-syndromes-accordion-header">
+                  <h2 id="shoulder-syndromes-title" className="psx-syndromes-accordion-title">
+                    Most Common Syndromes
+                  </h2>
+                </header>
+                <div className="psx-syndromes-accordion-card">
+                  <div className="psx-accordion" role="list" aria-label="Most common shoulder pain syndromes">
+                    {accordionSyndromes.map((syndrome) => {
+                      const isActive = activeSyndromeId === syndrome.id;
+                      const rowId = `psx-shoulder-syndrome-${syndrome.id}`;
+                      const panelId = `psx-shoulder-syndrome-panel-${syndrome.id}`;
+                      return (
+                        <div key={syndrome.id} className="psx-accordion-item" role="listitem">
+                          <button
+                            id={rowId}
+                            type="button"
+                            className="psx-accordion-trigger"
+                            aria-expanded={isActive}
+                            aria-controls={panelId}
+                            onClick={() =>
+                              setActiveSyndromeId((current) => (current === syndrome.id ? null : syndrome.id))
+                            }
+                          >
+                            <span className="psx-accordion-label">{syndrome.label}</span>
+                            <span className="psx-accordion-icon" aria-hidden="true">
+                              {isActive ? '−' : '+'}
+                            </span>
+                          </button>
+                          <div
+                            id={panelId}
+                            className="psx-accordion-panel"
+                            data-open={isActive ? 'true' : 'false'}
+                            role="region"
+                            aria-labelledby={rowId}
+                            aria-hidden={!isActive}
+                          >
+                            <p className="psx-accordion-text">{syndrome.description}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+            {slugBase === 'shoulder-pain' && (
+              <section className="psx-approaches psx-approaches--shoulder" aria-labelledby="shoulder-approaches-title">
+                <header className="psx-approaches-header">
+                  <h2 id="shoulder-approaches-title" className="psx-approaches-title">
+                    Treatment Approaches
+                  </h2>
+                  <p className="psx-approaches-subtitle">
+                    Our team of doctors has the capacity to perform the most different approaches to shoulder treatment, including ultrasound guided procedures.
+                  </p>
+                </header>
+                <div className="psx-approaches-grid" role="list" aria-label="Shoulder pain treatment approaches">
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Pharmacological.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Pharmacological Management</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Medication is commonly part of treatment and a wide range of drugs can be used to manage pain.
+                      </p>
+                      <Link
+                        to="/treatments/non-invasive-treatments/pharmacological-pain-management"
+                        className="psx-approach-link"
+                        aria-label="Learn more about pharmacological management"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Hydrodistention.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Hydrodistention</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Hydrodistention is a minimally invasive procedure guided for ultrasound that aims to stretch the tight joint capsule.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/hydrodistention"
+                        className="psx-approach-link"
+                        aria-label="Learn more about hydrodistention"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/CalcificationBarbotage.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Calcification Barbotage</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Calcification barbotage is a minimally invasive procedure guided for ultrasound used to treat this condition.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/calcification-barbotage"
+                        className="psx-approach-link"
+                        aria-label="Learn more about calcification barbotage"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            )}
+            {slugBase === 'cervical-spine-pain' && (
+              <div className="psx-syndromes-accordion" aria-labelledby="cervical-syndromes-title">
+                <header className="psx-syndromes-accordion-header">
+                  <h2 id="cervical-syndromes-title" className="psx-syndromes-accordion-title">
+                    Most Common Syndromes
+                  </h2>
+                  <p className="psx-syndromes-accordion-subtitle">
+                    Cervical facet joints (FJs) constitute a common source of pain and remain a misunderstood, misdiagnosed and improperly
+                    treated pathology. Facet osteoarthritis is the most frequent form of facet pathology.
+                  </p>
+                </header>
+                <div className="psx-syndromes-accordion-card">
+                  <div className="psx-accordion" role="list" aria-label="Most common cervical spine pain syndromes">
+                    {accordionSyndromes.map((syndrome) => {
+                      const isActive = activeSyndromeId === syndrome.id;
+                      const rowId = `psx-cervical-syndrome-${syndrome.id}`;
+                      const panelId = `psx-cervical-syndrome-panel-${syndrome.id}`;
+                      return (
+                        <div key={syndrome.id} className="psx-accordion-item" role="listitem">
+                          <button
+                            id={rowId}
+                            type="button"
+                            className="psx-accordion-trigger"
+                            aria-expanded={isActive}
+                            aria-controls={panelId}
+                            onClick={() =>
+                              setActiveSyndromeId((current) => (current === syndrome.id ? null : syndrome.id))
+                            }
+                          >
+                            <span className="psx-accordion-label">{syndrome.label}</span>
+                            <span className="psx-accordion-icon" aria-hidden="true">
+                              {isActive ? '−' : '+'}
+                            </span>
+                          </button>
+                          <div
+                            id={panelId}
+                            className="psx-accordion-panel"
+                            data-open={isActive ? 'true' : 'false'}
+                            role="region"
+                            aria-labelledby={rowId}
+                            aria-hidden={!isActive}
+                          >
+                            <p className="psx-accordion-text">{syndrome.description}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+            {slugBase === 'cervical-spine-pain' && (
+              <section className="psx-approaches psx-approaches--cervical" aria-labelledby="cervical-approaches-title">
+                <header className="psx-approaches-header">
+                  <h2 id="cervical-approaches-title" className="psx-approaches-title">
+                    Treatment Approaches
+                  </h2>
+                  <p className="psx-approaches-subtitle">
+                    We have a team expert in diagnosis and management of the cervical pain.
+                  </p>
+                </header>
+                <div className="psx-approaches-grid" role="list" aria-label="Cervical spine pain treatment approaches">
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Corticosteroid.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Corticosteroid Injection</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Corticosteroids medication are used to reduce pain and inflammation and can be taken oral or through an injection.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/intra-articular-corticosteroids-injection"
+                        className="psx-approach-link"
+                        aria-label="Learn more about corticosteroid injection"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Crioblation.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Crioablation</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Cryoablation uses cold temperatures and is a minimally invasive procedure guided for ultrasound or fluoroscopy.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/cryoblation"
+                        className="psx-approach-link"
+                        aria-label="Learn more about crioablation"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Nucleoplasty.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Nucleoplasty</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Nucleoplasty is an advanced injection procedure guided for fluoroscopy for treating the disc herniation.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/nucleoplasty"
+                        className="psx-approach-link"
+                        aria-label="Learn more about nucleoplasty"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Pharmacological.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Pharmacological Management</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Optimised medicines can help control pain, improve sleep, and support rehabilitation while minimising side effects.
+                      </p>
+                      <Link
+                        to="/treatments/non-invasive-treatments/pharmacological-pain-management"
+                        className="psx-approach-link"
+                        aria-label="Learn more about pharmacological management"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Radiofrequency.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Radiofrequency</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Thermal lesioning can reduce pain from selected nerves and joints when matched to the right diagnosis.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/radiofrequency"
+                        className="psx-approach-link"
+                        aria-label="Learn more about radiofrequency"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            )}
+            {slugBase === 'cervical-spine-pain' && (
+              <div className="psx-cervical-note" aria-label="Cervical spine pain information">
+                <div className="psx-cervical-note-inner">
+                  <h3 className="psx-cervical-note-title">Cervical Spine Pain</h3>
+                  <p className="psx-cervical-note-text">
+                    Chronic neck pain is one of the most common pain syndromes and represents an enormous burden and cost generator for
+                    society.
+                  </p>
+                </div>
+              </div>
+            )}
+            {slugBase === 'head-pain' && (
+              <div className="psx-syndromes-accordion" aria-labelledby="head-syndromes-title">
+                <header className="psx-syndromes-accordion-header">
+                  <h2 id="head-syndromes-title" className="psx-syndromes-accordion-title">
+                    Most Common Syndromes
+                  </h2>
+                </header>
+                <div className="psx-syndromes-accordion-card">
+                  <div className="psx-accordion" role="list" aria-label="Most common head pain syndromes">
+                    {accordionSyndromes.map((syndrome) => {
+                      const isActive = activeSyndromeId === syndrome.id;
+                      const rowId = `psx-head-syndrome-${syndrome.id}`;
+                      const panelId = `psx-head-syndrome-panel-${syndrome.id}`;
+                      return (
+                        <div key={syndrome.id} className="psx-accordion-item" role="listitem">
+                          <button
+                            id={rowId}
+                            type="button"
+                            className="psx-accordion-trigger"
+                            aria-expanded={isActive}
+                            aria-controls={panelId}
+                            onClick={() =>
+                              setActiveSyndromeId((current) => (current === syndrome.id ? null : syndrome.id))
+                            }
+                          >
+                            <span className="psx-accordion-label">{syndrome.label}</span>
+                            <span className="psx-accordion-icon" aria-hidden="true">
+                              {isActive ? '−' : '+'}
+                            </span>
+                          </button>
+                          <div
+                            id={panelId}
+                            className="psx-accordion-panel"
+                            data-open={isActive ? 'true' : 'false'}
+                            role="region"
+                            aria-labelledby={rowId}
+                            aria-hidden={!isActive}
+                          >
+                            <p className="psx-accordion-text">{syndrome.description}</p>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+            )}
+            {slugBase === 'head-pain' && (
+              <section className="psx-approaches psx-approaches--head" aria-labelledby="head-approaches-title">
+                <header className="psx-approaches-header">
+                  <h2 id="head-approaches-title" className="psx-approaches-title">
+                    Treatment Approaches
+                  </h2>
+                  <p className="psx-approaches-subtitle">
+                    We have a team expert in diagnosis and management of the head.
+                  </p>
+                </header>
+                <div className="psx-approaches-grid" role="list" aria-label="Head pain treatment approaches">
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Botulin.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Botulin Toxin Injection</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        A potent neurotoxin that inhibits release of acetylcholine at the neuromuscular junction.
+                      </p>
+                      <Link
+                        to="/treatments/minimally-invasive-treatments/botulin-toxin-injection"
+                        className="psx-approach-link"
+                        aria-label="Learn more about botulin toxin injection"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+
+                  <article className="psx-approach-card" role="listitem">
+                    <div className="psx-approach-illustration" aria-hidden="true">
+                      <img
+                        className="psx-approach-icon"
+                        src="/assets/images/lumbar/Pharmacological.webp"
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="psx-approach-body">
+                      <h3 className="psx-approach-title">Pharmacological Management</h3>
+                      <div className="psx-approach-divider" aria-hidden="true" />
+                      <p className="psx-approach-text">
+                        Medication strategies are commonly part of treatment and a wide range of drugs can be used to manage pain.
+                      </p>
+                      <Link
+                        to="/treatments/non-invasive-treatments/pharmacological-pain-management"
+                        className="psx-approach-link"
+                        aria-label="Learn more about pharmacological management"
+                      >
+                        <span>Learn more</span>
+                        <span className="psx-approach-link-icon" aria-hidden="true">
+                          ›
+                        </span>
+                      </Link>
+                    </div>
+                  </article>
+                </div>
+              </section>
+            )}
+            {slugBase === 'head-pain' && (
+              <div className="psx-head-note" aria-label="Head pain information">
+                <div className="psx-head-note-inner">
+                  <h3 className="psx-head-note-title">Head Pain in Numbers</h3>
+                  <p className="psx-head-note-text">
+                    Head pain is a common health problem with a global prevalence of 47% (symptoms occurring at least once in the past year)
+                    and women are disproportionately affected (3:1).
+                  </p>
+                  <p className="psx-head-note-text">
+                    Many factors, like stress, anxiety, injury and migraine can lead to headaches. In European populations, the annual
+                    sex-adjusted prevalence for tension-type headache is 35%, for migraine is 38%, but for cluster headache is only 0.15%.
+                  </p>
+                  <p className="psx-head-note-text">
+                    Consequently, sometimes the high frequency and intensity of headaches affects a patient&apos;s quality of life and a
+                    diagnosis and effective treatment make a huge difference to the patient and can be very rewarding for the clinician.
+                  </p>
+                </div>
+              </div>
+            )}
             {slugBase === 'sports-injuries' && (
               <section className="psx-approaches" aria-labelledby="sports-approaches-title">
                 <header className="psx-approaches-header">
@@ -1178,7 +3023,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                     <div className="psx-approach-illustration" aria-hidden="true">
                       <img
                         className="psx-approach-icon"
-                        src="/assets/images/treatment-img/No-Invasive.png"
+                        src="/assets/images/treatment-img/No-Invasive.webp"
                         alt=""
                         loading="lazy"
                         decoding="async"
@@ -1207,7 +3052,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                     <div className="psx-approach-illustration" aria-hidden="true">
                       <img
                         className="psx-approach-icon"
-                        src="/assets/images/treatment-img/Minimally-Invasive.png"
+                        src="/assets/images/treatment-img/Minimally-Invasive.webp"
                         alt=""
                         loading="lazy"
                         decoding="async"
@@ -1220,7 +3065,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                         Procedures with reduced surgical risks that promote quicker recovery times.
                       </p>
                       <Link
-                        to="/treatments#treatments-minimally-invasive"
+                        to="/treatments/minimally-invasive-treatments/radiofrequency"
                         className="psx-approach-link"
                         aria-label="Learn more about minimally invasive treatments"
                       >
@@ -1236,7 +3081,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                     <div className="psx-approach-illustration" aria-hidden="true">
                       <img
                         className="psx-approach-icon"
-                        src="/assets/images/treatment-img/Surgical.png"
+                        src="/assets/images/treatment-img/Surgical.webp"
                         alt=""
                         loading="lazy"
                         decoding="async"
@@ -1462,7 +3307,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                 </article>
                 <figure className="psx-syndrome-media" aria-hidden="true">
                   <img
-                    src="/assets/images/lumbar-cards/RadicularPain.jpg"
+                    src="/assets/images/lumbar-cards/RadicularPain.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -1473,7 +3318,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
               <div className="psx-syndromes-layout">
                 <figure className="psx-syndrome-media" aria-hidden="true">
                   <img
-                    src="/assets/images/lumbar-cards/FacetJointSyndrome.jpg"
+                    src="/assets/images/lumbar-cards/FacetJointSyndrome.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -1521,7 +3366,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                 </article>
                 <figure className="psx-syndrome-media" aria-hidden="true">
                   <img
-                    src="/assets/images/lumbar-cards/SacroiliacJointPain.jpg"
+                    src="/assets/images/lumbar-cards/SacroiliacJointPain.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -1532,7 +3377,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
               <div className="psx-syndromes-layout">
                 <figure className="psx-syndrome-media" aria-hidden="true">
                   <img
-                    src="/assets/images/lumbar-cards/LumbarSpinalStenosis.jpg"
+                    src="/assets/images/lumbar-cards/LumbarSpinalStenosis.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -1577,7 +3422,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                 </article>
                 <figure className="psx-syndrome-media" aria-hidden="true">
                   <img
-                    src="/assets/images/lumbar-cards/DiscogenicPain.jpg"
+                    src="/assets/images/lumbar-cards/DiscogenicPain.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -1594,7 +3439,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                 <p className="psx-lead-subtitle">Explore common procedures that can support pain relief and rehabilitation.</p>
               </div>
               <div className="lumbar-cards-wrap">
-                <LumbarInterventions />
+                <LumbarInterventions variant="full" />
               </div>
             </section>
           )}
@@ -1708,7 +3553,18 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
             </div>
           </section>
 
-          {slugBase !== 'knee-pain' && slugBase !== 'hip-and-groin-pain' && (
+          {slugBase !== 'knee-pain' &&
+            slugBase !== 'hip-and-groin-pain' &&
+            slugBase !== 'head-pain' &&
+            slugBase !== 'cervical-spine-pain' &&
+            slugBase !== 'shoulder-pain' &&
+            slugBase !== 'hand-and-elbow-pain' &&
+            slugBase !== 'thoracic-wall-pain' &&
+            slugBase !== 'abdominal-wall-pain' &&
+            slugBase !== 'pelvic-and-gynaecological-pain' &&
+            slugBase !== 'facial-pain' &&
+            slugBase !== 'foot-and-ankle-pain' &&
+            (
             <section className="psx-section psx-patterns">
               <div className="psx-patterns-layout">
                 <header className="psx-patterns-header">
@@ -1787,65 +3643,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                 </h2>
                 <div className="location-title-rule" aria-hidden="true" />
               </header>
-              <div className="location-grid">
-                <div className="location-details" aria-label="Address and opening hours">
-                  <address className="location-address">
-                    Av. do Mar
-                    <br />
-                    8135-107, Portugal
-                  </address>
-                  <a className="location-phone" href="tel:+351915915001" aria-label="Call +351 915 915 001">
-                    <span className="location-phone-text">+351 915 915 001</span>
-                  </a>
-                  <div className="location-hours" aria-label="Hours of operation">
-                    <div className="location-hours-title">Hours of Operation:</div>
-                    <div className="location-hours-list" role="list">
-                      <div className="location-hours-row" role="listitem">
-                        <span className="location-hours-day">Monday</span>
-                        <span className="location-hours-time">09:00 - 18:00</span>
-                      </div>
-                      <div className="location-hours-row" role="listitem">
-                        <span className="location-hours-day">Tuesday</span>
-                        <span className="location-hours-time">09:00 - 18:00</span>
-                      </div>
-                      <div className="location-hours-row" role="listitem">
-                        <span className="location-hours-day">Wednesday</span>
-                        <span className="location-hours-time">09:00 - 18:00</span>
-                      </div>
-                      <div className="location-hours-row" role="listitem">
-                        <span className="location-hours-day">Thursday</span>
-                        <span className="location-hours-time">09:00 - 18:00</span>
-                      </div>
-                      <div className="location-hours-row" role="listitem">
-                        <span className="location-hours-day">Friday</span>
-                        <span className="location-hours-time">09:00 - 18:00</span>
-                      </div>
-                    </div>
-                  </div>
-                  <Link
-                    className="navbar-cta navbar-cta-desktop navbar-cta-dark location-book-cta"
-                    aria-label="Book now"
-                    to="/contact"
-                  >
-                    <span>Book Now</span>
-                    <span className="navbar-cta-icon" aria-hidden="true">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <line x1="7" y1="17" x2="17" y2="7" />
-                        <polyline points="7 7 17 7 17 17" />
-                      </svg>
-                    </span>
-                  </Link>
-                </div>
+              <div className="location-grid location-grid--map-only">
                 <div className="location-map" aria-label="Map">
                   <iframe
                     ref={locationMapIframeRef}
@@ -1862,7 +3660,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
           </section>
 
           <ArticlePrevNextNav
-            items={SPECIALITIES_NAV_ITEMS as unknown as { to: string; title: string }[]}
+            items={getSpecialitiesNavItemsWithHero() as unknown as { to: string; title: string; heroImage?: string }[]}
             ariaLabel="Speciality page navigation"
             previousLabel="Previous Page"
             nextLabel="Next Page"
@@ -1943,8 +3741,10 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                 loop
                 playsInline
                 preload="metadata"
-                src="/assets/videos/post-43.mp4"
-              />
+              >
+                <source src="/assets/videos/post-43.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
+                <source src="/assets/videos/post-43.h264.mp4" type='video/mp4; codecs="avc1.42E01E"' />
+              </video>
             </div>
           </div>
         </div>

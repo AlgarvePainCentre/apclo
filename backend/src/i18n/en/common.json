@@ -1,0 +1,9 @@
+{
+  "meta": {
+    "tagline": "Scalable backend foundation"
+  },
+  "messages": {
+    "greeting": "Welcome to Algarve Pain Centre",
+    "healthOk": "Service is healthy"
+  }
+}

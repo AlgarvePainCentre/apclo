@@ -1,6 +1,6 @@
-const CACHE_NAME = 'apc-static-v1';
+const CACHE_NAME = 'apc-static-v2';
 
-const PRECACHE_URLS = ['/', '/index.html', '/assets/apc-branco.svg', '/assets/apc-preto.svg', '/fonts/CircularStd-Book.otf'];
+const PRECACHE_URLS = ['/assets/apc-branco.svg', '/assets/apc-preto.svg', '/fonts/CircularStd-Book.otf'];
 
 self.addEventListener('install', (event) => {
   self.skipWaiting();
@@ -44,17 +44,22 @@ self.addEventListener('fetch', (event) => {
       const cache = await caches.open(CACHE_NAME);
       const cached = await cache.match(req);
 
-      const fetchPromise = fetch(req)
+      const update = fetch(req)
         .then((res) => {
           try {
             if (res && res.ok) cache.put(req, res.clone());
           } catch {}
           return res;
         })
-        .catch(() => cached);
+        .catch(() => undefined);
 
-      return cached || fetchPromise;
+      if (cached) {
+        event.waitUntil(update);
+        return cached;
+      }
+
+      const res = await update;
+      return res || fetch(req);
     })()
   );
 });
-

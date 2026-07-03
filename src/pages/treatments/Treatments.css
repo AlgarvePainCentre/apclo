@@ -1,22 +1,65 @@
+@import '../../styles/treatments-feature.css';
+@import '../../styles/components/TreatmentPageHero.css';
+
+.treatments-hero {
+  min-height: 76vh;
+  min-height: 76svh;
+}
+
+.treatments-hero .psx-hero-backdrop::after {
+  background: linear-gradient(180deg, rgba(2, 6, 23, 0.62), rgba(2, 6, 23, 0.8));
+}
+
+.treatments-hero .psx-hero-title,
+.treatments-hero .psx-hero-subtitle,
+.treatments-hero .psx-hero-eyebrow {
+  text-shadow: 0 10px 28px rgba(2, 6, 23, 0.4);
+}
+
 .treatments-page-shell {
   min-height: 100vh;
   background-color: #f8fafc;
   color: #111827;
 }
 
+.page-main.treatments-page {
+  padding: 2rem 4%;
+}
+
+@media (max-width: 768px) {
+  .page-main.treatments-page {
+    padding: 0;
+  }
+}
+
 .treatments-page .page-section {
-  margin: 0 auto;
-  padding: 80px 48px;
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 100%; 
+  max-width: var(--container-width); 
+  box-sizing: border-box; 
+  margin-bottom: 2rem;
+}
+
+.treatments-page .page-section + .page-section.minimally-invasive-treatment-details {
+  margin-top: clamp(20px, 4vw, 40px);
 }
 
 .treatments-page .page-section > * {
-  max-width: var(--container-width);
   margin-left: auto;
   margin-right: auto;
+  width: 100%;
+  max-width: var(--container-width);
+  border-radius: 18px;
+  box-sizing: border-box;
 }
 
-.treatments-page {
-  max-width: 100%;
+#treatments.treatments-page {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .treatments-page .article-breadcrumb {
@@ -34,95 +77,22 @@
   margin-right: auto;
 }
 
-.treatments-page .article-navigation-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  position: relative;
-}
-
-@media (min-width: 768px) {
-  .treatments-page .article-navigation-container {
-    flex-direction: row;
-  }
-}
-
-.treatments-page .article-nav-item {
-  flex: 1;
-  position: relative;
-  min-height: 400px;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/assets/images/learn/1-banner-2.jpg');
-}
-
-.treatments-page .article-nav-item:hover {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('/assets/images/learn/1-banner-2.jpg');
-}
-
-.treatments-page .article-nav-item:hover .article-nav-title {
-  transform: scale(1.05);
-}
-
-.treatments-page .article-nav-content {
-  text-align: center;
-  color: #ffffff;
-  z-index: 2;
-  padding: 2rem;
-}
-
-.treatments-page .article-nav-label {
-  display: block;
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 1rem;
-  opacity: 0.9;
-}
-
-.treatments-page .article-nav-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  max-width: 100%;
-  transition: transform 0.3s ease;
-}
-
-.treatments-page .article-nav-title .arrow {
-  font-size: 2rem;
-  font-weight: 300;
-  transition: transform 0.3s ease;
-}
-
-.treatments-page .article-nav-item.prev:hover .arrow {
-  transform: translateX(-10px);
-}
-
-.treatments-page .article-nav-item.next:hover .arrow {
-  transform: translateX(10px);
-}
-
-@media (max-width: 900px) {
-  .treatments-page .article-nav-title {
-    font-size: 1.5rem;
-  }
-}
-
 .treatments-overview {
   margin-top: 0;
   padding: 0;
+}
+
+.treatments-page .home-section-location .location-grid {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.treatments-page .home-section-location .location-map {
+  width: 100%;
+  max-width: 100%;
+}
+
+.treatments-page .home-section-location .location-map-iframe {
+  width: 100%;
 }
 
 .treatments-overview-header {
@@ -240,11 +210,26 @@
   position: relative;
   width: 100%;
   height: 100%;
-  min-height: 380px;
-  background-image: url('/assets/images/Icons-Specialities/Asset-S15.png');
+  min-height: 400px;
+  overflow: hidden;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
+}
+
+@media (max-width: 900px) {
+  .treatments-overview-media {
+    border-radius: 18px;
+  }
+  .treatments-overview-media-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: auto;
+  }
+  .treatments-overview-video {
+  transform: scale(1);
+  }
 }
 
 .treatments-overview-video {
@@ -253,9 +238,55 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transform: scale(1.02);
+  object-position: center;
+  display: block;
+  min-width: 100%;
+  min-height: 100%;
+  transform: scale(2.4);
   pointer-events: none;
 }
+
+.treatments-page .treatments-minimally-invasive-concept {
+  padding-block: clamp(64px, 8vw, 120px);
+  background-color: #f8fafc;
+}
+
+.treatments-page .treatments-concept-inner {
+  max-width: 1600px;
+  margin-inline: auto;
+  padding-inline: clamp(24px, 5vw, 48px);
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.treatments-page .treatments-concept-title {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 700;
+  color: #3f3f46;
+  line-height: 1.2;
+}
+
+.treatments-page .treatments-concept-content {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.treatments-page .treatments-concept-content p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #4b5563;
+}
+
+@media (min-width: 768px) {
+  .treatments-page .treatments-concept-inner {
+    grid-template-columns: 1fr 1.2fr;
+    gap: 80px;
+    align-items: start;
+  }
+}
+
 .treatments-highlighted {
   padding-top: 0;
   padding-bottom: 0;
@@ -422,105 +453,152 @@
   display: none;
 }
 
-.treatments-feature {
-  padding: 0;
-  margin-bottom: 0;
-}
-
-.treatments-feature-mi {
-  margin-top: 0;
-}
-
-.treatments-feature-inner {
-  display: grid;
-  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-  align-items: stretch;
-  gap: 0;
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: none;
-  min-height: 520px;
+.treatments-page .treatments-approaches {
+  padding-top: clamp(72px, 8vw, 104px);
+  padding-bottom: clamp(72px, 8vw, 104px);
   background: #f8fafc;
-  border: 1px solid rgba(15, 23, 42, 0.08);
 }
 
-.treatments-feature-media {
-  position: relative;
-  background: #0b0b10;
-  min-height: 520px;
+.treatments-page .treatments-approaches-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.treatments-page .treatments-approaches-header {
+  max-width: 760px;
+  margin: 0 auto clamp(40px, 5vw, 64px);
+  text-align: center;
+}
+
+.treatments-page .treatments-approaches-title {
+  margin: 0 0 18px;
+  font-size: clamp(2.25rem, 3.9vw, 3.3rem);
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: #3f3f46;
+}
+
+.treatments-page .treatments-approaches-subtitle {
+  margin: 0 auto;
+  max-width: 520px;
+  font-size: clamp(1.02rem, 1.4vw, 1.25rem);
+  line-height: 1.55;
+  color: #00558c;
+}
+
+.treatments-page .treatments-approaches-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.treatments-page .treatments-approach-card {
+  background: #f5f5f6;
+  border-radius: 12px;
   overflow: hidden;
-}
-
-.treatments-feature-video {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-  display: block;
-  min-width: 100%;
-  min-height: 100%;
-  background-color: #f8fafc;
-}
-
-.treatments-feature-copy {
-  background: transparent;
-  padding: 28px 28px 24px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  background-color: #ffd37a18;
+  min-height: 100%;
 }
 
-.treatments-feature-title {
-  margin: 0 0 12px;
-  font-size: 26px;
-  line-height: 1.3;
-  color: #003366;
+.treatments-page .treatments-approach-media {
+  aspect-ratio: 1.04 / 0.82;
+  overflow: hidden;
+  background: #ececee;
 }
 
-.treatments-feature-accent {
-  width: 48px;
+.treatments-page .treatments-approach-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.treatments-page .treatments-approach-body {
+  padding: 24px 34px 28px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.treatments-page .treatments-approach-card-title {
+  margin: 0;
+  font-size: clamp(1.4rem, 2vw, 2rem);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: #00558c;
+}
+
+.treatments-page .treatments-approach-card-accent {
+  width: 100%;
   height: 2px;
-  background: var(--color-darkRed);
   border-radius: 999px;
-  margin-bottom: 16px;
+  background: #e46a76;
+  margin: 14px 0 20px;
 }
 
-.treatments-feature-body {
-  margin: 0 0 14px;
-  font-size: 15px;
-  line-height: 1.8;
-  color: #4b5563;
+.treatments-page .treatments-approach-card-text {
+  margin: 0 0 26px;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: #5b5b61;
+  max-width: 25ch;
 }
 
-.treatments-feature-link {
+.treatments-page .treatments-approach-link {
+  margin-top: auto;
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #111827;
+  gap: 10px;
+  color: #8a8a92;
+  font-size: 0.85rem;
+  font-weight: 500;
   text-decoration: none;
+  align-self: flex-end;
 }
 
-.treatments-feature-link-icon {
+.treatments-page .treatments-approach-link-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid #b9bbc2;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 18px;
-  height: 18px;
-  border-radius: 999px;
-  border: 1px solid #e5e7eb;
+  font-size: 1rem;
+  line-height: 1;
 }
 
-.minimally-invasive-treatment-details-header {
+@media (max-width: 1100px) {
+  .treatments-page .treatments-approaches-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .treatments-page .treatments-approach-media {
+    aspect-ratio: 16 / 9;
+  }
+
+  .treatments-page .treatments-approach-card-text {
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .treatments-page .treatments-approach-body {
+    padding: 22px 22px 24px;
+  }
+}
+
+
+.minimally-invasive-treatment-details-header,
+.treatment-details__header {
   max-width: 960px;
   margin: 0 auto 1.5rem;
 }
 
-.minimally-invasive-treatment-details-title {
+.minimally-invasive-treatment-details-title,
+.treatment-details__title {
   margin: 0 0 0.75rem;
   color: #003366;
   font-size: 2rem;
@@ -532,7 +610,8 @@
   line-height: 1.7;
 }
 
-.minimally-invasive-treatment-details-grid {
+.minimally-invasive-treatment-details-grid,
+.treatment-details__grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1rem;
@@ -540,26 +619,47 @@
   margin: 0 auto;
 }
 
-.minimally-invasive-treatment-card {
+.minimally-invasive-treatment-card,
+.treatment-details__card {
   background: transparent;
+  border: 0;
+  box-shadow: none;
   border-radius: 16px;
   padding: 1.25rem 1.25rem;
 }
 
-.minimally-invasive-treatment-card-title {
+.minimally-invasive-treatment-card-title,
+.treatment-details__card-title {
   margin: 0 0 0.75rem;
   color: #003366;
   font-size: 1.25rem;
 }
 
-.minimally-invasive-treatment-card-body {
+.minimally-invasive-treatment-card-title::after,
+.treatment-details__card-title::after {
+  content: '';
+  display: block;
+  width: 48px;
+  height: 2px;
+  margin-top: 12px;
+  border-radius: 999px;
+  background: var(--color-darkRed, #cc0000);
+  transform-origin: left center;
+  transform: scaleX(var(--treatment-red-line-scale, 1));
+  opacity: var(--treatment-red-line-opacity, 1);
+  will-change: transform, opacity;
+}
+
+.minimally-invasive-treatment-card-body,
+.treatment-details__card-body {
   margin: 0;
   color: #1f2937;
   line-height: 1.7;
 }
 
 .minimally-invasive-treatment-list,
-.minimally-invasive-treatment-steps {
+.minimally-invasive-treatment-steps,
+.treatment-details__list {
   margin: 0;
   padding-left: 1.25rem;
   color: #1f2937;
@@ -567,7 +667,8 @@
 }
 
 .minimally-invasive-treatment-list li,
-.minimally-invasive-treatment-steps li {
+.minimally-invasive-treatment-steps li,
+.treatment-details__list li {
   margin-bottom: 0.5rem;
 }
 
@@ -596,38 +697,11 @@
   border-radius: 6px;
 }
 
-.treatments-feature-ni .treatments-feature-copy {
-  background-color: #ffd37a18;
-}
-
-.treatments-feature-ni .treatments-feature-inner {
-  box-shadow: none;
-}
-
-.treatments-feature-ni .treatments-feature-accent {
-  background: var(--color-darkRed);
-}
-
-.treatments-feature-ni .treatments-feature-copy {
-  order: 1;
-}
-
-.treatments-feature-ni .treatments-feature-media {
-  order: 2;
-}
-
 @media (min-width: 900px) {
-  .minimally-invasive-treatment-details-grid {
+  .minimally-invasive-treatment-details-grid,
+  .treatment-details__grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-}
-
-.treatments-feature-ni-header {
-  margin-bottom: 28px;
-}
-
-.treatments-feature-mi-header {
-  margin-bottom: 28px;
 }
 
 .treatments-pain-learn {
@@ -677,6 +751,11 @@
   letter-spacing: -0.02em;
   color: #003366;
   font-weight: 800;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
 }
 
 .treatments-testimonials-carousel-wrapper {
@@ -707,25 +786,13 @@
   flex-direction: column;
   gap: 14px;
   flex: 0 0 88%;
-  min-width: 88%;
+  min-width: 86%;
   scroll-snap-align: center;
   align-items: flex-start;
   text-align: left;
   position: relative;
   overflow: hidden;
-  background: #f5f7fb;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
-}
-
-.testimonial-card::before {
-  content: none;
-}
-
-.testimonial-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 18px 34px rgba(2, 6, 23, 0.14);
-  border-color: rgba(15, 23, 42, 0.14);
+  background: #f3f3f5;
 }
 
 .testimonial-card:focus-within {
@@ -809,15 +876,14 @@
   font-size: 12px;
   font-weight: 800;
   color: #0b5a8e;
-  opacity: 0;
-}
-
-.treatments-testimonials .treatments-testimonial-avatar[data-image="false"] img {
-  display: none;
-}
-
-.treatments-testimonials .treatments-testimonial-avatar[data-image="false"] .treatments-testimonial-avatar-initials {
   opacity: 1;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.treatments-testimonials .treatments-testimonial-avatar-initials[data-has-image='true'] {
+  color: transparent;
 }
 
 .treatments-testimonials .treatments-testimonial-identity {
@@ -965,7 +1031,8 @@
 
 @media (max-width: 900px) {
   .treatments-page .page-section {
-    padding: 56px 16px;
+    padding: 3.6rem 4%;
+    margin: 0;
   }
 
   .treatments-overview-layout {
@@ -1020,7 +1087,8 @@
 
 @media (max-width: 768px) {
   .treatments-page .page-section {
-    padding: 56px 16px;
+    padding: 2rem 4%;
+    margin: 0;
   }
 
   .treatments-overview {
@@ -1106,4 +1174,630 @@
 
 .treatments-testimonials-grid.is-dragging .testimonial-card {
   pointer-events: none;
+}
+
+.st-conditions-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.st-conditions-header {
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.st-conditions-title {
+  margin: 0;
+  font-size: clamp(1.9rem, 4.2vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.st-conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.st-conditions-card {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  align-items: stretch;
+  min-height: 170px;
+}
+
+.st-conditions-copy {
+  padding: 18px 18px 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.st-conditions-card-title {
+  margin: 0;
+  color: #003366;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.st-conditions-card-body {
+  margin: 0;
+  color: #4a5568;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.st-conditions-media {
+  background: #f3f4f6;
+}
+
+.st-conditions-image {      
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+/* Sub-paginas Style sheet
+Design de página web universal para páginas Treatments - 
+Minimally Invasive, Surgical, Invasive 
+*/
+
+.st-understanding-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.st-understanding-title {
+  margin: 0;
+  font-size: clamp(2.2rem, 5vw, 3.2rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+
+
+@media (min-width: 900px) {
+  .st-understanding-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+    gap: 56px;
+  }
+}
+
+.st-process-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.st-process-header {
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.st-process-title {
+  margin: 0;
+  font-size: clamp(1.9rem, 4.2vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.st-process-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.st-process-card {
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  padding: 22px 22px 24px;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr;
+  gap: 10px;
+  transition: ease-in-out 0.3s;
+}
+
+.st-process-card:hover {
+  background: #fff5db;
+}
+
+.st-process-number {
+  margin: 0;
+  color: #1e40af;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+
+.st-process-card-title {
+  margin: 0;
+  color: #003366;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.st-process-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.12);
+}
+
+.st-process-card-body {
+  display: grid;
+  gap: 12px;
+}
+
+.st-process-paragraph {
+  margin: 0;
+  color: #4a5568;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
+  .st-process-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .st-process-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.st-expect-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.st-expect-header {
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.st-expect-title {
+  margin: 0 0 8px;
+  font-size: clamp(1.9rem, 4.2vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.st-expect-subtitle {
+  margin: 0;
+  color: #1e40af;
+  font-weight: 600;
+}
+
+.st-expect-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 24px;
+  align-items: stretch;
+}
+
+.st-expect-media {
+  border-radius: 14px;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+}
+
+.st-expect-image {
+  width: 100%;
+  height: 100%;
+  max-height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+.st-expect-cards {
+  background: transparent;
+  border-radius: 14px;
+  overflow: hidden;
+  display: grid;
+}
+
+.st-expect-card {
+  padding: 18px 20px;
+}
+
+.st-expect-card-title {
+  margin: 0 0 6px;
+  color: #003366;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.st-expect-card-body {
+  margin: 0;
+  color: #4a5568;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.st-expect-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(15, 23, 42, 0.12);
+}
+
+@media (min-width: 900px) {
+  .st-expect-layout {
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .st-expect-image {
+    max-height: 520px;
+  }
+}
+
+
+
+.st-benefits-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.st-benefits-header {
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.st-benefits-title {
+  margin: 0 0 8px;
+  font-size: clamp(1.9rem, 4.2vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.st-benefits-subtitle {
+  margin: 0;
+  color: #4a5568;
+  font-weight: 600;
+}
+
+.st-benefits-subtitle-secondary {
+  margin: 10px 0 0;
+  color: #4a5568;
+  font-weight: 600;
+}
+
+.st-benefits-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  align-items: stretch;
+}
+
+.st-benefits-card {
+  display: grid;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  padding: 20px 20px 22px;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 10px;
+}
+
+.st-benefits-card-title {
+  margin: 0;
+  color: #003366;
+  font-size: 1.2rem;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.st-benefits-divider {
+  width: 100%;
+  height: 2px;
+  max-width: 140px;
+  background: #ff5a75;
+}
+
+.st-benefits-card-body {
+  margin: 0;
+  color: #4a5568;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
+  .ot-benefits-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 600px) {
+  .ot-benefits-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.st-conditions-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.st-conditions-header {
+  text-align: center;
+  margin: 0 0 28px;
+}
+
+.st-conditions-title {
+  margin: 0;
+  font-size: clamp(1.9rem, 4.2vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.st-conditions-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.st-conditions-card {
+  background: #ffffff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  align-items: stretch;
+  min-height: 170px;
+}
+
+.st-conditions-copy {
+  padding: 18px 18px 20px;
+  display: grid;
+  gap: 10px;
+}
+
+.st-conditions-card-title {
+  margin: 0;
+  color: #003366;
+  font-size: 1.05rem;
+  line-height: 1.25;
+}
+
+.st-conditions-card-body {
+  margin: 0;
+  color: #4a5568;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.st-conditions-media {
+  background: #f3f4f6;
+}
+
+.st-conditions-image {      
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .st-conditions-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .st-conditions-card {
+    grid-template-columns: minmax(0, 1fr) 240px;
+  }
+}
+
+@media (max-width: 600px) {
+  .st-conditions-card {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .st-conditions-media {
+    min-height: 200px;
+  }
+}
+
+.st-right-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 22px;
+  align-items: start;
+}
+
+.st-right-title {
+  margin: 0;
+  font-size: clamp(2rem, 4.8vw, 2.8rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: #003366;
+  text-decoration-line: underline;
+  text-decoration-color: var(--warm-yellow, #fbd38d);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.st-right-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.st-right-body {  
+  margin: 0;
+  color: #4a5568;
+  line-height: 1.85;
+  font-size: 1.02rem;
+}
+
+@media (min-width: 900px) {
+  .st-right-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+    gap: 56px;
+  }
+}
+
+.st-help {
+  background: #ffd37a18;
+}
+
+.st-help-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 3.5rem 1rem;
+  text-align: center;
+  display: grid;
+  gap: 12px;
+  justify-items: center;
+}
+
+.st-help-title {
+  margin: 0;
+  color: #003366;
+  font-size: clamp(1.8rem, 4vw, 2.3rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-decoration-line: underline;
+  text-decoration-color: #ff5a75;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.15em;
+  text-decoration-skip-ink: none;
+}
+
+.st-help-body {
+  margin: 0;
+  color: #4a5568;
+  line-height: 1.7;
+  max-width: 720px;
+}
+
+.st-help-button {
+  /*margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: #ff5a75;
+  color: #ffffff;
+  font-weight: 700;
+  text-decoration: none;
+  border: 0;*/
+  padding: 1.2rem 1.5rem;
+    border-radius: 999px;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 48px;
+    width: fit-content;
+    text-decoration: none;
+    background-color: #f04b5e;
+    color: var(--color-white);
+    font-size: 16px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+    cursor: pointer;
+    background-size: 200% 200%;
+    background-position: 0% 50%;
+    transform: scale(1);
+    transition: background-position 0.35s ease-out, box-shadow 0.28s ease-out, transform 0.28s ease-out;
+}
+
+.st-help-button:hover {
+  background-position: 100% 50%;
+  transform: scale(1.05);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.22);
+}
+
+.st-help-button:focus-visible {
+  outline: 3px solid rgba(255, 255, 255, 0.6);
+  outline-offset: 3px;
+}
+
+/* Treatments Intro Section */
+.treatments-page .treatments-intro-section {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 80px 24px 40px;
+}
+
+.treatments-page .treatments-intro-title {
+  font-size: clamp(2rem, 5vw, 3rem);
+  line-height: 1.2;
+  font-weight: 700;
+  color: #4b5563; /* match wireframe dark gray */
+  margin-bottom: 24px;
+}
+
+.treatments-page .treatments-intro-subtitle {
+  font-size: clamp(1.1rem, 2vw, 1.25rem);
+  line-height: 1.6;
+  color: #034b72; /* match wireframe dark blue */
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .treatments-page .treatments-intro-section {
+    padding: 60px 20px 30px;
+  }
+}
+
+.page-section h2 {
+  text-decoration: none !important;
 }

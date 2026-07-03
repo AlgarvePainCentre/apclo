@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { TreatmentsMain } from '../../Treatments';
-import '../../Treatments.css';
+import { initTreatmentStepsTimelines } from '../../animations/treatmentTimelineAnimations';
+import { TreatmentBreadcrumb } from '../../components/detail/TreatmentBreadcrumb';
 import './PharmacologicalPainManagement.css';
 
 type PharmacologicalPainManagementFaqItem = {
@@ -43,7 +44,6 @@ const PharmacologicalPainManagementPage: React.FC = () => {
   React.useEffect(() => {
     const pageTitle =
       'Pharmacological pain management in Algarve | Tailored medication plans';
-    document.title = pageTitle;
 
     const description =
       'Learn about pharmacological pain management in Algarve. Individualised medication plans, side‑effect monitoring, and easy access to specialist consultation.';
@@ -57,16 +57,21 @@ const PharmacologicalPainManagementPage: React.FC = () => {
     meta.content = description;
   }, []);
 
+  React.useEffect(() => {
+    const scope = document.getElementById('psx-pharmacological-pain-management') ?? document;
+    return initTreatmentStepsTimelines(scope);
+  }, []);
+
   const heroBackdropStyle: React.CSSProperties = {
     backgroundImage:
-      "linear-gradient(120deg, rgba(0, 51, 102, 0.85), rgba(0, 51, 102, 0.55)), url('/assets/images/illustrative/Pharmacological-Pain-Management-min.jpg')",
+      "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/assets/images/illustrative/Pharmacological-Pain-Management-min.webp')",
     backgroundSize: 'cover',
     backgroundPosition: 'center',
   };
 
   return (
-    <div className="psx-page pharmacological-pain-management-page" id="psx-pharmacological-pain-management">
-      <header className="psx-hero pharmacological-pain-management-hero" aria-label="Pharmacological pain management hero section">
+    <div className="psx-page pharmacological-pain-management-page page-pharmacologicalpainmanagement" id="psx-pharmacological-pain-management">
+      <header className="treatment-page-hero pharmacological-pain-management-hero" aria-label="Pharmacological pain management hero section">
         <div className="psx-hero-backdrop" aria-hidden="true" style={heroBackdropStyle} />
         <div className="psx-hero-inner">
           <p className="psx-hero-eyebrow">Treatment</p>
@@ -77,31 +82,15 @@ const PharmacologicalPainManagementPage: React.FC = () => {
         </div>
       </header>
 
-      <main className="page-main treatments-page">
-        <nav className="article-breadcrumb" aria-label="Breadcrumb">
-          <ol className="article-breadcrumb-list">
-            <li>
-              <Link to="/" className="article-breadcrumb-link">
-                Home
-              </Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li>
-              <Link to="/treatments" className="article-breadcrumb-link">
-                Treatments
-              </Link>
-            </li>
-            <li aria-hidden="true">›</li>
-            <li aria-current="page">Pharmacological pain management</li>
-          </ol>
-        </nav>
+      <TreatmentsMain.PageMain>
+        <TreatmentBreadcrumb currentLabel="Pharmacological pain management" />
 
         <section className="page-section treatments-feature non-invasive-treatment-feature" aria-labelledby="ppm-what-to-expect">
           <div className="treatments-feature-inner">
             <div className="treatments-feature-media">
               <img
                 className="treatments-feature-video"
-                src="/assets/images/illustrative/Pharmacological-Pain-Management-min.jpg"
+                src="/assets/images/illustrative/Pharmacological-Pain-Management-min.webp"
                 alt="Medication planning and review as part of pharmacological pain management and safe prescribing (illustrative)."
                 decoding="async"
                 loading="lazy"
@@ -127,19 +116,6 @@ const PharmacologicalPainManagementPage: React.FC = () => {
                 Follow-up is an essential part of good medication care. Plans often change over time as symptoms improve, side effects
                 appear, or other treatments (physiotherapy or procedures) are introduced.
               </p>
-
-              <div className="minimally-invasive-treatment-cta">
-                <Link
-                  to="/blog/rehabilitation-therapies/pharmacological-pain-management"
-                  className="treatment-card-button"
-                  aria-label="Learn more about pharmacological pain management in our blog"
-                >
-                  <span>Learn More About Medication Plans</span>
-                </Link>
-                <Link to="/contact" className="minimally-invasive-treatment-secondary-link" aria-label="Book an appointment">
-                  Book an appointment
-                </Link>
-              </div>
             </div>
           </div>
         </section>
@@ -167,10 +143,9 @@ const PharmacologicalPainManagementPage: React.FC = () => {
                   This approach can be particularly valuable for people who need ongoing relief but wish to avoid surgical procedures or
                   more invasive options.
                 </p>
+                <p className="ppm-process-paragraph">Here is what this process looks like:</p>
               </div>
             </div>
-
-            <h2 className="ppm-process-steps-title">What this Process Looks Like</h2>
 
             <div className="ppm-steps-grid" role="list" aria-label="Pharmacological pain management process steps">
               <article className="ppm-step-card" role="listitem" aria-label="Step 1 initial assessment">
@@ -225,7 +200,7 @@ const PharmacologicalPainManagementPage: React.FC = () => {
               <div className="ppm-aftercare-poster">
                 <img
                   className="ppm-aftercare-image"
-                  src="/assets/images/medical/DSC04816-1536x1229.jpg"
+                  src="/assets/images/medical/DSC04816-1536x1229.webp"
                   alt=""
                   loading="lazy"
                   decoding="async"
@@ -299,28 +274,28 @@ const PharmacologicalPainManagementPage: React.FC = () => {
         </section>
 
         <section className="page-section ppm-conditions" aria-labelledby="ppm-conditions-title">
-          <div className="ppm-conditions-inner">
-            <header className="ppm-conditions-header">
-              <h2 id="ppm-conditions-title" className="ppm-conditions-title">
+          <div className="ppm-conditions-inner tms-conditions-inner">
+            <header className="ppm-conditions-header tms-conditions-header">
+              <h2 id="ppm-conditions-title" className="ppm-conditions-title tms-conditions-title">
                 Conditions Treated with
                 <br />
                 Pharmacological Pain Management
               </h2>
             </header>
 
-            <div className="ppm-conditions-grid" role="list" aria-label="Conditions treated with pharmacological pain management">
-              <article className="ppm-condition-card" role="listitem">
-                <div className="ppm-condition-text">
-                  <h3 className="ppm-condition-title">Arthritis</h3>
-                  <p className="ppm-condition-body">
+            <div className="ppm-conditions-grid tms-conditions-grid" role="list" aria-label="Conditions treated with pharmacological pain management">
+              <article className="ppm-condition-card tms-conditions-card" role="listitem">
+                <div className="ppm-condition-text tms-conditions-copy">
+                  <h3 className="ppm-condition-title tms-conditions-card-title">Arthritis</h3>
+                  <p className="ppm-condition-body tms-conditions-card-body">
                     Medication can help reduce pain and inflammation and support movement while you progress rehabilitation and lifestyle
                     strategies.
                   </p>
                 </div>
-                <div className="ppm-condition-media" aria-hidden="true">
+                <div className="ppm-condition-media tms-conditions-media" aria-hidden="true">
                   <img
-                    className="ppm-condition-image"
-                    src="/assets/images/treatment-img/Arthrits.jpg"
+                    className="ppm-condition-image tms-conditions-image"
+                    src="/assets/images/treatment-img/Arthrits.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -329,16 +304,16 @@ const PharmacologicalPainManagementPage: React.FC = () => {
               </article>
 
               <article className="ppm-condition-card ppm-condition-card--reverse" role="listitem">
-                <div className="ppm-condition-text">
-                  <h3 className="ppm-condition-title">Neuropathic pain</h3>
-                  <p className="ppm-condition-body">
+                <div className="ppm-condition-text tms-conditions-copy">
+                  <h3 className="ppm-condition-title tms-conditions-card-title">Neuropathic pain</h3>
+                  <p className="ppm-condition-body tms-conditions-card-body">
                     Certain medicines can help calm nerve‑related pain patterns and improve tolerance for daily activity and sleep.
                   </p>
                 </div>
-                <div className="ppm-condition-media" aria-hidden="true">
+                <div className="ppm-condition-media tms-conditions-media" aria-hidden="true">
                   <img
-                    className="ppm-condition-image"
-                    src="/assets/images/treatment-img/Neuropatic.jpg"
+                    className="ppm-condition-image tms-conditions-image"
+                    src="/assets/images/treatment-img/Neuropatic.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -347,16 +322,16 @@ const PharmacologicalPainManagementPage: React.FC = () => {
               </article>
 
               <article className="ppm-condition-card ppm-condition-card--reverse" role="listitem">
-                <div className="ppm-condition-text">
-                  <h3 className="ppm-condition-title">Fibromyalgia</h3>
-                  <p className="ppm-condition-body">
+                <div className="ppm-condition-text tms-conditions-copy">
+                  <h3 className="ppm-condition-title tms-conditions-card-title">Fibromyalgia</h3>
+                  <p className="ppm-condition-body tms-conditions-card-body">
                     A tailored plan can target widespread pain and sensitivity while supporting graded activity and sleep routines.
                   </p>
                 </div>
-                <div className="ppm-condition-media" aria-hidden="true">
+                <div className="ppm-condition-media tms-conditions-media" aria-hidden="true">
                   <img
-                    className="ppm-condition-image"
-                    src="/assets/images/treatment-img/Fibromyalgia.jpg"
+                    className="ppm-condition-image tms-conditions-image"
+                    src="/assets/images/treatment-img/Fibromyalgia.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -364,17 +339,17 @@ const PharmacologicalPainManagementPage: React.FC = () => {
                 </div>
               </article>
 
-              <article className="ppm-condition-card" role="listitem">
-                <div className="ppm-condition-text">
-                  <h3 className="ppm-condition-title">Migraines &amp; Headaches</h3>
-                  <p className="ppm-condition-body">
+              <article className="ppm-condition-card tms-conditions-card" role="listitem">
+                <div className="ppm-condition-text tms-conditions-copy">
+                  <h3 className="ppm-condition-title tms-conditions-card-title">Migraines &amp; Headaches</h3>
+                  <p className="ppm-condition-body tms-conditions-card-body">
                     Preventive or acute medicines may reduce attack frequency and intensity when matched to your migraine pattern.
                   </p>
                 </div>
-                <div className="ppm-condition-media" aria-hidden="true">
+                <div className="ppm-condition-media tms-conditions-media" aria-hidden="true">
                   <img
-                    className="ppm-condition-image"
-                    src="/assets/images/treatment-img/Migraines.jpg"
+                    className="ppm-condition-image tms-conditions-image"
+                    src="/assets/images/treatment-img/Migraines.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -407,18 +382,6 @@ const PharmacologicalPainManagementPage: React.FC = () => {
                 Pharmacological pain management is a flexible option that can be adapted for long‑term use when appropriate, especially for
                 people who require ongoing symptom control.
               </p>
-            </div>
-          </div>
-
-          <div className="ppm-help-cta" aria-label="Get help call to action">
-            <div className="ppm-help-cta-inner">
-              <h2 className="ppm-help-cta-title">Learn how we can help you</h2>
-              <p className="ppm-help-cta-subtitle">
-                If you&apos;re having symptoms described in this article, it&apos;s crucial to seek professional medical advice.
-              </p>
-              <Link to="/contact" className="ppm-help-cta-button" aria-label="Get help now">
-                Get Help Now
-              </Link>
             </div>
           </div>
         </section>
@@ -551,10 +514,10 @@ const PharmacologicalPainManagementPage: React.FC = () => {
           </div>
         </section>
 
-        <div id="treatments">
+        <div id="treatments" className="treatments-page">
           <TreatmentsMain hideSurgical hideMinimallyInvasive />
         </div>
-      </main>
+      </TreatmentsMain.PageMain>
     </div>
   );
 };

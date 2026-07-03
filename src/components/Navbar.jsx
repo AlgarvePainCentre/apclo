@@ -6,13 +6,104 @@ import {
   resourceCategories,
 } from '../data/navigation';
 import Search from './Search';
+import './Navigation/Navbar.css';
+import './Navigation/MobileMenu.css';
 
 const mainLinks = [
-  { to: '/blog', label: 'Blog', ariaLabel: 'Blog' },
   { to: '/about', label: 'About', ariaLabel: 'About' },
 ];
 
 export { specialitiesCategories, treatmentsCategories, resourceCategories };
+
+function NavDropdown({
+  menuKey,
+  label,
+  categories,
+  footerLinkTo,
+  footerLinkLabel,
+  isActive,
+  isOpen,
+  supportsHover,
+  onHoverOpen,
+  onHoverClose,
+  onClick,
+  onKeyDown,
+  onMenuKeyDown,
+}) {
+  const location = useLocation();
+  const triggerId = `trigger-${menuKey}`;
+  const menuId = `menu-${menuKey}`;
+
+  return (
+    <div
+      className="navbar-dropdown-wrapper"
+      onMouseEnter={() => onHoverOpen(menuKey)}
+      onMouseLeave={() => onHoverClose(menuKey)}
+    >
+      <button
+        type="button"
+        id={triggerId}
+        className={
+          isActive
+            ? isOpen
+              ? 'navbar-link navbar-link-button navbar-link-active navbar-link-open'
+              : 'navbar-link navbar-link-button navbar-link-active'
+            : isOpen
+              ? 'navbar-link navbar-link-button navbar-link-open'
+              : 'navbar-link navbar-link-button'
+        }
+        aria-label={label}
+        aria-haspopup="menu"
+        aria-expanded={isOpen}
+        aria-controls={menuId}
+        onClick={() => onClick(false)}
+        onKeyDown={(e) => onKeyDown(e, menuKey)}
+      >
+        {label}
+      </button>
+      <div
+        id={menuId}
+        role="menu"
+        aria-label={label}
+        aria-labelledby={triggerId}
+        aria-orientation="vertical"
+        className={
+          isOpen ? 'navbar-dropdown navbar-dropdown-open' : 'navbar-dropdown'
+        }
+        onKeyDown={(e) => onMenuKeyDown(e, menuKey)}
+        onMouseEnter={() => onHoverOpen(menuKey, true)}
+        onMouseLeave={() => onHoverClose(menuKey, true)}
+      >
+        <div className="navbar-dropdown-inner">
+          {categories.map((category) => (
+            <div key={category.title} className="navbar-dropdown-column">
+              <div className="navbar-dropdown-title">{category.title}</div>
+              <ul className="navbar-dropdown-list">
+                {category.items.map((item) => (
+                  <li key={item.path} className="navbar-dropdown-item">
+                    <Link
+                      to={item.path}
+                      role="menuitem"
+                      title={item.label}
+                      className={
+                        location.pathname === item.path
+                          ? 'navbar-dropdown-link is-active'
+                          : 'navbar-dropdown-link'
+                      }
+                      onClick={() => onClick(true)}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
 
 export default function Navbar() {
   const location = useLocation();
@@ -21,130 +112,42 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState(null);
   const [shouldFocusDropdown, setShouldFocusDropdown] = useState(false);
-  const [mobileExpandedSection, setMobileExpandedSection] = useState(null);
+  const [mobileActiveSection, setMobileActiveSection] = useState(null);
+  
   const [supportsHover, setSupportsHover] = useState(() => {
     if (typeof window === 'undefined') return true;
     if (!window.matchMedia) return true;
     return window.matchMedia('(hover: hover) and (pointer: fine)').matches;
   });
-  const mobileOpenRef = useRef(false);
+
   const mobileDialogRef = useRef(null);
   const mobileToggleRef = useRef(null);
   const mobilePanelRef = useRef(null);
   const headerRef = useRef(null);
-  const swipeRef = useRef({
-    active: false,
-    pointerId: null,
-    startX: 0,
-    startY: 0,
-    lastX: 0,
-    lastY: 0,
-  });
-  const [panelDragX, setPanelDragX] = useState(0);
-  const [isPanelDragging, setIsPanelDragging] = useState(false);
 
-  const isSpecialitiesActive = location.pathname.startsWith('/specialities');
-  const isTreatmentsActive = location.pathname.startsWith('/treatments');
-  const isResourcesActive = location.pathname.startsWith('/resources');
-
-  const dropdownKeys = ['specialities', 'treatments', 'resources'];
   const hoverOpenDelayMs = 90;
   const hoverCloseDelayMs = 160;
   const hoverOpenTimerRef = useRef(null);
   const hoverCloseTimerRef = useRef(null);
-
-  const getTriggerId = (key) => `trigger-${key}`;
-  const getMenuId = (key) => `menu-${key}`;
-
-  const focusMobileToggle = () => {
-    const el = mobileToggleRef.current;
-    if (el && typeof el.focus === 'function') el.focus();
-  };
-
-  const closeMobileNav = ({ restoreFocus = true } = {}) => {
-    const shouldRestoreFocus = restoreFocus && mobileOpenRef.current;
-    setMobileOpen(false);
-    setMobileExpandedSection(null);
-    setPanelDragX(0);
-    setIsPanelDragging(false);
-    if (shouldRestoreFocus) setTimeout(() => focusMobileToggle(), 0);
-  };
-
-  const focusTrigger = (key) => {
-    const el = document.getElementById(getTriggerId(key));
-    if (el && typeof el.focus === 'function') el.focus();
-  };
-
-  const focusMenuItem = (key, nextIndex) => {
-    const menu = document.getElementById(getMenuId(key));
-    if (!menu) return;
-    const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
-    if (!items.length) return;
-    const idx = ((nextIndex % items.length) + items.length) % items.length;
-    const el = items[idx];
-    if (el && typeof el.focus === 'function') el.focus();
-  };
-
-  const getActiveMenuIndex = (key) => {
-    const menu = document.getElementById(getMenuId(key));
-    if (!menu) return -1;
-    const items = Array.from(menu.querySelectorAll('[role="menuitem"]'));
-    if (!items.length) return -1;
-    return items.indexOf(document.activeElement);
-  };
-
-  const isFocusWithinMenu = (key) => {
-    const menu = document.getElementById(getMenuId(key));
-    if (!menu) return false;
-    return menu.contains(document.activeElement);
-  };
-
-  const closeDropdown = (restoreFocusKey = null) => {
-    setOpenDropdown(null);
-    if (restoreFocusKey) {
-      setTimeout(() => focusTrigger(restoreFocusKey), 0);
-    }
-  };
-
-  const clearHoverTimers = () => {
-    if (hoverOpenTimerRef.current) {
-      clearTimeout(hoverOpenTimerRef.current);
-      hoverOpenTimerRef.current = null;
-    }
-    if (hoverCloseTimerRef.current) {
-      clearTimeout(hoverCloseTimerRef.current);
-      hoverCloseTimerRef.current = null;
-    }
-  };
-
-  const scheduleHoverOpen = (key) => {
-    if (!supportsHover) return;
-    if (hoverCloseTimerRef.current) {
-      clearTimeout(hoverCloseTimerRef.current);
-      hoverCloseTimerRef.current = null;
-    }
-    if (hoverOpenTimerRef.current) clearTimeout(hoverOpenTimerRef.current);
-    hoverOpenTimerRef.current = setTimeout(() => {
-      setShouldFocusDropdown(false);
-      setOpenDropdown(key);
-    }, hoverOpenDelayMs);
-  };
-
-  const scheduleHoverClose = () => {
-    if (!supportsHover) return;
-    if (hoverOpenTimerRef.current) {
-      clearTimeout(hoverOpenTimerRef.current);
-      hoverOpenTimerRef.current = null;
-    }
-    if (hoverCloseTimerRef.current) clearTimeout(hoverCloseTimerRef.current);
-    hoverCloseTimerRef.current = setTimeout(() => {
-      closeDropdown();
-    }, hoverCloseDelayMs);
-  };
+  const dropdownKeys = ['specialities', 'treatments', 'resources'];
+  const lastFocusedElementRef = useRef(null);
+  const mobileSections = [
+    { id: 'specialities', label: 'Specialities', data: specialitiesCategories, isActive: location.pathname.startsWith('/specialities') },
+    { id: 'treatments', label: 'Treatments', data: treatmentsCategories, isActive: location.pathname.startsWith('/treatments') },
+    { id: 'resources', label: 'Resources', data: resourceCategories, isActive: location.pathname.startsWith('/resources') },
+  ];
+  const currentMobileSection = mobileSections.find((section) => section.id === mobileActiveSection) ?? null;
 
   useEffect(() => {
+    let ticking = false;
     const onScroll = () => {
-      setScrolled(window.scrollY > 8);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 8);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     onScroll();
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -152,269 +155,208 @@ export default function Navbar() {
   }, []);
 
   useEffect(() => {
+    let ticking = false;
     function setOffset() {
-      const h = headerRef.current ? headerRef.current.offsetHeight : 88;
-      document.documentElement.style.setProperty('--navbar-offset', h + 'px');
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          const h = headerRef.current ? headerRef.current.offsetHeight : 88;
+          document.documentElement.style.setProperty('--navbar-offset', h + 'px');
+          ticking = false;
+        });
+        ticking = true;
+      }
     }
-    setOffset();
-    window.addEventListener('resize', setOffset);
-    return () => window.removeEventListener('resize', setOffset);
-  }, []);
-
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    if (!window.matchMedia) return;
-    const media = window.matchMedia('(hover: hover) and (pointer: fine)');
-    const onChange = (e) => setSupportsHover(e.matches);
-    setSupportsHover(media.matches);
-    if (typeof media.addEventListener === 'function') {
-      media.addEventListener('change', onChange);
-      return () => media.removeEventListener('change', onChange);
+    
+    // Stabilize dynamic layout calculations to only run after full DOM and resource loading
+    if (document.readyState === 'complete') {
+      setOffset();
+    } else {
+      window.addEventListener('load', setOffset);
     }
-    media.onchange = onChange;
+    
+    window.addEventListener('resize', setOffset, { passive: true });
     return () => {
-      media.onchange = null;
+      window.removeEventListener('resize', setOffset);
+      window.removeEventListener('load', setOffset);
     };
   }, []);
 
   useEffect(() => {
     setOpenDropdown(null);
     clearHoverTimers();
+    setMobileOpen(false);
+    setMobileActiveSection(null);
   }, [location.pathname]);
 
   useEffect(() => {
-    if (!openDropdown) return;
-
-    function onOutsidePointerDown(e) {
-      const root = headerRef.current;
-      if (!root) return;
-      if (root.contains(e.target)) return;
-      closeDropdown();
+    if (!mobileOpen) {
+      return undefined;
     }
 
-    function onFocusIn(e) {
-      const root = headerRef.current;
-      if (!root) return;
-      if (root.contains(e.target)) return;
-      closeDropdown();
-    }
+    const scrollY = window.scrollY;
+    const html = document.documentElement;
+    const previousHtmlOverflow = html.style.overflow;
+    const previousHtmlTouchAction = html.style.touchAction;
+    const previousBodyOverflow = document.body.style.overflow;
+    const previousBodyTouchAction = document.body.style.touchAction;
+    const previousBodyPosition = document.body.style.position;
+    const previousBodyTop = document.body.style.top;
+    const previousBodyWidth = document.body.style.width;
+    const panel = mobilePanelRef.current;
+    lastFocusedElementRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
 
-    document.addEventListener('mousedown', onOutsidePointerDown);
-    document.addEventListener('touchstart', onOutsidePointerDown, { passive: true });
-    document.addEventListener('focusin', onFocusIn);
+    html.style.overflow = 'hidden';
+    html.style.touchAction = 'none';
+    document.body.style.overflow = 'hidden';
+    document.body.style.touchAction = 'none';
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
 
-    setTimeout(() => {
-      if (!shouldFocusDropdown) return;
-      focusMenuItem(openDropdown, 0);
-      setShouldFocusDropdown(false);
-    }, 0);
+    const focusFirstElement = window.requestAnimationFrame(() => {
+      const firstFocusable = panel?.querySelector(
+        'button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])',
+      );
+      firstFocusable?.focus();
+    });
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault();
+        setMobileOpen(false);
+        return;
+      }
+
+      if (event.key !== 'Tab' || !panel) return;
+
+      const focusableElements = Array.from(
+        panel.querySelectorAll('button:not([disabled]), a[href], [tabindex]:not([tabindex="-1"])'),
+      ).filter((element) => !element.hasAttribute('disabled'));
+
+      if (!focusableElements.length) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
 
     return () => {
-      document.removeEventListener('mousedown', onOutsidePointerDown);
-      document.removeEventListener('touchstart', onOutsidePointerDown);
-      document.removeEventListener('focusin', onFocusIn);
+      window.cancelAnimationFrame(focusFirstElement);
+      document.removeEventListener('keydown', handleKeyDown);
+      html.style.overflow = previousHtmlOverflow;
+      html.style.touchAction = previousHtmlTouchAction;
+      document.body.style.overflow = previousBodyOverflow;
+      document.body.style.touchAction = previousBodyTouchAction;
+      document.body.style.position = previousBodyPosition;
+      document.body.style.top = previousBodyTop;
+      document.body.style.width = previousBodyWidth;
+      window.scrollTo(0, scrollY);
+      lastFocusedElementRef.current?.focus?.();
     };
-  }, [openDropdown, shouldFocusDropdown]);
+  }, [mobileOpen]);
 
-  useEffect(() => {
-    return () => clearHoverTimers();
-  }, []);
+  const clearHoverTimers = () => {
+    if (hoverOpenTimerRef.current) clearTimeout(hoverOpenTimerRef.current);
+    if (hoverCloseTimerRef.current) clearTimeout(hoverCloseTimerRef.current);
+  };
 
-  const onTriggerKeyDown = (key) => (e) => {
+  const scheduleHoverOpen = (key, fromMenu = false) => {
+    if (!supportsHover) return;
+    if (hoverCloseTimerRef.current) clearTimeout(hoverCloseTimerRef.current);
+    if (hoverOpenTimerRef.current) clearTimeout(hoverOpenTimerRef.current);
+    
+    hoverOpenTimerRef.current = setTimeout(() => {
+      setShouldFocusDropdown(false);
+      setOpenDropdown(key);
+    }, hoverOpenDelayMs);
+  };
+
+  const scheduleHoverClose = (key, fromMenu = false) => {
+    if (!supportsHover) return;
+    const menu = document.getElementById(`menu-${key}`);
+    if (menu && menu.contains(document.activeElement)) return;
+    
+    if (hoverOpenTimerRef.current) clearTimeout(hoverOpenTimerRef.current);
+    if (hoverCloseTimerRef.current) clearTimeout(hoverCloseTimerRef.current);
+    
+    hoverCloseTimerRef.current = setTimeout(() => {
+      setOpenDropdown(null);
+    }, hoverCloseDelayMs);
+  };
+
+  const handleDropdownClick = (key, closeOnly = false) => {
+    setMobileOpen(false);
+    if (closeOnly) {
+      setOpenDropdown(null);
+      return;
+    }
+    navigate(`/${key}`);
+  };
+
+  const handleTriggerKeyDown = (e, key) => {
     const idx = dropdownKeys.indexOf(key);
     if (e.key === 'ArrowRight' && idx >= 0) {
       e.preventDefault();
-      focusTrigger(dropdownKeys[(idx + 1) % dropdownKeys.length]);
-      return;
-    }
-    if (e.key === 'ArrowLeft' && idx >= 0) {
+      const nextId = `trigger-${dropdownKeys[(idx + 1) % dropdownKeys.length]}`;
+      document.getElementById(nextId)?.focus();
+    } else if (e.key === 'ArrowLeft' && idx >= 0) {
       e.preventDefault();
-      focusTrigger(dropdownKeys[(idx - 1 + dropdownKeys.length) % dropdownKeys.length]);
-      return;
-    }
-    if (e.key === 'ArrowDown') {
+      const prevId = `trigger-${dropdownKeys[(idx - 1 + dropdownKeys.length) % dropdownKeys.length]}`;
+      document.getElementById(prevId)?.focus();
+    } else if (e.key === 'ArrowDown') {
       e.preventDefault();
       setShouldFocusDropdown(true);
       setOpenDropdown(key);
-      setTimeout(() => focusMenuItem(key, 0), 0);
-      return;
-    }
-    if (e.key === 'ArrowUp') {
+    } else if (e.key === 'Escape') {
       e.preventDefault();
-      setShouldFocusDropdown(true);
-      setOpenDropdown(key);
-      setTimeout(() => focusMenuItem(key, -1), 0);
-      return;
+      setOpenDropdown(null);
     }
+  };
+
+  const handleMenuKeyDown = (e, key) => {
     if (e.key === 'Escape') {
       e.preventDefault();
-      closeDropdown(key);
+      setOpenDropdown(null);
+      document.getElementById(`trigger-${key}`)?.focus();
     }
   };
 
-  const onMenuKeyDown = (key) => (e) => {
-    if (e.key === 'Escape') {
-      e.preventDefault();
-      closeDropdown(key);
-      return;
-    }
-    if (e.key === 'ArrowDown') {
-      e.preventDefault();
-      const current = getActiveMenuIndex(key);
-      focusMenuItem(key, current < 0 ? 0 : current + 1);
-      return;
-    }
-    if (e.key === 'ArrowUp') {
-      e.preventDefault();
-      const current = getActiveMenuIndex(key);
-      focusMenuItem(key, current < 0 ? -1 : current - 1);
-      return;
-    }
-    if (e.key === 'Home') {
-      e.preventDefault();
-      focusMenuItem(key, 0);
-      return;
-    }
-    if (e.key === 'End') {
-      e.preventDefault();
-      focusMenuItem(key, -1);
-    }
+  const closeMobileMenu = () => {
+    setMobileOpen(false);
+    setMobileActiveSection(null);
   };
 
-  useEffect(() => {
-    if (!mobileOpen) return;
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = 'hidden';
-    function onKey(e) {
-      if (e.key === 'Escape') {
-        closeMobileNav();
-      }
-    }
-    document.addEventListener('keydown', onKey);
-    const container = mobileDialogRef.current;
-
-    const getFocusable = () =>
-      container
-        ? Array.from(
-            container.querySelectorAll(
-              'a[href],button:not([disabled]),[tabindex]:not([tabindex="-1"])'
-            )
-          )
-        : [];
-
-    setTimeout(() => {
-      const closeButton = container?.querySelector('button[aria-label="Close menu"]');
-      if (closeButton && typeof closeButton.focus === 'function') {
-        closeButton.focus();
-        return;
-      }
-      const focusables = getFocusable();
-      if (focusables.length && typeof focusables[0].focus === 'function') focusables[0].focus();
-    }, 0);
-
-    function onTrap(e) {
-      if (e.key !== 'Tab') return;
-      const focusables = getFocusable();
-      if (!focusables.length) return;
-      const first = focusables[0];
-      const last = focusables[focusables.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first.focus();
-      }
-    }
-
-    document.addEventListener('keydown', onTrap);
-    return () => {
-      document.body.style.overflow = prevOverflow;
-      document.removeEventListener('keydown', onKey);
-      document.removeEventListener('keydown', onTrap);
-    };
-  }, [mobileOpen]);
-
-  useEffect(() => {
-    mobileOpenRef.current = mobileOpen;
-  }, [mobileOpen]);
-
-  const onMobilePanelPointerDown = (e) => {
-    if (!mobileOpen) return;
-    if (e.pointerType !== 'touch') return;
-    swipeRef.current = {
-      active: true,
-      pointerId: e.pointerId,
-      startX: e.clientX,
-      startY: e.clientY,
-      lastX: e.clientX,
-      lastY: e.clientY,
-    };
-    setIsPanelDragging(true);
-    try {
-      e.currentTarget.setPointerCapture(e.pointerId);
-    } catch {}
+  const openMobileSection = (sectionId) => {
+    setMobileActiveSection(sectionId);
   };
 
-  const onMobilePanelPointerMove = (e) => {
-    const s = swipeRef.current;
-    if (!s.active) return;
-    if (s.pointerId !== e.pointerId) return;
-
-    const dx = e.clientX - s.startX;
-    const dy = e.clientY - s.startY;
-    s.lastX = e.clientX;
-    s.lastY = e.clientY;
-
-    const absX = Math.abs(dx);
-    const absY = Math.abs(dy);
-    if (absX < absY + 10) return;
-
-    if (dx > 0) {
-      e.preventDefault();
-      setPanelDragX(dx);
-    }
-  };
-
-  const onMobilePanelPointerUp = (e) => {
-    const s = swipeRef.current;
-    if (!s.active) return;
-    if (s.pointerId !== e.pointerId) return;
-    swipeRef.current.active = false;
-    setIsPanelDragging(false);
-
-    const dx = e.clientX - s.startX;
-    const panelWidth = mobilePanelRef.current ? mobilePanelRef.current.getBoundingClientRect().width : 0;
-    const threshold = Math.max(90, panelWidth * 0.25);
-
-    if (dx > threshold) {
-      closeMobileNav();
-      return;
-    }
-    setPanelDragX(0);
+  const returnToMobileMenuRoot = () => {
+    setMobileActiveSection(null);
   };
 
   return (
-    <>
     <header
       ref={headerRef}
-      className={[
-        'navbar',
-        scrolled ? 'navbar-scrolled' : '',
-      ]
-        .filter(Boolean)
-        .join(' ')}
+      className={['navbar', scrolled ? 'navbar-scrolled' : ''].filter(Boolean).join(' ')}
     >
       <div className="navbar-inner">
-
         <Link to="/" className="navbar-brand">
-            <img
-              className="navbar-logo"
-              src="/assets/apc-branco.svg"
-              decoding="async"
-              alt="Algarve Pain Centre logo"
-            />
-          </Link>
+          <img
+            className="navbar-logo"
+            src="/assets/apc-branco.svg"
+            decoding="async"
+            alt="Algarve Pain Centre logo"
+          />
+        </Link>
 
         <div className="navbar-left">
           <button
@@ -425,9 +367,9 @@ export default function Navbar() {
             aria-expanded={mobileOpen}
             aria-controls="mobile-navigation"
             onClick={() => {
-              if (mobileOpen) closeMobileNav();
-              else {
-                setOpenDropdown(null);
+              if (mobileOpen) {
+                closeMobileMenu();
+              } else {
                 setMobileOpen(true);
               }
             }}
@@ -436,345 +378,78 @@ export default function Navbar() {
             <span className="mobile-nav-toggle-bar" />
             <span className="mobile-nav-toggle-bar" />
           </button>
-          <nav
-            id="primary-navigation"
-            role="navigation"
-            aria-label="Primary navigation"
-            className="navbar-nav"
-          >
-          <div className="navbar-links-desktop">
-          <div
-            className="navbar-dropdown-wrapper"
-            onMouseEnter={() => {
-              scheduleHoverOpen('specialities');
-            }}
-            onMouseLeave={() => {
-              if (isFocusWithinMenu('specialities')) return;
-              scheduleHoverClose();
-            }}
-          >
-            <button
-              type="button"
-              id={getTriggerId('specialities')}
-              className={
-                isSpecialitiesActive
-                  ? openDropdown === 'specialities'
-                    ? 'navbar-link navbar-link-button navbar-link-active navbar-link-open'
-                    : 'navbar-link navbar-link-button navbar-link-active'
-                  : openDropdown === 'specialities'
-                    ? 'navbar-link navbar-link-button navbar-link-open'
-                    : 'navbar-link navbar-link-button'
-              }
-              aria-label="Specialities"
-              aria-haspopup="menu"
-              aria-expanded={openDropdown === 'specialities'}
-              aria-controls="menu-specialities"
-              onClick={() => {
-                setMobileOpen(false);
-                if (supportsHover) {
-                  navigate('/specialities');
-                } else {
-                  setShouldFocusDropdown(false);
-                  setOpenDropdown((current) =>
-                    current === 'specialities' ? null : 'specialities'
-                  );
-                }
-              }}
-              onKeyDown={onTriggerKeyDown('specialities')}
-            >
-              Specialities
-            </button>
-            <div
-              id="menu-specialities"
-              role="menu"
-              aria-label="Specialities"
-              aria-labelledby={getTriggerId('specialities')}
-              aria-orientation="vertical"
-              className={
-                openDropdown === 'specialities'
-                  ? 'navbar-dropdown navbar-dropdown-open'
-                  : 'navbar-dropdown'
-              }
-              onKeyDown={onMenuKeyDown('specialities')}
-              onMouseEnter={() => {
-                if (!supportsHover) return;
-                if (hoverCloseTimerRef.current) {
-                  clearTimeout(hoverCloseTimerRef.current);
-                  hoverCloseTimerRef.current = null;
-                }
-              }}
-              onMouseLeave={() => {
-                if (!supportsHover) return;
-                scheduleHoverClose();
-              }}
-            >
-              <div className="navbar-dropdown-inner">
-                {specialitiesCategories.map((category) => (
-                  <div key={category.title} className="navbar-dropdown-column">
-                    <div className="navbar-dropdown-title">{category.title}</div>
-                    <ul className="navbar-dropdown-list">
-                      {category.items.map((item) => (
-                        <li key={item.path} className="navbar-dropdown-item">
-                          <Link
-                            to={item.path}
-                            role="menuitem"
-                            title={item.label}
-                            className={
-                              location.pathname === item.path
-                                ? 'navbar-dropdown-link is-active'
-                                : 'navbar-dropdown-link'
-                            }
-                            onClick={() => setOpenDropdown(null)}
-                          >
-                            {item.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-              <div className="navbar-dropdown-footer">
-                <Link
-                  to="/specialities"
-                  role="menuitem"
-                  className="navbar-dropdown-footer-link"
-                  onClick={() => setOpenDropdown(null)}
-                >
-                  All Specialities
-                </Link>
-              </div>
+          
+          <nav id="primary-navigation" role="navigation" aria-label="Primary navigation" className="navbar-nav">
+            <div className="navbar-links-desktop">
+              <NavDropdown
+                menuKey="specialities"
+                label="Specialities"
+                categories={specialitiesCategories}
+                footerLinkTo="/specialities"
+                footerLinkLabel="All Specialities"
+                isActive={location.pathname.startsWith('/specialities')}
+                isOpen={openDropdown === 'specialities'}
+                supportsHover={supportsHover}
+                onHoverOpen={scheduleHoverOpen}
+                onHoverClose={scheduleHoverClose}
+                onClick={(closeOnly) => handleDropdownClick('specialities', closeOnly)}
+                onKeyDown={handleTriggerKeyDown}
+                onMenuKeyDown={handleMenuKeyDown}
+              />
+              <NavDropdown
+                menuKey="treatments"
+                label="Treatments"
+                categories={treatmentsCategories}
+                footerLinkTo="/treatments"
+                footerLinkLabel="Explore Treatments"
+                isActive={location.pathname.startsWith('/treatments')}
+                isOpen={openDropdown === 'treatments'}
+                supportsHover={supportsHover}
+                onHoverOpen={scheduleHoverOpen}
+                onHoverClose={scheduleHoverClose}
+                onClick={(closeOnly) => handleDropdownClick('treatments', closeOnly)}
+                onKeyDown={handleTriggerKeyDown}
+                onMenuKeyDown={handleMenuKeyDown}
+              />
+              <NavDropdown
+                menuKey="resources"
+                label="Resources"
+                categories={resourceCategories}
+                footerLinkTo="/resources"
+                footerLinkLabel="View all resources"
+                isActive={location.pathname.startsWith('/resources')}
+                isOpen={openDropdown === 'resources'}
+                supportsHover={supportsHover}
+                onHoverOpen={scheduleHoverOpen}
+                onHoverClose={scheduleHoverClose}
+                onClick={(closeOnly) => handleDropdownClick('resources', closeOnly)}
+                onKeyDown={handleTriggerKeyDown}
+                onMenuKeyDown={handleMenuKeyDown}
+              />
+              {mainLinks.map((link) => (
+                <div key={link.to} className="navbar-dropdown-wrapper">
+                  <Link
+                    to={link.to}
+                    aria-label={link.ariaLabel}
+                    className={(location.pathname === link.to || location.pathname.startsWith(`${link.to}/`)) ? 'navbar-link navbar-link-active' : 'navbar-link'}
+                  >
+                    {link.label}
+                  </Link>
+                </div>
+              ))}
             </div>
-          </div>
-          <div
-            className="navbar-dropdown-wrapper"
-            onMouseEnter={() => {
-              scheduleHoverOpen('treatments');
-            }}
-            onMouseLeave={() => {
-              if (isFocusWithinMenu('treatments')) return;
-              scheduleHoverClose();
-            }}
-          >
-            <button
-              type="button"
-              id={getTriggerId('treatments')}
-              className={
-                isTreatmentsActive
-                  ? openDropdown === 'treatments'
-                    ? 'navbar-link navbar-link-button navbar-link-active navbar-link-open'
-                    : 'navbar-link navbar-link-button navbar-link-active'
-                  : openDropdown === 'treatments'
-                    ? 'navbar-link navbar-link-button navbar-link-open'
-                    : 'navbar-link navbar-link-button'
-              }
-              aria-label="Treatments"
-              aria-haspopup="menu"
-              aria-expanded={openDropdown === 'treatments'}
-              aria-controls="menu-treatments"
-              onClick={() => {
-                setMobileOpen(false);
-                if (supportsHover) {
-                  navigate('/treatments');
-                } else {
-                  setShouldFocusDropdown(false);
-                  setOpenDropdown((current) =>
-                    current === 'treatments' ? null : 'treatments'
-                  );
-                }
-              }}
-              onKeyDown={onTriggerKeyDown('treatments')}
-            >
-              Treatments
-            </button>
-            <div
-              id="menu-treatments"
-              role="menu"
-              aria-label="Treatments"
-              aria-labelledby={getTriggerId('treatments')}
-              aria-orientation="vertical"
-              className={
-                openDropdown === 'treatments'
-                  ? 'navbar-dropdown navbar-dropdown-open'
-                  : 'navbar-dropdown'
-              }
-              onKeyDown={onMenuKeyDown('treatments')}
-              onMouseEnter={() => {
-                if (!supportsHover) return;
-                if (hoverCloseTimerRef.current) {
-                  clearTimeout(hoverCloseTimerRef.current);
-                  hoverCloseTimerRef.current = null;
-                }
-              }}
-              onMouseLeave={() => {
-                if (!supportsHover) return;
-                scheduleHoverClose();
-              }}
-            >
-              <div className="navbar-dropdown-inner">
-                {treatmentsCategories.map((category) => (
-                  <div key={category.title} className="navbar-dropdown-column">
-                    <div className="navbar-dropdown-title">{category.title}</div>
-                    <ul className="navbar-dropdown-list">
-                      {category.items.map((item) => (
-                        <li key={item.path} className="navbar-dropdown-item">
-                          <Link
-                            to={item.path}
-                            role="menuitem"
-                            title={item.label}
-                            className={
-                              location.pathname === item.path
-                                ? 'navbar-dropdown-link is-active'
-                                : 'navbar-dropdown-link'
-                            }
-                            onClick={() => setOpenDropdown(null)}
-                          >
-                            {item.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-              <div className="navbar-dropdown-footer">
-                <Link
-                  to="/treatments"
-                  role="menuitem"
-                  className="navbar-dropdown-footer-link"
-                  onClick={() => setOpenDropdown(null)}
-                >
-                  Explore Treatments
-                </Link>
-              </div>
-            </div>
-          </div>
-          <div
-            className="navbar-dropdown-wrapper"
-            onMouseEnter={() => {
-              scheduleHoverOpen('resources');
-            }}
-            onMouseLeave={() => {
-              if (isFocusWithinMenu('resources')) return;
-              scheduleHoverClose();
-            }}
-          >
-            <button
-              type="button"
-              id={getTriggerId('resources')}
-              className={
-                isResourcesActive
-                  ? openDropdown === 'resources'
-                    ? 'navbar-link navbar-link-button navbar-link-active navbar-link-open'
-                    : 'navbar-link navbar-link-button navbar-link-active'
-                  : openDropdown === 'resources'
-                    ? 'navbar-link navbar-link-button navbar-link-open'
-                    : 'navbar-link navbar-link-button'
-              }
-              aria-label="Resources"
-              aria-haspopup="menu"
-              aria-expanded={openDropdown === 'resources'}
-              aria-controls="menu-resources"
-              onClick={() => {
-                setMobileOpen(false);
-                if (supportsHover) {
-                  navigate('/resources');
-                } else {
-                  setShouldFocusDropdown(false);
-                  setOpenDropdown((current) =>
-                    current === 'resources' ? null : 'resources'
-                  );
-                }
-              }}
-              onKeyDown={onTriggerKeyDown('resources')}
-            >
-              Resources
-            </button>
-            <div
-              id="menu-resources"
-              role="menu"
-              aria-label="Resources"
-              aria-labelledby={getTriggerId('resources')}
-              aria-orientation="vertical"
-              className={
-                openDropdown === 'resources'
-                  ? 'navbar-dropdown navbar-dropdown-open'
-                  : 'navbar-dropdown'
-              }
-              onKeyDown={onMenuKeyDown('resources')}
-              onMouseEnter={() => {
-                if (!supportsHover) return;
-                if (hoverCloseTimerRef.current) {
-                  clearTimeout(hoverCloseTimerRef.current);
-                  hoverCloseTimerRef.current = null;
-                }
-              }}
-              onMouseLeave={() => {
-                if (!supportsHover) return;
-                scheduleHoverClose();
-              }}
-            >
-              <div className="navbar-dropdown-inner">
-                {resourceCategories.map((category) => (
-                  <div key={category.title} className="navbar-dropdown-column">
-                    <div className="navbar-dropdown-title">{category.title}</div>
-                    <ul className="navbar-dropdown-list">
-                      {category.items.map((item) => (
-                        <li key={item.path} className="navbar-dropdown-item">
-                          <Link
-                            to={item.path}
-                            role="menuitem"
-                            title={item.label}
-                            className={
-                              location.pathname === item.path
-                                ? 'navbar-dropdown-link is-active'
-                                : 'navbar-dropdown-link'
-                            }
-                            onClick={() => setOpenDropdown(null)}
-                          >
-                            {item.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
-              <div className="navbar-dropdown-footer">
-                <Link
-                  to="/resources"
-                  role="menuitem"
-                  className="navbar-dropdown-footer-link"
-                  onClick={() => setOpenDropdown(null)}
-                >
-                  View all resources
-                </Link>
-              </div>
-            </div>
-          </div>
-          {mainLinks.map((link) => (
-            <div key={link.to} className="navbar-dropdown-wrapper">
-              <Link
-                to={link.to}
-                aria-label={link.ariaLabel}
-                className={
-                  (link.to === '/blog'
-                    ? location.pathname === '/blog' || location.pathname.startsWith('/blog/')
-                    : location.pathname === link.to)
-                    ? 'navbar-link navbar-link-active'
-                    : 'navbar-link'
-                }
-                onClick={() => closeMobileNav({ restoreFocus: false })}
-              >
-                {link.label}
-              </Link>
-            </div>
-          ))}
-          </div>
           </nav>
         </div>
 
         <div className="navbar-right">
+          <div className="navbar-search-slot">
+            <Search
+              variant="nav"
+              containerId="navbar-search"
+              dropdownId="navbar-search-dropdown"
+              onNavigate={closeMobileMenu}
+            />
+          </div>
           <Link to="/contact" className="navbar-cta navbar-cta-desktop navbar-cta-dark">
             <span>Book Now</span>
             <span className="navbar-cta-icon" aria-hidden="true">
@@ -785,8 +460,8 @@ export default function Navbar() {
             </span>
           </Link>
         </div>
-
       </div>
+
       <div
         id="mobile-navigation"
         ref={mobileDialogRef}
@@ -796,330 +471,177 @@ export default function Navbar() {
         aria-hidden={!mobileOpen}
         className={mobileOpen ? 'mobile-nav-overlay mobile-nav-overlay-open' : 'mobile-nav-overlay'}
         onMouseDown={(e) => {
-          if (e.target === e.currentTarget) closeMobileNav();
+          if (e.target === e.currentTarget) closeMobileMenu();
         }}
       >
         <div
           ref={mobilePanelRef}
-          className="mobile-nav-panel"
-          style={
-            mobileOpen
-              ? { transform: `translateX(${Math.max(0, panelDragX)}px)`, transition: isPanelDragging ? 'none' : undefined }
-              : undefined
-          }
-          onPointerDown={onMobilePanelPointerDown}
-          onPointerMove={onMobilePanelPointerMove}
-          onPointerUp={onMobilePanelPointerUp}
-          onPointerCancel={onMobilePanelPointerUp}
+          className={`mobile-nav-panel ${mobileOpen ? 'is-open' : ''}`}
+          style={{
+            transform: mobileOpen ? 'translateX(0)' : 'translateX(100%)',
+            transition: 'transform 260ms cubic-bezier(0.4, 0, 0.2, 1)',
+          }}
         >
-          <div className="mobile-nav-background-overlay" aria-hidden="true" />
           <div className="mobile-nav-header">
-            <Link
-              to="/"
-              className="mobile-nav-logo"
-              aria-label="Go to homepage"
-              onClick={() => closeMobileNav({ restoreFocus: false })}
-            >
-              <img
-                className="mobile-nav-logo-img"
-                src="/assets/apc-branco.svg"
-                decoding="async"
-                alt="Algarve Pain Centre logo"
-              />
+            <Link to="/" className="mobile-nav-brand" onClick={closeMobileMenu}>
+              <img src="/assets/apc-preto.svg" alt="Algarve Pain Centre logo" className="mobile-nav-logo" />
             </Link>
             <button
               type="button"
               className="mobile-nav-close"
               aria-label="Close menu"
-              onClick={() => closeMobileNav()}
+              onClick={closeMobileMenu}
             >
-              ×
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
             </button>
           </div>
-
           <div className="mobile-nav-content">
-            <button
-              type="button"
-              className="mobile-nav-section-toggle"
-              id="mobile-section-specialities-toggle"
-              aria-expanded={mobileExpandedSection === 'specialities'}
-              aria-controls="mobile-section-specialities"
-              onClick={() =>
-                setMobileExpandedSection((current) =>
-                  current === 'specialities' ? null : 'specialities'
-                )
-              }
-            >
-              <div className="mobile-nav-section-label">
-                <span>Specialities</span>
-                <div className="treatment-card-accent" aria-hidden="true" />
-              </div>
-              <span
-                className={
-                  mobileExpandedSection === 'specialities'
-                    ? 'mobile-nav-chevron mobile-nav-chevron-open'
-                    : 'mobile-nav-chevron'
-                }
-                aria-hidden="true"
-              >
-                ▾
-              </span>
-            </button>
-            <div
-              id="mobile-section-specialities"
-              role="region"
-              aria-labelledby="mobile-section-specialities-toggle"
-              className={
-                mobileExpandedSection === 'specialities'
-                  ? 'mobile-nav-section-panel mobile-nav-section-panel-open'
-                  : 'mobile-nav-section-panel'
-              }
-            >
-              <div className="mobile-nav-section-panel-inner">
-                {specialitiesCategories.map((category) => (
-                  <div key={category.title} className="mobile-nav-group">
-                    <div className="mobile-nav-group-title">{category.title}</div>
-                    <div className="mobile-nav-group-links">
-                      {category.items.map((item) => (
-                        <Link
-                          key={item.path}
-                          to={item.path}
-                          className="mobile-nav-link"
-                          onClick={() => closeMobileNav({ restoreFocus: false })}
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-                <Link to="/specialities" className="mobile-nav-link-all" onClick={() => closeMobileNav({ restoreFocus: false })}>
-                  All Specialities
+            <div className={`mobile-nav-view mobile-nav-view-root ${mobileActiveSection ? 'is-hidden' : 'is-active'}`} aria-hidden={Boolean(mobileActiveSection)}>
+              {mobileSections.map((section) => (
+                <div key={section.id} className="mobile-nav-group">
+                  <button
+                    type="button"
+                    id={`mobile-nav-trigger-${section.id}`}
+                    className={section.isActive ? 'mobile-nav-entry is-current-section' : 'mobile-nav-entry'}
+                    aria-label={`Open ${section.label} menu`}
+                    onClick={() => openMobileSection(section.id)}
+                  >
+                    <span className="mobile-nav-entry-label">{section.label}</span>
+                    <span className="mobile-nav-entry-icon" aria-hidden="true">›</span>
+                  </button>
+                </div>
+              ))}
+              {mainLinks.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className={
+                    (location.pathname === link.to || location.pathname.startsWith(`${link.to}/`))
+                      ? 'mobile-nav-entry mobile-nav-standalone-link is-current-section'
+                      : 'mobile-nav-entry mobile-nav-standalone-link'
+                  }
+                  onClick={closeMobileMenu}
+                  aria-current={(location.pathname === link.to || location.pathname.startsWith(`${link.to}/`)) ? 'page' : undefined}
+                >
+                  <span className="mobile-nav-entry-label">{link.label}</span>
                 </Link>
-              </div>
+              ))}
             </div>
 
-            <button
-              type="button"
-              className="mobile-nav-section-toggle"
-              id="mobile-section-treatments-toggle"
-              aria-expanded={mobileExpandedSection === 'treatments'}
-              aria-controls="mobile-section-treatments"
-              onClick={() =>
-                setMobileExpandedSection((current) =>
-                  current === 'treatments' ? null : 'treatments'
-                )
-              }
-            >
-              <div className="mobile-nav-section-label">
-                <span>Treatments</span>
-                <div className="treatment-card-accent" aria-hidden="true" />
-              </div>
-              <span
-                className={
-                  mobileExpandedSection === 'treatments'
-                    ? 'mobile-nav-chevron mobile-nav-chevron-open'
-                    : 'mobile-nav-chevron'
-                }
-                aria-hidden="true"
-              >
-                ▾
-              </span>
-            </button>
             <div
-              id="mobile-section-treatments"
-              role="region"
-              aria-labelledby="mobile-section-treatments-toggle"
-              className={
-                mobileExpandedSection === 'treatments'
-                  ? 'mobile-nav-section-panel mobile-nav-section-panel-open'
-                  : 'mobile-nav-section-panel'
-              }
+              className={`mobile-nav-view mobile-nav-view-detail ${mobileActiveSection ? 'is-active' : 'is-hidden'}`}
+              aria-hidden={!mobileActiveSection}
             >
-              <div className="mobile-nav-section-panel-inner">
-                {treatmentsCategories.map((category) => (
-                  <div key={category.title} className="mobile-nav-group">
-                    <div className="mobile-nav-group-title">{category.title}</div>
-                    <div className="mobile-nav-group-links">
-                      {category.items.map((item) => (
-                        <Link
-                          key={item.path}
-                          to={item.path}
-                          className="mobile-nav-link"
-                          onClick={() => closeMobileNav({ restoreFocus: false })}
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
+              {currentMobileSection && (
+                <>
+                  <div className="mobile-nav-subpage-header">
+                    <button
+                      type="button"
+                      className="mobile-nav-back"
+                      onClick={returnToMobileMenuRoot}
+                      aria-label={`Go back from ${currentMobileSection.label}`}
+                    >
+                      <span className="mobile-nav-back-icon" aria-hidden="true">‹</span>
+                      <span>Back</span>
+                    </button>
+                    <h2 className="mobile-nav-subpage-title">{currentMobileSection.label}</h2>
                   </div>
-                ))}
-                <Link to="/treatments" className="mobile-nav-link-all" onClick={() => closeMobileNav({ restoreFocus: false })}>
-                  Explore Treatments
-                </Link>
-              </div>
+
+                  <div className="mobile-nav-subpage-list" role="region" aria-label={`${currentMobileSection.label} pages`}>
+                    {currentMobileSection.data.map((category) => (
+                      <section key={category.title} className="mobile-nav-category">
+                        <h3 className="mobile-nav-category-title">{category.title}</h3>
+                        <div className="mobile-nav-links-list">
+                          {category.items.map((item) => (
+                            <Link
+                              key={item.path}
+                              to={item.path}
+                              className={
+                                location.pathname === item.path
+                                  ? 'mobile-nav-link is-active'
+                                  : 'mobile-nav-link'
+                              }
+                              onClick={closeMobileMenu}
+                              aria-current={location.pathname === item.path ? 'page' : undefined}
+                            >
+                              <span>{item.label}</span>
+                              <span className="mobile-nav-link-icon" aria-hidden="true">›</span>
+                            </Link>
+                          ))}
+                        </div>
+                      </section>
+                    ))}
+                  </div>
+                </>
+              )}
             </div>
 
-            <button
-              type="button"
-              className="mobile-nav-section-toggle"
-              id="mobile-section-resources-toggle"
-              aria-expanded={mobileExpandedSection === 'resources'}
-              aria-controls="mobile-section-resources"
-              onClick={() =>
-                setMobileExpandedSection((current) =>
-                  current === 'resources' ? null : 'resources'
-                )
-              }
-            >
-              <div className="mobile-nav-section-label">
-                <span>Resources</span>
-                <div className="treatment-card-accent" aria-hidden="true" />
-              </div>
-              <span
-                className={
-                  mobileExpandedSection === 'resources'
-                    ? 'mobile-nav-chevron mobile-nav-chevron-open'
-                    : 'mobile-nav-chevron'
-                }
-                aria-hidden="true"
+            <div className="mobile-nav-bottom">
+              <Link
+                to="/contact"
+                className="navbar-cta mobile-nav-cta"
+                onClick={closeMobileMenu}
+                aria-current={location.pathname === '/contact' ? 'page' : undefined}
               >
-                ▾
-              </span>
-            </button>
-            <div
-              id="mobile-section-resources"
-              role="region"
-              aria-labelledby="mobile-section-resources-toggle"
-              className={
-                mobileExpandedSection === 'resources'
-                  ? 'mobile-nav-section-panel mobile-nav-section-panel-open'
-                  : 'mobile-nav-section-panel'
-              }
-            >
-              <div className="mobile-nav-section-panel-inner">
-                {resourceCategories.map((category) => (
-                  <div key={category.title} className="mobile-nav-group">
-                    <div className="mobile-nav-group-title">{category.title}</div>
-                    <div className="mobile-nav-group-links">
-                      {category.items.map((item) => (
-                        <Link
-                          key={item.path}
-                          to={item.path}
-                          className="mobile-nav-link"
-                          onClick={() => closeMobileNav({ restoreFocus: false })}
-                        >
-                          {item.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ))}
-                <Link to="/resources" className="mobile-nav-link-all" onClick={() => closeMobileNav({ restoreFocus: false })}>
-                  View all resources
-                </Link>
-              </div>
-            </div>
-          </div>
+                Book Now
+              </Link>
 
-          <div className="mobile-nav-footer">
-            <Link
-              to="/contact"
-              className="navbar-cta mobile-nav-cta"
-              onClick={() => closeMobileNav({ restoreFocus: false })}
-            >
-              <span>Book Now</span>
-              <span className="navbar-cta-icon" aria-hidden="true">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="18"
-                  height="18"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </span>
-            </Link>
-            <Link
-              to="/blog"
-              className="mobile-nav-footer-link"
-              aria-label="Blog"
-              onClick={() => closeMobileNav({ restoreFocus: false })}
-            >
-              Blog
-            </Link>
-            <Link
-              to="/about"
-              className="mobile-nav-footer-link"
-              onClick={() => closeMobileNav({ restoreFocus: false })}
-            >
-              About Us
-            </Link>
-            <div className="mobile-nav-social" aria-label="Social media">
-              <a
-                href="https://www.instagram.com/algarvepaincentre/"
-                className="mobile-nav-social-link"
-                aria-label="Visit Algarve Pain Centre on Instagram"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg
-                  fill="currentColor"
-                  viewBox="0 0 32 32"
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>instagram</title>
-                  <path d="M25.805 7.996c0 0 0 0.001 0 0.001 0 0.994-0.806 1.799-1.799 1.799s-1.799-0.806-1.799-1.799c0-0.994 0.806-1.799 1.799-1.799v0c0.993 0.001 1.798 0.805 1.799 1.798v0zM16 20.999c-2.761 0-4.999-2.238-4.999-4.999s2.238-4.999 4.999-4.999c2.761 0 4.999 2.238 4.999 4.999v0c0 0 0 0.001 0 0.001 0 2.76-2.237 4.997-4.997 4.997-0 0-0.001 0-0.001 0h0zM16 8.3c0 0 0 0-0 0-4.253 0-7.7 3.448-7.7 7.7s3.448 7.7 7.7 7.7c4.253 0 7.7-3.448 7.7-7.7v0c0-0 0-0 0-0.001 0-4.252-3.447-7.7-7.7-7.7-0 0-0 0-0.001 0h0zM16 3.704c4.003 0 4.48 0.020 6.061 0.089 1.003 0.012 1.957 0.202 2.84 0.538l-0.057-0.019c1.314 0.512 2.334 1.532 2.835 2.812l0.012 0.034c0.316 0.826 0.504 1.781 0.516 2.778l0 0.005c0.071 1.582 0.087 2.057 0.087 6.061s-0.019 4.48-0.092 6.061c-0.019 1.004-0.21 1.958-0.545 2.841l0.019-0.058c-0.258 0.676-0.64 1.252-1.123 1.726l-0.001 0.001c-0.473 0.484-1.049 0.866-1.692 1.109l-0.032 0.011c-0.829 0.316-1.787 0.504-2.788 0.516l-0.005 0c-1.592 0.071-2.061 0.087-6.072 0.087-4.013 0-4.481-0.019-6.072-0.092-1.008-0.019-1.966-0.21-2.853-0.545l0.059 0.019c-0.676-0.254-1.252-0.637-1.722-1.122l-0.001-0.001c-0.489-0.47-0.873-1.047-1.114-1.693l-0.010-0.031c-0.315-0.828-0.506-1.785-0.525-2.785l-0-0.008c-0.056-1.575-0.076-2.061-0.076-6.053 0-3.994 0.020-4.481 0.076-6.075 0.019-1.007 0.209-1.964 0.544-2.85l-0.019 0.059c0.247-0.679 0.632-1.257 1.123-1.724l0.002-0.002c0.468-0.492 1.045-0.875 1.692-1.112l0.031-0.010c0.823-0.318 1.774-0.509 2.768-0.526l0.007-0c1.593-0.056 2.062-0.075 6.072-0.075zM16 1.004c-4.074 0-4.582 0.019-6.182 0.090-1.315 0.028-2.562 0.282-3.716 0.723l0.076-0.025c-1.040 0.397-1.926 0.986-2.656 1.728l-0.001 0.001c-0.745 0.73-1.333 1.617-1.713 2.607l-0.017 0.050c-0.416 1.078-0.67 2.326-0.697 3.628l0-0.012c0.075-1.6 0.090-2.108 0.090-6.182s-0.019-4.582-0.090-6.182c-0.029-1.315-0.282-2.562-0.723-3.716l0.026 0.076c-0.398-1.040-0.986-1.926-1.729-2.656l-0.001-0.001c-0.73-0.745-1.617-1.333-2.607-1.713l-0.050-0.017c-1.078-0.416-2.326-0.67-3.628-0.697l-0.012-0c-1.6-0.075-2.108-0.090-6.182-0.090z"></path>
-                </svg>
-              </a>
-              <a
-                href="https://www.facebook.com/profile.php?id=100068862086045"
-                className="mobile-nav-social-link"
-                aria-label="Visit Algarve Pain Centre on Facebook"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg
-                  fill="currentColor"
-                  viewBox="0 0 32 32"
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <title>facebook</title>
-                  <path d="M30.996 16.091c-0.001-8.281-6.714-14.994-14.996-14.994s-14.996 6.714-14.996 14.996c0 7.455 5.44 13.639 12.566 14.8l0.086 0.012v-10.478h-3.808v-4.336h3.808v-3.302c-0.019-0.167-0.029-0.361-0.029-0.557 0-2.923 2.37-5.293 5.293-5.293 0.141 0 0.281 0.006 0.42 0.016l-0.018-0.001c1.199 0.017 2.359 0.123 3.491 0.312l-0.134-0.019v3.69h-1.892c-0.086-0.012-0.185-0.019-0.285-0.019-1.197 0-2.168 0.97-2.168 2.168 0 0.068 0.003 0.135 0.009 0.202l-0.001-0.009v2.812h4.159l-0.665 4.336h-3.494v10.478c7.213-1.174 12.653-7.359 12.654-14.814v-0z"></path>
-                </svg>
-              </a>
-              <a
-                href="https://www.linkedin.com/company/algarve-pain-centre/"
-                className="mobile-nav-social-link"
-                aria-label="Visit Algarve Pain Centre on LinkedIn"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg
-                  fill="currentColor"
-                  viewBox="0 0 1920 1920"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M478.234 600.75V1920H.036V600.75h478.198Zm720.853-2.438v77.737c69.807-45.056 150.308-71.249 272.38-71.249 397.577 0 448.521 308.666 448.521 577.562v737.602h-480.6v-700.836c0-117.867-42.173-140.215-120.15-140.215-74.134 0-120.151 23.55-120.151 140.215v700.836h-480.6V598.312h480.6ZM239.099 0c131.925 0 239.099 107.294 239.099 239.099s-107.174 239.099-239.1 239.099C107.295 478.198 0 370.904 0 239.098 0 107.295 107.294 0 239.099 0Z"
-                    fillRule="evenodd"
-                  />
-                </svg>
-              </a>
+              <div className="mobile-nav-footer-bottom">
+                <div className="mobile-nav-footer-social" aria-label="Social media">
+                  <a
+                    href="https://www.instagram.com/algarvepaincentre/"
+                    className="mobile-nav-footer-social-link"
+                    aria-label="Visit Algarve Pain Centre on Instagram"
+                  >
+                    <svg fill="currentColor" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+                      <title>instagram</title>
+                      <path d="M 9.9980469 3 C 6.1390469 3 3 6.1419531 3 10.001953 L 3 20.001953 C 3 23.860953 6.1419531 27 10.001953 27 L 20.001953 27 C 23.860953 27 27 23.858047 27 19.998047 L 27 9.9980469 C 27 6.1390469 23.858047 3 19.998047 3 L 9.9980469 3 z M 22 7 C 22.552 7 23 7.448 23 8 C 23 8.552 22.552 9 22 9 C 21.448 9 21 8.552 21 8 C 21 7.448 21.448 7 22 7 z M 15 9 C 18.309 9 21 11.691 21 15 C 21 18.309 18.309 21 15 21 C 11.691 21 9 18.309 9 15 C 9 11.691 11.691 9 15 9 z M 15 11 A 4 4 0 0 0 11 15 A 4 4 0 0 0 15 19 A 4 4 0 0 0 19 15 A 4 4 0 0 0 15 11 z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://www.facebook.com/profile.php?id=100068862086045"
+                    className="mobile-nav-footer-social-link"
+                    aria-label="Visit Algarve Pain Centre on Facebook"
+                  >
+                    <svg fill="currentColor" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                      <title>facebook</title>
+                      <path d="M30.996 16.091c-0.001-8.281-6.714-14.994-14.996-14.994s-14.996 6.714-14.996 14.996c0 7.455 5.44 13.639 12.566 14.8l0.086 0.012v-10.478h-3.808v-4.336h3.808v-3.302c-0.019-0.167-0.029-0.361-0.029-0.557 0-2.923 2.37-5.293 5.293-5.293 0.141 0 0.281 0.006 0.42 0.016l-0.018-0.001c1.199 0.017 2.359 0.123 3.491 0.312l-0.134-0.019v3.69h-1.892c-0.086-0.012-0.185-0.019-0.285-0.019-1.197 0-2.168 0.97-2.168 2.168 0 0.068 0.003 0.135 0.009 0.202l-0.001-0.009v2.812h4.159l-0.665 4.336h-3.494v10.478c7.213-1.174 12.653-7.359 12.654-14.814v-0z" />
+                    </svg>
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/algarve-pain-centre/"
+                    className="mobile-nav-footer-social-link"
+                    aria-label="Visit Algarve Pain Centre on LinkedIn"
+                  >
+                    <svg fill="currentColor" viewBox="0 0 1920 1920" xmlns="http://www.w3.org/2000/svg">
+                      <path
+                        d="M478.234 600.75V1920H.036V600.75h478.198Zm720.853-2.438v77.737c69.807-45.056 150.308-71.249 272.38-71.249 397.577 0 448.521 308.666 448.521 577.562v737.602h-480.6v-700.836c0-117.867-42.173-140.215-120.15-140.215-74.134 0-120.151 23.55-120.151 140.215v700.836h-480.6V598.312h480.6ZM239.099 0c131.925 0 239.099 107.294 239.099 239.099s-107.174 239.099-239.1 239.099C107.295 478.198 0 370.904 0 239.098 0 107.295 107.294 0 239.099 0Z"
+                        fillRule="evenodd"
+                      />
+                    </svg>
+                  </a>
+                </div>
+                <p className="mobile-nav-footer-meta">© {new Date().getFullYear()} Algarve Pain Centre. All rights reserved.</p>
+                <div className="mobile-nav-footer-credits">
+                  <a
+                    href="https://venenu.com/"
+                    className="mobile-nav-footer-credits-link"
+                    aria-label="Visit Venenu Agency"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Design by<br />
+                    Venenu Agency
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </header>
-    <Search variant="nav" />
-    </>
   );
 }
