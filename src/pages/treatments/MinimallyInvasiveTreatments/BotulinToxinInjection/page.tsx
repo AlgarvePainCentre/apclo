@@ -293,7 +293,7 @@ const BotulinToxinInjectionPage: React.FC = () => {
                 <div className="btx-condition-media tms-conditions-media" aria-hidden="true">
                   <img
                     className="btx-condition-image tms-conditions-image"
-                    src="/assets/images/illustrative/Post-Stroke-min-1.webp"
+                    src="/assets/images/botulin-toxin-injection/Spasticity.jpg"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -313,7 +313,7 @@ const BotulinToxinInjectionPage: React.FC = () => {
                 <div className="btx-condition-media tms-conditions-media" aria-hidden="true">
                   <img
                     className="btx-condition-image tms-conditions-image"
-                    src="/assets/images/illustrative/Post-Stroke-min-1.webp"
+                    src="/assets/images/botulin-toxin-injection/ChronicMigraine.jpg"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -334,7 +334,7 @@ const BotulinToxinInjectionPage: React.FC = () => {
                 <div className="btx-condition-media tms-conditions-media" aria-hidden="true">
                   <img
                     className="btx-condition-image tms-conditions-image"
-                    src="/assets/images/illustrative/Post-Stroke-min-1.webp"
+                    src="/assets/images/botulin-toxin-injection/Dystonia.jpg"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -354,7 +354,7 @@ const BotulinToxinInjectionPage: React.FC = () => {
                 <div className="btx-condition-media tms-conditions-media" aria-hidden="true">
                   <img
                     className="btx-condition-image tms-conditions-image"
-                    src="/assets/images/illustrative/Post-Stroke-min-1.webp"
+                    src="/assets/images/botulin-toxin-injection/OveractiveBladder.jpg"
                     alt=""
                     loading="lazy"
                     decoding="async"

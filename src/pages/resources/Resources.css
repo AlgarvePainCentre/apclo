@@ -17,6 +17,45 @@
   color: var(--text-color);
 }
 
+.resources-page .resources-hero .psx-hero-backdrop {
+  position: absolute;
+  inset: 0;
+  background: none;
+  overflow: hidden;
+}
+
+.resources-page .resources-hero .psx-hero-backdrop.video-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.42), rgba(15, 23, 42, 0.58));
+  z-index: 1;
+  pointer-events: none;
+}
+
+.resources-page .resources-hero .psx-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.resources-page .resources-hero .psx-hero-inner {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.resources-page .resources-hero .psx-hero-subtitle {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.resources-page .resources-hero .psx-hero-actions {
+  justify-content: center;
+}
+
 
 
 .resources-page .page-main {

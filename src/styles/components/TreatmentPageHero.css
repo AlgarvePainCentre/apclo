@@ -39,6 +39,110 @@
   will-change: transform;
 }
 
+.treatments-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/RadiofrequencyAblation.jpg') !important;
+}
+
+.physiotherapy-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/Physiotherapy.jpg') !important;
+}
+
+.pharmacological-pain-management-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/PharmacologicalPainManagement.jpg') !important;
+}
+
+.occupation-therapy-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/OccupationalTherapy.jpg') !important;
+}
+
+.exercise-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/Exercise.jpg') !important;
+}
+
+.speech-therapy-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/SpeechTherapy.jpg') !important;
+}
+
+.psychology-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/Psychology.jpg') !important;
+}
+
+.podology-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/Podology.jpg') !important;
+}
+
+.osteopathy-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/Osteopathy.jpg') !important;
+}
+
+.nutrition-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/Nutrition.jpg') !important;
+}
+
+.home-care-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/HomeCare.jpg') !important;
+}
+
+.botulin-toxin-injection-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/BotulinToxinInjection.jpg') !important;
+}
+
+.calcification-barbotage-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/CalcificationBarbotage.jpg') !important;
+}
+
+.cryoblation-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/Cryoablation.jpg') !important;
+}
+
+.hydrodistention-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/Hydrodistention.jpg') !important;
+}
+
+.interspinous-spacers-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/InterspinousSpacersTreatment.jpg') !important;
+}
+
+.intra-articular-corticosteroids-injection-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/Intra-ArticularCorticosteroidInjections.jpg') !important;
+}
+
+.nucleoplasty-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/Nucleoplasty.jpg') !important;
+}
+
+.peripheral-nerve-block-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/PeripheralNerveBlocks.jpg') !important;
+}
+
+.platelets-rich-plasma-injection-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/Platelet-RichPlasmaInjections.jpg') !important;
+}
+
+.radiofrequency-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/RadiofrequencyAblation.jpg') !important;
+}
+
+.vertebroplasty-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/Vertebroplasty.jpg') !important;
+}
+
+.disc-replacement-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/DiscReplacement.jpg') !important;
+}
+
+.spinal-fusion-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/LumbarDeformitySurgery.jpg') !important;
+}
+
+.lumbar-deformity-surgery-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/LumbarDeformitySurgery.jpg') !important;
+}
+
+.tubular-microsurgery-hero .psx-hero-backdrop {
+  background-image: url('/assets/images/Hero/TubularMicrosurgery.jpg') !important;
+}
+
 .treatment-page-hero .psx-hero-backdrop::after {
   content: '';
   position: absolute;

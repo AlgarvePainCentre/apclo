@@ -19,7 +19,7 @@ export const doctorsData = [
   {
     id: 'ricardo-frada',
     name: 'Dr. Ricardo Frada',
-    roles: ['Ortopedia - Coluna', 'Head Surgeon'],
+    roles: ['Orthopaedics - Spine', 'Head Surgeon'],
     image: '/assets/images/team/dr-ricardo-frada-algarve-pain-centre.webp',
     isLarge: true,
     bio: 'Dr. Ricardo Frada is a renowned Orthopaedic Surgeon specializing in joint replacement and arthroscopic surgery. He is dedicated to providing personalized care plans that focus on restoring mobility and improving quality of life for his patients.',
@@ -35,7 +35,7 @@ export const doctorsData = [
   {
     id: 'miguel-batista',
     name: 'Dr. Miguel Baptista',
-    roles: ['Neuroradiologia', 'Intervenção Minimamente Invasiva da Coluna'],
+    roles: ['Neuroradiology', 'Minimally Invasive Spine Intervention'],
     image: '/assets/images/team/dr-miguel-batista-algarve-pain-centre.webp',
     isLarge: true,
     bio: 'Dr. Miguel Batista is an expert in Neuroradiology, focusing on the diagnosis and treatment of disorders affecting the nervous system. His precise diagnostic skills are crucial in formulating effective treatment strategies for chronic pain conditions.',
@@ -96,7 +96,7 @@ export const doctorsData = [
   {
     id: 'edgar-semedo',
     name: 'Dr. Edgar Semedo',
-    roles: ['Consultor em Dor Crónica', 'Anestesista'],
+    roles: ['Chronic Pain Consultant', 'Anaesthetist'],
     isLarge: false,
     bio: 'Dr. Edgar Semedo is an experienced Anesthesiologist specializing in pain management and perioperative care.',
     education: ['Medical Degree - University of Coimbra'],
@@ -107,7 +107,7 @@ export const doctorsData = [
   {
     id: 'javier-duran',
     name: 'Dr. Javier Duran',
-    roles: ['Consultor em Dor Crónica', 'Anestesista'],
+    roles: ['Chronic Pain Consultant', 'Anaesthetist'],
     isLarge: false,
     bio: 'Dr. Javier Duran is an experienced anesthetist focused on chronic pain assessment and evidence-based pain management strategies.',
     education: ['Medical Degree - University of Madrid'],

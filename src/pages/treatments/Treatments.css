@@ -10,6 +10,19 @@
   background: linear-gradient(180deg, rgba(2, 6, 23, 0.62), rgba(2, 6, 23, 0.8));
 }
 
+.treatments-hero .psx-hero-backdrop.video-bg {
+  background-image: none !important;
+  overflow: hidden;
+}
+
+.treatments-hero .psx-hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 .treatments-hero .psx-hero-title,
 .treatments-hero .psx-hero-subtitle,
 .treatments-hero .psx-hero-eyebrow {
@@ -84,6 +97,11 @@
 
 .treatments-page .home-section-location .location-grid {
   grid-template-columns: minmax(0, 1fr);
+}
+
+.treatments-page .home-section-location .home-section-location-inner {
+  width: 100%;
+  max-width: 100%;
 }
 
 .treatments-page .home-section-location .location-map {

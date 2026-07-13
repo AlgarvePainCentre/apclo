@@ -4,6 +4,7 @@ import '../../../../styles/pages/resources/testimonials/testimonials-shared.css'
 import '../../../../styles/pages/resources/testimonials/recovering-from-sports-injuries.css';
 import '../../../../styles/layout/article-layout.css';
 import SocialShare from '../../../../components/SocialShare';
+import ManagedEmbed from '../../../../components/ManagedEmbed';
 
 const RecoveringFromSportsInjuriesPage: React.FC = () => {
   const YT_ID = 'ANY7DTXlMRA';
@@ -35,7 +36,7 @@ const RecoveringFromSportsInjuriesPage: React.FC = () => {
           </div>
 
           <div className="testimonial-video-frame" aria-label="Patient story video">
-            <iframe
+            <ManagedEmbed
               className="testimonial-iframe"
               src={`https://www.youtube-nocookie.com/embed/${YT_ID}`}
               title="Patient story video"
@@ -43,7 +44,8 @@ const RecoveringFromSportsInjuriesPage: React.FC = () => {
               referrerPolicy="strict-origin-when-cross-origin"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
-            ></iframe>
+              openHref={`https://www.youtube.com/watch?v=${YT_ID}`}
+            />
           </div>
         </div>
         <SocialShare />

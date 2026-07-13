@@ -4,6 +4,7 @@ import '../../../../styles/pages/resources/testimonials/testimonials-shared.css'
 import '../../../../styles/pages/resources/testimonials/overcoming-sciatica-pain.css';
 import '../../../../styles/layout/article-layout.css';
 import SocialShare from '../../../../components/SocialShare';
+import ManagedEmbed from '../../../../components/ManagedEmbed';
 
 const OvercomingSciaticaPainPage: React.FC = () => {
   const YT_ID = 'bkbLgNoKhkY';
@@ -33,7 +34,7 @@ const OvercomingSciaticaPainPage: React.FC = () => {
             </p>
           </div>
           <div className="testimonial-video-frame" aria-label="Patient story video">
-            <iframe
+            <ManagedEmbed
               className="testimonial-iframe"
               src={`https://www.youtube-nocookie.com/embed/${YT_ID}`}
               title="Patient story video"
@@ -41,7 +42,8 @@ const OvercomingSciaticaPainPage: React.FC = () => {
               referrerPolicy="strict-origin-when-cross-origin"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
               allowFullScreen
-            ></iframe>
+              openHref={`https://www.youtube.com/watch?v=${YT_ID}`}
+            />
           </div>
         </div>
         <SocialShare />

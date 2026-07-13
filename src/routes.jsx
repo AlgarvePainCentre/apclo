@@ -99,6 +99,7 @@ const routeEntries = [
   { path: 'company/terms-of-service', lazy: createLazyRouteModule(() => import('./pages/company/TermsOfService/page')), preloadPath: '/company/terms-of-service' },
   { path: 'company/privacy-policy', lazy: createLazyRouteModule(() => import('./pages/company/PrivacyPolicy/page')), preloadPath: '/company/privacy-policy' },
   { path: 'company/cookie-policy', lazy: createLazyRouteModule(() => import('./pages/company/CookiePolicy/page')), preloadPath: '/company/cookie-policy' },
+  { path: 'company/cookies', lazy: createLazyRouteModule(() => import('./pages/company/Cookies/page')), preloadPath: '/company/cookies' },
   { path: 'company/accessibility-statement', lazy: createLazyRouteModule(() => import('./pages/company/AccessibilityStatement/page')), preloadPath: '/company/accessibility-statement' },
 ];
 

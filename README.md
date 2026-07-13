@@ -19,3 +19,5 @@ React + Vite single-page application for the Algarve Pain Centre marketing site.
 ## Backend
 - The repository now includes a standalone Node.js / Express backend scaffold in `backend/`.
 - See `backend/README.md` for setup, architecture, environment configuration, security notes, and extension guidance.
+
+# apc-react-single

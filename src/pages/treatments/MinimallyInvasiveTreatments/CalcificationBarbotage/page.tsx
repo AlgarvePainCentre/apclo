@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { TreatmentsMain } from '../../Treatments';
 import { initTreatmentStepsTimelines } from '../../animations/treatmentTimelineAnimations';
 import { TreatmentBreadcrumb } from '../../components/detail/TreatmentBreadcrumb';
@@ -318,7 +317,7 @@ const CalcificationBarbotagePage: React.FC = () => {
                   </p>
                 </div>
                 <div className="cb-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="cb-condition-image tms-conditions-image" src="/assets/images/illustrative/shoulder-pain-min.webp" alt="" loading="lazy" decoding="async" />
+                  <img className="cb-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/DSC06795-1.jpg" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
 
@@ -332,7 +331,7 @@ const CalcificationBarbotagePage: React.FC = () => {
                   </p>
                 </div>
                 <div className="cb-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="cb-condition-image tms-conditions-image" src="/assets/images/medical/DSC05906.webp" alt="" loading="lazy" decoding="async" />
+                  <img className="cb-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/DegenerativeDiscDisease.jpg" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
 
@@ -347,7 +346,7 @@ const CalcificationBarbotagePage: React.FC = () => {
                   </p>
                 </div>
                 <div className="cb-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="cb-condition-image tms-conditions-image" src="/assets/images/medical/DSC02128.webp" alt="" loading="lazy" decoding="async" />
+                  <img className="cb-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/Spondylolisthesis.jpg" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
 
@@ -361,7 +360,7 @@ const CalcificationBarbotagePage: React.FC = () => {
                   </p>
                 </div>
                 <div className="cb-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="cb-condition-image tms-conditions-image" src="/assets/images/illustrative/shoulder-pain-min.webp" alt="" loading="lazy" decoding="async" />
+                  <img className="cb-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/FacetJointSyndrome.jpg" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
             </div>

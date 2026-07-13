@@ -11,6 +11,7 @@ import {
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ChatbotWidget from './components/ChatbotWidget';
+import CookieConsentBanner from './components/CookieConsentBanner';
 import ScrollManager from './app/ScrollManager';
 import PrefetchManager from './app/PrefetchManager';
 import { RouteShellSkeleton } from './components/LoadingSkeletons';
@@ -31,6 +32,7 @@ export function ShellLayout() {
       </div>
       <Footer />
       <ChatbotWidget />
+      <CookieConsentBanner />
     </div>
   );
 }

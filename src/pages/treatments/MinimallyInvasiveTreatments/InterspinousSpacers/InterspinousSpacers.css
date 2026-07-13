@@ -17,3 +17,27 @@
   width: 100%;
   margin: 0 auto;
 }
+
+.page-interspinousspacers .iss-right-for-you-inner {
+  display: none;
+}
+
+@media (min-width: 900px) {
+  .page-interspinousspacers .iss-right-for-you-inner {
+    max-width: var(--container-width);
+    text-align: left;
+  }
+
+  .page-interspinousspacers .iss-right-for-you-layout {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: minmax(260px, 0.8fr) minmax(0, 1.4fr);
+    gap: clamp(32px, 5vw, 72px);
+    align-items: start;
+  }
+
+  .page-interspinousspacers .iss-right-for-you-title {
+    margin-bottom: 0;
+  }
+}

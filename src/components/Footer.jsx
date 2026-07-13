@@ -100,6 +100,14 @@ export default function Footer() {
                   </li>
                   <li className="footer-column-item">
                     <Link
+                      to="/company/cookies"
+                      className="footer-link"
+                    >
+                      Cookies
+                    </Link>
+                  </li>
+                  <li className="footer-column-item">
+                    <Link
                       to="/company/accessibility-statement"
                       className="footer-link"
                     >

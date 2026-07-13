@@ -1,10 +1,10 @@
-import { useEffect, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../../styles/layout/site-sections.css';
 import '../../styles/layout/treatments-shared.css';
 import SurgicalProceduresStack from './components/SurgicalProceduresStack';
 import MinimallyInvasiveProceduresList from './components/MinimallyInvasiveProceduresList';
 import NonInvasiveProceduresList from './components/NonInvasiveProceduresList';
+import ManagedEmbed from '../../components/ManagedEmbed';
 
 export function TreatmentsMain({
   hideMinimallyInvasive = false,
@@ -12,7 +12,6 @@ export function TreatmentsMain({
   hideSurgical = false,
 }) {
   const location = useLocation();
-  const contactMapIframeRef = useRef(null);
 
   const normalizePathname = (pathname) => {
     if (!pathname) return '/';
@@ -21,37 +20,6 @@ export function TreatmentsMain({
   };
 
   const isTreatmentsLandingPage = normalizePathname(location.pathname) === '/treatments';
-
-  useEffect(() => {
-    const iframe = contactMapIframeRef.current;
-    if (!iframe) return undefined;
-    if (!(iframe instanceof HTMLIFrameElement)) return undefined;
-
-    const loadMap = () => {
-      const dataSrc = iframe.getAttribute('data-src');
-      if (dataSrc && !iframe.getAttribute('src')) {
-        iframe.setAttribute('src', dataSrc);
-      }
-    };
-
-    if (!('IntersectionObserver' in window)) {
-      loadMap();
-      return undefined;
-    }
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          loadMap();
-          io.disconnect();
-        });
-      },
-      { threshold: 0.15 },
-    );
-    io.observe(iframe);
-    return () => io.disconnect();
-  }, []);
 
   const painTreatmentApproaches = [
     {
@@ -125,9 +93,9 @@ export function TreatmentsMain({
             renderTreatmentsFeatureSection({
               sectionClassName: 'treatments-feature-surgical-primary',
               labelId: 'treatments-feature-surgical-primary',
-              imageSrc: '/assets/images/medical/DSC06176.webp',
+              imageSrc: '/assets/images/Hero/RadiofrequencyAblation.jpg',
               imageAlt:
-                'Patient receiving a guided consultation about surgical, minimally invasive, and non-invasive treatment options.',
+                'Illustration representing advanced treatment options available at Algarve Pain Centre.',
               title: 'Surgical Procedures',
               body: [
                 'Surgical procedures are comprehensive interventions designed to address complex health issues with precision.',
@@ -166,9 +134,9 @@ export function TreatmentsMain({
             renderTreatmentsFeatureSection({
               sectionClassName: 'treatments-feature-surgical-secondary',
               labelId: 'treatments-feature-surgical-secondary',
-              imageSrc: '/assets/images/medical/DSC06176.webp',
+              imageSrc: '/assets/images/Hero/RadiofrequencyAblation.jpg',
               imageAlt:
-                'Patient receiving a guided consultation about surgical, minimally invasive, and non-invasive treatment options.',
+                'Illustration representing advanced treatment options available at Algarve Pain Centre.',
               title: 'Non-Invasive Treatments',
               body: [
                 'Non-invasive procedures are medical techniques that do not require breaking the skin or entering the body.',
@@ -234,14 +202,15 @@ export function TreatmentsMain({
 
           <div className="location-grid location-grid--map-only">
             <div className="location-map" aria-label="Map">
-              <iframe
-                ref={contactMapIframeRef}
+              <ManagedEmbed
                 className="location-map-iframe"
                 title="Business location map"
-                data-src="https://www.google.com/maps?q=Av.+do+Mar+8135-107+Portugal&z=16&output=embed"
+                type="map"
+                src="https://www.google.com/maps?q=Av.+do+Mar+8135-107+Portugal&z=16&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
+                openHref="https://maps.google.com/?q=Av.+do+Mar+8135-107+Portugal"
               />
             </div>
           </div>
@@ -256,17 +225,23 @@ TreatmentsMain.PageMain = function TreatmentPageMain({ children }) {
 };
 
 export default function Treatments() {
-  const heroBackdropStyle = {
-    backgroundImage: "url('/assets/images/illustrative/services-home-min-1.webp')",
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-  };
-
   return (
     <div className="psx-page" id="psx-treatments">
       <header className="treatment-page-hero treatments-hero" aria-label="Treatments hero section">
-        <div className="psx-hero-backdrop" aria-hidden="true" style={heroBackdropStyle} /> 
+        <div className="psx-hero-backdrop video-bg" aria-hidden="true">
+          <video
+            className="psx-hero-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            poster="/assets/images/illustrative/services-home-min-1.webp"
+          >
+            <source src="/assets/videos/Pain-Medicine-min.h264.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
         <div className="psx-hero-inner">
           <p className="psx-hero-eyebrow">Treatment</p>
           <h1 className="psx-hero-title">Treatments</h1>

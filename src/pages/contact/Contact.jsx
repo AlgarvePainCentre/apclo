@@ -1,11 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import '../../styles/pages/contact-page.css';
+import ManagedEmbed from '../../components/ManagedEmbed';
 
 export default function Contact() {
   const heroRef = useRef(null);
   const heroVideoRef = useRef(null);
-  const mapIframeRef = useRef(null);
-  const [mapLoaded, setMapLoaded] = useState(false);
   const mapUrl =
     'https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil&z=16&output=embed';
 
@@ -74,30 +73,6 @@ export default function Contact() {
     }
     meta.content = descriptionText;
   }, []);
-
-  useEffect(() => {
-    if (mapLoaded) return undefined;
-    const iframe = mapIframeRef.current;
-    if (!iframe) return undefined;
-
-    if (!('IntersectionObserver' in window)) {
-      setMapLoaded(true);
-      return undefined;
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((e) => e.isIntersecting)) {
-          setMapLoaded(true);
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '240px 0px' },
-    );
-
-    observer.observe(iframe);
-    return () => observer.disconnect();
-  }, [mapLoaded]);
 
   return (
     <div
@@ -272,14 +247,15 @@ export default function Contact() {
             </header>
             <div className="location-grid location-grid--map-only">
               <div className="location-map" aria-label="Map">
-                <iframe
-                  ref={mapIframeRef}
+                <ManagedEmbed
                   className="location-map-iframe"
                   title="Business location map"
-                  src={mapLoaded ? 'https://www.google.com/maps?q=Av.+do+Mar+8135-107+Portugal&z=16&output=embed' : undefined}
+                  type="map"
+                  src={mapUrl}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen
+                  openHref="https://maps.google.com/?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil"
                 />
               </div>
             </div>

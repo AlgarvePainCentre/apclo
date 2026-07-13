@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { TreatmentsMain } from '../../Treatments';
 import { initTreatmentStepsTimelines } from '../../animations/treatmentTimelineAnimations';
 import { TreatmentBreadcrumb } from '../../components/detail/TreatmentBreadcrumb';
@@ -338,7 +337,7 @@ const NucleoplastyPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="np-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="np-condition-image tms-conditions-image" src="/assets/images/illustrative/Lumber-Spine-Pain-min.webp" alt="" loading="lazy" decoding="async" />
+                  <img className="np-condition-image tms-conditions-image" src="/assets/images/nucleoplasty/HerniatedDiscs.jpg" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
 
@@ -352,7 +351,7 @@ const NucleoplastyPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="np-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="np-condition-image tms-conditions-image" src="/assets/images/learn/4-disc-problems.webp" alt="" loading="lazy" decoding="async" />
+                  <img className="np-condition-image tms-conditions-image" src="/assets/images/nucleoplasty/BulgingDiscs.jpg" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
 
@@ -366,7 +365,7 @@ const NucleoplastyPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="np-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="np-condition-image tms-conditions-image" src="/assets/images/illustrative/Lumber-Spine-Pain-min.webp" alt="" loading="lazy" decoding="async" />
+                  <img className="np-condition-image tms-conditions-image" src="/assets/images/nucleoplasty/DegenerativeDiscDisease.jpg" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
 
@@ -381,7 +380,7 @@ const NucleoplastyPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="np-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="np-condition-image tms-conditions-image" src="/assets/images/learn/4-disc-problems.webp" alt="" loading="lazy" decoding="async" />
+                  <img className="np-condition-image tms-conditions-image" src="/assets/images/nucleoplasty/Sciatica.jpg" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
             </div>

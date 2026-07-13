@@ -41,7 +41,7 @@
   font-size: clamp(1.6rem, 3.4vw, 2.3rem);
   font-weight: 750;
   letter-spacing: -0.02em;
-  color: #111827;
+  color: #003366;
 }
 
 .specialities-page .pain-area-grid {
@@ -117,7 +117,7 @@
   font-size: clamp(1.6rem, 3.4vw, 2.3rem);
   font-weight: 750;
   letter-spacing: -0.02em;
-  color: #4b5563;
+  color: #003366;
 }
 
 .specialities-page .sports-care-grid {
@@ -231,7 +231,7 @@
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
   padding-block: clamp(64px, 8vw, 120px);
-  background-color: #f0f7fa;
+  background-color: transparent;
   overflow-x: clip;
 }
 
@@ -247,7 +247,7 @@
 .specialities-page .specialities-what-is-title {
   font-size: clamp(2.5rem, 4vw, 3.5rem);
   font-weight: 700;
-  color: #3f3f46;
+  color: #003366;
   line-height: 1.2;
 }
 
@@ -292,7 +292,7 @@
   margin: 0 0 16px;
   font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 700;
-  color: #4b4b4b;
+  color: #003366;
   line-height: 1.1;
 }
 
@@ -410,7 +410,7 @@
   margin: 0;
   font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 700;
-  color: #4b4b4b;
+  color: #003366;
   line-height: 1.1;
 }
 

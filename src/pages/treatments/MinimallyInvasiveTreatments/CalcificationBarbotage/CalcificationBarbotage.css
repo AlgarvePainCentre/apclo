@@ -18,6 +18,10 @@
   margin: 0 auto;
 }
 
+.page-calcificationbarbotage .cb-right-for-you-inner {
+  display: none;
+}
+
 .page-calcificationbarbotage .cb-condition-image,
 .page-calcificationbarbotage .tms-conditions-image {
   height: 380px;

@@ -4,6 +4,7 @@ import { TreatmentBreadcrumb } from '../../components/detail/TreatmentBreadcrumb
 import { TreatmentDetailsGrid } from '../../components/detail/TreatmentDetailsGrid';
 import { TreatmentFeature } from '../../components/detail/TreatmentFeature';
 import { usePageMeta } from '../../components/detail/usePageMeta';
+import ManagedEmbed from '../../../../components/ManagedEmbed';
 import './SpinalFusion.css';
 
 const SpinalFusionPage: React.FC = () => {
@@ -74,7 +75,7 @@ const SpinalFusionPage: React.FC = () => {
             </div>
             <div className="sf-understanding-video" aria-label="Spinal fusion video">
               <div className="sf-understanding-video-frame">
-                <iframe
+                <ManagedEmbed
                   className="sf-understanding-iframe"
                   src="https://www.youtube-nocookie.com/embed/F2czjQyJa7c?start=1"
                   title="Spinal Fusion, Our Treatments"
@@ -82,6 +83,7 @@ const SpinalFusionPage: React.FC = () => {
                   referrerPolicy="strict-origin-when-cross-origin"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
+                  openHref="https://www.youtube.com/watch?v=F2czjQyJa7c"
                 />
               </div>
             </div>

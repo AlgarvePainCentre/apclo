@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useRef } from 'react';
 import { trackEvent } from '../../../utils/analytics';
+import { useCookieConsent } from '../../../utils/cookieConsent';
 
 const STORIES = [
   {
@@ -37,6 +38,8 @@ const STORIES = [
 
 export default function StoriesSection({ enableStoryVideo }) {
   const gridRef = useRef(null);
+  const { consent } = useCookieConsent();
+  const canRenderStoryVideo = enableStoryVideo && Boolean(consent.media);
 
   const scrollPrev = () => {
     if (gridRef.current) {
@@ -70,7 +73,7 @@ export default function StoriesSection({ enableStoryVideo }) {
               onClick={() => trackEvent('nav_click', { location: 'stories', to: story.to })}
             >
               <div className="story-card-visual" aria-hidden="true">
-                {enableStoryVideo && (
+                {canRenderStoryVideo && (
                   <iframe
                     className="story-card-video-bg"
                     src={story.videoUrl}

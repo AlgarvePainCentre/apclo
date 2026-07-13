@@ -35,15 +35,6 @@ export default function Home() {
       body: 'Your care team follows you over time, explains each step in clear language and coordinates with your other doctors, so you never feel alone in your treatment journey.',
     },
   ];
-  const handleVideoEnter = (e) => {
-    const video = e.currentTarget.querySelector('video');
-    if (video) {
-      try {
-        video.currentTime = 0;
-        video.play().catch(() => {});
-      } catch {}
-    }
-  };
 
   useEffect(() => {
     let ticking = false;
@@ -229,28 +220,25 @@ export default function Home() {
             preload="metadata"
             data-defer-ms="1400"
           >
-            <source data-src="/assets/videos/Sports-Medicine-Video-min-1.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
-            <source data-src="/assets/videos/Sports-Medicine-Video-min-1.h264.mp4" type='video/mp4; codecs="avc1.42E01E"' />
+            <source data-src="/assets/videos/Appointment-Video.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
+            <source data-src="/assets/videos/Appointment-Video.h264.mp4" type='video/mp4; codecs="avc1.42E01E"' />
           </video>
         </div>
-        <div className="hero-content hero-content-home" ref={heroContentMotionRef}>
-          <div className="home-hero-layout">
-            <div className="home-hero-main">
-              <div className="hero-left hero-home-left home-hero-copy-block">
-                <p className="home-hero-kicker">Multidisciplinary pain care in the Algarve</p>
-                <h1 className="home-hero-title">Your Pain Centre</h1>
-                <p className="home-hero-subtitle">
-                  Our specialized team will find the best approach to improve your quality of life.
+        <div className="hero-content hero-content-home hero-content-centered" ref={heroContentMotionRef}>
+          <div className="home-hero-layout" style={{ justifyContent: 'center' }}>
+            <div className="home-hero-main" style={{ justifyContent: 'center', width: '100%' }}>
+              <div className="hero-left hero-home-left home-hero-copy-block" style={{ alignItems: 'center', textAlign: 'center', margin: '0 auto' }}>
+                <p className="home-hero-kicker" style={{ color: '#e0f2fe' }}>Comprehensive Care & Wellness</p>
+                <h1 className="home-hero-title">Your Pain Center</h1>
+                <p className="home-hero-subtitle" style={{ maxWidth: '680px', fontSize: '1.25rem' }}>
+                  Our multidisciplinary team delivers holistic, personalized care to relieve spine discomfort and restore your quality of life. From advanced treatments to continuous support, we are by your side.
                 </p>
-                <div className="home-hero-actions">
+                <div className="home-hero-actions" style={{ justifyContent: 'center', display: 'flex', width: '100%', marginTop: '16px' }}>
                   <Link className="home-hero-primary-cta" to="/contact">
-                    <span>Book Now</span>
+                    <span>Book an Appointment</span>
                   </Link>
-                  <Link className="home-hero-icon-cta" to="/treatments" aria-label="Explore treatments">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-                      <line x1="7" y1="17" x2="17" y2="7" />
-                      <polyline points="7 7 17 7 17 17" />
-                    </svg>
+                  <Link className="hero-secondary-cta" to="/treatments">
+                    <span>Explore Treatments</span>
                   </Link>
                 </div>
               </div>
@@ -261,7 +249,7 @@ export default function Home() {
 
       <main className="home-main">
         <Suspense fallback={<ImageGridSkeleton count={3} className="page-section" />}>
-          <TestimonialSection handleVideoEnter={handleVideoEnter} />
+          <TestimonialSection />
         </Suspense>
         <Suspense fallback={<ArticleFeedSkeleton count={3} className="page-section" />}>
           <StoriesSection enableStoryVideo={enableStoryVideo} />
@@ -537,22 +525,29 @@ export default function Home() {
                   <p className="home-team-role">Orthopedic Surgery</p>
                 </div>
               </article>
-              <article className="home-team-card">
+              <Link
+                to="/about#our-team"
+                className="home-team-card home-team-card-link"
+                aria-label="Meet our team at Algarve Pain Centre"
+                onClick={() => trackEvent('nav_click', { to: 'about#our-team', location: 'home-team-card' })}
+              >
                 <div className="home-team-image">
-                  <img src="/assets/images/illustrative/Physiotherapy-min.webp" alt="Physiotherapy Team" loading="lazy" />
+                  <video
+                    src="/assets/videos/Cir.h264.mp4"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="auto"
+                    aria-label="Rehabilitation team video"
+                  />
                 </div>
                 <div className="home-team-body">
-                  <h3 className="home-team-name">Rehabilitation Team</h3>
-                  <p className="home-team-role">Physiotherapy · Occupational Therapy</p>
+                  <h3 className="home-team-name">Meet Our Team</h3>
+                  <p className="home-team-role">Algarve Pain Centre team members</p>
                 </div>
-              </article>
-            </div>
-            <div className="home-team-cta">
-              <Link to="/about" className="home-team-link" onClick={() => trackEvent('nav_click', { to: 'about', location: 'home-team' })}>
-                Meet the full team <span aria-hidden="true">→</span>
               </Link>
             </div>
-
             <div className="home-centers" role="region" aria-labelledby="home-centers-title">
               <header className="home-centers-header">
                 <p className="home-centers-eyebrow">Our network</p>

@@ -182,7 +182,20 @@ export default function Resources() {
   return (
     <div className="resources-page">
       <header className="psx-hero resources-hero" aria-label="Resources hero section">
-        <div className="psx-hero-backdrop" aria-hidden="true" />
+        <div className="psx-hero-backdrop video-bg" aria-hidden="true">
+          <video
+            className="psx-hero-video"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster="/assets/images/Hero/Psychology.jpg"
+          >
+            <source src="/assets/videos/Sports-Medicine-Video-min-1.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
         <div className="psx-hero-inner">
           <p className="psx-hero-eyebrow">Resources</p>
           <h1 className="psx-hero-title">Resources</h1>

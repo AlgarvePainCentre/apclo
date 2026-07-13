@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { TreatmentsMain } from '../../Treatments';
 import { initTreatmentStepsTimelines } from '../../animations/treatmentTimelineAnimations';
 import { TreatmentBreadcrumb } from '../../components/detail/TreatmentBreadcrumb';
@@ -311,7 +310,7 @@ const IntraArticularCorticosteroidsInjectionPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="iacsi-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="iacsi-condition-image tms-conditions-image" src="/assets/images/illustrative/Knee-Pain-min.webp" alt="" loading="lazy" decoding="async" />
+                  <img className="iacsi-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/DSC06795-1.jpg" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
 
@@ -325,7 +324,7 @@ const IntraArticularCorticosteroidsInjectionPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="iacsi-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="iacsi-condition-image tms-conditions-image" src="/assets/images/illustrative/Knee-Pain-min.webp" alt="" loading="lazy" decoding="async" />
+                  <img className="iacsi-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/DegenerativeDiscDisease.jpg" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
 
@@ -339,7 +338,7 @@ const IntraArticularCorticosteroidsInjectionPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="iacsi-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="iacsi-condition-image tms-conditions-image" src="/assets/images/illustrative/Knee-Pain-min.webp" alt="" loading="lazy" decoding="async" />
+                  <img className="iacsi-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/Spondylolisthesis.jpg" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
 
@@ -353,7 +352,7 @@ const IntraArticularCorticosteroidsInjectionPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="iacsi-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="iacsi-condition-image tms-conditions-image" src="/assets/images/illustrative/Knee-Pain-min.webp" alt="" loading="lazy" decoding="async" />
+                  <img className="iacsi-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/FacetJointSyndrome.jpg" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
             </div>

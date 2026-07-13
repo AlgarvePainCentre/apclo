@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { TreatmentsMain } from '../../Treatments';
 import { initTreatmentStepsTimelines } from '../../animations/treatmentTimelineAnimations';
 import { TreatmentBreadcrumb } from '../../components/detail/TreatmentBreadcrumb';
@@ -328,7 +327,7 @@ const HydrodistentionPage: React.FC = () => {
                 <div className="hd-condition-media tms-conditions-media" aria-hidden="true">
                   <img
                     className="hd-condition-image tms-conditions-image"
-                    src="/assets/images/illustrative/Shoulder-Pain-min-1.webp"
+                    src="/assets/images/hydrodistention/BladderPainSyndrome(BPS).jpg"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -349,7 +348,7 @@ const HydrodistentionPage: React.FC = () => {
                 <div className="hd-condition-media tms-conditions-media" aria-hidden="true">
                   <img
                     className="hd-condition-image tms-conditions-image"
-                    src="/assets/images/illustrative/Shoulder-Pain-min-1.webp"
+                    src="/assets/images/hydrodistention/InterstitialCystitis(IC).jpg"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -369,7 +368,7 @@ const HydrodistentionPage: React.FC = () => {
                 <div className="hd-condition-media tms-conditions-media" aria-hidden="true">
                   <img
                     className="hd-condition-image tms-conditions-image"
-                    src="/assets/images/illustrative/Shoulder-Pain-min-1.webp"
+                    src="/assets/images/hydrodistention/RecurrentBladderDiscomfort.jpg"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -390,7 +389,7 @@ const HydrodistentionPage: React.FC = () => {
                 <div className="hd-condition-media tms-conditions-media" aria-hidden="true">
                   <img
                     className="hd-condition-image tms-conditions-image"
-                    src="/assets/images/illustrative/Shoulder-Pain-min-1.webp"
+                    src="/assets/images/hydrodistention/ReducedBladderCapacity.jpg"
                     alt=""
                     loading="lazy"
                     decoding="async"
