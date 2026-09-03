@@ -95,15 +95,10 @@ export const contentApi = createApi({
       queryFn: () => ({ data: blogArticles }),
     }),
     getTestimonialStories: builder.query<TestimonialStory[], void>({
-      queryFn: async () => {
-        await new Promise((resolve) => window.setTimeout(resolve, 120));
-        return { data: testimonialStories };
-      },
+      queryFn: () => ({ data: testimonialStories }),
     }),
     getYouTubePreviewCards: builder.query<YouTubePreviewCard[], void>({
-      queryFn: async () => {
-        await new Promise((resolve) => window.setTimeout(resolve, 160));
-
+      queryFn: () => {
         const cards = youTubeUrls
           .map((url) => ({ url, id: parseYouTubeId(url) }))
           .filter((entry): entry is { url: string; id: string } => Boolean(entry.id))
