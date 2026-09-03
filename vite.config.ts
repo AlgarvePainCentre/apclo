@@ -31,15 +31,18 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
+          // Only split vendor libraries into stable, long-cached chunks.
+          // Route folders are intentionally NOT chunked here: forcing them
+          // into shared named chunks created a static import cycle
+          // (treatments -> specialities -> treatments) reachable from the
+          // entry, which hoisted those routes into the initial graph and
+          // defeated the React.lazy per-route splitting. Letting Vite split
+          // automatically per dynamic import keeps each route lazy.
           if (id.includes('node_modules')) {
             if (id.includes('gsap')) return 'gsap';
             if (id.includes('@reduxjs/toolkit') || id.includes('react-redux')) return 'state';
             if (id.includes('react-router-dom') || id.includes('react-dom') || id.includes('react')) return 'react';
           }
-
-          if (id.includes('/src/pages/resources/Learn/Blog/')) return 'blog';
-          if (id.includes('/src/pages/specialities/')) return 'specialities';
-          if (id.includes('/src/pages/treatments/')) return 'treatments';
         },
       },
     },
