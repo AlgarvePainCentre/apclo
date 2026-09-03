@@ -21,7 +21,7 @@ const footerColumns = [
     ),
   },
   {
-    title: 'Resource',
+    title: 'Resources',
     items: resourceCategories.flatMap((category) =>
       category.items.map((item) => ({
         label: item.label,
