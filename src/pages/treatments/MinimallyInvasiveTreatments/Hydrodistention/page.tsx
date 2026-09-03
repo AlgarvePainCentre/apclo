@@ -368,7 +368,7 @@ const HydrodistentionPage: React.FC = () => {
                 <div className="hd-condition-media tms-conditions-media" aria-hidden="true">
                   <img
                     className="hd-condition-image tms-conditions-image"
-                    src="/assets/images/hydrodistention/RecurrentBladderDiscomfort.jpg"
+                    src="/assets/images/hydrodistention/RecurrentBladderDiscomfort.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -389,7 +389,7 @@ const HydrodistentionPage: React.FC = () => {
                 <div className="hd-condition-media tms-conditions-media" aria-hidden="true">
                   <img
                     className="hd-condition-image tms-conditions-image"
-                    src="/assets/images/hydrodistention/ReducedBladderCapacity.jpg"
+                    src="/assets/images/hydrodistention/ReducedBladderCapacity.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"

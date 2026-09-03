@@ -190,7 +190,7 @@ export default function Resources() {
             muted
             playsInline
             preload="auto"
-            poster="/assets/images/Hero/Psychology.jpg"
+            poster="/assets/images/Hero/Psychology.webp"
           >
             <source src="/assets/videos/Sports-Medicine-Video-min-1.mp4" type="video/mp4" />
             Your browser does not support the video tag.
