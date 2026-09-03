@@ -48,6 +48,22 @@ export default function Footer() {
               alt="Algarve Pain Centre"
               aria-label="Algarve Pain Centre logo"
             />
+            <address className="footer-health-info" style={{ fontStyle: 'normal' }}>
+              <p className="footer-health-address">
+                Av. do Mar, Vale do Lobo
+                <br />
+                8135-107 Almancil, Algarve
+              </p>
+              <p className="footer-health-contact">
+                <a href="tel:+351915915001" className="footer-link">
+                  +351 915 915 001
+                </a>
+                <br />
+                <a href="mailto:info@algarvepaincentre.com" className="footer-link">
+                  info@algarvepaincentre.com
+                </a>
+              </p>
+            </address>
             <div className="footer-health-secondary">
               <div className="footer-subcolumn">
                 <h3 className="footer-column-title footer-card-title-1">Company</h3>
