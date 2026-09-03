@@ -254,7 +254,7 @@
     width: 96px;
     height: 4px;
     border-radius: 999px;
-    background: linear-gradient(90deg, #ffd27a, #f04b5e);
+    background: linear-gradient(90deg, #ffd27a, #d3243b);
 }
 
 .about-page .team-section-eyebrow {
@@ -593,7 +593,7 @@
     position: absolute;
     inset: 0 0 auto 0;
     height: 4px;
-    background: linear-gradient(90deg, #ffd27a, #f04b5e);
+    background: linear-gradient(90deg, #ffd27a, #d3243b);
 }
 
 .about-page .home-centers-card-media {
