@@ -39,7 +39,13 @@ const STORIES = [
 export default function StoriesSection({ enableStoryVideo }) {
   const gridRef = useRef(null);
   const { consent } = useCookieConsent();
-  const canRenderStoryVideo = enableStoryVideo && Boolean(consent.media);
+  // These looping background videos autoplay with no pause control, so honour
+  // the user's reduced-motion preference (WCAG 2.2.2) by not rendering them.
+  const prefersReducedMotion =
+    typeof window !== 'undefined' &&
+    typeof window.matchMedia === 'function' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const canRenderStoryVideo = enableStoryVideo && Boolean(consent.media) && !prefersReducedMotion;
 
   const scrollPrev = () => {
     if (gridRef.current) {
