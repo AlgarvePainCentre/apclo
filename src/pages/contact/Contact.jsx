@@ -1,4 +1,10 @@
 import { useEffect, useRef } from 'react';
+// The contact page reuses the shared .psx-* layout classes, so it must load
+// their styles (max-width, gutters, cards). Without this the containers have
+// no width constraint or padding on a direct visit -> content sits flush to
+// the viewport edges. Imported before the page's own CSS so contact-specific
+// rules still win.
+import '../../pages/specialities/PainSpecialtyClone.css';
 import '../../styles/pages/contact-page.css';
 import ManagedEmbed from '../../components/ManagedEmbed';
 
