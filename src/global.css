@@ -48,6 +48,17 @@ html {
   padding: 0;
 }
 
+/* Form controls (button, input, select, textarea) do not inherit
+   font-family by default, so they fell back to the browser default
+   (Arial) instead of the brand font -- visible in the mobile menu items,
+   the search field and the chat launcher. Make them inherit. */
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+}
+
 /* Skip-to-content link: visually hidden until focused by keyboard. */
 .skip-link {
   position: absolute;
