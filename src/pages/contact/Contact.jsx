@@ -219,15 +219,6 @@ export default function Contact() {
                     required
                   />
                 </div>
-                <div className="contact-form-footer-row">
-                  <label className="contact-form-human">
-                    <input type="checkbox" className="contact-human-checkbox" />
-                    <span>I am human</span>
-                  </label>
-                  <div className="contact-form-captcha-placeholder" aria-hidden="true">
-                    <span>reCAPTCHA</span>
-                  </div>
-                </div>
                 <div className="contact-form-actions">
                   <button type="submit" className="contact-form-submit psx-btn-primary">
                     <span>Submit</span>
