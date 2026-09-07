@@ -795,9 +795,16 @@
 }
 
 @media (max-width: 768px) {
-  .home-page .home-hero-subtitle,
-  .home-page .home-hero-actions {
-    display: none;
+  /* Keep the hero subtitle visible on mobile so the value proposition
+     survives on the most-used screen. Slightly smaller and tighter than
+     desktop; !important is needed to beat the inline font-size. */
+  .home-page .home-hero-subtitle {
+    display: block;
+    font-size: 1.02rem !important;
+    line-height: 1.5;
+    max-width: 90%;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
