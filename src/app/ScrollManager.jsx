@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { createLenis } from './lenis';
-import { ensureGsapPlugins, gsap, ScrollTrigger } from './gsap';
 
 export default function ScrollManager() {
   const location = useLocation();
@@ -28,29 +27,45 @@ export default function ScrollManager() {
     if (typeof window === 'undefined') return;
     if (prefersReducedMotion) return;
 
-    ensureGsapPlugins();
-    const lenis = createLenis();
-    lenisRef.current = lenis;
+    // GSAP (~45KB gz) is only needed for smooth scroll / ScrollTrigger, and
+    // only when motion is allowed. Load it on demand so it stays out of the
+    // initial bundle for every route.
+    let cancelled = false;
+    let cleanup = null;
 
-    const onLenisScroll = () => ScrollTrigger.update();
-    lenis.on?.('scroll', onLenisScroll);
+    (async () => {
+      const { ensureGsapPlugins, gsap, ScrollTrigger } = await import('./gsap');
+      if (cancelled) return;
 
-    const tick = (time) => {
-      lenis.raf(time * 1000);
-    };
+      ensureGsapPlugins();
+      const lenis = createLenis();
+      lenisRef.current = lenis;
 
-    gsap.ticker.add(tick);
-    gsap.ticker.lagSmoothing(0);
-    ScrollTrigger.refresh();
+      const onLenisScroll = () => ScrollTrigger.update();
+      lenis.on?.('scroll', onLenisScroll);
+
+      const tick = (time) => {
+        lenis.raf(time * 1000);
+      };
+
+      gsap.ticker.add(tick);
+      gsap.ticker.lagSmoothing(0);
+      ScrollTrigger.refresh();
+
+      cleanup = () => {
+        gsap.ticker.remove(tick);
+        lenis.off?.('scroll', onLenisScroll);
+        lenisRef.current = null;
+        try {
+          lenis.destroy();
+        } catch {}
+        ScrollTrigger.refresh();
+      };
+    })();
 
     return () => {
-      gsap.ticker.remove(tick);
-      lenis.off?.('scroll', onLenisScroll);
-      lenisRef.current = null;
-      try {
-        lenis.destroy();
-      } catch {}
-      ScrollTrigger.refresh();
+      cancelled = true;
+      if (cleanup) cleanup();
     };
   }, [prefersReducedMotion]);
 

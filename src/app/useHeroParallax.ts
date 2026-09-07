@@ -1,5 +1,4 @@
-import { useLayoutEffect, type RefObject } from 'react';
-import { ensureGsapPlugins, gsap } from './gsap';
+import { useEffect, type RefObject } from 'react';
 
 type HeroParallaxOptions = {
   rootRef: RefObject<HTMLElement | null>;
@@ -23,48 +22,64 @@ export function useHeroParallax({
   contentYDesktop = -42,
   contentYMobile = -24,
 }: HeroParallaxOptions) {
-  useLayoutEffect(() => {
+  useEffect(() => {
     const root = rootRef.current;
     if (!root || prefersReducedMotion()) return undefined;
 
-    ensureGsapPlugins();
+    // Load GSAP on demand so the hero parallax does not pull it into the
+    // initial bundle. Parallax is scroll-driven, so initializing just after
+    // paint (rather than in a layout effect) has no visible cost.
+    let cancelled = false;
+    let cleanup: (() => void) | null = null;
 
-    const mm = gsap.matchMedia();
-    const ctx = gsap.context(() => {
-      const createTween = (target: HTMLElement | null | undefined, y: number) => {
-        if (!target) return;
+    (async () => {
+      const { ensureGsapPlugins, gsap } = await import('./gsap');
+      if (cancelled || !rootRef.current) return;
 
-        gsap.set(target, { willChange: 'transform' });
-        gsap.fromTo(
-          target,
-          { y: 0 },
-          {
-            y,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: root,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: true,
-            },
-          }
-        );
+      ensureGsapPlugins();
+
+      const mm = gsap.matchMedia();
+      const ctx = gsap.context(() => {
+        const createTween = (target: HTMLElement | null | undefined, y: number) => {
+          if (!target) return;
+
+          gsap.set(target, { willChange: 'transform' });
+          gsap.fromTo(
+            target,
+            { y: 0 },
+            {
+              y,
+              ease: 'none',
+              scrollTrigger: {
+                trigger: root,
+                start: 'top bottom',
+                end: 'bottom top',
+                scrub: true,
+              },
+            }
+          );
+        };
+
+        mm.add('(max-width: 768px)', () => {
+          createTween(contentRef?.current, contentYMobile);
+          createTween(mediaRef?.current, mediaY * 0.5);
+        });
+
+        mm.add('(min-width: 769px)', () => {
+          createTween(contentRef?.current, contentYDesktop);
+          createTween(mediaRef?.current, mediaY);
+        });
+      }, root);
+
+      cleanup = () => {
+        mm.revert();
+        ctx.revert();
       };
-
-      mm.add('(max-width: 768px)', () => {
-        createTween(contentRef?.current, contentYMobile);
-        createTween(mediaRef?.current, mediaY * 0.5);
-      });
-
-      mm.add('(min-width: 769px)', () => {
-        createTween(contentRef?.current, contentYDesktop);
-        createTween(mediaRef?.current, mediaY);
-      });
-    }, root);
+    })();
 
     return () => {
-      mm.revert();
-      ctx.revert();
+      cancelled = true;
+      if (cleanup) cleanup();
     };
   }, [contentRef, contentYDesktop, contentYMobile, mediaRef, mediaY, rootRef]);
 }
