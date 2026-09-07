@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useRef } from 'react';
 import { trackEvent } from '../../../utils/analytics';
-import { useCookieConsent } from '../../../utils/cookieConsent';
+import { useCookieConsent } from '../../../utils/consentManager';
 
 const STORIES = [
   {
