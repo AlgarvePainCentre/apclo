@@ -36,7 +36,7 @@ const compactCards: Card[] = [
     id: 'cryoablation',
     title: 'Cryoablation',
     desc: 'Cold‑based nerve modulation to interrupt pain signalling.',
-    href: '/treatments/minimally-invasive-treatments/cryoblation',
+    href: '/treatments/minimally-invasive-treatments/cryoablation',
     imgJpg: '/assets/images/lumbar/Crioblation.webp',
     imgWebp: '/assets/images/lumbar/Crioblation.webp',
   },

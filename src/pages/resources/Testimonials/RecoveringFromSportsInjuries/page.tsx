@@ -71,7 +71,7 @@ const RecoveringFromSportsInjuriesPage: React.FC = () => {
         <Link
           className="article-nav-item next"
           aria-label="Next testimonial: All Testimonials"
-          to="/resources/testimonials/all-testimonials"
+          to="/resources#all-testimonials"
           style={{
             backgroundImage:
               "linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/assets/images/medical/DSC06176.webp')",

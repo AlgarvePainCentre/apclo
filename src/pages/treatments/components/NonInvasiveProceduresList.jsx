@@ -27,7 +27,7 @@ const procedures = [
     id: 4,
     title: "Occupational Therapy",
     description: "The goal of the therapy is to develop, recover, or maintain the meaningful activities of the patient. In this context we have a specialized team with personalized techniques in order to provide you the best care.",
-    link: "/treatments/non-invasive-treatments/occupation-therapy",
+    link: "/treatments/non-invasive-treatments/occupational-therapy",
     iconSrc: "/assets/images/Treatments-Icons/OccupationalTherapy.webp"
   },
   {

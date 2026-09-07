@@ -34,7 +34,7 @@ describe('TreatmentBreadcrumb', () => {
   });
 
   it('renders the correct icon card for the active cryoblation item', () => {
-    renderBreadcrumb('/treatments/minimally-invasive-treatments/cryoblation', 'Cryoblation');
+    renderBreadcrumb('/treatments/minimally-invasive-treatments/cryoablation', 'Cryoblation');
 
     const nav = screen.getByRole('navigation', { name: 'All treatments navigation' });
     const cryoLink = within(nav).getByRole('link', { name: /cryoblation/i });
@@ -46,7 +46,7 @@ describe('TreatmentBreadcrumb', () => {
   });
 
   it('scrolls the carousel when the right control is pressed', () => {
-    renderBreadcrumb('/treatments/minimally-invasive-treatments/cryoblation', 'Cryoblation');
+    renderBreadcrumb('/treatments/minimally-invasive-treatments/cryoablation', 'Cryoblation');
 
     const nav = screen.getByRole('navigation', { name: 'All treatments navigation' });
     const list = nav.querySelector('.treatment-related-nav-list') as HTMLUListElement;

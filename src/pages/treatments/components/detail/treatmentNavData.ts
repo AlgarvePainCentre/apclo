@@ -22,7 +22,7 @@ export const ALL_TREATMENT_NAV_ITEMS: TreatmentNavItem[] = [
   },
   {
     label: 'Occupation Therapy',
-    path: '/treatments/non-invasive-treatments/occupation-therapy',
+    path: '/treatments/non-invasive-treatments/occupational-therapy',
     iconSrc: '/assets/images/Treatments-Icons/OccupationalTherapy.webp',
   },
   {
@@ -87,7 +87,7 @@ export const ALL_TREATMENT_NAV_ITEMS: TreatmentNavItem[] = [
   },
   {
     label: 'Cryoblation',
-    path: '/treatments/minimally-invasive-treatments/cryoblation',
+    path: '/treatments/minimally-invasive-treatments/cryoablation',
     iconSrc: '/assets/images/Treatments-Icons/Cryoablation.webp',
   },
   {

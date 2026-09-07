@@ -373,7 +373,7 @@ export default function Resources() {
           <div className="center-action">
             <button
               className="outline-btn"
-              onClick={() => navigate('/resources/testimonials/all-testimonials')}
+              onClick={() => navigate('/resources#all-testimonials')}
             >
               View All Testimonials
             </button>
