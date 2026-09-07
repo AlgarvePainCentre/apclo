@@ -1,10 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import uiReducer from '../features/ui/uiSlice';
 import { contentApi } from '../features/content/contentApi';
 
 export const store = configureStore({
   reducer: {
-    ui: uiReducer,
     [contentApi.reducerPath]: contentApi.reducer,
   },
   devTools: import.meta.env.DEV,

@@ -309,7 +309,7 @@ const InterspinousSpacersPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="iss-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="iss-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/DSC06795-1.jpg" alt="" loading="lazy" decoding="async" />
+                  <img className="iss-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/DSC06795-1.webp" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
 
@@ -324,7 +324,7 @@ const InterspinousSpacersPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="iss-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="iss-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/DegenerativeDiscDisease.jpg" alt="" loading="lazy" decoding="async" />
+                  <img className="iss-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/DegenerativeDiscDisease.webp" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
 
@@ -339,7 +339,7 @@ const InterspinousSpacersPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="iss-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="iss-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/Spondylolisthesis.jpg" alt="" loading="lazy" decoding="async" />
+                  <img className="iss-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/Spondylolisthesis.webp" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
 
@@ -353,7 +353,7 @@ const InterspinousSpacersPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="iss-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="iss-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/FacetJointSyndrome.jpg" alt="" loading="lazy" decoding="async" />
+                  <img className="iss-condition-image tms-conditions-image" src="/assets/images/interspinous-spacers-treatment/FacetJointSyndrome.webp" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
             </div>

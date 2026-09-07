@@ -1,4 +1,10 @@
 import { useEffect, useRef } from 'react';
+// The contact page reuses the shared .psx-* layout classes, so it must load
+// their styles (max-width, gutters, cards). Without this the containers have
+// no width constraint or padding on a direct visit -> content sits flush to
+// the viewport edges. Imported before the page's own CSS so contact-specific
+// rules still win.
+import '../../pages/specialities/PainSpecialtyClone.css';
 import '../../styles/pages/contact-page.css';
 import ManagedEmbed from '../../components/ManagedEmbed';
 
@@ -95,6 +101,7 @@ export default function Contact() {
           >
             <source src="/assets/videos/banner-Contact-us.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
             <source src="/assets/videos/banner-Contact-us.h264.mp4" type='video/mp4; codecs="avc1.42E01E"' />
+            <source src="/assets/videos/banner-Contact-us.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </div>

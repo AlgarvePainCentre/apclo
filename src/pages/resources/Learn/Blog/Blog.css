@@ -43,7 +43,7 @@
   inset: 0;
   background-image:
     linear-gradient(135deg, rgba(195, 168, 16, 0.244) 0%, rgba(2, 6, 23, 0.60) 72%),
-    url('/assets/images/Hero/OccupationalTherapy.jpg');
+    url('/assets/images/Hero/OccupationalTherapy.webp');
   background-size: cover;
   background-position: center;
   z-index: 0;
@@ -679,13 +679,13 @@
   padding: 10px 12px;
   border-radius: 999px;
   border: none;
-  background: #f04b5e;
+  background: #d3243b;
   transition: transform 160ms ease, background 160ms ease;
   min-height: 40px;
 }
 
 .blog-readMore:hover {
-  background: #f04b5e;
+  background: #d3243b;
   transform: translateY(-1px);
 }
 

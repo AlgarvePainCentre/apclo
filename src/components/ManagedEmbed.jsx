@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import './ManagedEmbed.css';
-import { hasCookieConsent, openCookieSettings, updateCookieConsent, useCookieConsent } from '../utils/cookieConsent';
+import { hasCookieConsent, openCookieSettings, updateCookieConsent, useCookieConsent } from '../utils/consentManager';
 
 export default function ManagedEmbed(props) {
   const {

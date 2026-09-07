@@ -20,9 +20,10 @@ export function ShellLayout() {
   const location = useLocation();
   return (
     <div className="page">
+      <a className="skip-link" href="#main-content">Skip to content</a>
       <Navbar />
       <div className="page-transition-shell">
-        <div className="page-content">
+        <div className="page-content" id="main-content" tabIndex={-1}>
           <AppErrorBoundary resetKey={location.key}>
             <Suspense fallback={<RouteShellSkeleton />}>
               <Outlet />

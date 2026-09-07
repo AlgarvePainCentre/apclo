@@ -93,7 +93,7 @@ export function TreatmentsMain({
             renderTreatmentsFeatureSection({
               sectionClassName: 'treatments-feature-surgical-primary',
               labelId: 'treatments-feature-surgical-primary',
-              imageSrc: '/assets/images/Hero/RadiofrequencyAblation.jpg',
+              imageSrc: '/assets/images/Hero/RadiofrequencyAblation.webp',
               imageAlt:
                 'Illustration representing advanced treatment options available at Algarve Pain Centre.',
               title: 'Surgical Procedures',
@@ -134,7 +134,7 @@ export function TreatmentsMain({
             renderTreatmentsFeatureSection({
               sectionClassName: 'treatments-feature-surgical-secondary',
               labelId: 'treatments-feature-surgical-secondary',
-              imageSrc: '/assets/images/Hero/RadiofrequencyAblation.jpg',
+              imageSrc: '/assets/images/Hero/RadiofrequencyAblation.webp',
               imageAlt:
                 'Illustration representing advanced treatment options available at Algarve Pain Centre.',
               title: 'Non-Invasive Treatments',

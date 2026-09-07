@@ -107,7 +107,7 @@
 .psx-btn-primary,
 .psx-btn-outline {
   max-width: 320px;
-  background-color: var(--cta-bg-color, #f04b5e);
+  background-color: var(--cta-bg-color, #d3243b);
   color: var(--cta-text-color, #ffffff);
   padding: var(--cta-padding, 1.2rem 1.5rem);
   border-radius: var(--cta-border-radius, 999px);

@@ -179,7 +179,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
   }, [title, areaLabel]);
 
   if (variant === 'pain-specialty-clone') {
-    const defaultHeroImage = '/assets/images/Hero/HomeCare.jpg';
+    const defaultHeroImage = '/assets/images/Hero/HomeCare.webp';
     const defaultOverview = [
       'Pain in this area can have many causes, including joint, muscle, nerve and postural factors. During your first consultation we explore how your symptoms started, how they have evolved over time and which movements or activities make them better or worse.',
       'We also look carefully at your medical history, lifestyle and previous treatments. Some people come to us after years of trying isolated approaches without a clear plan. Others seek support early, when symptoms are starting to interfere with work, sport or sleep.',
@@ -268,6 +268,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                   >
                     <source src="/assets/videos/post-43.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
                     <source src="/assets/videos/post-43.h264.mp4" type='video/mp4; codecs="avc1.42E01E"' />
+                    <source src="/assets/videos/post-43.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
                 </div>
@@ -2494,6 +2495,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
               >
                 <source src="/assets/videos/post-43.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
                 <source src="/assets/videos/post-43.h264.mp4" type='video/mp4; codecs="avc1.42E01E"' />
+                <source src="/assets/videos/post-43.mp4" type="video/mp4" />
               </video>
             </div>
           </div>

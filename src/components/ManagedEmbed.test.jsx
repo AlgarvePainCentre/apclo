@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import ManagedEmbed from './ManagedEmbed';
-import { COOKIE_CONSENT_COOKIE_NAME, acceptAllCookieConsent } from '../utils/cookieConsent';
+import { COOKIE_CONSENT_COOKIE_NAME, acceptAllCookieConsent } from '../utils/consentManager';
 
 function clearConsentState() {
   document.cookie = `${COOKIE_CONSENT_COOKIE_NAME}=; Max-Age=0; Path=/`;

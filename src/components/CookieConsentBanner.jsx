@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './CookieConsentBanner.css';
-import { onOpenCookieSettings, useCookieConsent } from '../utils/cookieConsent';
+import { onOpenCookieSettings, useCookieConsent } from '../utils/consentManager';
 
 const initialDraft = {
   preferences: false,

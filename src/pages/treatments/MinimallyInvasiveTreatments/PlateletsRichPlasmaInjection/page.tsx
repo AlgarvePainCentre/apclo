@@ -287,7 +287,7 @@ const PlateletsRichPlasmaInjectionPage: React.FC = () => {
                 <div className="prp-condition-media tms-conditions-media" aria-hidden="true">
                   <img
                     className="prp-condition-image tms-conditions-image"
-                    src="/assets/images/platelet-rich-plasma/ChronicTendonInjuries.jpg"
+                    src="/assets/images/platelet-rich-plasma/ChronicTendonInjuries.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -306,7 +306,7 @@ const PlateletsRichPlasmaInjectionPage: React.FC = () => {
                 <div className="prp-condition-media tms-conditions-media" aria-hidden="true">
                   <img
                     className="prp-condition-image tms-conditions-image"
-                    src="/assets/images/platelet-rich-plasma/AcuteLigament&MusclInjuries.jpg"
+                    src="/assets/images/platelet-rich-plasma/AcuteLigament&MusclInjuries.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -325,7 +325,7 @@ const PlateletsRichPlasmaInjectionPage: React.FC = () => {
                 <div className="prp-condition-media tms-conditions-media" aria-hidden="true">
                   <img
                     className="prp-condition-image tms-conditions-image"
-                    src="/assets/images/platelet-rich-plasma/Osteoarthritis.jpg"
+                    src="/assets/images/platelet-rich-plasma/Osteoarthritis.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"
@@ -344,7 +344,7 @@ const PlateletsRichPlasmaInjectionPage: React.FC = () => {
                 <div className="prp-condition-media tms-conditions-media" aria-hidden="true">
                   <img
                     className="prp-condition-image tms-conditions-image"
-                    src="/assets/images/platelet-rich-plasma/PostSurgicalHealing.jpg"
+                    src="/assets/images/platelet-rich-plasma/PostSurgicalHealing.webp"
                     alt=""
                     loading="lazy"
                     decoding="async"

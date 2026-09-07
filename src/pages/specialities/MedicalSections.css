@@ -68,12 +68,12 @@
 .ms-hero__subtitle{margin:0;max-width:720px;color:var(--color-white,#fff);font-size:1.1rem;line-height:1.6;text-align:left}
 .ms-hero__right{display:flex;flex-direction:column;align-items:flex-start;gap:16px;flex:0 0 auto;width:min(320px,100%)}
 .ms-hero__kicker{margin:0;font-size:1.1rem;color:var(--color-white,#fff);width:100%}
-.ms-hero__cta{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;padding-right:56px;background:#f04b5e;color:var(--color-white,#fff);border-radius:999px;border:1px solid rgba(0,0,0,0.08);cursor:pointer;font-weight:700;letter-spacing:.01em;position:relative;transition:transform .18s ease,box-shadow .18s ease}
+.ms-hero__cta{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;padding-right:56px;background:#d3243b;color:var(--color-white,#fff);border-radius:999px;border:1px solid rgba(0,0,0,0.08);cursor:pointer;font-weight:700;letter-spacing:.01em;position:relative;transition:transform .18s ease,box-shadow .18s ease}
 .ms-hero__cta::after{content:'↗';display:inline-block;background:#111827;color:#fff;width:32px;height:32px;line-height:32px;text-align:center;border-radius:999px;font-size:1rem;position:absolute;right:10px;top:50%;transform:translateY(-50%)}
 .ms-hero__cta:hover{transform:translateY(-1px)}
 .ms-hero__cta:focus-visible{outline:3px solid rgba(147,197,253,.9);outline-offset:3px}
 
-.specialities-page{--psx-max:1160px;--psx-gutter:clamp(16px,4vw,32px);--cta-bg-color:#f04b5e;--cta-text-color:#ffffff;--cta-padding:1.2rem 1.5rem;--cta-border-radius:999px;--cta-font-size:16px;--cta-font-weight:600;--cta-letter-spacing:0.08em}
+.specialities-page{--psx-max:1160px;--psx-gutter:clamp(16px,4vw,32px);--cta-bg-color:#d3243b;--cta-text-color:#ffffff;--cta-padding:1.2rem 1.5rem;--cta-border-radius:999px;--cta-font-size:16px;--cta-font-weight:600;--cta-letter-spacing:0.08em}
 .specialities-page .hero.psx-hero{position:relative;padding:clamp(56px,8vw,96px) var(--psx-gutter);padding-top:clamp(92px,10vw,128px);color:#fff;overflow:hidden;display:block;min-height:auto;background:transparent;top:auto;border-radius:0;margin:0}
 .specialities-page .hero.psx-hero .hero-video.psx-hero-backdrop{position:absolute;inset:0;background-image:none;background-color:#000;overflow:hidden;z-index:0;filter:none;pointer-events:none}
 .specialities-page .hero.psx-hero .hero-video::after{content:none}
