@@ -337,7 +337,7 @@ const NucleoplastyPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="np-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="np-condition-image tms-conditions-image" src="/assets/images/nucleoplasty/HerniatedDiscs.jpg" alt="" loading="lazy" decoding="async" />
+                  <img className="np-condition-image tms-conditions-image" src="/assets/images/nucleoplasty/HerniatedDiscs.webp" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
 
@@ -351,7 +351,7 @@ const NucleoplastyPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="np-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="np-condition-image tms-conditions-image" src="/assets/images/nucleoplasty/BulgingDiscs.jpg" alt="" loading="lazy" decoding="async" />
+                  <img className="np-condition-image tms-conditions-image" src="/assets/images/nucleoplasty/BulgingDiscs.webp" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
 
@@ -365,7 +365,7 @@ const NucleoplastyPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="np-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="np-condition-image tms-conditions-image" src="/assets/images/nucleoplasty/DegenerativeDiscDisease.jpg" alt="" loading="lazy" decoding="async" />
+                  <img className="np-condition-image tms-conditions-image" src="/assets/images/nucleoplasty/DegenerativeDiscDisease.webp" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
 
@@ -380,7 +380,7 @@ const NucleoplastyPage: React.FC = () => {
                   </p>
                 </div>
                 <div className="np-condition-media tms-conditions-media" aria-hidden="true">
-                  <img className="np-condition-image tms-conditions-image" src="/assets/images/nucleoplasty/Sciatica.jpg" alt="" loading="lazy" decoding="async" />
+                  <img className="np-condition-image tms-conditions-image" src="/assets/images/nucleoplasty/Sciatica.webp" alt="" loading="lazy" decoding="async" />
                 </div>
               </article>
             </div>

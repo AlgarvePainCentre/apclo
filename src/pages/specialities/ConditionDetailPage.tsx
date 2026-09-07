@@ -101,7 +101,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
   }
 > = {
   'cervical-spine-pain': {
-    heroImage: "/assets/images/Hero/CervicalPain.jpg",
+    heroImage: "/assets/images/Hero/CervicalPain.webp",
     overview: [
       'Cervical spine pain (neck pain) is often linked to joints, muscles, discs or nerves. Symptoms can include stiffness, reduced range of motion, headache, and pain that may travel into the shoulder blade or arm.',
       'During your first consultation we focus on the pattern of symptoms—what triggers flare-ups, what eases them, and whether there are any nerve-related features such as tingling or weakness. This helps guide the next step, from simple measures to more targeted investigations or interventions.',
@@ -135,7 +135,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'lumbar-spine-pain': {
-    heroImage: "/assets/images/Hero/LumbarSpinePain.jpg",
+    heroImage: "/assets/images/Hero/LumbarSpinePain.webp",
     overview: [
       'Lumbar spine pain refers to pain that is felt in the lower back, specifically in the area of the lumbar vertebrae.',
       'The lumbar region is the lower portion of the spine and consists of five vertebrae that are responsible for supporting the weight of the upper body and providing flexibility and range of motion for the lower body.',
@@ -169,7 +169,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'shoulder-pain': {
-    heroImage: "/assets/images/Hero/ShoulderPain.jpg",
+    heroImage: "/assets/images/Hero/ShoulderPain.webp",
     overview: [
       'Shoulder pain can arise from the rotator cuff, bursa, joint irritation, tendon overload, or stiffness. It often affects reaching, dressing, lifting and sleep.',
       'We look at when the pain occurs (overhead movement, behind-the-back reach, lying on the shoulder) and whether weakness or reduced range of motion is present. This helps clarify whether rehabilitation, injections or other targeted treatments may help.',
@@ -206,7 +206,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'hand-and-elbow-pain': {
-    heroImage: "/assets/images/Hero/HandandElbowPain.jpg",
+    heroImage: "/assets/images/Hero/HandandElbowPain.webp",
     overview: [
       'Hand and elbow pain can be driven by tendon overload, joint irritation, nerve entrapment or post-injury stiffness. It can affect grip, fine motor tasks, work and sport.',
       'We assess how symptoms relate to gripping, lifting, typing and sport-specific activity, and whether there is any numbness or tingling. This helps guide rehabilitation, splinting strategies, or targeted interventions when appropriate.',
@@ -240,7 +240,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'hip-and-groin-pain': {
-    heroImage: "/assets/images/Hero/HipandGroinPain.jpg",
+    heroImage: "/assets/images/Hero/HipandGroinPain.webp",
     overview: [
       'Hip and groin pain can come from the hip joint, tendons, bursa, muscle overload, or referral from the lumbar spine. It may affect walking, stairs, sport and sleep.',
       'We explore where you feel pain (groin, side of hip, buttock), how it behaves with sitting, walking or rotation, and whether there is stiffness or weakness. This helps guide rehabilitation and targeted treatments when needed.',
@@ -274,7 +274,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'knee-pain': {
-    heroImage: "/assets/images/Hero/KneePain.jpg",
+    heroImage: "/assets/images/Hero/KneePain.webp",
     overview: [
       'Knee pain may be related to joint irritation, cartilage changes, tendon overload, or biomechanics during walking, stairs and sport. It can affect confidence, fitness and daily activity.',
       'We assess where the pain sits (front, inside, outside, back of knee), whether swelling or instability is present, and how symptoms behave with load. This guides rehabilitation, lifestyle strategies and targeted interventions when indicated.',
@@ -311,7 +311,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'thoracic-wall-pain': {
-    heroImage: "/assets/images/Hero/ThoracicWallPain.jpg",
+    heroImage: "/assets/images/Hero/ThoracicWallPain.webp",
     overview: [
       'Thoracic wall pain is felt around the ribs, upper back or chest wall. It is commonly linked to posture, muscle overload, joint irritation, or nerve sensitivity.',
       'We assess breathing-related triggers, movement patterns, and whether the pain is localised to the chest wall. This helps identify treatable causes and reduce unnecessary worry when serious causes have been excluded.',
@@ -345,7 +345,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'abdominal-wall-pain': {
-    heroImage: "/assets/images/Hero/AbdominalWallPain.jpg",
+    heroImage: "/assets/images/Hero/AbdominalWallPain.webp",
     overview: [
       'Abdominal wall pain is pain originating from the muscles, fascia or nerves of the abdominal wall rather than from internal organs. It can feel sharp, localised and tender to touch.',
       'Because it can mimic internal abdominal problems, we focus on a careful clinical assessment to confirm the likely source and rule out warning features that require medical investigation.',
@@ -379,7 +379,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'pelvic-and-gynaecological-pain': {
-    heroImage: "/assets/images/Hero/PelvicandGynaecologicalPain.jpg",
+    heroImage: "/assets/images/Hero/PelvicandGynaecologicalPain.webp",
     overview: [
       'Pelvic and gynaecological pain can have multiple contributors, including pelvic floor muscle tension, nerve sensitivity, joint or connective tissue irritation, and gynaecological or urological factors.',
       'We take a respectful, whole-person history to understand symptom triggers and impact on daily life, sleep and wellbeing. When needed, we coordinate with relevant specialists to ensure appropriate investigation and care.',
@@ -416,7 +416,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'head-pain': {
-    heroImage: "/assets/images/Hero/HeadPain.jpg",
+    heroImage: "/assets/images/Hero/HeadPain.webp",
     overview: [
       'Head pain can include migraine, tension-type headache, cluster headache and other primary headache disorders. It may also be secondary to conditions affecting the neck, jaw, sinuses or nerves.',
       'We focus on the pattern: onset, frequency, triggers, associated symptoms (nausea, light sensitivity, tearing, nasal congestion), and any red flags. This helps match you to the most appropriate evidence-based pathway.',
@@ -462,7 +462,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'facial-pain': {
-    heroImage: "/assets/images/Hero/FacialPain.jpg",
+    heroImage: "/assets/images/Hero/FacialPain.webp",
     overview: [
       'Facial pain can be complex and distressing. It may be related to nerve irritation, jaw and muscle tension, dental or sinus referral, or headache syndromes.',
       'We focus on the quality and timing of pain—short electric-shock episodes versus persistent aching or burning—and whether there are triggers such as chewing, touch or cold air. This helps determine the most appropriate pathway.',
@@ -499,7 +499,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'foot-and-ankle-pain': {
-    heroImage: "/assets/images/Hero/FootandAnklePain.jpg",
+    heroImage: "/assets/images/Hero/FootandAnklePain.webp",
     overview: [
       'Foot and ankle pain can come from tendon and ligament overload, joint irritation, plantar fascia strain, nerve irritation, or lingering symptoms after a sprain.',
       'We assess your walking pattern, footwear and activity demands, and whether pain is localised (heel, arch, ankle, forefoot) or associated with swelling, instability or nerve symptoms.',
@@ -537,7 +537,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
   },
   // Sports Medicine
   'sports-injuries': {
-    heroImage: "/assets/images/Hero/ShoulderPain.jpg",
+    heroImage: "/assets/images/Hero/ShoulderPain.webp",
     overview: [
       'Sports injuries range from sprains and strains to tendon tears and stress reactions. Understanding the mechanism and load context guides safe return to play.',
       'We assess movement patterns, sport-specific demands and tissue healing timelines to tailor rehabilitation and decide when imaging or procedures may help.',
@@ -554,7 +554,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'injury-prevention': {
-    heroImage: "/assets/images/Hero/Exercise.jpg",
+    heroImage: "/assets/images/Hero/Exercise.webp",
     overview: [
       'Injury prevention combines screening for modifiable risk factors with education, load planning and neuromuscular training.',
       'Programmes are tailored to sport, position and season, embedding proven warm‑up and strength components without overloading schedules.',
@@ -571,7 +571,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'sports-rehabilitation': {
-    heroImage: "/assets/images/Hero/Physiotherapy.jpg",
+    heroImage: "/assets/images/Hero/Physiotherapy.webp",
     overview: [
       'Sports rehabilitation rebuilds capacity through staged strength, control and conditioning, aligned to tissue healing and performance demands.',
       'We integrate pain‑management when needed so progressive loading remains possible and safe.',
@@ -588,7 +588,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'sports-performance': {
-    heroImage: "/assets/images/Hero/Exercise.jpg",
+    heroImage: "/assets/images/Hero/Exercise.webp",
     overview: [
       'Performance support aligns strength, conditioning and skill work with recovery and nutrition to sustain adaptation.',
       'We emphasise progressive overload, movement efficiency and monitoring to inform training decisions.',
@@ -602,7 +602,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'sports-psychology': {
-    heroImage: "/assets/images/Hero/Psychology.jpg",
+    heroImage: "/assets/images/Hero/Psychology.webp",
     overview: [
       'Sports psychology supports motivation, confidence and coping under pressure, especially after injury or performance dips.',
       'We build practical strategies for goal‑setting, imagery, arousal regulation and returning to competition.',
@@ -619,7 +619,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'sports-nutrition': {
-    heroImage: "/assets/images/Hero/Nutrition.jpg",
+    heroImage: "/assets/images/Hero/Nutrition.webp",
     overview: [
       'Sports nutrition optimises training adaptation, recovery and body composition while considering health and performance goals.',
       'We customise fuelling around sessions and events, and address energy availability, hydration and supplementation when appropriate.',
@@ -637,7 +637,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
   },
   // Stroke Medicine
   'clinical-and-secondary-prevention-of-stroke': {
-    heroImage: "/assets/images/Hero/OccupationalTherapy.jpg",
+    heroImage: "/assets/images/Hero/OccupationalTherapy.webp",
     overview: [
       'Secondary prevention aims to reduce the risk of recurrent stroke or TIA through medication optimisation and lifestyle interventions.',
       'We work with your medical team to address blood pressure, lipids, antithrombotic therapy and risk factors such as smoking and diabetes.',
@@ -654,7 +654,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'feeding-autonomy': {
-    heroImage: "/assets/images/Hero/OccupationalTherapy.jpg",
+    heroImage: "/assets/images/Hero/OccupationalTherapy.webp",
     overview: [
       'Feeding autonomy focuses on safe, independent eating and drinking after stroke while managing dysphagia risk.',
       'We coordinate swallow assessment, texture modifications, posture, and caregiver training as needed.',
@@ -668,7 +668,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'speech-autonomy': {
-    heroImage: "/assets/images/Hero/SpeechTherapy.jpg",
+    heroImage: "/assets/images/Hero/SpeechTherapy.webp",
     overview: [
       'Speech autonomy supports communication and swallowing after stroke, including aphasia, dysarthria and apraxia of speech.',
       'We build personalised therapy around functional goals with assistive strategies and caregiver involvement.',
@@ -682,7 +682,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'post-stroke-depression-and-mood-disorders': {
-    heroImage: "/assets/images/Hero/Psychology.jpg",
+    heroImage: "/assets/images/Hero/Psychology.webp",
     overview: [
       'Mood disorders after stroke are common and treatable. We screen for depression and anxiety and coordinate care across teams.',
       'Management includes psychoeducation, psychological therapies and medication when indicated, with monitoring for response and safety.',
@@ -696,7 +696,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'medical-complications-post-stroke': {
-    heroImage: "/assets/images/Hero/HomeCare.jpg",
+    heroImage: "/assets/images/Hero/HomeCare.webp",
     overview: [
       'Medical complications post-stroke (e.g., infections, DVT, pressure injuries) can impede rehabilitation and must be proactively managed.',
       'We coordinate surveillance and communication with medical teams to reduce avoidable complications and support early interventions.',
@@ -710,7 +710,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'post-stroke-spasticity': {
-    heroImage: "/assets/images/Hero/Physiotherapy.jpg",
+    heroImage: "/assets/images/Hero/Physiotherapy.webp",
     overview: [
       'Spasticity after stroke can impair movement and function. Management blends therapy with medications and injections when indicated.',
       'We prioritise functional goals, positioning and splinting, and coordinate botulinum toxin or other interventions in selected cases.',
@@ -724,7 +724,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'complex-regional-pain-syndrome': {
-    heroImage: "/assets/images/Hero/PeripheralNerveBlocks.jpg",
+    heroImage: "/assets/images/Hero/PeripheralNerveBlocks.webp",
     overview: [
       'Complex Regional Pain Syndrome (CRPS) is a chronic pain condition often following injury or immobilisation, marked by pain disproportionate to the inciting event.',
       'Management emphasises education, graded exposure, desensitisation, and when needed medication and interventional pain approaches.',
@@ -738,7 +738,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'postural-and-motor-control-autonomy': {
-    heroImage: "/assets/images/Hero/Physiotherapy.jpg",
+    heroImage: "/assets/images/Hero/Physiotherapy.webp",
     overview: [
       'Postural and motor control autonomy focuses on regaining safe, independent movement and balance after stroke.',
       'Training targets trunk and limb control, sit‑to‑stand, stepping and gait with task‑specific practice and progression.',
@@ -752,7 +752,7 @@ const PAIN_MEDICINE_PAGE_CONTENT: Record<
     ],
   },
   'community-reintegration': {
-    heroImage: "/assets/images/Hero/HomeCare.jpg",
+    heroImage: "/assets/images/Hero/HomeCare.webp",
     overview: [
       'Community reintegration supports return to home, work, leisure and social participation after stroke.',
       'We identify environmental barriers, build confidence in real‑world tasks, and coordinate supports and transport where needed.',
@@ -1399,7 +1399,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
   }, [title, areaLabel]);
 
   if (variant === 'pain-specialty-clone') {
-    const defaultHeroImage = '/assets/images/Hero/HomeCare.jpg';
+    const defaultHeroImage = '/assets/images/Hero/HomeCare.webp';
     const defaultOverview = [
       'Pain in this area can have many causes, including joint, muscle, nerve and postural factors. During your first consultation we explore how your symptoms started, how they have evolved over time and which movements or activities make them better or worse.',
       'We also look carefully at your medical history, lifestyle and previous treatments. Some people come to us after years of trying isolated approaches without a clear plan. Others seek support early, when symptoms are starting to interfere with work, sport or sleep.',
