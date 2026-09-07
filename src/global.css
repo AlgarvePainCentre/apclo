@@ -22,7 +22,7 @@
   --warm-rose: #e83d5b;
   
   /* CTA Button Variables */
-  --cta-bg-color: #f04b5e;
+  --cta-bg-color: #d3243b;
   --cta-text-color: var(--color-white);
   --cta-padding: 1.2rem 1.5rem;
   --cta-border-radius: 999px;
@@ -195,7 +195,7 @@ code {
 .page-content { opacity: 0; transform: translate3d(0, 4px, 0); animation: pageEnter 280ms cubic-bezier(.4,0,.2,1) forwards; }
 .page-transition-overlay { position: fixed; inset: 0; background: #f7f9fc; opacity: 0; pointer-events: none; transition: opacity 260ms cubic-bezier(.4,0,.2,1); z-index: 900; }
 .page-transition-overlay.is-active { opacity: 0.6; pointer-events: auto; }
-.page-top-loader { position: fixed; top: 0; left: 0; height: 2px; width: 100%; background: linear-gradient(90deg, #60bbef, #f04b5e); transform: scaleX(0); transform-origin: left; transition: transform 500ms cubic-bezier(.4,0,.2,1); z-index: 950; }
+.page-top-loader { position: fixed; top: 0; left: 0; height: 2px; width: 100%; background: linear-gradient(90deg, #60bbef, #d3243b); transform: scaleX(0); transform-origin: left; transition: transform 500ms cubic-bezier(.4,0,.2,1); z-index: 950; }
 .page-top-loader.is-active { transform: scaleX(1); }
 @keyframes pageEnter { from { opacity: 0; transform: translate3d(0, 4px, 0); } to { opacity: 1; transform: translate3d(0, 0, 0); } }
 @media (prefers-reduced-motion: reduce) {

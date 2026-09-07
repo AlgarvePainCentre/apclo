@@ -679,13 +679,13 @@
   padding: 10px 12px;
   border-radius: 999px;
   border: none;
-  background: #f04b5e;
+  background: #d3243b;
   transition: transform 160ms ease, background 160ms ease;
   min-height: 40px;
 }
 
 .blog-readMore:hover {
-  background: #f04b5e;
+  background: #d3243b;
   transform: translateY(-1px);
 }
 
