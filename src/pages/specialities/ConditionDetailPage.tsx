@@ -403,7 +403,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                         Cold-based nerve modulation to interrupt pain signalling, guided by ultrasound or fluoroscopy when appropriate.
                       </p>
                       <Link
-                        to="/treatments/minimally-invasive-treatments/cryoblation"
+                        to="/treatments/minimally-invasive-treatments/cryoablation"
                         className="psx-approach-link"
                         aria-label="Learn more about crioablation"
                       >
@@ -1229,7 +1229,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                         Cold-based nerve modulation to interrupt pain signalling, guided by ultrasound or fluoroscopy when appropriate.
                       </p>
                       <Link
-                        to="/treatments/minimally-invasive-treatments/cryoblation"
+                        to="/treatments/minimally-invasive-treatments/cryoablation"
                         className="psx-approach-link"
                         aria-label="Learn more about crioablation"
                       >
@@ -1511,7 +1511,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                         Cryoablation uses cold temperatures and is a minimally invasive procedure guided for ultrasound or fluoroscopy.
                       </p>
                       <Link
-                        to="/treatments/minimally-invasive-treatments/cryoblation"
+                        to="/treatments/minimally-invasive-treatments/cryoablation"
                         className="psx-approach-link"
                         aria-label="Learn more about crioablation"
                       >

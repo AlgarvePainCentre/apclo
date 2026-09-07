@@ -17,7 +17,7 @@ export const router = createBrowserRouter(
       children: [
         { path: 'resources/testemunial/*', Component: RedirectTestimonialsTypos },
         { path: 'resources/testemunials/*', Component: RedirectTestimonialsTypos },
-        { path: 'resources/testimonials', element: <Navigate to="/resources/testimonials/all-testimonials" replace /> },
+        { path: 'resources/testimonials', element: <Navigate to="/resources#all-testimonials" replace /> },
         { path: 'resources/learn/blog', element: <Navigate to="/blog" replace /> },
         {
           Component: ShellLayout,

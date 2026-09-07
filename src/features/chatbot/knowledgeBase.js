@@ -117,7 +117,7 @@ export const chatbotSymptomGuides = [
     relatedPages: [
       '/specialities/pain-medicine/lumbar-spine-pain',
       '/treatments/minimally-invasive-treatments/radiofrequency',
-      '/treatments/minimally-invasive-treatments/cryoblation',
+      '/treatments/minimally-invasive-treatments/cryoablation',
       '/treatments/surgical-treatments/spinal-fusion',
     ],
   },

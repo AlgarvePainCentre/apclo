@@ -22,7 +22,7 @@ const items = [
     id: 3,
     title: 'Cryoblation',
     description: 'Applies controlled cold to interrupt persistent pain signals.',
-    link: '/treatments/minimally-invasive-treatments/cryoblation',
+    link: '/treatments/minimally-invasive-treatments/cryoablation',
     iconSrc: '/assets/images/Treatments-Icons/Cryoablation.webp',
   },
 ];

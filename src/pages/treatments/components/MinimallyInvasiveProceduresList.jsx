@@ -48,7 +48,7 @@ const procedures = [
     id: 7,
     title: "Cryoablation",
     description: "Cryoablation uses cold temperatures and is a minimally invasive procedure guided by ultrasound or fluoroscopy. The indications vary and include treatment of chronic low back pain, others spine pain and osteoarthritic joints with severe pain and non-controlled by medication.",
-    link: "/treatments/minimally-invasive-treatments/cryoblation",
+    link: "/treatments/minimally-invasive-treatments/cryoablation",
     iconSrc: "/assets/images/Treatments-Icons/Cryoablation.webp"
   },
   {
