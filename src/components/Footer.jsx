@@ -11,13 +11,10 @@ const footerNav = [
   { title: 'Resources', slug: 'resources', categories: resourceCategories },
 ];
 
-function isDesktop() {
-  return typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches;
-}
-
 function FooterServiceColumn({ title, slug, categories }) {
-  // Open by default on desktop; collapsed on mobile (accordion).
-  const [open, setOpen] = useState(isDesktop);
+  // Collapsed by default at every width so the footer only shows the category
+  // headings up front; each section expands on click/tap.
+  const [open, setOpen] = useState(false);
   const panelId = `footer-panel-${slug}`;
 
   return (
