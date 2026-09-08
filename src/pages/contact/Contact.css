@@ -433,3 +433,53 @@
     min-height: 220px;
   }
 }
+
+/* --- Contact form: Zoho wiring (honeypot, hCaptcha, status messages) --- */
+.contact-form-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.contact-form .h-captcha {
+  margin: 6px 0 4px;
+}
+
+.contact-form-error {
+  margin: 6px 0 0;
+  color: #b3261e;
+  font-size: 0.92rem;
+  font-weight: 500;
+}
+
+.contact-form-submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.contact-form-success {
+  padding: 28px 26px;
+  border-radius: 20px;
+  background: #ecfdf3;
+  border: 1px solid #abefc6;
+  color: #0f172a;
+}
+
+.contact-form-success-title {
+  margin: 0 0 8px;
+  font-size: 1.25rem;
+  color: #067647;
+}
+
+.contact-form-success p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.contact-form-success a {
+  color: #067647;
+  font-weight: 600;
+  white-space: nowrap;
+}

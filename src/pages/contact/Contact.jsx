@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 // The contact page reuses the shared .psx-* layout classes, so it must load
 // their styles (max-width, gutters, cards). Without this the containers have
 // no width constraint or padding on a direct visit -> content sits flush to
@@ -13,6 +13,66 @@ export default function Contact() {
   const heroVideoRef = useRef(null);
   const mapUrl =
     'https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil&z=16&output=embed';
+
+  // Contact form submission (custom form -> /api/contact -> Zoho, with hCaptcha).
+  const [status, setStatus] = useState('idle'); // idle | submitting | success | error
+  const [errorMsg, setErrorMsg] = useState('');
+  // Public site key; hCaptcha's always-pass TEST key by default so previews work.
+  const hcaptchaSiteKey =
+    import.meta.env.VITE_HCAPTCHA_SITEKEY || '10000000-ffff-ffff-ffff-000000000001';
+
+  useEffect(() => {
+    if (document.querySelector('script[src*="js.hcaptcha.com/1/api.js"]')) return undefined;
+    const script = document.createElement('script');
+    script.src = 'https://js.hcaptcha.com/1/api.js';
+    script.async = true;
+    script.defer = true;
+    document.head.appendChild(script);
+    return undefined;
+  }, []);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setErrorMsg('');
+    const form = event.currentTarget;
+    const fd = new FormData(form);
+    const token = window.hcaptcha ? window.hcaptcha.getResponse() : '';
+    if (!token) {
+      setStatus('error');
+      setErrorMsg('Please confirm you are human.');
+      return;
+    }
+    setStatus('submitting');
+    try {
+      const res = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          firstName: fd.get('firstName') || '',
+          lastName: fd.get('lastName') || '',
+          email: fd.get('email') || '',
+          phone: fd.get('phone') || '',
+          countryCode: '+351',
+          message: fd.get('message') || '',
+          company: fd.get('company') || '',
+          hcaptchaToken: token,
+        }),
+      });
+      const data = await res.json().catch(() => ({}));
+      if (res.ok && data.ok) {
+        setStatus('success');
+        form.reset();
+        if (window.hcaptcha) window.hcaptcha.reset();
+      } else {
+        setStatus('error');
+        setErrorMsg(data.error || 'Could not send your message. Please try again or call us.');
+        if (window.hcaptcha) window.hcaptcha.reset();
+      }
+    } catch {
+      setStatus('error');
+      setErrorMsg('Could not send your message. Please try again or call us.');
+    }
+  };
 
   useEffect(() => {
     const heroEl = heroRef.current;
@@ -177,54 +237,69 @@ export default function Contact() {
               <p className="psx-body">
                 Share the details of your discomfort, and we&apos;ll help you understand the cause and find a solution.
               </p>
-              <form
-                className="contact-form"
-                onSubmit={(event) => {
-                  event.preventDefault();
-                }}
-              >
-                <div className="contact-form-field">
-                  <label className="contact-form-label" htmlFor="contact-first-name">
-                    Name
-                  </label>
-                  <div className="contact-form-name-row">
-                    <input id="contact-first-name" type="text" className="contact-input" placeholder="First Name" />
-                    <input id="contact-last-name" type="text" className="contact-input" placeholder="Last Name" />
+              {status === 'success' ? (
+                <div className="contact-form-success" role="status">
+                  <h3 className="contact-form-success-title">Message sent</h3>
+                  <p>
+                    Thank you — we&apos;ve received your message and will get back to you shortly.
+                    For anything urgent, call us on <a href="tel:+351915915001">+351&nbsp;915&nbsp;915&nbsp;001</a>.
+                  </p>
+                </div>
+              ) : (
+                <form className="contact-form" onSubmit={handleSubmit}>
+                  <div className="contact-form-field">
+                    <label className="contact-form-label" htmlFor="contact-first-name">
+                      Name
+                    </label>
+                    <div className="contact-form-name-row">
+                      <input id="contact-first-name" name="firstName" type="text" className="contact-input" placeholder="First Name" aria-label="First name" />
+                      <input id="contact-last-name" name="lastName" type="text" className="contact-input" placeholder="Last Name" aria-label="Last name" />
+                    </div>
                   </div>
-                </div>
-                <div className="contact-form-field">
-                  <label className="contact-form-label" htmlFor="contact-email">
-                    Email <span className="contact-label-required">*</span>
-                  </label>
-                  <input id="contact-email" type="email" className="contact-input" placeholder="you@example.com" required />
-                </div>
-                <div className="contact-form-field">
-                  <label className="contact-form-label" htmlFor="contact-phone">
-                    Phone
-                  </label>
-                  <div className="contact-form-phone-row">
-                    <span className="contact-phone-flag" aria-hidden="true">🇵🇹</span>
-                    <input id="contact-phone" type="tel" className="contact-input" placeholder="+351 000 000 000" />
+                  <div className="contact-form-field">
+                    <label className="contact-form-label" htmlFor="contact-email">
+                      Email <span className="contact-label-required">*</span>
+                    </label>
+                    <input id="contact-email" name="email" type="email" className="contact-input" placeholder="you@example.com" required />
                   </div>
-                </div>
-                <div className="contact-form-field">
-                  <label className="contact-form-label" htmlFor="contact-message">
-                    Message <span className="contact-label-required">*</span>
-                  </label>
-                  <textarea
-                    id="contact-message"
-                    className="contact-textarea"
-                    placeholder="Tell us more about your pain, symptoms or questions..."
-                    rows={4}
-                    required
-                  />
-                </div>
-                <div className="contact-form-actions">
-                  <button type="submit" className="contact-form-submit psx-btn-primary">
-                    <span>Submit</span>
-                  </button>
-                </div>
-              </form>
+                  <div className="contact-form-field">
+                    <label className="contact-form-label" htmlFor="contact-phone">
+                      Phone
+                    </label>
+                    <div className="contact-form-phone-row">
+                      <span className="contact-phone-flag" aria-hidden="true">🇵🇹</span>
+                      <input id="contact-phone" name="phone" type="tel" className="contact-input" placeholder="+351 000 000 000" />
+                    </div>
+                  </div>
+                  <div className="contact-form-field">
+                    <label className="contact-form-label" htmlFor="contact-message">
+                      Message <span className="contact-label-required">*</span>
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      className="contact-textarea"
+                      placeholder="Tell us more about your pain, symptoms or questions..."
+                      rows={4}
+                      required
+                    />
+                  </div>
+                  {/* Honeypot: off-screen, ignored by humans, catches bots. */}
+                  <div className="contact-form-honeypot" aria-hidden="true">
+                    <label htmlFor="contact-company">Company</label>
+                    <input id="contact-company" name="company" type="text" tabIndex={-1} autoComplete="off" />
+                  </div>
+                  <div className="h-captcha" data-sitekey={hcaptchaSiteKey} />
+                  {status === 'error' && errorMsg ? (
+                    <p className="contact-form-error" role="alert">{errorMsg}</p>
+                  ) : null}
+                  <div className="contact-form-actions">
+                    <button type="submit" className="contact-form-submit psx-btn-primary" disabled={status === 'submitting'}>
+                      <span>{status === 'submitting' ? 'Sending…' : 'Submit'}</span>
+                    </button>
+                  </div>
+                </form>
+              )}
             </article>
             <figure className="contact-form-media">
               <img
