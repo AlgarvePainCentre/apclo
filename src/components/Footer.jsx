@@ -11,13 +11,10 @@ const footerNav = [
   { title: 'Resources', slug: 'resources', categories: resourceCategories },
 ];
 
-function isDesktop() {
-  return typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches;
-}
-
 function FooterServiceColumn({ title, slug, categories }) {
-  // Open by default on desktop; collapsed on mobile (accordion).
-  const [open, setOpen] = useState(isDesktop);
+  // Collapsed by default at every width so the footer only shows the category
+  // headings up front; each section expands on click/tap.
+  const [open, setOpen] = useState(false);
   const panelId = `footer-panel-${slug}`;
 
   return (
@@ -25,7 +22,7 @@ function FooterServiceColumn({ title, slug, categories }) {
       className={`footer-column footer-column--service${open ? ' is-open' : ''}`}
       aria-label={title}
     >
-      <h3 className="footer-column-title footer-card-title-1">
+      <h3 className="footer-column-title footer-column-title--accordion">
         <button
           type="button"
           className="footer-column-toggle"

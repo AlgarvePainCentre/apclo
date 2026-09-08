@@ -924,30 +924,18 @@ footer img[alt="Algarve Pain Centre"] {
   font-weight: 600;
 }
 
-@media (max-width: 767px) {
-  .footer-column--service .footer-column-content {
-    display: none;
-  }
-  .footer-column--service.is-open .footer-column-content {
-    display: block;
-    padding-bottom: 8px;
-  }
-  .footer-column--service .footer-column-title {
-    padding: 16px 0;
-    margin: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.16);
-  }
+/* Collapsed by default at every width; expands on click/tap. */
+.footer-column--service .footer-column-content {
+  display: none;
 }
 
-@media (min-width: 768px) {
-  .footer-column--service .footer-column-content {
-    display: block;
-  }
-  .footer-column--service .footer-column-toggle {
-    cursor: default;
-    pointer-events: none;
-  }
-  .footer-column--service .footer-column-chevron {
-    display: none;
-  }
+.footer-column--service.is-open .footer-column-content {
+  display: block;
+  padding-bottom: 8px;
+}
+
+.footer-column--service .footer-column-title {
+  padding: 16px 0;
+  margin: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.16);
 }
