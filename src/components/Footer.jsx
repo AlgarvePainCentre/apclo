@@ -1,35 +1,63 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { specialitiesCategories, treatmentsCategories, resourceCategories } from '../data/navigation';
 
-const footerColumns = [
-  {
-    title: 'Specialities',
-    items: specialitiesCategories.flatMap((category) =>
-      category.items.map((item) => ({
-        label: item.label,
-        to: item.path,
-      }))
-    ),
-  },
-  {
-    title: 'Treatments',
-    items: treatmentsCategories.flatMap((category) =>
-      category.items.map((item) => ({
-        label: item.label,
-        to: item.path,
-      }))
-    ),
-  },
-  {
-    title: 'Resources',
-    items: resourceCategories.flatMap((category) =>
-      category.items.map((item) => ({
-        label: item.label,
-        to: item.path,
-      }))
-    ),
-  },
+// Service columns keep their category grouping (Pain Medicine, Surgical
+// Treatments, ...) and collapse into an accordion on mobile to cut the amount
+// of information shown up front; on desktop they stay expanded as columns.
+const footerNav = [
+  { title: 'Specialities', slug: 'specialities', categories: specialitiesCategories },
+  { title: 'Treatments', slug: 'treatments', categories: treatmentsCategories },
+  { title: 'Resources', slug: 'resources', categories: resourceCategories },
 ];
+
+function isDesktop() {
+  return typeof window !== 'undefined' && window.matchMedia('(min-width: 768px)').matches;
+}
+
+function FooterServiceColumn({ title, slug, categories }) {
+  // Open by default on desktop; collapsed on mobile (accordion).
+  const [open, setOpen] = useState(isDesktop);
+  const panelId = `footer-panel-${slug}`;
+
+  return (
+    <section
+      className={`footer-column footer-column--service${open ? ' is-open' : ''}`}
+      aria-label={title}
+    >
+      <h3 className="footer-column-title footer-card-title-1">
+        <button
+          type="button"
+          className="footer-column-toggle"
+          aria-expanded={open}
+          aria-controls={panelId}
+          onClick={() => setOpen((value) => !value)}
+        >
+          <span>{title}</span>
+          <svg className="footer-column-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </button>
+      </h3>
+      <div className="footer-column-content" id={panelId}>
+        {categories.map((category) => (
+          <div className="footer-subgroup" key={category.title}>
+            <h4 className="footer-subgroup-title">{category.title}</h4>
+            <ul className="footer-column-list">
+              {category.items.map((item) => (
+                <li key={item.path} className="footer-column-item">
+                  <Link to={item.path} className="footer-link">
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}
 
 export default function Footer() {
   return (
@@ -134,37 +162,13 @@ export default function Footer() {
               </div>
             </div>
           </section>
-          {footerColumns.map((column) => (
-            <section
-              key={column.title}
-              className="footer-column"
-              aria-label={column.title}
-            >
-              <h3 className="footer-column-title footer-card-title-1">{column.title}</h3>
-              <div className="footer-card-title"></div>
-              <ul className="footer-column-list">
-                {column.items.map((item) => (
-                  <li key={item.to} className="footer-column-item">
-                    {item.to.startsWith('/') ? (
-                      <Link
-                        to={item.to}
-                        className="footer-link"
-                      >
-                        {item.label}
-                      </Link>
-                    ) : (
-                      <a
-                        href={item.to}
-                        className="footer-link"
-                        aria-label={item.label}
-                      >
-                        {item.label}
-                      </a>
-                    )}
-                  </li>
-                ))}
-              </ul>
-            </section>
+          {footerNav.map((column) => (
+            <FooterServiceColumn
+              key={column.slug}
+              title={column.title}
+              slug={column.slug}
+              categories={column.categories}
+            />
           ))}
         </div>
         <div className="site-footer-bottom">
