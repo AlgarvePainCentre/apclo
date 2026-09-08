@@ -15,7 +15,7 @@
 }
 
 .botulin-toxin-injection-page .btx-overview-inner {
-  max-width: 1100px;
+  max-width: var(--container);
   margin: 0 auto;
   display: grid;
   gap: clamp(36px, 6vw, 72px);
@@ -136,7 +136,7 @@
 }
 
 .botulin-toxin-injection-page .btx-expect-inner {
-  max-width: 1100px;
+  max-width: var(--container);
   margin: 0 auto;
 }
 
@@ -246,13 +246,13 @@
 }
 
 .botulin-toxin-injection-page .btx-benefits-inner {
-  max-width: 1100px;
+  max-width: var(--container);
   margin: 0 auto;
 }
 
 .botulin-toxin-injection-page .btx-benefits-header {
   text-align: center;
-  max-width: 980px;
+  max-width: var(--container-narrow);
   margin: 0 auto 40px;
 }
 
@@ -353,7 +353,7 @@
 }
 
 .botulin-toxin-injection-page .btx-conditions-inner {
-  max-width: 1100px;
+  max-width: var(--container);
   margin: 0 auto;
 }
 
@@ -456,7 +456,7 @@
 }
 
 .botulin-toxin-injection-page .btx-faq-inner {
-  max-width: 1100px;
+  max-width: var(--container);
   margin: 0 auto;
 }
 

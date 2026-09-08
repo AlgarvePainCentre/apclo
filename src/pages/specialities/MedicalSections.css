@@ -73,7 +73,7 @@
 .ms-hero__cta:hover{transform:translateY(-1px)}
 .ms-hero__cta:focus-visible{outline:3px solid rgba(147,197,253,.9);outline-offset:3px}
 
-.specialities-page{--psx-max:1160px;--psx-gutter:clamp(16px,4vw,32px);--cta-bg-color:#d3243b;--cta-text-color:#ffffff;--cta-padding:1.2rem 1.5rem;--cta-border-radius:999px;--cta-font-size:16px;--cta-font-weight:600;--cta-letter-spacing:0.08em}
+.specialities-page{--psx-max:var(--container);--psx-gutter:clamp(16px,4vw,32px);--cta-bg-color:#d3243b;--cta-text-color:#ffffff;--cta-padding:1.2rem 1.5rem;--cta-border-radius:999px;--cta-font-size:16px;--cta-font-weight:600;--cta-letter-spacing:0.08em}
 .specialities-page .hero.psx-hero{position:relative;padding:clamp(56px,8vw,96px) var(--psx-gutter);padding-top:clamp(92px,10vw,128px);color:#fff;overflow:hidden;display:block;min-height:auto;background:transparent;top:auto;border-radius:0;margin:0}
 .specialities-page .hero.psx-hero .hero-video.psx-hero-backdrop{position:absolute;inset:0;background-image:none;background-color:#000;overflow:hidden;z-index:0;filter:none;pointer-events:none}
 .specialities-page .hero.psx-hero .hero-video::after{content:none}
@@ -109,7 +109,7 @@
 }
 
 .condition-main .treatments-overview-header,.head-pain-main .treatments-overview-header,.cervical-spine-pain-main .treatments-overview-header,.ms-treatments__header{
-  max-width:var(--ms-container);
+  max-width:var(--container);
   margin:0 0 28px;
   text-align:left;
   position:relative;
@@ -151,7 +151,7 @@
 .condition-contact::before,.condition-faq::before,.condition-syndromes::before{content:none}
 .condition-approaches{background-color:transparent;border:none;box-shadow:none;padding:0;margin:40px auto 32px}
 .condition-approaches::before{content:none}
-.condition-approaches-inner{background-color:transparent;border-radius:28px;padding:2.5rem 1.25rem 3rem;max-width:var(--ms-container);margin:0 auto}
+.condition-approaches-inner{background-color:transparent;border-radius:28px;padding:2.5rem 1.25rem 3rem;max-width:var(--container);margin:0 auto}
 .condition-approaches .treatments-overview-header{margin:0 0 2rem}
 .condition-approaches-grid{display:grid;grid-template-columns:1fr;gap:24px}
 .condition-approach-card{border-radius:var(--ms-radius-md);overflow:hidden;background:#f8fafc;box-shadow:var(--ms-shadow-md);display:flex;flex-direction:column;transition:transform 160ms ease-out,box-shadow 160ms ease-out,background-color 140ms ease-out}
@@ -194,7 +194,7 @@
 .condition-testimonial-author{font-weight:600;color:var(--ms-heading);font-style:normal}
 .condition-testimonial-location{opacity:.9}
 .condition-faq{padding-top:0}
-.condition-faq-inner{max-width:var(--ms-container);margin:0 auto}
+.condition-faq-inner{max-width:var(--container);margin:0 auto}
 .condition-faq-header{margin:0 0 24px;text-align:left}
 .condition-faq-title{margin:0 0 10px;font-size:clamp(1.6rem,1vw + 1.2rem,2.2rem);line-height:1.25;color:var(--ms-heading)}
 .condition-faq-subtitle{margin:0;font-size:14px;line-height:1.7;color:var(--ms-muted);max-width:52rem}
@@ -305,6 +305,6 @@
 
 @media (min-width:1440px){
   .condition-main{padding:48px 72px 96px}
-  .condition-approaches-inner{max-width:var(--ms-container)}
-  .condition-faq-inner{max-width:var(--ms-container)}
+  .condition-approaches-inner{max-width:var(--container)}
+  .condition-faq-inner{max-width:var(--container)}
 }

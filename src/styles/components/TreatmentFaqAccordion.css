@@ -62,7 +62,7 @@ Style dependencies:
 .dr-faq-header,
 .lds-faq-header,
 .vp-faq-header {
-  max-width: 980px;
+  max-width: var(--container-narrow);
   margin: 0 auto clamp(18px, 4vw, 32px);
   padding: 0 1rem;
   text-align: center;
@@ -124,7 +124,7 @@ Style dependencies:
 .dr-faq-card,
 .lds-faq-card,
 .vp-faq-card {
-  max-width: 980px;
+  max-width: var(--container-narrow);
   margin: 0 auto;
   background: transparent;
   border-radius: 0;

@@ -1154,7 +1154,7 @@
 }
 
 .home-section-testimonial-inner {
-  max-width: var(--container-width);
+  max-width: var(--container);
   margin: 0 auto;
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
@@ -1344,7 +1344,7 @@
   gap: clamp(20px, 3vw, 48px);
   padding: clamp(20px, 2.6vw, 48px);
   min-height: clamp(420px, 56vh, 780px);
-  max-width: var(--container-width);
+  max-width: var(--container);
   width: 100%;
   border-radius: 24px;
   background: transparent;
@@ -1494,7 +1494,7 @@
   overflow: hidden;
 }
 .home-section-stories-inner {
-  max-width: var(--container-width);
+  max-width: var(--container);
   margin: 0 auto;
 }
 .home-stories-header {
@@ -1763,7 +1763,7 @@
 }
 
 .home-section-mainpain-inner {
-  max-width: var(--container-width);
+  max-width: var(--container);
   margin: 0 auto;
 }
 
@@ -2448,14 +2448,14 @@
 }
 
 .home-section-treatment-inner {
-  max-width: var(--container-width);
+  max-width: var(--container);
   margin: 0 auto;
   margin-top: 88px;
   margin-bottom: 88px;
 }
 
 .home-section-treatment-header {
-  max-width: var(--container-width);
+  max-width: var(--container);
   margin: 0 0 88px;
   text-align: left;
   position: relative;
@@ -2594,7 +2594,7 @@
     flex-direction: column;
   }
   .home-section-treatment-inner {
-    max-width: var(--container-width);
+    max-width: var(--container);
     margin: 0 auto;
     margin-top: 0;
     margin-bottom: 88px;
@@ -2991,7 +2991,7 @@
 }
 
 .home-section-location .home-section-location-inner {
-  max-width: var(--container-width);
+  max-width: var(--container);
   width: 100%;
   margin: 0 auto;
 }
@@ -3491,7 +3491,7 @@
 }
 
 .home-section-why-choose-inner {
-  max-width: var(--container-width);
+  max-width: var(--container);
   margin: 0 auto;
 }
 
@@ -3595,7 +3595,7 @@
 }
 
 .home-section-team-inner {
-  max-width: var(--container-width);
+  max-width: var(--container);
   margin: 0 auto;
 }
 
@@ -3636,7 +3636,7 @@
   margin: 0 auto;
 }
 .home-section-faq-inner {
-  max-width: var(--container-width);
+  max-width: var(--container);
   margin: 0 auto;
 }
 .home-section-faq-header {
