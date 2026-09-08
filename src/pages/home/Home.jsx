@@ -624,6 +624,22 @@ export default function Home() {
                     </article>
                   </Link>
                 </li>
+                <li className="home-centers-item" role="listitem">
+                  <Link
+                    to="/contact"
+                    className="home-centers-card"
+                    aria-label="Contact Algarve Migraine & Neurotherapy Centre"
+                    onClick={() => trackEvent('nav_click', { to: 'contact', location: 'home-centers', center: 'algarve-migraine-neurotherapy-centre' })}
+                  >
+                    <article className="home-centers-card-inner">
+                      <h4 className="home-centers-card-title">Algarve Migraine &amp; Neurotherapy Centre</h4>
+                      <p className="home-centers-card-body">
+                        Dedicated migraine and headache care, with neurotherapy pathways and preventive treatment planning.
+                      </p>
+                      <span className="home-centers-card-cta" aria-hidden="true">Contact centre →</span>
+                    </article>
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
