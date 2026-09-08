@@ -882,3 +882,72 @@ footer img[alt="Algarve Pain Centre"] {
     background-position: -100% 0;
   }
 }
+
+/* --- Footer service columns: accordion on mobile, columns on desktop --- */
+.footer-column--service .footer-column-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  color: inherit;
+  font: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.footer-column--service .footer-column-chevron {
+  flex: none;
+  transition: transform 0.2s ease;
+}
+
+.footer-column--service.is-open .footer-column-chevron {
+  transform: rotate(180deg);
+}
+
+.footer-subgroup + .footer-subgroup {
+  margin-top: 18px;
+}
+
+.footer-subgroup-title {
+  margin: 0 0 8px;
+  font-size: 0.76rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.62);
+  font-weight: 600;
+}
+
+@media (max-width: 767px) {
+  .footer-column--service .footer-column-content {
+    display: none;
+  }
+  .footer-column--service.is-open .footer-column-content {
+    display: block;
+    padding-bottom: 8px;
+  }
+  .footer-column--service .footer-column-title {
+    padding: 16px 0;
+    margin: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.16);
+  }
+}
+
+@media (min-width: 768px) {
+  .footer-column--service .footer-column-content {
+    display: block;
+  }
+  .footer-column--service .footer-column-toggle {
+    cursor: default;
+    pointer-events: none;
+  }
+  .footer-column--service .footer-column-chevron {
+    display: none;
+  }
+}
