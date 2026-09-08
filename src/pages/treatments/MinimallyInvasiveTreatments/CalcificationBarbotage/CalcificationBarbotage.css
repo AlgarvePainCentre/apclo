@@ -9,7 +9,7 @@
   /* Page specific styles */
   background-color: #f8fafc;
   color: #111827;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-family: 'CircularStd-Book', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
 /* Ensure the main container mirrors specialities layout */
