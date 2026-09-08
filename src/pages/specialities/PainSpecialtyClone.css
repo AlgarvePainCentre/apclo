@@ -5,7 +5,7 @@
   overflow-x: hidden;
   background: #f8fafc;
   color: #0f172a;
-  --psx-max: 1160px;
+  --psx-max: var(--container);
   --psx-gutter: clamp(16px, 4vw, 32px);
   --psx-radius-lg: 24px;
   --psx-radius-md: 16px;
@@ -156,7 +156,9 @@
 }
 
 .psx-section {
-  margin: 0;
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
   background: transparent;
 }
 
@@ -1287,7 +1289,7 @@
 }
 
 .psx-approaches-grid {
-  max-width: 1200px;
+  max-width: var(--container);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

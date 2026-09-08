@@ -3,7 +3,7 @@
   overflow-x: hidden;
   background: linear-gradient(180deg, #f8fafc 0%, #f6f8fb 100%);
   color: #0f172a;
-  --blog-max: 1160px;
+  --blog-max: var(--container);
   --blog-gutter: clamp(16px, 4vw, 32px);
   --blog-radius-lg: 20px;
   --blog-radius-md: 14px;

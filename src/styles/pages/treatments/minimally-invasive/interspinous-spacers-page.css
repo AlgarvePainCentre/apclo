@@ -15,7 +15,7 @@
 }
 
 .interspinous-spacers-page .iss-overview-inner {
-  max-width: 1100px;
+  max-width: var(--container);
   margin: 0 auto;
   display: grid;
   gap: clamp(36px, 6vw, 72px);
@@ -142,13 +142,13 @@
 }
 
 .interspinous-spacers-page .iss-expect-inner {
-  max-width: 1100px;
+  max-width: var(--container);
   margin: 0 auto;
 }
 
 .interspinous-spacers-page .iss-expect-header {
   text-align: center;
-  max-width: 980px;
+  max-width: var(--container-narrow);
   margin: 0 auto 34px;
 }
 
@@ -258,13 +258,13 @@
 }
 
 .interspinous-spacers-page .iss-benefits-inner {
-  max-width: 1100px;
+  max-width: var(--container);
   margin: 0 auto;
 }
 
 .interspinous-spacers-page .iss-benefits-header {
   text-align: center;
-  max-width: 980px;
+  max-width: var(--container-narrow);
   margin: 0 auto 34px;
 }
 
@@ -332,7 +332,7 @@
 }
 
 .interspinous-spacers-page .iss-conditions-inner {
-  max-width: 1100px;
+  max-width: var(--container);
   margin: 0 auto;
 }
 
@@ -437,7 +437,7 @@
 }
 
 .interspinous-spacers-page .iss-right-for-you-inner {
-  max-width: 1100px;
+  max-width: var(--container);
   margin: 0 auto;
 }
 
@@ -493,7 +493,7 @@
 }
 
 .interspinous-spacers-page .iss-faq-inner {
-  max-width: 1100px;
+  max-width: var(--container);
   margin: 0 auto;
 }
 

@@ -5,7 +5,7 @@
   overflow-x: hidden;
   background: linear-gradient(180deg, #f8fafc 0%, #f6f8fb 100%);
   color: #0f172a;
-  --hp-max: 1160px;
+  --hp-max: var(--container);
   --hp-gutter: clamp(16px, 4vw, 32px);
   --hp-radius-lg: 24px;
   --hp-radius-md: 16px;

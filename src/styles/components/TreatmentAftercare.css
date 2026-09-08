@@ -74,7 +74,7 @@
   display: grid !important;
   grid-template-columns: 1fr !important;
   gap: 40px !important;
-  max-width: var(--container-width, 1600px) !important;
+  max-width: var(--container) !important;
   margin: 0 auto !important;
   align-items: start !important;
   padding: 0 !important;

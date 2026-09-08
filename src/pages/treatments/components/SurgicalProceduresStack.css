@@ -15,7 +15,7 @@
 }
 
 .treatment-category-inner {
-  max-width: var(--container-width, 1600px);
+  max-width: var(--container);
   margin: 0 auto;
 }
 

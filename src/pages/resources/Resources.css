@@ -10,7 +10,7 @@
   --shadow-sm: none;
   --shadow-md: none;
   --shadow-lg: none;
-  --psx-max: 1160px;
+  --psx-max: var(--container);
   --psx-gutter: clamp(16px, 4vw, 32px);
   min-height: 100vh;
   background-color: var(--bg-light);
@@ -73,7 +73,7 @@
 .resources-page .page-section {
   padding: 80px 24px;
   margin: 0 auto;
-  max-width: var(--container-width);
+  max-width: var(--container);
 }
 
 
@@ -132,7 +132,7 @@
 }
 
 .tips-carousel-header {
-  max-width: var(--container-width);
+  max-width: var(--container);
   margin: 0 auto 28px;
   display: flex;
   align-items: flex-start;
@@ -191,7 +191,7 @@
 }
 
 .tips-carousel-stage {
-  max-width: var(--container-width);
+  max-width: var(--container);
   margin: 0 auto;
 }
 
@@ -226,7 +226,7 @@
 }
 
 .tips-grid--static {
-  max-width: var(--container-width);
+  max-width: var(--container);
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -444,7 +444,7 @@
   }
 
   .tips-grid.tips-carousel {
-    max-width: var(--container-width);
+    max-width: var(--container);
     margin: 0 auto;
     display: flex;
     gap: 14px;
@@ -624,7 +624,7 @@
   display: flex;
   align-items: center;
   gap: 64px;
-  max-width: var(--container-width);
+  max-width: var(--container);
   margin: 0 auto;
 }
 
@@ -930,7 +930,7 @@ button:disabled,
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
-  max-width: var(--container-width);
+  max-width: var(--container);
 }
 
 @media (max-width: 1100px) {

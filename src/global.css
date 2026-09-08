@@ -12,6 +12,13 @@
   --color-midBlue: #a2d6f4;
   --color-darkBlue: #60bbef;
   --container-width: 1600px;
+  /* Unified content containers. --container-width stays the wide value used
+     by heroes, full-bleed banners and the navbar; content sections should use
+     these instead so every page shares one measure. */
+  --container: 1200px;          /* standard text/content sections */
+  --container-narrow: 980px;    /* centred section headers, narrow copy */
+  --container-wide: var(--container-width, 1600px); /* full-bleed / hero */
+  --container-gutter: clamp(16px, 4vw, 32px);
   --nectar-border-radius: 200px;
   --nectar-body-line-height: 16px;
   --nectar-body-font-size: 14px;
