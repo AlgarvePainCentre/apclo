@@ -478,7 +478,7 @@
 }
 
 .treatments-page .treatments-approaches-inner {
-  max-width: 1240px;
+  max-width: var(--container);
   margin: 0 auto;
 }
 
