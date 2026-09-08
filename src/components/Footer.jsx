@@ -22,7 +22,7 @@ function FooterServiceColumn({ title, slug, categories }) {
       className={`footer-column footer-column--service${open ? ' is-open' : ''}`}
       aria-label={title}
     >
-      <h3 className="footer-column-title footer-card-title-1">
+      <h3 className="footer-column-title footer-column-title--accordion">
         <button
           type="button"
           className="footer-column-toggle"
