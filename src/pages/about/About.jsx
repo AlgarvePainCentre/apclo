@@ -346,6 +346,21 @@ export default function About() {
                     </article>
                   </Link>
                 </li>
+                <li className="home-centers-item" role="listitem">
+                  <Link
+                    to="/contact"
+                    className="home-centers-card"
+                    aria-label="Contact Algarve Migraine & Neurotherapy Centre"
+                  >
+                    <article className="home-centers-card-inner">
+                      <h4 className="home-centers-card-title">Algarve Migraine &amp; Neurotherapy Centre</h4>
+                      <p className="home-centers-card-body">
+                        Dedicated migraine and headache care, with neurotherapy pathways and preventive treatment planning.
+                      </p>
+                      <span className="home-centers-card-cta" aria-hidden="true">Contact centre →</span>
+                    </article>
+                  </Link>
+                </li>
               </ul>
            </div>
         </section>
