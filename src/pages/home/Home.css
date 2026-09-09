@@ -4024,6 +4024,13 @@
   }
 }
 
+/* Headline was inheriting the global h2 (3rem), which feels oversized in
+   the narrower FAQ column — bring it down to a calmer, responsive size. */
+.home-page .home-section-faq .home-section-why-choose-title {
+  font-size: clamp(24px, 1.1rem + 1.1vw, 32px);
+  line-height: 1.22;
+}
+
 .home-section-faq .home-section-why-choose-grid {
   gap: 0;
   background: transparent;
