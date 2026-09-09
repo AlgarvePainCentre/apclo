@@ -343,7 +343,7 @@ code {
 .footer-brand-social {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 8px;
   margin-top: 4px;
 }
 
