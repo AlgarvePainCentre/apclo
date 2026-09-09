@@ -317,7 +317,7 @@ code {
 .site-footer {
   background-color: #0f4681;
   color: var(--color-white);
-  padding: 1.4rem 24px 56px;
+  padding: 72px 24px 56px;
 }
 
 .site-footer-inner {
@@ -365,8 +365,8 @@ code {
 }
 
 .footer-brand-logo {
-  width: 132px;
-  max-width: 60%;
+  width: 160px;
+  max-width: 70%;
   height: auto;
 }
 
