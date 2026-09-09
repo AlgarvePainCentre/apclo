@@ -145,9 +145,11 @@ export default function Footer() {
 
           <FooterColumn title="Specialities" items={specialityLinks} moreNoun="specialities" />
           <FooterColumn title="Treatments" items={treatmentLinks} moreNoun="treatments" />
-          <FooterColumn title="Company" items={companyLinks} />
           <FooterColumn title="Resources" items={resourceLinks} />
-          <FooterColumn title="Connect" items={connectLinks} />
+          <div className="footer-column footer-stack">
+            <FooterColumn title="Company" items={companyLinks} />
+            <FooterColumn title="Connect" items={connectLinks} />
+          </div>
         </div>
 
         <div className="site-footer-bottom">

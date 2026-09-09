@@ -330,13 +330,20 @@ code {
 
 .site-footer-top {
   display: grid;
-  grid-template-columns: minmax(0, 1.5fr) repeat(5, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1.5fr) repeat(4, minmax(0, 1fr));
   gap: 40px 32px;
   align-items: start;
 }
 
 .footer-column {
   min-width: 0;
+}
+
+/* Last column stacks Company over Connect. */
+.footer-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
 /* Brand column (logo + address + contact) on the far left, Linear-style. */
