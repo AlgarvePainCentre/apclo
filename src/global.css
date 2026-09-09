@@ -328,83 +328,55 @@ code {
   gap: 64px;
 }
 
-.footer-card-title-1 {
-  width: 48px;
-  height: 2px;
-  background-color: transparent;
-  margin: 6px 0 12px;
-}
-
-.footer-card-title {
-  width: 48px;
-  height: 2px;
-  background-color: var(--color-darkRed);
-  margin: 6px 0 12px;
-}
-
-
 .site-footer-top {
   display: grid;
-  grid-template-columns: minmax(0, 2fr) repeat(3, minmax(0, 1fr));
-  gap: 48px;
+  grid-template-columns: minmax(0, 1.5fr) repeat(5, minmax(0, 1fr));
+  gap: 40px 32px;
+  align-items: start;
 }
 
 .footer-column {
   min-width: 0;
 }
 
-.footer-column-health {
+/* Brand column (logo + address + contact) on the far left, Linear-style. */
+.footer-brand {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 20px;
 }
 
-footer img[alt="Algarve Pain Centre"] {
-  width: 80%;
+.footer-brand-logo {
+  width: 132px;
+  max-width: 60%;
   height: auto;
-  padding-bottom: 24px;
 }
 
-.footer-health-secondary {
+.footer-brand-info {
+  font-style: normal;
   display: flex;
-  gap: 32px;
-  margin-top: 24px;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.footer-subcolumn {
-  flex: 1;
-}
-
-.footer-health-logo {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 64px;
-  height: 64px;
-  border-radius: 999px;
-  background: #005384;
-  font-weight: 600;
-  font-size: 1rem;
-}
-
-.footer-health-address {
+.footer-brand-address {
   margin: 0;
-  font-size: 1.6rem;
-  color: var(--color-white);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.66);
 }
 
-.footer-health-contact {
-  margin-top: 4px;
-  font-size: 1.2rem;
-  color: var(--color-white);
+.footer-brand-contact {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.7;
 }
 
 .footer-column-title {
-  padding-top: 24px;
-  margin: 0 0 1.6rem;
-  font-size: 1.2rem;
+  margin: 0 0 16px;
+  font-size: 0.95rem;
+  font-weight: 600;
   letter-spacing: 0;
-  text-transform: uppercase;
   color: var(--color-white);
 }
 
@@ -420,36 +392,48 @@ footer img[alt="Algarve Pain Centre"] {
 
 .footer-link {
   display: inline-block;
-  font-size: 1.1rem;
-  color: var(--color-white);
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: rgba(255, 255, 255, 0.66);
   text-decoration: none;
-  padding: 8px 0;
+  padding: 6px 0;
   margin: 0;
-  position: relative;
-  transition: color 0.2s ease, opacity 0.2s ease;
+  transition: color 0.18s ease;
 }
 
-.footer-link:hover {
-  opacity: 1;
+.footer-link:hover,
+.footer-link:focus-visible {
+  color: var(--color-white);
+}
+
+/* "Show N more" disclosure at the foot of the long service columns. */
+.footer-more {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 0;
+  margin: 0;
+  background: none;
+  border: 0;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--color-midYellow);
+  cursor: pointer;
+  transition: color 0.18s ease;
+}
+
+.footer-more:hover,
+.footer-more:focus-visible {
   color: var(--color-darkYellow);
 }
 
-.footer-link::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 4px;
-  height: 2px;
-  background: var(--color-darkYellow);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 220ms ease;
+.footer-more-chevron {
+  flex: none;
+  transition: transform 0.2s ease;
 }
 
-.footer-link:hover::after,
-.footer-link:focus-visible::after {
-  transform: scaleX(1);
+.footer-more[aria-expanded='true'] .footer-more-chevron {
+  transform: rotate(180deg);
 }
 
 .site-footer-bottom {
@@ -543,9 +527,18 @@ footer img[alt="Algarve Pain Centre"] {
   border: 0;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1100px) {
   .site-footer-top {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .footer-brand {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 16px 40px;
+    margin-bottom: 8px;
   }
 }
 
@@ -556,23 +549,23 @@ footer img[alt="Algarve Pain Centre"] {
 
   .site-footer-top {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 32px;
+    gap: 28px;
   }
 
   .site-footer-bottom {
     flex-direction: column-reverse;
     align-items: flex-start;
   }
-
-  .footer-health-secondary {
-    flex-direction: column;
-    gap: 16px;
-  }
 }
 
 @media (max-width: 480px) {
   .site-footer-top {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  .footer-brand {
+    flex-direction: column;
+    align-items: flex-start;
   }
 }
 
@@ -894,59 +887,3 @@ footer img[alt="Algarve Pain Centre"] {
   }
 }
 
-/* --- Footer service columns: accordion on mobile, columns on desktop --- */
-.footer-column--service .footer-column-toggle {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  width: 100%;
-  background: none;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  color: inherit;
-  font: inherit;
-  font-weight: inherit;
-  letter-spacing: inherit;
-  text-align: left;
-  cursor: pointer;
-}
-
-.footer-column--service .footer-column-chevron {
-  flex: none;
-  transition: transform 0.2s ease;
-}
-
-.footer-column--service.is-open .footer-column-chevron {
-  transform: rotate(180deg);
-}
-
-.footer-subgroup + .footer-subgroup {
-  margin-top: 18px;
-}
-
-.footer-subgroup-title {
-  margin: 0 0 8px;
-  font-size: 0.76rem;
-  letter-spacing: 0;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.62);
-  font-weight: 600;
-}
-
-/* Collapsed by default at every width; expands on click/tap. */
-.footer-column--service .footer-column-content {
-  display: none;
-}
-
-.footer-column--service.is-open .footer-column-content {
-  display: block;
-  padding-bottom: 8px;
-}
-
-.footer-column--service .footer-column-title {
-  padding: 16px 0;
-  margin: 0;
-  border-top: 1px solid rgba(255, 255, 255, 0.16);
-}
