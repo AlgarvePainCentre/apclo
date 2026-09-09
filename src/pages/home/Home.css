@@ -4004,6 +4004,26 @@
   margin: 0 auto;
 }
 
+/* FAQ two-column layout: headline + subtext on the left, accordion on the
+   right. Scoped to the FAQ so the "Why choose" block is unaffected. Stacks
+   back to a single column below 901px. */
+@media (min-width: 901px) {
+  .home-section-faq .home-section-why-choose-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+    gap: clamp(40px, 6vw, 88px);
+    align-items: start;
+  }
+
+  .home-section-faq .home-section-why-choose-header {
+    margin-bottom: 0;
+  }
+
+  .home-section-faq .home-section-why-choose-layout {
+    padding: 0;
+  }
+}
+
 .home-section-faq .home-section-why-choose-grid {
   gap: 0;
   background: transparent;
