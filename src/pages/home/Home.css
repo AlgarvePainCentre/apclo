@@ -4027,6 +4027,11 @@
 
   .home-section-faq .home-section-why-choose-layout {
     padding: 0;
+    /* The base rule sets `margin: 0 auto`, which makes this grid item
+       shrink-to-content and centre — so the accordion box changed width
+       between collapsed and expanded. Force it to fill its column. */
+    width: 100%;
+    margin: 0;
   }
 }
 
