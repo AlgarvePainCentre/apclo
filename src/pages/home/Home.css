@@ -4000,8 +4000,34 @@
 
 /* Discovery chips */
 .home-section-faq {
-  padding: 2rem 1rem/*0 48px 80px*/;
+  padding: 2rem 1rem 6rem/*0 48px 80px*/;
   margin: 0 auto;
+}
+
+/* FAQ two-column layout: headline + subtext on the left, accordion on the
+   right. Scoped to the FAQ so the "Why choose" block is unaffected. Stacks
+   back to a single column below 901px. */
+@media (min-width: 901px) {
+  .home-section-faq .home-section-why-choose-inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(40px, 6vw, 88px);
+    align-items: start;
+  }
+
+  .home-section-faq .home-section-why-choose-header {
+    max-width: none;
+    margin-bottom: 0;
+  }
+
+  /* Generous breathing room between the headline and its intro paragraph. */
+  .home-section-faq .home-section-why-choose-title + .home-section-why-choose-subtitle {
+    margin-top: clamp(20px, 2.4vw, 36px);
+  }
+
+  .home-section-faq .home-section-why-choose-layout {
+    padding: 0;
+  }
 }
 
 .home-section-faq .home-section-why-choose-grid {

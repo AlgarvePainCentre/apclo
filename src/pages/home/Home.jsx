@@ -649,7 +649,7 @@ export default function Home() {
           <div className="home-section-why-choose-inner">
             <header className="home-section-why-choose-header">
               <p className="home-section-why-choose-eyebrow">
-                Frequently asked questions about Algarve Pain Centre
+                Frequently asked questions
               </p>
               <h2 className="home-section-why-choose-title">
                 Answers to common questions about our pain clinic in the Algarve
