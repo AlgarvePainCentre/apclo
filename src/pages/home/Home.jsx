@@ -567,7 +567,7 @@ export default function Home() {
                   <li className="home-centers-item" role="listitem" key={centre.slug}>
                     <Link
                       to={centre.path || '/contact'}
-                      className="home-centers-card"
+                      className={`home-centers-card${centre.logo ? ' home-centers-card--logo' : ''}`}
                       aria-label={centre.path ? `Visit ${centre.name}` : `Contact ${centre.name}`}
                       onClick={() => trackEvent('nav_click', { to: centre.path ? 'centre-page' : 'contact', location: 'home-centers', center: centre.slug })}
                     >
@@ -579,6 +579,11 @@ export default function Home() {
                         decoding="async"
                       />
                       <span className="home-centers-card-overlay" aria-hidden="true" />
+                      {centre.logo && (
+                        <span className="home-centers-card-logo" aria-hidden="true">
+                          <img src={centre.logo} alt="" loading="lazy" decoding="async" />
+                        </span>
+                      )}
                       <div className="home-centers-card-content">
                         <h4 className="home-centers-card-title">{centre.name}</h4>
                         <p className="home-centers-card-body">{centre.body}</p>

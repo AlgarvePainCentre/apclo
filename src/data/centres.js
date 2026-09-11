@@ -10,6 +10,10 @@ export const centres = [
     name: 'Algarve Pain Centre',
     image: '/assets/images/centres/pain-centre.webp',
     body: 'Evidence-based pain medicine with integrated rehabilitation and long-term care planning.',
+    // PROTOTYPE: a single full-colour icon per centre. The card paints it
+    // white by default and restores its colour on hover. Swap _stub-icon.svg
+    // for the real per-centre icon (same folder) once the client provides them.
+    logo: '/assets/images/centres/logos/_stub-icon.svg',
   },
   {
     slug: 'algarve-spine-centre',
