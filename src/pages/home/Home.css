@@ -3960,64 +3960,33 @@
 }
 
 /* --- Logo card variant (prototype) ---------------------------------------
-   Resting state shows only the centre icon in white. On hover/focus the icon
-   restores its brand colour and lifts, and the name + description + CTA
-   reveal beneath it. Needs one full-colour icon per centre (centre.logo). */
+   Left-aligned icon sitting above the always-visible centre name. On
+   hover/focus the icon restores its brand colour and the description + CTA
+   reveal beneath the name. Needs one full-colour icon per centre. */
 .home-centers-card-logo {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  transition: transform 340ms ease;
+  display: block;
+  margin: 0 0 2px;
+  line-height: 0;
 }
 
 .home-centers-card-logo img {
-  width: clamp(64px, 22%, 92px);
-  height: auto;
-  filter: brightness(0) invert(1); /* force pure white */
-  transition: filter 300ms ease, transform 340ms ease;
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  object-position: left center;
+  filter: brightness(0) invert(1); /* force pure white at rest */
+  transition: filter 300ms ease;
 }
 
-@media (hover: hover) {
-  /* In the logo variant, keep the name hidden at rest too, so the resting
-     state is purely the white icon. */
-  .home-centers-card--logo .home-centers-card-title {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 320ms ease, opacity 240ms ease;
-  }
-
-  .home-centers-card--logo:hover .home-centers-card-title,
-  .home-centers-card--logo:focus-within .home-centers-card-title {
-    max-height: 60px;
-    opacity: 1;
-  }
-
-  .home-centers-card--logo:hover .home-centers-card-logo,
-  .home-centers-card--logo:focus-within .home-centers-card-logo {
-    transform: translateY(-24%);
-  }
-
-  .home-centers-card--logo:hover .home-centers-card-logo img,
-  .home-centers-card--logo:focus-within .home-centers-card-logo img {
-    filter: none; /* restore brand colour */
-    transform: scale(0.8);
-  }
+.home-centers-card--logo:hover .home-centers-card-logo img,
+.home-centers-card--logo:focus-within .home-centers-card-logo img {
+  filter: none; /* restore brand colour */
 }
 
-/* Touch devices (no hover): show the coloured icon lifted, text already
-   visible via the existing hover-less rules. */
+/* Touch devices (no hover): show the coloured icon straight away. */
 @media (hover: none) {
-  .home-centers-card--logo .home-centers-card-logo {
-    transform: translateY(-24%);
-  }
   .home-centers-card--logo .home-centers-card-logo img {
     filter: none;
-    transform: scale(0.8);
   }
 }
 

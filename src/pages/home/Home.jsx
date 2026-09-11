@@ -579,12 +579,12 @@ export default function Home() {
                         decoding="async"
                       />
                       <span className="home-centers-card-overlay" aria-hidden="true" />
-                      {centre.logo && (
-                        <span className="home-centers-card-logo" aria-hidden="true">
-                          <img src={centre.logo} alt="" loading="lazy" decoding="async" />
-                        </span>
-                      )}
                       <div className="home-centers-card-content">
+                        {centre.logo && (
+                          <span className="home-centers-card-logo" aria-hidden="true">
+                            <img src={centre.logo} alt="" loading="lazy" decoding="async" />
+                          </span>
+                        )}
                         <h4 className="home-centers-card-title">{centre.name}</h4>
                         <p className="home-centers-card-body">{centre.body}</p>
                         <span className="home-centers-card-cta" aria-hidden="true">
