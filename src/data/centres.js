@@ -25,5 +25,6 @@ export const centres = [
     name: 'Algarve Migraine & Neurotherapy Centre',
     image: '/assets/images/Hero/HeadPain.webp',
     body: 'Dedicated migraine and headache care, with neurotherapy pathways and preventive treatment planning.',
+    path: '/algarve-migraine-neurotherapy-centre',
   },
 ];

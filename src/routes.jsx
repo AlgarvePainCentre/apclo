@@ -19,6 +19,7 @@ const routeEntries = [
   { path: 'doctor/:id', lazy: createLazyRouteModule(() => import('./pages/doctor/DoctorDetail')), preloadPath: '/doctor/:id' },
   { path: 'contact', lazy: createLazyRouteModule(() => import('./pages/contact/Contact')), preloadPath: '/contact' },
   { path: 'resources', lazy: createLazyRouteModule(() => import('./pages/resources/Resources')), preloadPath: '/resources' },
+  { path: 'algarve-migraine-neurotherapy-centre', lazy: createLazyRouteModule(() => import('./pages/centres/MigraineCentre/page')), preloadPath: '/algarve-migraine-neurotherapy-centre' },
 
   { path: 'specialities/pain-medicine/head-pain', lazy: createLazyRouteModule(() => import('./pages/specialities/PainMedicine/HeadPain/page')), preloadPath: '/specialities/pain-medicine/head-pain' },
   { path: 'specialities/pain-medicine/cervical-spine-pain', lazy: createLazyRouteModule(() => import('./pages/specialities/PainMedicine/CervicalSpinePain/page')), preloadPath: '/specialities/pain-medicine/cervical-spine-pain' },
