@@ -85,44 +85,47 @@
 
 .resources-page .section-header {
   text-align: center;
-  margin-bottom: 48px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto 44px;
+  max-width: 720px;
+}
+
+.resources-page .section-eyebrow {
+  margin: 0 0 10px;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--secondary-color);
 }
 
 .resources-page .section-header h2 {
-  font-size: 2.5rem;
-  margin-bottom: 16px;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
   color: #003d61;
 }
 
-.resources-page #control-over-spine-degeneration .section-header h2 {
-  color: #003d61;
+/* Shared accent bar under every section title ties the sections together. */
+.resources-page .section-header h2::after {
+  content: '';
+  display: block;
+  width: 56px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--color-darkRed);
+  margin: 16px auto 0;
 }
 
 .resources-page .section-header p {
-  font-size: 1.125rem;
+  font-size: 1.05rem;
   color: var(--text-light);
-  line-height: 1.6;
-}
-
-.resources-page .section-header.section-header--learn {
-  margin-bottom: 56px;
+  line-height: 1.7;
+  margin: 0;
 }
 
 .resources-page .section-header.section-header--learn h2 {
-  position: relative;
-  display: inline-block;
-  text-decoration-line: underline;
-  text-decoration-color: var(--accent-color, #f59e0b);
-  text-decoration-thickness: 3px;
-  text-underline-offset: 0.35em;
-  text-decoration-skip-ink: none;
-}
-
-.resources-page .section-header.section-header--learn p {
-  max-width: 64ch;
+  text-decoration: none;
 }
 
 /* Tips Carousel */
@@ -757,16 +760,34 @@
 }
 
 .info-item {
-  text-align: center;
+  text-align: left;
+  background: var(--bg-white);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 16px;
+  padding: 26px 24px;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
 }
 
 .info-item h3 {
-  font-size: 1.5rem;
-  margin-bottom: 16px;
+  font-size: 1.25rem;
+  margin: 0 0 12px;
+  padding-bottom: 12px;
   color: var(--primary-color);
+  position: relative;
+}
+
+.info-item h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 40px;
+  height: 2px;
+  background: var(--color-darkRed);
 }
 
 .info-item p {
+  margin: 0;
   color: var(--text-light);
   line-height: 1.6;
 }
@@ -780,10 +801,11 @@
 }
 
 .testimonial-card {
-  background: #f8fafc;
+  background: var(--bg-white);
   padding: 32px;
-  border-radius: var(--border-radius);
-  border: 1px solid #f1f5f9;
+  border-radius: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.05);
 }
 
 .stars {
