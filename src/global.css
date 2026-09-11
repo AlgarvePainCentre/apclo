@@ -23,6 +23,10 @@
   --container-narrow: min(88vw, 980px);     /* centred section headers, narrow copy */
   --container-wide: var(--container-width, 1600px); /* full-bleed / hero */
   --container-gutter: clamp(16px, 4vw, 32px);
+  /* Uniform card rhythm: one radius and one grid gap so the home (and other)
+     card sections share a consistent, rounded feel. */
+  --card-radius: 24px;
+  --card-gap: clamp(16px, 2.2vw, 24px);
   --nectar-border-radius: 200px;
   --nectar-body-line-height: 16px;
   --nectar-body-font-size: 14px;
