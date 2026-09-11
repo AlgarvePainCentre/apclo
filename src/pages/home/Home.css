@@ -3943,7 +3943,21 @@
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: max-height 320ms ease, opacity 240ms ease;
+    transform: translateY(8px);
+    /* Symmetric ease-in-out so the reveal and the hide feel identical
+       (an ease-out curve reverses to an ease-in, which reads as two
+       different speeds). One duration for every property. */
+    transition:
+      max-height 560ms cubic-bezier(0.65, 0, 0.35, 1),
+      opacity 560ms cubic-bezier(0.65, 0, 0.35, 1),
+      transform 560ms cubic-bezier(0.65, 0, 0.35, 1);
+  }
+
+  .home-centers-card:hover .home-centers-card-body,
+  .home-centers-card:focus-within .home-centers-card-body,
+  .home-centers-card:hover .home-centers-card-cta,
+  .home-centers-card:focus-within .home-centers-card-cta {
+    transform: translateY(0);
   }
 
   .home-centers-card:hover .home-centers-card-body,
@@ -3956,6 +3970,37 @@
   .home-centers-card:focus-within .home-centers-card-cta {
     max-height: 44px;
     opacity: 1;
+  }
+}
+
+/* --- Logo card variant (prototype) ---------------------------------------
+   Left-aligned icon sitting above the always-visible centre name. On
+   hover/focus the icon restores its brand colour and the description + CTA
+   reveal beneath the name. Needs one full-colour icon per centre. */
+.home-centers-card-logo {
+  display: block;
+  margin: 0 0 2px;
+  line-height: 0;
+}
+
+.home-centers-card-logo img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+  object-position: left center;
+  filter: brightness(0) invert(1); /* force pure white at rest */
+  transition: filter 300ms ease;
+}
+
+.home-centers-card--logo:hover .home-centers-card-logo img,
+.home-centers-card--logo:focus-within .home-centers-card-logo img {
+  filter: none; /* restore brand colour */
+}
+
+/* Touch devices (no hover): show the coloured icon straight away. */
+@media (hover: none) {
+  .home-centers-card--logo .home-centers-card-logo img {
+    filter: none;
   }
 }
 
