@@ -52,7 +52,8 @@
     { "source": "/testimonials/:slug*", "destination": "/resources", "permanent": true },
     { "source": "/signup", "destination": "/contact", "permanent": true },
     { "source": "/thank-you", "destination": "/contact", "permanent": true },
-    { "source": "/legal-information", "destination": "/company/terms-of-service", "permanent": true }
+    { "source": "/legal-information", "destination": "/company/terms-of-service", "permanent": true },
+    { "source": "/about-algarve-migraine-neurotherapy-centre", "destination": "/algarve-migraine-neurotherapy-centre", "permanent": true }
   ],
   "headers": [
     {

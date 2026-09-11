@@ -287,9 +287,9 @@ export default function About() {
                 {centres.map((centre) => (
                   <li className="home-centers-item" role="listitem" key={centre.slug}>
                     <Link
-                      to="/contact"
+                      to={centre.path || '/contact'}
                       className="home-centers-card"
-                      aria-label={`Contact ${centre.name}`}
+                      aria-label={centre.path ? `Visit ${centre.name}` : `Contact ${centre.name}`}
                     >
                       <img
                         className="home-centers-card-bg"
@@ -302,7 +302,9 @@ export default function About() {
                       <div className="home-centers-card-content">
                         <h4 className="home-centers-card-title">{centre.name}</h4>
                         <p className="home-centers-card-body">{centre.body}</p>
-                        <span className="home-centers-card-cta" aria-hidden="true">Contact centre →</span>
+                        <span className="home-centers-card-cta" aria-hidden="true">
+                          {centre.path ? 'Visit centre →' : 'Contact centre →'}
+                        </span>
                       </div>
                     </Link>
                   </li>
