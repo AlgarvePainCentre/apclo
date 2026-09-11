@@ -112,7 +112,7 @@ export default function Home() {
     if (prefersReducedMotion) {
       const vids = Array.from(
         document.querySelectorAll(
-          'video.hero-video-el, video.home-section-testimonial-video-el, video.home-section-cards-pain-video, video.mainpain-card-video, video.treatment-card-video'
+          'video.hero-video-el, video.home-section-testimonial-video-el, video.home-section-cards-pain-video, video.mainpain-card-video, video.treatment-card-video, video.home-team-video'
         )
       );
       vids.forEach((v) => {
@@ -125,7 +125,7 @@ export default function Home() {
     }
     const videos = Array.from(
       document.querySelectorAll(
-        'video.hero-video-el, video.home-section-testimonial-video-el, video.home-section-cards-pain-video, video.mainpain-card-video, video.treatment-card-video'
+        'video.hero-video-el, video.home-section-testimonial-video-el, video.home-section-cards-pain-video, video.mainpain-card-video, video.treatment-card-video, video.home-team-video'
       )
     );
     const onIntersect = (entries) => {
@@ -537,12 +537,13 @@ export default function Home() {
               >
                 <div className="home-team-image">
                   <video
-                    src="/assets/videos/Cir.h264.mp4"
+                    className="home-team-video"
+                    data-src="/assets/videos/Cir.h264.mp4"
                     autoPlay
                     muted
                     loop
                     playsInline
-                    preload="auto"
+                    preload="none"
                     aria-label="Rehabilitation team video"
                   />
                 </div>
