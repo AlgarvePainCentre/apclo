@@ -95,6 +95,11 @@ const routeEntries = [
   { path: 'resources/testimonials/overcoming-sciatica-pain', lazy: createLazyRouteModule(() => import('./pages/resources/Testimonials/OvercomingSciaticaPain/page')), preloadPath: '/resources/testimonials/overcoming-sciatica-pain' },
   { path: 'resources/testimonials/control-over-spine-degeneration', lazy: createLazyRouteModule(() => import('./pages/resources/Testimonials/ControlOverSpineDegeneration/page')), preloadPath: '/resources/testimonials/control-over-spine-degeneration' },
   { path: 'resources/testimonials/recovering-from-sports-injuries', lazy: createLazyRouteModule(() => import('./pages/resources/Testimonials/RecoveringFromSportsInjuries/page')), preloadPath: '/resources/testimonials/recovering-from-sports-injuries' },
+  { path: 'resources/testimonials/bernard-schack', lazy: createLazyRouteModule(() => import('./pages/resources/Testimonials/BernardSchack/page')), preloadPath: '/resources/testimonials/bernard-schack' },
+  { path: 'resources/testimonials/charlotte-klockare', lazy: createLazyRouteModule(() => import('./pages/resources/Testimonials/CharlotteKlockare/page')), preloadPath: '/resources/testimonials/charlotte-klockare' },
+  { path: 'resources/testimonials/peter-kruger', lazy: createLazyRouteModule(() => import('./pages/resources/Testimonials/PeterKruger/page')), preloadPath: '/resources/testimonials/peter-kruger' },
+  { path: 'resources/testimonials/rosa-marques', lazy: createLazyRouteModule(() => import('./pages/resources/Testimonials/RosaMarques/page')), preloadPath: '/resources/testimonials/rosa-marques' },
+  { path: 'resources/testimonials/padel-sports-medicine', lazy: createLazyRouteModule(() => import('./pages/resources/Testimonials/PadelSportsMedicine/page')), preloadPath: '/resources/testimonials/padel-sports-medicine' },
 
   { path: 'company/careers', lazy: createLazyRouteModule(() => import('./pages/company/Careers/page')), preloadPath: '/company/careers' },
   { path: 'company/press', lazy: createLazyRouteModule(() => import('./pages/company/Press/page')), preloadPath: '/company/press' },
