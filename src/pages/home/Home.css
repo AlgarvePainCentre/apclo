@@ -3943,7 +3943,18 @@
     max-height: 0;
     opacity: 0;
     overflow: hidden;
-    transition: max-height 320ms ease, opacity 240ms ease;
+    transform: translateY(8px);
+    transition:
+      max-height 560ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 480ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .home-centers-card:hover .home-centers-card-body,
+  .home-centers-card:focus-within .home-centers-card-body,
+  .home-centers-card:hover .home-centers-card-cta,
+  .home-centers-card:focus-within .home-centers-card-cta {
+    transform: translateY(0);
   }
 
   .home-centers-card:hover .home-centers-card-body,
