@@ -57,6 +57,7 @@ export const SPECIALITIES_NAV_ITEMS = [
   { to: '/specialities/stroke-medicine/clinical-and-secondary-prevention-of-stroke', title: 'Secondary prevention of stroke' },
   { to: '/specialities/stroke-medicine/feeding-autonomy', title: 'Feeding autonomy' },
   { to: '/specialities/stroke-medicine/speech-autonomy', title: 'Speech autonomy' },
+  { to: '/specialities/stroke-medicine/cognitive-autonomy', title: 'Cognitive autonomy' },
   { to: '/specialities/stroke-medicine/post-stroke-depression-and-mood-disorders', title: 'Post-stroke depression and mood disorders' },
   { to: '/specialities/stroke-medicine/medical-complications-post-stroke', title: 'Medical complications post stroke' },
   { to: '/specialities/stroke-medicine/post-stroke-spasticity', title: 'Post stroke spasticity' },
@@ -664,6 +665,20 @@ export const PAIN_MEDICINE_PAGE_CONTENT: Record<
       { id: 'dysarthria', label: 'Dysarthria', description: 'Motor speech difficulties due to weakness or incoordination.' },
       { id: 'apraxia', label: 'Apraxia of speech', description: 'Difficulty planning and sequencing the movements needed for speech.' },
       { id: 'swallow', label: 'Dysphagia', description: 'Swallowing difficulty requiring safety strategies and supervised progression.' },
+    ],
+  },
+  'cognitive-autonomy': {
+    heroImage: "/assets/images/Hero/Psychology.webp",
+    overview: [
+      'Cognitive autonomy supports the thinking skills people rely on for everyday independence after stroke — memory, attention, planning, orientation and perception.',
+      'We assess how these changes affect daily activities and build a personalised plan with practical strategies, compensatory tools and graded practice.',
+      'Therapy is coordinated with the wider team and with family, so progress carries over into real-life routines at home and in the community.',
+    ],
+    patterns: [
+      { id: 'memory', label: 'Memory', description: 'Difficulty forming or recalling new information, supported with routines, cues and memory aids.' },
+      { id: 'attention', label: 'Attention & concentration', description: 'Reduced focus or mental fatigue, addressed through pacing, environment changes and graded tasks.' },
+      { id: 'executive', label: 'Executive function', description: 'Planning, problem-solving and initiation difficulties, rebuilt through structured, goal-based practice.' },
+      { id: 'perception', label: 'Perception & awareness', description: 'Spatial neglect and perceptual changes, managed with scanning strategies and safety adaptations.' },
     ],
   },
   'post-stroke-depression-and-mood-disorders': {
