@@ -25,14 +25,14 @@
   color: #ffffff;
   cursor: pointer;
   font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-weight: 600;
+  letter-spacing: 0;
   transition: transform 0.2s ease, background-color 0.2s ease, opacity 0.2s ease;
 }
 
 .chatbot-launcher:hover {
   transform: translateY(-1px);
-  background: #e83d5b;
+  background: var(--cta-bg-hover, #a81a2f);
 }
 
 .chatbot-launcher:focus-visible,
