@@ -39,9 +39,13 @@
   --cta-border-radius: 999px;
   --cta-font-size: 16px;
   --cta-font-weight: 600;
-  --cta-letter-spacing: 0.08em;
+  --cta-letter-spacing: 0;
   --cta-height: 42px;
-  --cta-hover-gradient: linear-gradient(90deg, var(--warm-orange, #ff9a52) 40%, var(--warm-coral, #ff5c6e) 80%, var(--warm-rose, #e83d5b) 100%);
+  /* Hover: a slightly darker red instead of the warm gradient. Kept as a
+     flat gradient so existing `background-image: var(--cta-hover-gradient)`
+     usages still resolve. */
+  --cta-bg-hover: #a81a2f;
+  --cta-hover-gradient: linear-gradient(var(--cta-bg-hover), var(--cta-bg-hover));
 }
 
 html {
@@ -167,18 +171,17 @@ h2 {
   letter-spacing: var(--cta-letter-spacing);
   transform: scale(1);
   transition:
-    background-position 0.35s ease-out,
+    background-color 0.22s ease-out,
     box-shadow 0.28s ease-out,
     transform 0.28s ease-out;
 }
 
-.primary-btn:hover, 
-.secondary-btn:hover, 
+.primary-btn:hover,
+.secondary-btn:hover,
 .treatment-card-button:hover,
 .mainpain-card-cta:hover,
 .outline-btn:hover  {
-  background-image: var(--cta-hover-gradient);
-  background-position: 100% 50%;
+  background-color: var(--cta-bg-hover);
   transform: scale(1.03);
 }
 

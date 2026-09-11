@@ -168,9 +168,9 @@
   background-color: #d3243b;
   color: var(--color-white);
   font-size: 16px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0;
   font-weight: 600;
+  transition: background-color 0.22s ease-out, box-shadow 0.28s ease-out;
   cursor: pointer;
   background-size: 200% 200%;
   background-position: 0% 50%;
@@ -182,8 +182,7 @@
 }
 
 .navbar-cta:hover {
-  background-image: linear-gradient(90deg, var(--warm-orange, #ff9a52) 40%, var(--warm-coral, #ff5c6e) 80%, var(--warm-rose, #e83d5b) 100%);
-  background-position: 100% 50%;
+  background-color: var(--cta-bg-hover, #a81a2f);
   transform: none;
   text-decoration: none;
   color: var(--color-white);
