@@ -550,9 +550,21 @@
     list-style: none;
     margin: 0;
     padding: 0;
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: clamp(12px, 2vw, 18px);
+}
+
+.about-page .home-centers-item {
+    flex: 1 1 calc((100% - 2 * clamp(12px, 2vw, 18px)) / 3);
+    min-width: 0;
+    max-width: calc((100% - 2 * clamp(12px, 2vw, 18px)) / 3);
+    display: flex;
+}
+
+.about-page .home-centers-item > .home-centers-card {
+    width: 100%;
 }
 
 .about-page .home-centers-card {
@@ -726,8 +738,9 @@
         gap: 10px;
     }
 
-    .about-page .home-centers-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+    .about-page .home-centers-item {
+        flex-basis: calc((100% - clamp(12px, 2vw, 18px)) / 2);
+        max-width: calc((100% - clamp(12px, 2vw, 18px)) / 2);
     }
 }
 
@@ -777,8 +790,9 @@
         text-align: left;
     }
 
-    .about-page .home-centers-grid {
-        grid-template-columns: 1fr;
+    .about-page .home-centers-item {
+        flex-basis: 100%;
+        max-width: 100%;
     }
 
 
