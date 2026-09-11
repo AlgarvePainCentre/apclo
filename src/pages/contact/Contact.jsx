@@ -11,6 +11,7 @@ import ManagedEmbed from '../../components/ManagedEmbed';
 export default function Contact() {
   const heroRef = useRef(null);
   const heroVideoRef = useRef(null);
+  const messageRef = useRef(null);
   const mapUrl =
     'https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil&z=16&output=embed';
 
@@ -30,6 +31,23 @@ export default function Contact() {
     document.head.appendChild(script);
     return undefined;
   }, []);
+
+  // The "How can we help?" cards act as an entrance to the form: pick one and
+  // it jumps to the form, focuses the message and seeds a starter line so the
+  // visitor has a prompt to build on instead of a blank box.
+  const startEnquiry = (prefill) => {
+    const ta = messageRef.current;
+    if (ta && prefill && !ta.value.trim()) {
+      ta.value = prefill;
+    }
+    document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.setTimeout(() => {
+      if (!ta) return;
+      ta.focus({ preventScroll: true });
+      const end = ta.value.length;
+      ta.setSelectionRange(end, end);
+    }, 450);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -185,48 +203,43 @@ export default function Contact() {
       <main className="psx-main">
 
         <section className="psx-section">
-          <div className="psx-treatments-layout contact-two-col">
-            <article className="psx-card">
-              <h2 className="psx-card-title">How can we help you today?</h2>
-              <div className="psx-accent" />
-              <div className="contact-questions-grid">
-                <article className="contact-question-card">
-                  <h3 className="contact-question-title">Can you tell us about your pain?</h3>
-                  <div className="contact-question-accent" />
-                  <p className="contact-question-body">Describe your pain, and we&apos;ll work together to find relief.</p>
-                </article>
-                <article className="contact-question-card">
-                  <h3 className="contact-question-title">Not sure what treatment to get?</h3>
-                  <div className="contact-question-accent" />
-                  <p className="contact-question-body">
-                    Share your concerns, and we&apos;ll guide you toward the best treatment tailored to your needs.
-                  </p>
-                </article>
-                <article className="contact-question-card">
-                  <h3 className="contact-question-title">Not sure what is your condition?</h3>
-                  <div className="contact-question-accent" />
-                  <p className="contact-question-body">
-                    Tell us how you feel your pain, our team will help you understand and improve your condition.
-                  </p>
-                </article>
-                <article className="contact-question-card">
-                  <h3 className="contact-question-title">Have you been diagnosed?</h3>
-                  <div className="contact-question-accent" />
-                  <p className="contact-question-body">
-                    Tell us what you know and together we will reach a suitable approach and treatment for your case.
-                  </p>
-                </article>
-              </div>
-            </article>
-            <div className="contact-help-video" aria-hidden="true">
-              <img
-                className="contact-help-video-el"
-                src="/assets/images/illustrative/services-home-min-1.webp"
-                alt=""
-                decoding="async"
-              />
+          <article className="psx-card">
+            <h2 className="psx-card-title">How can we help you today?</h2>
+            <div className="psx-accent" />
+            <p className="psx-body">Pick the option that fits you best — it takes you straight to the form with a head start.</p>
+            <div className="contact-questions-grid">
+              <button type="button" className="contact-question-card" onClick={() => startEnquiry('I would like to describe my pain: ')}>
+                <h3 className="contact-question-title">Can you tell us about your pain?</h3>
+                <div className="contact-question-accent" />
+                <p className="contact-question-body">Describe your pain, and we&apos;ll work together to find relief.</p>
+                <span className="contact-question-cta" aria-hidden="true">Start here →</span>
+              </button>
+              <button type="button" className="contact-question-card" onClick={() => startEnquiry('I am not sure which treatment I need. ')}>
+                <h3 className="contact-question-title">Not sure what treatment to get?</h3>
+                <div className="contact-question-accent" />
+                <p className="contact-question-body">
+                  Share your concerns, and we&apos;ll guide you toward the best treatment tailored to your needs.
+                </p>
+                <span className="contact-question-cta" aria-hidden="true">Start here →</span>
+              </button>
+              <button type="button" className="contact-question-card" onClick={() => startEnquiry('I am not sure what my condition is. Here is how I feel: ')}>
+                <h3 className="contact-question-title">Not sure what is your condition?</h3>
+                <div className="contact-question-accent" />
+                <p className="contact-question-body">
+                  Tell us how you feel your pain, our team will help you understand and improve your condition.
+                </p>
+                <span className="contact-question-cta" aria-hidden="true">Start here →</span>
+              </button>
+              <button type="button" className="contact-question-card" onClick={() => startEnquiry('I have been diagnosed with: ')}>
+                <h3 className="contact-question-title">Have you been diagnosed?</h3>
+                <div className="contact-question-accent" />
+                <p className="contact-question-body">
+                  Tell us what you know and together we will reach a suitable approach and treatment for your case.
+                </p>
+                <span className="contact-question-cta" aria-hidden="true">Start here →</span>
+              </button>
             </div>
-          </div>
+          </article>
         </section>
 
         <section id="contact-form" className="psx-section">
@@ -278,6 +291,7 @@ export default function Contact() {
                     <textarea
                       id="contact-message"
                       name="message"
+                      ref={messageRef}
                       className="contact-textarea"
                       placeholder="Tell us more about your pain, symptoms or questions..."
                       rows={4}
