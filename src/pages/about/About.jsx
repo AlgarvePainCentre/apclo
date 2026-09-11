@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { doctorsData } from '../../data/doctorsData';
+import { centres } from '../../data/centres';
 import '../../styles/layout/site-sections.css';
 import '../../styles/pages/about-page.css';
 
@@ -283,84 +284,29 @@ export default function About() {
               </header>
 
               <ul className="home-centers-grid" role="list" aria-label="Medical centres">
-                <li className="home-centers-item" role="listitem">
-                  <Link
-                    to="/contact"
-                    className="home-centers-card"
-                    aria-label="Contact Algarve Spine Center"
-                  >
-                    <article className="home-centers-card-inner">
-                      <div className="home-centers-card-media" aria-hidden="true">
-                        <img
-                          src="/assets/SpineCenter.webp"
-                          alt=""
-                          loading="lazy"
-                          decoding="async"
-                          className="home-centers-card-mediaImage"
-                        />
+                {centres.map((centre) => (
+                  <li className="home-centers-item" role="listitem" key={centre.slug}>
+                    <Link
+                      to="/contact"
+                      className="home-centers-card"
+                      aria-label={`Contact ${centre.name}`}
+                    >
+                      <img
+                        className="home-centers-card-bg"
+                        src={centre.image}
+                        alt=""
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <span className="home-centers-card-overlay" aria-hidden="true" />
+                      <div className="home-centers-card-content">
+                        <h4 className="home-centers-card-title">{centre.name}</h4>
+                        <p className="home-centers-card-body">{centre.body}</p>
+                        <span className="home-centers-card-cta" aria-hidden="true">Contact centre →</span>
                       </div>
-                      <div className="home-centers-card-logoWrap">
-                        <img
-                          src="/assets/asc-preto.svg"
-                          alt="Algarve Spine Center"
-                          loading="lazy"
-                          decoding="async"
-                          className="home-centers-card-logo"
-                        />
-                        <span className="sr-only">Algarve Spine Center</span>
-                      </div>
-                      <p className="home-centers-card-body">
-                        Spine diagnostics, minimally invasive interventions, and surgical pathways coordinated by our team.
-                      </p>
-                      <span className="home-centers-card-cta" aria-hidden="true">Contact centre →</span>
-                    </article>
-                  </Link>
-                </li>
-                <li className="home-centers-item" role="listitem">
-                  <Link
-                    to="/contact"
-                    className="home-centers-card"
-                    aria-label="Contact Algarve Medical Center"
-                  >
-                    <article className="home-centers-card-inner">
-                      <h4 className="home-centers-card-title">Algarve Medical Center</h4>
-                      <p className="home-centers-card-body">
-                        Multidisciplinary consultations with fast access to imaging, rehabilitation, and follow-up care.
-                      </p>
-                      <span className="home-centers-card-cta" aria-hidden="true">Contact centre →</span>
-                    </article>
-                  </Link>
-                </li>
-                <li className="home-centers-item" role="listitem">
-                  <Link
-                    to="/contact"
-                    className="home-centers-card"
-                    aria-label="Contact Algarve Pain Centre"
-                  >
-                    <article className="home-centers-card-inner">
-                      <h4 className="home-centers-card-title">Algarve Pain Centre</h4>
-                      <p className="home-centers-card-body">
-                        Evidence-based pain medicine with integrated rehabilitation and long-term care planning.
-                      </p>
-                      <span className="home-centers-card-cta" aria-hidden="true">Contact centre →</span>
-                    </article>
-                  </Link>
-                </li>
-                <li className="home-centers-item" role="listitem">
-                  <Link
-                    to="/contact"
-                    className="home-centers-card"
-                    aria-label="Contact Algarve Migraine & Neurotherapy Centre"
-                  >
-                    <article className="home-centers-card-inner">
-                      <h4 className="home-centers-card-title">Algarve Migraine &amp; Neurotherapy Centre</h4>
-                      <p className="home-centers-card-body">
-                        Dedicated migraine and headache care, with neurotherapy pathways and preventive treatment planning.
-                      </p>
-                      <span className="home-centers-card-cta" aria-hidden="true">Contact centre →</span>
-                    </article>
-                  </Link>
-                </li>
+                    </Link>
+                  </li>
+                ))}
               </ul>
            </div>
         </section>
