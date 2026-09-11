@@ -667,6 +667,25 @@
     font-weight: 700;
 }
 
+/* Description + CTA reveal on hover / keyboard focus; visible by default on
+   touch devices (no hover). Space is reserved so the row doesn't reflow. */
+@media (hover: hover) {
+    .about-page .home-centers-card-body,
+    .about-page .home-centers-card-cta {
+        opacity: 0;
+        transform: translateY(6px);
+        transition: opacity 220ms ease, transform 220ms ease;
+    }
+
+    .about-page .home-centers-card:hover .home-centers-card-body,
+    .about-page .home-centers-card:focus-within .home-centers-card-body,
+    .about-page .home-centers-card:hover .home-centers-card-cta,
+    .about-page .home-centers-card:focus-within .home-centers-card-cta {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 /* Mobile Video Styles */
 .about-page .mobile-video-container {
     display: none;

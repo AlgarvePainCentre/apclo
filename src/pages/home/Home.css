@@ -3966,6 +3966,27 @@
   font-weight: 700;
 }
 
+/* The card just presents the centre by default; its description and CTA
+   reveal on hover (and keyboard focus). Space is reserved (opacity/transform
+   only) so the grid row doesn't reflow. On touch devices, which can't hover,
+   they stay visible. */
+@media (hover: hover) {
+  .home-centers-card-body,
+  .home-centers-card-cta {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 220ms ease, transform 220ms ease;
+  }
+
+  .home-centers-card:hover .home-centers-card-body,
+  .home-centers-card:focus-within .home-centers-card-body,
+  .home-centers-card:hover .home-centers-card-cta,
+  .home-centers-card:focus-within .home-centers-card-cta {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @media (max-width: 900px) {
   .home-centers-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
