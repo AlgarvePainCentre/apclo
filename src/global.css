@@ -19,8 +19,8 @@
      on small laptops and capped on large displays, so a 13" and a 16"/27"
      screen each get comfortable side gutters instead of a fixed 1200px that
      looks cramped on big screens and edge-tight on small ones. */
-  --container: clamp(1120px, 88vw, 1440px); /* standard text/content sections */
-  --container-narrow: min(88vw, 980px);     /* centred section headers, narrow copy */
+  --container: clamp(1120px, 92vw, 1440px); /* standard text/content sections */
+  --container-narrow: min(92vw, 980px);     /* centred section headers, narrow copy */
   --container-wide: var(--container-width, 1600px); /* full-bleed / hero */
   --container-gutter: clamp(16px, 4vw, 32px);
   --nectar-border-radius: 200px;
@@ -324,7 +324,7 @@ code {
 }
 
 .site-footer-inner {
-  max-width: var(--container-width);
+  max-width: var(--container);
   margin: 0 auto;
   display: flex;
   flex-direction: column;
