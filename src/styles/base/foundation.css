@@ -3,6 +3,7 @@
   src: url('/fonts/CircularStd-Book.otf') format('opentype');
   font-weight: normal;
   font-style: normal;
+  font-display: swap;
 }
 
 body {
