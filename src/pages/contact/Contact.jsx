@@ -8,6 +8,35 @@ import '../../pages/specialities/PainSpecialtyClone.css';
 import '../../styles/pages/contact-page.css';
 import ManagedEmbed from '../../components/ManagedEmbed';
 
+// "What brings you here?" options. Choosing one seeds the message so the
+// visitor starts from a prompt instead of a blank box.
+const CONTACT_REASONS = [
+  {
+    id: 'pain',
+    title: 'Tell us about your pain',
+    body: 'Describe your pain and we’ll work to find relief.',
+    starter: 'I would like to describe my pain: ',
+  },
+  {
+    id: 'treatment',
+    title: 'Not sure what treatment',
+    body: 'Share your concerns and we’ll guide the best option.',
+    starter: 'I am not sure which treatment I need. ',
+  },
+  {
+    id: 'condition',
+    title: 'Not sure of your condition',
+    body: 'Tell us how it feels and we’ll help you understand it.',
+    starter: 'I am not sure what my condition is. Here is how I feel: ',
+  },
+  {
+    id: 'diagnosed',
+    title: 'Already diagnosed',
+    body: 'Share what you know and we’ll plan your care.',
+    starter: 'I have been diagnosed with: ',
+  },
+];
+
 export default function Contact() {
   const heroRef = useRef(null);
   const heroVideoRef = useRef(null);
@@ -17,6 +46,23 @@ export default function Contact() {
   // Contact form submission (custom form -> /api/contact -> Zoho, with hCaptcha).
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
   const [errorMsg, setErrorMsg] = useState('');
+  const [selectedReason, setSelectedReason] = useState(null);
+  const [message, setMessage] = useState('');
+
+  // Picking a "What brings you here?" option seeds the message and takes the
+  // visitor to the form with the field focused, ready to add detail.
+  const selectReason = (reason) => {
+    setSelectedReason(reason.id);
+    setMessage(reason.starter);
+    document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    window.setTimeout(() => {
+      const ta = document.getElementById('contact-message');
+      if (!ta) return;
+      ta.focus({ preventScroll: true });
+      const end = ta.value.length;
+      ta.setSelectionRange(end, end);
+    }, 450);
+  };
   // Public site key; hCaptcha's always-pass TEST key by default so previews work.
   const hcaptchaSiteKey =
     import.meta.env.VITE_HCAPTCHA_SITEKEY || '10000000-ffff-ffff-ffff-000000000001';
@@ -62,6 +108,8 @@ export default function Contact() {
       if (res.ok && data.ok) {
         setStatus('success');
         form.reset();
+        setMessage('');
+        setSelectedReason(null);
         if (window.hcaptcha) window.hcaptcha.reset();
       } else {
         setStatus('error');
@@ -87,41 +135,6 @@ export default function Contact() {
       }
     } catch {}
     return undefined;
-  }, []);
-
-  useEffect(() => {
-    try {
-      const layout = document.querySelector('.contact-two-col');
-      if (!layout) {
-        console.warn('[Contact] contact-two-col container not found');
-        return;
-      }
-
-      const media = layout.querySelector('.contact-help-video');
-      if (media) {
-        media.remove();
-        console.info('[Contact] Removed contact help media container');
-      } else {
-        console.warn('[Contact] contact-help-video container not found');
-      }
-
-      const primaryCard = layout.querySelector('article.psx-card');
-      if (primaryCard) {
-        primaryCard.style.width = '100%';
-        primaryCard.style.maxWidth = '100%';
-        console.info('[Contact] Expanded primary card to full width');
-      } else {
-        console.warn('[Contact] Primary card element not found');
-      }
-
-      const secondaryMedia = document.querySelector('.contact-help-video-2');
-      if (secondaryMedia) {
-        secondaryMedia.remove();
-        console.info('[Contact] Removed secondary contact help media container');
-      }
-    } catch (err) {
-      console.warn('[Contact] Failed to update contact layout', err);
-    }
   }, []);
 
   useEffect(() => {
@@ -185,48 +198,30 @@ export default function Contact() {
       <main className="psx-main">
 
         <section className="psx-section">
-          <div className="psx-treatments-layout contact-two-col">
-            <article className="psx-card">
-              <h2 className="psx-card-title">How can we help you today?</h2>
-              <div className="psx-accent" />
-              <div className="contact-questions-grid">
-                <article className="contact-question-card">
-                  <h3 className="contact-question-title">Can you tell us about your pain?</h3>
-                  <div className="contact-question-accent" />
-                  <p className="contact-question-body">Describe your pain, and we&apos;ll work together to find relief.</p>
-                </article>
-                <article className="contact-question-card">
-                  <h3 className="contact-question-title">Not sure what treatment to get?</h3>
-                  <div className="contact-question-accent" />
-                  <p className="contact-question-body">
-                    Share your concerns, and we&apos;ll guide you toward the best treatment tailored to your needs.
-                  </p>
-                </article>
-                <article className="contact-question-card">
-                  <h3 className="contact-question-title">Not sure what is your condition?</h3>
-                  <div className="contact-question-accent" />
-                  <p className="contact-question-body">
-                    Tell us how you feel your pain, our team will help you understand and improve your condition.
-                  </p>
-                </article>
-                <article className="contact-question-card">
-                  <h3 className="contact-question-title">Have you been diagnosed?</h3>
-                  <div className="contact-question-accent" />
-                  <p className="contact-question-body">
-                    Tell us what you know and together we will reach a suitable approach and treatment for your case.
-                  </p>
-                </article>
-              </div>
-            </article>
-            <div className="contact-help-video" aria-hidden="true">
-              <img
-                className="contact-help-video-el"
-                src="/assets/images/illustrative/services-home-min-1.webp"
-                alt=""
-                decoding="async"
-              />
+          <article className="psx-card">
+            <h2 className="psx-card-title">How can we help you today?</h2>
+            <div className="psx-accent" />
+            <p className="psx-body">What brings you here? Pick one and we&apos;ll start your message for you — you can edit it before sending.</p>
+            <div className="contact-reason-grid" role="radiogroup" aria-label="What brings you here?">
+              {CONTACT_REASONS.map((reason) => {
+                const selected = selectedReason === reason.id;
+                return (
+                  <button
+                    key={reason.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={selected}
+                    className={`contact-reason-card${selected ? ' is-selected' : ''}`}
+                    onClick={() => selectReason(reason)}
+                  >
+                    <span className="contact-reason-check" aria-hidden="true" />
+                    <span className="contact-reason-title">{reason.title}</span>
+                    <span className="contact-reason-body">{reason.body}</span>
+                  </button>
+                );
+              })}
             </div>
-          </div>
+          </article>
         </section>
 
         <section id="contact-form" className="psx-section">
@@ -282,6 +277,8 @@ export default function Contact() {
                       placeholder="Tell us more about your pain, symptoms or questions..."
                       rows={4}
                       required
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
                     />
                   </div>
                   {/* Honeypot: off-screen, ignored by humans, catches bots. */}
