@@ -291,10 +291,11 @@ export default function Home() {
                   </div>
                   <Link
                     to="/treatments/non-invasive-treatments/physiotherapy"
-                    className="treatment-card-button"
+                    className="treatment-card-link"
                     aria-label="Explore non-invasive pain treatment options"
                   >
-                    <span>Explore</span>
+                    <span>Learn more</span>
+                    <span className="treatment-card-link-icon" aria-hidden="true">›</span>
                   </Link>
                 </div>
               </article>
@@ -323,10 +324,11 @@ export default function Home() {
                   </div>
                   <Link
                     to="/treatments/minimally-invasive-treatments/vertebroplasty"
-                    className="treatment-card-button"
+                    className="treatment-card-link"
                     aria-label="See minimally invasive procedure options"
                   >
-                    <span>Explore</span>
+                    <span>Learn more</span>
+                    <span className="treatment-card-link-icon" aria-hidden="true">›</span>
                   </Link>
                 </div>
               </article>
@@ -355,10 +357,11 @@ export default function Home() {
                   </div>
                   <Link
                     to="/treatments/surgical-treatments/tubular-microsurgery"
-                    className="treatment-card-button"
+                    className="treatment-card-link"
                     aria-label="Discover surgical spine treatment options"
                   >
-                    <span>Explore</span>
+                    <span>Learn more</span>
+                    <span className="treatment-card-link-icon" aria-hidden="true">›</span>
                   </Link>
                 </div>
               </article>
