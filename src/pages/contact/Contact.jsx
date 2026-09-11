@@ -185,48 +185,39 @@ export default function Contact() {
       <main className="psx-main">
 
         <section className="psx-section">
-          <div className="psx-treatments-layout contact-two-col">
-            <article className="psx-card">
-              <h2 className="psx-card-title">How can we help you today?</h2>
-              <div className="psx-accent" />
-              <div className="contact-questions-grid">
-                <article className="contact-question-card">
-                  <h3 className="contact-question-title">Can you tell us about your pain?</h3>
-                  <div className="contact-question-accent" />
-                  <p className="contact-question-body">Describe your pain, and we&apos;ll work together to find relief.</p>
-                </article>
-                <article className="contact-question-card">
-                  <h3 className="contact-question-title">Not sure what treatment to get?</h3>
-                  <div className="contact-question-accent" />
-                  <p className="contact-question-body">
-                    Share your concerns, and we&apos;ll guide you toward the best treatment tailored to your needs.
-                  </p>
-                </article>
-                <article className="contact-question-card">
-                  <h3 className="contact-question-title">Not sure what is your condition?</h3>
-                  <div className="contact-question-accent" />
-                  <p className="contact-question-body">
-                    Tell us how you feel your pain, our team will help you understand and improve your condition.
-                  </p>
-                </article>
-                <article className="contact-question-card">
-                  <h3 className="contact-question-title">Have you been diagnosed?</h3>
-                  <div className="contact-question-accent" />
-                  <p className="contact-question-body">
-                    Tell us what you know and together we will reach a suitable approach and treatment for your case.
-                  </p>
-                </article>
-              </div>
-            </article>
-            <div className="contact-help-video" aria-hidden="true">
-              <img
-                className="contact-help-video-el"
-                src="/assets/images/illustrative/services-home-min-1.webp"
-                alt=""
-                decoding="async"
-              />
+          <article className="psx-card">
+            <h2 className="psx-card-title">How can we help you today?</h2>
+            <div className="psx-accent" />
+            <p className="psx-body">Whatever brings you here, our team will guide you — just tell us a little about your situation in the form below.</p>
+            <div className="contact-questions-grid">
+              <article className="contact-question-card">
+                <h3 className="contact-question-title">Can you tell us about your pain?</h3>
+                <div className="contact-question-accent" />
+                <p className="contact-question-body">Describe your pain, and we&apos;ll work together to find relief.</p>
+              </article>
+              <article className="contact-question-card">
+                <h3 className="contact-question-title">Not sure what treatment to get?</h3>
+                <div className="contact-question-accent" />
+                <p className="contact-question-body">
+                  Share your concerns, and we&apos;ll guide you toward the best treatment tailored to your needs.
+                </p>
+              </article>
+              <article className="contact-question-card">
+                <h3 className="contact-question-title">Not sure what is your condition?</h3>
+                <div className="contact-question-accent" />
+                <p className="contact-question-body">
+                  Tell us how you feel your pain, our team will help you understand and improve your condition.
+                </p>
+              </article>
+              <article className="contact-question-card">
+                <h3 className="contact-question-title">Have you been diagnosed?</h3>
+                <div className="contact-question-accent" />
+                <p className="contact-question-body">
+                  Tell us what you know and together we will reach a suitable approach and treatment for your case.
+                </p>
+              </article>
             </div>
-          </div>
+          </article>
         </section>
 
         <section id="contact-form" className="psx-section">
