@@ -75,6 +75,10 @@ export const specialitiesCategories = [
         path: '/specialities/stroke-medicine/speech-autonomy',
       },
       {
+        label: 'Cognitive Autonomy',
+        path: '/specialities/stroke-medicine/cognitive-autonomy',
+      },
+      {
         label: 'Post-Stroke Depression and Mood Disorders',
         path:
           '/specialities/stroke-medicine/post-stroke-depression-and-mood-disorders',
