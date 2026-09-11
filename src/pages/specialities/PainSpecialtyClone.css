@@ -80,7 +80,7 @@
 }
 
 .psx-hero-title {
-  margin: 0 0 10px;
+  margin: 0 0 16px;
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.06;
   font-weight: 700;
@@ -675,7 +675,7 @@
 
 
 .psx-lead-title {
-  margin: 0 0 10px;
+  margin: 0 0 16px;
   font-size: clamp(2rem, 3.6vw, 3rem);
   line-height: 1.06;
   letter-spacing: -0.02em;
@@ -1190,7 +1190,7 @@
 }
 
 .psx-syndromes-accordion-title {
-  margin: 0 0 10px;
+  margin: 0 0 16px;
   font-size: clamp(1.9rem, 3.6vw, 2.8rem);
   line-height: 1.12;
   letter-spacing: -0.02em;
