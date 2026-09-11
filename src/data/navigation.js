@@ -241,6 +241,26 @@ export const resourceCategories = [
         label: 'Recovering from Sports Injuries',
         path: '/resources/testimonials/recovering-from-sports-injuries',
       },
+      {
+        label: 'Walking Again After Chronic Pain',
+        path: '/resources/testimonials/bernard-schack',
+      },
+      {
+        label: 'Reclaiming Freedom of Movement',
+        path: '/resources/testimonials/charlotte-klockare',
+      },
+      {
+        label: 'Recovery After Spine Surgery',
+        path: '/resources/testimonials/peter-kruger',
+      },
+      {
+        label: 'Relief from Spinal Stenosis',
+        path: '/resources/testimonials/rosa-marques',
+      },
+      {
+        label: 'Sports Medicine for Padel Athletes',
+        path: '/resources/testimonials/padel-sports-medicine',
+      },
     ],
   },
 ];
