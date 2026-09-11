@@ -3825,9 +3825,24 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  /* Flex wrap (not grid) so the section scales to any number of
+     centres and a partial final row centres itself automatically. */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: var(--card-gap);
+}
+
+.home-centers-item {
+  /* Three per row on desktop, accounting for the gaps between them. */
+  flex: 1 1 calc((100% - 2 * var(--card-gap)) / 3);
+  min-width: 0;
+  max-width: calc((100% - 2 * var(--card-gap)) / 3);
+  display: flex;
+}
+
+.home-centers-item > .home-centers-card {
+  width: 100%;
 }
 
 .home-centers-card {
@@ -3945,8 +3960,9 @@
 }
 
 @media (max-width: 900px) {
-  .home-centers-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .home-centers-item {
+    flex-basis: calc((100% - var(--card-gap)) / 2);
+    max-width: calc((100% - var(--card-gap)) / 2);
   }
 }
 
@@ -3956,8 +3972,9 @@
     border-radius: 22px;
   }
 
-  .home-centers-grid {
-    grid-template-columns: minmax(0, 1fr);
+  .home-centers-item {
+    flex-basis: 100%;
+    max-width: 100%;
   }
 }
 
