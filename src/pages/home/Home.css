@@ -3944,10 +3944,13 @@
     opacity: 0;
     overflow: hidden;
     transform: translateY(8px);
+    /* Symmetric ease-in-out so the reveal and the hide feel identical
+       (an ease-out curve reverses to an ease-in, which reads as two
+       different speeds). One duration for every property. */
     transition:
-      max-height 560ms cubic-bezier(0.22, 1, 0.36, 1),
-      opacity 480ms cubic-bezier(0.22, 1, 0.36, 1),
-      transform 520ms cubic-bezier(0.22, 1, 0.36, 1);
+      max-height 560ms cubic-bezier(0.65, 0, 0.35, 1),
+      opacity 560ms cubic-bezier(0.65, 0, 0.35, 1),
+      transform 560ms cubic-bezier(0.65, 0, 0.35, 1);
   }
 
   .home-centers-card:hover .home-centers-card-body,
