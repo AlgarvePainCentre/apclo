@@ -1148,7 +1148,7 @@
 
 
 .home-section-testimonial {
-  padding: 80px 48px;
+  padding: clamp(56px, 8vw, 80px) 48px;
   background: transparent;
 }
 
@@ -1297,10 +1297,10 @@
 
 @media (max-width: 900px) {
     .home-section-mainpain-cards, .home-section-treatment-cards, .home-section-treatment-testimonials {
-        padding: 0;
+        padding: clamp(56px, 8vw, 80px) 0;
     }
     .home-section-faq {
-    padding: 2rem 1rem;
+    padding: clamp(56px, 8vw, 80px) 1rem;
     margin: 0 auto;
     }
 
@@ -1491,7 +1491,7 @@
 
 /* Stories section */
 .home-section-stories {
-  padding: 2rem 0;
+  padding: clamp(56px, 8vw, 80px) 0;
   margin: 0 auto;
   background: transparent;
   overflow: hidden;
@@ -1506,7 +1506,7 @@
   justify-content: center;
   align-items: center;
   max-width: 100%;
-  margin: 0 16px clamp(40px, 5vw, 64px);
+  margin: 0 16px clamp(24px, 3vw, 36px);
   position: relative;
   text-align: center;
 }
@@ -1760,7 +1760,7 @@
 }
 
 .home-section-mainpain-cards {
-  padding: 0 0 48px;
+  padding: clamp(56px, 8vw, 80px) 0;
   background: transparent;
   margin-bottom: 0;
 }
@@ -1771,7 +1771,7 @@
 }
 
 .home-section-mainpain-header {
-  margin: 0 0 clamp(40px, 5vw, 64px);
+  margin: 0 0 clamp(24px, 3vw, 36px);
 }
 
 .home-section-testemunials-grid {
@@ -2445,7 +2445,7 @@
 }
 
 .home-section-treatment-cards {
-  padding: 2rem 1rem;
+  padding: clamp(56px, 8vw, 80px) 1rem;
   margin: 0 auto;
   background: transparent;
 }
@@ -2459,7 +2459,7 @@
 
 .home-section-treatment-header {
   max-width: var(--container);
-  margin: 0 0 clamp(40px, 5vw, 64px);
+  margin: 0 0 clamp(24px, 3vw, 36px);
   text-align: left;
   position: relative;
   padding-left: 16px;
@@ -2641,7 +2641,7 @@
 }
 
 .home-section-treatment-testimonials {
-  padding: 88px 48px;
+  padding: clamp(56px, 8vw, 80px) 48px;
   background: #f8fafc;
   margin-bottom: 0;
   overflow-x: hidden;
@@ -3156,7 +3156,7 @@
   .home-section-mainpain-cards,
   .home-section-treatment-cards,
   .home-section-treatment-testimonials {
-    padding: 0;
+    padding: clamp(56px, 8vw, 80px) 0;
   }
   .home-section-testemunials-inner {
     padding: 0 16px;
@@ -3484,7 +3484,7 @@
 
 .home-section-why-choose-header {
   max-width: 940px;
-  margin-bottom: clamp(40px, 5vw, 64px);
+  margin-bottom: clamp(24px, 3vw, 36px);
 }
 
 .home-section-why-choose-eyebrow {
@@ -3577,7 +3577,7 @@
 
 /* Team */
 .home-section-team {
-  padding: clamp(56px, 8vw, 96px) 1rem;
+  padding: clamp(56px, 8vw, 80px) 1rem;
   margin: 0 auto;
 }
 
@@ -3588,7 +3588,7 @@
 
 .home-section-team-header {
   max-width: 100%;
-  margin: 0 18px clamp(40px, 5vw, 64px);
+  margin: 0 18px clamp(24px, 3vw, 36px);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -3783,7 +3783,7 @@
 
 /* Centers */
 .home-centers {
-  margin-top: clamp(56px, 8vw, 96px);
+  margin-top: clamp(56px, 8vw, 80px);
   padding: clamp(28px, 4vw, 40px) 0;
   border-top: 0;
   border-radius: 28px;
@@ -3793,7 +3793,7 @@
 
 .home-centers-header {
   max-width: 780px;
-  margin: 0 auto clamp(40px, 5vw, 64px);
+  margin: 0 auto clamp(24px, 3vw, 36px);
   text-align: center;
 }
 
@@ -4044,7 +4044,7 @@
 
 /* Discovery chips */
 .home-section-faq {
-  padding: clamp(56px, 8vw, 96px) 1rem clamp(72px, 9vw, 120px);
+  padding: clamp(56px, 8vw, 80px) 1rem;
   margin: 0 auto;
 }
 
@@ -4629,7 +4629,7 @@
 
 @media (max-width: 768px) {
   .home-section-team {
-    padding: 64px 16px 72px;
+    padding: clamp(56px, 8vw, 80px) 16px;
   }
   .home-section-why-choose-us {
     padding: 56px 16px 72px;
