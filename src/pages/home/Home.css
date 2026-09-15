@@ -2453,8 +2453,6 @@
 .home-section-treatment-inner {
   max-width: var(--container);
   margin: 0 auto;
-  margin-top: 88px;
-  margin-bottom: 88px;
 }
 
 .home-section-treatment-header {
@@ -2636,7 +2634,7 @@
   }
   .home-section-treatment-inner {
     margin-top: 0;
-    margin-bottom: 88px;
+    margin-bottom: 0;
   }
 }
 
@@ -3474,7 +3472,7 @@
 }
 
 .home-section-why-choose-us {
-  padding: 80px 48px 96px;
+  padding: clamp(56px, 8vw, 80px) 48px;
 }
 
 .home-section-why-choose-inner {
@@ -4632,7 +4630,7 @@
     padding: clamp(56px, 8vw, 80px) 16px;
   }
   .home-section-why-choose-us {
-    padding: 56px 16px 72px;
+    padding: clamp(56px, 8vw, 80px) 16px;
   }
 }
 
