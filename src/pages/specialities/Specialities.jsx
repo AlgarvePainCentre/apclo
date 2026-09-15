@@ -4,11 +4,53 @@ import '../../styles/layout/specialities-layout.css';
 import '../../styles/pages/specialities/specialities-sections.css';
 import { useHeroParallax } from '../../app/useHeroParallax';
 
+// Patient testimonials shown in the "Your opinion makes the difference" slider.
+// `photo` is optional — when empty the card shows a coloured initials avatar,
+// so real photography can be dropped in per person later.
+const SPECIALITIES_TESTIMONIALS = [
+  {
+    name: 'Celeste Cutting',
+    location: 'United Kingdom',
+    initials: 'CC',
+    accent: 'linear-gradient(135deg, #0f5c8c, #003366)',
+    photo: '',
+    quote:
+      'The staff are all very professional, friendly, incredibly patient and there for you 24 hours a day. Follow-up care is superb. I had numerous injections, came home within a few hours and am so glad I had the procedure — it changed my life dramatically. I recommend them very highly.',
+  },
+  {
+    name: 'Gerald Kraftman',
+    location: 'Poland',
+    initials: 'GK',
+    accent: 'linear-gradient(135deg, #d3243b, #8f1526)',
+    photo: '',
+    quote:
+      'We were very impressed with the approach of you and your team regarding the treatment I received over the last two months. We experienced a very high level of knowledge and dedication that helped me recover more quickly.',
+  },
+  {
+    name: 'Jean-François Cristau',
+    location: 'France',
+    initials: 'JC',
+    accent: 'linear-gradient(135deg, #1f8a70, #0d5c49)',
+    photo: '',
+    quote:
+      'Indeed we have been greatly satisfied with your team and professional support over the past months. Great satisfaction with your team, including the new facilities in the Centre.',
+  },
+];
+
 export default function Specialities() {
   const heroRef = useRef(null);
   const heroVideoRef = useRef(null);
   const heroContentMotionRef = useRef(null);
+  const testimonialsTrackRef = useRef(null);
   const navigate = useNavigate();
+
+  const slideTestimonials = (direction) => {
+    const track = testimonialsTrackRef.current;
+    if (!track) return;
+    const card = track.querySelector('.specialities-testimonial-card');
+    const step = card ? card.offsetWidth + 20 : track.clientWidth * 0.8;
+    track.scrollBy({ left: direction * step, behavior: 'smooth' });
+  };
   const strokeTopics = [
     {
       id: 'stroke-rehabilitation',
@@ -880,47 +922,37 @@ export default function Specialities() {
         <section className="page-section specialities-testimonials-section" aria-labelledby="specialities-testimonials-title">
           <div className="specialities-testimonials-inner">
             <header className="specialities-testimonials-header">
+              <p className="specialities-testimonials-eyebrow">Patient voices</p>
               <h2 id="specialities-testimonials-title" className="specialities-testimonials-title">
                 Your opinion makes the difference
               </h2>
             </header>
-            
-            <div className="specialities-testimonials-grid">
-              <article className="specialities-testimonial-card">
-                <p className="specialities-testimonial-quote">
-                  "The staff are all very professional, friendly, incredibly patient and they are there for you 24 hours a day. Follow up care is superb. I had numerous injections. came home within a few hours and am so glad that I had the procedure. It changed my life dramatically. I recommend them all very highly."
-                </p>
-                <div className="specialities-testimonial-author">
-                  <div className="specialities-testimonial-author-info">
-                    <div className="specialities-testimonial-name">Celeste Cutting</div>
-                    <div className="specialities-testimonial-location">UK</div>
-                  </div>
-                </div>
-              </article>
 
-              <article className="specialities-testimonial-card">
-                <p className="specialities-testimonial-quote">
-                  "We were very impressed with the approach of you and your team with regard to the treatment that I received over the last two months. We experienced a very high level of knowledge and dedication from you and your colleagues which helped me to recover more quickly."
-                </p>
-                <div className="specialities-testimonial-author">
-                  <div className="specialities-testimonial-author-info">
-                    <div className="specialities-testimonial-name">Gerald Kraftman</div>
-                    <div className="specialities-testimonial-location">Poland</div>
-                  </div>
-                </div>
-              </article>
+            <div className="specialities-testimonials-controls" aria-hidden="true">
+              <button type="button" className="specialities-testimonials-arrow" onClick={() => slideTestimonials(-1)} aria-label="Previous testimonials">
+                <span>‹</span>
+              </button>
+              <button type="button" className="specialities-testimonials-arrow" onClick={() => slideTestimonials(1)} aria-label="Next testimonials">
+                <span>›</span>
+              </button>
+            </div>
 
-              <article className="specialities-testimonial-card">
-                <p className="specialities-testimonial-quote">
-                  "Indeed we have been greatly satisfied with your team and professional support over the past months. Great satisfaction with your team including the new facilities in the Center."
-                </p>
-                <div className="specialities-testimonial-author">
-                  <div className="specialities-testimonial-author-info">
-                    <div className="specialities-testimonial-name">Jean-François Cristau</div>
-                    <div className="specialities-testimonial-location">France</div>
+            <div className="specialities-testimonials-track" ref={testimonialsTrackRef}>
+              {SPECIALITIES_TESTIMONIALS.map((t) => (
+                <article className="specialities-testimonial-card" key={t.name}>
+                  <span className="specialities-testimonial-mark" aria-hidden="true">&rdquo;</span>
+                  <p className="specialities-testimonial-quote">{t.quote}</p>
+                  <div className="specialities-testimonial-author">
+                    <span className="specialities-testimonial-avatar" style={{ background: t.accent }} aria-hidden="true">
+                      {t.photo ? <img src={t.photo} alt="" loading="lazy" /> : t.initials}
+                    </span>
+                    <div className="specialities-testimonial-author-info">
+                      <div className="specialities-testimonial-name">{t.name}</div>
+                      <div className="specialities-testimonial-location">{t.location}</div>
+                    </div>
                   </div>
-                </div>
-              </article>
+                </article>
+              ))}
             </div>
           </div>
         </section>
