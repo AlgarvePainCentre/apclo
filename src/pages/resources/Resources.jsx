@@ -219,14 +219,16 @@ export default function Resources() {
 
         <section className="page-section" id="learn">
           <div className="section-header section-header--learn">
-            <h2>Learn - Cervical Pain</h2>
+            <p className="section-eyebrow">Learn</p>
+            <h2>Understanding Cervical Pain</h2>
+            <p>Practical, expert-written guides to help you understand and manage neck and cervical pain.</p>
           </div>
           <div className="resource-nav-container">
             <Link
               className="article-nav-item" 
               to="/resources/learn/cervical-pain"
               aria-label="Read article about Cervical Pain"
-              style={{ backgroundImage: `url('/assets/images/resources/Cervical-1.webp')`, transform: 'translate3d(0, -20px, 0)',  backgroundSize: 'cover' }}
+              style={{ backgroundImage: `url('/assets/images/resources/Cervical-1.webp')` }}
             >
               <div className="article-nav-content">
                 <span className="article-nav-label">May 15, 2024 • 5 min read</span>
@@ -241,7 +243,7 @@ export default function Resources() {
               className="article-nav-item" 
               to="/resources/learn/conquering-cervical-pain"
               aria-label="Read article about Conquering Cervical Pain"
-              style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-2.webp')`, transform: 'translate3d(0, -20px, 0)',  backgroundSize: 'cover' }}
+              style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-2.webp')` }}
             >
               <div className="article-nav-content">
                 <span className="article-nav-label">May 10, 2024 • 7 min read</span>
@@ -256,7 +258,7 @@ export default function Resources() {
               className="article-nav-item" 
               to="/resources/learn/acute-and-chronic-pain"
               aria-label="Read article about Understanding Acute and Chronic Pain"
-              style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-3.webp')`, backgroundSize: 'cover', transform: 'translate3d(0, -20px, 0)'}}
+              style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-3.webp')` }}
             >
               <div className="article-nav-content">
                 <span className="article-nav-label">May 5, 2024 • 6 min read</span>
@@ -293,6 +295,7 @@ export default function Resources() {
 
         <section className="page-section" id="control-over-spine-degeneration">
           <div className="section-header">
+            <p className="section-eyebrow">Spine health</p>
             <h2>Control Over Spine Degeneration</h2>
             <p>Proactive strategies to maintain spine health and mobility.</p>
           </div>
@@ -341,6 +344,7 @@ export default function Resources() {
 
         <section className="page-section" id="all-testimonials">
           <div className="section-header">
+            <p className="section-eyebrow">Testimonials</p>
             <h2>What Our Patients Say</h2>
             <p>Trusted by hundreds of patients for effective pain relief and rehabilitation.</p>
           </div>
@@ -384,7 +388,8 @@ export default function Resources() {
         {isFeaturedGuideVisible && (
           <section className="page-section viewport-centered-section" id="featured-resource-popup">
           <div className="section-header">
-            <h2>Free Guide: 5 Daily Habits for a Healthy Spine</h2>
+            <p className="section-eyebrow">Free guide</p>
+            <h2>5 Daily Habits for a Healthy Spine</h2>
             <p>Download our exclusive guide and start your journey to a pain-free life today.</p>
           </div>
           <div className="highlight-content">
