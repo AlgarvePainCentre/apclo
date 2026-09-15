@@ -285,8 +285,15 @@ export default function Resources() {
               </button>
             </div>
             <figure className="sciatica-quote">
-              <blockquote>“I thought I'd never run again. After three months of treatment, I'm back on the track — pain-free.”</blockquote>
-              <figcaption>Sarah Jenkins · Sciatica recovery</figcaption>
+              <span className="sciatica-quote-mark" aria-hidden="true">&rdquo;</span>
+              <blockquote>I thought I'd never run again. After three months of treatment, I'm back on the track — pain-free.</blockquote>
+              <figcaption className="sciatica-quote-author">
+                <span className="sciatica-quote-avatar" aria-hidden="true">SJ</span>
+                <span className="sciatica-quote-meta">
+                  <span className="sciatica-quote-name">Sarah Jenkins</span>
+                  <span className="sciatica-quote-loc">Sciatica recovery</span>
+                </span>
+              </figcaption>
             </figure>
           </div>
         </section>
@@ -337,41 +344,6 @@ export default function Resources() {
                  <span className="stat-label">Return to Sport Rate</span>
                </div>
             </div>
-          </div>
-        </section>
-
-        <section className="page-section" id="all-testimonials">
-          <div className="section-header">
-            <p className="section-eyebrow">Testimonials</p>
-            <h2>What Our Patients Say</h2>
-            <p>Trusted by hundreds of patients for effective pain relief and rehabilitation.</p>
-          </div>
-          <div className="stories-block">
-            <div className="stories-lead">
-              <blockquote className="stories-quote">
-                “The team was incredible — they diagnosed my issue quickly and{' '}
-                <span>the treatment plan was easy to follow.</span>”
-              </blockquote>
-              <cite className="stories-cite">Michael T. · Lower back pain</cite>
-            </div>
-            <div className="stories-mini">
-              <div className="stories-mini-card">
-                <p>“I can finally sleep through the night without shoulder pain.”</p>
-                <span className="stories-mini-who">Emma R. · Shoulder injury</span>
-              </div>
-              <div className="stories-mini-card">
-                <p>“Professional and truly caring — they helped me avoid surgery.”</p>
-                <span className="stories-mini-who">David L. · Knee pain</span>
-              </div>
-            </div>
-          </div>
-          <div className="center-action">
-            <button
-              className="outline-btn"
-              onClick={() => navigate('/resources#all-testimonials')}
-            >
-              View All Testimonials
-            </button>
           </div>
         </section>
 
