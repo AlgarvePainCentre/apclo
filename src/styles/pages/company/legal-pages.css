@@ -6,12 +6,12 @@
 .legal-page__article {
   width: min(100% - 32px, var(--container-width, 1180px));
   margin: 0 auto;
-  padding: clamp(40px, 6vw, 88px) 0 clamp(56px, 7vw, 104px);
+  padding: var(--section-space) 0;
 }
 
 .legal-page__header {
   display: grid;
-  gap: 18px;
+  gap: var(--eyebrow-title-gap);
   max-width: 920px;
 }
 
@@ -68,7 +68,7 @@
   display: grid;
   grid-template-columns: minmax(0, 280px) minmax(0, 1fr);
   gap: clamp(28px, 4vw, 56px);
-  margin-top: clamp(28px, 4vw, 44px);
+  margin-top: var(--header-content-gap);
   align-items: start;
 }
 
@@ -115,7 +115,7 @@
 
 .legal-page__section {
   display: grid;
-  gap: 14px;
+  gap: var(--title-text-gap);
   scroll-margin-top: 120px;
 }
 

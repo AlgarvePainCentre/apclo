@@ -3,7 +3,7 @@
 }
 
 .condition-main .page-section {
-  margin: 0 auto 48px;
+  margin: 0 auto var(--section-space);
 }
 
 .condition-main .page-section:last-of-type {
@@ -48,7 +48,7 @@
   border: none;
   box-shadow: none;
   padding: 0;
-  margin: 3.5rem auto 2.5rem;
+  margin: var(--section-space) auto;
 }
 
 .condition-approaches::before {
@@ -160,7 +160,7 @@
 }
 
 .condition-syndromes {
-  padding-top: 72px;
+  padding-top: var(--section-space);
 }
 
 .condition-syndromes-layout {
@@ -178,7 +178,7 @@
 
 .condition-syndromes-header-center {
   text-align: center;
-  margin: 0 auto 32px;
+  margin: 0 auto var(--header-content-gap);
 }
 
 .condition-syndromes-eyebrow {
@@ -293,7 +293,7 @@
   border: none;
   box-shadow: none;
   border-radius: 32px;
-  padding: 56px 48px 64px;
+  padding: var(--section-space) 48px;
   color: #0b2036;
 }
 
@@ -303,7 +303,7 @@
 
 .condition-testimonials-header {
   text-align: left;
-  margin: 0 0 24px;
+  margin: 0 0 var(--header-content-gap);
 }
 
 .condition-testimonials-title {
@@ -382,7 +382,7 @@
 }
 
 .condition-faq {
-  margin-top: 40px;
+  margin-top: var(--section-space);
 }
 
 .condition-faq-inner {
@@ -392,11 +392,11 @@
 
 .condition-faq-header {
   text-align: left;
-  margin: 0 0 24px;
+  margin: 0 0 var(--header-content-gap);
 }
 
 .condition-faq-title {
-  margin: 0 0 8px;
+  margin: 0 0 var(--title-text-gap);
   font-size: clamp(1.5rem, 1vw + 1.2rem, 2rem);
   line-height: 1.35;
   color: #0b3c6f;

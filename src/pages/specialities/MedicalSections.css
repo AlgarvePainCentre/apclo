@@ -31,10 +31,10 @@
 }
 
 .u-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-.ms-section-header{margin:0 0 24px;text-align:left}
+.ms-section-header{margin:0 0 var(--header-content-gap);text-align:left}
 .ms-section-header-center{text-align:center;margin-left:auto;margin-right:auto}
 .ms-section-eyebrow{margin:0 0 8px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ms-heading)}
-.ms-section-title{margin:0 0 10px;color:var(--ms-heading);font-size:28px;line-height:1.25}
+.ms-section-title{margin:0 0 var(--title-text-gap);color:var(--ms-heading);font-size:28px;line-height:1.25}
 .ms-section-subtitle{margin:0;font-size:16px;line-height:1.7;color:var(--ms-muted);max-width:760px}
 .ms-section-header-center .ms-section-subtitle{margin-left:auto;margin-right:auto}
 .u-container{width:100%;max-width:var(--ms-container);margin-left:auto;margin-right:auto;padding-left:var(--container-padding,16px);padding-right:var(--container-padding,16px)}
@@ -98,7 +98,7 @@
 .condition-main .page-section,.head-pain-main .page-section,.cervical-spine-pain-main .page-section{
   width: 100%;
   max-width: var(--ms-container);
-  margin:0 auto 40px;
+  margin:0 auto var(--section-space);
   background-color: #f8fafc;
 }
 
@@ -110,14 +110,14 @@
 
 .condition-main .treatments-overview-header,.head-pain-main .treatments-overview-header,.cervical-spine-pain-main .treatments-overview-header,.ms-treatments__header{
   max-width:var(--container);
-  margin:0 0 28px;
+  margin:0 0 var(--header-content-gap);
   text-align:left;
   position:relative;
   padding-left:16px
 }
 
 .condition-main .treatments-overview-header::before,.head-pain-main .treatments-overview-header::before,.cervical-spine-pain-main .treatments-overview-header::before,.ms-treatments__header::before{content:'';position:absolute;left:0;top:2px;bottom:2px;width:4px;border-radius:6px;background:linear-gradient(180deg,var(--color-midBlue,#a2d6f4),var(--color-darkBlue,#60bbef));box-shadow:0 8px 16px rgba(37,99,235,.22)}
-.condition-main .treatments-overview-title,.head-pain-main .treatments-overview-title,.cervical-spine-pain-main .treatments-overview-title,.ms-treatments__title{margin:0 0 10px;color:#003366}
+.condition-main .treatments-overview-title,.head-pain-main .treatments-overview-title,.cervical-spine-pain-main .treatments-overview-title,.ms-treatments__title{margin:0 0 var(--title-text-gap);color:#003366}
 .condition-main .treatments-overview-subtitle,.head-pain-main .treatments-overview-subtitle,.cervical-spine-pain-main .treatments-overview-subtitle,.ms-treatments__subtitle{margin:0;font-size:16px;line-height:1.7;color:var(--ms-muted);max-width:760px}
 .condition-main .treatments-overview-layout,.head-pain-main .treatments-overview-layout,.cervical-spine-pain-main .treatments-overview-layout,.ms-treatments__layout{display:grid;grid-template-columns:minmax(0,1fr);gap:24px;align-items:stretch;min-height:auto}
 
@@ -143,7 +143,7 @@
 .condition-main .treatments-overview-video,.head-pain-main .treatments-overview-video,.cervical-spine-pain-main .treatments-overview-video,.ms-treatments__video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.02);pointer-events:none}
 
 .condition-main{padding:32px 16px 64px}
-.condition-main .page-section{margin:0 auto 48px}
+.condition-main .page-section{margin:0 auto var(--section-space)}
 .condition-main .page-section:last-of-type{margin-bottom:0}
 .condition-treatment{border-radius:var(--ms-radius-xl);background-color:transparent;box-shadow:var(--ms-shadow-md);padding:40px 40px 44px;position:relative;overflow:hidden}
 .condition-treatment::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:0 0 0 1px rgba(209,213,219,.4);mix-blend-mode:multiply}
@@ -168,7 +168,7 @@
 .condition-syndromes{padding-top:48px}
 .condition-syndromes-layout{display:grid;grid-template-columns:1fr;gap:1.5rem;align-items:stretch}
 .condition-syndromes-header{text-align:left;max-width:540px;margin:0}
-.condition-syndromes-header-center{text-align:center;margin:0 auto 32px}
+.condition-syndromes-header-center{text-align:center;margin:0 auto var(--header-content-gap)}
 .condition-syndromes-eyebrow{margin:0 0 8px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;color:var(--ms-heading)}
 .condition-syndromes-title{margin:0 0 12px;font-size:clamp(1.75rem,1.1vw + 1.4rem,2.25rem);line-height:1.3;color:var(--ms-heading)}
 .condition-syndromes-subtitle{margin:0;font-size:14px;line-height:1.7;color:var(--ms-muted)}
@@ -184,7 +184,7 @@
 .condition-syndrome-panel-text{margin:0;font-size:13px;line-height:1.7;color:var(--ms-muted)}
 .condition-testimonials{background:radial-gradient(1200px 420px at 60% 50%,rgba(255,255,255,.6),rgba(255,255,255,0) 60%),linear-gradient(90deg,#f7e6e1 0%,#ff4364 55%,#ff9933 100%);border:none;box-shadow:none;border-radius:var(--ms-radius-xl);padding:40px 16px 48px;color:#0b2036}
 .condition-testimonials::before{content:none}
-.condition-testimonials-header{text-align:left;margin:0 0 24px}
+.condition-testimonials-header{text-align:left;margin:0 0 var(--header-content-gap)}
 .condition-testimonials-title{margin:0;font-size:28px;line-height:1.3;color:var(--ms-heading)}
 .condition-testimonials-grid{display:grid;grid-template-columns:1fr;gap:20px}
 .condition-testimonial{position:relative;margin:0;padding:20px 20px 18px;border-radius:16px;background:rgba(255,255,255,.86);box-shadow:0 14px 36px rgba(15,23,42,.12)}
@@ -195,7 +195,7 @@
 .condition-testimonial-location{opacity:.9}
 .condition-faq{padding-top:0}
 .condition-faq-inner{max-width:var(--container);margin:0 auto}
-.condition-faq-header{margin:0 0 24px;text-align:left}
+.condition-faq-header{margin:0 0 var(--header-content-gap);text-align:left}
 .condition-faq-title{margin:0 0 10px;font-size:clamp(1.6rem,1vw + 1.2rem,2.2rem);line-height:1.25;color:var(--ms-heading)}
 .condition-faq-subtitle{margin:0;font-size:14px;line-height:1.7;color:var(--ms-muted);max-width:52rem}
 .condition-faq-grid{display:grid;grid-template-columns:1fr;gap:16px}
