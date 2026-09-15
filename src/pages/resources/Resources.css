@@ -71,7 +71,7 @@
 }
 
 .resources-page .page-section {
-  padding: 80px 24px;
+  padding: var(--section-space) 24px;
   margin: 0 auto;
   max-width: var(--container);
 }
@@ -85,12 +85,12 @@
 
 .resources-page .section-header {
   text-align: center;
-  margin: 0 auto 44px;
+  margin: 0 auto var(--header-content-gap);
   max-width: 720px;
 }
 
 .resources-page .section-eyebrow {
-  margin: 0 0 10px;
+  margin: 0 0 var(--eyebrow-title-gap);
   font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -102,7 +102,7 @@
   font-size: clamp(1.9rem, 3vw, 2.5rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
-  margin: 0 0 14px;
+  margin: 0 0 var(--title-text-gap);
   color: #003d61;
 }
 
@@ -1136,7 +1136,7 @@ button:disabled,
 
 @media (max-width: 600px) {
   .page-section {
-    padding: 60px 16px;
+    padding: var(--section-space) 16px;
   }
   
   .section-header h2 {
