@@ -128,54 +128,35 @@
   text-decoration: none;
 }
 
-/* ---- Learn: editorial featured article + ruled index (brand sans) ---- */
-.resources-page .learn-editorial { max-width: var(--container); margin: 0 auto; }
-.resources-page .learn-feature {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: clamp(24px, 4vw, 40px);
-  align-items: center;
-  text-decoration: none;
-  color: inherit;
+/* ---- Learn: bento (one large card + two smaller), all with imagery ---- */
+.resources-page .resource-nav-container.learn-bento {
+  grid-template-columns: 1.25fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: var(--card-gap);
 }
-.resources-page .learn-feature-img {
-  display: block;
-  aspect-ratio: 4 / 3;
-  border-radius: var(--card-radius);
-  background-size: cover;
-  background-position: center;
-  background-color: #dbe4ec;
-  box-shadow: 0 18px 44px rgba(15, 23, 42, 0.12);
+.resources-page .learn-bento .article-nav-item {
+  min-height: clamp(168px, 20vw, 244px);
 }
-.resources-page .learn-feature-body { display: flex; flex-direction: column; }
-.resources-page .learn-feature-kick {
-  font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
-  color: var(--color-darkRed, #d3243b);
+.resources-page .learn-bento .article-nav-item--feature {
+  grid-row: 1 / span 2;
+  min-height: clamp(360px, 42vw, 520px);
 }
-.resources-page .learn-feature-title {
-  font-size: clamp(26px, 3.4vw, 40px); line-height: 1.05; letter-spacing: -0.02em;
-  color: #003366; margin: 12px 0 14px; font-weight: 700;
+.resources-page .learn-bento .article-nav-item--feature .article-nav-title {
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
 }
-.resources-page .learn-feature-ex { color: #4b5563; font-size: 16.5px; line-height: 1.7; max-width: 46ch; margin: 0; }
-.resources-page .learn-feature-cta {
-  margin-top: 20px; align-self: flex-start; display: inline-flex; align-items: center; gap: 8px;
-  background: #003366; color: #fff; font-weight: 700; font-size: 14px; padding: 12px 22px; border-radius: 999px;
-  transition: background-color 0.2s ease, transform 0.2s ease;
+@media (max-width: 760px) {
+  .resources-page .resource-nav-container.learn-bento {
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
+  }
+  .resources-page .learn-bento .article-nav-item--feature {
+    grid-row: auto;
+    min-height: clamp(260px, 60vw, 360px);
+  }
+  .resources-page .learn-bento .article-nav-item {
+    min-height: clamp(200px, 52vw, 260px);
+  }
 }
-.resources-page .learn-feature:hover .learn-feature-cta { background: #00294f; transform: translateY(-1px); }
-
-.resources-page .learn-index { margin-top: 40px; border-top: 1px solid rgba(15, 23, 42, 0.12); }
-.resources-page .learn-index-item {
-  display: grid; grid-template-columns: 44px 1fr auto; gap: 22px; align-items: baseline;
-  padding: 22px 0; border-bottom: 1px solid rgba(15, 23, 42, 0.12);
-  text-decoration: none; color: inherit; transition: padding-left 0.2s ease;
-}
-.resources-page .learn-index-item:hover { padding-left: 10px; }
-.resources-page .learn-index-no { font-weight: 700; font-size: 15px; color: var(--color-darkRed, #d3243b); font-variant-numeric: tabular-nums; }
-.resources-page .learn-index-text { display: block; min-width: 0; }
-.resources-page .learn-index-title { font-size: clamp(19px, 2.4vw, 26px); line-height: 1.12; letter-spacing: -0.01em; color: #003366; margin: 0 0 5px; font-weight: 700; }
-.resources-page .learn-index-ex { font-size: 14.5px; color: #4b5563; }
-.resources-page .learn-index-meta { font-size: 12.5px; color: #64748b; text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
 
 /* ---- Patient stories: deep-blue feature block ---- */
 .resources-page .stories-block {

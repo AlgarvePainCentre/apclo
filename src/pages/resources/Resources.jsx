@@ -223,46 +223,51 @@ export default function Resources() {
             <h2>Understanding Cervical Pain</h2>
             <p>Practical, expert-written guides to help you understand and manage neck and cervical pain.</p>
           </div>
-          <div className="learn-editorial">
+          <div className="resource-nav-container learn-bento">
             <Link
-              className="learn-feature"
+              className="article-nav-item article-nav-item--feature"
               to="/resources/learn/cervical-pain"
-              aria-label="Read the featured guide: Cervical Pain"
+              aria-label="Read article about Cervical Pain"
+              style={{ backgroundImage: `url('/assets/images/resources/Cervical-1.webp')` }}
             >
-              <span
-                className="learn-feature-img"
-                style={{ backgroundImage: `url('/assets/images/resources/Cervical-1.webp')` }}
-                aria-hidden="true"
-              />
-              <span className="learn-feature-body">
-                <span className="learn-feature-kick">Featured · 5 min read</span>
-                <h3 className="learn-feature-title">Cervical Pain</h3>
-                <span className="learn-feature-ex">
-                  The most common causes of neck and cervical pain, the signals worth acting on,
-                  and how our multidisciplinary team finds the root cause.
-                </span>
-                <span className="learn-feature-cta">Read the guide →</span>
-              </span>
+              <div className="article-nav-content">
+                <span className="article-nav-label">May 15, 2024 • 5 min read</span>
+                <h3 className="article-nav-title">
+                  Cervical Pain
+                  <span className="arrow">→</span>
+                </h3>
+              </div>
             </Link>
 
-            <nav className="learn-index" aria-label="More Learn articles">
-              <Link className="learn-index-item" to="/resources/learn/conquering-cervical-pain">
-                <span className="learn-index-no">01</span>
-                <span className="learn-index-text">
-                  <h4 className="learn-index-title">Conquering Cervical Pain</h4>
-                  <span className="learn-index-ex">Self-care strategies and exercises for lasting relief.</span>
-                </span>
-                <span className="learn-index-meta">May 10, 2024 · 7 min</span>
-              </Link>
-              <Link className="learn-index-item" to="/resources/learn/acute-and-chronic-pain">
-                <span className="learn-index-no">02</span>
-                <span className="learn-index-text">
-                  <h4 className="learn-index-title">Understanding Acute &amp; Chronic Pain</h4>
-                  <span className="learn-index-ex">How pain works — and the point at which it becomes chronic.</span>
-                </span>
-                <span className="learn-index-meta">May 5, 2024 · 6 min</span>
-              </Link>
-            </nav>
+            <Link
+              className="article-nav-item"
+              to="/resources/learn/conquering-cervical-pain"
+              aria-label="Read article about Conquering Cervical Pain"
+              style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-2.webp')` }}
+            >
+              <div className="article-nav-content">
+                <span className="article-nav-label">May 10, 2024 • 7 min read</span>
+                <h3 className="article-nav-title">
+                  Conquering Cervical Pain
+                  <span className="arrow">→</span>
+                </h3>
+              </div>
+            </Link>
+
+            <Link
+              className="article-nav-item"
+              to="/resources/learn/acute-and-chronic-pain"
+              aria-label="Read article about Understanding Acute and Chronic Pain"
+              style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-3.webp')` }}
+            >
+              <div className="article-nav-content">
+                <span className="article-nav-label">May 5, 2024 • 6 min read</span>
+                <h3 className="article-nav-title">
+                  Understanding Acute and Chronic Pain
+                  <span className="arrow">→</span>
+                </h3>
+              </div>
+            </Link>
           </div>
         </section>
 
