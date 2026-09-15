@@ -1506,7 +1506,7 @@
   justify-content: center;
   align-items: center;
   max-width: 100%;
-  margin: 48px 16px 40px;
+  margin: 0 16px clamp(40px, 5vw, 64px);
   position: relative;
   text-align: center;
 }
@@ -1540,7 +1540,7 @@
 .home-stories-title {
   font-size: clamp(32px, 4vw, 48px);
   line-height: 1.1;
-  color: #111827;
+  color: #003366;
   margin: 0;
   max-width: 600px;
   font-weight: 700;
