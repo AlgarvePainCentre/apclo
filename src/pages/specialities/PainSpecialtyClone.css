@@ -71,7 +71,7 @@
 }
 
 .psx-hero-eyebrow {
-  margin: 0 0 10px;
+  margin: 0 0 var(--eyebrow-title-gap);
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -80,7 +80,7 @@
 }
 
 .psx-hero-title {
-  margin: 0 0 16px;
+  margin: 0 0 var(--title-text-gap);
   font-size: clamp(2.5rem, 5vw, 4rem);
   line-height: 1.06;
   font-weight: 700;
@@ -213,7 +213,7 @@
   width: 100%;
   max-width: 100%;
   margin: 0;
-  padding: clamp(28px, 6vw, 72px) 0;
+  padding: var(--section-space) 0;
   background: transparent;
   box-sizing: border-box;
   position: relative;
@@ -223,13 +223,13 @@
 .psx-syndromes-header {
   width: 100%;
   max-width: 1600px;
-  margin: 0 0 clamp(24px, 4vw, 40px);
+  margin: 0 0 var(--header-content-gap);
   padding: 0;
   text-align: center;
 }
 
 .psx-syndromes-title {
-  margin: 0 0 10px;
+  margin: 0 0 var(--title-text-gap);
   font-size: clamp(1.6rem, 4.2vw, 2.4rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -660,7 +660,7 @@
 
 .psx-lead {
   max-width: 100%;
-  padding: 4rem 1rem;
+  padding: var(--section-space) 1rem;
   margin: 0 auto;
   position: relative;
   padding-left: 18px;
@@ -669,7 +669,7 @@
 
 @media (max-width: 900px) {
   .psx-lead {
-    padding: 2rem 1rem;
+    padding: var(--section-space) 1rem;
   }
 }
 
@@ -695,18 +695,18 @@
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 4rem 1rem;
+  padding: var(--section-space) 1rem;
   box-sizing: border-box;
 }
 
 .psx-tips-header {
   max-width: 860px;
-  margin: 0 auto clamp(24px, 4vw, 44px);
+  margin: 0 auto var(--header-content-gap);
   text-align: center;
 }
 
 .psx-tips-title {
-  margin: 0 0 10px;
+  margin: 0 0 var(--title-text-gap);
   font-size: clamp(2rem, 3.6vw, 3rem);
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -793,7 +793,7 @@
   width: 100%;
   max-width: 1600px;
   margin: 0 auto;
-  padding: 2rem 1rem 4rem;
+  padding: var(--section-space) 1rem;
   box-sizing: border-box;
 }
 
@@ -843,7 +843,7 @@
   grid-template-columns: minmax(0, 1fr);
   gap: clamp(16px, 3vw, 32px);
   align-items: stretch;
-  padding: 2rem 1rem;
+  padding: var(--section-space) 1rem;
   margin: 0 auto;
 }
 
@@ -941,11 +941,11 @@
 .psx-approaches-header {
   text-align: left;
   max-width: 70ch;
-  margin: 0 0 clamp(16px, 2.4vw, 26px);
+  margin: 0 0 var(--header-content-gap);
 }
 
 .psx-approaches-title {
-  margin: 0 0 10px;
+  margin: 0 0 var(--title-text-gap);
   font-size: clamp(1.75rem, 2.6vw, 2.25rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -1052,7 +1052,7 @@
   grid-template-columns: minmax(0, 1fr);
   gap: clamp(14px, 2.8vw, 24px);
   align-items: start;
-  padding: 2rem 1rem;
+  padding: var(--section-space) 1rem;
   margin: 0 auto;
 }
 
@@ -1062,7 +1062,7 @@
 }
 
 .psx-patterns-eyebrow {
-  margin: 0 0 10px;
+  margin: 0 0 var(--eyebrow-title-gap);
   font-size: 0.9rem;
   font-weight: 800;
   letter-spacing: 0.08em;
@@ -1071,7 +1071,7 @@
 }
 
 .psx-patterns-title {
-  margin: 0 0 10px;
+  margin: 0 0 var(--title-text-gap);
   font-size: clamp(1.85rem, 2.6vw, 2.4rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -1177,14 +1177,14 @@
 }
 
 .psx-syndromes-accordion {
-  padding: 2rem 1rem;
+  padding: var(--section-space) 1rem;
   margin: 0 auto;
   background: transparent;
 }
 
 .psx-syndromes-accordion-header {
   max-width: 980px;
-  margin: 0 auto clamp(18px, 4vw, 32px);
+  margin: 0 auto var(--header-content-gap);
   padding: 0 1rem;
   text-align: center;
 }
@@ -1232,7 +1232,7 @@
 }
 
 .psx-hip-interventional-note {
-  padding: 3.5rem 1rem;
+  padding: var(--section-space) 1rem;
   margin: 0 auto;
   background: transparent;
 }
@@ -1261,19 +1261,19 @@
 }
 
 .psx-approaches {
-  padding: 2rem 1rem;
+  padding: var(--section-space) 1rem;
   margin: 0 auto;
   background: transparent;
 }
 
 .psx-approaches-header {
   max-width: 980px;
-  margin: 0 auto 28px;
+  margin: 0 auto var(--header-content-gap);
   text-align: center;
 }
 
 .psx-approaches-title {
-  margin: 0 0 10px;
+  margin: 0 0 var(--title-text-gap);
   font-size: clamp(2.1rem, 3.8vw, 3rem);
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -1394,7 +1394,7 @@
 }
 
 .psx-facial-note {
-  padding: 3.5rem 1rem;
+  padding: var(--section-space) 1rem;
   margin: 0 auto;
   background: transparent;
 }
@@ -1429,7 +1429,7 @@
 }
 
 .psx-pelvic-note {
-  padding: 3.5rem 1rem;
+  padding: var(--section-space) 1rem;
   margin: 0 auto;
   background: transparent;
 }
@@ -1464,7 +1464,7 @@
 }
 
 .psx-abdominal-note {
-  padding: 3.5rem 1rem;
+  padding: var(--section-space) 1rem;
   margin: 0 auto;
   background: transparent;
 }
@@ -1549,7 +1549,7 @@
 }
 
 .psx-head-note {
-  padding: 3.5rem 1rem;
+  padding: var(--section-space) 1rem;
   margin: 0 auto;
   background: transparent;
 }
@@ -1584,7 +1584,7 @@
 }
 
 .psx-cervical-note {
-  padding: 3.5rem 1rem;
+  padding: var(--section-space) 1rem;
   margin: 0 auto;
   background: transparent;
 }
@@ -1617,7 +1617,7 @@
 }
 
 .psx-hand-elbow-note {
-  padding: 3.5rem 1rem;
+  padding: var(--section-space) 1rem;
   margin: 0 auto;
   background: transparent;
 }
@@ -1785,7 +1785,7 @@
 
 .psx-testimonials-header {
   text-align: left;
-  margin: 0 0 18px;
+  margin: 0 0 var(--header-content-gap);
 }
 
 .psx-testimonials-title {
