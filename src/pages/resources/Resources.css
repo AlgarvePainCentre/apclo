@@ -233,7 +233,7 @@
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 18px;
+  gap: var(--card-gap);
 }
 
 .tips-grid.tips-carousel {
@@ -755,7 +755,7 @@
 .info-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
+  gap: var(--card-gap);
   margin-bottom: 48px;
 }
 
@@ -796,7 +796,7 @@
 .testimonials-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr));
-  gap: 32px;
+  gap: var(--card-gap);
   margin-bottom: 48px;
 }
 
