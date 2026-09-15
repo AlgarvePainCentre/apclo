@@ -223,9 +223,9 @@ export default function Resources() {
             <h2>Understanding Cervical Pain</h2>
             <p>Practical, expert-written guides to help you understand and manage neck and cervical pain.</p>
           </div>
-          <div className="resource-nav-container">
+          <div className="resource-nav-container learn-bento">
             <Link
-              className="article-nav-item" 
+              className="article-nav-item article-nav-item--feature"
               to="/resources/learn/cervical-pain"
               aria-label="Read article about Cervical Pain"
               style={{ backgroundImage: `url('/assets/images/resources/Cervical-1.webp')` }}
@@ -240,7 +240,7 @@ export default function Resources() {
             </Link>
 
             <Link
-              className="article-nav-item" 
+              className="article-nav-item"
               to="/resources/learn/conquering-cervical-pain"
               aria-label="Read article about Conquering Cervical Pain"
               style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-2.webp')` }}
@@ -255,7 +255,7 @@ export default function Resources() {
             </Link>
 
             <Link
-              className="article-nav-item" 
+              className="article-nav-item"
               to="/resources/learn/acute-and-chronic-pain"
               aria-label="Read article about Understanding Acute and Chronic Pain"
               style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-3.webp')` }}
@@ -348,29 +348,22 @@ export default function Resources() {
             <h2>What Our Patients Say</h2>
             <p>Trusted by hundreds of patients for effective pain relief and rehabilitation.</p>
           </div>
-          <div className="testimonials-grid">
-            <div className="testimonial-card">
-              <div className="stars">★★★★★</div>
-              <p>"The team was incredible. They diagnosed my issue quickly and the treatment plan was easy to follow."</p>
-              <div className="author">
-                <span className="author-name">Michael T.</span>
-                <span className="author-detail">Lower Back Pain</span>
-              </div>
+          <div className="stories-block">
+            <div className="stories-lead">
+              <blockquote className="stories-quote">
+                “The team was incredible — they diagnosed my issue quickly and{' '}
+                <span>the treatment plan was easy to follow.</span>”
+              </blockquote>
+              <cite className="stories-cite">Michael T. · Lower back pain</cite>
             </div>
-            <div className="testimonial-card">
-              <div className="stars">★★★★★</div>
-              <p>"I can finally sleep through the night without shoulder pain. Highly recommend their osteopathy services."</p>
-              <div className="author">
-                <span className="author-name">Emma R.</span>
-                <span className="author-detail">Shoulder Injury</span>
+            <div className="stories-mini">
+              <div className="stories-mini-card">
+                <p>“I can finally sleep through the night without shoulder pain.”</p>
+                <span className="stories-mini-who">Emma R. · Shoulder injury</span>
               </div>
-            </div>
-            <div className="testimonial-card">
-              <div className="stars">★★★★★</div>
-              <p>"Professional, knowledgeable, and truly caring. They helped me avoid surgery."</p>
-              <div className="author">
-                <span className="author-name">David L.</span>
-                <span className="author-detail">Knee Pain</span>
+              <div className="stories-mini-card">
+                <p>“Professional and truly caring — they helped me avoid surgery.”</p>
+                <span className="stories-mini-who">David L. · Knee pain</span>
               </div>
             </div>
           </div>
