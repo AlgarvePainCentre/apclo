@@ -1771,7 +1771,7 @@
 }
 
 .home-section-mainpain-header {
-  margin: 0 0 28px;
+  margin: 0 0 clamp(32px, 4vw, 48px);
 }
 
 .home-section-testemunials-grid {
@@ -2459,7 +2459,7 @@
 
 .home-section-treatment-header {
   max-width: var(--container);
-  margin: 0 0 88px;
+  margin: 0 0 clamp(32px, 4vw, 48px);
   text-align: left;
   position: relative;
   padding-left: 16px;
@@ -2479,14 +2479,14 @@
 }
 
 .home-section-treatment-subtitle {
-  margin: 16px 0 0;
+  margin: 12px 0 0;
   font-size: 16px;
   line-height: 1.7;
   color: #4b5563;
 }
 
 .home-section-treatment-eyebrow {
-  margin: 0 0 6px;
+  margin: 0 0 8px;
   font-size: 12px;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -3484,7 +3484,7 @@
 
 .home-section-why-choose-header {
   max-width: 940px;
-  margin-bottom: 32px;
+  margin-bottom: clamp(32px, 4vw, 48px);
 }
 
 .home-section-why-choose-eyebrow {
@@ -3588,7 +3588,7 @@
 
 .home-section-team-header {
   max-width: 100%;
-  margin: 0 18px 88px;
+  margin: 0 18px clamp(32px, 4vw, 48px);
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -3611,7 +3611,7 @@
 }
 
 .home-section-team-title {
-  margin: 0 0 16px;
+  margin: 0 0 12px;
   font-size: 3rem;
   line-height: 1.1;
   letter-spacing: -0.03em;
@@ -3793,7 +3793,7 @@
 
 .home-centers-header {
   max-width: 780px;
-  margin: 0 auto 28px;
+  margin: 0 auto clamp(32px, 4vw, 48px);
   text-align: center;
 }
 
@@ -3807,7 +3807,7 @@
 }
 
 .home-centers-title {
-  margin: 0 0 10px;
+  margin: 0 0 12px;
   font-size: clamp(26px, 3vw, 38px);
   line-height: 1.15;
   letter-spacing: -0.03em;
@@ -4066,7 +4066,7 @@
 
   /* Generous breathing room between the headline and its intro paragraph. */
   .home-section-faq .home-section-why-choose-title + .home-section-why-choose-subtitle {
-    margin-top: clamp(20px, 2.4vw, 36px);
+    margin-top: 12px;
   }
 
   .home-section-faq .home-section-why-choose-layout {
@@ -4195,7 +4195,7 @@
 }
 
 .home-section-why-choose-subtitle {
-  margin: 16px 0 0;
+  margin: 12px 0 0;
   font-size: 16px;
   line-height: 1.7;
   color: #4b5563;
