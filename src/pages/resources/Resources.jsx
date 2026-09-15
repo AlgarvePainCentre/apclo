@@ -271,23 +271,25 @@ export default function Resources() {
           </div>
         </section>
 
-        <section className="page-section" id="overcoming-sciatica-pain">
-          <div className="sciatica-block">
-            <div className="sciatica-copy">
-              <p className="sciatica-eyebrow">Real stories of recovery</p>
-              <h2 className="sciatica-title">Overcoming Sciatica Pain</h2>
-              <p className="sciatica-body">
-                Sciatica can be debilitating — but it doesn't have to be permanent. See how our patients
-                have reclaimed their lives through targeted therapy and personalised care plans.
+        <section className="page-section highlight-section" id="overcoming-sciatica-pain">
+          <div className="highlight-content">
+            <div className="highlight-text">
+              <h2>Overcoming Sciatica Pain</h2>
+              <p className="highlight-subtitle">Real Stories of Recovery</p>
+              <p>
+                Sciatica can be debilitating, but it doesn't have to be permanent. 
+                Read how our patients have reclaimed their lives through targeted therapy and personalized care plans.
               </p>
-              <button className="sciatica-cta" onClick={() => navigate('/resources/testimonials/overcoming-sciatica-pain')}>
-                Read success stories →
+              <button className="primary-btn" onClick={() => navigate('/resources/testimonials/overcoming-sciatica-pain')}>
+                Read Success Stories
               </button>
             </div>
-            <figure className="sciatica-quote">
-              <blockquote>“I thought I'd never run again. After three months of treatment, I'm back on the track — pain-free.”</blockquote>
-              <figcaption>Sarah Jenkins · Sciatica recovery</figcaption>
-            </figure>
+            <div className="highlight-visual">
+              <div className="testimonial-quote-card">
+                <p>"I thought I'd never run again. After 3 months of treatment, I'm back on the track pain-free."</p>
+                <cite>- Sarah Jenkins</cite>
+              </div>
+            </div>
           </div>
         </section>
 
