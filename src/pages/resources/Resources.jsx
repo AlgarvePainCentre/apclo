@@ -223,51 +223,46 @@ export default function Resources() {
             <h2>Understanding Cervical Pain</h2>
             <p>Practical, expert-written guides to help you understand and manage neck and cervical pain.</p>
           </div>
-          <div className="resource-nav-container">
+          <div className="learn-editorial">
             <Link
-              className="article-nav-item" 
+              className="learn-feature"
               to="/resources/learn/cervical-pain"
-              aria-label="Read article about Cervical Pain"
-              style={{ backgroundImage: `url('/assets/images/resources/Cervical-1.webp')` }}
+              aria-label="Read the featured guide: Cervical Pain"
             >
-              <div className="article-nav-content">
-                <span className="article-nav-label">May 15, 2024 • 5 min read</span>
-                <h3 className="article-nav-title">
-                  Cervical Pain
-                  <span className="arrow">→</span>
-                </h3>
-              </div>
+              <span
+                className="learn-feature-img"
+                style={{ backgroundImage: `url('/assets/images/resources/Cervical-1.webp')` }}
+                aria-hidden="true"
+              />
+              <span className="learn-feature-body">
+                <span className="learn-feature-kick">Featured · 5 min read</span>
+                <h3 className="learn-feature-title">Cervical Pain</h3>
+                <span className="learn-feature-ex">
+                  The most common causes of neck and cervical pain, the signals worth acting on,
+                  and how our multidisciplinary team finds the root cause.
+                </span>
+                <span className="learn-feature-cta">Read the guide →</span>
+              </span>
             </Link>
 
-            <Link
-              className="article-nav-item" 
-              to="/resources/learn/conquering-cervical-pain"
-              aria-label="Read article about Conquering Cervical Pain"
-              style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-2.webp')` }}
-            >
-              <div className="article-nav-content">
-                <span className="article-nav-label">May 10, 2024 • 7 min read</span>
-                <h3 className="article-nav-title">
-                  Conquering Cervical Pain
-                  <span className="arrow">→</span>
-                </h3>
-              </div>
-            </Link>
-
-            <Link
-              className="article-nav-item" 
-              to="/resources/learn/acute-and-chronic-pain"
-              aria-label="Read article about Understanding Acute and Chronic Pain"
-              style={{ backgroundImage: `url('/assets/images/resources/Cervical-Card-3.webp')` }}
-            >
-              <div className="article-nav-content">
-                <span className="article-nav-label">May 5, 2024 • 6 min read</span>
-                <h3 className="article-nav-title">
-                  Understanding Acute and Chronic Pain
-                  <span className="arrow">→</span>
-                </h3>
-              </div>
-            </Link>
+            <nav className="learn-index" aria-label="More Learn articles">
+              <Link className="learn-index-item" to="/resources/learn/conquering-cervical-pain">
+                <span className="learn-index-no">01</span>
+                <span className="learn-index-text">
+                  <h4 className="learn-index-title">Conquering Cervical Pain</h4>
+                  <span className="learn-index-ex">Self-care strategies and exercises for lasting relief.</span>
+                </span>
+                <span className="learn-index-meta">May 10, 2024 · 7 min</span>
+              </Link>
+              <Link className="learn-index-item" to="/resources/learn/acute-and-chronic-pain">
+                <span className="learn-index-no">02</span>
+                <span className="learn-index-text">
+                  <h4 className="learn-index-title">Understanding Acute &amp; Chronic Pain</h4>
+                  <span className="learn-index-ex">How pain works — and the point at which it becomes chronic.</span>
+                </span>
+                <span className="learn-index-meta">May 5, 2024 · 6 min</span>
+              </Link>
+            </nav>
           </div>
         </section>
 
@@ -348,29 +343,22 @@ export default function Resources() {
             <h2>What Our Patients Say</h2>
             <p>Trusted by hundreds of patients for effective pain relief and rehabilitation.</p>
           </div>
-          <div className="testimonials-grid">
-            <div className="testimonial-card">
-              <div className="stars">★★★★★</div>
-              <p>"The team was incredible. They diagnosed my issue quickly and the treatment plan was easy to follow."</p>
-              <div className="author">
-                <span className="author-name">Michael T.</span>
-                <span className="author-detail">Lower Back Pain</span>
-              </div>
+          <div className="stories-block">
+            <div className="stories-lead">
+              <blockquote className="stories-quote">
+                “The team was incredible — they diagnosed my issue quickly and{' '}
+                <span>the treatment plan was easy to follow.</span>”
+              </blockquote>
+              <cite className="stories-cite">Michael T. · Lower back pain</cite>
             </div>
-            <div className="testimonial-card">
-              <div className="stars">★★★★★</div>
-              <p>"I can finally sleep through the night without shoulder pain. Highly recommend their osteopathy services."</p>
-              <div className="author">
-                <span className="author-name">Emma R.</span>
-                <span className="author-detail">Shoulder Injury</span>
+            <div className="stories-mini">
+              <div className="stories-mini-card">
+                <p>“I can finally sleep through the night without shoulder pain.”</p>
+                <span className="stories-mini-who">Emma R. · Shoulder injury</span>
               </div>
-            </div>
-            <div className="testimonial-card">
-              <div className="stars">★★★★★</div>
-              <p>"Professional, knowledgeable, and truly caring. They helped me avoid surgery."</p>
-              <div className="author">
-                <span className="author-name">David L.</span>
-                <span className="author-detail">Knee Pain</span>
+              <div className="stories-mini-card">
+                <p>“Professional and truly caring — they helped me avoid surgery.”</p>
+                <span className="stories-mini-who">David L. · Knee pain</span>
               </div>
             </div>
           </div>
