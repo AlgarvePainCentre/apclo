@@ -13,7 +13,7 @@
 }
 
 .about-page .page-section {
-  margin: 0 auto 6rem;
+  margin: 0 auto var(--section-space);
   width: 100%;
 }
 
@@ -114,7 +114,7 @@
 }
 
 .about-page .section-kicker {
-  margin: 0 0 18px;
+  margin: 0 0 var(--eyebrow-title-gap);
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.16em;
@@ -208,7 +208,7 @@
 }
 
 .about-page .section-video-eyebrow {
-    margin: 0 0 10px;
+    margin: 0 0 var(--eyebrow-title-gap);
     font-size: 0.78rem;
     font-weight: 700;
     letter-spacing: 0.16em;
@@ -242,7 +242,7 @@
 .about-page .team-section-header {
     position: relative;
     max-width: 760px;
-    margin: 0 0 3rem;
+    margin: 0 0 var(--header-content-gap);
     padding: 0 0 1.5rem;
 }
 
@@ -258,7 +258,7 @@
 }
 
 .about-page .team-section-eyebrow {
-    margin: 0 0 10px;
+    margin: 0 0 var(--eyebrow-title-gap);
     font-size: 0.82rem;
     font-weight: 700;
     letter-spacing: 0.16em;
@@ -267,7 +267,7 @@
 }
 
 .about-page .team-section-title {
-    margin: 0 0 14px;
+    margin: 0 0 var(--title-text-gap);
     color: #003366;
     font-size: clamp(2.4rem, 4vw, 3.6rem);
     line-height: 1.05;
@@ -511,14 +511,14 @@
 }
 
 .about-page .home-centers {
-    margin-top: clamp(32px, 4vw, 56px);
+    margin-top: var(--section-space);
     padding-top: clamp(24px, 3vw, 36px);
     border-top: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .about-page .home-centers-header {
     max-width: 780px;
-    margin: 0 auto 28px;
+    margin: 0 auto var(--header-content-gap);
     text-align: center;
 }
 
@@ -532,7 +532,7 @@
 }
 
 .about-page .home-centers-title {
-    margin: 0 0 10px;
+    margin: 0 0 var(--title-text-gap);
     font-size: clamp(26px, 3vw, 38px);
     line-height: 1.15;
     letter-spacing: -0.03em;

@@ -1,5 +1,5 @@
 .specialities-page .treatments-feature {
-  padding-block: clamp(48px, 6vw, 96px);
+  padding-block: var(--section-space);
 }
 
 .specialities-page .treatments-feature + .treatments-feature {
@@ -230,7 +230,7 @@
   max-width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  padding-block: clamp(64px, 8vw, 120px);
+  padding-block: var(--section-space);
   background-color: transparent;
   overflow-x: clip;
 }
@@ -273,7 +273,7 @@
 
 /* Our Treatment Approaches Section */
 .specialities-page .specialities-treatment-approaches-section {
-  padding-block: clamp(60px, 8vw, 100px);
+  padding-block: var(--section-space);
   background-color: #f8fafc;
 }
 
@@ -285,11 +285,11 @@
 
 .specialities-page .specialities-treatment-approaches-header {
   text-align: center;
-  margin-bottom: clamp(40px, 6vw, 60px);
+  margin-bottom: var(--header-content-gap);
 }
 
 .specialities-page .specialities-treatment-approaches-title {
-  margin: 0 0 16px;
+  margin: 0 0 var(--title-text-gap);
   font-size: clamp(2rem, 4vw, 2.8rem);
   font-weight: 700;
   color: #003366;
@@ -391,7 +391,7 @@
 
 /* Testimonials Section */
 .specialities-page .specialities-testimonials-section {
-  padding-block: clamp(60px, 8vw, 100px);
+  padding-block: var(--section-space);
   background-color: #f8fafc;
 }
 
@@ -403,7 +403,7 @@
 
 .specialities-page .specialities-testimonials-header {
   text-align: center;
-  margin-bottom: clamp(40px, 6vw, 60px);
+  margin-bottom: var(--header-content-gap);
 }
 
 .specialities-page .specialities-testimonials-title {

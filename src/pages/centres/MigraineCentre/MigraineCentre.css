@@ -17,7 +17,7 @@
 }
 
 .mc-eyebrow {
-  margin: 0 0 12px;
+  margin: 0 0 var(--eyebrow-title-gap);
   font-size: 13px;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -30,7 +30,7 @@
 }
 
 .mc-title {
-  margin: 0 0 16px;
+  margin: 0 0 var(--title-text-gap);
   font-size: clamp(32px, 4vw, 52px);
   line-height: 1.1;
   letter-spacing: -0.02em;
@@ -68,15 +68,15 @@
   width: 100%;
   max-width: var(--container, 1200px);
   margin: 0 auto;
-  padding: 64px 24px 88px;
+  padding: var(--section-space) 24px;
 }
 
 .mc-section {
-  margin-bottom: 48px;
+  margin-bottom: var(--section-space);
 }
 
 .mc-section-title {
-  margin: 0 0 16px;
+  margin: 0 0 var(--header-content-gap);
   font-size: clamp(24px, 2.4vw, 32px);
   line-height: 1.2;
   letter-spacing: -0.01em;
