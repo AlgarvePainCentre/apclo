@@ -27,6 +27,12 @@
      card sections share a consistent, rounded feel. */
   --card-radius: 24px;
   --card-gap: clamp(16px, 2.2vw, 24px);
+  /* Uniform vertical rhythm — shared by the home page and every other page so
+     section spacing reads consistently across the site. */
+  --section-space: clamp(56px, 8vw, 80px);   /* section top/bottom padding */
+  --header-content-gap: clamp(24px, 3vw, 36px); /* section header -> content */
+  --eyebrow-title-gap: 8px;                  /* eyebrow -> title */
+  --title-text-gap: 12px;                    /* title -> subtitle/lead text */
   --nectar-border-radius: 200px;
   --nectar-body-line-height: 16px;
   --nectar-body-font-size: 14px;
