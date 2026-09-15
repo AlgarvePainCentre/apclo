@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import './resources-hub.css';
 import { useGetTestimonialStoriesQuery } from '../../../features/content/contentApi';
@@ -44,6 +44,49 @@ export default function ResourcesHub() {
   const [email, setEmail] = useState('');
   const [sent, setSent] = useState(false);
 
+  // Draggable / swipeable carousel for the patient stories.
+  const trackRef = useRef(null);
+  const dragState = useRef({ down: false, moved: false, startX: 0, scrollLeft: 0 });
+
+  const onPointerDown = (e) => {
+    const track = trackRef.current;
+    if (!track) return;
+    dragState.current = {
+      down: true,
+      moved: false,
+      startX: e.clientX,
+      scrollLeft: track.scrollLeft,
+    };
+    track.setPointerCapture?.(e.pointerId);
+  };
+  const onPointerMove = (e) => {
+    const track = trackRef.current;
+    const st = dragState.current;
+    if (!track || !st.down) return;
+    const dx = e.clientX - st.startX;
+    if (Math.abs(dx) > 4) st.moved = true;
+    track.scrollLeft = st.scrollLeft - dx;
+  };
+  const endDrag = (e) => {
+    const track = trackRef.current;
+    dragState.current.down = false;
+    track?.releasePointerCapture?.(e.pointerId);
+  };
+  // Prevent a drag from triggering the card's navigation.
+  const onCardClick = (e) => {
+    if (dragState.current.moved) {
+      e.preventDefault();
+      dragState.current.moved = false;
+    }
+  };
+  const scrollByCards = (dir) => {
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.querySelector('.rhub-story');
+    const step = card ? card.offsetWidth + 20 : 300;
+    track.scrollBy({ left: dir * step * 1.5, behavior: 'smooth' });
+  };
+
   useEffect(() => {
     document.title = 'Resources (preview) | Algarve Pain Centre';
   }, []);
@@ -55,17 +98,32 @@ export default function ResourcesHub() {
 
   return (
     <div className="rhub">
-      <header className="rhub-hero">
-        <p className="rhub-eyebrow rhub-eyebrow--hero">Resources</p>
-        <h1>Everything to support your recovery</h1>
-        <p className="rhub-hero-sub">
-          Expert guides and real patient stories — plus a free guide to take away. Explore what fits
-          where you are.
-        </p>
-        <div className="rhub-chips">
-          <a href="#guides" className="rhub-chip">Guides</a>
-          <a href="#stories" className="rhub-chip">Patient stories</a>
-          <a href="#guide" className="rhub-chip">Free guide</a>
+      <header className="rhub-hero" aria-label="Resources hero section">
+        <div className="rhub-hero-media" aria-hidden="true">
+          <video
+            className="rhub-hero-video"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster="/assets/images/Hero/Psychology.webp"
+          >
+            <source src="/assets/videos/Sports-Medicine-Video-min-1.mp4" type="video/mp4" />
+          </video>
+        </div>
+        <div className="rhub-hero-inner">
+          <p className="rhub-eyebrow rhub-eyebrow--hero">Resources</p>
+          <h1>Everything to support your recovery</h1>
+          <p className="rhub-hero-sub">
+            Expert guides and real patient stories — plus a free guide to take away. Explore what fits
+            where you are.
+          </p>
+          <div className="rhub-chips">
+            <a href="#guides" className="rhub-chip">Guides</a>
+            <a href="#stories" className="rhub-chip">Patient stories</a>
+            <a href="#guide" className="rhub-chip">Free guide</a>
+          </div>
         </div>
       </header>
 
@@ -149,22 +207,45 @@ export default function ResourcesHub() {
           </div>
         )}
 
-        <div className="rhub-stories">
-          {rest.map((s) => (
-            <Link key={s.to} to={s.to} className="rhub-story" aria-label={`Read ${s.name}'s story`}>
-              <span className="rhub-story-av" aria-hidden="true">
-                <img src={s.img} alt="" loading="lazy" />
-              </span>
-              <p className="rhub-story-q">&ldquo;{s.quote}&rdquo;</p>
-              <span className="rhub-story-foot">
-                <span className="rhub-story-meta">
-                  <span className="rhub-story-name">{s.name}</span>
-                  <span className="rhub-story-read">{s.readMins} min read</span>
+        <div className="rhub-carousel">
+          <div className="rhub-carousel-head">
+            <span className="rhub-carousel-hint">Drag to explore →</span>
+            <div className="rhub-carousel-nav">
+              <button type="button" className="rhub-cnav" aria-label="Previous stories" onClick={() => scrollByCards(-1)}>‹</button>
+              <button type="button" className="rhub-cnav" aria-label="More stories" onClick={() => scrollByCards(1)}>›</button>
+            </div>
+          </div>
+          <div
+            className="rhub-stories"
+            ref={trackRef}
+            onPointerDown={onPointerDown}
+            onPointerMove={onPointerMove}
+            onPointerUp={endDrag}
+            onPointerCancel={endDrag}
+          >
+            {rest.map((s) => (
+              <Link
+                key={s.to}
+                to={s.to}
+                className="rhub-story"
+                aria-label={`Read ${s.name}'s story`}
+                onClick={onCardClick}
+                draggable={false}
+              >
+                <span className="rhub-story-av" aria-hidden="true">
+                  <img src={s.img} alt="" loading="lazy" draggable={false} />
                 </span>
-                <span className="rhub-story-arrow" aria-hidden="true">→</span>
-              </span>
-            </Link>
-          ))}
+                <p className="rhub-story-q">&ldquo;{s.quote}&rdquo;</p>
+                <span className="rhub-story-foot">
+                  <span className="rhub-story-meta">
+                    <span className="rhub-story-name">{s.name}</span>
+                    <span className="rhub-story-read">{s.readMins} min read</span>
+                  </span>
+                  <span className="rhub-story-arrow" aria-hidden="true">→</span>
+                </span>
+              </Link>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -173,9 +254,14 @@ export default function ResourcesHub() {
           <p className="rhub-guide-k">Free guide · by email</p>
           <h3>5 Daily Habits for a Healthy Spine</h3>
           <p>
-            Simple, effective changes to improve posture, reduce back pain and increase mobility.
-            Enter your email and we&apos;ll send it over.
+            Discover the simple, effective changes you can make to your daily routine to improve
+            posture, reduce back pain and increase mobility. Curated by our expert team.
           </p>
+          <ul className="rhub-guide-list">
+            <li>Ergonomic Desk Setup Tips</li>
+            <li>Morning Stretching Routine</li>
+            <li>Hydration &amp; Nutrition Advice</li>
+          </ul>
           {sent ? (
             <p className="rhub-guide-thanks">Thanks — check your inbox for the guide.</p>
           ) : (
