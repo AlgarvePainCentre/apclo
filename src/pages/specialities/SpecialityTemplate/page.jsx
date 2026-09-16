@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import ArticleBreadcrumb from '../../../components/ArticleBreadcrumb';
 import './speciality-template.css';
 
 /*
@@ -97,17 +98,31 @@ export default function SpecialityTemplate() {
         </div>
       </header>
 
+      {/* Breadcrumb — as on the original page */}
+      <nav className="stpl-crumbs" aria-label="Breadcrumb">
+        <ArticleBreadcrumb
+          items={[
+            { label: 'Home', to: '/' },
+            { label: 'Specialities', to: '/specialities' },
+            { label: d.title, isCurrent: true },
+          ]}
+        />
+      </nav>
+
       {/* 2 · Overview */}
       <section className="stpl-block stpl-overview">
-        <div className="stpl-head">
+        <div className="stpl-overview-head">
           <p className="stpl-eyebrow">Overview</p>
           <h2 className="stpl-h2">Understanding {d.title.toLowerCase()}</h2>
         </div>
-        <div className="stpl-overview-body">
-          {d.overview.map((p, i) => (
-            <p key={i}>{p}</p>
-          ))}
-        </div>
+        <p className="stpl-lead-intro">{d.overview[0]}</p>
+        {d.overview.length > 1 && (
+          <div className="stpl-overview-rest">
+            {d.overview.slice(1).map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* 3 · How it can present */}
