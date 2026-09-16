@@ -46,12 +46,12 @@ const DEMO = {
     },
   ],
   treatments: [
-    { name: 'Botulinum toxin injection', kind: 'Minimally invasive', to: '/treatments/minimally-invasive-treatments/botulin-toxin-injection' },
-    { name: 'Peripheral nerve block', kind: 'Minimally invasive', to: '/treatments/minimally-invasive-treatments/peripheral-nerve-block' },
-    { name: 'Radiofrequency', kind: 'Minimally invasive', to: '/treatments/minimally-invasive-treatments/radiofrequency' },
-    { name: 'Pharmacological pain management', kind: 'Non-invasive', to: '/treatments/non-invasive-treatments/pharmacological-pain-management' },
-    { name: 'Physiotherapy', kind: 'Non-invasive', to: '/treatments/non-invasive-treatments/physiotherapy' },
-    { name: 'Psychology', kind: 'Non-invasive', to: '/treatments/non-invasive-treatments/psychology' },
+    { name: 'Botulinum toxin injection', kind: 'Minimally invasive', to: '/treatments/minimally-invasive-treatments/botulin-toxin-injection', img: '/assets/images/Hero/BotulinToxinInjection.webp' },
+    { name: 'Peripheral nerve block', kind: 'Minimally invasive', to: '/treatments/minimally-invasive-treatments/peripheral-nerve-block', img: '/assets/images/Hero/PeripheralNerveBlocks.webp' },
+    { name: 'Radiofrequency', kind: 'Minimally invasive', to: '/treatments/minimally-invasive-treatments/radiofrequency', img: '/assets/images/Hero/RadiofrequencyAblation.webp' },
+    { name: 'Pharmacological pain management', kind: 'Non-invasive', to: '/treatments/non-invasive-treatments/pharmacological-pain-management', img: '/assets/images/Hero/PharmacologicalPainManagement.webp' },
+    { name: 'Physiotherapy', kind: 'Non-invasive', to: '/treatments/non-invasive-treatments/physiotherapy', img: '/assets/images/Hero/Physiotherapy.webp' },
+    { name: 'Psychology', kind: 'Non-invasive', to: '/treatments/non-invasive-treatments/psychology', img: '/assets/images/Hero/Psychology.webp' },
   ],
   guidance: [
     'Keep a simple headache diary for 2–4 weeks (frequency, duration, triggers and medication use). This improves diagnostic accuracy and treatment selection.',
@@ -139,9 +139,14 @@ export default function SpecialityTemplate() {
         <div className="stpl-treatments">
           {d.treatments.map((t) => (
             <Link key={t.to} to={t.to} className="stpl-treatment">
-              <span className="stpl-treatment-kind">{t.kind}</span>
-              <span className="stpl-treatment-name">{t.name}</span>
-              <span className="stpl-treatment-arrow" aria-hidden="true">→</span>
+              <span className="stpl-treatment-media">
+                <img src={t.img} alt="" loading="lazy" />
+                <span className="stpl-treatment-kind">{t.kind}</span>
+              </span>
+              <span className="stpl-treatment-body">
+                <span className="stpl-treatment-name">{t.name}</span>
+                <span className="stpl-treatment-arrow" aria-hidden="true">→</span>
+              </span>
             </Link>
           ))}
         </div>
@@ -168,7 +173,25 @@ export default function SpecialityTemplate() {
         </aside>
       </section>
 
-      {/* 6 · Contact / CTA */}
+      {/* 6 · Location */}
+      <section className="stpl-block stpl-location">
+        <div className="stpl-head">
+          <p className="stpl-eyebrow">Visit us</p>
+          <h2 className="stpl-h2">Our location</h2>
+          <p className="stpl-lead">Algarve Pain Centre · Av. do Mar, Vale do Lobo, Algarve, Portugal.</p>
+        </div>
+        <div className="stpl-map">
+          <iframe
+            title="Algarve Pain Centre location map"
+            src="https://www.google.com/maps?q=Av.+do+Mar+8135-107+Portugal&z=16&output=embed"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+        </div>
+      </section>
+
+      {/* 7 · Contact / CTA */}
       <section className="stpl-cta">
         <div className="stpl-cta-inner">
           <h2>Living with {d.title.toLowerCase()}?</h2>
