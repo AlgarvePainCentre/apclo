@@ -193,17 +193,25 @@ export default function SpecialityTemplate() {
 
       {/* 7 · Contact / CTA */}
       <section className="stpl-cta">
+        <span className="stpl-cta-glow stpl-cta-glow--a" aria-hidden="true" />
+        <span className="stpl-cta-glow stpl-cta-glow--b" aria-hidden="true" />
         <div className="stpl-cta-inner">
-          <h2>Living with {d.title.toLowerCase()}?</h2>
-          <p>Book an assessment with our multidisciplinary team in Vale do Lobo, Algarve.</p>
+          <p className="stpl-cta-eyebrow">Ready when you are</p>
+          <h2>Living with {d.title.toLowerCase()}?<br />Let&apos;s find your relief.</h2>
+          <p className="stpl-cta-sub">Book an assessment with our multidisciplinary team in Vale do Lobo, Algarve.</p>
           <div className="stpl-hero-actions">
-            <button type="button" className="stpl-btn stpl-btn--primary" onClick={() => navigate('/contact')}>
-              Book an appointment
+            <button type="button" className="stpl-btn stpl-btn--cta" onClick={() => navigate('/contact')}>
+              Book an appointment <span aria-hidden="true">→</span>
             </button>
             <button type="button" className="stpl-btn stpl-btn--ghost-dark" onClick={() => navigate('/specialities')}>
               All specialities
             </button>
           </div>
+          <ul className="stpl-cta-assure">
+            <li>Multidisciplinary team</li>
+            <li>Personalised plan</li>
+            <li>Vale do Lobo, Algarve</li>
+          </ul>
         </div>
       </section>
 
