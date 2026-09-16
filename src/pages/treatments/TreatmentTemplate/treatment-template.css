@@ -1,6 +1,6 @@
 .treat-tpl {
   --ttpl-blue: #003366;
-  --ttpl-red: var(--color-darkRed, #d3243b);
+  --ttpl-red: #d3243b;
   --ttpl-coral: #f0857c;
   --ttpl-ink: #12212e;
   --ttpl-mut: #5c6b7a;
@@ -107,8 +107,8 @@
 .ttpl-cta h2 { margin: 0 auto; max-width: 20ch; font-size: clamp(28px, 3.8vw, 46px); line-height: 1.08; letter-spacing: -0.025em; font-weight: 800; text-wrap: balance; color: #fff; }
 .ttpl-cta-sub { margin: 16px auto 0; max-width: 46ch; color: rgba(255, 255, 255, 0.82); font-size: 16.5px; }
 .ttpl-cta .ttpl-hero-actions { margin-top: 30px; }
-.ttpl-btn--cta { background: var(--ttpl-red); color: #fff; font-size: 15.5px; padding: 16px 32px; gap: 8px; box-shadow: 0 12px 30px rgba(211, 36, 59, 0.45); }
-.ttpl-btn--cta:hover { background: #e63147; transform: translateY(-2px); box-shadow: 0 18px 40px rgba(211, 36, 59, 0.55); }
+.ttpl-btn--cta { background: var(--ttpl-red); color: #fff; font-size: 15.5px; padding: 16px 32px; gap: 8px; }
+.ttpl-btn--cta:hover { background: #b81f33; transform: translateY(-2px); }
 .ttpl-btn--cta span { transition: transform 0.2s ease; }
 .ttpl-btn--cta:hover span { transform: translateX(3px); }
 .ttpl-cta-assure { margin: 26px 0 0; padding: 0; list-style: none; display: flex; gap: 10px 22px; flex-wrap: wrap; justify-content: center; }
