@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ArticleBreadcrumb from '../../../components/ArticleBreadcrumb';
 import './speciality-template.css';
@@ -11,6 +12,7 @@ export default function SpecialityTemplateView({ data: d }) {
   const navigate = useNavigate();
   const hasTips = Array.isArray(d.tips) && d.tips.length > 0;
   const showAside = !hasTips && Array.isArray(d.guidance) && d.guidance.length > 0;
+  const [openSyn, setOpenSyn] = useState(0);
 
   return (
     <div className="spec-tpl">
@@ -59,17 +61,24 @@ export default function SpecialityTemplateView({ data: d }) {
         </div>
       </section>
 
-      {/* Optional · Symptoms & diagnosis */}
+      {/* Optional · Symptoms & diagnosis — tinted panel */}
       {Array.isArray(d.symptoms) && d.symptoms.length > 0 && (
-        <section className="stpl-block stpl-symptoms">
-          <div className="stpl-head">
-            <p className="stpl-eyebrow">Symptoms &amp; diagnosis</p>
-            <h2 className="stpl-h2">Knowing what to look for</h2>
-          </div>
-          <div className="stpl-overview-rest stpl-symptoms-body">
-            {d.symptoms.map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
+        <section className="stpl-block">
+          <div className="stpl-symptoms-panel">
+            <div className="stpl-symptoms-head">
+              <span className="stpl-symptoms-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 8v4l3 2" /><circle cx="12" cy="12" r="9" /></svg>
+              </span>
+              <div>
+                <p className="stpl-eyebrow">Symptoms &amp; diagnosis</p>
+                <h2 className="stpl-h2">Knowing what to look for</h2>
+              </div>
+            </div>
+            <div className="stpl-symptoms-body">
+              {d.symptoms.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
           </div>
         </section>
       )}
@@ -99,27 +108,35 @@ export default function SpecialityTemplateView({ data: d }) {
             <h2 className="stpl-h2">Most common syndromes</h2>
             <p className="stpl-lead">The specific diagnoses we most often identify and treat in this area.</p>
           </div>
-          <div className={`stpl-syndromes${d.syndromes.some((s) => s.img) ? '' : ' is-textonly'}`}>
-            {d.syndromes.map((s, i) => (
-              <article key={i} className={`stpl-syndrome${s.img ? '' : ' has-no-media'}`}>
-                {s.img && (
-                  <div className="stpl-syndrome-media">
-                    <img src={s.img} alt="" loading="lazy" />
-                  </div>
-                )}
-                <div className="stpl-syndrome-body">
-                  <h3>{s.name}</h3>
-                  {s.copy.map((c, j) => (
-                    <p key={j}>{c}</p>
-                  ))}
-                  {s.to && (
-                    <Link to={s.to} className="stpl-syndrome-link">
-                      Learn more <span aria-hidden="true">›</span>
-                    </Link>
+          <div className="stpl-syn-acc">
+            {d.syndromes.map((s, i) => {
+              const open = openSyn === i;
+              return (
+                <div key={i} className={`stpl-syn-item${open ? ' is-open' : ''}`}>
+                  <button type="button" className="stpl-syn-q" aria-expanded={open} onClick={() => setOpenSyn(open ? -1 : i)}>
+                    {s.img && (
+                      <span className="stpl-syn-thumb" aria-hidden="true">
+                        <img src={s.img} alt="" loading="lazy" />
+                      </span>
+                    )}
+                    <span className="stpl-syn-name">{s.name}</span>
+                    <span className="stpl-syn-icon" aria-hidden="true">{open ? '–' : '+'}</span>
+                  </button>
+                  {open && (
+                    <div className="stpl-syn-a">
+                      {s.copy.map((c, j) => (
+                        <p key={j}>{c}</p>
+                      ))}
+                      {s.to && (
+                        <Link to={s.to} className="stpl-syndrome-link">
+                          Learn more <span aria-hidden="true">›</span>
+                        </Link>
+                      )}
+                    </div>
                   )}
                 </div>
-              </article>
-            ))}
+              );
+            })}
           </div>
         </section>
       )}
