@@ -3880,7 +3880,12 @@
   object-fit: cover;
   display: block;
   transform: scale(1.02);
-  transition: transform 500ms ease;
+  /* Fade the photo in over the branded placeholder instead of a hard swap. */
+  opacity: 0;
+  transition: transform 500ms ease, opacity 450ms ease;
+}
+.home-centers-card-bg.is-loaded {
+  opacity: 1;
 }
 
 .home-centers-card:hover .home-centers-card-bg {

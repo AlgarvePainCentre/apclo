@@ -80,6 +80,32 @@ export default function Home() {
     }
   }, []);
 
+  // Warm the "Our Centers" images in the browser cache while it's idle, so they
+  // are already downloaded by the time the user scrolls to that section. The
+  // <img> tags keep loading="lazy" (Lighthouse-friendly); native lazy then
+  // pulls them from cache instantly instead of over the network.
+  useEffect(() => {
+    let cancelled = false;
+    const warm = () => {
+      if (cancelled) return;
+      centres.forEach((c) => {
+        [c.image, c.logo].filter(Boolean).forEach((src) => {
+          const img = new Image();
+          img.decoding = 'async';
+          img.src = src;
+        });
+      });
+    };
+    const idle = window.requestIdleCallback
+      ? window.requestIdleCallback(warm, { timeout: 2500 })
+      : window.setTimeout(warm, 1200);
+    return () => {
+      cancelled = true;
+      if (window.cancelIdleCallback && window.requestIdleCallback) window.cancelIdleCallback(idle);
+      else window.clearTimeout(idle);
+    };
+  }, []);
+
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const hasLoadedSource = (el) => Boolean(el.getAttribute('src') || el.querySelector('source[src]'));
@@ -577,6 +603,9 @@ export default function Home() {
                         alt=""
                         loading="lazy"
                         decoding="async"
+                        ref={(el) => { if (el && el.complete) el.classList.add('is-loaded'); }}
+                        onLoad={(e) => e.currentTarget.classList.add('is-loaded')}
+                        onError={(e) => e.currentTarget.classList.add('is-loaded')}
                       />
                       <span className="home-centers-card-overlay" aria-hidden="true" />
                       <div className="home-centers-card-content">
