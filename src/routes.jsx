@@ -18,6 +18,7 @@ const routeEntries = [
   { path: 'about', lazy: createLazyRouteModule(() => import('./pages/about/About')), preloadPath: '/about' },
   { path: 'resources-v2', lazy: createLazyRouteModule(() => import('./pages/resources/ResourcesHub/page')), preloadPath: '/resources-v2' },
   { path: 'specialities-template', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page')), preloadPath: '/specialities-template' },
+  { path: 'treatment-template', lazy: createLazyRouteModule(() => import('./pages/treatments/TreatmentTemplate/page')), preloadPath: '/treatment-template' },
   { path: 'doctor/:id', lazy: createLazyRouteModule(() => import('./pages/doctor/DoctorDetail')), preloadPath: '/doctor/:id' },
   { path: 'contact', lazy: createLazyRouteModule(() => import('./pages/contact/Contact')), preloadPath: '/contact' },
   { path: 'resources', lazy: createLazyRouteModule(() => import('./pages/resources/Resources')), preloadPath: '/resources' },
