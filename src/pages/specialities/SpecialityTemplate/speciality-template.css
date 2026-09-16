@@ -97,6 +97,21 @@
 .stpl-treatment-arrow { flex-shrink: 0; width: 30px; height: 30px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid rgba(15, 23, 42, 0.18); color: var(--stpl-blue); font-size: 15px; transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease; }
 .stpl-treatment:hover .stpl-treatment-arrow { background: var(--stpl-blue); border-color: var(--stpl-blue); color: #fff; }
 
+/* Optional · Symptoms & diagnosis (reuses overview-rest columns) */
+.stpl-symptoms-body p::before { content: ''; display: block; width: 40px; height: 3px; border-radius: 2px; background: var(--stpl-coral); margin-bottom: 16px; }
+
+/* Optional · Most common syndromes — alternating image / text rows */
+.stpl-syndromes { display: flex; flex-direction: column; gap: clamp(20px, 2.5vw, 28px); }
+.stpl-syndrome { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(20px, 3vw, 40px); align-items: center; background: var(--stpl-panel); border: 1px solid var(--stpl-line); border-radius: var(--card-radius); overflow: hidden; box-shadow: 0 14px 34px rgba(15, 27, 38, 0.05); }
+.stpl-syndrome:nth-child(even) .stpl-syndrome-media { order: 2; }
+.stpl-syndrome-media { align-self: stretch; min-height: 100%; background: #dbe4ec; }
+.stpl-syndrome-media img { width: 100%; height: 100%; min-height: 220px; object-fit: cover; display: block; }
+.stpl-syndrome-body { padding: clamp(24px, 3vw, 36px) clamp(24px, 3vw, 40px); }
+.stpl-syndrome-body h3 { margin: 0 0 12px; font-size: clamp(19px, 2.1vw, 23px); color: var(--stpl-blue); letter-spacing: -0.01em; }
+.stpl-syndrome-body p { margin: 0 0 10px; color: var(--stpl-mut); line-height: 1.65; font-size: 14.5px; }
+.stpl-syndrome-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 13.5px; font-weight: 700; color: var(--stpl-red); }
+.stpl-syndrome-link:hover { text-decoration: underline; }
+
 /* 5 · Self-care numbered grid (content-rich conditions) */
 .stpl-tips { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--card-gap); }
 .stpl-tip { position: relative; background: var(--stpl-panel); border: 1px solid var(--stpl-line); border-radius: var(--card-radius); padding: 26px 24px 24px; box-shadow: 0 14px 34px rgba(15, 27, 38, 0.05); }
@@ -122,6 +137,16 @@
 /* 6 · Location map */
 .stpl-map { border-radius: var(--card-radius); overflow: hidden; border: 1px solid var(--stpl-line); box-shadow: 0 14px 34px rgba(15, 27, 38, 0.06); }
 .stpl-map iframe { display: block; width: 100%; height: clamp(300px, 42vw, 460px); border: 0; }
+
+/* Optional · Let us help you */
+.stpl-help-grid { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: clamp(24px, 4vw, 44px); align-items: start; }
+.stpl-help-copy p { margin: 0 0 16px; color: #334155; line-height: 1.75; font-size: 15.5px; }
+.stpl-help-cards { display: flex; flex-direction: column; gap: var(--card-gap); }
+.stpl-help-card { background: var(--stpl-panel); border: 1px solid var(--stpl-line); border-radius: var(--card-radius); padding: 24px 26px; box-shadow: 0 14px 34px rgba(15, 27, 38, 0.05); }
+.stpl-help-card h3 { margin: 0 0 14px; font-size: 16px; color: var(--stpl-blue); letter-spacing: 0.02em; text-transform: uppercase; }
+.stpl-help-card ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.stpl-help-card li { position: relative; padding-left: 22px; color: var(--stpl-mut); line-height: 1.55; font-size: 14px; }
+.stpl-help-card li::before { content: ''; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--stpl-coral); }
 
 /* 7 · CTA — high-impact */
 .stpl-cta {
@@ -160,6 +185,10 @@
   .stpl-overview-rest { grid-template-columns: 1fr; }
   .stpl-patterns { grid-template-columns: 1fr; }
   .stpl-tips { grid-template-columns: 1fr 1fr; }
+  .stpl-syndrome { grid-template-columns: 1fr; }
+  .stpl-syndrome:nth-child(even) .stpl-syndrome-media { order: 0; }
+  .stpl-syndrome-media img { min-height: 200px; max-height: 260px; }
+  .stpl-help-grid { grid-template-columns: 1fr; }
   .stpl-treatments { grid-template-columns: 1fr 1fr; }
   .stpl-story-row { grid-template-columns: 1fr; }
 }

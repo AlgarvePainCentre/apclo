@@ -58,6 +58,21 @@ export default function SpecialityTemplateView({ data: d }) {
         )}
       </section>
 
+      {/* Optional · Symptoms & diagnosis */}
+      {Array.isArray(d.symptoms) && d.symptoms.length > 0 && (
+        <section className="stpl-block stpl-symptoms">
+          <div className="stpl-head">
+            <p className="stpl-eyebrow">Symptoms &amp; diagnosis</p>
+            <h2 className="stpl-h2">Knowing what to look for</h2>
+          </div>
+          <div className="stpl-overview-rest stpl-symptoms-body">
+            {d.symptoms.map((p, i) => (
+              <p key={i}>{p}</p>
+            ))}
+          </div>
+        </section>
+      )}
+
       {/* 3 · How it can present */}
       <section className="stpl-block">
         <div className="stpl-head">
@@ -74,6 +89,37 @@ export default function SpecialityTemplateView({ data: d }) {
           ))}
         </div>
       </section>
+
+      {/* Optional · Most common syndromes (named, with imagery + learn link) */}
+      {Array.isArray(d.syndromes) && d.syndromes.length > 0 && (
+        <section className="stpl-block">
+          <div className="stpl-head">
+            <p className="stpl-eyebrow">In detail</p>
+            <h2 className="stpl-h2">Most common syndromes</h2>
+            <p className="stpl-lead">The specific diagnoses we most often identify and treat in this area.</p>
+          </div>
+          <div className="stpl-syndromes">
+            {d.syndromes.map((s, i) => (
+              <article key={i} className="stpl-syndrome">
+                <div className="stpl-syndrome-media">
+                  <img src={s.img} alt="" loading="lazy" />
+                </div>
+                <div className="stpl-syndrome-body">
+                  <h3>{s.name}</h3>
+                  {s.copy.map((c, j) => (
+                    <p key={j}>{c}</p>
+                  ))}
+                  {s.to && (
+                    <Link to={s.to} className="stpl-syndrome-link">
+                      Learn more <span aria-hidden="true">›</span>
+                    </Link>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       {/* 4 · How we treat it → bridge to Treatments (grid scales with count) */}
       <section className="stpl-block stpl-treat" id="treat">
@@ -142,6 +188,45 @@ export default function SpecialityTemplateView({ data: d }) {
           </aside>
         )}
       </section>
+
+      {/* Optional · Let us help you (+ for patients / for clinicians) */}
+      {d.help && (
+        <section className="stpl-block stpl-help">
+          <div className="stpl-head">
+            <p className="stpl-eyebrow">Why it matters</p>
+            <h2 className="stpl-h2">Let us help you</h2>
+          </div>
+          <div className="stpl-help-grid">
+            <div className="stpl-help-copy">
+              {d.help.paragraphs.map((p, i) => (
+                <p key={i}>{p}</p>
+              ))}
+            </div>
+            <div className="stpl-help-cards">
+              {Array.isArray(d.help.patient) && d.help.patient.length > 0 && (
+                <div className="stpl-help-card">
+                  <h3>For patients</h3>
+                  <ul>
+                    {d.help.patient.map((p, i) => (
+                      <li key={i}>{p}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {Array.isArray(d.help.clinician) && d.help.clinician.length > 0 && (
+                <div className="stpl-help-card">
+                  <h3>For clinicians</h3>
+                  <ul>
+                    {d.help.clinician.map((p, i) => (
+                      <li key={i}>{p}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* 7 · Location */}
       <section className="stpl-block stpl-location">
