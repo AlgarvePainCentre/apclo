@@ -111,6 +111,11 @@
 .stpl-syndrome-body p { margin: 0 0 10px; color: var(--stpl-mut); line-height: 1.65; font-size: 14.5px; }
 .stpl-syndrome-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 6px; font-size: 13.5px; font-weight: 700; color: var(--stpl-red); }
 .stpl-syndrome-link:hover { text-decoration: underline; }
+/* Text-only variant (syndromes without imagery) — a simple card grid */
+.stpl-syndromes.is-textonly { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--card-gap); }
+.stpl-syndrome.has-no-media { display: block; }
+.stpl-syndrome.has-no-media .stpl-syndrome-body { padding: 26px 26px 24px; }
+.stpl-syndrome.has-no-media .stpl-syndrome-body h3 { font-size: 19px; }
 
 /* 5 · Self-care numbered grid (content-rich conditions) */
 .stpl-tips { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--card-gap); }
@@ -185,6 +190,7 @@
   .stpl-overview-rest { grid-template-columns: 1fr; }
   .stpl-patterns { grid-template-columns: 1fr; }
   .stpl-tips { grid-template-columns: 1fr 1fr; }
+  .stpl-syndromes.is-textonly { grid-template-columns: 1fr; }
   .stpl-syndrome { grid-template-columns: 1fr; }
   .stpl-syndrome:nth-child(even) .stpl-syndrome-media { order: 0; }
   .stpl-syndrome-media img { min-height: 200px; max-height: 260px; }

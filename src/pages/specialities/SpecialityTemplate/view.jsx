@@ -10,6 +10,7 @@ import './speciality-template.css';
 export default function SpecialityTemplateView({ data: d }) {
   const navigate = useNavigate();
   const hasTips = Array.isArray(d.tips) && d.tips.length > 0;
+  const showAside = !hasTips && Array.isArray(d.guidance) && d.guidance.length > 0;
 
   return (
     <div className="spec-tpl">
@@ -98,12 +99,14 @@ export default function SpecialityTemplateView({ data: d }) {
             <h2 className="stpl-h2">Most common syndromes</h2>
             <p className="stpl-lead">The specific diagnoses we most often identify and treat in this area.</p>
           </div>
-          <div className="stpl-syndromes">
+          <div className={`stpl-syndromes${d.syndromes.some((s) => s.img) ? '' : ' is-textonly'}`}>
             {d.syndromes.map((s, i) => (
-              <article key={i} className="stpl-syndrome">
-                <div className="stpl-syndrome-media">
-                  <img src={s.img} alt="" loading="lazy" />
-                </div>
+              <article key={i} className={`stpl-syndrome${s.img ? '' : ' has-no-media'}`}>
+                {s.img && (
+                  <div className="stpl-syndrome-media">
+                    <img src={s.img} alt="" loading="lazy" />
+                  </div>
+                )}
                 <div className="stpl-syndrome-body">
                   <h3>{s.name}</h3>
                   {s.copy.map((c, j) => (
@@ -167,7 +170,7 @@ export default function SpecialityTemplateView({ data: d }) {
       )}
 
       {/* 6 · Patient story (+ small guidance aside when there are no big tips) */}
-      <section className={`stpl-block stpl-story-row${hasTips ? ' is-solo' : ''}`}>
+      <section className={`stpl-block stpl-story-row${showAside ? '' : ' is-solo'}`}>
         <figure className="stpl-story">
           <span className="stpl-q" aria-hidden="true">&rdquo;</span>
           <blockquote>{d.story.quote}</blockquote>
@@ -176,7 +179,7 @@ export default function SpecialityTemplateView({ data: d }) {
             <span className="stpl-story-detail">{d.story.detail}</span>
           </figcaption>
         </figure>
-        {!hasTips && Array.isArray(d.guidance) && d.guidance.length > 0 && (
+        {showAside && (
           <aside className="stpl-guidance">
             <p className="stpl-eyebrow">Good to know</p>
             <h3>Self-care &amp; when to seek help</h3>
