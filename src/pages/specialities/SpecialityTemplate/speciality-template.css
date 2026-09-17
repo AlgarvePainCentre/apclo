@@ -59,6 +59,13 @@
 
 /* Breadcrumb */
 .stpl-crumbs { max-width: var(--container); margin: clamp(20px, 3vw, 28px) auto 0; }
+/* Cancel the global .article-breadcrumb full-bleed so it aligns to our container */
+.spec-tpl .stpl-crumbs .article-breadcrumb {
+  width: auto !important; max-width: none !important;
+  margin-left: 0 !important; margin-right: 0 !important;
+  padding-left: 0 !important; padding-right: 0 !important;
+}
+.spec-tpl .stpl-crumbs .article-breadcrumb-list { max-width: none; margin: 0; }
 .spec-tpl .article-breadcrumb-list { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 0; padding: 0; list-style: none; font-size: 13.5px; color: var(--stpl-mut); }
 .spec-tpl .article-breadcrumb-list li[aria-current="page"] { color: var(--stpl-blue); font-weight: 700; }
 .spec-tpl .article-breadcrumb-link { color: var(--stpl-mut); }
