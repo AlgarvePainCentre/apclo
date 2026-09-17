@@ -9,10 +9,20 @@
 
 export const headPainData = {
   discipline: 'Pain Medicine',
+  category: 'pain-medicine',
   title: 'Head pain',
+  areaLabel: 'head pain',
   heroImage: '/assets/images/Hero/HeadPain.webp',
   heroSubtitle:
     'Headache and facial pain syndromes can be disabling — but many respond well to targeted diagnosis and treatment.',
+  // §5 When to seek help (canonical, universal safety slot)
+  seekHelp: [
+    'Seek urgent care for a sudden, severe “worst-ever” (thunderclap) headache that peaks within seconds to minutes.',
+    'Seek urgent care for headache with fever, neck stiffness, rash, confusion, or a first seizure.',
+    'Seek prompt assessment for new neurological symptoms: weakness, numbness, vision loss, difficulty speaking or walking.',
+    'Book an assessment when headaches become more frequent or severe, wake you at night, or stop responding to usual measures.',
+    'Review acute medication use — pain relief on most days can worsen headaches (medication-overuse).',
+  ],
   overview: [
     'Head pain can include migraine, tension-type headache, cluster headache and other primary headache disorders. It may also be secondary to conditions affecting the neck, jaw, sinuses or nerves.',
     'We focus on the pattern: onset, frequency, triggers, associated symptoms and any red flags. This helps match you to the most appropriate evidence-based pathway.',
@@ -72,10 +82,18 @@ export const headPainData = {
 
 export const lumbarSpineData = {
   discipline: 'Pain Medicine',
+  category: 'pain-medicine',
   title: 'Lumbar spine pain',
+  areaLabel: 'lumbar spine pain',
   heroImage: '/assets/images/Hero/LumbarSpinePain.webp',
   heroSubtitle:
     'Low back pain is one of the most common pain syndromes — a structured, personalised plan helps most people return to daily life.',
+  seekHelp: [
+    'Seek urgent care for loss of bladder or bowel control, numbness around the groin/inner thighs, or new leg weakness (possible cauda equina — an emergency).',
+    'Seek prompt assessment for leg pain, numbness or tingling below the knee that is worsening.',
+    'Get reviewed if back pain follows a significant injury, or comes with fever, unexplained weight loss or night pain.',
+    'Book an assessment when pain limits walking, work or sleep despite a few weeks of simple measures.',
+  ],
   overview: [
     'Lumbar spine pain refers to pain felt in the lower back, in the area of the lumbar vertebrae.',
     'The lumbar region is the lower portion of the spine — five vertebrae that support the weight of the upper body and provide flexibility and range of motion for the lower body.',
@@ -145,5 +163,65 @@ export const lumbarSpineData = {
   },
   citations: [
     { label: 'NICE — Low back pain and sciatica in over 16s (NG59)', url: 'https://www.nice.org.uk/guidance/ng59' },
+  ],
+};
+
+// SPORTS "service" page — shows the canonical serving a non-condition page via
+// flexible headings ("What we assess" / "What we help you prevent") and text
+// approaches (no image treatment cards). Content per the canonical doc (B2).
+export const injuryPreventionData = {
+  discipline: 'Sports Medicine',
+  category: 'sports-medicine',
+  title: 'Injury prevention',
+  areaLabel: 'injury prevention',
+  heroImage: '/assets/images/Hero/Exercise.webp',
+  heroSubtitle:
+    'Stay available for training and competition — we find and close the gaps that lead to injury before they cost you time.',
+  seekHelp: [
+    'Book a screening before a new season, a step up in training, or after a previous significant injury.',
+    'Get assessed for recurring niggles in the same area, or pain that returns each time load increases.',
+    'Speak to us early if training volume is rising quickly — planning now prevents time-loss later.',
+  ],
+  overview: [
+    'Injury prevention is about staying available: reducing the risk of the injuries most likely to interrupt your training and competition.',
+    'We look at how you move, how you load, and how you recover — then build a plan that closes the gaps specific to you and your sport.',
+    'Prevention is most effective when it is proactive and individualised, not a generic warm-up applied to everyone.',
+  ],
+  presentationHeading: 'What we assess',
+  patterns: [
+    { id: 'movement', label: 'Movement screening', description: 'How you move under load — identifying patterns that raise injury risk in your sport.' },
+    { id: 'warmups', label: 'Proven warm-ups', description: 'Evidence-based preparation routines matched to your activity and position.' },
+    { id: 'load', label: 'Load planning', description: 'How training volume and intensity progress, to protect tissues while you build fitness.' },
+    { id: 'education', label: 'Education & habits', description: 'Sleep, nutrition and recovery habits that underpin resilience over a season.' },
+  ],
+  conditionsHeading: 'What we help you prevent',
+  syndromes: [
+    { name: 'Recurrent soft-tissue injuries', copy: ['Hamstring, groin and calf strains — closing the strength and load gaps that drive re-injury.'] },
+    { name: 'Overuse & load-related injuries', copy: ['Tendinopathy and bone-stress injuries — planning training progression to protect tissues.'] },
+    { name: 'Return-to-sport re-injury', copy: ['Bridging rehabilitation and full training with objective, criteria-based clearance.'] },
+    { name: 'High-risk movements (ACL, ankle)', copy: ['Targeted neuromuscular programmes to reduce the risk of the highest-cost injuries.'] },
+  ],
+  treatHeading: 'How we assess & help',
+  approaches: [
+    { title: 'Movement & biomechanical assessment', text: 'A structured screen of how you move and load, mapped to your sport and history.', href: '/treatments/non-invasive-treatments/physiotherapy' },
+    { title: 'Individualised strength & neuromuscular programmes', text: 'Progressive plans that build capacity where you need it most.', href: '/treatments/non-invasive-treatments/exercise' },
+    { title: 'Load & recovery monitoring', text: 'Guidance on training progression, sleep, nutrition and recovery to sustain adaptation.', href: '/treatments/non-invasive-treatments/exercise' },
+  ],
+  help: {
+    paragraphs: [
+      'The best time to work on prevention is before an injury — when small changes to strength, movement and load planning have the biggest pay-off.',
+      'A short, focused screen at the right moment (new season, step-up in load, or return from injury) can save months of lost training later.',
+    ],
+    patient: [
+      'Share your sport, position, season phase and injury history so screening targets your real risks.',
+      'Book before a new season or a step up in load, and flag any recurring niggles.',
+    ],
+    clinician: [
+      'We deliver movement screening and individualised neuromuscular and load-management programmes.',
+      'Referrals with injury history and training context help us tailor prevention.',
+    ],
+  },
+  citations: [
+    { label: 'British Journal of Sports Medicine — injury prevention', url: 'https://bjsm.bmj.com/' },
   ],
 };
