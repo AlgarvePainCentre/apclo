@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ArticleBreadcrumb from '../../../components/ArticleBreadcrumb';
 import './speciality-template.css';
@@ -41,6 +41,75 @@ export default function SpecialityTemplateView({ data: d }) {
   const ctaSecondaryLabel = cta.secondaryLabel || 'Call +351 915 915 001';
   const ctaSecondaryHref = cta.secondaryHref || 'tel:+351915915001';
 
+  // Chapters rail (scroll-spy): built from the sections this page actually renders.
+  const hasConditions = Array.isArray(d.syndromes) && d.syndromes.length > 0;
+  const hasSeek = Array.isArray(d.seekHelp) && d.seekHelp.length > 0;
+  const hasHelp = Boolean(d.help || d.story);
+  const chapters = [
+    { id: 'ch-overview', label: 'Overview' },
+    { id: 'ch-signs', label: d.presentationHeading || 'Signs & symptoms' },
+    ...(hasConditions ? [{ id: 'ch-conditions', label: d.conditionsHeading || 'Common conditions' }] : []),
+    ...(hasSeek ? [{ id: 'ch-seek', label: 'When to seek help' }] : []),
+    { id: 'treat', label: 'How we treat' },
+    ...(hasHelp ? [{ id: 'ch-help', label: 'Support' }] : []),
+  ];
+  const chapterKey = chapters.map((c) => c.id).join('|');
+  const [activeCh, setActiveCh] = useState(0);
+  const shellRef = useRef(null);
+  const tocRef = useRef(null);
+
+  // Manual "sticky" for the chapters rail — CSS position:sticky is broken here by
+  // the site's smooth-scroll/overflow setup, so we translate the rail on scroll.
+  useEffect(() => {
+    const shell = shellRef.current;
+    const toc = tocRef.current;
+    if (!shell || !toc) return undefined;
+    const TOP = 104;
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      if (window.innerWidth <= 1024) {
+        toc.style.transform = '';
+        return;
+      }
+      const s = shell.getBoundingClientRect();
+      const max = Math.max(0, s.height - toc.offsetHeight);
+      const t = Math.min(Math.max(0, TOP - s.top), max);
+      toc.style.transform = `translateY(${t}px)`;
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll);
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+      window.removeEventListener('resize', onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
+  }, [chapterKey]);
+
+  useEffect(() => {
+    const ids = chapterKey.split('|');
+    const els = ids.map((id) => document.getElementById(id)).filter(Boolean);
+    if (!els.length) return undefined;
+    const obs = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+        if (visible[0]) {
+          const idx = ids.indexOf(visible[0].target.id);
+          if (idx >= 0) setActiveCh(idx);
+        }
+      },
+      { rootMargin: '-18% 0px -72% 0px', threshold: 0 },
+    );
+    els.forEach((el) => obs.observe(el));
+    return () => obs.disconnect();
+  }, [chapterKey]);
+
   return (
     <div className="spec-tpl">
       {/* 1 · Hero */}
@@ -72,8 +141,34 @@ export default function SpecialityTemplateView({ data: d }) {
         />
       </nav>
 
+      {/* Chapters rail + main content */}
+      <div className="stpl-shell" ref={shellRef}>
+        <nav className="stpl-toc" aria-label="On this page" ref={tocRef}>
+          <p className="stpl-toc-label">Chapters</p>
+          <ul
+            className="stpl-toc-list"
+            style={{ '--fill': chapters.length > 1 ? `${(activeCh / (chapters.length - 1)) * 100}%` : '0%' }}
+          >
+            {chapters.map((c, i) => (
+              <li key={c.id} className={`stpl-toc-item${i === activeCh ? ' is-active' : ''}${i < activeCh ? ' is-done' : ''}`}>
+                <a
+                  href={`#${c.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    document.getElementById(c.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                  }}
+                >
+                  <span className="stpl-toc-dot" aria-hidden="true" />
+                  <span className="stpl-toc-name">{c.label}</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+
+        <div className="stpl-main">
       {/* 2 · Overview */}
-      <section className="stpl-block stpl-overview">
+      <section className="stpl-block stpl-overview" id="ch-overview">
         <div className="stpl-overview-grid">
           <div className="stpl-overview-head">
             <p className="stpl-eyebrow">Overview</p>
@@ -106,7 +201,7 @@ export default function SpecialityTemplateView({ data: d }) {
       )}
 
       {/* 3 · Signs & symptoms / What we assess (flexible heading) */}
-      <section className="stpl-block">
+      <section className="stpl-block" id="ch-signs">
         <div className="stpl-head">
           <p className="stpl-eyebrow">What to look for</p>
           <h2 className="stpl-h2">{d.presentationHeading || 'Signs & symptoms'}</h2>
@@ -124,7 +219,7 @@ export default function SpecialityTemplateView({ data: d }) {
 
       {/* Optional · Most common syndromes (named, with imagery + learn link) */}
       {Array.isArray(d.syndromes) && d.syndromes.length > 0 && (
-        <section className="stpl-block">
+        <section className="stpl-block" id="ch-conditions">
           <div className="stpl-head">
             <p className="stpl-eyebrow">In detail</p>
             <h2 className="stpl-h2">{d.conditionsHeading || 'Common conditions'}</h2>
@@ -165,7 +260,7 @@ export default function SpecialityTemplateView({ data: d }) {
 
       {/* §5 · When to seek help — universal safety slot */}
       {Array.isArray(d.seekHelp) && d.seekHelp.length > 0 && (
-        <section className="stpl-block">
+        <section className="stpl-block" id="ch-seek">
           <div className="stpl-seek">
             <div className="stpl-head">
               <p className="stpl-eyebrow stpl-eyebrow--seek">Good to know</p>
@@ -243,7 +338,7 @@ export default function SpecialityTemplateView({ data: d }) {
 
       {/* §7 · Let us help you — reassurance + a patient's voice as complement */}
       {(d.help || d.story) && (
-        <section className="stpl-block stpl-help">
+        <section className="stpl-block stpl-help" id="ch-help">
           <div className="stpl-head">
             <p className="stpl-eyebrow">Why it matters</p>
             <h2 className="stpl-h2">Let us help you</h2>
@@ -295,6 +390,8 @@ export default function SpecialityTemplateView({ data: d }) {
           </div>
         </section>
       )}
+        </div>
+      </div>
 
       {/* §8 · References */}
       {d.citations?.length > 0 && (
