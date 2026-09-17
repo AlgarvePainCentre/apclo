@@ -110,6 +110,32 @@ export default function SpecialityTemplateView({ data: d }) {
     return () => obs.disconnect();
   }, [chapterKey]);
 
+  // Anchor the track + fill to the actual dot centres, so the line starts at the
+  // first dot and stops at the last (items can have different heights).
+  useEffect(() => {
+    const toc = tocRef.current;
+    const list = toc?.querySelector('.stpl-toc-list');
+    if (!list) return undefined;
+    const measure = () => {
+      const dots = Array.from(list.querySelectorAll('.stpl-toc-dot'));
+      if (dots.length < 2) return;
+      const listTop = list.getBoundingClientRect().top;
+      const centres = dots.map((dt) => {
+        const r = dt.getBoundingClientRect();
+        return r.top - listTop + r.height / 2;
+      });
+      const first = centres[0];
+      const last = centres[centres.length - 1];
+      list.style.setProperty('--line-top', `${first}px`);
+      list.style.setProperty('--line-height', `${last - first}px`);
+      const idx = Math.min(activeCh, centres.length - 1);
+      list.style.setProperty('--fill-px', `${centres[idx] - first}px`);
+    };
+    measure();
+    window.addEventListener('resize', measure);
+    return () => window.removeEventListener('resize', measure);
+  }, [activeCh, chapterKey]);
+
   return (
     <div className="spec-tpl">
       {/* 1 · Hero */}
@@ -145,10 +171,7 @@ export default function SpecialityTemplateView({ data: d }) {
       <div className="stpl-shell" ref={shellRef}>
         <nav className="stpl-toc" aria-label="On this page" ref={tocRef}>
           <p className="stpl-toc-label">Chapters</p>
-          <ul
-            className="stpl-toc-list"
-            style={{ '--fill': chapters.length > 1 ? `${(activeCh / (chapters.length - 1)) * 100}%` : '0%' }}
-          >
+          <ul className="stpl-toc-list">
             {chapters.map((c, i) => (
               <li key={c.id} className={`stpl-toc-item${i === activeCh ? ' is-active' : ''}${i < activeCh ? ' is-done' : ''}`}>
                 <a

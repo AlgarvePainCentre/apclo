@@ -81,8 +81,9 @@
 .stpl-toc { align-self: start; will-change: transform; }
 .stpl-toc-label { margin: 0 0 20px; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; font-weight: 700; color: var(--stpl-mut); }
 .stpl-toc-list { list-style: none; margin: 0; padding: 0; position: relative; }
-.stpl-toc-list::before { content: ''; position: absolute; left: 5px; top: 8px; bottom: 8px; width: 2px; background: var(--stpl-line); border-radius: 2px; }
-.stpl-toc-list::after { content: ''; position: absolute; left: 5px; top: 8px; height: var(--fill, 0%); width: 2px; background: var(--stpl-blue); border-radius: 2px; transition: height 0.35s cubic-bezier(.4,0,.2,1); }
+/* Track + fill run only between the first and last dot centers (measured in JS). */
+.stpl-toc-list::before { content: ''; position: absolute; left: 5px; top: var(--line-top, 8px); height: var(--line-height, calc(100% - 16px)); width: 2px; background: var(--stpl-line); border-radius: 2px; }
+.stpl-toc-list::after { content: ''; position: absolute; left: 5px; top: var(--line-top, 8px); height: var(--fill-px, 0px); width: 2px; background: var(--stpl-blue); border-radius: 2px; transition: height 0.35s cubic-bezier(.4,0,.2,1); }
 .stpl-toc-item a { display: flex; align-items: center; gap: 14px; padding: 8px 0; color: var(--stpl-mut); font-size: 15px; transition: color 0.2s ease; }
 .stpl-toc-item a:hover { color: var(--stpl-blue); }
 .stpl-toc-dot { position: relative; z-index: 1; flex-shrink: 0; width: 12px; height: 12px; border-radius: 50%; background: #eef2f6; border: 2px solid var(--stpl-line); transition: background-color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
