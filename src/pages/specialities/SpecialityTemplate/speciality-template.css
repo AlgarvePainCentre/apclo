@@ -11,7 +11,6 @@
   background: #eef2f6;
   color: var(--stpl-ink);
   padding: 0 clamp(16px, 5vw, 40px) 90px;
-  overflow-x: clip;
 }
 .spec-tpl a { text-decoration: none; color: inherit; }
 
@@ -24,10 +23,12 @@
 .stpl-h2 { margin: 0; font-size: clamp(24px, 3vw, 34px); line-height: 1.08; letter-spacing: -0.02em; color: var(--stpl-blue); font-weight: 800; }
 .stpl-lead { margin: var(--title-text-gap, 12px) 0 0; color: var(--stpl-mut); font-size: 16px; max-width: 60ch; }
 
-/* 1 · Hero */
+/* 1 · Hero — full-bleed via negative margins (no 100vw, so it can't cause
+   horizontal scroll and doesn't need an overflow clip that breaks sticky) */
 .stpl-hero {
   position: relative;
-  width: 100vw; left: 50%; right: 50%; margin-left: -50vw; margin-right: -50vw;
+  margin-left: calc(-1 * clamp(16px, 5vw, 40px));
+  margin-right: calc(-1 * clamp(16px, 5vw, 40px));
   overflow: hidden; text-align: center; isolation: isolate;
   min-height: clamp(380px, 46vw, 540px);
   display: flex; align-items: center; justify-content: center;
@@ -85,6 +86,15 @@
   font-weight: 600; color: var(--stpl-ink); letter-spacing: -0.01em;
   border-left: 3px solid var(--stpl-coral); padding-left: 20px; margin-left: -2px;
 }
+
+/* Merged overview: sticky intro (left) + titled symptom cards (right) */
+.stpl-overview-grid.has-cards { grid-template-columns: 1fr 1.12fr; gap: clamp(28px, 4vw, 56px); }
+.stpl-overview-grid.has-cards .stpl-overview-head { max-width: 46ch; position: sticky; top: 104px; align-self: start; display: flex; flex-direction: column; }
+.stpl-overview-grid.has-cards .stpl-overview-head .stpl-overview-copy { margin-top: clamp(16px, 2vw, 22px); max-width: none; }
+.stpl-overview-cards { display: flex; flex-direction: column; gap: var(--card-gap); }
+.stpl-ov-card { background: var(--stpl-panel); border: 1px solid var(--stpl-line); border-radius: var(--card-radius); padding: clamp(24px, 2.6vw, 32px); box-shadow: 0 14px 34px rgba(15, 27, 38, 0.05); }
+.stpl-ov-card h3 { margin: 0 0 12px; font-size: 18px; color: var(--stpl-blue); letter-spacing: -0.01em; }
+.stpl-ov-card p { margin: 0; color: #475569; line-height: 1.7; font-size: 15.5px; }
 /* Symptoms section reuses the same two-column feel via overview-rest */
 .stpl-overview-rest { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--card-gap); }
 .stpl-overview-rest p { margin: 0; color: #334155; line-height: 1.75; font-size: 15.5px; }
@@ -241,6 +251,8 @@
 
 @media (max-width: 900px) {
   .stpl-overview-grid { grid-template-columns: 1fr; gap: 20px; }
+  .stpl-overview-grid.has-cards { grid-template-columns: 1fr; gap: clamp(20px, 4vw, 28px); }
+  .stpl-overview-grid.has-cards .stpl-overview-head { position: static; max-width: none; }
   .stpl-overview-rest { grid-template-columns: 1fr; }
   .stpl-patterns { grid-template-columns: 1fr; }
   .stpl-tips { grid-template-columns: 1fr 1fr; }

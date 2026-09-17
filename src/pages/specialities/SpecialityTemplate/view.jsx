@@ -33,6 +33,7 @@ const CTA_FALLBACKS = {
 export default function SpecialityTemplateView({ data: d }) {
   const navigate = useNavigate();
   const hasTips = Array.isArray(d.tips) && d.tips.length > 0;
+  const hasSymptoms = Array.isArray(d.symptoms) && d.symptoms.length > 0;
   const [openSyn, setOpenSyn] = useState(0);
 
   const area = d.areaLabel || d.title.toLowerCase();
@@ -72,32 +73,41 @@ export default function SpecialityTemplateView({ data: d }) {
         />
       </nav>
 
-      {/* 2 · Overview */}
-      <section className="stpl-block stpl-overview">
-        <div className="stpl-overview-grid">
-          <div className="stpl-overview-head">
-            <p className="stpl-eyebrow">Overview</p>
-            <h2 className="stpl-h2">Understanding {d.title.toLowerCase()}</h2>
-          </div>
-          <div className="stpl-overview-copy">
-            <p className="stpl-lead-intro">{d.overview[0]}</p>
-            {d.overview.slice(1).map((p, i) => (
-              <p key={i}>{p}</p>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Optional · Symptoms & diagnosis — tinted panel */}
-      {Array.isArray(d.symptoms) && d.symptoms.length > 0 && (
-        <section className="stpl-block">
-          <div className="stpl-symptoms-panel">
-            <div className="stpl-head">
-              <p className="stpl-eyebrow">Symptoms &amp; diagnosis</p>
-              <h2 className="stpl-h2">Knowing what to look for</h2>
+      {/* 2 · Overview — sticky intro (left) + titled symptom cards (right).
+          Falls back to a plain editorial overview when a page has no symptoms. */}
+      {hasSymptoms ? (
+        <section className="stpl-block stpl-overview">
+          <div className="stpl-overview-grid has-cards">
+            <div className="stpl-overview-head">
+              <p className="stpl-eyebrow">Overview</p>
+              <h2 className="stpl-h2">Understanding {d.title.toLowerCase()}</h2>
+              <div className="stpl-overview-copy">
+                <p className="stpl-lead-intro">{d.overview[0]}</p>
+                {d.overview.slice(1).map((p, i) => (
+                  <p key={i}>{p}</p>
+                ))}
+              </div>
             </div>
-            <div className="stpl-symptoms-body">
-              {d.symptoms.map((p, i) => (
+            <div className="stpl-overview-cards">
+              {d.symptoms.map((s, i) => (
+                <article key={i} className="stpl-ov-card">
+                  <h3>{s.title}</h3>
+                  <p>{s.body}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+      ) : (
+        <section className="stpl-block stpl-overview">
+          <div className="stpl-overview-grid">
+            <div className="stpl-overview-head">
+              <p className="stpl-eyebrow">Overview</p>
+              <h2 className="stpl-h2">Understanding {d.title.toLowerCase()}</h2>
+            </div>
+            <div className="stpl-overview-copy">
+              <p className="stpl-lead-intro">{d.overview[0]}</p>
+              {d.overview.slice(1).map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
             </div>
