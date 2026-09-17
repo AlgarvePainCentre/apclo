@@ -99,8 +99,8 @@
 
 /* 2 · Overview — editorial: heading left, copy right */
 .stpl-overview { margin-top: clamp(36px, 4vw, 52px); }
-.stpl-overview-grid { display: grid; grid-template-columns: 0.8fr 1.2fr; gap: clamp(28px, 5vw, 72px); align-items: start; }
-.stpl-overview-head { margin: 0; max-width: 32ch; }
+.stpl-overview-grid { display: block; }
+.stpl-overview-head { margin: 0 0 clamp(16px, 2vw, 22px); max-width: none; }
 .stpl-overview .stpl-h2 { font-size: clamp(28px, 3.6vw, 44px); line-height: 1.04; }
 .stpl-overview-head .stpl-eyebrow { display: inline-flex; align-items: center; gap: 10px; }
 .stpl-overview-head .stpl-eyebrow::before { content: ''; width: 26px; height: 2px; background: var(--stpl-coral); }
@@ -193,24 +193,17 @@
 .stpl-tip h3 { margin: 0 0 8px; font-size: 16.5px; color: var(--stpl-blue); letter-spacing: -0.01em; }
 .stpl-tip p { margin: 0; color: var(--stpl-mut); line-height: 1.6; font-size: 14px; }
 
-/* 6 · Story + guidance */
-/* Patient's voice — a compact quote card that complements "Let us help you" */
-.stpl-help-main { display: flex; flex-direction: column; gap: clamp(20px, 2.6vw, 30px); }
+/* Patient's voice — soft, discreet quote that sits with the copy (no heavy box) */
+.stpl-help-main { display: flex; flex-direction: column; gap: clamp(18px, 2.4vw, 26px); }
 .stpl-help-quote {
-  margin: 0; position: relative; overflow: hidden;
-  background: linear-gradient(140deg, #013a68 0%, var(--stpl-blue) 60%, #012a52 100%);
-  color: #fff; border-radius: var(--card-radius); padding: clamp(26px, 3vw, 38px);
-  box-shadow: 0 18px 44px rgba(0, 34, 68, 0.2);
+  margin: 0; padding: 2px 0 2px 20px;
+  border-left: 3px solid var(--stpl-coral);
 }
-.stpl-help-quote::after {
-  content: ''; position: absolute; top: -30%; right: -12%; width: 46%; aspect-ratio: 1;
-  background: radial-gradient(circle, rgba(240, 133, 124, 0.32), transparent 70%); filter: blur(24px); pointer-events: none;
-}
-.stpl-q { position: relative; font-family: Georgia, "Times New Roman", serif; font-size: 56px; line-height: 0.6; color: var(--stpl-coral); height: 24px; display: block; }
-.stpl-help-quote blockquote { position: relative; margin: 12px 0 0; font-size: clamp(17px, 1.7vw, 20px); line-height: 1.5; font-weight: 600; letter-spacing: -0.01em; }
-.stpl-help-quote figcaption { position: relative; display: flex; flex-direction: column; gap: 2px; margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255, 255, 255, 0.18); }
-.stpl-story-name { font-weight: 700; font-size: 14px; }
-.stpl-story-detail { font-size: 12.5px; color: rgba(255, 255, 255, 0.62); }
+.stpl-help-quote .stpl-q { display: none; }
+.stpl-help-quote blockquote { margin: 0; font-size: 16px; line-height: 1.6; font-weight: 500; font-style: italic; color: var(--stpl-ink); letter-spacing: 0; }
+.stpl-help-quote figcaption { display: flex; flex-direction: column; gap: 1px; margin-top: 12px; }
+.stpl-help-quote .stpl-story-name { font-weight: 700; font-size: 13px; color: var(--stpl-blue); font-style: normal; }
+.stpl-help-quote .stpl-story-detail { font-size: 12.5px; color: var(--stpl-mut); }
 .stpl-guidance { background: var(--stpl-panel); border: 1px solid var(--stpl-line); border-radius: var(--card-radius); padding: clamp(26px, 3vw, 34px); box-shadow: 0 14px 34px rgba(15, 27, 38, 0.05); }
 .stpl-guidance h3 { margin: 0 0 16px; font-size: 20px; color: var(--stpl-blue); letter-spacing: -0.01em; }
 .stpl-guidance ul { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 14px; }
@@ -259,10 +252,12 @@
 .stpl-cta-assure li::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; border-radius: 50%; background: var(--stpl-coral); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/12px no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/12px no-repeat; }
 
 /* References */
-.stpl-refs { max-width: var(--container); margin: clamp(32px, 4vw, 44px) auto 0; }
-.stpl-refs ul { margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 8px; }
-.stpl-refs a { color: var(--stpl-mut); font-size: 13.5px; border-bottom: 1px solid transparent; }
-.stpl-refs a:hover { color: var(--stpl-blue); border-bottom-color: currentColor; }
+/* References — small-print footnote at the very end */
+.stpl-refs { max-width: var(--container); margin: clamp(40px, 5vw, 64px) auto 0; padding-top: 18px; border-top: 1px solid var(--stpl-line); }
+.stpl-refs-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700; color: var(--stpl-mut); }
+.stpl-refs ul { margin: 8px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 4px 24px; }
+.stpl-refs a { color: var(--stpl-mut); font-size: 12.5px; }
+.stpl-refs a:hover { color: var(--stpl-blue); text-decoration: underline; }
 
 @media (max-width: 900px) {
   .stpl-overview-grid { grid-template-columns: 1fr; gap: 20px; }

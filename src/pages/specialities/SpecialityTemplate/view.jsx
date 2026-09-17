@@ -416,20 +416,6 @@ export default function SpecialityTemplateView({ data: d }) {
         </div>
       </div>
 
-      {/* §8 · References */}
-      {d.citations?.length > 0 && (
-        <section className="stpl-refs">
-          <p className="stpl-eyebrow">References</p>
-          <ul>
-            {d.citations.map((c) => (
-              <li key={c.url}>
-                <a href={c.url} target="_blank" rel="noreferrer">{c.label}</a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
-
       {/* §9 · Final CTA (category fallback + tel: secondary) */}
       <section className="stpl-cta">
         <span className="stpl-cta-glow stpl-cta-glow--a" aria-hidden="true" />
@@ -469,6 +455,20 @@ export default function SpecialityTemplateView({ data: d }) {
           />
         </div>
       </section>
+
+      {/* References — small print footnote at the very end */}
+      {d.citations?.length > 0 && (
+        <footer className="stpl-refs">
+          <span className="stpl-refs-label">References</span>
+          <ul>
+            {d.citations.map((c) => (
+              <li key={c.url}>
+                <a href={c.url} target="_blank" rel="noreferrer">{c.label}</a>
+              </li>
+            ))}
+          </ul>
+        </footer>
+      )}
     </div>
   );
 }
