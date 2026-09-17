@@ -225,3 +225,127 @@ export const injuryPreventionData = {
     { label: 'British Journal of Sports Medicine — injury prevention', url: 'https://bjsm.bmj.com/' },
   ],
 };
+
+// PILOT · A2 Cervical spine pain (Pain Medicine) — validated content from repo
+// + canonical seek-help / patient / clinician from the content doc.
+export const cervicalSpineData = {
+  discipline: 'Pain Medicine',
+  category: 'pain-medicine',
+  title: 'Cervical spine pain',
+  areaLabel: 'cervical spine pain',
+  heroImage: '/assets/images/Hero/CervicalPain.webp',
+  heroSubtitle:
+    'Neck pain can come from joints, muscles, discs or nerves — a careful assessment guides the right, personalised plan.',
+  seekHelp: [
+    'Seek urgent care after significant trauma (fall, collision) with severe neck pain, or if you have numbness or weakness in the arms or legs.',
+    'Seek urgent care for loss of bladder or bowel control, or unsteadiness when walking.',
+    'Book an assessment for arm pain, tingling or weakness that travels below the shoulder, or symptoms that persist beyond a few weeks.',
+    'Get reviewed if neck pain comes with unexplained weight loss, fever, or night pain.',
+  ],
+  overview: [
+    'Cervical spine pain (neck pain) is often linked to joints, muscles, discs or nerves. Symptoms can include stiffness, reduced range of motion, headache, and pain that may travel into the shoulder blade or arm.',
+    'During your first consultation we focus on the pattern of symptoms — what triggers flare-ups, what eases them, and whether there are nerve-related features such as tingling or weakness. This guides the next step, from simple measures to more targeted investigations or interventions.',
+    'Treatment plans frequently combine education, movement and strengthening, posture strategies, and — when appropriate — image-guided procedures to reduce pain and support rehabilitation.',
+  ],
+  patterns: [
+    { id: 'stiffness', label: 'Stiffness and restricted turning', description: 'Pain that is worse with looking up, turning the head, or prolonged desk work. Often improves with gentle movement and targeted strengthening.' },
+    { id: 'headache', label: 'Headache linked to neck pain', description: 'Headache that seems to start from the upper neck and base of the skull, sometimes with neck tightness or sensitivity.' },
+    { id: 'arm', label: 'Arm pain, tingling or weakness', description: 'Symptoms that travel into the shoulder, arm or hand may suggest nerve irritation. We prioritise a careful neurological assessment to guide treatment safely.' },
+    { id: 'persistent', label: 'Persistent pain with flare-ups', description: 'Ongoing neck discomfort with fluctuating intensity, often influenced by sleep, workload and stress. A stepwise plan can help reduce flare-ups over time.' },
+  ],
+  syndromes: [
+    { name: '“Whiplash” injury', copy: ['Whiplash-associated disorders can follow an acceleration–deceleration injury (for example, a rear-end collision). Symptoms may include neck pain and stiffness, headache, and sensitivity with movement.'] },
+    { name: 'Fractures and fracture dislocations', copy: ['Neck pain after trauma requires careful assessment. When suspected, imaging and specialist review help confirm stability and guide safe management.'] },
+    { name: 'Disc & facet joint degenerative disease', copy: ['Age-related changes in discs and facet joints can contribute to stiffness, local neck pain, and referred pain into the shoulder-blade region, especially with sustained posture or rotation.'] },
+    { name: 'Inflammatory joint disease', copy: ['Inflammatory conditions can cause persistent pain and morning stiffness. Treatment often combines medication optimisation with rehabilitation and posture strategies.'] },
+    { name: 'Cervical muscle contractures', copy: ['Muscle spasm or protective guarding can limit range of motion and amplify pain. Plans typically include education, graded movement and strengthening to restore tolerance.'] },
+  ],
+  treatments: [
+    { name: 'Corticosteroid injection', kind: 'Minimally invasive', to: '/treatments/minimally-invasive-treatments/intra-articular-corticosteroids-injection', img: '/assets/images/Hero/Intra-ArticularCorticosteroidInjections.webp' },
+    { name: 'Radiofrequency', kind: 'Minimally invasive', to: '/treatments/minimally-invasive-treatments/radiofrequency', img: '/assets/images/Hero/RadiofrequencyAblation.webp' },
+    { name: 'Cryoablation', kind: 'Minimally invasive', to: '/treatments/minimally-invasive-treatments/cryoablation', img: '/assets/images/Hero/Cryoablation.webp' },
+    { name: 'Nucleoplasty', kind: 'Minimally invasive', to: '/treatments/minimally-invasive-treatments/nucleoplasty', img: '/assets/images/Hero/Nucleoplasty.webp' },
+    { name: 'Pharmacological management', kind: 'Non-invasive', to: '/treatments/non-invasive-treatments/pharmacological-pain-management', img: '/assets/images/Hero/PharmacologicalPainManagement.webp' },
+  ],
+  help: {
+    paragraphs: [
+      'Neck pain is common and usually settles, but the right plan depends on the pattern — mechanical, nerve-related or headache-linked — and on ruling out the few serious causes.',
+      'Early, structured care combines rehabilitation with targeted procedures when appropriate, to reduce pain and restore movement.',
+    ],
+    patient: [
+      'Note what eases or worsens your neck pain (posture, desk work, sleep) and whether symptoms travel into the arm — this guides your assessment.',
+      'Seek urgent care for arm weakness, numbness, unsteadiness, or neck pain after significant trauma.',
+    ],
+    clinician: [
+      'We assess mechanical, radicular and headache-related patterns, screen for red flags, and combine rehabilitation with image-guided procedures when appropriate.',
+      'Referrals noting neurological signs, symptom duration and any prior imaging help us prioritise safely.',
+    ],
+  },
+  citations: [
+    { label: 'NICE — Neck pain (cervical radiculopathy) guidance', url: 'https://cks.nice.org.uk/topics/neck-pain-cervical-radiculopathy/' },
+  ],
+};
+
+// PILOT · C1 Stroke rehabilitation (Stroke Medicine) — a "service" page that had
+// no data in the repo; fully authored from the content doc. Shows the canonical
+// serving stroke with FAST safety and text approaches.
+export const strokeRehabData = {
+  discipline: 'Stroke Medicine',
+  category: 'stroke-medicine',
+  title: 'Stroke rehabilitation',
+  areaLabel: 'stroke rehabilitation',
+  heroImage: '/assets/images/Hero/Physiotherapy.webp',
+  heroSubtitle:
+    'Rebuild movement, communication, thinking and independence after a stroke — with a coordinated team and goals that matter to you.',
+  seekHelp: [
+    'Call emergency services immediately for signs of a new stroke — Face drooping, Arm weakness, Speech difficulty, Time to call (FAST). Fast treatment protects the brain.',
+    'Seek urgent care for a sudden severe headache, new confusion, vision loss, or difficulty walking.',
+    'Get reviewed if recovery has stalled, new problems appear, or daily tasks or mood are a struggle.',
+    'Ask about rehabilitation early — starting sooner supports better recovery.',
+  ],
+  overview: [
+    'Stroke rehabilitation helps people rebuild movement, communication, thinking and independence after a stroke, and adapt to changes along the way.',
+    'Recovery is different for everyone. We assess how the stroke has affected daily life and set personalised, meaningful goals with you and your family.',
+    'Our multidisciplinary team coordinates therapy over time — starting early and continuing into the community — to help you regain as much autonomy as possible.',
+  ],
+  presentationHeading: 'Areas we work on',
+  patterns: [
+    { id: 'movement', label: 'Movement & mobility', description: 'Strength, balance, walking and use of the arm and hand.' },
+    { id: 'communication', label: 'Communication & swallowing', description: 'Speech, language and safe eating and drinking.' },
+    { id: 'cognition', label: 'Thinking & mood', description: 'Memory, attention, planning and emotional wellbeing.' },
+    { id: 'independence', label: 'Everyday independence', description: 'Self-care, home tasks and return to work and community life.' },
+  ],
+  conditionsHeading: 'What we help with',
+  syndromes: [
+    { name: 'Weakness & reduced mobility', copy: ['Task-specific training to restore safe, confident movement.'] },
+    { name: 'Spasticity & muscle tightness', copy: ['Therapy, positioning and targeted treatment when needed.'] },
+    { name: 'Communication & swallowing difficulties', copy: ['Speech-and-language therapy and safety strategies.'] },
+    { name: 'Cognitive & perceptual changes', copy: ['Strategies and practice for memory, attention and awareness.'] },
+    { name: 'Mood & fatigue', copy: ['Support for low mood, anxiety and post-stroke tiredness.'] },
+  ],
+  treatHeading: 'How we assess & treat',
+  approaches: [
+    { title: 'Coordinated multidisciplinary rehabilitation', text: 'Physiotherapy, occupational therapy, speech therapy and psychology working to one plan.', href: '/treatments/non-invasive-treatments/physiotherapy' },
+    { title: 'Task-specific, goal-based practice', text: 'Everyday tasks practised and progressed toward the goals that matter to you.', href: '/treatments/non-invasive-treatments/occupational-therapy' },
+    { title: 'Communication & swallowing therapy', text: 'Speech-and-language therapy with safe-eating strategies where needed.', href: '/treatments/non-invasive-treatments/speech-therapy' },
+    { title: 'Mood, cognition & caregiver support', text: 'Psychology input and caregiver training to sustain progress at home.', href: '/treatments/non-invasive-treatments/psychology' },
+  ],
+  help: {
+    paragraphs: [
+      'Recovery works best when rehabilitation starts early and the plan reflects what matters to you and your family.',
+      'A coordinated team — carrying goals from hospital into the community — helps you regain as much independence as possible.',
+    ],
+    patient: [
+      'Bring your discharge summary and current goals — the plan works best when it reflects what matters to you.',
+      'Learn the FAST signs and call emergency services immediately for any new stroke symptoms.',
+    ],
+    clinician: [
+      'We deliver coordinated multidisciplinary rehabilitation with goal-based, task-specific practice from early recovery into the community.',
+      'Referrals with stroke type, deficits and current function help us prioritise the plan.',
+    ],
+  },
+  citations: [
+    { label: 'AHA/ASA — Guidelines for Adult Stroke Rehabilitation and Recovery', url: 'https://www.ahajournals.org/doi/10.1161/STR.0000000000000098' },
+    { label: 'NICE NG236 — Stroke rehabilitation in adults', url: 'https://www.nice.org.uk/guidance/ng236' },
+  ],
+};
