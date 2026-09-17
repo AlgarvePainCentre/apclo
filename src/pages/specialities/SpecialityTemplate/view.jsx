@@ -8,11 +8,39 @@ import './speciality-template.css';
  * The self-care slot is adaptive: a short `guidance[]` renders as a small aside
  * next to the story; a longer `tips[]` renders as its own numbered grid section.
  */
+// §9 Final CTA — category fallback (used when a page defines no `cta` override).
+const CTA_FALLBACKS = {
+  'pain-medicine': (area) => ({
+    heading: `Book a consultation for ${area}`,
+    body: `You don't have to manage ${area} alone. Tell us what you're experiencing and our multidisciplinary team will help you understand the cause and the options to feel better.`,
+    primaryLabel: 'Book an appointment',
+    primaryHref: '/contact',
+  }),
+  'sports-medicine': (area) => ({
+    heading: 'Ready to get back to it?',
+    body: `Book an assessment for ${area} and we'll build a plan to recover, prevent re-injury and get you performing at your best.`,
+    primaryLabel: 'Book an assessment',
+    primaryHref: '/contact',
+  }),
+  'stroke-medicine': () => ({
+    heading: 'Let us support your recovery',
+    body: 'Book a consultation and our team will work with you and your family on a plan built around your goals and everyday independence.',
+    primaryLabel: 'Book a consultation',
+    primaryHref: '/contact',
+  }),
+};
+
 export default function SpecialityTemplateView({ data: d }) {
   const navigate = useNavigate();
   const hasTips = Array.isArray(d.tips) && d.tips.length > 0;
   const showAside = !hasTips && Array.isArray(d.guidance) && d.guidance.length > 0;
   const [openSyn, setOpenSyn] = useState(0);
+
+  const area = d.areaLabel || d.title.toLowerCase();
+  const ctaFallback = (CTA_FALLBACKS[d.category] || CTA_FALLBACKS['pain-medicine'])(area);
+  const cta = { ...ctaFallback, ...(d.cta || {}) };
+  const ctaSecondaryLabel = cta.secondaryLabel || 'Call +351 915 915 001';
+  const ctaSecondaryHref = cta.secondaryHref || 'tel:+351915915001';
 
   return (
     <div className="spec-tpl">
@@ -65,14 +93,9 @@ export default function SpecialityTemplateView({ data: d }) {
       {Array.isArray(d.symptoms) && d.symptoms.length > 0 && (
         <section className="stpl-block">
           <div className="stpl-symptoms-panel">
-            <div className="stpl-symptoms-head">
-              <span className="stpl-symptoms-badge" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 8v4l3 2" /><circle cx="12" cy="12" r="9" /></svg>
-              </span>
-              <div>
-                <p className="stpl-eyebrow">Symptoms &amp; diagnosis</p>
-                <h2 className="stpl-h2">Knowing what to look for</h2>
-              </div>
+            <div className="stpl-head">
+              <p className="stpl-eyebrow">Symptoms &amp; diagnosis</p>
+              <h2 className="stpl-h2">Knowing what to look for</h2>
             </div>
             <div className="stpl-symptoms-body">
               {d.symptoms.map((p, i) => (
@@ -83,11 +106,11 @@ export default function SpecialityTemplateView({ data: d }) {
         </section>
       )}
 
-      {/* 3 · How it can present */}
+      {/* 3 · Signs & symptoms / What we assess (flexible heading) */}
       <section className="stpl-block">
         <div className="stpl-head">
-          <p className="stpl-eyebrow">How it can present</p>
-          <h2 className="stpl-h2">Common patterns</h2>
+          <p className="stpl-eyebrow">What to look for</p>
+          <h2 className="stpl-h2">{d.presentationHeading || 'Signs & symptoms'}</h2>
           <p className="stpl-lead">Recognising the pattern helps us match you to the right pathway.</p>
         </div>
         <div className="stpl-patterns">
@@ -105,8 +128,8 @@ export default function SpecialityTemplateView({ data: d }) {
         <section className="stpl-block">
           <div className="stpl-head">
             <p className="stpl-eyebrow">In detail</p>
-            <h2 className="stpl-h2">Most common syndromes</h2>
-            <p className="stpl-lead">The specific diagnoses we most often identify and treat in this area.</p>
+            <h2 className="stpl-h2">{d.conditionsHeading || 'Common conditions'}</h2>
+            <p className="stpl-lead">The specific diagnoses and areas we most often identify and treat.</p>
           </div>
           <div className="stpl-syn-acc">
             {d.syndromes.map((s, i) => {
@@ -141,29 +164,62 @@ export default function SpecialityTemplateView({ data: d }) {
         </section>
       )}
 
-      {/* 4 · How we treat it → bridge to Treatments (grid scales with count) */}
+      {/* §5 · When to seek help — universal safety slot */}
+      {Array.isArray(d.seekHelp) && d.seekHelp.length > 0 && (
+        <section className="stpl-block">
+          <div className="stpl-seek">
+            <div className="stpl-head">
+              <p className="stpl-eyebrow stpl-eyebrow--seek">Good to know</p>
+              <h2 className="stpl-h2">When to seek help</h2>
+            </div>
+            <ul className="stpl-seek-list">
+              {d.seekHelp.map((s, i) => (
+                <li key={i}>{s}</li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {/* §6 · How we assess & treat — image treatment cards, or text approaches */}
       <section className="stpl-block stpl-treat" id="treat">
         <div className="stpl-head">
-          <p className="stpl-eyebrow stpl-eyebrow--treat">How we treat it</p>
-          <h2 className="stpl-h2">Related treatments</h2>
+          <p className="stpl-eyebrow stpl-eyebrow--treat">How we assess &amp; treat</p>
+          <h2 className="stpl-h2">{d.treatHeading || 'Related treatments'}</h2>
           <p className="stpl-lead">
-            Your plan is personalised. These are treatments we commonly draw on for {d.title.toLowerCase()}.
+            Your plan is personalised. These are the approaches we commonly draw on for {area}.
           </p>
         </div>
-        <div className="stpl-treatments">
-          {d.treatments.map((t) => (
-            <Link key={t.to} to={t.to} className="stpl-treatment">
-              <span className="stpl-treatment-media">
-                <img src={t.img} alt="" loading="lazy" />
-                <span className="stpl-treatment-kind">{t.kind}</span>
-              </span>
-              <span className="stpl-treatment-body">
-                <span className="stpl-treatment-name">{t.name}</span>
-                <span className="stpl-treatment-arrow" aria-hidden="true">→</span>
-              </span>
-            </Link>
-          ))}
-        </div>
+        {Array.isArray(d.treatments) && d.treatments.length > 0 ? (
+          <div className="stpl-treatments">
+            {d.treatments.map((t) => (
+              <Link key={t.to} to={t.to} className="stpl-treatment">
+                <span className="stpl-treatment-media">
+                  <img src={t.img} alt="" loading="lazy" />
+                  <span className="stpl-treatment-kind">{t.kind}</span>
+                </span>
+                <span className="stpl-treatment-body">
+                  <span className="stpl-treatment-name">{t.name}</span>
+                  <span className="stpl-treatment-arrow" aria-hidden="true">→</span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        ) : (
+          <div className="stpl-approaches">
+            {(d.approaches || []).map((a, i) => (
+              <article key={i} className="stpl-approach">
+                <h3>{a.title}</h3>
+                <p>{a.text}</p>
+                {a.href && (
+                  <Link to={a.href} className="stpl-syndrome-link">
+                    Explore <span aria-hidden="true">›</span>
+                  </Link>
+                )}
+              </article>
+            ))}
+          </div>
+        )}
       </section>
 
       {/* 5 · Self-care — full numbered grid when there are many tips */}
@@ -186,30 +242,32 @@ export default function SpecialityTemplateView({ data: d }) {
         </section>
       )}
 
-      {/* 6 · Patient story (+ small guidance aside when there are no big tips) */}
-      <section className={`stpl-block stpl-story-row${showAside ? '' : ' is-solo'}`}>
-        <figure className="stpl-story">
-          <span className="stpl-q" aria-hidden="true">&rdquo;</span>
-          <blockquote>{d.story.quote}</blockquote>
-          <figcaption>
-            <span className="stpl-story-name">{d.story.name}</span>
-            <span className="stpl-story-detail">{d.story.detail}</span>
-          </figcaption>
-        </figure>
-        {showAside && (
-          <aside className="stpl-guidance">
-            <p className="stpl-eyebrow">Good to know</p>
-            <h3>Self-care &amp; when to seek help</h3>
-            <ul>
-              {d.guidance.map((g, i) => (
-                <li key={i}>{g}</li>
-              ))}
-            </ul>
-          </aside>
-        )}
-      </section>
+      {/* Optional · Patient story (+ small guidance aside when there are no big tips) */}
+      {d.story && (
+        <section className={`stpl-block stpl-story-row${showAside ? '' : ' is-solo'}`}>
+          <figure className="stpl-story">
+            <span className="stpl-q" aria-hidden="true">&rdquo;</span>
+            <blockquote>{d.story.quote}</blockquote>
+            <figcaption>
+              <span className="stpl-story-name">{d.story.name}</span>
+              <span className="stpl-story-detail">{d.story.detail}</span>
+            </figcaption>
+          </figure>
+          {showAside && (
+            <aside className="stpl-guidance">
+              <p className="stpl-eyebrow">Good to know</p>
+              <h3>Self-care &amp; when to seek help</h3>
+              <ul>
+                {d.guidance.map((g, i) => (
+                  <li key={i}>{g}</li>
+                ))}
+              </ul>
+            </aside>
+          )}
+        </section>
+      )}
 
-      {/* Optional · Let us help you (+ for patients / for clinicians) */}
+      {/* §7 · Let us help you (+ for patients / for clinicians) */}
       {d.help && (
         <section className="stpl-block stpl-help">
           <div className="stpl-head">
@@ -248,7 +306,43 @@ export default function SpecialityTemplateView({ data: d }) {
         </section>
       )}
 
-      {/* 7 · Location */}
+      {/* §8 · References */}
+      {d.citations?.length > 0 && (
+        <section className="stpl-refs">
+          <p className="stpl-eyebrow">References</p>
+          <ul>
+            {d.citations.map((c) => (
+              <li key={c.url}>
+                <a href={c.url} target="_blank" rel="noreferrer">{c.label}</a>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      {/* §9 · Final CTA (category fallback + tel: secondary) */}
+      <section className="stpl-cta">
+        <span className="stpl-cta-glow stpl-cta-glow--a" aria-hidden="true" />
+        <span className="stpl-cta-glow stpl-cta-glow--b" aria-hidden="true" />
+        <div className="stpl-cta-inner">
+          <p className="stpl-cta-eyebrow">Ready when you are</p>
+          <h2>{cta.heading}</h2>
+          <p className="stpl-cta-sub">{cta.body}</p>
+          <div className="stpl-hero-actions">
+            <button type="button" className="stpl-btn stpl-btn--cta" onClick={() => navigate(cta.primaryHref)}>
+              {cta.primaryLabel} <span aria-hidden="true">→</span>
+            </button>
+            <a href={ctaSecondaryHref} className="stpl-btn stpl-btn--ghost-dark">{ctaSecondaryLabel}</a>
+          </div>
+          <ul className="stpl-cta-assure">
+            <li>Multidisciplinary team</li>
+            <li>Personalised plan</li>
+            <li>Vale do Lobo, Algarve</li>
+          </ul>
+        </div>
+      </section>
+
+      {/* §10 · Location */}
       <section className="stpl-block stpl-location">
         <div className="stpl-head">
           <p className="stpl-eyebrow">Visit us</p>
@@ -265,43 +359,6 @@ export default function SpecialityTemplateView({ data: d }) {
           />
         </div>
       </section>
-
-      {/* 8 · Contact / CTA */}
-      <section className="stpl-cta">
-        <span className="stpl-cta-glow stpl-cta-glow--a" aria-hidden="true" />
-        <span className="stpl-cta-glow stpl-cta-glow--b" aria-hidden="true" />
-        <div className="stpl-cta-inner">
-          <p className="stpl-cta-eyebrow">Ready when you are</p>
-          <h2>Living with {d.title.toLowerCase()}?<br />Let&apos;s find your relief.</h2>
-          <p className="stpl-cta-sub">Book an assessment with our multidisciplinary team in Vale do Lobo, Algarve.</p>
-          <div className="stpl-hero-actions">
-            <button type="button" className="stpl-btn stpl-btn--cta" onClick={() => navigate('/contact')}>
-              Book an appointment <span aria-hidden="true">→</span>
-            </button>
-            <button type="button" className="stpl-btn stpl-btn--ghost-dark" onClick={() => navigate('/specialities')}>
-              All specialities
-            </button>
-          </div>
-          <ul className="stpl-cta-assure">
-            <li>Multidisciplinary team</li>
-            <li>Personalised plan</li>
-            <li>Vale do Lobo, Algarve</li>
-          </ul>
-        </div>
-      </section>
-
-      {d.citations?.length > 0 && (
-        <section className="stpl-refs">
-          <p className="stpl-eyebrow">References</p>
-          <ul>
-            {d.citations.map((c) => (
-              <li key={c.url}>
-                <a href={c.url} target="_blank" rel="noreferrer">{c.label}</a>
-              </li>
-            ))}
-          </ul>
-        </section>
-      )}
     </div>
   );
 }

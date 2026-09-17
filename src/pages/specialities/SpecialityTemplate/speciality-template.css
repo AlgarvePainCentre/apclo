@@ -111,9 +111,8 @@
   border: 1px solid #e0e9f1; border-radius: var(--card-radius);
   padding: clamp(28px, 4vw, 48px);
 }
-.stpl-symptoms-head { display: flex; align-items: center; gap: 16px; margin-bottom: clamp(18px, 2.4vw, 26px); }
-.stpl-symptoms-badge { flex-shrink: 0; width: 48px; height: 48px; border-radius: 14px; display: inline-flex; align-items: center; justify-content: center; background: var(--stpl-blue); color: #fff; }
-.stpl-symptoms-head .stpl-h2 { font-size: clamp(22px, 2.6vw, 30px); }
+.stpl-symptoms-panel .stpl-head { margin-bottom: clamp(18px, 2.4vw, 26px); }
+.stpl-symptoms-panel .stpl-h2 { font-size: clamp(22px, 2.6vw, 30px); }
 .stpl-symptoms-body { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(20px, 3vw, 36px); }
 .stpl-symptoms-body p { margin: 0; color: #3a4a5a; line-height: 1.7; font-size: 15px; }
 .stpl-symptoms-body p::before { content: ''; display: block; width: 28px; height: 2px; border-radius: 2px; background: var(--stpl-coral); margin-bottom: 14px; }
@@ -132,6 +131,28 @@
 .stpl-syn-a p { margin: 0 0 10px; color: var(--stpl-mut); line-height: 1.65; font-size: 14.5px; max-width: 70ch; }
 .stpl-syndrome-link { display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; font-size: 13.5px; font-weight: 700; color: var(--stpl-red); }
 .stpl-syndrome-link:hover { text-decoration: underline; }
+
+/* §5 · When to seek help — calm, soft panel (no icon, non-alarmist) */
+.stpl-seek {
+  background: #f6f8fa;
+  border: 1px solid var(--stpl-line); border-radius: var(--card-radius);
+  padding: clamp(28px, 4vw, 44px);
+}
+.stpl-seek .stpl-head { margin-bottom: clamp(16px, 2.2vw, 24px); }
+.stpl-eyebrow--seek { color: var(--stpl-mut); }
+.stpl-seek .stpl-h2 { font-size: clamp(22px, 2.6vw, 30px); }
+.stpl-seek-list { margin: 0; padding: 0; list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 14px clamp(24px, 3vw, 40px); }
+.stpl-seek-list li { position: relative; padding-left: 22px; color: #4b5a68; line-height: 1.65; font-size: 14.5px; }
+.stpl-seek-list li::before { content: ''; position: absolute; left: 0; top: 9px; width: 7px; height: 7px; border-radius: 50%; background: var(--stpl-coral); }
+
+/* §6 · Text approaches (service pages without image treatment cards) */
+.stpl-approaches { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--card-gap); }
+.stpl-approach { background: var(--stpl-panel); border: 1px solid var(--stpl-line); border-radius: var(--card-radius); padding: 26px 24px; box-shadow: 0 14px 34px rgba(15, 27, 38, 0.05); border-top: 4px solid var(--stpl-coral); }
+.stpl-approach h3 { margin: 0 0 10px; font-size: 17px; color: var(--stpl-blue); letter-spacing: -0.01em; }
+.stpl-approach p { margin: 0 0 12px; color: var(--stpl-mut); line-height: 1.65; font-size: 14.5px; }
+
+/* CTA secondary rendered as an anchor (tel:) */
+.spec-tpl a.stpl-btn--ghost-dark { color: #fff; text-decoration: none; }
 
 /* 5 · Self-care numbered grid (content-rich conditions) */
 .stpl-tips { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--card-gap); }
@@ -208,6 +229,8 @@
   .stpl-patterns { grid-template-columns: 1fr; }
   .stpl-tips { grid-template-columns: 1fr 1fr; }
   .stpl-symptoms-body { grid-template-columns: 1fr; }
+  .stpl-seek-list { grid-template-columns: 1fr; }
+  .stpl-approaches { grid-template-columns: 1fr; }
   .stpl-help-grid { grid-template-columns: 1fr; }
   .stpl-treatments { grid-template-columns: 1fr 1fr; }
   .stpl-story-row { grid-template-columns: 1fr; }
