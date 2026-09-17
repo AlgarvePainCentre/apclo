@@ -243,6 +243,7 @@ export default function SpecialityTemplateView({ data: d }) {
       {/* Optional · Most common syndromes (named, with imagery + learn link) */}
       {Array.isArray(d.syndromes) && d.syndromes.length > 0 && (
         <section className="stpl-block" id="ch-conditions">
+          <div className="stpl-cond-grid">
           <div className="stpl-head">
             <p className="stpl-eyebrow">In detail</p>
             <h2 className="stpl-h2">{d.conditionsHeading || 'Common conditions'}</h2>
@@ -277,6 +278,7 @@ export default function SpecialityTemplateView({ data: d }) {
                 </div>
               );
             })}
+          </div>
           </div>
         </section>
       )}

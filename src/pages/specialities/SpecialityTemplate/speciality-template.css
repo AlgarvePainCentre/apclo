@@ -97,6 +97,7 @@
 @media (max-width: 1024px) {
   .stpl-shell { grid-template-columns: 1fr; gap: 0; }
   .stpl-toc { display: none; }
+  .stpl-cond-grid { grid-template-columns: 1fr; gap: clamp(20px, 3vw, 28px); }
 }
 
 /* 2 · Overview — editorial: heading left, copy right */
@@ -151,8 +152,10 @@
 .stpl-symptoms-body p { margin: 0; color: #3a4a5a; line-height: 1.7; font-size: 15px; }
 .stpl-symptoms-body p::before { content: ''; display: block; width: 28px; height: 2px; border-radius: 2px; background: var(--stpl-coral); margin-bottom: 14px; }
 
-/* Optional · Most common syndromes — compact accordion */
-.stpl-syn-acc { display: flex; flex-direction: column; gap: 12px; max-width: 900px; }
+/* Optional · Most common syndromes — header left, accordion right */
+.stpl-cond-grid { display: grid; grid-template-columns: 0.75fr 1.25fr; gap: clamp(28px, 4vw, 56px); align-items: start; }
+.stpl-cond-grid .stpl-head { margin-bottom: 0; max-width: none; }
+.stpl-syn-acc { display: flex; flex-direction: column; gap: 12px; }
 .stpl-syn-item { background: var(--stpl-panel); border: 1px solid var(--stpl-line); border-radius: 18px; overflow: hidden; transition: border-color 0.2s ease, box-shadow 0.2s ease; }
 .stpl-syn-item.is-open { border-color: #cdd9e4; box-shadow: 0 14px 34px rgba(15, 27, 38, 0.06); }
 .stpl-syn-q { width: 100%; display: flex; align-items: center; gap: 16px; background: none; border: 0; cursor: pointer; font: inherit; text-align: left; padding: 16px 20px; }
