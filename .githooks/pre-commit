@@ -1,0 +1,25 @@
+#!/bin/sh
+# Block accidental commits straight to main/master.
+# The shared working dir often lands back on main after a merge + reset; this
+# stops a stray commit from going to the production branch by mistake.
+#
+# Enable once per clone:   git config core.hooksPath .githooks
+# Intentional override:    ALLOW_MAIN_COMMIT=1 git commit ...
+
+branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+
+if [ "$branch" = "main" ] || [ "$branch" = "master" ]; then
+  if [ "$ALLOW_MAIN_COMMIT" = "1" ]; then
+    exit 0
+  fi
+  echo ""
+  echo "  ✋  Blocked: you are on '$branch' — commit to a branch, not the production branch."
+  echo ""
+  echo "      git checkout -b my-change     # then commit + open a PR"
+  echo ""
+  echo "      (deliberate exception:  ALLOW_MAIN_COMMIT=1 git commit ...)"
+  echo ""
+  exit 1
+fi
+
+exit 0
