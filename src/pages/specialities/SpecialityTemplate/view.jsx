@@ -93,14 +93,9 @@ export default function SpecialityTemplateView({ data: d }) {
       {Array.isArray(d.symptoms) && d.symptoms.length > 0 && (
         <section className="stpl-block">
           <div className="stpl-symptoms-panel">
-            <div className="stpl-symptoms-head">
-              <span className="stpl-symptoms-badge" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 8v4l3 2" /><circle cx="12" cy="12" r="9" /></svg>
-              </span>
-              <div>
-                <p className="stpl-eyebrow">Symptoms &amp; diagnosis</p>
-                <h2 className="stpl-h2">Knowing what to look for</h2>
-              </div>
+            <div className="stpl-head">
+              <p className="stpl-eyebrow">Symptoms &amp; diagnosis</p>
+              <h2 className="stpl-h2">Knowing what to look for</h2>
             </div>
             <div className="stpl-symptoms-body">
               {d.symptoms.map((p, i) => (
@@ -173,14 +168,9 @@ export default function SpecialityTemplateView({ data: d }) {
       {Array.isArray(d.seekHelp) && d.seekHelp.length > 0 && (
         <section className="stpl-block">
           <div className="stpl-seek">
-            <div className="stpl-seek-head">
-              <span className="stpl-seek-badge" aria-hidden="true">
-                <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 3 4 6v5c0 5 3.5 8 8 10 4.5-2 8-5 8-10V6z" /><path d="M12 8v4" /><path d="M12 16h.01" /></svg>
-              </span>
-              <div>
-                <p className="stpl-eyebrow stpl-eyebrow--seek">Your safety</p>
-                <h2 className="stpl-h2">When to seek help</h2>
-              </div>
+            <div className="stpl-head">
+              <p className="stpl-eyebrow stpl-eyebrow--seek">Good to know</p>
+              <h2 className="stpl-h2">When to seek help</h2>
             </div>
             <ul className="stpl-seek-list">
               {d.seekHelp.map((s, i) => (
