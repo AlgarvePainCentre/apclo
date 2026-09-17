@@ -33,7 +33,6 @@ const CTA_FALLBACKS = {
 export default function SpecialityTemplateView({ data: d }) {
   const navigate = useNavigate();
   const hasTips = Array.isArray(d.tips) && d.tips.length > 0;
-  const showAside = !hasTips && Array.isArray(d.guidance) && d.guidance.length > 0;
   const [openSyn, setOpenSyn] = useState(0);
 
   const area = d.areaLabel || d.title.toLowerCase();
@@ -242,66 +241,57 @@ export default function SpecialityTemplateView({ data: d }) {
         </section>
       )}
 
-      {/* Optional · Patient story (+ small guidance aside when there are no big tips) */}
-      {d.story && (
-        <section className={`stpl-block stpl-story-row${showAside ? '' : ' is-solo'}`}>
-          <figure className="stpl-story">
-            <span className="stpl-q" aria-hidden="true">&rdquo;</span>
-            <blockquote>{d.story.quote}</blockquote>
-            <figcaption>
-              <span className="stpl-story-name">{d.story.name}</span>
-              <span className="stpl-story-detail">{d.story.detail}</span>
-            </figcaption>
-          </figure>
-          {showAside && (
-            <aside className="stpl-guidance">
-              <p className="stpl-eyebrow">Good to know</p>
-              <h3>Self-care &amp; when to seek help</h3>
-              <ul>
-                {d.guidance.map((g, i) => (
-                  <li key={i}>{g}</li>
-                ))}
-              </ul>
-            </aside>
-          )}
-        </section>
-      )}
-
-      {/* §7 · Let us help you (+ for patients / for clinicians) */}
-      {d.help && (
+      {/* §7 · Let us help you — reassurance + a patient's voice as complement */}
+      {(d.help || d.story) && (
         <section className="stpl-block stpl-help">
           <div className="stpl-head">
             <p className="stpl-eyebrow">Why it matters</p>
             <h2 className="stpl-h2">Let us help you</h2>
           </div>
           <div className="stpl-help-grid">
-            <div className="stpl-help-copy">
-              {d.help.paragraphs.map((p, i) => (
-                <p key={i}>{p}</p>
-              ))}
-            </div>
-            <div className="stpl-help-cards">
-              {Array.isArray(d.help.patient) && d.help.patient.length > 0 && (
-                <div className="stpl-help-card">
-                  <h3>For patients</h3>
-                  <ul>
-                    {d.help.patient.map((p, i) => (
-                      <li key={i}>{p}</li>
-                    ))}
-                  </ul>
+            <div className="stpl-help-main">
+              {d.help?.paragraphs && (
+                <div className="stpl-help-copy">
+                  {d.help.paragraphs.map((p, i) => (
+                    <p key={i}>{p}</p>
+                  ))}
                 </div>
               )}
-              {Array.isArray(d.help.clinician) && d.help.clinician.length > 0 && (
-                <div className="stpl-help-card">
-                  <h3>For clinicians</h3>
-                  <ul>
-                    {d.help.clinician.map((p, i) => (
-                      <li key={i}>{p}</li>
-                    ))}
-                  </ul>
-                </div>
+              {d.story && (
+                <figure className="stpl-help-quote">
+                  <span className="stpl-q" aria-hidden="true">&rdquo;</span>
+                  <blockquote>{d.story.quote}</blockquote>
+                  <figcaption>
+                    <span className="stpl-story-name">{d.story.name}</span>
+                    <span className="stpl-story-detail">{d.story.detail}</span>
+                  </figcaption>
+                </figure>
               )}
             </div>
+            {d.help && (
+              <div className="stpl-help-cards">
+                {Array.isArray(d.help.patient) && d.help.patient.length > 0 && (
+                  <div className="stpl-help-card">
+                    <h3>For patients</h3>
+                    <ul>
+                      {d.help.patient.map((p, i) => (
+                        <li key={i}>{p}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+                {Array.isArray(d.help.clinician) && d.help.clinician.length > 0 && (
+                  <div className="stpl-help-card">
+                    <h3>For clinicians</h3>
+                    <ul>
+                      {d.help.clinician.map((p, i) => (
+                        <li key={i}>{p}</li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </section>
       )}
