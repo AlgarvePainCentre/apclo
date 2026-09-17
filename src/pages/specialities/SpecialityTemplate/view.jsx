@@ -38,8 +38,9 @@ export default function SpecialityTemplateView({ data: d }) {
   const area = d.areaLabel || d.title.toLowerCase();
   const ctaFallback = (CTA_FALLBACKS[d.category] || CTA_FALLBACKS['pain-medicine'])(area);
   const cta = { ...ctaFallback, ...(d.cta || {}) };
-  const ctaSecondaryLabel = cta.secondaryLabel || 'Call +351 915 915 001';
-  const ctaSecondaryHref = cta.secondaryHref || 'tel:+351915915001';
+  const ctaSecondaryLabel = cta.secondaryLabel || 'Explore treatments';
+  const ctaSecondaryHref = cta.secondaryHref || '/treatments';
+  const ctaSecondaryExternal = /^(tel:|mailto:|https?:)/.test(ctaSecondaryHref);
 
   // Chapters rail (scroll-spy): built from the sections this page actually renders.
   const hasConditions = Array.isArray(d.syndromes) && d.syndromes.length > 0;
@@ -430,7 +431,13 @@ export default function SpecialityTemplateView({ data: d }) {
             <button type="button" className="stpl-btn stpl-btn--cta" onClick={() => navigate(cta.primaryHref)}>
               {cta.primaryLabel} <span aria-hidden="true">→</span>
             </button>
-            <a href={ctaSecondaryHref} className="stpl-btn stpl-btn--ghost-dark">{ctaSecondaryLabel}</a>
+            {ctaSecondaryExternal ? (
+              <a href={ctaSecondaryHref} className="stpl-btn stpl-btn--ghost-dark">{ctaSecondaryLabel}</a>
+            ) : (
+              <button type="button" className="stpl-btn stpl-btn--ghost-dark" onClick={() => navigate(ctaSecondaryHref)}>
+                {ctaSecondaryLabel}
+              </button>
+            )}
           </div>
           <ul className="stpl-cta-assure">
             <li>Multidisciplinary team</li>

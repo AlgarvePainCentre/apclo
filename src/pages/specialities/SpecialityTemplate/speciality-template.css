@@ -244,17 +244,20 @@
 .stpl-cta-glow { position: absolute; z-index: -1; border-radius: 50%; filter: blur(60px); opacity: 0.55; pointer-events: none; }
 .stpl-cta-glow--a { width: 42%; aspect-ratio: 1; top: -20%; right: -8%; background: radial-gradient(circle, var(--stpl-coral), transparent 70%); }
 .stpl-cta-glow--b { width: 38%; aspect-ratio: 1; bottom: -26%; left: -6%; background: radial-gradient(circle, var(--stpl-red), transparent 70%); opacity: 0.4; }
-.stpl-cta-eyebrow { margin: 0 0 14px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--stpl-coral); }
-.stpl-cta h2 { margin: 0 auto; max-width: 20ch; font-size: clamp(28px, 3.8vw, 46px); line-height: 1.08; letter-spacing: -0.025em; font-weight: 800; text-wrap: balance; color: #fff; }
-.stpl-cta-sub { margin: 16px auto 0; max-width: 46ch; color: rgba(255, 255, 255, 0.82); font-size: 16.5px; }
-.stpl-cta .stpl-hero-actions { margin-top: 30px; }
-.stpl-btn--cta { background: var(--stpl-red); color: #fff; font-size: 15.5px; padding: 16px 32px; gap: 8px; }
+.stpl-cta-eyebrow { margin: 0 0 16px; font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 700; color: var(--stpl-coral); }
+.stpl-cta h2 { margin: 0 auto; max-width: 18ch; font-size: clamp(32px, 4.4vw, 54px); line-height: 1.04; letter-spacing: -0.03em; font-weight: 800; text-wrap: balance; color: #fff; }
+.stpl-cta-sub { margin: 18px auto 0; max-width: 44ch; color: rgba(255, 255, 255, 0.8); font-size: 16.5px; line-height: 1.6; }
+.stpl-cta .stpl-hero-actions { justify-content: center; margin-top: 34px; }
+.stpl-btn--cta { background: var(--stpl-red); color: #fff; font-size: 16.5px; padding: 18px 38px; gap: 8px; }
 .stpl-btn--cta:hover { background: #b81f33; transform: translateY(-2px); }
+/* Quieter secondary so the primary leads the hierarchy */
+.stpl-cta .stpl-btn--ghost-dark { border-color: rgba(255, 255, 255, 0.35); color: rgba(255, 255, 255, 0.86); font-weight: 600; }
+.stpl-cta .stpl-btn--ghost-dark:hover { color: #fff; background: rgba(255, 255, 255, 0.1); }
 .stpl-btn--cta span { transition: transform 0.2s ease; }
 .stpl-btn--cta:hover span { transform: translateX(3px); }
-.stpl-cta-assure { margin: 26px 0 0; padding: 0; list-style: none; display: flex; gap: 10px 22px; flex-wrap: wrap; justify-content: center; }
-.stpl-cta-assure li { position: relative; padding-left: 20px; font-size: 13.5px; font-weight: 600; color: rgba(255, 255, 255, 0.9); }
-.stpl-cta-assure li::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 12px; height: 12px; border-radius: 50%; background: var(--stpl-coral); -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/12px no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4z'/%3E%3C/svg%3E") center/12px no-repeat; }
+.stpl-cta-assure { margin: 28px 0 0; padding: 0; list-style: none; display: flex; gap: 6px 14px; flex-wrap: wrap; justify-content: center; }
+.stpl-cta-assure li { position: relative; font-size: 12.5px; font-weight: 500; color: rgba(255, 255, 255, 0.55); }
+.stpl-cta-assure li:not(:first-child)::before { content: '·'; position: absolute; left: -9px; color: rgba(255, 255, 255, 0.3); }
 
 /* References */
 /* References — small-print footnote at the very end */
