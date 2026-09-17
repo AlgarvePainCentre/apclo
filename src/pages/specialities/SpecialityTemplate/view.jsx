@@ -79,7 +79,6 @@ export default function SpecialityTemplateView({ data: d }) {
         <section className="stpl-block stpl-overview">
           <div className="stpl-overview-grid has-cards">
             <div className="stpl-overview-head">
-              <p className="stpl-eyebrow">Overview</p>
               <h2 className="stpl-h2">Understanding {d.title.toLowerCase()}</h2>
               <div className="stpl-overview-copy">
                 <p className="stpl-lead-intro">{d.overview[0]}</p>
@@ -102,7 +101,6 @@ export default function SpecialityTemplateView({ data: d }) {
         <section className="stpl-block stpl-overview">
           <div className="stpl-overview-grid">
             <div className="stpl-overview-head">
-              <p className="stpl-eyebrow">Overview</p>
               <h2 className="stpl-h2">Understanding {d.title.toLowerCase()}</h2>
             </div>
             <div className="stpl-overview-copy">

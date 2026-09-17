@@ -84,7 +84,6 @@
 .stpl-overview-copy .stpl-lead-intro {
   font-size: clamp(19px, 1.7vw, 24px); line-height: 1.5;
   font-weight: 600; color: var(--stpl-ink); letter-spacing: -0.01em;
-  border-left: 3px solid var(--stpl-coral); padding-left: 20px; margin-left: -2px;
 }
 
 /* Merged overview: sticky intro (left) + titled symptom cards (right) */
