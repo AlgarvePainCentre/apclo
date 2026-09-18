@@ -406,6 +406,15 @@
   margin-bottom: var(--header-content-gap);
 }
 
+.specialities-page .specialities-testimonials-eyebrow {
+  margin: 0 0 var(--eyebrow-title-gap);
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-darkRed, #d3243b);
+}
+
 .specialities-page .specialities-testimonials-title {
   margin: 0;
   font-size: clamp(2rem, 4vw, 2.8rem);
@@ -414,46 +423,102 @@
   line-height: 1.1;
 }
 
-.specialities-page .specialities-testimonials-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
+/* Slider controls */
+.specialities-page .specialities-testimonials-controls {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 18px;
 }
+.specialities-page .specialities-testimonials-arrow {
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, 0.18);
+  background: #fff;
+  color: #003366;
+  font-size: 22px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.specialities-page .specialities-testimonials-arrow:hover {
+  background: #003366;
+  border-color: #003366;
+  color: #fff;
+  transform: translateY(-1px);
+}
+.specialities-page .specialities-testimonials-arrow span { transform: translateY(-1px); }
 
-@media (min-width: 768px) {
-  .specialities-page .specialities-testimonials-grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
+/* Scroll-snap track */
+.specialities-page .specialities-testimonials-track {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 2px;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 6px 2px 18px;
+  margin: 0 -2px;
 }
+.specialities-page .specialities-testimonials-track::-webkit-scrollbar { display: none; }
 
 .specialities-page .specialities-testimonial-card {
-  background-color: #f8fafc;
-  border-radius: 8px;
-  padding: 32px;
+  position: relative;
+  flex: 0 0 clamp(280px, 40%, 400px);
+  scroll-snap-align: start;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: var(--card-radius);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.06);
+  padding: 30px 28px 26px;
   display: flex;
   flex-direction: column;
 }
 
+.specialities-page .specialities-testimonial-mark {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 72px;
+  line-height: 0.7;
+  color: rgba(0, 51, 102, 0.14);
+  height: 34px;
+  margin-bottom: 6px;
+}
+
 .specialities-page .specialities-testimonial-quote {
-  margin: 0 0 32px;
-  font-size: 1.05rem;
-  line-height: 1.6;
-  color: #4b5563;
+  margin: 0 0 26px;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #334155;
   flex: 1;
 }
 
 .specialities-page .specialities-testimonial-author {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(15, 23, 42, 0.08);
 }
 
 .specialities-page .specialities-testimonial-avatar {
-  width: 56px;
-  height: 56px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   overflow: hidden;
   flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.02em;
 }
 
 .specialities-page .specialities-testimonial-avatar img {
@@ -464,14 +529,14 @@
 
 .specialities-page .specialities-testimonial-name {
   font-weight: 700;
-  color: #4b4b4b;
+  color: #003366;
   font-size: 1rem;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 
 .specialities-page .specialities-testimonial-location {
-  font-size: 0.9rem;
-  color: #9ca3af;
+  font-size: 0.88rem;
+  color: #64748b;
 }
 
 @media (min-width: 760px) {
