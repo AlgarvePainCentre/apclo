@@ -23,6 +23,7 @@ const routeEntries = [
   { path: 'specialities-template-cervical', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page-cervical')), preloadPath: '/specialities-template-cervical' },
   { path: 'specialities-template-stroke', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page-stroke')), preloadPath: '/specialities-template-stroke' },
   { path: 'treatment-template', lazy: createLazyRouteModule(() => import('./pages/treatments/TreatmentTemplate/page')), preloadPath: '/treatment-template' },
+  { path: 'treatment-template-radiofrequency', lazy: createLazyRouteModule(() => import('./pages/treatments/TreatmentTemplate/page-radiofrequency')), preloadPath: '/treatment-template-radiofrequency' },
   { path: 'doctor/:id', lazy: createLazyRouteModule(() => import('./pages/doctor/DoctorDetail')), preloadPath: '/doctor/:id' },
   { path: 'contact', lazy: createLazyRouteModule(() => import('./pages/contact/Contact')), preloadPath: '/contact' },
   { path: 'resources', lazy: createLazyRouteModule(() => import('./pages/resources/Resources')), preloadPath: '/resources' },
