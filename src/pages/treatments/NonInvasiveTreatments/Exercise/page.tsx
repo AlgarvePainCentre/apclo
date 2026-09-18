@@ -276,7 +276,7 @@ const ExercisePage: React.FC = () => {
           <div className="exercise-benefits-inner st-benefits-inner">
             <header className="exercise-benefits-header st-benefits-header">
               <h2 id="exercise-benefits-title" className="exercise-benefits-title st-benefits-title">
-                Benefits of Speech Therapy
+                Benefits of Exercise
               </h2>
 
               <p className="ot-benefits-subtitle-secondary">Some of the main benefits include:</p>
