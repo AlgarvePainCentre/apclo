@@ -1146,3 +1146,567 @@ export const SPORTS_SPECIALITY_BY_SLUG = {
   psychology: sportsPsychologyData,
   nutrition: sportsNutritionData,
 };
+
+/* ------------------------------------------------------------------ *
+ * STROKE MEDICINE ROLLOUT (C2–C11) — service pages (text approaches).
+ * Overview + §3 are ✅ validated (mirrored from `conditionContent.ts`).
+ * §4, §5 seek-help (FAST where relevant), §6 approaches and patient/
+ * clinician are ✍️ draft (from the content doc), to validate clinically.
+ * `rehabilitation` reuses the existing strokeRehabData pilot (C1).
+ * ------------------------------------------------------------------ */
+const strokeBase = { discipline: 'Stroke Medicine', category: 'stroke-medicine' };
+const NIT = '/treatments/non-invasive-treatments';
+const MIT = '/treatments/minimally-invasive-treatments';
+
+export const strokePreventionData = {
+  ...strokeBase,
+  title: 'Clinical and secondary prevention of stroke',
+  areaLabel: 'stroke prevention',
+  heroImage: '/assets/images/Hero/OccupationalTherapy.webp',
+  heroSubtitle: 'Careful assessment and prevention planning can lower the risk of another stroke.',
+  overview: [
+    'Secondary prevention aims to reduce the risk of recurrent stroke or TIA through medication optimisation and lifestyle interventions.',
+    'We work with your medical team to address blood pressure, lipids, antithrombotic therapy and risk factors such as smoking and diabetes.',
+    'Education and coordinated follow-up support adherence and long-term risk reduction.',
+  ],
+  presentationHeading: 'What we manage',
+  patterns: [
+    { id: 'bp', label: 'Blood pressure & lipids', description: 'Optimise targets according to contemporary guidelines and comorbidities.' },
+    { id: 'antithrombotic', label: 'Antithrombotic therapy', description: 'Use antiplatelet or anticoagulation as indicated by stroke mechanism.' },
+    { id: 'lifestyle', label: 'Lifestyle change', description: 'Support smoking cessation, activity, diet and sleep.' },
+    { id: 'adherence', label: 'Adherence & follow-up', description: 'Education and review to maintain long-term prevention gains.' },
+  ],
+  conditionsHeading: 'Risk factors we address',
+  syndromes: [
+    syn('High blood pressure', 'The biggest modifiable risk for recurrent stroke.'),
+    syn('Cholesterol & vascular risk', 'Lipid management and vascular protection.'),
+    syn('Irregular heart rhythm (atrial fibrillation)', 'Anticoagulation when indicated by stroke mechanism.'),
+    syn('Diabetes, smoking & lifestyle', 'Coordinated support to reduce overall risk.'),
+  ],
+  seekHelp: [
+    'Call emergency services for any new stroke or TIA signs — Face drooping, Arm weakness, Speech difficulty, Time to call (FAST) — even if symptoms pass quickly.',
+    'Get reviewed if blood pressure is high, you miss doses, or you have medication side effects.',
+    'Book a review to plan lifestyle changes (smoking, activity, diet) after a stroke or TIA.',
+  ],
+  treatHeading: 'How we assess & treat',
+  approaches: [
+    { title: 'Medication optimisation with your medical team', text: 'Antithrombotic, blood-pressure and lipid therapy tailored to your stroke mechanism.' },
+    { title: 'Blood-pressure & lipid targets', text: 'Guideline-informed targets reviewed against your comorbidities.' },
+    { title: 'Lifestyle support', text: 'Help with smoking cessation, activity, diet and sleep.' },
+    { title: 'Structured follow-up', text: 'Education and review to sustain long-term prevention gains.' },
+  ],
+  help: {
+    paragraphs: [
+      'After a stroke or TIA, structured secondary prevention is one of the most effective ways to reduce the risk of another event.',
+      'We coordinate with your medical team to optimise medication and support the lifestyle changes that protect you long term.',
+    ],
+    patient: [
+      'Bring your medication list and recent blood-pressure readings, and tell us about smoking, activity and diet.',
+      'Call emergency services for any new stroke/TIA signs (FAST), even if they pass quickly.',
+    ],
+    clinician: [
+      'We optimise blood pressure, lipids and antithrombotic therapy with your medical team and support lifestyle change.',
+      'Referrals with stroke mechanism, risk factors and current medications streamline prevention.',
+    ],
+  },
+  citations: [
+    { label: 'AHA/ASA Guideline for the Prevention of Stroke in Patients With Stroke & TIA (2021)', url: 'https://www.ahajournals.org/' },
+  ],
+};
+
+export const feedingAutonomyData = {
+  ...strokeBase,
+  title: 'Feeding autonomy',
+  areaLabel: 'feeding autonomy after stroke',
+  heroImage: '/assets/images/Hero/OccupationalTherapy.webp',
+  heroSubtitle: 'We help you regain safe, confident eating and drinking after stroke.',
+  overview: [
+    'Feeding autonomy focuses on safe, independent eating and drinking after stroke while managing dysphagia risk.',
+    'We coordinate swallow assessment, texture modifications, posture, and caregiver training as needed.',
+    'Goals emphasise safety, nutrition and dignity while advancing towards independence.',
+  ],
+  presentationHeading: 'What we work on',
+  patterns: [
+    { id: 'swallow', label: 'Swallow safety', description: 'Speech-language assessment, posture and texture modifications to reduce aspiration risk.' },
+    { id: 'posture', label: 'Positioning', description: 'Optimise seating and head position to support safe swallowing.' },
+    { id: 'training', label: 'Caregiver training', description: 'Education on safe feeding techniques and monitoring signs of difficulty.' },
+    { id: 'progression', label: 'Diet progression', description: 'Gradual changes guided by objective assessment and tolerance.' },
+  ],
+  conditionsHeading: 'What we help with',
+  syndromes: [
+    syn('Dysphagia (swallowing difficulty)', 'Assessment and strategies to reduce choking and aspiration risk.'),
+    syn('Difficulty self-feeding', 'Adaptive techniques and equipment to regain independence.'),
+    syn('Texture & diet needs', 'Safe food and fluid modifications guided by assessment.'),
+    syn('Nutrition & hydration risk', 'Monitoring intake while advancing independence.'),
+  ],
+  seekHelp: [
+    'Seek urgent care for choking, coughing or a wet or gurgly voice during or after eating, or a chest infection after meals.',
+    'Get reviewed for weight loss, dehydration, or avoiding food and drink due to swallowing fears.',
+    'Ask for a swallow assessment before changing food textures at home.',
+  ],
+  treatHeading: 'How we assess & treat',
+  approaches: [
+    { title: 'Swallow assessment', text: 'Speech-and-language assessment to gauge safety and guide the plan.', href: `${NIT}/speech-therapy` },
+    { title: 'Posture & safe-feeding techniques', text: 'Positioning and techniques that reduce aspiration risk.', href: `${NIT}/occupational-therapy` },
+    { title: 'Texture modification & diet progression', text: 'Safe food and fluid changes advanced as tolerance improves.', href: `${NIT}/speech-therapy` },
+    { title: 'Caregiver training', text: 'Education on safe feeding and spotting signs of difficulty.', href: `${NIT}/occupational-therapy` },
+  ],
+  help: {
+    paragraphs: [
+      'Safe eating and drinking is central to recovery, nutrition and dignity — and it can improve with the right assessment and strategies.',
+      'We advance towards independence carefully, keeping safety and nutrition protected at every step.',
+    ],
+    patient: [
+      'Tell us about any coughing, choking or difficulty with certain foods or fluids, and who supports you at meals.',
+      'Seek urgent care for choking, a wet or gurgly voice after eating, or a chest infection after meals.',
+    ],
+    clinician: [
+      'We provide swallow assessment, safe-feeding strategies, texture guidance and caregiver training.',
+      'Referrals noting swallow status, nutrition risk and current diet help us plan safely.',
+    ],
+  },
+  citations: [],
+};
+
+export const speechAutonomyData = {
+  ...strokeBase,
+  title: 'Speech autonomy',
+  areaLabel: 'speech autonomy after stroke',
+  heroImage: '/assets/images/Hero/SpeechTherapy.webp',
+  heroSubtitle: 'Targeted therapy supports communication, understanding and confidence after stroke.',
+  overview: [
+    'Speech autonomy supports communication and swallowing after stroke, including aphasia, dysarthria and apraxia of speech.',
+    'We build personalised therapy around functional goals with assistive strategies and caregiver involvement.',
+    'We coordinate with medical teams to monitor progress and adjust the plan as needs evolve.',
+  ],
+  patterns: [
+    { id: 'aphasia', label: 'Aphasia', description: 'Impairment in language affecting speaking, comprehension, reading or writing.' },
+    { id: 'dysarthria', label: 'Dysarthria', description: 'Motor speech difficulties due to weakness or incoordination.' },
+    { id: 'apraxia', label: 'Apraxia of speech', description: 'Difficulty planning and sequencing the movements needed for speech.' },
+    { id: 'swallow', label: 'Dysphagia', description: 'Swallowing difficulty requiring safety strategies and supervised progression.' },
+  ],
+  conditionsHeading: 'What we help with',
+  syndromes: [
+    syn('Aphasia', 'Trouble finding words, understanding, reading or writing; therapy targets functional communication.'),
+    syn('Dysarthria', 'Slurred or effortful speech from muscle weakness; work on clarity and strategies.'),
+    syn('Apraxia of speech', 'Difficulty planning speech movements; structured practice to rebuild sequencing.'),
+    syn('Dysphagia', 'Swallowing difficulty needing safety strategies and supervised progression.'),
+  ],
+  seekHelp: [
+    'Call emergency services for sudden new speech difficulty — Face drooping, Arm weakness, Speech difficulty, Time to call (FAST) — it can be a sign of stroke.',
+    'Get reviewed if communication frustration is affecting mood, relationships or independence.',
+    'Seek a swallow assessment if eating or drinking feels unsafe.',
+  ],
+  treatHeading: 'How we assess & treat',
+  approaches: [
+    { title: 'Individualised speech-and-language therapy', text: 'Therapy targeting the communication skills that matter most to you.', href: `${NIT}/speech-therapy` },
+    { title: 'Functional communication strategies', text: 'Practical strategies and assistive tools for everyday situations.', href: `${NIT}/speech-therapy` },
+    { title: 'Caregiver involvement', text: 'Supporting families to help communication carry over at home.', href: `${NIT}/speech-therapy` },
+  ],
+  help: {
+    paragraphs: [
+      'Communication is central to independence and wellbeing — and targeted speech-and-language therapy can rebuild it after stroke.',
+      'We build therapy around the situations that matter most to you, with family involved so progress carries into daily life.',
+    ],
+    patient: [
+      'Let us know how communication or swallowing has changed and what situations matter most to you.',
+      'Call emergency services for sudden new speech difficulty (FAST); seek a swallow review if eating feels unsafe.',
+    ],
+    clinician: [
+      'We deliver individualised speech-and-language therapy targeting functional communication, with swallow safety where needed.',
+      'Referrals with communication/swallow status and goals help us tailor therapy.',
+    ],
+  },
+  citations: [],
+};
+
+export const cognitiveAutonomyData = {
+  ...strokeBase,
+  title: 'Cognitive autonomy',
+  areaLabel: 'cognitive autonomy after stroke',
+  heroImage: '/assets/images/Hero/Psychology.webp',
+  heroSubtitle: 'Rebuilding memory, attention and everyday thinking skills to support independence after stroke.',
+  overview: [
+    'Cognitive autonomy supports the thinking skills people rely on for everyday independence after stroke — memory, attention, planning, orientation and perception.',
+    'We assess how these changes affect daily activities and build a personalised plan with practical strategies, compensatory tools and graded practice.',
+    'Therapy is coordinated with the wider team and with family, so progress carries over into real-life routines at home and in the community.',
+  ],
+  patterns: [
+    { id: 'memory', label: 'Memory', description: 'Difficulty forming or recalling new information, supported with routines, cues and memory aids.' },
+    { id: 'attention', label: 'Attention & concentration', description: 'Reduced focus or mental fatigue, addressed through pacing, environment changes and graded tasks.' },
+    { id: 'executive', label: 'Executive function', description: 'Planning, problem-solving and initiation difficulties, rebuilt through structured, goal-based practice.' },
+    { id: 'perception', label: 'Perception & awareness', description: 'Spatial neglect and perceptual changes, managed with scanning strategies and safety adaptations.' },
+  ],
+  conditionsHeading: 'What we help with',
+  syndromes: [
+    syn('Memory difficulties', 'Routines, cues and aids to support daily recall.'),
+    syn('Attention & mental fatigue', 'Pacing and environment strategies to sustain focus.'),
+    syn('Planning & problem-solving', 'Goal-based practice to rebuild executive skills.'),
+    syn('Spatial neglect & perception', 'Scanning strategies and safety adaptations.'),
+  ],
+  seekHelp: [
+    'Get reviewed if memory, attention or planning problems affect safety, work or daily tasks.',
+    'Seek urgent care for sudden new confusion or a sudden change in awareness (possible new event).',
+    'Ask for support if cognitive fatigue is limiting rehabilitation progress.',
+  ],
+  treatHeading: 'How we assess & treat',
+  approaches: [
+    { title: 'Cognitive assessment', text: 'Understanding how thinking changes affect your daily life.', href: `${NIT}/occupational-therapy` },
+    { title: 'Compensatory strategies & aids', text: 'Routines, cues and tools that support memory and attention.', href: `${NIT}/occupational-therapy` },
+    { title: 'Graded, goal-based practice', text: 'Structured practice to rebuild planning and problem-solving.', href: `${NIT}/psychology` },
+    { title: 'Carryover with family and team', text: 'Making progress stick in real-life routines at home.', href: `${NIT}/occupational-therapy` },
+  ],
+  help: {
+    paragraphs: [
+      'Thinking skills underpin everyday independence — and memory, attention and planning can improve with strategies and graded practice.',
+      'We coordinate with your family and wider team so gains carry over into real-life routines.',
+    ],
+    patient: [
+      'Note where memory, attention or planning cause difficulty in daily life, and bring a family member if helpful.',
+      'Seek urgent care for sudden new confusion or a change in awareness.',
+    ],
+    clinician: [
+      'We assess cognition and deliver compensatory strategies and graded, goal-based practice with family carryover.',
+      'Referrals with cognitive findings and functional impact help us prioritise.',
+    ],
+  },
+  citations: [],
+};
+
+export const moodDisordersData = {
+  ...strokeBase,
+  title: 'Post-stroke depression and mood disorders',
+  areaLabel: 'post-stroke mood disorders',
+  heroImage: '/assets/images/Hero/Psychology.webp',
+  heroSubtitle: 'Emotional changes after stroke are common; specialist support can help you adjust.',
+  overview: [
+    'Mood disorders after stroke are common and treatable. We screen for depression and anxiety and coordinate care across teams.',
+    'Management includes psychoeducation, psychological therapies and medication when indicated, with monitoring for response and safety.',
+    'Family and caregiver support is integral to recovery and quality of life.',
+  ],
+  patterns: [
+    { id: 'depression', label: 'Depression', description: 'Persistent low mood, anhedonia and fatigue affecting recovery and engagement.' },
+    { id: 'anxiety', label: 'Anxiety', description: 'Excessive worry, restlessness and physiological symptoms that can impede participation.' },
+    { id: 'adjustment', label: 'Adjustment difficulties', description: 'Coping with functional changes after stroke with tailored support.' },
+    { id: 'sleep', label: 'Sleep disturbance', description: 'Addressing sleep as part of a holistic mood management plan.' },
+  ],
+  conditionsHeading: 'What we help with',
+  syndromes: [
+    syn('Depression', 'Persistent low mood, loss of interest and fatigue affecting recovery.'),
+    syn('Anxiety', 'Worry, restlessness and physical symptoms that limit participation.'),
+    syn('Emotional adjustment', 'Coping with changes in identity, role and independence.'),
+    syn('Sleep problems', 'Addressing sleep as part of mood and recovery.'),
+  ],
+  seekHelp: [
+    'Reach out if low mood, anxiety or hopelessness last more than two weeks or affect daily life.',
+    'Contact your GP or emergency services urgently if you have thoughts of harming yourself — support is available and you don’t have to cope alone.',
+    'Involve family or carers early — mood changes are common after stroke and are treatable.',
+  ],
+  cta: {
+    heading: 'You don’t have to cope alone',
+    body: 'Book a consultation and our team will support you and your family with a plan built around your recovery and wellbeing.',
+    primaryLabel: 'Book a consultation',
+    primaryHref: '/contact',
+  },
+  treatHeading: 'How we assess & treat',
+  approaches: [
+    { title: 'Psychoeducation', text: 'Understanding mood changes after stroke and what helps.', href: `${NIT}/psychology` },
+    { title: 'Psychological therapies', text: 'Evidence-based therapy for low mood and anxiety.', href: `${NIT}/psychology` },
+    { title: 'Medication when indicated', text: 'Coordinated with your medical team, with monitoring for response and safety.' },
+    { title: 'Family & carer support', text: 'Involving those around you to sustain recovery and quality of life.', href: `${NIT}/psychology` },
+  ],
+  help: {
+    paragraphs: [
+      'Emotional changes after stroke are common and treatable — low mood, anxiety and adjustment difficulties respond well to the right support.',
+      'We screen, coordinate care across teams, and involve family so recovery and quality of life are protected.',
+    ],
+    patient: [
+      'It helps to note changes in mood, worry, sleep or motivation, and how they affect daily life.',
+      'Contact your GP or emergency services urgently if you have thoughts of harming yourself — you don’t have to cope alone.',
+    ],
+    clinician: [
+      'We screen and coordinate psychoeducation, psychological therapy and medication when indicated, with carer support.',
+      'Referrals noting mood symptoms, risk and current treatment help us respond promptly.',
+    ],
+  },
+  citations: [],
+};
+
+export const medicalComplicationsData = {
+  ...strokeBase,
+  title: 'Medical complications post-stroke',
+  areaLabel: 'post-stroke medical complications',
+  heroImage: '/assets/images/Hero/HomeCare.webp',
+  heroSubtitle: 'We monitor and manage complications so that your recovery stays on track.',
+  overview: [
+    'Medical complications post-stroke (for example infections, DVT, pressure injuries) can impede rehabilitation and must be proactively managed.',
+    'We coordinate surveillance and communication with medical teams to reduce avoidable complications and support early interventions.',
+    'Education empowers patients and caregivers to recognise warning signs and seek timely care.',
+  ],
+  patterns: [
+    { id: 'infection', label: 'Infection risk', description: 'Monitor for pneumonia, UTI and other infections; encourage mobility, hydration and hygiene.' },
+    { id: 'thrombo', label: 'Thromboembolism', description: 'Encourage early mobility and appropriate prophylaxis per medical advice.' },
+    { id: 'pressure', label: 'Pressure injuries', description: 'Positioning, skin checks and equipment to reduce risk.' },
+    { id: 'malnutrition', label: 'Malnutrition / dehydration', description: 'Screening and nutrition support integrated with rehabilitation.' },
+  ],
+  conditionsHeading: 'What we help prevent & manage',
+  syndromes: [
+    syn('Chest & urinary infections', 'Early mobility, hydration and prompt treatment.'),
+    syn('Blood clots (DVT / PE)', 'Mobility and prophylaxis per medical advice.'),
+    syn('Pressure injuries', 'Positioning, skin checks and equipment.'),
+    syn('Malnutrition & dehydration', 'Screening and nutrition support alongside rehabilitation.'),
+  ],
+  seekHelp: [
+    'Seek urgent care for fever, breathlessness, a swollen or painful calf, chest pain, or a new or worsening skin wound.',
+    'Get reviewed for reduced intake, confusion, or a sudden drop in function.',
+    'Ask carers to watch for early warning signs during recovery.',
+  ],
+  treatHeading: 'How we assess & treat',
+  approaches: [
+    { title: 'Proactive surveillance', text: 'Monitoring for the complications that most often interrupt recovery.', href: `${NIT}/home-care` },
+    { title: 'Coordination with medical teams', text: 'Joined-up communication so problems are caught and treated early.' },
+    { title: 'Early mobilisation', text: 'Movement and positioning to reduce infection, clot and pressure risk.', href: `${NIT}/occupational-therapy` },
+    { title: 'Patient & carer education', text: 'Recognising warning signs and seeking timely care.', href: `${NIT}/home-care` },
+  ],
+  help: {
+    paragraphs: [
+      'Preventing and catching complications early keeps rehabilitation on track and protects recovery.',
+      'We support proactive surveillance and quick coordination with medical teams, and help carers recognise warning signs.',
+    ],
+    patient: [
+      'Ask carers to watch for warning signs (fever, breathlessness, calf swelling, skin changes, reduced intake).',
+      'Seek urgent care for fever, breathlessness, chest pain, a swollen painful calf, or a new skin wound.',
+    ],
+    clinician: [
+      'We support proactive surveillance and early intervention in coordination with medical teams.',
+      'Referrals noting current complications, risk factors and mobility status help us focus.',
+    ],
+  },
+  citations: [],
+};
+
+export const spasticityData = {
+  ...strokeBase,
+  title: 'Post-stroke spasticity',
+  areaLabel: 'post-stroke spasticity',
+  heroImage: '/assets/images/Hero/Physiotherapy.webp',
+  heroSubtitle: 'Spasticity management can ease stiffness, improve comfort and support movement.',
+  overview: [
+    'Spasticity after stroke can impair movement and function. Management blends therapy with medications and injections when indicated.',
+    'We prioritise functional goals, positioning and splinting, and coordinate botulinum toxin or other interventions in selected cases.',
+    'Progress is measured by comfort, ease of care and participation in rehabilitation tasks.',
+  ],
+  patterns: [
+    { id: 'goals', label: 'Goal-oriented care', description: 'Define meaningful functional goals for any intervention considered.' },
+    { id: 'therapy', label: 'Therapy & positioning', description: 'Optimise range, comfort and limb care; splinting as appropriate.' },
+    { id: 'botox', label: 'Chemodenervation', description: 'Botulinum toxin or phenol in selected cases with clear goals and follow-up.' },
+    { id: 'review', label: 'Review & adjust', description: 'Monitor effect and adjust the plan, educating patients and caregivers.' },
+  ],
+  conditionsHeading: 'What we help with',
+  syndromes: [
+    syn('Muscle tightness & stiffness', 'Limiting movement, comfort and care.'),
+    syn('Painful spasms', 'Interfering with sleep, positioning and daily tasks.'),
+    syn('Contracture risk', 'Reduced range that can become fixed without management.'),
+    syn('Difficulty with hygiene / dressing', 'Where tightness affects limb care.'),
+  ],
+  seekHelp: [
+    'Get reviewed if tightness is limiting movement, causing pain, or making washing and dressing difficult.',
+    'Seek prompt care for a sudden increase in stiffness with skin breakdown, pain, or a possible infection (which can worsen spasticity).',
+    'Ask about treatment options if stretching and therapy alone aren’t enough.',
+  ],
+  treatHeading: 'How we assess & treat',
+  approaches: [
+    { title: 'Goal-based therapy & positioning', text: 'Therapy, positioning and splinting focused on your functional goals.', href: `${NIT}/physiotherapy` },
+    { title: 'Chemodenervation in selected cases', text: 'Botulinum toxin when it supports clear, agreed goals, with follow-up.', href: `${MIT}/botulin-toxin-injection` },
+    { title: 'Regular review', text: 'Monitoring effect and adjusting the plan with you and your carers.', href: `${NIT}/physiotherapy` },
+  ],
+  help: {
+    paragraphs: [
+      'Spasticity can limit movement, comfort and care — but a goal-based plan of therapy, positioning and, when needed, injections can help.',
+      'We measure progress by what matters: comfort, ease of care and participation in rehabilitation.',
+    ],
+    patient: [
+      'Note where tightness limits movement, comfort, or washing and dressing, and what your goals are.',
+      'Seek prompt care for a sudden increase in stiffness with pain, skin breakdown or possible infection.',
+    ],
+    clinician: [
+      'We set functional goals and combine therapy, positioning, splinting and chemodenervation in selected cases.',
+      'Referrals noting distribution, functional impact and prior treatments help target care.',
+    ],
+  },
+  citations: [],
+};
+
+export const crpsData = {
+  ...strokeBase,
+  title: 'Complex Regional Pain Syndrome',
+  areaLabel: 'complex regional pain syndrome',
+  heroImage: '/assets/images/Hero/PeripheralNerveBlocks.webp',
+  heroSubtitle: 'Early, coordinated treatment can reduce pain and protect function.',
+  overview: [
+    'Complex Regional Pain Syndrome (CRPS) is a chronic pain condition often following injury or immobilisation, marked by pain disproportionate to the inciting event.',
+    'Management emphasises education, graded exposure, desensitisation, and — when needed — medication and interventional pain approaches.',
+    'Early recognition and coordinated care improve outcomes and limit disability.',
+  ],
+  patterns: [
+    { id: 'sensory', label: 'Sensory disturbance', description: 'Allodynia, hyperalgesia and temperature changes are common features.' },
+    { id: 'motor', label: 'Motor changes', description: 'Stiffness and weakness require careful graded re-activation.' },
+    { id: 'autonomic', label: 'Autonomic signs', description: 'Colour, temperature or asymmetry may be present and fluctuate.' },
+    { id: 'psychosocial', label: 'Psychosocial impact', description: 'Address mood, sleep and coping to support recovery.' },
+  ],
+  conditionsHeading: 'Common features',
+  syndromes: [
+    syn('Pain out of proportion', 'Burning pain and extreme sensitivity to touch (allodynia).'),
+    syn('Skin & temperature changes', 'Colour, temperature or swelling differences in the limb.'),
+    syn('Stiffness & weakness', 'Reduced movement needing careful graded re-activation.'),
+    syn('Impact on mood & sleep', 'Addressed as part of recovery.'),
+  ],
+  seekHelp: [
+    'Get reviewed early for persistent burning pain, swelling and sensitivity after an injury, surgery or immobilisation — early recognition improves outcomes.',
+    'Seek prompt care for rapidly worsening colour or temperature changes or signs of infection.',
+    'Ask for a pain-medicine assessment if pain is spreading or not settling as expected.',
+  ],
+  treatHeading: 'How we assess & treat',
+  approaches: [
+    { title: 'Education & reassurance', text: 'Understanding CRPS is the first step to managing it well.', href: `${NIT}/physiotherapy` },
+    { title: 'Graded exposure & desensitisation', text: 'Rehabilitation that rebuilds movement and tolerance gradually.', href: `${NIT}/physiotherapy` },
+    { title: 'Medication & interventional pain options', text: 'Neuropathic medication and nerve-focused procedures when needed.', href: `${MIT}/peripheral-nerve-block` },
+    { title: 'Pharmacological management', text: 'Targeted medicines as part of a broader plan.', href: `${NIT}/pharmacological-pain-management` },
+  ],
+  help: {
+    paragraphs: [
+      'CRPS responds best to early, coordinated care — education, graded rehabilitation and, when needed, medication and interventional options.',
+      'Recognising it early and starting a plan protects movement and limits long-term disability.',
+    ],
+    patient: [
+      'Note when the pain started (after injury, surgery or immobilisation) and any skin, temperature or swelling changes.',
+      'Seek early review for persistent burning pain and sensitivity — early recognition improves outcomes.',
+    ],
+    clinician: [
+      'We apply Budapest-criteria-informed assessment and combine graded exposure, rehabilitation and interventional options.',
+      'Early referrals with symptom onset and features improve outcomes.',
+    ],
+  },
+  citations: [],
+};
+
+export const posturalMotorData = {
+  ...strokeBase,
+  title: 'Postural and motor control autonomy',
+  areaLabel: 'postural and motor control autonomy',
+  heroImage: '/assets/images/Hero/Physiotherapy.webp',
+  heroSubtitle: 'We focus on balance, coordination and safe movement in everyday life.',
+  overview: [
+    'Postural and motor control autonomy focuses on regaining safe, independent movement and balance after stroke.',
+    'Training targets trunk and limb control, sit-to-stand, stepping and gait with task-specific practice and progression.',
+    'Assistive devices are used judiciously and tapered as capacity improves.',
+  ],
+  patterns: [
+    { id: 'balance', label: 'Balance training', description: 'Progress balance tasks safely with appropriate challenge.' },
+    { id: 'gait', label: 'Gait re-training', description: 'Task-specific stepping and gait drills with feedback.' },
+    { id: 'strength', label: 'Strength and endurance', description: 'Progressive resistance and aerobic work for overall autonomy.' },
+    { id: 'device', label: 'Assistive devices', description: 'Selection and tapering of aids as function returns.' },
+  ],
+  conditionsHeading: 'What we help with',
+  syndromes: [
+    syn('Balance & falls risk', 'Safe, progressive balance training.'),
+    syn('Walking difficulties', 'Task-specific gait re-training.'),
+    syn('Trunk & limb control', 'Regaining sit-to-stand, reaching and stepping.'),
+    syn('Reduced strength & endurance', 'Building capacity for everyday activity.'),
+  ],
+  seekHelp: [
+    'Get reviewed after any fall, or if balance or walking is limiting independence or confidence.',
+    'Seek urgent care for a sudden change in movement or a new inability to stand or walk.',
+    'Ask for a mobility assessment before adjusting or stopping walking aids.',
+  ],
+  treatHeading: 'How we assess & treat',
+  approaches: [
+    { title: 'Balance & gait re-training', text: 'Progressive, safe practice of balance, stepping and walking.', href: `${NIT}/physiotherapy` },
+    { title: 'Task-specific practice with feedback', text: 'Everyday movements practised and progressed with feedback.', href: `${NIT}/physiotherapy` },
+    { title: 'Progressive strength & endurance', text: 'Building the capacity that underpins everyday autonomy.', href: `${NIT}/exercise` },
+    { title: 'Appropriate assistive devices', text: 'Aids selected and tapered as function returns.', href: `${NIT}/physiotherapy` },
+  ],
+  help: {
+    paragraphs: [
+      'Safe, independent movement is the foundation of everyday autonomy — balance, walking and control can be rebuilt with task-specific practice.',
+      'We use assistive devices judiciously and taper them as your capacity improves.',
+    ],
+    patient: [
+      'Tell us about any falls, and where balance or walking limits your confidence and independence.',
+      'Get reviewed after any fall; seek urgent care for a sudden change in movement or inability to stand or walk.',
+    ],
+    clinician: [
+      'We deliver balance and gait re-training with task-specific practice and appropriate assistive devices.',
+      'Referrals with mobility status, falls history and goals help us prioritise.',
+    ],
+  },
+  citations: [],
+};
+
+export const communityReintegrationData = {
+  ...strokeBase,
+  title: 'Community reintegration',
+  areaLabel: 'community reintegration after stroke',
+  heroImage: '/assets/images/Hero/HomeCare.webp',
+  heroSubtitle: 'Rehabilitation helps you return to family, work and community roles.',
+  overview: [
+    'Community reintegration supports return to home, work, leisure and social participation after stroke.',
+    'We identify environmental barriers, build confidence in real-world tasks, and coordinate supports and transport where needed.',
+    'Education and peer or community links help maintain momentum beyond formal therapy.',
+  ],
+  patterns: [
+    { id: 'adl', label: 'Activities of daily living', description: 'Independence in personal care, household tasks and community activities.' },
+    { id: 'transport', label: 'Transport & access', description: 'Plan for safe transport, mobility and community access.' },
+    { id: 'work', label: 'Return to work', description: 'Graded returns with employer and team liaison where appropriate.' },
+    { id: 'social', label: 'Social participation', description: 'Build routines and connections that support wellbeing and independence.' },
+  ],
+  conditionsHeading: 'What we help with',
+  syndromes: [
+    syn('Daily living independence', 'Personal care and household tasks.'),
+    syn('Getting around', 'Transport, mobility and community access.'),
+    syn('Return to work or study', 'Graded plans with employer or education liaison.'),
+    syn('Social & leisure participation', 'Rebuilding routines and connections.'),
+  ],
+  seekHelp: [
+    'Ask for support when planning return to home, work, driving or leisure after stroke.',
+    'Get reviewed if isolation, low mood or fatigue are limiting participation.',
+    'Involve family and carers to plan practical supports and access.',
+  ],
+  treatHeading: 'How we assess & treat',
+  approaches: [
+    { title: 'Goal-based occupational therapy', text: 'Building confidence in the real-world tasks that matter to you.', href: `${NIT}/occupational-therapy` },
+    { title: 'Environmental & access planning', text: 'Identifying and reducing barriers at home and in the community.', href: `${NIT}/home-care` },
+    { title: 'Work & education liaison', text: 'Graded return plans with employer or education support.', href: `${NIT}/occupational-therapy` },
+    { title: 'Community & peer links', text: 'Connections that help sustain momentum beyond therapy.', href: `${NIT}/home-care` },
+  ],
+  help: {
+    paragraphs: [
+      'Returning to home, work, leisure and social life is where recovery becomes real — and it is supported with practical, goal-based help.',
+      'We plan around your goals and barriers, and connect you with supports that sustain momentum beyond formal therapy.',
+    ],
+    patient: [
+      'Share your goals for home, work, driving or leisure, and any practical barriers you’re facing.',
+      'Ask for support early when planning a return, especially if fatigue or low mood are limiting you.',
+    ],
+    clinician: [
+      'We provide goal-based occupational therapy, access planning and work/education liaison.',
+      'Referrals noting functional status, goals and support needs help us plan reintegration.',
+    ],
+  },
+  citations: [],
+};
+
+// Stroke Medicine registry, keyed by live route slug (rehabilitation reuses C1).
+export const STROKE_SPECIALITY_BY_SLUG = {
+  rehabilitation: strokeRehabData,
+  'clinical-and-secondary-prevention-of-stroke': strokePreventionData,
+  'feeding-autonomy': feedingAutonomyData,
+  'speech-autonomy': speechAutonomyData,
+  'cognitive-autonomy': cognitiveAutonomyData,
+  'post-stroke-depression-and-mood-disorders': moodDisordersData,
+  'medical-complications-post-stroke': medicalComplicationsData,
+  'post-stroke-spasticity': spasticityData,
+  'complex-regional-pain-syndrome': crpsData,
+  'postural-and-motor-control-autonomy': posturalMotorData,
+  'community-reintegration': communityReintegrationData,
+};
