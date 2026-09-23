@@ -42,12 +42,12 @@ const routeEntries = [
   { path: 'specialities/pain-medicine/facial-pain', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page-live')), preloadPath: '/specialities/pain-medicine/facial-pain' },
   { path: 'specialities/pain-medicine/foot-and-ankle-pain', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page-live')), preloadPath: '/specialities/pain-medicine/foot-and-ankle-pain' },
 
-  { path: 'specialities/sports-medicine/injuries', lazy: createLazyRouteModule(() => import('./pages/specialities/SportsMedicine/Injuries/page')), preloadPath: '/specialities/sports-medicine/injuries' },
-  { path: 'specialities/sports-medicine/prevention', lazy: createLazyRouteModule(() => import('./pages/specialities/SportsMedicine/Prevention/page')), preloadPath: '/specialities/sports-medicine/prevention' },
-  { path: 'specialities/sports-medicine/rehabilitation', lazy: createLazyRouteModule(() => import('./pages/specialities/SportsMedicine/Rehabilitation/page')), preloadPath: '/specialities/sports-medicine/rehabilitation' },
-  { path: 'specialities/sports-medicine/performance', lazy: createLazyRouteModule(() => import('./pages/specialities/SportsMedicine/Performance/page')), preloadPath: '/specialities/sports-medicine/performance' },
-  { path: 'specialities/sports-medicine/psychology', lazy: createLazyRouteModule(() => import('./pages/specialities/SportsMedicine/Psychology/page')), preloadPath: '/specialities/sports-medicine/psychology' },
-  { path: 'specialities/sports-medicine/nutrition', lazy: createLazyRouteModule(() => import('./pages/specialities/SportsMedicine/Nutrition/page')), preloadPath: '/specialities/sports-medicine/nutrition' },
+  { path: 'specialities/sports-medicine/injuries', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page-live')), preloadPath: '/specialities/sports-medicine/injuries' },
+  { path: 'specialities/sports-medicine/prevention', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page-live')), preloadPath: '/specialities/sports-medicine/prevention' },
+  { path: 'specialities/sports-medicine/rehabilitation', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page-live')), preloadPath: '/specialities/sports-medicine/rehabilitation' },
+  { path: 'specialities/sports-medicine/performance', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page-live')), preloadPath: '/specialities/sports-medicine/performance' },
+  { path: 'specialities/sports-medicine/psychology', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page-live')), preloadPath: '/specialities/sports-medicine/psychology' },
+  { path: 'specialities/sports-medicine/nutrition', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page-live')), preloadPath: '/specialities/sports-medicine/nutrition' },
 
   { path: 'specialities/stroke-medicine/rehabilitation', lazy: createLazyRouteModule(() => import('./pages/specialities/StrokeMedicine/Rehabilitation/page')), preloadPath: '/specialities/stroke-medicine/rehabilitation' },
   { path: 'specialities/stroke-medicine/clinical-and-secondary-prevention-of-stroke', lazy: createLazyRouteModule(() => import('./pages/specialities/StrokeMedicine/ClinicalAndSecondaryPreventionOfStroke/page')), preloadPath: '/specialities/stroke-medicine/clinical-and-secondary-prevention-of-stroke' },

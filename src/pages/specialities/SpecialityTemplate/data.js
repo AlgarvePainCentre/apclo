@@ -848,3 +848,301 @@ export const PAIN_SPECIALITY_BY_SLUG = {
   'facial-pain': facialPainData,
   'foot-and-ankle-pain': footAnkleData,
 };
+
+/* ------------------------------------------------------------------ *
+ * SPORTS MEDICINE ROLLOUT (B1, B3–B6) — service pages (text approaches).
+ * Overview + §3 are ✅ validated (mirrored from `conditionContent.ts`).
+ * §4 "What we help with", §5 seek-help and §6 approaches are ✍️ draft
+ * (from the content doc, to validate clinically).
+ * `prevention` reuses the existing injuryPreventionData pilot (B2).
+ * ------------------------------------------------------------------ */
+const sportsBase = { discipline: 'Sports Medicine', category: 'sports-medicine' };
+
+export const sportsInjuriesData = {
+  ...sportsBase,
+  title: 'Sports injuries',
+  areaLabel: 'sports injuries',
+  heroImage: '/assets/images/Hero/Exercise.webp',
+  heroSubtitle: 'From sprains to tendon tears, we help athletes return to activity safely.',
+  overview: [
+    'Sports injuries range from sprains and strains to tendon tears and stress reactions. Understanding the mechanism and load context guides safe return to play.',
+    'We assess movement patterns, sport-specific demands and tissue healing timelines to tailor rehabilitation and decide when imaging or procedures may help.',
+    'Plans emphasise progressive loading, technique coaching and — when necessary — image-guided interventions to calm pain and support training resumption.',
+  ],
+  patterns: [
+    { id: 'acute', label: 'Acute soft-tissue injury', description: 'Early management focuses on load control and a graded return guided by symptoms and function.' },
+    { id: 'tendon', label: 'Tendon overload', description: 'Progressive tendon loading restores capacity while controlling pain and avoiding deconditioning.' },
+    { id: 'stress', label: 'Bone stress risk', description: 'Red-flag screening and appropriate imaging or rest if bone stress is suspected.' },
+    { id: 'recurrent', label: 'Recurrent strain', description: 'Movement and strength screening to address modifiable risk and build robustness.' },
+  ],
+  conditionsHeading: 'Common conditions',
+  syndromes: [
+    syn('Muscle strains & tears', 'Hamstring, calf or quadriceps injuries — sudden pain during sprinting or jumping, sometimes with bruising or weakness.'),
+    syn('Ligament sprains', 'Ankle or knee (MCL/ACL) injuries — pain, swelling and instability after a twist, impact or awkward landing.'),
+    syn('Tendinopathies', 'Achilles, patellar or rotator cuff — load-related pain that builds over weeks and is stiff at the start of activity.'),
+    syn('Bone stress injuries & stress fractures', 'Focal bony pain that worsens with impact, often after a rapid increase in training.'),
+    syn('Cartilage & joint injuries', 'Meniscus or labrum injuries — deep joint pain with catching, locking or swelling.'),
+    syn('Sports concussion', 'Headache, dizziness, “fogginess” or nausea after a head impact — needs prompt assessment and a graded return.'),
+  ],
+  seekHelp: [
+    'Seek urgent care if you cannot bear weight or use the limb, for obvious deformity, or for a joint that has dislocated.',
+    'Get assessed the same day for any suspected concussion — do not return to play until cleared.',
+    'Get reviewed for rapid or severe swelling, a “pop” with immediate loss of function, or numbness and pins-and-needles.',
+    'Book an assessment for pain that isn’t settling with initial rest, or that keeps recurring.',
+  ],
+  treatHeading: 'How we assess & treat',
+  approaches: [
+    { title: 'Staged, criteria-based return-to-sport rehabilitation', text: 'Progressive loading and technique coaching aligned to tissue healing and your sport’s demands.', href: '/treatments/non-invasive-treatments/physiotherapy' },
+    { title: 'Image-guided procedures when indicated', text: 'Targeted injections to calm pain so rehabilitation can progress.', href: '/treatments/minimally-invasive-treatments/platelets-rich-plasma-injection' },
+    { title: 'Surgical opinion for structural injuries', text: 'Coordinated referral when a structural injury needs a surgical view.', href: '/treatments' },
+  ],
+  help: {
+    paragraphs: [
+      'Most sports injuries recover well with the right plan, but the mechanism and load context matter — they shape both the rehabilitation and when imaging or procedures help.',
+      'Care emphasises progressive loading and criteria-based clearance so you return to sport confident and less likely to re-injure.',
+    ],
+    patient: [
+      'Tell us the mechanism, your sport and any previous injuries — it guides your assessment and return-to-sport plan.',
+      'Get assessed the same day for any suspected concussion, and don’t return to play until cleared.',
+    ],
+    clinician: [
+      'We deliver staged, criteria-based return-to-sport rehabilitation, with image-guided procedures and surgical referral when indicated.',
+      'Referrals noting mechanism, imaging and time-loss help us prioritise.',
+    ],
+  },
+  citations: [
+    { label: 'BJSM: IOC consensus on acute soft-tissue injury management (2020)', url: 'https://bjsm.bmj.com/' },
+  ],
+};
+
+export const sportsRehabData = {
+  ...sportsBase,
+  title: 'Sports rehabilitation',
+  areaLabel: 'sports rehabilitation',
+  heroImage: '/assets/images/Hero/Physiotherapy.webp',
+  heroSubtitle: 'Tailored rehabilitation helps you rebuild strength, control and confidence after injury.',
+  overview: [
+    'Sports rehabilitation rebuilds capacity through staged strength, control and conditioning, aligned to tissue healing and performance demands.',
+    'We integrate pain management when needed so progressive loading remains possible and safe.',
+    'Return-to-sport testing supports confident transitions back to training and competition.',
+  ],
+  presentationHeading: 'What we focus on',
+  patterns: [
+    { id: 'capacity', label: 'Capacity building', description: 'Staged strength and conditioning with objective progress markers.' },
+    { id: 'control', label: 'Motor control', description: 'Technique, balance and coordination tailored to sport-specific tasks.' },
+    { id: 'criteria', label: 'Criteria-based progression', description: 'Clear criteria for phase advancement and return to training.' },
+    { id: 'prehab', label: 'Prehab for performance', description: 'Preventive strength and mobility work to support upcoming loads.' },
+  ],
+  conditionsHeading: 'What we help with',
+  syndromes: [
+    syn('Post-injury recovery', 'Muscle, ligament or tendon injuries — staged loading aligned to tissue healing.'),
+    syn('Post-surgical rehabilitation', 'Structured programmes after joint or spine surgery.'),
+    syn('Persistent or recurring symptoms', 'Rebuilding capacity when previous rehabilitation stalled.'),
+    syn('Return-to-sport transitions', 'Confidence and criteria-based clearance to train and compete.'),
+  ],
+  seekHelp: [
+    'Start rehabilitation early after an injury or surgery to protect capacity and confidence.',
+    'Get reviewed if progress has plateaued, pain flares with each progression, or you feel unready to return.',
+    'Ask for a return-to-sport assessment before going back to full training or competition.',
+  ],
+  treatHeading: 'How we assess & treat',
+  approaches: [
+    { title: 'Individualised strength & conditioning', text: 'Progressive plans that rebuild capacity where you need it most.', href: '/treatments/non-invasive-treatments/exercise' },
+    { title: 'Motor-control & technique work', text: 'Balance, coordination and sport-specific movement retraining.', href: '/treatments/non-invasive-treatments/physiotherapy' },
+    { title: 'Pain management to keep loading possible', text: 'Symptom control so progressive rehabilitation stays on track.', href: '/treatments/non-invasive-treatments/pharmacological-pain-management' },
+    { title: 'Return-to-sport testing', text: 'Objective, criteria-based clearance before full training and competition.', href: '/treatments/non-invasive-treatments/physiotherapy' },
+  ],
+  help: {
+    paragraphs: [
+      'Rehabilitation works best when it starts early and progresses on clear criteria — so capacity, control and confidence rebuild together.',
+      'Return-to-sport testing helps you go back to training and competition when you’re genuinely ready, not just pain-free.',
+    ],
+    patient: [
+      'Share your injury, any surgery and your sport goals so the plan targets what matters to you.',
+      'Ask for a return-to-sport assessment before going back to full training or competition.',
+    ],
+    clinician: [
+      'We deliver criteria-based strength, motor-control and conditioning programmes with return-to-sport testing.',
+      'Referrals noting injury, surgery and current function help us tailor progression.',
+    ],
+  },
+  citations: [
+    { label: 'BJSM: Return-to-sport consensus statements', url: 'https://bjsm.bmj.com/' },
+  ],
+};
+
+export const sportsPerformanceData = {
+  ...sportsBase,
+  title: 'Sports performance',
+  areaLabel: 'sports performance',
+  heroImage: '/assets/images/Hero/Exercise.webp',
+  heroSubtitle: 'We work with you to optimise strength, control and resilience in your sport.',
+  overview: [
+    'Performance support aligns strength, conditioning and skill work with recovery and nutrition to sustain adaptation.',
+    'We emphasise progressive overload, movement efficiency and monitoring to inform training decisions.',
+    'When pain or prior injury exists, performance planning integrates capacity restoration to avoid setbacks.',
+  ],
+  presentationHeading: 'What we work on',
+  patterns: [
+    { id: 'strength', label: 'Strength & power', description: 'Programme design to improve force, rate of force and movement efficiency.' },
+    { id: 'conditioning', label: 'Conditioning', description: 'Aerobic and anaerobic conditioning tailored to sport-specific demands.' },
+    { id: 'monitoring', label: 'Monitoring', description: 'Simple, reliable monitoring to adjust loads and support recovery.' },
+    { id: 'integration', label: 'Integration with rehab', description: 'Bridge the gap between rehabilitation and performance training.' },
+  ],
+  conditionsHeading: 'What we help with',
+  syndromes: [
+    syn('Strength & power development', 'Programming for force and movement efficiency.'),
+    syn('Endurance & conditioning', 'Aerobic and anaerobic work matched to your sport.'),
+    syn('Return from injury to performance', 'Closing the gap between rehabilitation and peak training.'),
+    syn('Training load & recovery balance', 'Monitoring to sustain adaptation and avoid setbacks.'),
+  ],
+  seekHelp: [
+    'Book a performance assessment when progress has stalled or you’re preparing for an event.',
+    'Get reviewed if performance dips come with fatigue, poor sleep or recurring niggles.',
+    'Involve us when returning from injury so performance goals don’t outpace tissue capacity.',
+  ],
+  treatHeading: 'How we assess & help',
+  approaches: [
+    { title: 'Biomechanical & performance assessment', text: 'A structured look at how you move and produce force, mapped to your sport.', href: '/treatments/non-invasive-treatments/physiotherapy' },
+    { title: 'Periodised strength & conditioning', text: 'Progressive programming for force, power and conditioning.', href: '/treatments/non-invasive-treatments/exercise' },
+    { title: 'Recovery & load monitoring', text: 'Guidance on training progression, sleep and recovery to sustain adaptation.', href: '/treatments/non-invasive-treatments/exercise' },
+    { title: 'Integration with ongoing rehabilitation', text: 'Bridging rehab and performance so goals don’t outpace tissue capacity.', href: '/treatments/non-invasive-treatments/physiotherapy' },
+  ],
+  help: {
+    paragraphs: [
+      'Performance gains come from progressive overload and movement efficiency, balanced with recovery — monitored so training decisions stay informed.',
+      'When there’s pain or a prior injury, performance planning integrates capacity restoration to avoid setbacks.',
+    ],
+    patient: [
+      'Share your sport, goals, training history and any injuries so the plan is built around them.',
+      'Involve us when returning from injury so performance goals don’t outpace tissue capacity.',
+    ],
+    clinician: [
+      'We deliver periodised strength and conditioning with load and recovery monitoring, integrated with rehabilitation.',
+      'Referrals with training context and injury history help us tailor the plan.',
+    ],
+  },
+  citations: [],
+};
+
+export const sportsPsychologyData = {
+  ...sportsBase,
+  title: 'Sports psychology',
+  areaLabel: 'sports psychology',
+  heroImage: '/assets/images/Hero/Psychology.webp',
+  heroSubtitle: 'Psychological support can help with motivation, confidence and returning to sport after injury.',
+  overview: [
+    'Sports psychology supports motivation, confidence and coping under pressure, especially after injury or performance dips.',
+    'We build practical strategies for goal-setting, imagery, arousal regulation and returning to competition.',
+    'Our approach is collaborative with coaches and medical staff while protecting athlete wellbeing.',
+  ],
+  presentationHeading: 'What we support',
+  patterns: [
+    { id: 'confidence', label: 'Confidence after injury', description: 'Gradual exposure and psychological skills training to reduce fear of re-injury.' },
+    { id: 'focus', label: 'Focus & arousal regulation', description: 'Breathing, self-talk and imagery to modulate arousal and improve focus.' },
+    { id: 'motivation', label: 'Motivation & adherence', description: 'Structured goals and feedback loops to maintain progress.' },
+    { id: 'return', label: 'Return to competition', description: 'Mental readiness plans aligned with physical criteria.' },
+  ],
+  conditionsHeading: 'What we help with',
+  syndromes: [
+    syn('Fear of re-injury', 'Graded exposure and psychological skills to rebuild trust in the body.'),
+    syn('Performance anxiety & focus', 'Routines for arousal regulation and concentration under pressure.'),
+    syn('Motivation & adherence', 'Goal-setting and feedback to sustain rehabilitation or training.'),
+    syn('Adjustment after setbacks', 'Coping support during long recoveries or performance dips.'),
+  ],
+  seekHelp: [
+    'Reach out if fear or anxiety is holding back your return despite physical readiness.',
+    'Get support if motivation, mood or sleep are affecting training or recovery.',
+    'Contact your GP or emergency services urgently if you ever have thoughts of self-harm — support is available and you don’t have to cope alone.',
+  ],
+  treatHeading: 'How we assess & help',
+  approaches: [
+    { title: 'Psychological skills training', text: 'Goal-setting, imagery and self-talk to build confidence and focus.', href: '/treatments/non-invasive-treatments/psychology' },
+    { title: 'Arousal regulation & focus routines', text: 'Breathing and attention strategies for performing under pressure.', href: '/treatments/non-invasive-treatments/psychology' },
+    { title: 'Collaborative work with coaches & medical team', text: 'Joined-up support that protects wellbeing while you return to sport.', href: '/treatments/non-invasive-treatments/psychology' },
+  ],
+  help: {
+    paragraphs: [
+      'The mind is part of recovery and performance — confidence, focus and motivation can be trained just like physical qualities.',
+      'We work collaboratively with your coaches and medical team while keeping your wellbeing at the centre.',
+    ],
+    patient: [
+      'Tell us what’s holding you back — fear, focus, motivation or mood — so support targets it.',
+      'Contact your GP or emergency services urgently if you ever have thoughts of self-harm — you don’t have to cope alone.',
+    ],
+    clinician: [
+      'We provide psychological skills training and arousal regulation, coordinated with coaches and the medical team.',
+      'Referrals noting readiness concerns and any mood or sleep changes help us prioritise.',
+    ],
+  },
+  citations: [
+    { label: 'APA Division 47: Sport, Exercise & Performance Psychology resources', url: 'https://www.apa.org/' },
+  ],
+};
+
+export const sportsNutritionData = {
+  ...sportsBase,
+  title: 'Sports nutrition',
+  areaLabel: 'sports nutrition',
+  heroImage: '/assets/images/Hero/Nutrition.webp',
+  heroSubtitle: 'Tailored nutrition helps you fuel training, recovery and long-term performance.',
+  overview: [
+    'Sports nutrition optimises training adaptation, recovery and body composition while considering health and performance goals.',
+    'We customise fuelling around sessions and events, and address energy availability, hydration and supplementation when appropriate.',
+    'Plans integrate medical considerations and are monitored for safety and effectiveness.',
+  ],
+  presentationHeading: 'What we assess',
+  patterns: [
+    { id: 'fuelling', label: 'Session fuelling', description: 'Carbohydrate and protein timing aligned to training load and goals.' },
+    { id: 'recovery', label: 'Recovery nutrition', description: 'Hydration and nutrition strategies to support adaptation and the next session.' },
+    { id: 'energy', label: 'Energy availability', description: 'Screening and management to avoid the consequences of low energy availability.' },
+    { id: 'supplements', label: 'Evidence-based supplements', description: 'Limited, safe, evidence-supported supplementation when appropriate.' },
+  ],
+  conditionsHeading: 'What we help with',
+  syndromes: [
+    syn('Fuelling for training & competition', 'Carbohydrate and protein timing around sessions.'),
+    syn('Recovery & adaptation', 'Hydration and nutrition to support the next session.'),
+    syn('Low energy availability (RED-S)', 'Screening and management to protect health and performance.'),
+    syn('Body composition goals', 'Safe strategies aligned with performance and health.'),
+  ],
+  seekHelp: [
+    'Book an assessment if you feel under-fuelled, are losing performance, or recovering poorly.',
+    'Get reviewed for unintended weight change, frequent illness, or (in athletes) menstrual changes — possible signs of low energy availability.',
+    'Speak to us before trying supplements so choices are safe and evidence-based.',
+    'If eating patterns ever feel out of control or distressing, we can help you find the right specialist support.',
+  ],
+  treatHeading: 'How we assess & help',
+  approaches: [
+    { title: 'Individualised fuelling plans', text: 'Carbohydrate and protein timing around your training and events.', href: '/treatments/non-invasive-treatments/nutrition' },
+    { title: 'Recovery & hydration strategies', text: 'Nutrition to support adaptation and the next session.', href: '/treatments/non-invasive-treatments/nutrition' },
+    { title: 'Energy-availability screening', text: 'Screening and management to protect health and performance.', href: '/treatments/non-invasive-treatments/nutrition' },
+    { title: 'Supplement review', text: 'Safe, evidence-based choices tailored to you.', href: '/treatments/non-invasive-treatments/nutrition' },
+  ],
+  help: {
+    paragraphs: [
+      'Good nutrition underpins training adaptation, recovery and health — the plan works best when it’s built around your sessions, events and goals.',
+      'We integrate medical considerations and monitor for safety, including screening for low energy availability.',
+    ],
+    patient: [
+      'Share your training, events and goals so fuelling and recovery are built around them.',
+      'If eating patterns ever feel out of control or distressing, tell us — we can help you find the right support.',
+    ],
+    clinician: [
+      'We deliver individualised fuelling and recovery plans, energy-availability screening and evidence-based supplement review.',
+      'Referrals noting training load, weight changes and any health concerns help us prioritise.',
+    ],
+  },
+  citations: [
+    { label: 'IOC Consensus: Dietary supplements and the high-performance athlete', url: 'https://bjsm.bmj.com/' },
+  ],
+};
+
+// Sports Medicine registry, keyed by live route slug (prevention reuses B2).
+export const SPORTS_SPECIALITY_BY_SLUG = {
+  injuries: sportsInjuriesData,
+  prevention: injuryPreventionData,
+  rehabilitation: sportsRehabData,
+  performance: sportsPerformanceData,
+  psychology: sportsPsychologyData,
+  nutrition: sportsNutritionData,
+};
