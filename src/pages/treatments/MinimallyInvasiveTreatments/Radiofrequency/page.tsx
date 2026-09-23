@@ -463,14 +463,14 @@ const RadiofrequencyPage: React.FC = () => {
 
         <section className="page-section rfa-help" aria-labelledby="rfa-help-title">
           <div className="rfa-help-inner">
-            <h2 id="rfa-help-title" className="rfa-help-title">Is Cryoablation Right for You?</h2>
+            <h2 id="rfa-help-title" className="rfa-help-title">Is Radiofrequency Right for You?</h2>
             <div className="rfa-help-copy">
               <p className="rfa-help-paragraph">
-                Cryoablation is a suitable option for many individuals with specific types of tumours or chronic pain that have not
+                Radiofrequency is a suitable option for many people with chronic pain that has not
                 responded well to other treatments.
               </p>
               <p className="rfa-help-paragraph">
-                Consulting with a specialized physician is essential to determine if cryoablation is the appropriate treatment for your
+                Consulting with a specialized physician is essential to determine if radiofrequency is the appropriate treatment for your
                 condition.
               </p>
             </div>

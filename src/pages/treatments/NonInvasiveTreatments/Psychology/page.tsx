@@ -288,10 +288,10 @@ const PsychologyPage: React.FC = () => {
           <div className="psychology-benefits-inner st-benefits-inner">
             <header className="psychology-benefits-header st-benefits-header">
               <h2 id="psychology-benefits-title" className="psychology-benefits-title st-benefits-title">
-                Benefits of Speech Therapy
+                Benefits of Psychology
               </h2>
               <p className="st-benefits-subtitle">
-                Speech Therapy can significantly improve the quality of life.
+                Psychology can significantly improve the quality of life.
               </p>
               <p className="ot-benefits-subtitle-secondary">Some of the main benefits include:</p>
             </header>
