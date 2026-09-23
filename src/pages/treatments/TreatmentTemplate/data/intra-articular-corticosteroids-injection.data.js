@@ -1,0 +1,48 @@
+export const data = {
+  slug: 'intra-articular-corticosteroids-injection',
+  category: 'minimally-invasive-treatments',
+  kind: 'Minimally invasive',
+  title: 'Intra-Articular Corticosteroids Injection',
+  areaLabel: 'intra-articular corticosteroids injection',
+  heroImage: '/assets/images/Hero/Intra-ArticularCorticosteroidInjections.webp',
+  heroSubtitle: 'Image-guided steroid injections reduce inflammation inside painful joints.',
+  stepsLead: 'The procedure for intra-articular corticosteroid injections is relatively straightforward:',
+  overview: [
+    'Intra-articular corticosteroid injections place anti-inflammatory medication directly into a joint. They are used to reduce inflammation and pain in selected conditions such as osteoarthritis flare-ups or inflammatory joint irritation.',
+    'Image guidance (often ultrasound) can improve accuracy, particularly in deeper joints. This helps target the correct space and supports safer, more consistent delivery. The goal is to reduce pain so you can restore movement and progress a rehabilitation plan.',
+    'Aftercare focuses on protecting the joint for a short period, monitoring for side effects, and combining symptom relief with strengthening and load management to improve longer-term outcomes.',
+  ],
+  steps: [
+    { n: 1, title: 'Consultation', body: 'Your clinician reviews symptoms, medical history, and relevant imaging to confirm the joint and ensure the injection is appropriate.' },
+    { n: 2, title: 'Preparation', body: 'The skin around the joint is cleaned to reduce infection risk, and the injection approach is planned.' },
+    { n: 3, title: 'Anaesthesia', body: 'A small amount of local anaesthetic may be used to reduce discomfort during needle placement.' },
+    { n: 4, title: 'Injection', body: 'Under image guidance when needed, a needle is placed into the joint space and the medication is injected.' },
+    { n: 5, title: 'Post-injection', body: 'You receive aftercare guidance, including short-term load protection and when to resume strengthening and rehabilitation.' },
+  ],
+  benefits: [
+    { title: 'Pain relief', body: 'They can provide significant pain relief, often within a few days, by reducing joint inflammation.' },
+    { title: 'Reduced inflammation', body: 'Corticosteroids decrease inflammation inside the joint, which can improve mobility and function.' },
+    { title: 'Quick procedure', body: 'The injection process is typically quick, often taking less than 15 minutes plus a short observation period.' },
+    { title: 'Minimal systemic effects', body: 'Because medication is delivered into the joint, systemic side effects are usually limited compared with oral steroids.' },
+    { title: 'Improved quality of life', body: 'Reduced pain can improve sleep, daily activity tolerance, and participation in rehabilitation and strengthening.' },
+  ],
+  expect: [
+    { title: 'Immediate relief', body: 'Some patients feel relief within a few hours, while for others it may take a few days as inflammation settles.' },
+    { title: 'Temporary discomfort', body: 'Mild soreness at the injection site can occur and typically resolves within a few days.' },
+    { title: 'Improved mobility', body: 'Reduced pain and inflammation can lead to improved joint mobility and better tolerance for strengthening and activity.' },
+  ],
+  risks: [
+    { title: 'Temporary soreness', body: 'Temporary soreness or a short-term pain flare can occur.' },
+    { title: 'Uncommon effects', body: 'Infection, bleeding, or bruising are uncommon.' },
+    { title: 'Blood sugar rise', body: 'A transient rise in blood sugar can occur in people with diabetes.' },
+    { title: 'Local skin changes', body: 'Skin colour change or tissue thinning near the injection site (uncommon).' },
+  ],
+  faqs: [
+    { q: 'How long do the effects of an intra-articular corticosteroid injection last?', a: 'Relief can last from several weeks to a few months, depending on the joint, diagnosis, and individual response. Rehabilitation and load management help support longer-term outcomes.' },
+    { q: 'Are there any side effects?', a: 'Temporary soreness or a short-term pain flare can occur. Less commonly, bruising or infection is possible. People with diabetes may have a transient rise in blood sugar. Your clinician will review personalised risks.' },
+    { q: 'How often can I get these injections?', a: 'Frequency depends on diagnosis, response, and safe dosing guidance. Your clinician will advise an appropriate interval and whether another approach is better for your case.' },
+    { q: 'Who is a good candidate for this treatment?', a: 'Candidates are assessed individually. It may be helpful for inflammatory flare-ups or joint irritation where reducing inflammation supports movement and rehabilitation.' },
+    { q: 'Can I resume normal activities after the injection?', a: 'Most people return to normal daily activities quickly, but it’s common to avoid high-load activity for a short period. Your clinician will give joint-specific guidance and when to resume strengthening.' },
+  ],
+  citations: [],
+};

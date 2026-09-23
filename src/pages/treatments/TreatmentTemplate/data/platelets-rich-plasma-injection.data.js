@@ -1,0 +1,45 @@
+export const data = {
+  slug: 'platelets-rich-plasma-injection',
+  category: 'minimally-invasive-treatments',
+  kind: 'Minimally invasive',
+  title: 'Platelets Rich Plasma Injection',
+  areaLabel: 'platelets rich plasma injection',
+  heroImage: '/assets/images/Hero/Platelet-RichPlasmaInjections.webp',
+  heroSubtitle: 'Concentrated platelets from your own blood support tissue healing and pain relief.',
+  duration: 'Typically takes about 30 to 60 minutes',
+  stepsLead: 'Here is how the procedure is done:',
+  overview: [
+    'Platelet-rich plasma (PRP) uses a concentrated portion of your own blood (platelets and growth factors) placed into a target tissue to support healing in selected tendon, ligament, or joint conditions. Evidence and expected response vary by diagnosis, which is why careful assessment matters.',
+    'PRP is derived from your own blood, which makes it a natural, low-risk option when it is used in the right clinical context. By increasing the concentration of growth factors, PRP injections can help stimulate tissue repair and reduce inflammation at the injury site in selected diagnoses.',
+    'The appointment usually includes a review of symptoms, examination, and imaging where needed. Aftercare typically involves short relative rest followed by a structured graded loading and rehabilitation plan, which is often central to longer-term improvement.',
+  ],
+  steps: [
+    { n: 1, title: 'Blood draw', body: 'A small amount of blood is drawn from your arm.' },
+    { n: 2, title: 'Centrifugation', body: 'The blood sample is placed in a centrifuge, which spins it rapidly to separate the platelets from other blood components.' },
+    { n: 3, title: 'Injection', body: 'The concentrated platelet-rich plasma is injected into the affected area. In some cases, ultrasound guidance is used to ensure precise placement.' },
+  ],
+  benefits: [
+    { title: 'Accelerated healing', body: 'PRP can support the healing process by delivering a higher concentration of growth factors to the treated area.' },
+    { title: 'Reduced pain & inflammation', body: 'PRP may help reduce pain and inflammation, supporting improvements in mobility and function in selected conditions.' },
+    { title: 'Natural & low-risk', body: 'Since PRP is derived from your own blood, the risk of allergic reactions is low, and serious complications are uncommon.' },
+  ],
+  expect: [
+    { title: 'During the procedure', body: 'The injection process is relatively quick, typically taking about 30 to 60 minutes. Discomfort is usually minimal, but you may feel a brief sting or pressure at the injection site.' },
+    { title: 'Post-procedure care', body: 'You may experience mild soreness and bruising at the injection site. It is recommended to rest the treated area and avoid strenuous activities for a few days. Follow-up may be advised depending on the condition.' },
+    { title: 'Results timeline', body: 'Improvement can vary, with some patients noticing relief within a few weeks, while others may require several months to see significant benefits. The healing response progresses in stages, which is why a graded rehab plan matters.' },
+  ],
+  risks: [
+    { title: 'Soreness', body: 'Soreness or a temporary pain flare can occur.' },
+    { title: 'Uncommon effects', body: 'Bruising, bleeding, or infection are rare.' },
+    { title: 'Incomplete relief', body: 'Relief may be incomplete if the diagnosis or target is not correct.' },
+    { title: 'Post-procedure stiffness', body: 'Stiffness can occur if activity progression is not followed appropriately.' },
+  ],
+  faqs: [
+    { q: 'How long does it take to see results from PRP injections?', a: 'Many people start noticing changes within a few weeks to a few months. Timing depends on the condition being treated, the tissue involved, and the individual healing response, as well as how consistently rehabilitation is followed.' },
+    { q: 'Are PRP injections painful?', a: 'Most people tolerate PRP injections well. You may feel pressure or a brief sting at the injection site, and some temporary soreness afterward. Ultrasound guidance and careful technique can help improve comfort and accuracy.' },
+    { q: 'How many PRP treatments are needed?', a: 'This varies by diagnosis and severity. Some conditions may respond after a single injection, while others may require a series. Your clinician will recommend an approach based on your assessment and expected response.' },
+    { q: 'What are the risks of PRP injections?', a: 'Side effects are usually mild and temporary, such as soreness, swelling, or bruising. Infection and significant bleeding are uncommon. Because PRP uses your own blood components, allergic reactions are rare.' },
+    { q: 'Can PRP be used for cosmetic purposes?', a: 'PRP is sometimes used in cosmetic and dermatology settings. If you are considering PRP for cosmetic reasons, a dedicated consultation can clarify suitability, expected outcomes, and alternative options.' },
+  ],
+  citations: [],
+};

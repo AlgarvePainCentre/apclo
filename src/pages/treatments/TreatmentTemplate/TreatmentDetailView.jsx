@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ArticleBreadcrumb from '../../../components/ArticleBreadcrumb';
 import { ChaptersRailNav, useChaptersRail } from '../../../components/ChaptersRail';
+import TreatmentSeo from './TreatmentSeo';
 import '../../specialities/SpecialityTemplate/speciality-template.css';
 
 /*
@@ -9,16 +10,17 @@ import '../../specialities/SpecialityTemplate/speciality-template.css';
  * classes + chapters rail), with treatment-specific sections: How it works
  * (steps), What it treats (→ specialities), Benefits, What to expect, Risks, FAQ.
  */
-export default function TreatmentDetailView({ data: d }) {
+export default function TreatmentDetailView({ data: d, seo }) {
   const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState(0);
   const area = d.areaLabel || d.title.toLowerCase();
 
   const hasRisks = Array.isArray(d.risks) && d.risks.length > 0;
+  const hasTreats = Array.isArray(d.treats) && d.treats.length > 0;
   const chapters = [
     { id: 'overview', label: 'Overview' },
     { id: 'steps', label: 'How it works' },
-    { id: 'treats', label: 'What it treats' },
+    ...(hasTreats ? [{ id: 'treats', label: 'What it treats' }] : []),
     { id: 'benefits', label: 'Benefits' },
     { id: 'expect', label: 'What to expect' },
     ...(hasRisks ? [{ id: 'risks', label: 'Risks' }] : []),
@@ -28,6 +30,7 @@ export default function TreatmentDetailView({ data: d }) {
 
   return (
     <div className="spec-tpl">
+      <TreatmentSeo data={d} seo={seo} />
       {/* Hero */}
       <header className="stpl-hero" aria-label="Treatment hero">
         <div className="stpl-hero-media" aria-hidden="true">
@@ -82,7 +85,7 @@ export default function TreatmentDetailView({ data: d }) {
             <div className="stpl-head">
               <p className="stpl-eyebrow">The procedure</p>
               <h2 className="stpl-h2">How it works</h2>
-              <p className="stpl-lead">A minimally invasive, image-guided procedure — usually completed in a single visit.</p>
+              {d.stepsLead && <p className="stpl-lead">{d.stepsLead}</p>}
             </div>
             <ol className="stpl-tips">
               {d.steps.map((s) => (

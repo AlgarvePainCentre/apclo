@@ -27,6 +27,9 @@ const routeEntries = [
   { path: 'specialities-v2/:category/:slug', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page-live')) },
   { path: 'treatment-template', lazy: createLazyRouteModule(() => import('./pages/treatments/TreatmentTemplate/page')), preloadPath: '/treatment-template' },
   { path: 'treatment-template-radiofrequency', lazy: createLazyRouteModule(() => import('./pages/treatments/TreatmentTemplate/page-radiofrequency')), preloadPath: '/treatment-template-radiofrequency' },
+  // Canonical-template preview of every treatment, in parallel with the
+  // untouched live pages: /treatments-v2/<category>/<slug>.
+  { path: 'treatments-v2/:category/:slug', lazy: createLazyRouteModule(() => import('./pages/treatments/TreatmentTemplate/page-treatment-live')) },
   { path: 'doctor/:id', lazy: createLazyRouteModule(() => import('./pages/doctor/DoctorDetail')), preloadPath: '/doctor/:id' },
   { path: 'contact', lazy: createLazyRouteModule(() => import('./pages/contact/Contact')), preloadPath: '/contact' },
   { path: 'resources', lazy: createLazyRouteModule(() => import('./pages/resources/Resources')), preloadPath: '/resources' },
