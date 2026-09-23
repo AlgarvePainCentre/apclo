@@ -831,9 +831,10 @@ export const footAnkleData = {
   ],
 };
 
-// Preview registry — every Pain Medicine speciality keyed by its live route
-// slug, so the dynamic preview route can render any of them for client review.
-export const PAIN_PREVIEW_BY_SLUG = {
+// Registry — every Pain Medicine speciality keyed by its live route slug, so
+// the live route `/specialities/pain-medicine/:slug` (and the base template
+// demo) can render any of them from one data source.
+export const PAIN_SPECIALITY_BY_SLUG = {
   'head-pain': headPainData,
   'cervical-spine-pain': cervicalSpineData,
   'lumbar-spine-pain': lumbarSpineData,
