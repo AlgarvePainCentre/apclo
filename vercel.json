@@ -1,4 +1,5 @@
 {
+  "buildCommand": "npm run build:seo",
   "redirects": [
     { "source": "/pain-medicine", "destination": "/specialities/pain-medicine", "permanent": true },
     { "source": "/sports-medicine", "destination": "/specialities/sports-medicine", "permanent": true },
