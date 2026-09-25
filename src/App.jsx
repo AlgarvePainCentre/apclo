@@ -14,6 +14,7 @@ import ChatbotWidget from './components/ChatbotWidget';
 import CookieConsentBanner from './components/CookieConsentBanner';
 import ScrollManager from './app/ScrollManager';
 import PrefetchManager from './app/PrefetchManager';
+import CanonicalManager from './app/CanonicalManager';
 import { RouteShellSkeleton } from './components/LoadingSkeletons';
 
 export function ShellLayout() {
@@ -21,6 +22,7 @@ export function ShellLayout() {
   return (
     <div className="page">
       <a className="skip-link" href="#main-content">Skip to content</a>
+      <CanonicalManager />
       <Navbar />
       <div className="page-transition-shell">
         <div className="page-content" id="main-content" tabIndex={-1}>
