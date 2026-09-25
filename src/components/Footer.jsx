@@ -24,6 +24,7 @@ const resourceLinks = [
 
 const companyLinks = [
   { label: 'About', path: '/about' },
+  { label: 'Careers', path: '/company/careers' },
   { label: 'Contacts', path: '/contact' },
   { label: 'Terms of Service', path: '/company/terms-of-service' },
   { label: 'Privacy policy', path: '/company/privacy-policy' },
