@@ -1,11 +1,17 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { doctorsData } from '../../data/doctorsData';
 import { centres } from '../../data/centres';
+import usePageMeta from '../../app/usePageMeta';
 import '../../styles/layout/site-sections.css';
 import '../../styles/pages/about-page.css';
 
 export default function About() {
   const navigate = useNavigate();
+  usePageMeta({
+    title: 'About Algarve Pain Centre | Our multidisciplinary team in the Algarve',
+    description:
+      'Meet the Algarve Pain Centre team and our specialist network. A multidisciplinary clinic in Vale do Lobo, Algarve, combining pain medicine, sports medicine, rehabilitation and spine surgery.',
+  });
 
   const largeCards = doctorsData.filter(d => d.isLarge);
   const doctorsById = new Map(doctorsData.map((doctor) => [doctor.id, doctor]));

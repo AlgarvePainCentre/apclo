@@ -44,6 +44,7 @@ const PharmacologicalPainManagementPage: React.FC = () => {
   React.useEffect(() => {
     const pageTitle =
       'Pharmacological pain management in Algarve | Tailored medication plans';
+    document.title = pageTitle;
 
     const description =
       'Learn about pharmacological pain management in Algarve. Individualised medication plans, side‑effect monitoring, and easy access to specialist consultation.';

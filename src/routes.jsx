@@ -1,5 +1,4 @@
 import { Navigate } from 'react-router-dom';
-import { createProtectedPageLoader } from './app/routerGuards';
 
 function createLazyRouteModule(factory) {
   const lazy = async () => {
@@ -89,9 +88,6 @@ const routeEntries = [
   { path: 'treatments/non-invasive-treatments/podology', lazy: createLazyRouteModule(() => import('./pages/treatments/NonInvasiveTreatments/Podology/page')), preloadPath: '/treatments/non-invasive-treatments/podology' },
   { path: 'treatments/non-invasive-treatments/home-care', lazy: createLazyRouteModule(() => import('./pages/treatments/NonInvasiveTreatments/HomeCare/page')), preloadPath: '/treatments/non-invasive-treatments/home-care' },
 
-  { path: 'support', lazy: createLazyRouteModule(() => import('./pages/gethelp/Support/page')), preloadPath: '/support', loader: createProtectedPageLoader('support') },
-  { path: 'pricing', lazy: createLazyRouteModule(() => import('./pages/gethelp/Pricing/page')), preloadPath: '/pricing', loader: createProtectedPageLoader('pricing') },
-
   { path: 'blog', lazy: createLazyRouteModule(() => import('./pages/resources/Learn/Blog/page')), preloadPath: '/blog' },
   { path: 'blog/:slug', lazy: createLazyRouteModule(() => import('./pages/resources/Learn/Blog/articlePage')), preloadPath: '/blog/:slug' },
   { path: 'blog/*', lazy: createLazyRouteModule(() => import('./pages/resources/Learn/Blog/articlePage')), preloadPath: '/blog/*' },
@@ -110,7 +106,6 @@ const routeEntries = [
   { path: 'resources/testimonials/padel-sports-medicine', lazy: createLazyRouteModule(() => import('./pages/resources/Testimonials/PadelSportsMedicine/page')), preloadPath: '/resources/testimonials/padel-sports-medicine' },
 
   { path: 'company/careers', lazy: createLazyRouteModule(() => import('./pages/company/Careers/page')), preloadPath: '/company/careers' },
-  { path: 'company/press', lazy: createLazyRouteModule(() => import('./pages/company/Press/page')), preloadPath: '/company/press' },
   { path: 'company/terms-of-service', lazy: createLazyRouteModule(() => import('./pages/company/TermsOfService/page')), preloadPath: '/company/terms-of-service' },
   { path: 'company/privacy-policy', lazy: createLazyRouteModule(() => import('./pages/company/PrivacyPolicy/page')), preloadPath: '/company/privacy-policy' },
   { path: 'company/cookie-policy', lazy: createLazyRouteModule(() => import('./pages/company/CookiePolicy/page')), preloadPath: '/company/cookie-policy' },

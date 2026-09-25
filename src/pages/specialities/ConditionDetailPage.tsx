@@ -93,10 +93,14 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
     const organization = {
       '@type': 'MedicalOrganization',
       name: 'Algarve Pain Centre',
+      url: 'https://www.algarvepaincentre.com/',
+      telephone: '+351915915001',
+      email: 'info@algarvepaincentre.com',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Av. do Mar',
-        addressLocality: 'Vale do Lobo',
+        streetAddress: 'Av. do Mar, Vale do Lobo',
+        addressLocality: 'Almancil',
+        postalCode: '8135-107',
         addressRegion: 'Algarve',
         addressCountry: 'PT',
       },
@@ -2399,11 +2403,11 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                     className="location-map-iframe"
                     title="Business location map"
                     type="map"
-                    src="https://www.google.com/maps?q=Av.+do+Mar+8135-107+Portugal&z=16&output=embed"
+                    src="https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil&z=16&output=embed"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     allowFullScreen
-                    openHref="https://maps.google.com/?q=Av.+do+Mar+8135-107+Portugal"
+                    openHref="https://maps.google.com/?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil"
                   />
                 </div>
               </div>
