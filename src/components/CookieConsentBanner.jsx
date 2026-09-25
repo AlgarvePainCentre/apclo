@@ -122,7 +122,7 @@ export default function CookieConsentBanner() {
               <span>
                 <span className="cookie-consent__option-title">Analytics</span>
                 <span className="cookie-consent__option-text">
-                  Reserved for measurement tools that would require your consent if enabled in the future.
+                  Loads Google Analytics only if you allow it, to measure anonymous usage and help us improve the site.
                 </span>
               </span>
             </label>
