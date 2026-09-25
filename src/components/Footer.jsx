@@ -24,9 +24,7 @@ const resourceLinks = [
 
 const companyLinks = [
   { label: 'About', path: '/about' },
-  { label: 'Careers', path: '/company/careers' },
   { label: 'Contacts', path: '/contact' },
-  { label: 'Press', path: '/company/press' },
   { label: 'Terms of Service', path: '/company/terms-of-service' },
   { label: 'Privacy policy', path: '/company/privacy-policy' },
   { label: 'Cookie policy', path: '/company/cookie-policy' },

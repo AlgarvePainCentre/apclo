@@ -1,12 +1,21 @@
 import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { doctorsData } from '../../data/doctorsData';
+import usePageMeta from '../../app/usePageMeta';
 import '../../styles/pages/doctor-detail-page.css';
 
 export default function DoctorDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  
+
   const doctor = doctorsData.find(d => d.id === id);
+
+  const metaDesc = doctor
+    ? (doctor.bio ? doctor.bio.slice(0, 155) : `${doctor.name}, specialist at Algarve Pain Centre, a multidisciplinary pain clinic in Vale do Lobo, Algarve.`)
+    : undefined;
+  usePageMeta({
+    title: doctor ? `${doctor.name} | Algarve Pain Centre` : undefined,
+    description: metaDesc,
+  });
 
   if (!doctor) {
     return <Navigate to="/about" replace />;
