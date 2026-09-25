@@ -1,0 +1,47 @@
+export const data = {
+  slug: 'interspinous-spacers',
+  category: 'minimally-invasive-treatments',
+  kind: 'Minimally invasive',
+  title: 'Interspinous Spacers',
+  areaLabel: 'interspinous spacers',
+  heroImage: '/assets/images/Hero/InterspinousSpacersTreatment.webp',
+  heroSubtitle: 'Small implants help keep space between vertebrae to ease nerve compression.',
+  stepsLead: 'Here is how the procedure is done:',
+  overview: [
+    'Chronic lower back pain and lumbar spinal stenosis can make standing and walking difficult. Interspinous spacers are small implants placed between the spinous processes (the bones you can feel at the back of the spine), offering a minimally invasive option for selected cases—especially when symptoms worsen with standing or walking and improve when bending forward.',
+    'By limiting painful extension and helping maintain space in the spinal canal, they can reduce nerve pressure in certain stenosis patterns, with less downtime than more extensive surgery in appropriate patients.',
+    'Selection is critical. Your specialist reviews symptoms, examination findings, and imaging to confirm stenosis and to assess stability. In some cases, decompression surgery or other treatments may be more appropriate. Recovery focuses on walking progression and gradual return to daily activities.',
+  ],
+  steps: [
+    { n: 1, title: 'Preparation', body: 'Before the procedure, your clinician reviews imaging (such as MRI) to confirm stenosis and determine the best level for the spacer. Anaesthesia and positioning are planned for comfort and safety.' },
+    { n: 2, title: 'Procedure', body: 'A small incision is made in the lower back and the spacer is positioned between the spinous processes at the affected level. It is secured to help maintain space and reduce nerve compression in selected cases.' },
+    { n: 3, title: 'Completion', body: 'The incision is closed and a dressing is applied. Recovery focuses on walking progression, protecting the surgical site, and follow-up rehabilitation to rebuild endurance and confidence.' },
+  ],
+  benefits: [
+    { title: 'Fast recovery', body: 'The procedure uses a small incision, aiming for quicker recovery and less disruption than many open surgeries.' },
+    { title: 'Immediate relief', body: 'Selected patients often experience earlier improvements in standing or walking tolerance by reducing posture-dependent nerve compression.' },
+    { title: 'Motion autonomy', body: 'The spacer limits painful extension at a targeted level while preserving overall movement compared with fusion in selected cases.' },
+  ],
+  expect: [
+    { title: 'Recovery time', body: 'Many patients go home the same day or shortly after. Light activity can often resume within a few days, while heavy lifting is usually limited for a period.' },
+    { title: 'Pain relief', body: 'Some people notice improved walking tolerance early, while others experience gradual improvement as inflammation settles and rehabilitation progresses.' },
+    { title: 'Follow-up care', body: 'Follow-up appointments monitor healing and symptoms. A structured walking and physiotherapy plan helps restore endurance and confidence.' },
+  ],
+  risks: [
+    { title: 'Wound-related effects', body: 'Bleeding, infection, or wound healing issues can occur.' },
+    { title: 'Persistent symptoms', body: 'Persistent or recurrent symptoms if stenosis is multi-level or the diagnosis differs.' },
+    { title: 'Implant issues', body: 'Implant migration, fracture of surrounding bone, or need for revision (uncommon but possible).' },
+    { title: 'Progression over time', body: 'Progression of degeneration or instability over time in some cases.' },
+  ],
+  faqs: [
+    { q: 'What are interspinous spacers made of?', a: 'Interspinous spacers are typically made of durable, medical-grade materials designed to be compatible with the body. Your surgeon will explain the specific device used and why it fits your anatomy and goals.' },
+    { q: 'How long do interspinous spacers last?', a: 'Longevity depends on the device, your spine health, and how symptoms evolve over time. Your team will outline follow-up and what to watch for, including when further treatment might be needed.' },
+    { q: 'How soon can I return to my daily activities?', a: 'Many people resume light activity within days, with a gradual return to work and exercise based on symptoms and surgeon guidance. Heavy lifting and high-impact activity are usually restricted early on.' },
+    { q: 'Will the procedure leave any scars?', a: 'The procedure typically uses a small incision, so scarring is usually minimal. Scar appearance varies by skin type and healing and can be discussed during your consultation.' },
+    { q: 'Are there any risks associated with interspinous spacers?', a: 'As with any procedure, risks exist. These can include infection, bleeding, persistent symptoms, or the need for revision surgery in some cases. Your surgeon will explain personalised risks and alternatives.' },
+    { q: 'Can interspinous spacers be used with other treatments?', a: 'Yes. They are often part of a broader plan that may include physiotherapy, pain management, and activity progression. Your clinician will tailor the approach to your diagnosis and goals.' },
+    { q: 'Will the spacers affect the flexibility of my spine?', a: 'Spacers primarily limit painful extension at the treated level, while aiming to preserve overall movement. The impact depends on the level treated and your spine mechanics.' },
+    { q: 'Is interspinous spacer placement covered by insurance?', a: 'Coverage depends on your insurer, diagnosis, and policy. Your clinic can help provide documentation and guide you through pre-authorisation where needed.' },
+  ],
+  citations: [],
+};

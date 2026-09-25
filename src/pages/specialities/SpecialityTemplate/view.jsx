@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import ArticleBreadcrumb from '../../../components/ArticleBreadcrumb';
+import SpecialitySeo from './SpecialitySeo';
 import './speciality-template.css';
 
 /*
@@ -30,7 +31,7 @@ const CTA_FALLBACKS = {
   }),
 };
 
-export default function SpecialityTemplateView({ data: d }) {
+export default function SpecialityTemplateView({ data: d, seo }) {
   const navigate = useNavigate();
   const hasTips = Array.isArray(d.tips) && d.tips.length > 0;
   const [openSyn, setOpenSyn] = useState(0);
@@ -139,6 +140,7 @@ export default function SpecialityTemplateView({ data: d }) {
 
   return (
     <div className="spec-tpl">
+      <SpecialitySeo data={d} seo={seo} />
       {/* 1 · Hero */}
       <header className="stpl-hero" aria-label="Speciality hero">
         <div className="stpl-hero-media" aria-hidden="true">

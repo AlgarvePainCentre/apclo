@@ -1,3 +1,15 @@
 User-agent: *
 Allow: /
+
+# Internal preview routes (client-review only — not for indexing)
+Disallow: /specialities-v2/
+Disallow: /treatments-v2/
+Disallow: /specialities-template
+Disallow: /specialities-template-lumbar
+Disallow: /specialities-template-sports
+Disallow: /specialities-template-cervical
+Disallow: /specialities-template-stroke
+Disallow: /treatment-template
+Disallow: /treatment-template-radiofrequency
+
 Sitemap: https://www.algarvepaincentre.com/sitemap.xml

@@ -22,8 +22,14 @@ const routeEntries = [
   { path: 'specialities-template-sports', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page-sports')), preloadPath: '/specialities-template-sports' },
   { path: 'specialities-template-cervical', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page-cervical')), preloadPath: '/specialities-template-cervical' },
   { path: 'specialities-template-stroke', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page-stroke')), preloadPath: '/specialities-template-stroke' },
+  // Canonical-template preview of every speciality, in parallel with the
+  // untouched live pages: /specialities-v2/<category>/<slug>.
+  { path: 'specialities-v2/:category/:slug', lazy: createLazyRouteModule(() => import('./pages/specialities/SpecialityTemplate/page-live')) },
   { path: 'treatment-template', lazy: createLazyRouteModule(() => import('./pages/treatments/TreatmentTemplate/page')), preloadPath: '/treatment-template' },
   { path: 'treatment-template-radiofrequency', lazy: createLazyRouteModule(() => import('./pages/treatments/TreatmentTemplate/page-radiofrequency')), preloadPath: '/treatment-template-radiofrequency' },
+  // Canonical-template preview of every treatment, in parallel with the
+  // untouched live pages: /treatments-v2/<category>/<slug>.
+  { path: 'treatments-v2/:category/:slug', lazy: createLazyRouteModule(() => import('./pages/treatments/TreatmentTemplate/page-treatment-live')) },
   { path: 'doctor/:id', lazy: createLazyRouteModule(() => import('./pages/doctor/DoctorDetail')), preloadPath: '/doctor/:id' },
   { path: 'contact', lazy: createLazyRouteModule(() => import('./pages/contact/Contact')), preloadPath: '/contact' },
   { path: 'resources', lazy: createLazyRouteModule(() => import('./pages/resources/Resources')), preloadPath: '/resources' },
