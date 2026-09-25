@@ -8,6 +8,8 @@
   background: linear-gradient(160deg, #0f4681 0%, #0b3a6b 100%);
   color: #fff;
   padding: 128px 24px 72px;
+  /* Clear the fixed navbar (taller on mobile) so the title isn't tucked under it. */
+  padding-top: max(128px, calc(var(--navbar-offset, 88px) + 32px));
 }
 
 .mc-hero-inner {
@@ -152,6 +154,7 @@
 @media (max-width: 768px) {
   .mc-hero {
     padding: 112px 20px 56px;
+    padding-top: max(112px, calc(var(--navbar-offset, 88px) + 24px));
   }
   .mc-body {
     padding: 48px 20px 64px;
