@@ -1,4 +1,9 @@
 .psx-page#psx-contact .psx-hero { position: relative; overflow: hidden; }
+/* The generic hero-inner is top-aligned; reserve the fixed navbar's height
+   (taller on mobile) so the eyebrow/title never tuck under it. */
+.psx-page#psx-contact .psx-hero .psx-hero-inner {
+  padding-top: max(clamp(18px, 2.4vw, 28px), calc(var(--navbar-offset, 88px) + 24px));
+}
 .psx-page#psx-contact .psx-hero .psx-hero-backdrop {
   position: absolute;
   inset: 0;

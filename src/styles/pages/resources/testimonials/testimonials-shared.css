@@ -18,12 +18,14 @@
 
 .testimonial-page-main .article-hero-media {
   position: relative;
-  min-height: 50vh;
+  /* Reserve the fixed navbar's height so the centred title never hides under it. */
+  min-height: calc(50vh + var(--navbar-offset, 88px));
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   padding: 4rem 2rem;
+  padding-top: calc(4rem + var(--navbar-offset, 88px));
   color: #ffffff;
   text-align: center;
   overflow: hidden;
@@ -147,7 +149,8 @@
 @media (max-width: 640px) {
   .testimonial-page-main .article-hero-media {
     padding: 3.5rem 1.25rem;
-    min-height: 46vh;
+    padding-top: calc(3.5rem + var(--navbar-offset, 88px));
+    min-height: calc(46vh + var(--navbar-offset, 88px));
   }
   .testimonial-page-main .article-hero-content h2 {
     font-size: 2.2rem;

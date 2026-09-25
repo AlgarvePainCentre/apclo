@@ -55,6 +55,8 @@
   color: var(--color-white);
   text-align: left;
   padding: 8rem 2rem;
+  /* Never let the centred title hide under the fixed navbar (taller on mobile). */
+  padding-top: max(8rem, calc(var(--navbar-offset, 88px) + 2rem));
   margin-bottom: 0;
 }
 
