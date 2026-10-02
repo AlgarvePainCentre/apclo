@@ -3841,11 +3841,64 @@
      past this image-heavy section stays cheap on lower-end devices. The
      intrinsic size keeps the scrollbar stable before a card is painted. */
   content-visibility: auto;
-  contain-intrinsic-size: auto 360px;
+  contain-intrinsic-size: auto 480px;
 }
 
-.home-centers-item > .home-centers-card {
+.home-centers-item > .home-centers-card,
+.home-centers-item > .mainpain-card {
   width: 100%;
+}
+
+/* Our Centres reuses .mainpain-card as a single link, keeping each centre's
+   description instead of the repetitive meta row. */
+.home-page a.home-centre-card {
+  text-decoration: none;
+  color: #fff;
+}
+
+/* Reserve the bottom-right corner for the arrow so the text never collides. */
+.home-page .home-centre-card .mainpain-card-body {
+  padding-right: 58px;
+}
+
+.home-page .home-centre-card .home-centre-card-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+  /* White at rest; restores its brand colour on hover (as the old cards did). */
+  filter: brightness(0) invert(1);
+  opacity: 0.95;
+  margin-bottom: 2px;
+  transition: filter 300ms ease, opacity 300ms ease;
+}
+
+.home-page .home-centre-card:hover .home-centre-card-icon,
+.home-page .home-centre-card:focus-visible .home-centre-card-icon {
+  filter: none;
+  opacity: 1;
+}
+
+.home-page .home-centre-card .home-centre-card-desc {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  line-height: 1.55;
+}
+
+/* Arrow pinned to the bottom-right corner — a consistent spot no matter how
+   long the title or description is. */
+.home-page .home-centre-card .home-centre-card-arrow {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  z-index: 2;
+  transition: background-color 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.home-page .home-centre-card:hover .home-centre-card-arrow {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateX(2px);
 }
 
 .home-centers-card {
