@@ -611,11 +611,9 @@ export default function Home() {
                         {centre.logo && (
                           <img className="home-centre-card-icon" src={centre.logo} alt="" loading="lazy" decoding="async" />
                         )}
-                        <div className="home-centre-card-head">
-                          <h3 className="mainpain-card-title">{centre.name}</h3>
-                          <span className="mainpain-card-cta-icon" aria-hidden="true">→</span>
-                        </div>
+                        <h3 className="mainpain-card-title">{centre.name}</h3>
                         <p className="home-centre-card-desc">{centre.body}</p>
+                        <span className="mainpain-card-cta-icon home-centre-card-arrow" aria-hidden="true">→</span>
                       </div>
                     </Link>
                   </li>
