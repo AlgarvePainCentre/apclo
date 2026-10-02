@@ -12,7 +12,9 @@ export function createLenis(options: CreateLenisOptions = {}) {
   return new Lenis({
     smoothWheel: options.smoothWheel ?? true,
     smoothTouch: options.smoothTouch ?? false,
-    lerp: options.lerp ?? 0.1,
+    // Slightly snappier than Lenis' default 0.1 so the smooth scroll feels
+    // responsive rather than floaty/laggy (a recurring "slow scroll" report).
+    lerp: options.lerp ?? 0.12,
     wheelMultiplier: options.wheelMultiplier ?? 1,
     touchMultiplier: options.touchMultiplier ?? 1,
   });
