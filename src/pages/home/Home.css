@@ -3849,14 +3849,35 @@
   width: 100%;
 }
 
-/* Small brand icon inside the reused .mainpain-card meta row. */
+/* Our Centres reuses .mainpain-card as a single link, keeping each centre's
+   description instead of the repetitive meta row. */
+.home-page a.home-centre-card {
+  text-decoration: none;
+  color: #fff;
+}
+
 .home-page .home-centre-card .home-centre-card-icon {
-  width: 18px;
-  height: 18px;
+  width: 26px;
+  height: 26px;
   object-fit: contain;
-  /* Paint white to sit on the dark gradient, matching the meta text. */
+  /* Paint white to sit on the dark gradient. */
   filter: brightness(0) invert(1);
-  opacity: 0.92;
+  opacity: 0.95;
+  margin-bottom: 2px;
+}
+
+.home-page .home-centre-card .home-centre-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.home-page .home-centre-card .home-centre-card-desc {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 14px;
+  line-height: 1.55;
 }
 
 .home-centers-card {
