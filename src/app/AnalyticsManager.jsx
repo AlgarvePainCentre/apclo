@@ -17,7 +17,10 @@ import { useCookieConsent } from '../utils/consentManager';
  *   VITE_GA4_ID   GA4 measurement id, e.g. G-XXXXXXXXXX           (used if no GTM id)
  */
 const GTM_ID = import.meta.env.VITE_GTM_ID;
-const GA4_ID = import.meta.env.VITE_GA4_ID;
+// GA4 measurement ids are public (they ship in the page), so the client's id is
+// baked in as the default — it works on deploy without any env config. Override
+// with VITE_GA4_ID, or switch to GTM with VITE_GTM_ID.
+const GA4_ID = import.meta.env.VITE_GA4_ID || 'G-GM1C7W4G8M';
 
 function loadGtm(id) {
   window.dataLayer = window.dataLayer || [];
