@@ -5,6 +5,7 @@ import SurgicalProceduresStack from './components/SurgicalProceduresStack';
 import MinimallyInvasiveProceduresList from './components/MinimallyInvasiveProceduresList';
 import NonInvasiveProceduresList from './components/NonInvasiveProceduresList';
 import ManagedEmbed from '../../components/ManagedEmbed';
+import usePageMeta from '../../app/usePageMeta';
 
 export function TreatmentsMain({
   hideMinimallyInvasive = false,
@@ -206,11 +207,11 @@ export function TreatmentsMain({
                 className="location-map-iframe"
                 title="Business location map"
                 type="map"
-                src="https://www.google.com/maps?q=Av.+do+Mar+8135-107+Portugal&z=16&output=embed"
+                src="https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil&z=16&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
-                openHref="https://maps.google.com/?q=Av.+do+Mar+8135-107+Portugal"
+                openHref="https://maps.google.com/?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil"
               />
             </div>
           </div>
@@ -225,6 +226,11 @@ TreatmentsMain.PageMain = function TreatmentPageMain({ children }) {
 };
 
 export default function Treatments() {
+  usePageMeta({
+    title: 'Treatments | Algarve Pain Centre — non-invasive, minimally invasive & surgical',
+    description:
+      'Explore treatments at Algarve Pain Centre: non-invasive therapies, minimally invasive image-guided procedures and spine surgery, tailored to your diagnosis in Vale do Lobo, Algarve.',
+  });
   return (
     <div className="psx-page" id="psx-treatments">
       <header className="treatment-page-hero treatments-hero" aria-label="Treatments hero section">

@@ -226,12 +226,14 @@ export default function Home() {
               'Multidisciplinary pain clinic in Vale do Lobo, Algarve, Portugal, specialising in spine pain, joint pain, sports injuries and stroke rehabilitation.',
             address: {
               '@type': 'PostalAddress',
-              streetAddress: 'Av. do Mar',
-              addressLocality: 'Vale do Lobo',
+              streetAddress: 'Av. do Mar, Vale do Lobo',
+              addressLocality: 'Almancil',
+              postalCode: '8135-107',
               addressRegion: 'Algarve',
               addressCountry: 'PT',
             },
             telephone: '+351915915001',
+            email: 'info@algarvepaincentre.com',
             medicalSpecialty: ['PainManagement', 'Orthopedic', 'Neurologic', 'PhysicalTherapy'],
           }),
         }}

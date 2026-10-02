@@ -100,7 +100,6 @@ export default function Contact() {
       const media = layout.querySelector('.contact-help-video');
       if (media) {
         media.remove();
-        console.info('[Contact] Removed contact help media container');
       } else {
         console.warn('[Contact] contact-help-video container not found');
       }
@@ -109,7 +108,6 @@ export default function Contact() {
       if (primaryCard) {
         primaryCard.style.width = '100%';
         primaryCard.style.maxWidth = '100%';
-        console.info('[Contact] Expanded primary card to full width');
       } else {
         console.warn('[Contact] Primary card element not found');
       }
@@ -117,7 +115,6 @@ export default function Contact() {
       const secondaryMedia = document.querySelector('.contact-help-video-2');
       if (secondaryMedia) {
         secondaryMedia.remove();
-        console.info('[Contact] Removed secondary contact help media container');
       }
     } catch (err) {
       console.warn('[Contact] Failed to update contact layout', err);
