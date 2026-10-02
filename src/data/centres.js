@@ -16,7 +16,7 @@ export const centres = [
   {
     slug: 'algarve-spine-centre',
     name: 'Algarve Spine Centre',
-    image: '/assets/images/centres/spine-center.webp',
+    image: '/assets/images/Homepage/SpinePain.webp',
     body: 'Spine diagnostics, minimally invasive interventions, and surgical pathways coordinated by our team.',
     logo: '/assets/images/centres/spine.svg',
   },

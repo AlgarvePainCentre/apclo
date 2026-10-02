@@ -3837,6 +3837,11 @@
   min-width: 0;
   max-width: calc((100% - 2 * var(--card-gap)) / 3);
   display: flex;
+  /* Skip rendering (layout + paint) for cards that are off-screen, so scrolling
+     past this image-heavy section stays cheap on lower-end devices. The
+     intrinsic size keeps the scrollbar stable before a card is painted. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 360px;
 }
 
 .home-centers-item > .home-centers-card {
