@@ -593,36 +593,34 @@ export default function Home() {
               <ul className="home-centers-grid" role="list" aria-label="Medical centres">
                 {centres.map((centre) => (
                   <li className="home-centers-item" role="listitem" key={centre.slug}>
-                    <Link
-                      to={centre.path || '/contact'}
-                      className={`home-centers-card${centre.logo ? ' home-centers-card--logo' : ''}`}
-                      aria-label={centre.path ? `Visit ${centre.name}` : `Contact ${centre.name}`}
-                      onClick={() => trackEvent('nav_click', { to: centre.path ? 'centre-page' : 'contact', location: 'home-centers', center: centre.slug })}
-                    >
-                      <img
-                        className="home-centers-card-bg"
-                        src={centre.image}
-                        alt=""
-                        loading="lazy"
-                        decoding="async"
-                        ref={(el) => { if (el && el.complete) el.classList.add('is-loaded'); }}
-                        onLoad={(e) => e.currentTarget.classList.add('is-loaded')}
-                        onError={(e) => e.currentTarget.classList.add('is-loaded')}
+                    {/* Reuses the "Main Pain Areas" card styling (.mainpain-card) so
+                        the centres match the rest of the homepage boxes. */}
+                    <article className="mainpain-card home-centre-card">
+                      <div
+                        className="mainpain-card-image"
+                        style={{ backgroundImage: `url('${centre.image}')` }}
+                        aria-hidden="true"
                       />
-                      <span className="home-centers-card-overlay" aria-hidden="true" />
-                      <div className="home-centers-card-content">
-                        {centre.logo && (
-                          <span className="home-centers-card-logo" aria-hidden="true">
-                            <img src={centre.logo} alt="" loading="lazy" decoding="async" />
-                          </span>
-                        )}
-                        <h4 className="home-centers-card-title">{centre.name}</h4>
-                        <p className="home-centers-card-body">{centre.body}</p>
-                        <span className="home-centers-card-cta" aria-hidden="true">
-                          {centre.path ? 'Visit centre →' : 'Contact centre →'}
-                        </span>
+                      <div className="mainpain-card-body">
+                        <p className="mainpain-card-meta">
+                          {centre.logo && (
+                            <img className="home-centre-card-icon" src={centre.logo} alt="" loading="lazy" decoding="async" />
+                          )}
+                          <span>Specialist centre</span>
+                          <span className="mainpain-card-meta-sep" aria-hidden="true">•</span>
+                          <span>{centre.path ? 'Visit' : 'Contact'}</span>
+                        </p>
+                        <Link
+                          to={centre.path || '/contact'}
+                          className="mainpain-card-cta"
+                          aria-label={centre.path ? `Visit ${centre.name}` : `Contact ${centre.name}`}
+                          onClick={() => trackEvent('nav_click', { to: centre.path ? 'centre-page' : 'contact', location: 'home-centers', center: centre.slug })}
+                        >
+                          <h3 className="mainpain-card-title">{centre.name}</h3>
+                          <span className="mainpain-card-cta-icon" aria-hidden="true">→</span>
+                        </Link>
                       </div>
-                    </Link>
+                    </article>
                   </li>
                 ))}
               </ul>

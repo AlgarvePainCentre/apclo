@@ -3841,11 +3841,22 @@
      past this image-heavy section stays cheap on lower-end devices. The
      intrinsic size keeps the scrollbar stable before a card is painted. */
   content-visibility: auto;
-  contain-intrinsic-size: auto 360px;
+  contain-intrinsic-size: auto 480px;
 }
 
-.home-centers-item > .home-centers-card {
+.home-centers-item > .home-centers-card,
+.home-centers-item > .mainpain-card {
   width: 100%;
+}
+
+/* Small brand icon inside the reused .mainpain-card meta row. */
+.home-page .home-centre-card .home-centre-card-icon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  /* Paint white to sit on the dark gradient, matching the meta text. */
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
 }
 
 .home-centers-card {
