@@ -223,7 +223,7 @@ export default function Home() {
             name: 'Algarve Pain Centre',
             url: 'https://www.algarvepaincentre.com/',
             description:
-              'Multidisciplinary pain clinic in Vale do Lobo, Algarve, Portugal, specialising in spine pain, joint pain, sports injuries and stroke rehabilitation.',
+              'Multidisciplinary pain clinic in Vale do Lobo, Algarve, Portugal, specialising in spine pain, joint pain, sports injuries and stroke rehabilitation. Care follows a stepped approach: non-invasive treatments first, image-guided minimally invasive procedures when appropriate, and surgery only when indicated, in partnership with its spine and orthopaedic surgeons.',
             address: {
               '@type': 'PostalAddress',
               streetAddress: 'Av. do Mar, Vale do Lobo',
@@ -289,7 +289,9 @@ export default function Home() {
               <p className="home-section-team-eyebrow">Meet our treatment options</p>
               <h2 className="home-section-team-title home-stories-title">Our Treatments</h2>
               <p className="home-section-team-subtitle">
-                Exploit the latest technologies to provide you with the best possible care.
+                Our care follows a stepped approach: non‑invasive treatments first, image‑guided
+                minimally invasive procedures when appropriate, and surgery only when it is the
+                right choice — performed in partnership with our spine and orthopaedic surgeons.
               </p>
             </header>
           <div className="home-section-treatment-inner">
