@@ -15,6 +15,7 @@ import CookieConsentBanner from './components/CookieConsentBanner';
 import ScrollManager from './app/ScrollManager';
 import PrefetchManager from './app/PrefetchManager';
 import CanonicalManager from './app/CanonicalManager';
+import OpenGraphManager from './app/OpenGraphManager';
 import AnalyticsManager from './app/AnalyticsManager';
 import { RouteShellSkeleton } from './components/LoadingSkeletons';
 
@@ -24,6 +25,7 @@ export function ShellLayout() {
     <div className="page">
       <a className="skip-link" href="#main-content">Skip to content</a>
       <CanonicalManager />
+      <OpenGraphManager />
       <AnalyticsManager />
       <Navbar />
       <div className="page-transition-shell">

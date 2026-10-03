@@ -19,7 +19,7 @@ const ControlOverSpineDegenerationPage: React.FC = () => {
             aria-hidden="true"
           />
           <div className="article-hero-content">
-            <h2>Control Over Spine Degeneration</h2>
+            <h1>Control Over Spine Degeneration</h1>
             <p>
               Practical steps and patient perspectives on protecting long-term spine health.
             </p>

@@ -3,6 +3,7 @@ import { Link, Navigate, useLocation, useParams } from 'react-router-dom';
 import SocialShare from '../../../../components/SocialShare';
 import '../../../../styles/layout/article-layout.css';
 import { blogArticles, getBlogArticleBySlug } from './articles';
+import { SITE_ORIGIN } from '../../../../utils/site';
 
 type Comment = {
   id: string;
@@ -98,13 +99,13 @@ const BlogArticlePage: React.FC = () => {
     setMeta('robots', 'index,follow');
     setMeta('keywords', article.tags.join(', '));
 
-    const canonical = `${window.location.origin}/blog/${article.slug}`;
+    const canonical = `${SITE_ORIGIN}/blog/${article.slug}`;
     setCanonical(canonical);
     setOg('og:title', title);
     setOg('og:description', article.description);
     setOg('og:type', 'article');
     setOg('og:url', canonical);
-    const ogImage = `${window.location.origin}${article.coverImage.src}`;
+    const ogImage = `${SITE_ORIGIN}${article.coverImage.src}`;
     setOg('og:image', ogImage);
 
     setMeta('twitter:card', 'summary_large_image');
@@ -120,13 +121,13 @@ const BlogArticlePage: React.FC = () => {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: 'Home', item: `${window.location.origin}/` },
-        { '@type': 'ListItem', position: 2, name: 'Blog', item: `${window.location.origin}/blog` },
+        { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_ORIGIN}/` },
+        { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE_ORIGIN}/blog` },
         {
           '@type': 'ListItem',
           position: 3,
           name: article.title,
-          item: `${window.location.origin}/blog/${article.slug}`,
+          item: `${SITE_ORIGIN}/blog/${article.slug}`,
         },
       ],
     };
@@ -136,15 +137,15 @@ const BlogArticlePage: React.FC = () => {
       '@type': 'MedicalWebPage',
       name: article.title,
       description: article.description,
-      url: `${window.location.origin}/blog/${article.slug}`,
+      url: `${SITE_ORIGIN}/blog/${article.slug}`,
       inLanguage: 'en',
       datePublished: article.dateISO,
       dateModified: article.dateISO,
       author: { '@type': 'Organization', name: article.author.name },
       publisher: { '@type': 'Organization', name: 'Algarve Pain Centre' },
-      image: [`${window.location.origin}${article.coverImage.src}`],
+      image: [`${SITE_ORIGIN}${article.coverImage.src}`],
       about: { '@type': 'Thing', name: article.title },
-      mainEntityOfPage: { '@type': 'WebPage', '@id': `${window.location.origin}/blog/${article.slug}` },
+      mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_ORIGIN}/blog/${article.slug}` },
     };
 
     const medicalArticleJsonLd = {
@@ -156,8 +157,8 @@ const BlogArticlePage: React.FC = () => {
       dateModified: article.dateISO,
       author: { '@type': 'Organization', name: article.author.name },
       publisher: { '@type': 'Organization', name: 'Algarve Pain Centre' },
-      mainEntityOfPage: { '@type': 'WebPage', '@id': `${window.location.origin}/blog/${article.slug}` },
-      image: [`${window.location.origin}${article.coverImage.src}`],
+      mainEntityOfPage: { '@type': 'WebPage', '@id': `${SITE_ORIGIN}/blog/${article.slug}` },
+      image: [`${SITE_ORIGIN}${article.coverImage.src}`],
       keywords: article.tags.join(', '),
       about: { '@type': 'Thing', name: article.title },
       citation: article.references.map((r) => r.url),

@@ -15,7 +15,7 @@ const OvercomingSciaticaPainPage: React.FC = () => {
         <div className="article-hero-media">
           <img src="/assets/images/learn/9-radiating-pain.webp" alt="" aria-hidden="true" />
           <div className="article-hero-content">
-            <h2>Overcoming Sciatica Pain</h2>
+            <h1>Overcoming Sciatica Pain</h1>
             <p>
               Ghislaine Renault shares her personal experience of living with and healing
               from sciatica and chronic back pain.
