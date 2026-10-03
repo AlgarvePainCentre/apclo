@@ -71,7 +71,7 @@ export default function CardsPainSection({ heroVariant, handleVideoEnter }) {
               to="/contact"
               onClick={() => trackEvent('cta_click', { location: 'home-quick-appointment' })}
             >
-              Request an appointment
+              Contact us
             </Link>
           </div>
         </div>

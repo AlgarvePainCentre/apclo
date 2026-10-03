@@ -46,7 +46,7 @@ const LumbarDeformitySurgeryPage: React.FC = () => {
             label: 'Learn More About Lumbar Deformity Surgery',
             ariaLabel: 'Learn more about lumbar deformity surgery in our blog',
           }}
-          secondaryCta={{ to: '/contact', label: 'Request an appointment' }}
+          secondaryCta={{ to: '/contact', label: 'Contact us' }}
           className="minimally-invasive-treatment-feature"
         />
 

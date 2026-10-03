@@ -49,7 +49,7 @@ export default function MigraineCentrePage() {
             movement disorders and facial pain.
           </p>
           <Link to="/contact" className="mc-cta">
-            Request an appointment
+            Contact us
           </Link>
         </div>
       </section>
@@ -104,7 +104,7 @@ export default function MigraineCentrePage() {
         </section>
 
         <section className="mc-section mc-panel mc-contact">
-          <h2 className="mc-section-title">Request an appointment</h2>
+          <h2 className="mc-section-title">Contact us</h2>
           <p className="mc-paragraph">Av. do Mar, Vale do Lobo, 8135-107 Almancil, Algarve</p>
           <p className="mc-paragraph">
             <a href="tel:+351915915001" className="mc-inline-link">

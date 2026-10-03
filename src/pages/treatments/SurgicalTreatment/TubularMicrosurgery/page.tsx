@@ -107,7 +107,7 @@ const TubularMicrosurgeryPage: React.FC = () => {
             label: 'Learn More About Tubular Microsurgery',
             ariaLabel: 'Learn more about tubular microsurgery in our blog',
           }}
-          secondaryCta={{ to: '/contact', label: 'Request an appointment' }}
+          secondaryCta={{ to: '/contact', label: 'Contact us' }}
           className="minimally-invasive-treatment-feature"
         />
 
