@@ -5,9 +5,16 @@ import '../../../../styles/pages/resources/testimonials/control-over-spine-degen
 import '../../../../styles/layout/article-layout.css';
 import SocialShare from '../../../../components/SocialShare';
 import ManagedEmbed from '../../../../components/ManagedEmbed';
+import usePageMeta from '../../../../app/usePageMeta';
 
 const ControlOverSpineDegenerationPage: React.FC = () => {
   const YT_ID = 'uK77XrRzGYA';
+
+  usePageMeta({
+    title: 'Control Over Spine Degeneration | Patient Story | Algarve Pain Centre',
+    description:
+      'A patient story on taking control of spine degeneration — practical steps and personalised care to protect long-term spine health at Algarve Pain Centre, Algarve.',
+  });
 
   return (
     <main className="testimonial-page-main control-over-spine-degeneration-page">

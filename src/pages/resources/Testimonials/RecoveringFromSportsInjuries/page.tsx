@@ -5,9 +5,16 @@ import '../../../../styles/pages/resources/testimonials/recovering-from-sports-i
 import '../../../../styles/layout/article-layout.css';
 import SocialShare from '../../../../components/SocialShare';
 import ManagedEmbed from '../../../../components/ManagedEmbed';
+import usePageMeta from '../../../../app/usePageMeta';
 
 const RecoveringFromSportsInjuriesPage: React.FC = () => {
   const YT_ID = 'ANY7DTXlMRA';
+
+  usePageMeta({
+    title: 'Recovering from Sports Injuries | Patient Story | Algarve Pain Centre',
+    description:
+      'Return-to-sport recovery stories: how patients rebuilt strength, mobility and confidence with personalised rehabilitation at Algarve Pain Centre, Algarve.',
+  });
 
   return (
     <main className="testimonial-page-main recovering-from-sports-injuries-page">
