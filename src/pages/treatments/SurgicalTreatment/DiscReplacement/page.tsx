@@ -46,7 +46,7 @@ const DiscReplacementPage: React.FC = () => {
             label: 'Learn More About Disc Replacement',
             ariaLabel: 'Learn more about disc replacement in our blog',
           }}
-          secondaryCta={{ to: '/contact', label: 'Book an appointment' }}
+          secondaryCta={{ to: '/contact', label: 'Request an appointment' }}
           className="minimally-invasive-treatment-feature"
         />
 

@@ -264,7 +264,7 @@ export default function Home() {
                 </p>
                 <div className="home-hero-actions" style={{ justifyContent: 'center', display: 'flex', width: '100%', marginTop: '16px' }}>
                   <Link className="home-hero-primary-cta" to="/contact">
-                    <span>Book an Appointment</span>
+                    <span>Request an appointment</span>
                   </Link>
                   <Link className="hero-secondary-cta" to="/treatments">
                     <span>Explore Treatments</span>

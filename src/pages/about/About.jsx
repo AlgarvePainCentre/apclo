@@ -102,10 +102,10 @@ export default function About() {
             <button
               type="button"
               className="psx-btn-primary"
-              aria-label="Book an appointment to meet our team"
+              aria-label="Request an appointment to meet our team"
               onClick={() => navigate('/contact')}
             >
-              <span>Book an appointment</span>
+              <span>Request an appointment</span>
             </button>
           </div>
         </div>

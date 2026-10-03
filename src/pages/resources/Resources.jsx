@@ -206,10 +206,10 @@ export default function Resources() {
             <button
               type="button"
               className="psx-btn-primary"
-              aria-label="Book an appointment"
+              aria-label="Request an appointment"
               onClick={() => navigate('/contact')}
             >
-              <span>Book an appointment</span>
+              <span>Request an appointment</span>
             </button>
           </div>
         </div>

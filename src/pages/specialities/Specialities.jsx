@@ -535,13 +535,13 @@ export default function Specialities() {
             <button
               type="button"
               className="psx-btn-primary"
-              aria-label="Book an appointment"
+              aria-label="Request an appointment"
               onClick={() => {
                 trackEvent('cta_click', { location: 'specialities-hero' });
                 navigate('/contact');
               }}
             >
-              <span>Book an appointment</span>
+              <span>Request an appointment</span>
             </button>
           </div>
         </div>
