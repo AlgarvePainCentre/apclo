@@ -81,6 +81,44 @@ async function snapshot(browser, path) {
   );
   // let head-managing effects (meta / canonical / JSON-LD) settle
   await new Promise((r) => setTimeout(r, 350));
+  // Bake a schema.org FAQPage from any on-page FAQ accordion (cryo-faq markup),
+  // so AI answer engines and Google can cite the Q&A. Skipped when a page already
+  // emits its own FAQPage (e.g. via the TreatmentFaq component).
+  await page.evaluate(() => {
+    const hasFaqPage = Array.from(
+      document.querySelectorAll('script[type="application/ld+json"]'),
+    ).some((s) => /"@type"\s*:\s*"FAQPage"/.test(s.textContent || ''));
+    if (hasFaqPage) return;
+    // Each treatment page prefixes its FAQ classes differently (cryo-faq-item,
+    // rfa-faq-item, btx-faq-item, plain faq-item, …) but all share the
+    // `faq-question` / `faq-answer` suffix, so match on that substring.
+    const seen = new Set();
+    const items = [];
+    for (const q of document.querySelectorAll('[class*="faq-question"]')) {
+      const question = (q.textContent || '').trim();
+      if (!question || seen.has(question)) continue;
+      const container = q.closest('[class*="faq-item"]') || q.parentElement;
+      const a = container ? container.querySelector('[class*="faq-answer"]') : null;
+      const answer = a && a.textContent ? a.textContent.trim() : '';
+      if (!answer) continue;
+      seen.add(question);
+      items.push({ question, answer });
+    }
+    if (!items.length) return;
+    const data = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: items.map((it) => ({
+        '@type': 'Question',
+        name: it.question,
+        acceptedAnswer: { '@type': 'Answer', text: it.answer },
+      })),
+    };
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(data).replace(/</g, '\\u003c');
+    document.head.appendChild(script);
+  });
   const html = await page.content();
   await page.close();
   return html;
@@ -106,19 +144,33 @@ async function main() {
 
   let ok = 0;
   const failed = [];
-  for (const path of paths) {
-    try {
-      const html = await snapshot(browser, path);
-      const outDir = path === '/' ? DIST : join(DIST, path);
-      await mkdir(outDir, { recursive: true });
-      await writeFile(join(outDir, 'index.html'), html, 'utf8');
-      ok += 1;
-      process.stdout.write(`  ✓ ${path}\n`);
-    } catch (e) {
-      failed.push(path);
-      process.stdout.write(`  ✗ ${path} — ${e.message}\n`);
+  // Prerender several routes at once — the sitemap now includes every blog
+  // article and team page (~150 routes), so a sequential pass would dominate
+  // the build. A small pool of concurrent Puppeteer pages keeps it to minutes.
+  const CONCURRENCY = Math.max(1, Number(process.env.PRERENDER_CONCURRENCY) || 6);
+  let next = 0;
+  async function worker() {
+    for (;;) {
+      const i = next;
+      next += 1;
+      if (i >= paths.length) return;
+      const path = paths[i];
+      try {
+        const html = await snapshot(browser, path);
+        const outDir = path === '/' ? DIST : join(DIST, path);
+        await mkdir(outDir, { recursive: true });
+        await writeFile(join(outDir, 'index.html'), html, 'utf8');
+        ok += 1;
+        process.stdout.write(`  ✓ ${path}\n`);
+      } catch (e) {
+        failed.push(path);
+        process.stdout.write(`  ✗ ${path} — ${e.message}\n`);
+      }
     }
   }
+  await Promise.all(
+    Array.from({ length: Math.min(CONCURRENCY, paths.length) }, () => worker()),
+  );
 
   await browser.close();
   server.close();

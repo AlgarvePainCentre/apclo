@@ -5,9 +5,16 @@ import '../../../../styles/pages/resources/testimonials/overcoming-sciatica-pain
 import '../../../../styles/layout/article-layout.css';
 import SocialShare from '../../../../components/SocialShare';
 import ManagedEmbed from '../../../../components/ManagedEmbed';
+import usePageMeta from '../../../../app/usePageMeta';
 
 const OvercomingSciaticaPainPage: React.FC = () => {
   const YT_ID = 'bkbLgNoKhkY';
+
+  usePageMeta({
+    title: 'Overcoming Sciatica Pain | Patient Story | Algarve Pain Centre',
+    description:
+      'Ghislaine Renault shares how she healed from sciatica and chronic back pain with personalised care at Algarve Pain Centre in Vale do Lobo, Algarve.',
+  });
 
   return (
     <main className="testimonial-page-main overcoming-sciatica-pain-page">
@@ -15,7 +22,7 @@ const OvercomingSciaticaPainPage: React.FC = () => {
         <div className="article-hero-media">
           <img src="/assets/images/learn/9-radiating-pain.webp" alt="" aria-hidden="true" />
           <div className="article-hero-content">
-            <h2>Overcoming Sciatica Pain</h2>
+            <h1>Overcoming Sciatica Pain</h1>
             <p>
               Ghislaine Renault shares her personal experience of living with and healing
               from sciatica and chronic back pain.

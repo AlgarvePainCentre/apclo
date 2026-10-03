@@ -1,4 +1,4 @@
-import { Component, Suspense } from 'react';
+import { Component, Suspense, useEffect } from 'react';
 import {
   Link,
   Navigate,
@@ -15,6 +15,7 @@ import CookieConsentBanner from './components/CookieConsentBanner';
 import ScrollManager from './app/ScrollManager';
 import PrefetchManager from './app/PrefetchManager';
 import CanonicalManager from './app/CanonicalManager';
+import OpenGraphManager from './app/OpenGraphManager';
 import AnalyticsManager from './app/AnalyticsManager';
 import { RouteShellSkeleton } from './components/LoadingSkeletons';
 
@@ -24,6 +25,7 @@ export function ShellLayout() {
     <div className="page">
       <a className="skip-link" href="#main-content">Skip to content</a>
       <CanonicalManager />
+      <OpenGraphManager />
       <AnalyticsManager />
       <Navbar />
       <div className="page-transition-shell">
@@ -89,10 +91,38 @@ class AppErrorBoundary extends Component {
 }
 
 export function NotFoundPage() {
+  // Unknown URLs are served the SPA shell with HTTP 200 (the host rewrites
+  // everything to index.html), so without an explicit noindex a 404 reads as a
+  // soft 404. Set robots=noindex and a real title while this page is mounted,
+  // and restore both on unmount so real routes stay indexable.
+  useEffect(() => {
+    const prevTitle = document.title;
+    document.title = 'Page not found | Algarve Pain Centre';
+    let meta = document.head.querySelector('meta[name="robots"]');
+    const created = !meta;
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute('name', 'robots');
+      document.head.appendChild(meta);
+    }
+    const prevContent = meta.getAttribute('content');
+    meta.setAttribute('content', 'noindex, follow');
+    return () => {
+      document.title = prevTitle;
+      if (created) {
+        meta.remove();
+      } else if (prevContent != null) {
+        meta.setAttribute('content', prevContent);
+      } else {
+        meta.removeAttribute('content');
+      }
+    };
+  }, []);
+
   return (
     <main className="page-main">
       <section className="page-section" style={{ padding: '80px 20px', textAlign: 'center' }}>
-        <h2>Page not found</h2>
+        <h1>Page not found</h1>
         <p style={{ marginTop: '16px' }}>Check the URL or return to the home page.</p>
         <div style={{ marginTop: '24px' }}>
           <Link to="/" className="primary-btn">Go to Home</Link>

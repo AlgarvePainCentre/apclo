@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useId, useMemo, useRef, useState } from 
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import '../../../../styles/pages/blog-page.css';
 import { blogArticles } from './articles';
+import { SITE_ORIGIN } from '../../../../utils/site';
 import { ArticleFeedSkeleton } from '../../../../components/LoadingSkeletons';
 import { useAppSelector } from '../../../../app/hooks';
 import { useGetBlogArticlesQuery } from '../../../../features/content/contentApi';
@@ -434,7 +435,7 @@ const BlogPage: React.FC = () => {
       'Clinically grounded articles on pain medicine, sports medicine, and stroke rehabilitation. Browse evidence-informed guidance and practical next steps.'
     );
     setMeta('robots', 'index,follow');
-    setCanonical(`${window.location.origin}/blog`);
+    setCanonical(`${SITE_ORIGIN}/blog`);
   }, []);
 
   const categories = useMemo(() => {
@@ -877,9 +878,9 @@ const BlogPage: React.FC = () => {
               type="button"
               className="blog-cta blog-cta-secondary"
               onClick={() => navigate('/contact')}
-              aria-label="Book an appointment"
+              aria-label="Contact us"
             >
-              Book an appointment
+              Contact us
             </button>
           </div>
         </div>

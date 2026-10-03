@@ -2,8 +2,45 @@ import { Link, useNavigate } from 'react-router-dom';
 import { doctorsData } from '../../data/doctorsData';
 import { centres } from '../../data/centres';
 import usePageMeta from '../../app/usePageMeta';
+import { serializeJsonForHtmlScript } from '../../utils/security';
 import '../../styles/layout/site-sections.css';
 import '../../styles/pages/about-page.css';
+
+const SITE = 'https://www.algarvepaincentre.com';
+
+// schema.org graph for the team: Physician for medical doctors, Person for
+// allied health / nursing, each worksFor Algarve Pain Centre. In health, AI
+// answer engines give more weight to named, credentialled authors. Ordem dos
+// Médicos numbers are added per doctor via `omNumber` in doctorsData once the
+// client supplies them — the identifier below then populates automatically.
+function buildTeamJsonLd(team) {
+  const clinic = { '@type': 'MedicalClinic', name: 'Algarve Pain Centre', url: `${SITE}/` };
+  return serializeJsonForHtmlScript({
+    '@context': 'https://schema.org',
+    '@graph': team.map((d) => {
+      const isPhysician = /^Dr\.?\s/i.test(d.name);
+      const node = {
+        '@type': isPhysician ? 'Physician' : 'Person',
+        name: d.name,
+        url: `${SITE}/doctor/${d.id}`,
+        worksFor: clinic,
+      };
+      if (Array.isArray(d.roles) && d.roles.length) {
+        if (isPhysician) node.medicalSpecialty = d.roles;
+        else node.jobTitle = d.roles[0];
+      }
+      if (d.image) node.image = `${SITE}${d.image}`;
+      if (d.omNumber) {
+        node.identifier = {
+          '@type': 'PropertyValue',
+          name: 'Ordem dos Médicos',
+          value: String(d.omNumber),
+        };
+      }
+      return node;
+    }),
+  });
+}
 
 export default function About() {
   const navigate = useNavigate();
@@ -85,6 +122,10 @@ export default function About() {
 
   return (
     <div className="about-page">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: buildTeamJsonLd(doctorsData) }}
+      />
       <header className="psx-hero about-hero" aria-label="About hero section">
             <div className="psx-hero-backdrop video-bg" aria-hidden="true">
               <video className="psx-hero-video" autoPlay muted loop playsInline preload="metadata" poster="/assets/images/illustrative/services-home-min-1.webp">
@@ -102,10 +143,10 @@ export default function About() {
             <button
               type="button"
               className="psx-btn-primary"
-              aria-label="Book an appointment to meet our team"
+              aria-label="Contact us to meet our team"
               onClick={() => navigate('/contact')}
             >
-              <span>Book an appointment</span>
+              <span>Contact us</span>
             </button>
           </div>
         </div>

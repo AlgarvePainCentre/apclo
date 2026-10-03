@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { usePageMeta } from '../../treatments/components/detail/usePageMeta';
 import LegalDocumentPage from '../LegalDocumentPage';
 import '../../../styles/pages/company/legal-pages.css';
@@ -16,6 +16,26 @@ const CookiesPage: React.FC = () => {
     description:
       'A concise cookies overview for Algarve Pain Centre, including consent controls, retention periods, and links to the full Cookie Policy.',
   });
+
+  // This is a short consent/summary companion to the full Cookie Policy, so keep
+  // it reachable for users but out of the index to avoid duplicate-content with
+  // /company/cookie-policy. Restore robots on unmount.
+  useEffect(() => {
+    let meta = document.head.querySelector('meta[name="robots"]');
+    const created = !meta;
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute('name', 'robots');
+      document.head.appendChild(meta);
+    }
+    const prev = meta.getAttribute('content');
+    meta.setAttribute('content', 'noindex, follow');
+    return () => {
+      if (created) meta.remove();
+      else if (prev != null) meta.setAttribute('content', prev);
+      else meta.removeAttribute('content');
+    };
+  }, []);
 
   return (
     <LegalDocumentPage

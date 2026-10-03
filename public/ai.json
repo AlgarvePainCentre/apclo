@@ -1,0 +1,49 @@
+{
+  "name": "Algarve Pain Centre",
+  "url": "https://www.algarvepaincentre.com/",
+  "type": "MedicalClinic",
+  "description": "Multidisciplinary pain, spine, sports and stroke clinic in Vale do Lobo, Almancil, Algarve, Portugal. English- and Portuguese-speaking team offering non-invasive, minimally invasive and, when indicated, surgical care in partnership.",
+  "languages": ["en", "pt"],
+  "address": {
+    "streetAddress": "Av. do Mar, Vale do Lobo",
+    "addressLocality": "Almancil",
+    "postalCode": "8135-107",
+    "addressRegion": "Algarve",
+    "addressCountry": "PT"
+  },
+  "contact": {
+    "telephone": "+351915915001",
+    "email": "info@algarvepaincentre.com"
+  },
+  "rating": {
+    "source": "Google",
+    "ratingValue": 4.9,
+    "reviewCount": 200
+  },
+  "medicalSpecialty": [
+    "Pain Management",
+    "Spine",
+    "Sports Medicine",
+    "Stroke Rehabilitation",
+    "Orthopaedics",
+    "Neuroradiology",
+    "Physical Medicine and Rehabilitation"
+  ],
+  "careModel": [
+    "Non-invasive",
+    "Minimally invasive (image-guided)",
+    "Surgical when indicated, in partnership"
+  ],
+  "centres": [
+    "Algarve Pain Centre",
+    "Algarve Spine Centre",
+    "Algarve Migraine & Neurotherapy Centre",
+    "Algarve Heart Centre",
+    "Algarve Knee & Hip Centre",
+    "Algarve Primary Care Centre"
+  ],
+  "resources": {
+    "llmsTxt": "https://www.algarvepaincentre.com/llms.txt",
+    "sitemap": "https://www.algarvepaincentre.com/sitemap.xml"
+  }
+}
