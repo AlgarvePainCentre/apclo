@@ -14,7 +14,39 @@ import { createServer } from 'node:http';
 import { readFile, writeFile, mkdir, stat } from 'node:fs/promises';
 import { fileURLToPath } from 'node:url';
 import { dirname, join, extname } from 'node:path';
-import puppeteer from 'puppeteer';
+
+/*
+ * Launch a headless browser for prerendering.
+ *
+ * On Vercel (and any Linux/CI build) the Chromium bundled with the full
+ * `puppeteer` package fails to start (missing system libraries), so the
+ * prerender used to silently skip and ship a bare SPA with no SEO HTML.
+ * There we use `@sparticuz/chromium` — a Chromium built for serverless — via
+ * `puppeteer-core`. Locally (macOS/Windows) we keep the full `puppeteer` and
+ * its bundled Chrome. If the serverless launch fails we fall back to full
+ * puppeteer, and the caller still degrades gracefully to "no snapshots".
+ */
+async function launchBrowser() {
+  const serverless = !!process.env.VERCEL || !!process.env.CI || process.platform === 'linux';
+  if (serverless) {
+    try {
+      const { default: chromium } = await import('@sparticuz/chromium');
+      const { default: puppeteerCore } = await import('puppeteer-core');
+      return await puppeteerCore.launch({
+        args: [...chromium.args, '--no-sandbox', '--disable-dev-shm-usage'],
+        executablePath: await chromium.executablePath(),
+        headless: chromium.headless,
+      });
+    } catch (e) {
+      console.warn(`@sparticuz/chromium launch failed (${e.message}); trying bundled puppeteer…`);
+    }
+  }
+  const { default: puppeteer } = await import('puppeteer');
+  return puppeteer.launch({
+    headless: 'new',
+    args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+  });
+}
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = join(ROOT, 'dist');
@@ -130,10 +162,7 @@ async function main() {
 
   let browser;
   try {
-    browser = await puppeteer.launch({
-      headless: 'new',
-      args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
-    });
+    browser = await launchBrowser();
   } catch (e) {
     // If the build environment can't launch Chromium, don't break the deploy —
     // ship the normal SPA (no prerender) rather than failing the build.
