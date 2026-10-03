@@ -878,9 +878,9 @@ const BlogPage: React.FC = () => {
               type="button"
               className="blog-cta blog-cta-secondary"
               onClick={() => navigate('/contact')}
-              aria-label="Book an appointment"
+              aria-label="Contact us"
             >
-              Book an appointment
+              Contact us
             </button>
           </div>
         </div>

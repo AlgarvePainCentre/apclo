@@ -209,8 +209,8 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                 `Specialist assessment and treatment pathways for ${areaLabel}—personalised care that helps you find relief and return to daily life with confidence.`}
             </p>
             <div className="psx-hero-actions">
-              <Link to="/contact" className="psx-btn-primary" aria-label={`Book an appointment for ${areaLabel}`}>
-                <span>Book an appointment</span>
+              <Link to="/contact" className="psx-btn-primary" aria-label={`Contact us for ${areaLabel}`}>
+                <span>Contact us</span>
               </Link>
               <a
                 href={`#${treatmentsSectionId}`}
@@ -269,8 +269,8 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                     {paragraph}
                   </p>
                 ))}
-                <Link to="/contact" className="psx-btn-primary" aria-label={`Book an appointment for ${areaLabel}`}>
-                  <span>Book an appointment</span>
+                <Link to="/contact" className="psx-btn-primary" aria-label={`Contact us for ${areaLabel}`}>
+                  <span>Contact us</span>
                 </Link>
               </article>
               <div className="psx-media" aria-hidden="true">
