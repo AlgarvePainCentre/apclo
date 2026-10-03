@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { getAllTreatmentNavItems } from './treatmentNavData';
+import { serializeJsonForHtmlScript } from '../../../../utils/security';
+import { SITE_ORIGIN } from '../../../../utils/site';
 
 type TreatmentBreadcrumbProps = {
   currentLabel: string;
@@ -71,6 +73,20 @@ export const TreatmentBreadcrumb: React.FC<TreatmentBreadcrumbProps> = ({ curren
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: serializeJsonForHtmlScript({
+            '@context': 'https://schema.org',
+            '@type': 'BreadcrumbList',
+            itemListElement: [
+              { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_ORIGIN}/` },
+              { '@type': 'ListItem', position: 2, name: 'Treatments', item: `${SITE_ORIGIN}/treatments` },
+              { '@type': 'ListItem', position: 3, name: currentLabel, item: `${SITE_ORIGIN}${location.pathname}` },
+            ],
+          }),
+        }}
+      />
       <nav className="treatment-breadcrumb-root article-breadcrumb treatment-breadcrumb" aria-label="Breadcrumb">
         <ol className="article-breadcrumb-list">
           <li>

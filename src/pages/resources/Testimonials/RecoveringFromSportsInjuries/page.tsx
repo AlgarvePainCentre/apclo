@@ -15,7 +15,7 @@ const RecoveringFromSportsInjuriesPage: React.FC = () => {
         <div className="article-hero-media">
           <img src="/assets/images/illustrative/sports-medicine-min.webp" alt="" aria-hidden="true" />
           <div className="article-hero-content">
-            <h2>Recovering from Sports Injuries</h2>
+            <h1>Recovering from Sports Injuries</h1>
             <p>
               Return-to-sport recovery stories from patients who rebuilt strength, mobility and confidence
               with personalised rehabilitation.

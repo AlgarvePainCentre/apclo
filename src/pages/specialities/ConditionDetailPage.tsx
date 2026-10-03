@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { serializeJsonForHtmlScript } from '../../utils/security';
+import { SITE_ORIGIN } from '../../utils/site';
 import ArticleBreadcrumb from '../../components/ArticleBreadcrumb';
 import ArticlePrevNextNav from '../../components/ArticlePrevNextNav';
 import LumbarInterventions from '../../components/LumbarInterventions';
@@ -83,11 +84,10 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
   const treatmentsSectionId = `${slugBase}-treatments`;
   const contactIdPrefix = `${slugBase}-contact`;
 
-  const canonicalUrl = React.useMemo(() => {
-    if (typeof window === 'undefined') return '';
-    const origin = window.location.origin || 'https://www.algarvepaincentre.com';
-    return `${origin}${location.pathname}`;
-  }, [location.pathname]);
+  const canonicalUrl = React.useMemo(
+    () => `${SITE_ORIGIN}${location.pathname}`,
+    [location.pathname],
+  );
 
   const structuredDataJson = React.useMemo(() => {
     const organization = {
@@ -230,6 +230,20 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
               { label: 'Specialities', to: '/specialities' },
               { label: title, isCurrent: true },
             ]}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: serializeJsonForHtmlScript({
+                '@context': 'https://schema.org',
+                '@type': 'BreadcrumbList',
+                itemListElement: [
+                  { '@type': 'ListItem', position: 1, name: 'Home', item: `${SITE_ORIGIN}/` },
+                  { '@type': 'ListItem', position: 2, name: 'Specialities', item: `${SITE_ORIGIN}/specialities` },
+                  { '@type': 'ListItem', position: 3, name: title, item: `${SITE_ORIGIN}${location.pathname}` },
+                ],
+              }),
+            }}
           />
           <section id={treatmentsSectionId} className="psx-section psx-treatments">
             <div className="psx-lead">
