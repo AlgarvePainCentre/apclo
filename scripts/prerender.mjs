@@ -106,19 +106,33 @@ async function main() {
 
   let ok = 0;
   const failed = [];
-  for (const path of paths) {
-    try {
-      const html = await snapshot(browser, path);
-      const outDir = path === '/' ? DIST : join(DIST, path);
-      await mkdir(outDir, { recursive: true });
-      await writeFile(join(outDir, 'index.html'), html, 'utf8');
-      ok += 1;
-      process.stdout.write(`  ✓ ${path}\n`);
-    } catch (e) {
-      failed.push(path);
-      process.stdout.write(`  ✗ ${path} — ${e.message}\n`);
+  // Prerender several routes at once — the sitemap now includes every blog
+  // article and team page (~150 routes), so a sequential pass would dominate
+  // the build. A small pool of concurrent Puppeteer pages keeps it to minutes.
+  const CONCURRENCY = Math.max(1, Number(process.env.PRERENDER_CONCURRENCY) || 6);
+  let next = 0;
+  async function worker() {
+    for (;;) {
+      const i = next;
+      next += 1;
+      if (i >= paths.length) return;
+      const path = paths[i];
+      try {
+        const html = await snapshot(browser, path);
+        const outDir = path === '/' ? DIST : join(DIST, path);
+        await mkdir(outDir, { recursive: true });
+        await writeFile(join(outDir, 'index.html'), html, 'utf8');
+        ok += 1;
+        process.stdout.write(`  ✓ ${path}\n`);
+      } catch (e) {
+        failed.push(path);
+        process.stdout.write(`  ✗ ${path} — ${e.message}\n`);
+      }
     }
   }
+  await Promise.all(
+    Array.from({ length: Math.min(CONCURRENCY, paths.length) }, () => worker()),
+  );
 
   await browser.close();
   server.close();
