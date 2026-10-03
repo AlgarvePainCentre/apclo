@@ -81,6 +81,44 @@ async function snapshot(browser, path) {
   );
   // let head-managing effects (meta / canonical / JSON-LD) settle
   await new Promise((r) => setTimeout(r, 350));
+  // Bake a schema.org FAQPage from any on-page FAQ accordion (cryo-faq markup),
+  // so AI answer engines and Google can cite the Q&A. Skipped when a page already
+  // emits its own FAQPage (e.g. via the TreatmentFaq component).
+  await page.evaluate(() => {
+    const hasFaqPage = Array.from(
+      document.querySelectorAll('script[type="application/ld+json"]'),
+    ).some((s) => /"@type"\s*:\s*"FAQPage"/.test(s.textContent || ''));
+    if (hasFaqPage) return;
+    // Each treatment page prefixes its FAQ classes differently (cryo-faq-item,
+    // rfa-faq-item, btx-faq-item, plain faq-item, …) but all share the
+    // `faq-question` / `faq-answer` suffix, so match on that substring.
+    const seen = new Set();
+    const items = [];
+    for (const q of document.querySelectorAll('[class*="faq-question"]')) {
+      const question = (q.textContent || '').trim();
+      if (!question || seen.has(question)) continue;
+      const container = q.closest('[class*="faq-item"]') || q.parentElement;
+      const a = container ? container.querySelector('[class*="faq-answer"]') : null;
+      const answer = a && a.textContent ? a.textContent.trim() : '';
+      if (!answer) continue;
+      seen.add(question);
+      items.push({ question, answer });
+    }
+    if (!items.length) return;
+    const data = {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: items.map((it) => ({
+        '@type': 'Question',
+        name: it.question,
+        acceptedAnswer: { '@type': 'Answer', text: it.answer },
+      })),
+    };
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(data).replace(/</g, '\\u003c');
+    document.head.appendChild(script);
+  });
   const html = await page.content();
   await page.close();
   return html;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { serializeJsonForHtmlScript } from '../../../../utils/security';
 
 export type TreatmentFaqItem = {
   id: string;
@@ -12,6 +13,12 @@ type TreatmentFaqProps = {
   items: TreatmentFaqItem[];
   initialActiveId?: string | null;
   className?: string;
+  /**
+   * Emit a schema.org FAQPage JSON-LD block from `items` so AI answer engines
+   * (and Google rich results) can cite the Q&A. On by default; pass false when
+   * another FAQPage is already present on the same page to avoid duplicates.
+   */
+  emitJsonLd?: boolean;
 };
 
 export const TreatmentFaq: React.FC<TreatmentFaqProps> = ({
@@ -20,14 +27,34 @@ export const TreatmentFaq: React.FC<TreatmentFaqProps> = ({
   items,
   initialActiveId,
   className,
+  emitJsonLd = true,
 }) => {
   const [activeId, setActiveId] = React.useState<string | null>(
     initialActiveId ?? (items[0]?.id ?? null),
   );
   const baseId = titleId.replace(/-title$/, '') || 'treatment-faq';
 
+  const faqJsonLd =
+    emitJsonLd && items.length > 0
+      ? serializeJsonForHtmlScript({
+          '@context': 'https://schema.org',
+          '@type': 'FAQPage',
+          mainEntity: items.map((item) => ({
+            '@type': 'Question',
+            name: item.question,
+            acceptedAnswer: {
+              '@type': 'Answer',
+              text: item.answer,
+            },
+          })),
+        })
+      : null;
+
   return (
     <div className={['cryo-faq-inner', className].filter(Boolean).join(' ')} aria-labelledby={titleId}>
+      {faqJsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: faqJsonLd }} />
+      )}
       <header className="cryo-faq-header">
         <h2 id={titleId} className="cryo-faq-title">
           {title}
