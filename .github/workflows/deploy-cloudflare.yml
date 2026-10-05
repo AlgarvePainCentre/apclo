@@ -1,0 +1,49 @@
+name: Deploy to Cloudflare
+
+# Builds the site (Vite + prerender of every sitemap route) and deploys it to
+# the Cloudflare Worker defined in wrangler.jsonc.
+#
+# Dormant until the repository variable CLOUDFLARE_DEPLOY is set to "true".
+# Setup (GitHub → Settings → Secrets and variables → Actions):
+#   secrets.CLOUDFLARE_API_TOKEN    API token with the "Edit Cloudflare Workers" template
+#   secrets.CLOUDFLARE_ACCOUNT_ID   Cloudflare account id
+#   vars.VITE_HCAPTCHA_SITEKEY      hCaptcha site key (public; baked into the build)
+#   vars.CLOUDFLARE_DEPLOY          "true" to enable this workflow
+# Worker secrets (HCAPTCHA_SECRET, ZOHO_FORM_ACTION) are set in Cloudflare itself.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: cloudflare-deploy
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: vars.CLOUDFLARE_DEPLOY == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Build and prerender
+        run: npm run build:cloudflare
+        env:
+          # Fail the build rather than ship the bare SPA if prerender breaks.
+          PRERENDER_REQUIRED: '1'
+          VITE_HCAPTCHA_SITEKEY: ${{ vars.VITE_HCAPTCHA_SITEKEY }}
+
+      - name: Deploy to Cloudflare
+        run: npx wrangler deploy
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
