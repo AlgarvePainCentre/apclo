@@ -1,5 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { doctorsData } from '../../data/doctorsData';
+import { teamCategories, activeTeam } from '../../data/team';
 import { centres } from '../../data/centres';
 import usePageMeta from '../../app/usePageMeta';
 import { serializeJsonForHtmlScript } from '../../utils/security';
@@ -54,77 +55,12 @@ export default function About() {
   const doctorsById = new Map(doctorsData.map((doctor) => [doctor.id, doctor]));
   const getDoctor = (id) => doctorsById.get(id);
 
-  const teamCategories = [
-    {
-      id: 'medicina-dor-desportiva',
-      title: 'Pain Medicine and Sports Medicine',
-      meta: { label: 'Clinical Director', doctorId: 'miguel-costa' },
-      groups: [
-        {
-          id: 'medicina-dor-desportiva',
-          doctorIds: ['miguel-costa', 'gisela-leandro'],
-        },
-      ],
-    },
-    {
-      id: 'neuroradiologia',
-      title: 'Neuroradiology',
-      groups: [
-        {
-          id: 'intervencao-minimamente-invasiva-coluna',
-          title: 'Minimally Invasive Spine Intervention',
-          doctorIds: ['miguel-batista'],
-        },
-      ],
-    },
-    {
-      id: 'clinica-geral',
-      title: 'General Practice and Medicine 3.0',
-      groups: [{ id: 'clinica-geral', doctorIds: ['nuno-lica'] }],
-    },
-    {
-      id: 'ortopedia',
-      title: 'Orthopaedics',
-      groups: [
-        {
-          id: 'coluna',
-          title: 'Spine',
-          doctorIds: ['ricardo-frada', 'pedro-sousa-neves', 'joao-ricardo-soares'],
-        },
-        {
-          id: 'anca-e-joelho',
-          title: 'Hip and Knee',
-          doctorIds: ['joao-ricardo-soares', 'tiago-bessa'],
-        },
-        {
-          id: 'ombro',
-          title: 'Shoulder',
-          doctorIds: ['diogo-gomes'],
-        },
-        {
-          id: 'pe-e-tornozelo',
-          title: 'Foot and Ankle',
-          doctorIds: ['joao-vide'],
-        },
-      ],
-    },
-    {
-      id: 'enfermeira',
-      title: 'Nursing',
-      groups: [{ id: 'enfermeira', doctorIds: ['joana-madeira', 'joana-ferreira', 'raquel-antao'] }],
-    },
-    {
-      id: 'dor-cronica',
-      title: 'Chronic Pain Consultant',
-      groups: [{ id: 'dor-cronica', doctorIds: ['javier-duran', 'edgar-semedo'] }],
-    },
-  ];
 
   return (
     <div className="about-page">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: buildTeamJsonLd(doctorsData) }}
+        dangerouslySetInnerHTML={{ __html: buildTeamJsonLd(activeTeam) }}
       />
       <header className="psx-hero about-hero" aria-label="About hero section">
             <div className="psx-hero-backdrop video-bg" aria-hidden="true">
