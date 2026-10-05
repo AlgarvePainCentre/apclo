@@ -205,8 +205,8 @@ const PsychologyPage: React.FC = () => {
                 <h3 className="st-step-title">Initial Evaluation</h3>
                 <div className="st-step-divider" aria-hidden="true" />
                 <p className="st-step-body">
-                  The process begins with a thorough evaluation, where speech therapists assess speech, language, and swallowing functions.
-                  This includes understanding the patient&apos;s challenges and establishing clear therapy goals.
+                  The process begins with a thorough assessment, where the psychologist explores your history, symptoms, stressors, and sleep.
+                  Together you build a shared understanding of what keeps distress going and establish clear, meaningful goals.
                 </p>
               </article>
 
@@ -217,8 +217,8 @@ const PsychologyPage: React.FC = () => {
                 <h3 className="st-step-title">Personalized Treatment Plan</h3>
                 <div className="st-step-divider" aria-hidden="true" />
                 <p className="st-step-body">
-                  Based on the assessment, therapists develop an individualized plan that may include speech exercises, language games, and
-                  activities to improve swallowing.
+                  Based on this formulation, your psychologist develops an individualized plan using evidence-based approaches such as
+                  cognitive behavioural strategies, acceptance-based methods, relaxation, and values-based goal setting.
                 </p>
               </article>
 
@@ -229,8 +229,8 @@ const PsychologyPage: React.FC = () => {
                 <h3 className="st-step-title">Ongoing Therapy Sessions</h3>
                 <div className="st-step-divider" aria-hidden="true" />
                 <p className="st-step-body">
-                  Therapy typically involves regular sessions that focus on specific goals. Sessions may include exercises to strengthen
-                  muscles, articulation practice, cognitive-linguistic tasks, and techniques for safe swallowing when needed.
+                  Therapy involves regular, collaborative sessions focused on your goals. Between visits you practise the skills you learn and
+                  track meaningful outcomes, building lasting tools for self-management.
                 </p>
               </article>
             </div>
@@ -298,26 +298,26 @@ const PsychologyPage: React.FC = () => {
 
             <div className="rfa-benefits-grid" role="list" aria-label="Benefits of psychology care">
               <article className="rfa-benefit" role="listitem">
-                <h3 className="rfa-benefit-title">Improved Cognitive-Linguistic Skills</h3>
+                <h3 className="rfa-benefit-title">Reduced Distress &amp; Better Coping</h3>
                 <div className="rfa-benefit-divider" aria-hidden="true" />
                 <p className="rfa-benefit-body">
-                  Speech therapy also supports cognitive-linguistic development, especially in children and those recovering from brain injuries.
+                  Evidence-based strategies help you manage stress, anxiety, and the emotional impact of pain, building resilience through flare-ups and setbacks.
                 </p>
               </article>
 
               <article className="rfa-benefit" role="listitem">
-                <h3 className="rfa-benefit-title">Increased Social Confidence</h3>
+                <h3 className="rfa-benefit-title">Improved Sleep &amp; Daily Function</h3>
                 <div className="rfa-benefit-divider" aria-hidden="true" />
                 <p className="rfa-benefit-body">
-                  By enhancing communication skills, patients feel more confident and comfortable in social situations, which can improve social integration and personal relationships.
+                  Practical tools for pacing, relaxation, and routine support better sleep and energy management, making it easier to stay active and engaged.
                 </p>
               </article>
 
               <article className="rfa-benefit" role="listitem">
-                <h3 className="rfa-benefit-title">Support for Swallowing Disorders</h3>
+                <h3 className="rfa-benefit-title">Improved Mood &amp; Quality of Life</h3>
                 <div className="rfa-benefit-divider" aria-hidden="true" />
                 <p className="rfa-benefit-body">
-                  For patients with swallowing difficulties, speech therapy offers techniques that promote safer swallowing and reduce the risk of choking or aspiration.
+                  By addressing how pain and mood interact, psychological support can lift mood and improve overall quality of life, even when symptoms persist.
                 </p>
               </article>
             </div>
