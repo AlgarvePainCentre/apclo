@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { useParams, useNavigate, Navigate } from 'react-router-dom';
 import { doctorsData } from '../../data/doctorsData';
+import { activeTeamIds } from '../../data/team';
 import usePageMeta from '../../app/usePageMeta';
 import '../../styles/pages/doctor-detail-page.css';
 
@@ -16,6 +18,27 @@ export default function DoctorDetail() {
     title: doctor ? `${doctor.name} | Algarve Pain Centre` : undefined,
     description: metaDesc,
   });
+
+  // Profiles not on the current team (see src/data/team.js) stay reachable but
+  // out of the index until the clinic confirms them.
+  const indexable = Boolean(doctor) && activeTeamIds.has(doctor.id);
+  useEffect(() => {
+    if (indexable) return undefined;
+    let meta = document.head.querySelector('meta[name="robots"]');
+    const created = !meta;
+    if (!meta) {
+      meta = document.createElement('meta');
+      meta.setAttribute('name', 'robots');
+      document.head.appendChild(meta);
+    }
+    const prev = meta.getAttribute('content');
+    meta.setAttribute('content', 'noindex, follow');
+    return () => {
+      if (created) meta.remove();
+      else if (prev != null) meta.setAttribute('content', prev);
+      else meta.removeAttribute('content');
+    };
+  }, [indexable]);
 
   if (!doctor) {
     return <Navigate to="/about" replace />;
