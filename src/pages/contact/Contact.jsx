@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import '../../pages/specialities/PainSpecialtyClone.css';
 import '../../styles/pages/contact-page.css';
 import ManagedEmbed from '../../components/ManagedEmbed';
+import { trackEvent } from '../../utils/analytics';
 
 export default function Contact() {
   const heroRef = useRef(null);
@@ -40,6 +41,7 @@ export default function Contact() {
     if (!token) {
       setStatus('error');
       setErrorMsg('Please confirm you are human.');
+      trackEvent('contact_form_error', { reason: 'captcha_missing' });
       return;
     }
     setStatus('submitting');
@@ -61,16 +63,24 @@ export default function Contact() {
       const data = await res.json().catch(() => ({}));
       if (res.ok && data.ok) {
         setStatus('success');
+        // GA4's recommended lead event, so submissions can be counted and
+        // compared over time. Honeypot hits (bots) also get a fake success
+        // from the API, so they are left out.
+        if (!fd.get('company')) {
+          trackEvent('generate_lead', { form: 'contact', method: 'website_form' });
+        }
         form.reset();
         if (window.hcaptcha) window.hcaptcha.reset();
       } else {
         setStatus('error');
         setErrorMsg(data.error || 'Could not send your message. Please try again or call us.');
+        trackEvent('contact_form_error', { reason: 'server', status: res.status });
         if (window.hcaptcha) window.hcaptcha.reset();
       }
     } catch {
       setStatus('error');
       setErrorMsg('Could not send your message. Please try again or call us.');
+      trackEvent('contact_form_error', { reason: 'network' });
     }
   };
 

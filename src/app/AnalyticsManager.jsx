@@ -1,5 +1,22 @@
 import { useEffect } from 'react';
 import { useCookieConsent } from '../utils/consentManager';
+import { trackEvent } from '../utils/analytics';
+
+// Phone, email and WhatsApp links are contacts too, so every click on one is
+// tracked as `contact_click`, site-wide, from a single delegated listener.
+const CONTACT_LINKS = [
+  { method: 'phone', match: (href) => href.startsWith('tel:') },
+  { method: 'email', match: (href) => href.startsWith('mailto:') },
+  { method: 'whatsapp', match: (href) => /^https:\/\/(wa\.me|api\.whatsapp\.com)\//.test(href) },
+];
+
+function handleContactClick(event) {
+  const link = event.target instanceof Element ? event.target.closest('a[href]') : null;
+  if (!link) return;
+  const href = link.getAttribute('href') || '';
+  const kind = CONTACT_LINKS.find(({ match }) => match(href));
+  if (kind) trackEvent('contact_click', { method: kind.method, page_path: window.location.pathname });
+}
 
 /*
  * Consent-gated analytics loader.
@@ -59,6 +76,13 @@ export default function AnalyticsManager() {
       /* never let analytics break the app */
     }
   }, [allowed]);
+
+  // trackEvent stays silent until analytics is loaded (i.e. after consent),
+  // so the listener can be attached unconditionally.
+  useEffect(() => {
+    document.addEventListener('click', handleContactClick, true);
+    return () => document.removeEventListener('click', handleContactClick, true);
+  }, []);
 
   return null;
 }

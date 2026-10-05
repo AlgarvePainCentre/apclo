@@ -62,7 +62,6 @@ export default function CardsPainSection({ heroVariant, handleVideoEnter }) {
             <a
               className="home-quick-appointment-link"
               href="tel:+351915915001"
-              onClick={() => trackEvent('call_click', { location: 'home-quick-appointment' })}
             >
               Call now
             </a>
