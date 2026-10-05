@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import usePageMeta from '../../../app/usePageMeta';
 import { Link } from 'react-router-dom';
 import './MigraineCentre.css';
 
@@ -34,11 +34,13 @@ const conditions = [
 ];
 
 export default function MigraineCentrePage() {
-  useEffect(() => {
-    document.title = 'Algarve Migraine & Neurotherapy Centre | Algarve Pain Centre';
-  }, []);
+  usePageMeta({
+    title: 'Algarve Migraine & Neurotherapy Centre | Algarve Pain Centre',
+    description:
+      'Botulinum toxin and neuromodulation treatments for chronic migraine, movement disorders and facial pain at the Algarve Migraine & Neurotherapy Centre in Vale do Lobo, Algarve.',
+  });
 
-  return (
+return (
     <div className="migraine-centre-page">
       <section className="mc-hero">
         <div className="mc-hero-inner">

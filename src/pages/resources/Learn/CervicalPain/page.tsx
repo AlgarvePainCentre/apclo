@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import usePageMeta from '../../../../app/usePageMeta';
 import { useNavigate } from 'react-router-dom';
 import SocialShare from '../../../../components/SocialShare';
 import '../../../../styles/layout/article-layout.css';
@@ -6,9 +7,14 @@ import '../../../../styles/layout/article-layout.css';
 const CervicalPainPage: React.FC = () => {
   const navigate = useNavigate();
 
+  usePageMeta({
+    title: 'Cervical Pain | Algarve Pain Centre',
+    description:
+      'What cervical (neck) pain is, how the cervical spine works and what causes it, with self-care guidance from Algarve Pain Centre in Vale do Lobo, Algarve.',
+  });
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'Cervical Pain | Algarve Pain Centre';
   }, []);
 
   return (
