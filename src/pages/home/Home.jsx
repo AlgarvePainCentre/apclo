@@ -202,7 +202,6 @@ export default function Home() {
       document.head.appendChild(meta);
     }
     meta.content = descriptionText;
-    trackEvent('page_view', { page: 'home' });
   }, []);
 
   useHeroParallax({
