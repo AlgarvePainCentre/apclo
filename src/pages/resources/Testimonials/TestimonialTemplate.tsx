@@ -4,6 +4,7 @@ import '../../../styles/pages/resources/testimonials/testimonials-shared.css';
 import '../../../styles/layout/article-layout.css';
 import SocialShare from '../../../components/SocialShare';
 import ManagedEmbed from '../../../components/ManagedEmbed';
+import usePageMeta from '../../../app/usePageMeta';
 
 export type TestimonialTemplateProps = {
   title: string;
@@ -29,9 +30,10 @@ const TestimonialTemplate: React.FC<TestimonialTemplateProps> = ({
   heroImage,
   next,
 }) => {
-  React.useEffect(() => {
-    document.title = `${title} | Algarve Pain Centre`;
-  }, [title]);
+  usePageMeta({
+    title: `${title} | Patient Story | Algarve Pain Centre`,
+    description: `${intro} A patient story from Algarve Pain Centre in Vale do Lobo, Algarve.`,
+  });
 
   return (
     <main className="testimonial-page-main">
@@ -39,7 +41,7 @@ const TestimonialTemplate: React.FC<TestimonialTemplateProps> = ({
         <div className="article-hero-media">
           <img src={heroImage} alt="" aria-hidden="true" />
           <div className="article-hero-content">
-            <h2>{title}</h2>
+            <h1>{title}</h1>
             <p>{intro}</p>
           </div>
         </div>

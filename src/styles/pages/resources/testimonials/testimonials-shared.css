@@ -54,6 +54,7 @@
   max-width: 800px;
 }
 
+.testimonial-page-main .article-hero-content h1,
 .testimonial-page-main .article-hero-content h2 {
   color: #ffffff;
   font-size: 3rem;
@@ -152,6 +153,7 @@
     padding-top: calc(3.5rem + var(--navbar-offset, 88px));
     min-height: calc(46vh + var(--navbar-offset, 88px));
   }
+  .testimonial-page-main .article-hero-content h1,
   .testimonial-page-main .article-hero-content h2 {
     font-size: 2.2rem;
   }

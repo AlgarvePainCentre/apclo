@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import usePageMeta from '../../../../app/usePageMeta';
 import { useNavigate } from 'react-router-dom';
 import SocialShare from '../../../../components/SocialShare';
 import '../../../../styles/layout/article-layout.css';
@@ -6,9 +7,14 @@ import '../../../../styles/layout/article-layout.css';
 const AcuteAndChronicPainPage: React.FC = () => {
   const navigate = useNavigate();
 
+  usePageMeta({
+    title: 'Understanding Acute and Chronic Pain | Algarve Pain Centre',
+    description:
+      'How acute and chronic pain differ in cause, duration and treatment, and why the distinction matters for diagnosis. A guide from Algarve Pain Centre, Algarve.',
+  });
+
   useEffect(() => {
     window.scrollTo(0, 0);
-    document.title = 'Understanding Acute and Chronic Pain | Algarve Pain Centre';
   }, []);
 
   return (
