@@ -160,13 +160,22 @@ async function main() {
   const paths = await readSitemapPaths();
   const server = await startServer();
 
+  // PRERENDER_REQUIRED=1 (set by the Cloudflare deploy) turns every prerender
+  // problem into a failed build, so a deploy can never silently ship the bare
+  // SPA without the SEO HTML. Without it, failures degrade gracefully.
+  const required = process.env.PRERENDER_REQUIRED === '1';
+
   let browser;
   try {
     browser = await launchBrowser();
   } catch (e) {
+    server.close();
+    if (required) {
+      console.error(`\n✗ Prerender failed — could not launch a browser: ${e.message}`);
+      process.exit(1);
+    }
     // If the build environment can't launch Chromium, don't break the deploy —
     // ship the normal SPA (no prerender) rather than failing the build.
-    server.close();
     console.warn(`\n⚠ Prerender skipped — could not launch a browser: ${e.message}\n  The SPA still deploys; prerendered snapshots are just absent.`);
     process.exit(0);
   }
@@ -205,7 +214,8 @@ async function main() {
   server.close();
   console.log(`\nPrerendered ${ok}/${paths.length} routes.` + (failed.length ? ` Failed: ${failed.join(', ')}` : ''));
   // Don't fail the build over a few flaky routes, but do fail if nothing worked.
-  if (ok === 0) process.exit(1);
+  // When prerender is required, every route must succeed.
+  if (ok === 0 || (required && failed.length)) process.exit(1);
 }
 
 main().catch((e) => {

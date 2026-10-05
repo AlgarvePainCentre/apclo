@@ -25,7 +25,8 @@
     "backend:test": "npm --prefix backend run test",
     "optimize:images": "node scripts/optimize-images.mjs",
     "optimize:videos": "node scripts/optimize-videos.mjs",
-    "perf:build": "vite build && lhci autorun || true"
+    "perf:build": "vite build && lhci autorun || true",
+    "build:cloudflare": "npm run build:seo && node scripts/cloudflare-assets.mjs"
   },
   "devDependencies": {
     "@lhci/cli": "^0.12.0",
@@ -43,6 +44,7 @@
     "puppeteer-core": "^25.12.0",
     "sharp": "^0.34.3",
     "vite": "^6.0.0",
-    "vitest": "^2.1.1"
+    "vitest": "^2.1.1",
+    "wrangler": "^4.147.0"
   }
 }
