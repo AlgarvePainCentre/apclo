@@ -8,6 +8,7 @@ import '../../pages/specialities/PainSpecialtyClone.css';
 import '../../styles/pages/contact-page.css';
 import ManagedEmbed from '../../components/ManagedEmbed';
 import { trackEvent } from '../../utils/analytics';
+import { getLandingPage } from '../../utils/landingPage';
 
 export default function Contact() {
   const heroRef = useRef(null);
@@ -103,6 +104,7 @@ export default function Contact() {
           countryCode: '+351',
           message: fd.get('message') || '',
           company: fd.get('company') || '',
+          referrer: getLandingPage(),
           hcaptchaToken: token,
         }),
       });

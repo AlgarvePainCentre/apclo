@@ -3,12 +3,14 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { RouterProvider } from 'react-router-dom';
 import { enforceHttpsRedirect } from './utils/security';
+import { rememberLandingPage } from './utils/landingPage';
 import { router, routerFallbackElement } from './app/router';
 import { store } from './app/store';
 
 enforceHttpsRedirect();
 
 const rootElement = document.getElementById('root');
+rememberLandingPage();
 const reactRoot = ReactDOM.createRoot(rootElement);
 
 reactRoot.render(
