@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { useCookieConsent } from '../utils/consentManager';
 import { trackEvent } from '../utils/analytics';
 
@@ -57,12 +58,16 @@ function loadGa4(id) {
   s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`;
   document.head.appendChild(s);
   window.gtag('js', new Date());
-  window.gtag('config', id, { anonymize_ip: true });
+  // Page views are sent by AnalyticsManager on every route change (this is a
+  // single-page app, and GA4's own history detection was not recording the
+  // in-app navigations), so the automatic one is turned off here.
+  window.gtag('config', id, { anonymize_ip: true, send_page_view: false });
 }
 
 export default function AnalyticsManager() {
   const { consent } = useCookieConsent();
   const allowed = Boolean(consent?.analytics);
+  const location = useLocation();
 
   useEffect(() => {
     if (!allowed) return; // no consent yet → stay dormant
@@ -76,6 +81,25 @@ export default function AnalyticsManager() {
       /* never let analytics break the app */
     }
   }, [allowed]);
+
+  // One GA4 page_view per route, including the landing page. Sent after a short
+  // delay so the routed page has rendered and set its <title>; repeated
+  // renders of the same URL are ignored.
+  useEffect(() => {
+    if (!allowed || GTM_ID || !GA4_ID) return undefined;
+    const url = window.location.href;
+    const path = `${location.pathname}${location.search}`;
+    const timer = setTimeout(() => {
+      if (typeof window.gtag !== 'function' || window.__apcLastPageView === url) return;
+      window.__apcLastPageView = url;
+      window.gtag('event', 'page_view', {
+        page_location: url,
+        page_path: path,
+        page_title: document.title,
+      });
+    }, 600);
+    return () => clearTimeout(timer);
+  }, [allowed, location.pathname, location.search]);
 
   // trackEvent stays silent until analytics is loaded (i.e. after consent),
   // so the listener can be attached unconditionally.
