@@ -22,22 +22,68 @@ export default function Contact() {
   const hcaptchaSiteKey =
     import.meta.env.VITE_HCAPTCHA_SITEKEY || '10000000-ffff-ffff-ffff-000000000001';
 
+  // hCaptcha is rendered explicitly into the form's container every time the
+  // form mounts. Relying on hCaptcha's auto-render only worked on the first
+  // page load: after navigating away and back (or after a successful send),
+  // the container was new, no widget appeared and the form could not be sent.
+  // Skipped during prerender (navigator.webdriver), so no captcha iframe is
+  // baked into the static HTML.
+  const [captchaApiReady, setCaptchaApiReady] = useState(
+    () => typeof window !== 'undefined' && typeof window.hcaptcha?.render === 'function',
+  );
+  const [captchaEl, setCaptchaEl] = useState(null);
+  const captchaWidgetId = useRef(null);
+
   useEffect(() => {
-    if (document.querySelector('script[src*="js.hcaptcha.com/1/api.js"]')) return undefined;
-    const script = document.createElement('script');
-    script.src = 'https://js.hcaptcha.com/1/api.js';
-    script.async = true;
-    script.defer = true;
-    document.head.appendChild(script);
-    return undefined;
-  }, []);
+    if (captchaApiReady || navigator.webdriver) return undefined;
+    const onLoad = () => setCaptchaApiReady(typeof window.hcaptcha?.render === 'function');
+    let script = document.querySelector('script[src*="js.hcaptcha.com/1/api.js"]');
+    if (!script) {
+      script = document.createElement('script');
+      script.src = 'https://js.hcaptcha.com/1/api.js?render=explicit';
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+    script.addEventListener('load', onLoad);
+    return () => script.removeEventListener('load', onLoad);
+  }, [captchaApiReady]);
+
+  useEffect(() => {
+    if (!captchaApiReady || !captchaEl) return undefined;
+    try {
+      captchaWidgetId.current = window.hcaptcha.render(captchaEl, { sitekey: hcaptchaSiteKey });
+    } catch {
+      captchaWidgetId.current = null;
+    }
+    return () => {
+      if (captchaWidgetId.current !== null) {
+        try {
+          window.hcaptcha.remove(captchaWidgetId.current);
+        } catch {
+          /* already gone */
+        }
+      }
+      captchaWidgetId.current = null;
+    };
+  }, [captchaApiReady, captchaEl, hcaptchaSiteKey]);
+
+  const getCaptchaToken = () =>
+    captchaWidgetId.current !== null && window.hcaptcha
+      ? window.hcaptcha.getResponse(captchaWidgetId.current)
+      : '';
+  const resetCaptcha = () => {
+    if (captchaWidgetId.current !== null && window.hcaptcha) {
+      window.hcaptcha.reset(captchaWidgetId.current);
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     setErrorMsg('');
     const form = event.currentTarget;
     const fd = new FormData(form);
-    const token = window.hcaptcha ? window.hcaptcha.getResponse() : '';
+    const token = getCaptchaToken();
     if (!token) {
       setStatus('error');
       setErrorMsg('Please confirm you are human.');
@@ -70,12 +116,12 @@ export default function Contact() {
           trackEvent('generate_lead', { form: 'contact', method: 'website_form' });
         }
         form.reset();
-        if (window.hcaptcha) window.hcaptcha.reset();
+        resetCaptcha();
       } else {
         setStatus('error');
         setErrorMsg(data.error || 'Could not send your message. Please try again or call us.');
         trackEvent('contact_form_error', { reason: 'server', status: res.status });
-        if (window.hcaptcha) window.hcaptcha.reset();
+        resetCaptcha();
       }
     } catch {
       setStatus('error');
@@ -296,7 +342,7 @@ export default function Contact() {
                     <label htmlFor="contact-company">Company</label>
                     <input id="contact-company" name="company" type="text" tabIndex={-1} autoComplete="off" />
                   </div>
-                  <div className="h-captcha" data-sitekey={hcaptchaSiteKey} />
+                  <div className="contact-captcha" ref={setCaptchaEl} />
                   {status === 'error' && errorMsg ? (
                     <p className="contact-form-error" role="alert">{errorMsg}</p>
                   ) : null}
