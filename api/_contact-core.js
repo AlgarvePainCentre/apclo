@@ -10,6 +10,19 @@ export const DEFAULT_ZOHO_ACTION =
 // hCaptcha's documented test secret — verifies any token. Replace via env.
 export const TEST_HCAPTCHA_SECRET = '0x0000000000000000000000000000000000000000';
 
+// Only pass through a plain http(s) URL, capped in length, as Zoho's
+// "Referrer Name" (it shows where the lead's visit started).
+function cleanReferrer(value) {
+  if (typeof value !== 'string') return '';
+  try {
+    const url = new URL(value);
+    if (url.protocol !== 'https:' && url.protocol !== 'http:') return '';
+    return url.href.slice(0, 500);
+  } catch {
+    return '';
+  }
+}
+
 /**
  * @param {object} body parsed JSON body
  * @param {{ hcaptchaSecret?: string, zohoAction?: string }} config
@@ -27,6 +40,7 @@ export async function processContact(body, config = {}) {
     message = '',
     hcaptchaToken = '',
     company = '', // honeypot
+    referrer = '', // page the visitor landed on (with campaign params)
   } = body || {};
 
   // Honeypot: humans never fill this. Pretend success, drop silently.
@@ -58,7 +72,7 @@ export async function processContact(body, config = {}) {
     PhoneNumber_countrycode: phone,
     PhoneNumber_countrycodeval: phone ? countryCode : '',
     MultiLine: message,
-    zf_referrer_name: '',
+    zf_referrer_name: cleanReferrer(referrer),
     zf_redirect_url: '',
     zc_gad: '',
   });
