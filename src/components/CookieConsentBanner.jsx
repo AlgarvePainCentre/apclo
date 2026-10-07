@@ -6,6 +6,7 @@ import { onOpenCookieSettings, useCookieConsent } from '../utils/consentManager'
 const initialDraft = {
   preferences: false,
   analytics: false,
+  marketing: false,
   media: false,
 };
 
@@ -19,6 +20,7 @@ export default function CookieConsentBanner() {
     setDraft({
       preferences: Boolean(consent.preferences),
       analytics: Boolean(consent.analytics),
+      marketing: Boolean(consent.marketing),
       media: Boolean(consent.media),
     });
     if (!hasResponded) {
@@ -123,6 +125,20 @@ export default function CookieConsentBanner() {
                 <span className="cookie-consent__option-title">Analytics</span>
                 <span className="cookie-consent__option-text">
                   Loads Google Analytics only if you allow it, to measure anonymous usage and help us improve the site.
+                </span>
+              </span>
+            </label>
+
+            <label className="cookie-consent__option">
+              <input
+                type="checkbox"
+                checked={draft.marketing}
+                onChange={(event) => setDraft((current) => ({ ...current, marketing: event.target.checked }))}
+              />
+              <span>
+                <span className="cookie-consent__option-title">Marketing</span>
+                <span className="cookie-consent__option-text">
+                  Lets Google Ads measure when a visit from one of our ads leads to a contact request. No personalised advertising.
                 </span>
               </span>
             </label>

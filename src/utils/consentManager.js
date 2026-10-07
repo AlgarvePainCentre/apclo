@@ -12,6 +12,7 @@ const DEFAULT_CONSENT = Object.freeze({
   necessary: true,
   preferences: false,
   analytics: false,
+  marketing: false,
   media: false,
   hasResponded: false,
   updatedAt: null,
@@ -23,6 +24,7 @@ function normaliseConsent(input = {}) {
     necessary: true,
     preferences: Boolean(input.preferences),
     analytics: Boolean(input.analytics),
+    marketing: Boolean(input.marketing),
     media: Boolean(input.media),
     hasResponded: Boolean(input.hasResponded),
     updatedAt: input.updatedAt || null,
@@ -97,6 +99,7 @@ export function acceptAllCookieConsent() {
     necessary: true,
     preferences: true,
     analytics: true,
+    marketing: true,
     media: true,
   });
 }
@@ -106,6 +109,7 @@ export function rejectOptionalCookieConsent() {
     necessary: true,
     preferences: false,
     analytics: false,
+    marketing: false,
     media: false,
   });
 }

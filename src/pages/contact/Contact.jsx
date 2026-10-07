@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import '../../pages/specialities/PainSpecialtyClone.css';
 import '../../styles/pages/contact-page.css';
 import ManagedEmbed from '../../components/ManagedEmbed';
-import { trackEvent } from '../../utils/analytics';
+import { trackAdsConversion, trackEvent } from '../../utils/analytics';
 import { getLandingPage } from '../../utils/landingPage';
 
 export default function Contact() {
@@ -116,6 +116,7 @@ export default function Contact() {
         // from the API, so they are left out.
         if (!fd.get('company')) {
           trackEvent('generate_lead', { form: 'contact', method: 'website_form' });
+          trackAdsConversion();
         }
         form.reset();
         resetCaptcha();

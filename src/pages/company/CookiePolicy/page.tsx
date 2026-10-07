@@ -79,9 +79,21 @@ const CookiePolicyPage: React.FC = () => {
               </tr>
               <tr>
                 <td>Analytics</td>
-                <td>Would be used only if we later enable measurement tools requiring consent.</td>
+                <td>
+                  Google Analytics 4 (Google), loaded only if you allow it, to measure how the website is used
+                  (pages visited and contact requests) so we can improve it.
+                </td>
                 <td>No</td>
-                <td>Up to 13 months, depending on the service used.</td>
+                <td>Up to 14 months.</td>
+              </tr>
+              <tr>
+                <td>Marketing</td>
+                <td>
+                  Google Ads conversion measurement (Google), loaded only if you allow it, to know when a visit that
+                  came from one of our ads leads to a contact request. Not used for personalised advertising.
+                </td>
+                <td>No</td>
+                <td>Up to 90 days.</td>
               </tr>
               <tr>
                 <td>Media / third-party embeds</td>
