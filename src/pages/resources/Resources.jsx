@@ -2,6 +2,10 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/layout/site-sections.css';
 import '../../styles/pages/resources-page.css';
+import { testimonialStories } from '../../features/content/contentApi';
+
+const FEATURED_STORY = testimonialStories[0];
+const MORE_STORIES = testimonialStories.slice(1);
 
 const RESOURCE_UNLOCK_KEY = 'spine_guide_unlocked';
 const EMAIL_ATTEMPTS_KEY = 'email_attempts';
@@ -271,79 +275,56 @@ export default function Resources() {
           </div>
         </section>
 
-        <section className="page-section" id="overcoming-sciatica-pain">
+        <section className="page-section" id="patient-stories">
+          <div className="section-header">
+            <p className="section-eyebrow">Patient stories</p>
+            <h2>Real stories of recovery</h2>
+            <p>Read how our patients reclaimed their lives — in their own words.</p>
+          </div>
+
           <div className="sciatica-block">
             <div className="sciatica-copy">
-              <p className="sciatica-eyebrow">Real stories of recovery</p>
+              <p className="sciatica-eyebrow">Featured story</p>
               <h2 className="sciatica-title">Overcoming Sciatica Pain</h2>
               <p className="sciatica-body">
                 Sciatica can be debilitating — but it doesn't have to be permanent. See how our patients
                 have reclaimed their lives through targeted therapy and personalised care plans.
               </p>
-              <button className="sciatica-cta" onClick={() => navigate('/resources/testimonials/overcoming-sciatica-pain')}>
-                Read success stories →
+              <button className="sciatica-cta" onClick={() => navigate(FEATURED_STORY.to)}>
+                {FEATURED_STORY.cta} →
               </button>
             </div>
             <figure className="sciatica-quote">
               <span className="sciatica-quote-mark" aria-hidden="true">&rdquo;</span>
-              <blockquote>I thought I'd never run again. After three months of treatment, I'm back on the track — pain-free.</blockquote>
+              <blockquote>{FEATURED_STORY.quote}</blockquote>
               <figcaption className="sciatica-quote-author">
-                <span className="sciatica-quote-avatar" aria-hidden="true">SJ</span>
+                <span className="sciatica-quote-avatar" aria-hidden="true">
+                  <img src={FEATURED_STORY.img} alt="" loading="lazy" />
+                </span>
                 <span className="sciatica-quote-meta">
-                  <span className="sciatica-quote-name">Sarah Jenkins</span>
+                  <span className="sciatica-quote-name">{FEATURED_STORY.name}</span>
                   <span className="sciatica-quote-loc">Sciatica recovery</span>
                 </span>
               </figcaption>
             </figure>
           </div>
-        </section>
 
-        <section className="page-section" id="control-over-spine-degeneration">
-          <div className="section-header">
-            <p className="section-eyebrow">Spine health</p>
-            <h2>Control Over Spine Degeneration</h2>
-            <p>Proactive strategies to maintain spine health and mobility.</p>
-          </div>
-          <div className="info-grid">
-            <div className="info-item">
-              <h3>Early Detection</h3>
-              <p>Regular check-ups can identify degenerative changes early, allowing for more effective intervention.</p>
-            </div>
-            <div className="info-item">
-              <h3>Targeted Exercise</h3>
-              <p>Strengthening core muscles provides essential support to the spine, reducing load on vertebrae.</p>
-            </div>
-            <div className="info-item">
-              <h3>Ergonomic Lifestyle</h3>
-              <p>Adjusting your workspace and daily habits can significantly slow the progression of degeneration.</p>
-            </div>
-          </div>
-          <div className="center-action">
-            <button className="secondary-btn" onClick={() => navigate('/contact')}>Schedule an Assessment</button>
-          </div>
-        </section>
-
-        <section className="page-section highlight-section-alt" id="recovering-from-sports-injuries">
-          <div className="highlight-content reverse">
-            <div className="highlight-text">
-              <h2>Recovering from Sports Injuries</h2>
-              <p className="highlight-subtitle">Get Back in the Game</p>
-              <p>
-                Whether you're a professional athlete or a weekend warrior, our sports medicine specialists 
-                design recovery programs that not only heal injuries but prevent future ones.
-              </p>
-              <ul className="feature-list">
-                <li>Customized Rehabilitation Plans</li>
-                <li>Advanced Manual Therapy</li>
-                <li>Performance Optimization</li>
-              </ul>
-            </div>
-            <div className="highlight-visual">
-               <div className="stat-card">
-                 <span className="stat-number">95%</span>
-                 <span className="stat-label">Return to Sport Rate</span>
-               </div>
-            </div>
+          <div className="stories-grid">
+            {MORE_STORIES.map((story) => (
+              <Link key={story.to} to={story.to} className="story-card" aria-label={`Read ${story.name}'s story`}>
+                <span className="story-card-avatar" aria-hidden="true">
+                  <img src={story.img} alt="" loading="lazy" />
+                </span>
+                <p className="story-card-quote">&ldquo;{story.quote}&rdquo;</p>
+                <div className="story-card-foot">
+                  <span className="story-card-meta">
+                    <span className="story-card-name">{story.name}</span>
+                    <span className="story-card-read">{story.readMins} min read</span>
+                  </span>
+                  <span className="story-card-cta" aria-hidden="true">→</span>
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
 
