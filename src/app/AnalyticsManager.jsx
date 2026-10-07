@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useCookieConsent } from '../utils/consentManager';
 import { trackEvent } from '../utils/analytics';
+import { getLandingPage } from '../utils/landingPage';
+import { ADS_ID, GA4_ID, GTM_ID } from './analyticsIds';
 
 // Phone, email and WhatsApp links are contacts too, so every click on one is
 // tracked as `contact_click`, site-wide, from a single delegated listener.
@@ -20,26 +22,16 @@ function handleContactClick(event) {
 }
 
 /*
- * Consent-gated analytics loader.
+ * Consent-gated Google tags.
  *
- * Nothing loads until BOTH are true:
- *   1. a container id is configured in the environment, and
- *   2. the visitor has granted the "analytics" cookie category.
- *
- * So this ships mounted but dormant — set the id in Vercel and it activates on
- * consent, with no code change. Prefer GTM; fall back to GA4 (gtag) if only a
- * measurement id is given. Events are sent via `trackEvent` (src/utils/analytics.js).
- *
- * Env (set in Vercel → Project → Settings → Environment Variables):
- *   VITE_GTM_ID   Google Tag Manager container, e.g. GTM-XXXXXXX   (preferred)
- *   VITE_GA4_ID   GA4 measurement id, e.g. G-XXXXXXXXXX           (used if no GTM id)
+ * Nothing loads until the visitor allows it in the cookie banner:
+ *   - "analytics"  → GA4 (GA4_ID)
+ *   - "marketing"  → Google Ads conversion tracking (ADS_ID)
+ * Google Consent Mode v2 is set to "denied" for everything first and then
+ * updated to the visitor's choices, and updated again whenever they change.
+ * Ids live in src/app/analyticsIds.js. Events go through src/utils/analytics.js.
+ * If VITE_GTM_ID is set, Tag Manager is loaded instead (on analytics consent).
  */
-const GTM_ID = import.meta.env.VITE_GTM_ID;
-// GA4 measurement ids are public (they ship in the page), so the client's id is
-// baked in as the default — it works on deploy without any env config. Override
-// with VITE_GA4_ID, or switch to GTM with VITE_GTM_ID.
-const GA4_ID = import.meta.env.VITE_GA4_ID || 'G-GM1C7W4G8M';
-
 function loadGtm(id) {
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
@@ -49,44 +41,77 @@ function loadGtm(id) {
   document.head.appendChild(s);
 }
 
-function loadGa4(id) {
+function ensureGtag(firstId) {
+  if (window.__apcGtagLoaded) return;
   window.dataLayer = window.dataLayer || [];
   // eslint-disable-next-line prefer-rest-params
   window.gtag = window.gtag || function gtag() { window.dataLayer.push(arguments); };
+  window.gtag('consent', 'default', {
+    analytics_storage: 'denied',
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+  });
   const s = document.createElement('script');
   s.async = true;
-  s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(id)}`;
+  s.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(firstId)}`;
   document.head.appendChild(s);
   window.gtag('js', new Date());
-  // Page views are sent by AnalyticsManager on every route change (this is a
-  // single-page app, and GA4's own history detection was not recording the
-  // in-app navigations), so the automatic one is turned off here.
-  window.gtag('config', id, { anonymize_ip: true, send_page_view: false });
+  window.__apcGtagLoaded = true;
 }
+
+const CLICK_ID = /[?&](gclid|gbraid|wbraid)=/;
 
 export default function AnalyticsManager() {
   const { consent } = useCookieConsent();
-  const allowed = Boolean(consent?.analytics);
+  const analytics = Boolean(consent?.analytics);
+  const marketing = Boolean(consent?.marketing);
   const location = useLocation();
 
   useEffect(() => {
-    if (!allowed) return; // no consent yet → stay dormant
-    if (!GTM_ID && !GA4_ID) return; // no id configured → nothing to load
-    if (window.__apcAnalyticsLoaded) return; // load once per page
     try {
-      if (GTM_ID) loadGtm(GTM_ID);
-      else loadGa4(GA4_ID);
-      window.__apcAnalyticsLoaded = true;
+      if (GTM_ID) {
+        if (analytics && !window.__apcGtmLoaded) {
+          loadGtm(GTM_ID);
+          window.__apcGtmLoaded = true;
+        }
+        return;
+      }
+      const wantGa = analytics && Boolean(GA4_ID);
+      const wantAds = marketing && Boolean(ADS_ID);
+      if (!window.__apcGtagLoaded && !wantGa && !wantAds) return; // nothing allowed yet
+      ensureGtag(wantGa ? GA4_ID : ADS_ID);
+      window.gtag('consent', 'update', {
+        analytics_storage: analytics ? 'granted' : 'denied',
+        ad_storage: marketing ? 'granted' : 'denied',
+        ad_user_data: marketing ? 'granted' : 'denied',
+        ad_personalization: 'denied', // no remarketing / personalised ads
+      });
+      if (wantGa && !window.__apcGaConfigured) {
+        // Page views are sent below on every route change (single-page app;
+        // GA4's own history detection did not record in-app navigations).
+        window.gtag('config', GA4_ID, { anonymize_ip: true, send_page_view: false });
+        window.__apcGaConfigured = true;
+      }
+      if (wantAds && !window.__apcAdsConfigured) {
+        // If the visitor arrived from an ad but only accepted cookies after
+        // moving on, the ad click id is no longer in the URL: hand the Ads tag
+        // the landing page so the conversion can still be attributed.
+        const landing = getLandingPage();
+        const lostClickId = CLICK_ID.test(landing) && !CLICK_ID.test(window.location.search);
+        window.gtag('config', ADS_ID, lostClickId ? { page_location: landing } : {});
+        window.__apcAdsConfigured = true;
+      }
     } catch {
       /* never let analytics break the app */
     }
-  }, [allowed]);
+  }, [analytics, marketing]);
 
   // One GA4 page_view per route, including the landing page. Sent after a short
   // delay so the routed page has rendered and set its <title>; repeated
   // renders of the same URL are ignored.
   useEffect(() => {
-    if (!allowed || GTM_ID || !GA4_ID) return undefined;
+    if (!analytics || GTM_ID || !GA4_ID) return undefined;
     const url = window.location.href;
     const path = `${location.pathname}${location.search}`;
     const timer = setTimeout(() => {
@@ -96,10 +121,11 @@ export default function AnalyticsManager() {
         page_location: url,
         page_path: path,
         page_title: document.title,
+        send_to: GA4_ID,
       });
     }, 600);
     return () => clearTimeout(timer);
-  }, [allowed, location.pathname, location.search]);
+  }, [analytics, location.pathname, location.search]);
 
   // trackEvent stays silent until analytics is loaded (i.e. after consent),
   // so the listener can be attached unconditionally.
