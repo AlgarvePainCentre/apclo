@@ -368,13 +368,40 @@ export default function Contact() {
             </figure>
           </div>
         </section>
-        <section className="home-section-location" aria-labelledby="contact-location-title">
+        <section id="contact-visit" className="home-section-location" aria-labelledby="contact-location-title">
           <div className="home-section-location-inner">
             <header className="location-header">
               <h2 className="location-title" id="contact-location-title">Our Location</h2>
               <div className="location-title-rule" aria-hidden="true" />
             </header>
-            <div className="location-grid location-grid--map-only">
+            <div className="location-grid">
+              <div className="location-details">
+                <h3 className="contact-visit-title">Prefer to call or visit us?</h3>
+                <dl className="contact-visit-list">
+                  <div className="contact-visit-item">
+                    <dt>Call us</dt>
+                    <dd><a href="tel:+351915915001">+351 915 915 001</a></dd>
+                  </div>
+                  <div className="contact-visit-item">
+                    <dt>Text us</dt>
+                    <dd><a href="https://wa.me/351915915001" target="_blank" rel="noopener noreferrer">WhatsApp</a></dd>
+                  </div>
+                  <div className="contact-visit-item">
+                    <dt>Email</dt>
+                    <dd><a href="mailto:info@algarvepaincentre.com">info@algarvepaincentre.com</a></dd>
+                  </div>
+                  <div className="contact-visit-item">
+                    <dt>Address</dt>
+                    <dd>
+                      <address>
+                        Av. do Mar, Vale do Lobo
+                        <br />
+                        8135-107 Almancil, Algarve
+                      </address>
+                    </dd>
+                  </div>
+                </dl>
+              </div>
               <div className="location-map" aria-label="Map">
                 <ManagedEmbed
                   className="location-map-iframe"

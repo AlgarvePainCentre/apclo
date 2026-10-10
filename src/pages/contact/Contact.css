@@ -488,3 +488,57 @@
   font-weight: 600;
   white-space: nowrap;
 }
+
+/* "Prefer to call or visit us?" — written contact details beside the map. */
+/* Hero buttons jump to these sections: keep their titles clear of the fixed navbar. */
+#contact-form,
+#contact-visit {
+  scroll-margin-top: 120px;
+}
+
+.contact-visit-title {
+  margin: 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--color-blue);
+}
+
+.contact-visit-list {
+  display: grid;
+  gap: 18px;
+  margin: 0;
+}
+
+.contact-visit-item dt {
+  margin: 0 0 4px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-darkRed);
+}
+
+.contact-visit-item dd {
+  margin: 0;
+  font-size: 1.15rem;
+  line-height: 1.45;
+  color: #0f172a;
+  overflow-wrap: anywhere;
+}
+
+.contact-visit-item address {
+  font-style: normal;
+}
+
+.contact-visit-item a {
+  color: var(--color-blue);
+  font-weight: 700;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+.contact-visit-item a:hover,
+.contact-visit-item a:focus-visible {
+  color: var(--color-darkRed);
+}
