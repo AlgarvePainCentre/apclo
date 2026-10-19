@@ -97,13 +97,13 @@
   max-width: calc(var(--container) + 2 * var(--container-gutter));
   width: 100%;
   height: fit-content;
-  padding: 4rem var(--container-gutter);
+  padding: var(--section-space) var(--container-gutter);
   margin: 0 auto;
   text-align: left;
 }
 
 .testimonial-page-main .testimonial-intro {
-  margin-top: 2rem;
+  margin-top: 0;
   margin-bottom: 3rem;
   max-width: 1000px;
   margin-left: auto;
@@ -146,13 +146,6 @@
 }
 
 /* Responsive */
-@media (max-width: 960px) {
-  .testimonial-page-main .video-container-wrapper {
-    padding-top: 3rem;
-    padding-bottom: 3rem;
-  }
-}
-
 @media (max-width: 640px) {
   .testimonial-page-main .article-hero-media {
     padding: 3.5rem 1.25rem;
@@ -166,8 +159,11 @@
   .testimonial-page-main .article-hero-content p {
     font-size: 1.05rem;
   }
-  .testimonial-page-main .video-container-wrapper {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
+}
+
+/* The video wrapper carries the gutter; the section adds none (the mobile
+   override in responsive.css would otherwise double it). */
+.testimonial-page-main .page-section.testimonial-video {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }

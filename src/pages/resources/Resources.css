@@ -1258,3 +1258,8 @@ button:disabled,
 .resources-page .page-section.tips-carousel-section {
   max-width: 100%;
 }
+
+/* The last block in a section adds no extra space below it. */
+.resources-page .page-section .feature-list:last-child {
+  margin-bottom: 0;
+}

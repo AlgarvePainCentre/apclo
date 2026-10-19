@@ -45,11 +45,12 @@
   box-sizing: border-box;
   max-width: calc(var(--container, 1120px) + 2 * var(--container-gutter));
   margin: 0 auto;
-  padding: clamp(40px, 6vw, 72px) var(--container-gutter) clamp(56px, 8vw, 96px);
+  padding: var(--section-space) var(--container-gutter) calc(2 * var(--section-space));
 }
 
+/* Sections sit as far apart as sections elsewhere on the site. */
 .careers-section {
-  margin-bottom: clamp(36px, 6vw, 64px);
+  margin-bottom: calc(2 * var(--section-space));
 }
 
 .careers-h2 {
