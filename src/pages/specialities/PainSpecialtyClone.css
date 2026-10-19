@@ -1959,3 +1959,18 @@
   padding-right: 0;
 }
 
+
+/* Centred intro text keeps a readable measure: long titles break into two
+   balanced lines and intro paragraphs stop at ~72 characters per line. */
+.psx-page .psx-lead-title {
+  max-width: 16em;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+}
+
+.psx-page [class*='-note-text'] {
+  max-width: 72ch;
+  margin-left: auto;
+  margin-right: auto;
+}
