@@ -542,3 +542,51 @@
 .contact-visit-item a:focus-visible {
   color: var(--color-darkRed);
 }
+
+/*
+ * Alignment: every block on the contact page starts and ends on the same
+ * edges as the navbar and footer (the shared --container column). The cards
+ * here have no background or border, so their inner padding only pushed the
+ * text inward, by a different amount per block.
+ */
+#psx-contact .psx-hero-inner,
+#psx-contact .contact-two-col,
+#psx-contact .contact-form-two-col,
+#psx-contact .psx-treatments-layout > .psx-card,
+#psx-contact .contact-question-card {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* The location block is shared with the home and speciality pages, where it
+   is forced full-bleed (with !important, in PainSpecialtyClone.css). */
+#psx-contact .psx-main > .home-section-location {
+  width: auto !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+#psx-contact .psx-main > .home-section-location .home-section-location-inner {
+  max-width: var(--container) !important;
+}
+
+/* Same two equal columns as the contact form above, so the map starts on the
+   same vertical line as the form's photo. */
+@media (min-width: 900px) {
+  #psx-contact .home-section-location .location-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(16px, 3vw, 32px);
+  }
+}
+
+/* Match the navbar's tablet gutter (20px between 481px and 1024px). */
+@media (min-width: 481px) and (max-width: 1024px) {
+  #psx-contact .psx-hero,
+  #psx-contact .psx-main {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
