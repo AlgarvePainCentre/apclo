@@ -638,7 +638,7 @@
 .psx-page .psx-main > .home-section-location {
   width: 100% !important;
   max-width: var(--container) !important;
-  padding: 88px 0 !important;
+  padding: var(--section-space) 0 !important;
   margin-left: auto !important;
   margin-right: auto !important;
 }
@@ -656,7 +656,7 @@
 
 @media (max-width: 768px) {
   .psx-page .psx-main > .home-section-location {
-    padding: 64px 0 !important;
+    padding: var(--section-space) 0 !important;
   }
 }
 
@@ -1959,3 +1959,75 @@
   padding-right: 0;
 }
 
+
+/* Centred intro text keeps a readable measure: long titles break into two
+   balanced lines and intro paragraphs stop at ~72 characters per line. */
+.psx-page .psx-lead-title {
+  max-width: 16em;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+}
+
+.psx-page [class*='-note-text'] {
+  max-width: 72ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ==========================================================================
+   Vertical rhythm
+   Each section owns its spacing: --section-space above and below its
+   content, no margins between sections. The blocks inside (lead, layouts,
+   notes, tips, accordions) used to add the same padding again, which
+   doubled the gap wherever a section held two of them.
+   ========================================================================== */
+.psx-page .psx-main > section {
+  padding-top: var(--section-space) !important;
+  padding-bottom: var(--section-space) !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.psx-page .psx-main > section :is(
+  .psx-lead,
+  .psx-tips,
+  .psx-help,
+  .psx-edu,
+  .psx-syndromes,
+  .psx-treatments-layout,
+  .psx-patterns-layout,
+  .psx-syndromes-accordion,
+  .psx-approaches,
+  [class*='-note'],
+  .psx-tips-header,
+  .psx-syndromes-accordion-header
+) {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Inner rows and titles that carried their own section-sized spacing, and
+   flat cards (no background) that only padded their text. */
+.psx-page .psx-main .psx-edu-row,
+.psx-page .psx-main .psx-tips-title {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.psx-page .psx-main .psx-card {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+/* A section's intro (title + lead) and its content keep the shared
+   header-to-content gap. */
+.psx-page .psx-main > section .psx-lead + * {
+  margin-top: var(--header-content-gap);
+}

@@ -546,8 +546,12 @@
 /* Alignment: the shared psx column rules (PainSpecialtyClone.css) put every
    block on the navbar/footer lines; the question cards are flat too. */
 #psx-contact .contact-question-card {
-  padding-left: 0;
-  padding-right: 0;
+  padding: 0;
+}
+
+/* The cards no longer pad themselves, so the grid spaces the rows. */
+#psx-contact .contact-questions-grid {
+  row-gap: var(--header-content-gap);
 }
 
 /* Same two equal columns as the contact form above, so the map starts on the

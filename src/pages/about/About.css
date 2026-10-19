@@ -7,7 +7,7 @@
 }
 
 .about-page .page-main {
-  padding: 4rem var(--container-gutter);
+  padding: var(--section-space) var(--container-gutter);
   max-width: var(--container-width);
   margin: 0 auto;
 }
@@ -826,6 +826,8 @@
    navbar/footer lines (the page column already carries the side gutter). */
 .about-page .section-copy-surface,
 .about-page .team-section,
+.about-page .team-category,
+.about-page .home-centers,
 .about-page .page-main > .page-section {
   padding-left: 0 !important;
   padding-right: 0 !important;

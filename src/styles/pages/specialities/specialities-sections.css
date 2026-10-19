@@ -547,3 +547,20 @@
   padding-right: max(var(--container-gutter), calc((100% - var(--container)) / 2)) !important;
   box-sizing: border-box;
 }
+
+
+/* Vertical rhythm: sections own their spacing (shared section spacing above
+   and below), and the panels inside don't add their own. */
+.specialities-page .page-section {
+  padding-top: var(--section-space) !important;
+  padding-bottom: var(--section-space) !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+.specialities-page .specialities-testimonial-card,
+.specialities-page .pain-area-grid-panel,
+.specialities-page .sports-care-grid-panel {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}

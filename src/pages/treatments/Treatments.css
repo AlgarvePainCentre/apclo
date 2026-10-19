@@ -1898,3 +1898,68 @@ Minimally Invasive, Surgical, Invasive
   margin-left: auto;
   margin-right: auto;
 }
+
+/* ==========================================================================
+   Vertical rhythm (treatment pages)
+   Each section owns its spacing: --section-space above and below its
+   content, no margins between sections (they were stacked with a single
+   margin and no inner space, so sections sat half as far apart as on the
+   rest of the site).
+   ========================================================================== */
+.page-main.treatments-page > .page-section,
+.page-main.treatments-page .treatment-category-section,
+.page-main.treatments-page .home-section-location {
+  padding-top: var(--section-space) !important;
+  padding-bottom: var(--section-space) !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Inner wrappers that repeated section-sized padding, and the flat technique
+   cards (no background) that padded their text. */
+.page-main.treatments-page [class*='-help-inner'],
+.page-main.treatments-page [class*='-faq-inner'],
+.page-main.treatments-page .minimally-invasive-treatment-card,
+.page-main.treatments-page .treatment-details__card {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* The last block in a section adds no extra space below it, and the process
+   intro sits in a grid that already spaces its rows. */
+.page-main.treatments-page [class*='-help-copy'] > :last-child,
+.page-main.treatments-page [class*='-process-top'] {
+  margin-bottom: 0 !important;
+}
+
+
+/* Treatments landing: the same section spacing as every other page (the
+   category bands and features used 2rem). */
+#psx-treatments .treatments-page > .page-section,
+#psx-treatments .treatments-page > section {
+  padding-top: var(--section-space) !important;
+  padding-bottom: var(--section-space) !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+/* Location inner column on treatment pages (the page column is wider than
+   the content column by the gutter). */
+.page-main.treatments-page .home-section-location .home-section-location-inner {
+  max-width: var(--container) !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* FAQ headers carried their own side inset on phones. */
+.page-main.treatments-page [class*='-faq-header'] {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Treatments landing: the approaches grid uses the shared column. */
+#psx-treatments .treatments-approaches-inner {
+  max-width: var(--container);
+  margin-left: auto;
+  margin-right: auto;
+}

@@ -71,3 +71,15 @@
   color: #0f4681;
   border-color: rgba(15, 70, 129, 0.16);
 }
+
+/* While the consent placeholder shows, a fixed-height embed (the location
+   map) grows to fit it instead of letting the buttons spill out of the box on
+   narrow screens; its usual height stays as the minimum. */
+.managed-embed.location-map-iframe:has(> .managed-embed__placeholder) {
+  height: auto !important;
+  min-height: clamp(280px, 42vw, 460px);
+}
+
+.managed-embed__placeholder {
+  box-sizing: border-box;
+}

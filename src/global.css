@@ -31,7 +31,9 @@
   --card-gap: clamp(16px, 2.2vw, 24px);
   /* Uniform vertical rhythm — shared by the home page and every other page so
      section spacing reads consistently across the site. */
-  --section-space: clamp(56px, 8vw, 80px);   /* section top/bottom padding */
+  /* Section top/bottom padding. Two sections meet with twice this between
+     their content: ~128px on desktop, 80px on phones. */
+  --section-space: clamp(40px, 5.5vw, 64px);
   --header-content-gap: clamp(24px, 3vw, 36px); /* section header -> content */
   --eyebrow-title-gap: 8px;                  /* eyebrow -> title */
   --title-text-gap: 12px;                    /* title -> subtitle/lead text */

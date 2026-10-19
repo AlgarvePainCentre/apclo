@@ -4785,3 +4785,38 @@
   padding-left: 0 !important;
   padding-right: 0 !important;
 }
+
+/* Centred section intros keep a readable measure instead of running from one
+   edge of the page to the other. */
+.home-page .home-section-team-subtitle {
+  max-width: 640px;
+  margin-left: auto;
+  margin-right: auto;
+  text-wrap: balance;
+}
+
+
+/* Vertical rhythm: every home section uses the shared section spacing (they
+   had a fixed 80px), so the home page breathes like every other page. */
+.home-page .home-section-testimonial,
+.home-page .home-section-stories,
+.home-page .home-section-treatment-cards,
+.home-page .home-section-mainpain-cards,
+.home-page .home-section-why-choose-us,
+.home-page .home-section-team,
+.home-page .home-section-faq {
+  padding-top: var(--section-space) !important;
+  padding-bottom: var(--section-space) !important;
+}
+
+/* The stories carousel keeps 24px below the cards for their shadow, so the
+   section gives that much back; the centres block adds nothing below it. */
+.home-page .home-section-stories {
+  padding-bottom: calc(var(--section-space) - 24px) !important;
+}
+
+.home-page .home-centers {
+  padding-bottom: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}

@@ -140,7 +140,7 @@
   box-sizing: border-box;
   max-width: calc(var(--blog-max) + 2 * var(--blog-gutter));
   margin: 0 auto;
-  padding: clamp(24px, 5vw, 44px) var(--blog-gutter) clamp(56px, 7vw, 96px);
+  padding: var(--section-space) var(--blog-gutter) calc(2 * var(--section-space));
 }
 
 .blog-mobile-sidebar-row {
