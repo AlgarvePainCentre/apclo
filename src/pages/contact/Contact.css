@@ -542,3 +542,19 @@
 .contact-visit-item a:focus-visible {
   color: var(--color-darkRed);
 }
+
+/* Alignment: the shared psx column rules (PainSpecialtyClone.css) put every
+   block on the navbar/footer lines; the question cards are flat too. */
+#psx-contact .contact-question-card {
+  padding-left: 0;
+  padding-right: 0;
+}
+
+/* Same two equal columns as the contact form above, so the map starts on the
+   same vertical line as the form's photo. */
+@media (min-width: 900px) {
+  #psx-contact .home-section-location .location-grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: clamp(16px, 3vw, 32px);
+  }
+}

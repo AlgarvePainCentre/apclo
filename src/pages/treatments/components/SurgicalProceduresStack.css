@@ -1,7 +1,7 @@
 /* Treatment Categories Landing Layout */
 .treatment-category-section {
   width: 100%;
-  padding: 2rem 4%;
+  padding: 2rem var(--container-gutter);
   position: relative;
 }
 

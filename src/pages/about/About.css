@@ -1,13 +1,13 @@
 .about-page {
   --psx-max: var(--container);
-  --psx-gutter: clamp(16px, 4vw, 32px);
+  --psx-gutter: var(--container-gutter);
   min-height: 100vh;
   background-color: #f8fafc;
   color: #111827;
 }
 
 .about-page .page-main {
-  padding: 4rem 1rem;
+  padding: 4rem var(--container-gutter);
   max-width: var(--container-width);
   margin: 0 auto;
 }
@@ -819,4 +819,14 @@
     .about-page .doctor-overlay-close:hover {
         transform: none;
     }
+}
+
+
+/* Column alignment: blocks without a background keep their text on the
+   navbar/footer lines (the page column already carries the side gutter). */
+.about-page .section-copy-surface,
+.about-page .team-section,
+.about-page .page-main > .page-section {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
 }

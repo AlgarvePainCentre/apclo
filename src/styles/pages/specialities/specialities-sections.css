@@ -515,3 +515,35 @@
     transition: none;
   }
 }
+
+/* ==========================================================================
+   Column alignment (specialities landing)
+   Sections carry the navbar's side gutter and their content sits on the
+   --container column, so titles, grids and cards line up with the logo.
+   ========================================================================== */
+.specialities-page .page-section {
+  padding-left: var(--container-gutter) !important;
+  padding-right: var(--container-gutter) !important;
+  box-sizing: border-box;
+}
+
+.specialities-page .specialities-what-is-inner,
+.specialities-page .specialities-treatment-approaches-inner,
+.specialities-page .specialities-testimonials-inner,
+.specialities-page .specialities-testimonial-card {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Feature bands span the screen; their grids sit on the page column. */
+.specialities-page .page-section.treatments-feature {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+.specialities-page .pain-area-grid-panel,
+.specialities-page .sports-care-grid-panel {
+  padding-left: max(var(--container-gutter), calc((100% - var(--container)) / 2)) !important;
+  padding-right: max(var(--container-gutter), calc((100% - var(--container)) / 2)) !important;
+  box-sizing: border-box;
+}

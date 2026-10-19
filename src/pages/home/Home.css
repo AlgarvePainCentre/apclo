@@ -4756,3 +4756,32 @@
   font-size: 0.8rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
+
+/* ==========================================================================
+   Column alignment (home page)
+   Every section uses the navbar's side gutter, so below the full container
+   width each one starts on the same line as the logo instead of 0, 16 or
+   48px. Grids inside don't add their own inset.
+   ========================================================================== */
+.home-page .hero--home,
+.home-page .home-section-testimonial,
+.home-page .home-section-stories,
+.home-page .home-section-treatment-cards,
+.home-page .home-section-mainpain-cards,
+.home-page .home-section-why-choose-us,
+.home-page .home-section-team,
+.home-page .home-section-faq,
+.home-page .home-section-cards-pain {
+  padding-left: var(--container-gutter) !important;
+  padding-right: var(--container-gutter) !important;
+  box-sizing: border-box;
+}
+
+.home-page .home-stories-grid,
+.home-page .home-section-mainpain-grid,
+.home-page .home-section-mainpain-inner,
+.home-page .home-section-treatment-inner,
+.home-page .home-section-cards-pain-inner {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}

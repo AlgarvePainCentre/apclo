@@ -7,7 +7,7 @@
 .careers-hero {
   background: linear-gradient(160deg, #0f4681 0%, #032a52 100%);
   color: #fff;
-  padding: 128px 24px 72px;
+  padding: 128px var(--container-gutter) 72px;
   padding-top: max(128px, calc(var(--navbar-offset, 88px) + 40px));
 }
 
@@ -40,10 +40,12 @@
   margin: 0;
 }
 
+/* Same column as the navbar and footer: the container plus the side gutter. */
 .careers-main {
-  max-width: var(--container, 1120px);
+  box-sizing: border-box;
+  max-width: calc(var(--container, 1120px) + 2 * var(--container-gutter));
   margin: 0 auto;
-  padding: clamp(40px, 6vw, 72px) 24px clamp(56px, 8vw, 96px);
+  padding: clamp(40px, 6vw, 72px) var(--container-gutter) clamp(56px, 8vw, 96px);
 }
 
 .careers-section {
@@ -146,11 +148,7 @@
 
 @media (max-width: 640px) {
   .careers-hero {
-    padding: 112px 20px 56px;
+    padding: 112px var(--container-gutter) 56px;
     padding-top: max(112px, calc(var(--navbar-offset, 88px) + 24px));
-  }
-  .careers-main {
-    padding-left: 20px;
-    padding-right: 20px;
   }
 }

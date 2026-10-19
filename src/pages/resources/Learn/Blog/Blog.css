@@ -4,7 +4,7 @@
   background: linear-gradient(180deg, #f8fafc 0%, #f6f8fb 100%);
   color: #0f172a;
   --blog-max: var(--container);
-  --blog-gutter: clamp(16px, 4vw, 32px);
+  --blog-gutter: var(--container-gutter);
   --blog-radius-lg: 20px;
   --blog-radius-md: 14px;
   --blog-shadow-lg: 0 18px 48px rgba(2, 6, 23, 0.12);
@@ -57,7 +57,7 @@
   z-index: 1;
   max-width: var(--blog-max);
   margin: 0 auto;
-  padding: clamp(18px, 2.4vw, 28px);
+  padding: clamp(18px, 2.4vw, 28px) 0;
   border-radius: 24px;
   background: none;
   backdrop-filter: none;
@@ -135,8 +135,10 @@
   border-color: rgba(255, 255, 255, 0.28);
 }
 
+/* Same column as the navbar and footer: the container plus the side gutter. */
 .blog-shell {
-  max-width: 1600px;
+  box-sizing: border-box;
+  max-width: calc(var(--blog-max) + 2 * var(--blog-gutter));
   margin: 0 auto;
   padding: clamp(24px, 5vw, 44px) var(--blog-gutter) clamp(56px, 7vw, 96px);
 }
@@ -196,7 +198,7 @@
   position: sticky;
   top: 96px;
   background: transparent;
-  padding: 16px;
+  padding: 16px 0;
 }
 
 .blog-sidebar-header {

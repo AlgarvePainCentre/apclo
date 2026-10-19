@@ -8,7 +8,9 @@
   max-width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
-  padding-inline: 4%;
+  /* Full-bleed so cards can scroll to the screen edge, but the first card
+     starts on the page column: the inset cancels the negative margin above. */
+  padding-inline: calc(50vw - 50%);
   box-sizing: border-box;
 }
 
