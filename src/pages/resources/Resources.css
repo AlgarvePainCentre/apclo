@@ -11,7 +11,7 @@
   --shadow-md: none;
   --shadow-lg: none;
   --psx-max: var(--container);
-  --psx-gutter: clamp(16px, 4vw, 32px);
+  --psx-gutter: var(--container-gutter);
   min-height: 100vh;
   background-color: var(--bg-light);
   color: var(--text-color);
@@ -1240,4 +1240,21 @@ button:disabled,
   .email-input-group button {
     width: 100%;
   }
+}
+
+/* ==========================================================================
+   Column alignment (resources)
+   Sections sit on the navbar/footer column: the container plus the side
+   gutter (they were inset a further 24px).
+   ========================================================================== */
+.resources-page .page-section {
+  box-sizing: border-box;
+  max-width: calc(var(--container) + 2 * var(--container-gutter));
+  padding-left: var(--container-gutter);
+  padding-right: var(--container-gutter);
+}
+
+.resources-page .page-section.highlight-section-alt,
+.resources-page .page-section.tips-carousel-section {
+  max-width: 100%;
 }

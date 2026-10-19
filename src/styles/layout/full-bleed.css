@@ -7,15 +7,17 @@
   margin-right: calc(50% - 50vw) !important;
 }
 
+/* Full-bleed band, but the links sit on the page's content column, in line
+   with the navbar logo. */
 .article-breadcrumb {
   box-sizing: border-box;
-  padding-left: clamp(16px, 4vw, 48px);
-  padding-right: clamp(16px, 4vw, 48px);
+  padding-left: var(--container-gutter);
+  padding-right: var(--container-gutter);
 }
 
 .article-breadcrumb-list {
   width: 100%;
-  max-width: var(--container-width);
+  max-width: var(--container);
   margin-left: auto;
   margin-right: auto;
 }

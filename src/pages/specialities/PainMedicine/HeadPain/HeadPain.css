@@ -6,7 +6,7 @@
   background: linear-gradient(180deg, #f8fafc 0%, #f6f8fb 100%);
   color: #0f172a;
   --hp-max: var(--container);
-  --hp-gutter: clamp(16px, 4vw, 32px);
+  --hp-gutter: var(--container-gutter);
   --hp-radius-lg: 24px;
   --hp-radius-md: 16px;
   --hp-shadow-lg: 0 18px 48px rgba(2, 6, 23, 0.12);

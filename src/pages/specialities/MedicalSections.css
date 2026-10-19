@@ -73,7 +73,7 @@
 .ms-hero__cta:hover{transform:translateY(-1px)}
 .ms-hero__cta:focus-visible{outline:3px solid rgba(147,197,253,.9);outline-offset:3px}
 
-.specialities-page{--psx-max:var(--container);--psx-gutter:clamp(16px,4vw,32px);--cta-bg-color:#d3243b;--cta-text-color:#ffffff;--cta-padding:1.2rem 1.5rem;--cta-border-radius:999px;--cta-font-size:16px;--cta-font-weight:600;--cta-letter-spacing:0.08em}
+.specialities-page{--psx-max:var(--container);--psx-gutter:var(--container-gutter);--cta-bg-color:#d3243b;--cta-text-color:#ffffff;--cta-padding:1.2rem 1.5rem;--cta-border-radius:999px;--cta-font-size:16px;--cta-font-weight:600;--cta-letter-spacing:0.08em}
 .specialities-page .hero.psx-hero{position:relative;padding:clamp(56px,8vw,96px) var(--psx-gutter);padding-top:clamp(92px,10vw,128px);color:#fff;overflow:hidden;display:block;min-height:auto;background:transparent;top:auto;border-radius:0;margin:0}
 .specialities-page .hero.psx-hero .hero-video.psx-hero-backdrop{position:absolute;inset:0;background-image:none;background-color:#000;overflow:hidden;z-index:0;filter:none;pointer-events:none}
 .specialities-page .hero.psx-hero .hero-video::after{content:none}

@@ -4,7 +4,8 @@
 }
 
 .legal-page__article {
-  width: min(100% - 32px, var(--container-width, 1180px));
+  /* Same column as the navbar and footer. */
+  width: min(100% - 2 * var(--container-gutter), var(--container));
   margin: 0 auto;
   padding: var(--section-space) 0;
 }
@@ -196,10 +197,6 @@
 }
 
 @media (max-width: 640px) {
-  .legal-page__article {
-    width: min(100% - 24px, var(--container-width, 1180px));
-  }
-
   .legal-page__nav {
     padding: 20px;
     border-radius: 20px;
