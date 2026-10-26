@@ -98,9 +98,9 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
       email: 'info@algarvepaincentre.com',
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Av. do Mar, Vale do Lobo',
+        streetAddress: 'Av. José dos Santos Farias 2B',
         addressLocality: 'Almancil',
-        postalCode: '8135-107',
+        postalCode: '8135-167',
         addressRegion: 'Algarve',
         addressCountry: 'PT',
       },
@@ -117,7 +117,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
           '@id': pageId,
           url: canonicalUrl || 'https://www.algarvepaincentre.com/',
           name: title,
-          description: `Specialist assessment and treatment for ${areaLabel} at Algarve Pain Centre in Vale do Lobo, Algarve, Portugal.`,
+          description: `Specialist assessment and treatment for ${areaLabel} at Algarve Pain Centre in Almancil, Algarve, Portugal.`,
           about: { '@id': conditionId },
           isPartOf: {
             '@type': 'WebSite',
@@ -130,7 +130,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
           '@type': 'MedicalCondition',
           '@id': conditionId,
           name: title,
-          description: `Specialist assessment and treatment for ${areaLabel} at Algarve Pain Centre in Vale do Lobo, Algarve, Portugal.`,
+          description: `Specialist assessment and treatment for ${areaLabel} at Algarve Pain Centre in Almancil, Algarve, Portugal.`,
           url: canonicalUrl || 'https://www.algarvepaincentre.com/',
           study: {
             '@type': 'MedicalStudy',
@@ -171,7 +171,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
     const pageTitle = `${title} | Algarve Pain Centre`;
     document.title = pageTitle;
 
-    const description = `Specialist assessment and treatment for ${areaLabel} at Algarve Pain Centre, a multidisciplinary pain clinic in Vale do Lobo, Algarve, Portugal. Discover how our team combines minimally invasive procedures, rehabilitation and medication to relieve pain, restore movement and improve your quality of life.`;
+    const description = `Specialist assessment and treatment for ${areaLabel} at Algarve Pain Centre, a multidisciplinary pain clinic in Almancil, Algarve, Portugal. Discover how our team combines minimally invasive procedures, rehabilitation and medication to relieve pain, restore movement and improve your quality of life.`;
 
     let meta = document.querySelector('meta[name="description"]') as HTMLMetaElement | null;
     if (!meta) {
@@ -249,7 +249,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
             <div className="psx-lead">
               <h2 className="psx-lead-title">Treatments for {areaLabel}</h2>
               <p className="psx-lead-subtitle">
-                At Algarve Pain Centre in Vale do Lobo, Algarve, we offer a comprehensive range of
+                At Algarve Pain Centre in Almancil, Algarve, we offer a comprehensive range of
                 evidence-based treatments for {areaLabel}. Our multidisciplinary team of pain medicine
                 physicians, spine surgeons, rehabilitation specialists and psychologists works together
                 so that your plan is built from multiple expert perspectives, not just one.
@@ -2417,11 +2417,11 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
                     className="location-map-iframe"
                     title="Business location map"
                     type="map"
-                    src="https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil&z=16&output=embed"
+                    src="https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+Jose+dos+Santos+Farias+2B+8135-167+Almancil+Algarve&z=16&output=embed"
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
                     allowFullScreen
-                    openHref="https://maps.google.com/?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil"
+                    openHref="https://maps.google.com/?q=Algarve+Pain+Centre+Av.+Jose+dos+Santos+Farias+2B+8135-167+Almancil+Algarve"
                   />
                 </div>
               </div>
@@ -2449,7 +2449,7 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
         <div className="treatments-overview-header">
           <h2 className="treatments-overview-title">Treatments for {areaLabel}</h2>
           <p className="treatments-overview-subtitle">
-            At Algarve Pain Centre in Vale do Lobo, Algarve, we offer a comprehensive range of
+            At Algarve Pain Centre in Almancil, Algarve, we offer a comprehensive range of
             evidence-based treatments for {areaLabel}. Our multidisciplinary team of pain medicine
             physicians, spine surgeons, rehabilitation specialists and psychologists works together
             so that your plan is built from multiple expert perspectives, not just one.
@@ -2840,10 +2840,10 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
             <ManagedEmbed
               title="Algarve Pain Centre location"
               type="map"
-              src="https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil&z=16&output=embed"
+              src="https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+Jose+dos+Santos+Farias+2B+8135-167+Almancil+Algarve&z=16&output=embed"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              openHref="https://maps.google.com/?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil"
+              openHref="https://maps.google.com/?q=Algarve+Pain+Centre+Av.+Jose+dos+Santos+Farias+2B+8135-167+Almancil+Algarve"
             />
           </div>
         </div>

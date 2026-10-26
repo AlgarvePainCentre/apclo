@@ -13,7 +13,7 @@ const OvercomingSciaticaPainPage: React.FC = () => {
   usePageMeta({
     title: 'Overcoming Sciatica Pain | Patient Story | Algarve Pain Centre',
     description:
-      'Ghislaine Renault shares how she healed from sciatica and chronic back pain with personalised care at Algarve Pain Centre in Vale do Lobo, Algarve.',
+      'Ghislaine Renault shares how she healed from sciatica and chronic back pain with personalised care at Algarve Pain Centre in Almancil, Algarve.',
   });
 
   return (

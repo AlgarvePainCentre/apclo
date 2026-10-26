@@ -14,7 +14,7 @@ const CareersPage: React.FC = () => {
   usePageMeta({
     title: 'Careers | Algarve Pain Centre',
     description:
-      'Join the Algarve Pain Centre team — a multidisciplinary pain, sports and rehabilitation clinic in Vale do Lobo, Algarve. See the disciplines we work with and how to express interest in future roles.',
+      'Join the Algarve Pain Centre team — a multidisciplinary pain, sports and rehabilitation clinic in Almancil, Algarve. See the disciplines we work with and how to express interest in future roles.',
   });
 
   return (
@@ -25,7 +25,7 @@ const CareersPage: React.FC = () => {
           <h1 className="careers-title">Careers at Algarve Pain Centre</h1>
           <p className="careers-subtitle">
             We bring together pain medicine, sports medicine, rehabilitation and allied health under one roof in
-            Vale do Lobo, Algarve — with a patient-first, multidisciplinary approach to care.
+            Almancil, Algarve — with a patient-first, multidisciplinary approach to care.
           </p>
         </div>
       </header>

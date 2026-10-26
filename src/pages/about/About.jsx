@@ -48,7 +48,7 @@ export default function About() {
   usePageMeta({
     title: 'About Algarve Pain Centre | Our multidisciplinary team in the Algarve',
     description:
-      'Meet the Algarve Pain Centre team and our specialist network. A multidisciplinary clinic in Vale do Lobo, Algarve, combining pain medicine, sports medicine, rehabilitation and spine surgery.',
+      'Meet the Algarve Pain Centre team and our specialist network. A multidisciplinary clinic in Almancil, Algarve, combining pain medicine, sports medicine, rehabilitation and spine surgery.',
   });
 
   const largeCards = doctorsData.filter(d => d.isLarge);
@@ -126,20 +126,20 @@ export default function About() {
                         playsInline
                         preload="auto"
                         poster="/assets/images/illustrative/pain-medicine-algarve-min.webp"
-                        aria-label="Vale do Lobo clinic environment"
+                        aria-label="Almancil clinic environment"
                       >
                         <source src="/assets/videos/test.mp4" type="video/mp4" />
                       </video>
                       <div className="section-video-overlay" aria-hidden="true">
                         <p className="section-video-eyebrow">Family Medical Centre</p>
-                        <p className="section-video-stat">Vale do Lobo</p>
+                        <p className="section-video-stat">Almancil</p>
                         <p className="section-video-meta">A calm, welcoming space designed around comfort, access and continuity of care.</p>
                       </div>
                     </div>
                   </div>
 
                   <div className="section-body-col">
-                    <p>Located in one of the most beautiful regions of Portugal and one of the most luxurious tourist developments in Europe, our clinic is located inside Family Medical Centre from Dr. Thomas Kaiser, at Av. do Mar, Vale do Lobo, Algarve, We have all the necessary facilities for your well-being.</p>
+                    <p>Located in one of the most beautiful regions of Portugal and one of the most luxurious tourist developments in Europe, our clinic is located inside Family Medical Centre from Dr. Thomas Kaiser, at Av. José dos Santos Farias 2B, 8135-167 Almancil, Algarve, We have all the necessary facilities for your well-being.</p>
                   </div>
                 </div>
               </div>
@@ -155,13 +155,13 @@ export default function About() {
                   playsInline
                   preload="auto"
                   poster="/assets/images/illustrative/pain-medicine-algarve-min.webp"
-                  aria-label="Vale do Lobo clinic environment"
+                  aria-label="Almancil clinic environment"
                 >
                   <source src="/assets/videos/test.mp4" type="video/mp4" />
                 </video>
                 <div className="section-video-overlay" aria-hidden="true">
                   <p className="section-video-eyebrow">Family Medical Centre</p>
-                  <p className="section-video-stat">Vale do Lobo</p>
+                  <p className="section-video-stat">Almancil</p>
                   <p className="section-video-meta">A calm, welcoming space designed around comfort, access and continuity of care.</p>
                 </div>
               </div>

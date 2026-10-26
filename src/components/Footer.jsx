@@ -122,9 +122,9 @@ export default function Footer() {
             />
             <address className="footer-brand-info">
               <p className="footer-brand-address">
-                Av. do Mar, Vale do Lobo
+                Av. José dos Santos Farias 2B
                 <br />
-                8135-107 Almancil, Algarve
+                8135-167 Almancil, Algarve
               </p>
               <p className="footer-brand-contact">
                 <a href="tel:+351915915001" className="footer-link">

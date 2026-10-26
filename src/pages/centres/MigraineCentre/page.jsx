@@ -37,7 +37,7 @@ export default function MigraineCentrePage() {
   usePageMeta({
     title: 'Algarve Migraine & Neurotherapy Centre | Algarve Pain Centre',
     description:
-      'Botulinum toxin and neuromodulation treatments for chronic migraine, movement disorders and facial pain at the Algarve Migraine & Neurotherapy Centre in Vale do Lobo, Algarve.',
+      'Botulinum toxin and neuromodulation treatments for chronic migraine, movement disorders and facial pain at the Algarve Migraine & Neurotherapy Centre in Almancil, Algarve.',
   });
 
 return (
@@ -107,7 +107,7 @@ return (
 
         <section className="mc-section mc-panel mc-contact">
           <h2 className="mc-section-title">Contact us</h2>
-          <p className="mc-paragraph">Av. do Mar, Vale do Lobo, 8135-107 Almancil, Algarve</p>
+          <p className="mc-paragraph">Av. José dos Santos Farias 2B, 8135-167 Almancil, Algarve</p>
           <p className="mc-paragraph">
             <a href="tel:+351915915001" className="mc-inline-link">
               +351 915 915 001

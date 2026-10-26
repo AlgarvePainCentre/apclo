@@ -32,7 +32,7 @@ const TestimonialTemplate: React.FC<TestimonialTemplateProps> = ({
 }) => {
   usePageMeta({
     title: `${title} | Patient Story | Algarve Pain Centre`,
-    description: `${intro} A patient story from Algarve Pain Centre in Vale do Lobo, Algarve.`,
+    description: `${intro} A patient story from Algarve Pain Centre in Almancil, Algarve.`,
   });
 
   return (

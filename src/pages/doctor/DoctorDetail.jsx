@@ -12,7 +12,7 @@ export default function DoctorDetail() {
   const doctor = doctorsData.find(d => d.id === id);
 
   const metaDesc = doctor
-    ? (doctor.bio ? doctor.bio.slice(0, 155) : `${doctor.name}, specialist at Algarve Pain Centre, a multidisciplinary pain clinic in Vale do Lobo, Algarve.`)
+    ? (doctor.bio ? doctor.bio.slice(0, 155) : `${doctor.name}, specialist at Algarve Pain Centre, a multidisciplinary pain clinic in Almancil, Algarve.`)
     : undefined;
   usePageMeta({
     title: doctor ? `${doctor.name} | Algarve Pain Centre` : undefined,

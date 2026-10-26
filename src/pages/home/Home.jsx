@@ -189,9 +189,9 @@ export default function Home() {
 
   useEffect(() => {
     const titleText =
-      'Algarve Pain Centre | Multidisciplinary pain clinic in Vale do Lobo, Algarve';
+      'Algarve Pain Centre | Multidisciplinary pain clinic in Almancil, Algarve';
     const descriptionText =
-      'Algarve Pain Centre is a specialised pain clinic in Vale do Lobo, Algarve, Portugal. Our multidisciplinary team treats spine, joint and nerve pain with personalised plans that combine non-invasive therapies, minimally invasive procedures and advanced spine surgery.';
+      'Algarve Pain Centre is a specialised pain clinic in Almancil, Algarve, Portugal. Our multidisciplinary team treats spine, joint and nerve pain with personalised plans that combine non-invasive therapies, minimally invasive procedures and advanced spine surgery.';
 
     document.title = titleText;
 
@@ -222,12 +222,12 @@ export default function Home() {
             name: 'Algarve Pain Centre',
             url: 'https://www.algarvepaincentre.com/',
             description:
-              'Multidisciplinary pain clinic in Vale do Lobo, Algarve, Portugal, specialising in spine pain, joint pain, sports injuries and stroke rehabilitation. Care follows a stepped approach: non-invasive treatments first, image-guided minimally invasive procedures when appropriate, and surgery only when indicated, in partnership with its spine and orthopaedic surgeons.',
+              'Multidisciplinary pain clinic in Almancil, Algarve, Portugal, specialising in spine pain, joint pain, sports injuries and stroke rehabilitation. Care follows a stepped approach: non-invasive treatments first, image-guided minimally invasive procedures when appropriate, and surgery only when indicated, in partnership with its spine and orthopaedic surgeons.',
             address: {
               '@type': 'PostalAddress',
-              streetAddress: 'Av. do Mar, Vale do Lobo',
+              streetAddress: 'Av. José dos Santos Farias 2B',
               addressLocality: 'Almancil',
-              postalCode: '8135-107',
+              postalCode: '8135-167',
               addressRegion: 'Algarve',
               addressCountry: 'PT',
             },
@@ -635,7 +635,7 @@ export default function Home() {
               </h2>
               <p className="home-section-why-choose-subtitle">
                 Choosing a pain clinic is an important decision. These answers cover what we treat,
-                how appointments work and what to expect when you visit us in Vale do Lobo.
+                how appointments work and what to expect when you visit us in Almancil.
               </p>
             </header>
             <div className="home-section-why-choose-layout">
