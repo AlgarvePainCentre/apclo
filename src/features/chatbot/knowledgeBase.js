@@ -6,9 +6,9 @@ export const chatbotContact = {
   whatsappHref: 'https://wa.me/351915915001',
   email: 'info@algarvepaincentre.com',
   emailHref: 'mailto:info@algarvepaincentre.com',
-  address: 'Algarve Pain Centre - Av. do Mar, Vale do Lobo, 8135-107 Almancil, Algarve',
+  address: 'Algarve Pain Centre - Av. José dos Santos Farias 2B, 8135-167 Almancil, Algarve',
   mapsHref:
-    'https://www.google.com/maps/search/?api=1&query=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+8135-107+Almancil',
+    'https://www.google.com/maps/search/?api=1&query=Algarve+Pain+Centre+Av.+Jose+dos+Santos+Farias+2B+8135-167+Almancil',
   contactPage: '/contact',
 };
 

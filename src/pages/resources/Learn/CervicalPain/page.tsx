@@ -10,7 +10,7 @@ const CervicalPainPage: React.FC = () => {
   usePageMeta({
     title: 'Cervical Pain | Algarve Pain Centre',
     description:
-      'What cervical (neck) pain is, how the cervical spine works and what causes it, with self-care guidance from Algarve Pain Centre in Vale do Lobo, Algarve.',
+      'What cervical (neck) pain is, how the cervical spine works and what causes it, with self-care guidance from Algarve Pain Centre in Almancil, Algarve.',
   });
 
   useEffect(() => {

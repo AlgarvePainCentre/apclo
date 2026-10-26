@@ -14,7 +14,7 @@ export default function Contact() {
   const heroRef = useRef(null);
   const heroVideoRef = useRef(null);
   const mapUrl =
-    'https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil&z=16&output=embed';
+    'https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+Jose+dos+Santos+Farias+2B+8135-167+Almancil+Algarve&z=16&output=embed';
 
   // Contact form submission (custom form -> /api/contact -> Zoho, with hCaptcha).
   const [status, setStatus] = useState('idle'); // idle | submitting | success | error
@@ -183,7 +183,7 @@ export default function Contact() {
   useEffect(() => {
     const titleText = 'Contact Algarve Pain Centre | Request a pain clinic appointment in the Algarve';
     const descriptionText =
-      'Contact Algarve Pain Centre in Vale do Lobo, Algarve to discuss your pain symptoms, request an assessment or plan treatment. Call, message or use our contact form to reach our multidisciplinary pain clinic.';
+      'Contact Algarve Pain Centre in Almancil, Algarve to discuss your pain symptoms, request an assessment or plan treatment. Call, message or use our contact form to reach our multidisciplinary pain clinic.';
 
     document.title = titleText;
 
@@ -361,7 +361,7 @@ export default function Contact() {
               <img
                 className="contact-form-media-img"
                 src="/assets/images/illustrative/pain-medicine-algarve-min.webp"
-                alt="Algarve Pain Centre clinical setting in Vale do Lobo, Algarve"
+                alt="Algarve Pain Centre clinical setting in Almancil, Algarve"
                 loading="lazy"
                 decoding="async"
               />
@@ -394,9 +394,9 @@ export default function Contact() {
                     <dt>Address</dt>
                     <dd>
                       <address>
-                        Av. do Mar, Vale do Lobo
+                        Av. José dos Santos Farias 2B
                         <br />
-                        8135-107 Almancil, Algarve
+                        8135-167 Almancil, Algarve
                       </address>
                     </dd>
                   </div>
@@ -411,7 +411,7 @@ export default function Contact() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   allowFullScreen
-                  openHref="https://maps.google.com/?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil"
+                  openHref="https://maps.google.com/?q=Algarve+Pain+Centre+Av.+Jose+dos+Santos+Farias+2B+8135-167+Almancil+Algarve"
                 />
               </div>
             </div>

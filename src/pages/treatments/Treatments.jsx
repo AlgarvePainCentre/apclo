@@ -207,11 +207,11 @@ export function TreatmentsMain({
                 className="location-map-iframe"
                 title="Business location map"
                 type="map"
-                src="https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil&z=16&output=embed"
+                src="https://www.google.com/maps?q=Algarve+Pain+Centre+Av.+Jose+dos+Santos+Farias+2B+8135-167+Almancil+Algarve&z=16&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 allowFullScreen
-                openHref="https://maps.google.com/?q=Algarve+Pain+Centre+Av.+do+Mar+Vale+do+Lobo+Algarve+8135-107+Almancil"
+                openHref="https://maps.google.com/?q=Algarve+Pain+Centre+Av.+Jose+dos+Santos+Farias+2B+8135-167+Almancil+Algarve"
               />
             </div>
           </div>
@@ -229,7 +229,7 @@ export default function Treatments() {
   usePageMeta({
     title: 'Treatments | Algarve Pain Centre — non-invasive, minimally invasive & surgical',
     description:
-      'Explore treatments at Algarve Pain Centre: non-invasive therapies, minimally invasive image-guided procedures and spine surgery, tailored to your diagnosis in Vale do Lobo, Algarve.',
+      'Explore treatments at Algarve Pain Centre: non-invasive therapies, minimally invasive image-guided procedures and spine surgery, tailored to your diagnosis in Almancil, Algarve.',
   });
   return (
     <div className="psx-page" id="psx-treatments">
