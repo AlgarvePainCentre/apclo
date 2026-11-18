@@ -1240,6 +1240,11 @@
   transform: scale(1.8);
 }
 
+/* The photo needs no zoom (the 1.8 scale cropped the video's frame). */
+.home-section-testimonial-video-el.home-section-testimonial-photo {
+  transform: none;
+}
+
 @media (max-width: 768px) {
   .home-section-testimonial {
     padding: 56px 16px;

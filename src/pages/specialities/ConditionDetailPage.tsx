@@ -275,20 +275,16 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
               </article>
               <div className="psx-media" aria-hidden="true">
                 <div className="psx-media-inner">
-                  <video
+                  {/* This page's own photo. The clip that was here (post-43) is the
+                      head-pain video with "Head Pain" in the frame, shown on every
+                      condition page. */}
+                  <img
                     className="psx-video"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    preload="metadata"
-                    poster={heroImage}
-                  >
-                    <source src="/assets/videos/post-43.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
-                    <source src="/assets/videos/post-43.h264.mp4" type='video/mp4; codecs="avc1.42E01E"' />
-                    <source src="/assets/videos/post-43.mp4" type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
+                    src={heroImage}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
             </div>
@@ -2503,18 +2499,13 @@ const ConditionDetailPage: React.FC<ConditionDetailPageProps> = ({
           </article>
           <div className="treatments-overview-media" aria-hidden="true">
             <div className="treatments-overview-media-inner">
-              <video
+              <img
                 className="treatments-overview-video"
-                autoPlay
-                muted
-                loop
-                playsInline
-                preload="metadata"
-              >
-                <source src="/assets/videos/post-43.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
-                <source src="/assets/videos/post-43.h264.mp4" type='video/mp4; codecs="avc1.42E01E"' />
-                <source src="/assets/videos/post-43.mp4" type="video/mp4" />
-              </video>
+                src={PAIN_MEDICINE_PAGE_CONTENT[slugBase]?.heroImage ?? '/assets/images/Hero/HomeCare.webp'}
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
             </div>
           </div>
         </div>
