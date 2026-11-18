@@ -15,6 +15,10 @@ const mainLinks = [
 
 export { specialitiesCategories, treatmentsCategories, resourceCategories };
 
+// Links shown per category in the desktop dropdowns; the rest are reached
+// through the category's "View all" link.
+const MENU_LIMIT = 6;
+
 function NavDropdown({
   menuKey,
   label,
@@ -75,20 +79,13 @@ function NavDropdown({
         onMouseLeave={() => onHoverClose(menuKey, true)}
       >
         <div className="navbar-dropdown-inner">
-          {/* All categories flow through the same balanced columns, so every
-              menu has the same shape whatever the number of links. */}
+          {/* One column per category, at most MENU_LIMIT links each, then the
+              category's "View all" link (like the footer). */}
           {categories.map((category) => (
-            <div
-              key={category.title}
-              className={
-                category.newColumn
-                  ? 'navbar-dropdown-group navbar-dropdown-group--new-column'
-                  : 'navbar-dropdown-group'
-              }
-            >
+            <div key={category.title} className="navbar-dropdown-group">
               <div className="navbar-dropdown-title">{category.title}</div>
               <ul className="navbar-dropdown-list">
-                {category.items.map((item) => (
+                {category.items.slice(0, MENU_LIMIT).map((item) => (
                   <li key={item.path} className="navbar-dropdown-item">
                     <Link
                       to={item.path}
@@ -106,6 +103,17 @@ function NavDropdown({
                   </li>
                 ))}
               </ul>
+              {category.viewAll ? (
+                <Link
+                  to={category.viewAll.path}
+                  role="menuitem"
+                  className="navbar-dropdown-viewall"
+                  onClick={() => onClick(true)}
+                >
+                  {category.viewAll.label}
+                  <span aria-hidden="true">→</span>
+                </Link>
+              ) : null}
             </div>
           ))}
         </div>

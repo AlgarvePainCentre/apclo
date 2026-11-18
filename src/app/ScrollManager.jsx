@@ -75,17 +75,69 @@ export default function ScrollManager() {
     const lenis = lenisRef.current;
     if (location.hash) {
       const elementId = decodeURIComponent(location.hash.slice(1));
-      const targetElement = document.getElementById(elementId);
-
-      if (!targetElement) return;
-
-      if (lenis && typeof lenis.scrollTo === 'function') {
-        lenis.scrollTo(targetElement, { immediate: prefersReducedMotion });
-        return;
-      }
-
-      targetElement.scrollIntoView({ block: 'start', behavior: prefersReducedMotion ? 'auto' : 'smooth' });
-      return;
+      // The target can render a few frames late (lazy routes), and it should
+      // land below the fixed navbar rather than under it. Images and reveals
+      // above it keep changing the page height for a moment after arrival, so
+      // the position is corrected while that settles, until the visitor
+      // scrolls or 2.5s pass.
+      let frame = 0;
+      let rafId = 0;
+      let settled = false;
+      let settleWatcher = null;
+      let settleTimer = 0;
+      const stopSettling = () => {
+        settled = true;
+        settleWatcher?.disconnect();
+        window.clearTimeout(settleTimer);
+        ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach((type) =>
+          window.removeEventListener(type, stopSettling),
+        );
+      };
+      const scrollToTarget = (immediate) => {
+        const targetElement = document.getElementById(elementId);
+        if (!targetElement) return false;
+        const header = document.querySelector('header.navbar');
+        const offset = (header ? header.getBoundingClientRect().height : 0) + 16;
+        const currentLenis = lenisRef.current;
+        if (currentLenis && typeof currentLenis.scrollTo === 'function') {
+          currentLenis.scrollTo(targetElement, { offset: -offset, immediate });
+        } else {
+          const top = targetElement.getBoundingClientRect().top + window.scrollY - offset;
+          window.scrollTo({ top, behavior: immediate ? 'auto' : 'smooth' });
+        }
+        return true;
+      };
+      const start = () => {
+        if (!scrollToTarget(prefersReducedMotion)) {
+          if (frame < 60) {
+            frame += 1;
+            rafId = window.requestAnimationFrame(start);
+          }
+          return;
+        }
+        ['wheel', 'touchstart', 'keydown', 'pointerdown'].forEach((type) =>
+          window.addEventListener(type, stopSettling, { passive: true }),
+        );
+        // Pinned scroll sections add space without resizing <body>, so check
+        // where the target actually is rather than waiting for a resize.
+        const check = () => {
+          if (settled) return;
+          const targetElement = document.getElementById(elementId);
+          const header = document.querySelector('header.navbar');
+          const wanted = (header ? header.getBoundingClientRect().height : 0) + 16;
+          if (targetElement && Math.abs(targetElement.getBoundingClientRect().top - wanted) > 4) {
+            scrollToTarget(true);
+          }
+        };
+        const intervalId = window.setInterval(check, 150);
+        settleWatcher = { disconnect: () => window.clearInterval(intervalId) };
+        settleTimer = window.setTimeout(stopSettling, 2500);
+      };
+      start();
+      return () => {
+        window.cancelAnimationFrame(rafId);
+        stopSettling();
+      };
     }
 
     if (lenis && typeof lenis.scrollTo === 'function') {
