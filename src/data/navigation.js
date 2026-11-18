@@ -255,21 +255,6 @@ export const resourceCategories = [
     ],
   },
   {
-    title: 'Guides',
-    viewAll: { label: 'View all resources', path: '/resources' },
-    items: [
-      { label: 'Cervical Pain', path: '/resources/learn/cervical-pain' },
-      {
-        label: 'Conquering Cervical Pain',
-        path: '/resources/learn/conquering-cervical-pain',
-      },
-      {
-        label: 'Understanding Acute and Chronic Pain',
-        path: '/resources/learn/acute-and-chronic-pain',
-      },
-    ],
-  },
-  {
     title: 'Testimonials',
     viewAll: { label: 'View all stories', path: '/resources#patient-stories' },
     items: [
