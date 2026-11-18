@@ -1,7 +1,7 @@
 import { createApi, fakeBaseQuery } from '@reduxjs/toolkit/query/react';
 import { blogArticles } from '../../pages/resources/Learn/Blog/articles';
 
-const testimonialStories = [
+export const testimonialStories = [
   {
     name: 'Ghislaine Renault',
     initials: 'GR',
