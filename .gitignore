@@ -41,3 +41,6 @@ yarn-error.log*
 # Cloudflare / wrangler local state and secrets
 .wrangler/
 .dev.vars*
+
+# Local Claude Code settings and worktrees (not part of the site)
+.claude/
