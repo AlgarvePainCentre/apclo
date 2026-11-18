@@ -231,32 +231,46 @@
   transition-delay: 0s, 0s, 0s;
 }
 
-/* Every menu: four equal columns, filled in order and balanced so they end at
-   the same height. A long category continues into the next column. */
+/* Every menu: one equal column per category (three per menu). */
 .navbar-dropdown-inner {
-  column-count: 4;
-  column-gap: 32px;
-  column-fill: balance;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0 32px;
 }
 
-/* Titles take exactly one link row (44px + 4px gap) so every column sits on
-   the same row grid, including columns that continue a category. */
-.navbar-dropdown-group + .navbar-dropdown-group {
-  margin-top: 4px;
+.navbar-dropdown-group {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 
-.navbar-dropdown-group--new-column {
-  break-before: column;
-  margin-top: 0 !important;
+/* "View all …" sits at the foot of every column, on the same line across the
+   menu. */
+.navbar-dropdown-viewall {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  padding: 14px 12px 4px;
+  color: var(--color-darkYellow);
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
 }
 
-.navbar-dropdown-title {
-  break-after: avoid;
-  break-inside: avoid;
+.navbar-dropdown-viewall span {
+  transition: transform 0.2s ease;
 }
 
-.navbar-dropdown-item {
-  break-inside: avoid;
+.navbar-dropdown-viewall:hover span,
+.navbar-dropdown-viewall:focus-visible span {
+  transform: translateX(3px);
+}
+
+.navbar-dropdown-viewall:focus-visible {
+  outline: 2px solid var(--color-darkYellow);
+  outline-offset: 2px;
+  border-radius: 8px;
 }
 
 .navbar-dropdown-title {
@@ -330,16 +344,7 @@
 }
 
 /* MOBILE NAV STYLES */
-@media (max-width: 1280px) {
-  .navbar-dropdown-inner {
-    column-count: 3;
-  }
-  /* Three columns can't split two sections evenly: let them flow. */
-  .navbar-dropdown-group--new-column {
-    break-before: auto;
-    margin-top: 4px !important;
-  }
-}
+
 
 /* Compact navbar (logo + menu button) up to 1180px: below that the four
    links, the search and the Contact button no longer fit side by side. */

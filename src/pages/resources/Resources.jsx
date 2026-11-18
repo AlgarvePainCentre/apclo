@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/layout/site-sections.css';
 import '../../styles/pages/resources-page.css';
+import { resourceCategories } from '../../data/navigation';
 
 const RESOURCE_UNLOCK_KEY = 'spine_guide_unlocked';
 const EMAIL_ATTEMPTS_KEY = 'email_attempts';
@@ -344,6 +345,25 @@ export default function Resources() {
                  <span className="stat-label">Return to Sport Rate</span>
                </div>
             </div>
+          </div>
+        </section>
+
+        {/* Every patient story: the menu's "View all stories" lands here. */}
+        <section className="page-section" id="patient-stories">
+          <div className="section-header">
+            <p className="section-eyebrow">Patient stories</p>
+            <h2>Real stories from our patients</h2>
+            <p>How people found relief and got back to the things that matter to them.</p>
+          </div>
+          <div className="info-grid patient-stories-grid">
+            {(resourceCategories.find((c) => c.title === 'Testimonials')?.items ?? []).map((story) => (
+              <Link key={story.path} to={story.path} className="info-item patient-story-card">
+                <h3>{story.label}</h3>
+                <p className="patient-story-link">
+                  Read the story <span aria-hidden="true">→</span>
+                </p>
+              </Link>
+            ))}
           </div>
         </section>
 

@@ -549,7 +549,7 @@ export default function Specialities() {
 
       <main className="home-main treatments-page">
 
-        <section className="page-section treatments-feature treatments-feature-mi" aria-labelledby="speciality-pain-medicine">
+        <section id="pain-medicine" className="page-section treatments-feature treatments-feature-mi" aria-labelledby="speciality-pain-medicine">
           <div className="treatments-feature-inner treatments-feature-inner-grid">
             <div className="pain-area-grid-panel">
               <h3 className="pain-area-grid-title">Where do you feel pain?</h3>
@@ -602,7 +602,7 @@ export default function Specialities() {
           </div>
         </section>
 
-        <section className="page-section treatments-feature treatments-feature-mi" aria-labelledby="speciality-sports-medicine">
+        <section id="sports-medicine" className="page-section treatments-feature treatments-feature-mi" aria-labelledby="speciality-sports-medicine">
           <div className="treatments-feature-inner treatments-feature-inner-grid">
             <div className="sports-care-grid-panel">
               <h3 className="sports-care-grid-title">Our care services</h3>
@@ -662,7 +662,7 @@ export default function Specialities() {
           </div>
         </section>
 
-        <section className="page-section treatments-feature treatments-feature-mi" aria-labelledby="speciality-stroke-medicine">
+        <section id="stroke-medicine" className="page-section treatments-feature treatments-feature-mi" aria-labelledby="speciality-stroke-medicine">
           <div className="treatments-feature-inner treatments-feature-inner-grid">
             <div className="sports-care-grid-panel stroke-care-grid-panel">
               <h3 className="sports-care-grid-title">Our treatment approaches</h3>

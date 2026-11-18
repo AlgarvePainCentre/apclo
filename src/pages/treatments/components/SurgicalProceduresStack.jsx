@@ -34,7 +34,7 @@ const procedures = [
 
 export default function SurgicalProceduresStack() {
   return (
-    <section className="treatment-category-section bg-white">
+    <section id="surgical-treatments" className="treatment-category-section bg-white">
       <div className="treatment-category-inner">
         <header className="treatment-category-header">
           <div className="treatment-category-avatar" aria-hidden="true">

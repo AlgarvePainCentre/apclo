@@ -1,6 +1,7 @@
 export const specialitiesCategories = [
   {
     title: 'Pain Medicine',
+    viewAll: { label: 'View all pain areas', path: '/specialities#pain-medicine' },
     items: [
       { label: 'Head Pain', path: '/specialities/pain-medicine/head-pain' },
       {
@@ -42,6 +43,7 @@ export const specialitiesCategories = [
   },
   {
     title: 'Sports Medicine',
+    viewAll: { label: 'View all sports medicine', path: '/specialities#sports-medicine' },
     items: [
       { label: 'Injuries', path: '/specialities/sports-medicine/injuries' },
       { label: 'Prevention', path: '/specialities/sports-medicine/prevention' },
@@ -56,6 +58,7 @@ export const specialitiesCategories = [
   },
   {
     title: 'Stroke Medicine',
+    viewAll: { label: 'View all stroke medicine', path: '/specialities#stroke-medicine' },
     items: [
       {
         label: 'Rehabilitation',
@@ -111,6 +114,7 @@ export const specialitiesCategories = [
 export const treatmentsCategories = [
   {
     title: 'Surgical Treatments',
+    viewAll: { label: 'View all surgical', path: '/treatments#surgical-treatments' },
     items: [
       {
         label: 'Tubular Microsurgery',
@@ -132,6 +136,7 @@ export const treatmentsCategories = [
   },
   {
     title: 'Minimally Invasive Treatments',
+    viewAll: { label: 'View all minimally invasive', path: '/treatments#minimally-invasive-treatments' },
     items: [
       {
         label: 'Vertebroplasty',
@@ -183,6 +188,7 @@ export const treatmentsCategories = [
   },
   {
     title: 'Non-Invasive Treatments',
+    viewAll: { label: 'View all non-invasive', path: '/treatments#non-invasive-treatments' },
     items: [
       {
         label: 'Pharmacological Pain Management',
@@ -229,39 +235,43 @@ export const treatmentsCategories = [
   },
 ];
 
-// Articles: the blog topics, then the Learn guides, then All Articles.
-const articleItems = [
-  { label: 'Pain Medicine', path: '/blog?category=Pain+medicine' },
-  { label: 'Interventional Pain', path: '/blog?category=Interventional+pain' },
-  { label: 'Spine Surgery', path: '/blog?category=Spine+surgery' },
-  {
-    label: 'Rehabilitation Therapies',
-    path: '/blog?category=Rehabilitation+therapies',
-  },
-  { label: 'Sports Medicine', path: '/blog?category=Sports+medicine' },
-  { label: 'Stroke Medicine', path: '/blog?category=Stroke+medicine' },
-  { label: 'Cervical Pain', path: '/resources/learn/cervical-pain' },
-  {
-    label: 'Conquering Cervical Pain',
-    path: '/resources/learn/conquering-cervical-pain',
-  },
-  {
-    label: 'Understanding Acute and Chronic Pain',
-    path: '/resources/learn/acute-and-chronic-pain',
-  },
-  { label: 'All Articles', path: '/blog' },
-];
-
+// Each category may carry a "View all" link: the desktop dropdown shows the
+// first MENU_LIMIT items (see Navbar.jsx) and then that link, like the footer.
 export const resourceCategories = [
   {
+    // Each topic opens the blog filtered to that category.
     title: 'Articles',
-    items: articleItems,
+    viewAll: { label: 'View all articles', path: '/blog' },
+    items: [
+      { label: 'Pain Medicine', path: '/blog?category=Pain+medicine' },
+      { label: 'Interventional Pain', path: '/blog?category=Interventional+pain' },
+      { label: 'Spine Surgery', path: '/blog?category=Spine+surgery' },
+      {
+        label: 'Rehabilitation Therapies',
+        path: '/blog?category=Rehabilitation+therapies',
+      },
+      { label: 'Sports Medicine', path: '/blog?category=Sports+medicine' },
+      { label: 'Stroke Medicine', path: '/blog?category=Stroke+medicine' },
+    ],
+  },
+  {
+    title: 'Guides',
+    viewAll: { label: 'View all resources', path: '/resources' },
+    items: [
+      { label: 'Cervical Pain', path: '/resources/learn/cervical-pain' },
+      {
+        label: 'Conquering Cervical Pain',
+        path: '/resources/learn/conquering-cervical-pain',
+      },
+      {
+        label: 'Understanding Acute and Chronic Pain',
+        path: '/resources/learn/acute-and-chronic-pain',
+      },
+    ],
   },
   {
     title: 'Testimonials',
-    // Starts its own column in the dropdown, so Articles and Testimonials each
-    // take two of the four columns.
-    newColumn: true,
+    viewAll: { label: 'View all stories', path: '/resources#patient-stories' },
     items: [
       {
         label: 'Overcoming Sciatica Pain',

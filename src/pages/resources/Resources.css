@@ -1263,3 +1263,39 @@ button:disabled,
 .resources-page .page-section .feature-list:last-child {
   margin-bottom: 0;
 }
+
+/* Patient stories: all testimonials, as linked cards. */
+.resources-page .patient-stories-grid {
+  margin-bottom: 0;
+}
+
+.resources-page .patient-story-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+  color: inherit;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.resources-page .patient-story-card:hover,
+.resources-page .patient-story-card:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px rgba(15, 23, 42, 0.09);
+}
+
+.resources-page .patient-story-link {
+  margin: 0;
+  color: var(--cta-bg-color, #d3243b);
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .resources-page .patient-story-card {
+    transition: none;
+  }
+  .resources-page .patient-story-card:hover {
+    transform: none;
+  }
+}

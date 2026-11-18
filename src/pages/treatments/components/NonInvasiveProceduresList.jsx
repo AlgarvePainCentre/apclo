@@ -76,7 +76,7 @@ const procedures = [
 
 export default function NonInvasiveProceduresList() {
   return (
-    <section className="treatment-category-section bg-white">
+    <section id="non-invasive-treatments" className="treatment-category-section bg-white">
       <div className="treatment-category-inner">
         <header className="treatment-category-header">
           <div className="treatment-category-avatar" aria-hidden="true">

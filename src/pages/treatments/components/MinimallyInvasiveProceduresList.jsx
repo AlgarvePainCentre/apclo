@@ -83,7 +83,7 @@ const procedures = [
 
 export default function MinimallyInvasiveProceduresList() {
   return (
-    <section className="treatment-category-section bg-alt">
+    <section id="minimally-invasive-treatments" className="treatment-category-section bg-alt">
       <div className="treatment-category-inner">
         <header className="treatment-category-header">
           <div className="treatment-category-avatar" aria-hidden="true">
