@@ -56,7 +56,9 @@
 
 .navbar-search-slot {
   min-width: 0;
-  width: min(320px, 28vw);
+  /* Shrinks between ~1350px and 1181px so the logo, links, search and Contact
+     button fit side by side. */
+  width: clamp(180px, calc(100vw - 1030px), 320px);
 }
 
 .navbar-brand {
@@ -229,31 +231,41 @@
   transition-delay: 0s, 0s, 0s;
 }
 
+/* Every menu: four equal columns, filled in order and balanced so they end at
+   the same height. A long category continues into the next column. */
 .navbar-dropdown-inner {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 18px 32px;
+  column-count: 4;
+  column-gap: 32px;
+  column-fill: balance;
 }
 
-.navbar-dropdown-column {
-  min-width: 220px;
+/* Titles take exactly one link row (44px + 4px gap) so every column sits on
+   the same row grid, including columns that continue a category. */
+.navbar-dropdown-group + .navbar-dropdown-group {
+  margin-top: 4px;
 }
 
-/* A section spread over several columns (Resources > Articles): it spans that
-   many grid columns and lays its lists side by side under one title. */
-.navbar-dropdown-column--wide {
-  grid-column: span var(--dropdown-span, 3);
-}
-
-.navbar-dropdown-lists {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: minmax(0, 1fr);
-  gap: 0 32px;
+.navbar-dropdown-group--new-column {
+  break-before: column;
+  margin-top: 0 !important;
 }
 
 .navbar-dropdown-title {
-  margin: 2px 0 10px;
+  break-after: avoid;
+  break-inside: avoid;
+}
+
+.navbar-dropdown-item {
+  break-inside: avoid;
+}
+
+.navbar-dropdown-title {
+  display: flex;
+  align-items: flex-end;
+  min-height: 44px;
+  margin: 0 0 4px;
+  padding-bottom: 6px;
+  box-sizing: border-box;
   font-size: 0.92rem;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -320,19 +332,18 @@
 /* MOBILE NAV STYLES */
 @media (max-width: 1280px) {
   .navbar-dropdown-inner {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    column-count: 3;
   }
-}
-@media (max-width: 1100px) {
-  .navbar-dropdown-inner {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-  .navbar-dropdown-column--wide {
-    grid-column: 1 / -1;
+  /* Three columns can't split two sections evenly: let them flow. */
+  .navbar-dropdown-group--new-column {
+    break-before: auto;
+    margin-top: 4px !important;
   }
 }
 
-@media (max-width: 1024px) {
+/* Compact navbar (logo + menu button) up to 1180px: below that the four
+   links, the search and the Contact button no longer fit side by side. */
+@media (max-width: 1180px) {
   .navbar.navbar-scrolled {
     background-color: #0f4681;
   }
@@ -411,4 +422,11 @@
   .navbar-logo {
     height: 28px;
   }
+}
+
+/* "About" is a link while the other top items are buttons: centre its label
+   the same way so all four sit on one line. */
+a.navbar-link {
+  display: inline-flex;
+  align-items: center;
 }

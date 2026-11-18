@@ -1,38 +1,4 @@
-import { useEffect, useRef } from 'react';
-
 export default function TestimonialSection() {
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    const el = videoRef.current;
-    if (!el) return undefined;
-
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return undefined;
-
-    const play = () => {
-      const dataSrc = el.getAttribute('data-src');
-      if (dataSrc && !el.getAttribute('src')) el.setAttribute('src', dataSrc);
-      el.play().catch(() => {});
-    };
-
-    const io = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            play();
-          } else {
-            try {
-              el.pause();
-            } catch {}
-          }
-        });
-      },
-      { threshold: 0.25 }
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
   return (
     <section className="home-section-testimonial">
       <div className="home-section-testimonial-inner">
@@ -61,16 +27,14 @@ export default function TestimonialSection() {
         </div>
         <div className="home-section-testimonial-media">
           <div className="home-section-testimonial-video-wrapper" aria-hidden="true">
-            <video
-              ref={videoRef}
-              className="home-section-testimonial-video-el"
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="none"
-              poster="/assets/images/illustrative/services-home-min-1.webp"
-              data-src="/assets/videos/post-43.mp4"
+            {/* A lower-back photo for Ana's spine-pain story. The clip that was
+                here (post-43) is the head-pain video, with "Head Pain" in the frame. */}
+            <img
+              className="home-section-testimonial-video-el home-section-testimonial-photo"
+              src="/assets/images/lumbar-cards/DiscogenicPain.webp"
+              alt=""
+              loading="lazy"
+              decoding="async"
             />
           </div>
         </div>
