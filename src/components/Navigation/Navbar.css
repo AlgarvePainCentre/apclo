@@ -239,6 +239,19 @@
   min-width: 220px;
 }
 
+/* A section spread over several columns (Resources > Articles): it spans that
+   many grid columns and lays its lists side by side under one title. */
+.navbar-dropdown-column--wide {
+  grid-column: span var(--dropdown-span, 3);
+}
+
+.navbar-dropdown-lists {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(0, 1fr);
+  gap: 0 32px;
+}
+
 .navbar-dropdown-title {
   margin: 2px 0 10px;
   font-size: 0.92rem;
@@ -313,6 +326,9 @@
 @media (max-width: 1100px) {
   .navbar-dropdown-inner {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .navbar-dropdown-column--wide {
+    grid-column: 1 / -1;
   }
 }
 
