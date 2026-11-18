@@ -75,47 +75,39 @@ function NavDropdown({
         onMouseLeave={() => onHoverClose(menuKey, true)}
       >
         <div className="navbar-dropdown-inner">
-          {categories.map((category) => {
-            // A category may spread its links over several columns under one
-            // title (Resources > Articles); otherwise it is a single list.
-            const lists = category.columns || [category.items];
-            return (
-              <div
-                key={category.title}
-                className={
-                  lists.length > 1
-                    ? 'navbar-dropdown-column navbar-dropdown-column--wide'
-                    : 'navbar-dropdown-column'
-                }
-                style={lists.length > 1 ? { '--dropdown-span': lists.length } : undefined}
-              >
-                <div className="navbar-dropdown-title">{category.title}</div>
-                <div className="navbar-dropdown-lists">
-                  {lists.map((list, index) => (
-                    <ul key={index} className="navbar-dropdown-list">
-                      {list.map((item) => (
-                        <li key={item.path} className="navbar-dropdown-item">
-                          <Link
-                            to={item.path}
-                            role="menuitem"
-                            title={item.label}
-                            className={
-                              location.pathname === item.path
-                                ? 'navbar-dropdown-link is-active'
-                                : 'navbar-dropdown-link'
-                            }
-                            onClick={() => onClick(true)}
-                          >
-                            {item.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
+          {/* All categories flow through the same balanced columns, so every
+              menu has the same shape whatever the number of links. */}
+          {categories.map((category) => (
+            <div
+              key={category.title}
+              className={
+                category.newColumn
+                  ? 'navbar-dropdown-group navbar-dropdown-group--new-column'
+                  : 'navbar-dropdown-group'
+              }
+            >
+              <div className="navbar-dropdown-title">{category.title}</div>
+              <ul className="navbar-dropdown-list">
+                {category.items.map((item) => (
+                  <li key={item.path} className="navbar-dropdown-item">
+                    <Link
+                      to={item.path}
+                      role="menuitem"
+                      title={item.label}
+                      className={
+                        location.pathname === item.path
+                          ? 'navbar-dropdown-link is-active'
+                          : 'navbar-dropdown-link'
+                      }
+                      onClick={() => onClick(true)}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
       </div>
     </div>

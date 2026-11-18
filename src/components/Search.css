@@ -274,7 +274,7 @@
   margin-top: 2px;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1180px) {
   .navbar-search--nav {
     position: relative;
     bottom: auto;
@@ -291,7 +291,7 @@
   }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1180px) {
   .navbar-search--nav:focus-within,
   .navbar-search--nav.search-open {
     left: auto;

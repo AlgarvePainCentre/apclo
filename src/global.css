@@ -62,7 +62,8 @@
   --cta-hover-gradient: linear-gradient(var(--cta-bg-hover), var(--cta-bg-hover));
 }
 
-@media (max-width: 1024px) {
+/* 1180px is where the navbar switches to its compact (menu button) layout. */
+@media (max-width: 1180px) {
   :root {
     --container-gutter: 20px;
   }
