@@ -572,6 +572,9 @@ const BlogPage: React.FC = () => {
   const safeCurrentPage = totalPages > 0 ? clampNumber(requestedPage, 1, totalPages) : 1;
 
   useEffect(() => {
+    // Wait for the articles: until they load, the category list is just 'All',
+    // so a ?category= link would be dropped from the URL before it could apply.
+    if (isArticlesLoading || posts.length === 0) return;
     if (queryState.isLoading || queryState.error) return;
 
     updateSearch(
@@ -602,6 +605,8 @@ const BlogPage: React.FC = () => {
     category,
     dateFrom,
     dateTo,
+    isArticlesLoading,
+    posts.length,
     queryState.error,
     queryState.isLoading,
     safeCurrentPage,
