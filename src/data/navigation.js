@@ -229,45 +229,39 @@ export const treatmentsCategories = [
   },
 ];
 
-// Articles: the blog topics and the Learn guides in one menu section. On
-// desktop the dropdown lays it out in these three columns (All Articles last);
-// the mobile menu, footer and search read the flat `items` list.
-const articleColumns = [
-  [
-    { label: 'Pain Medicine', path: '/blog?category=Pain+medicine' },
-    { label: 'Interventional Pain', path: '/blog?category=Interventional+pain' },
-    { label: 'Spine Surgery', path: '/blog?category=Spine+surgery' },
-  ],
-  [
-    {
-      label: 'Rehabilitation Therapies',
-      path: '/blog?category=Rehabilitation+therapies',
-    },
-    { label: 'Sports Medicine', path: '/blog?category=Sports+medicine' },
-    { label: 'Stroke Medicine', path: '/blog?category=Stroke+medicine' },
-  ],
-  [
-    { label: 'Cervical Pain', path: '/resources/learn/cervical-pain' },
-    {
-      label: 'Conquering Cervical Pain',
-      path: '/resources/learn/conquering-cervical-pain',
-    },
-    {
-      label: 'Understanding Acute and Chronic Pain',
-      path: '/resources/learn/acute-and-chronic-pain',
-    },
-    { label: 'All Articles', path: '/blog' },
-  ],
+// Articles: the blog topics, then the Learn guides, then All Articles.
+const articleItems = [
+  { label: 'Pain Medicine', path: '/blog?category=Pain+medicine' },
+  { label: 'Interventional Pain', path: '/blog?category=Interventional+pain' },
+  { label: 'Spine Surgery', path: '/blog?category=Spine+surgery' },
+  {
+    label: 'Rehabilitation Therapies',
+    path: '/blog?category=Rehabilitation+therapies',
+  },
+  { label: 'Sports Medicine', path: '/blog?category=Sports+medicine' },
+  { label: 'Stroke Medicine', path: '/blog?category=Stroke+medicine' },
+  { label: 'Cervical Pain', path: '/resources/learn/cervical-pain' },
+  {
+    label: 'Conquering Cervical Pain',
+    path: '/resources/learn/conquering-cervical-pain',
+  },
+  {
+    label: 'Understanding Acute and Chronic Pain',
+    path: '/resources/learn/acute-and-chronic-pain',
+  },
+  { label: 'All Articles', path: '/blog' },
 ];
 
 export const resourceCategories = [
   {
     title: 'Articles',
-    columns: articleColumns,
-    items: articleColumns.flat(),
+    items: articleItems,
   },
   {
     title: 'Testimonials',
+    // Starts its own column in the dropdown, so Articles and Testimonials each
+    // take two of the four columns.
+    newColumn: true,
     items: [
       {
         label: 'Overcoming Sciatica Pain',
