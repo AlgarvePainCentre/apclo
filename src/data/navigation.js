@@ -229,52 +229,42 @@ export const treatmentsCategories = [
   },
 ];
 
+// Articles: the blog topics and the Learn guides in one menu section. On
+// desktop the dropdown lays it out in these three columns (All Articles last);
+// the mobile menu, footer and search read the flat `items` list.
+const articleColumns = [
+  [
+    { label: 'Pain Medicine', path: '/blog?category=Pain+medicine' },
+    { label: 'Interventional Pain', path: '/blog?category=Interventional+pain' },
+    { label: 'Spine Surgery', path: '/blog?category=Spine+surgery' },
+  ],
+  [
+    {
+      label: 'Rehabilitation Therapies',
+      path: '/blog?category=Rehabilitation+therapies',
+    },
+    { label: 'Sports Medicine', path: '/blog?category=Sports+medicine' },
+    { label: 'Stroke Medicine', path: '/blog?category=Stroke+medicine' },
+  ],
+  [
+    { label: 'Cervical Pain', path: '/resources/learn/cervical-pain' },
+    {
+      label: 'Conquering Cervical Pain',
+      path: '/resources/learn/conquering-cervical-pain',
+    },
+    {
+      label: 'Understanding Acute and Chronic Pain',
+      path: '/resources/learn/acute-and-chronic-pain',
+    },
+    { label: 'All Articles', path: '/blog' },
+  ],
+];
+
 export const resourceCategories = [
   {
-    title: 'Learn',
-    items: [
-      { label: 'Cervical Pain', path: '/resources/learn/cervical-pain' },
-      {
-        label: 'Conquering Cervical Pain',
-        path: '/resources/learn/conquering-cervical-pain',
-      },
-      {
-        label: 'Understanding Acute and Chronic Pain',
-        path: '/resources/learn/acute-and-chronic-pain',
-      },
-      { label: 'All Articles', path: '/blog' },
-    ],
-  },
-  {
-    // Each topic opens the blog filtered to that category (Blog page reads
-    // ?category= and matches it against articles.ts).
-    title: 'Articles by topic',
-    items: [
-      {
-        label: 'Pain Medicine',
-        path: '/blog?category=Pain+medicine',
-      },
-      {
-        label: 'Interventional Pain',
-        path: '/blog?category=Interventional+pain',
-      },
-      {
-        label: 'Spine Surgery',
-        path: '/blog?category=Spine+surgery',
-      },
-      {
-        label: 'Rehabilitation Therapies',
-        path: '/blog?category=Rehabilitation+therapies',
-      },
-      {
-        label: 'Sports Medicine',
-        path: '/blog?category=Sports+medicine',
-      },
-      {
-        label: 'Stroke Medicine',
-        path: '/blog?category=Stroke+medicine',
-      },
-    ],
+    title: 'Articles',
+    columns: articleColumns,
+    items: articleColumns.flat(),
   },
   {
     title: 'Testimonials',
