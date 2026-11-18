@@ -11,33 +11,33 @@ const PodologyPage: React.FC = () => {
           () => [
             {
               id: 'Frequency',
-              question: 'How long does a typical exercise session last?',
+              question: 'How long does a typical podology session last?',
               answer:
-                'Sessions typically last between 30 to 60 minutes, depending on the program and individual needs.',
+                'Most appointments last between 30 and 45 minutes, depending on the treatment and the condition being addressed.',
             },
             {
               id: 'Therapy Standars',
-              question: 'Will I receive a personalized exercise plan?',
+              question: 'Will I receive a personalized foot care plan?',
               answer:
-                'Yes, each client receives a tailored exercise program based on their specific goals and assessment results.',
+                'Yes. After assessing your feet, nails, skin, and footwear, your podologist provides a tailored care and prevention plan.',
             },
             {
               id: 'Duration',
-              question: 'How often should I exercise?',
+              question: 'How often should I have foot care?',
               answer:
-                'The frequency of sessions varies; however, most individuals benefit from at least 2-3 sessions per week.',
+                'Frequency depends on your needs; many people benefit from a review every 6 to 8 weeks, while higher-risk patients may need more regular visits.',
             },
             {
               id: 'Conditions',
-              question: 'Can exercise help with my specific condition?',
+              question: 'Can podology help with my specific condition?',
               answer:
-                'Our team is experienced in designing programs for various conditions; consultations will help determine suitability.',
+                'Podology addresses a wide range of concerns, from nail and skin problems to gait-related pain; an assessment will confirm the best approach for you.',
             },
             {
               id: 'conditions',
-              question: 'Is exercise safe for everyone?',
+              question: 'Is podology treatment safe, including for people with diabetes?',
               answer:
-                'Exercise is generally safe; however, a preliminary assessment is essential to identify any potential risks or limitations.',
+                'Yes. Treatments are carried out with precision and strict hygiene; for patients with diabetes or reduced circulation, podology is especially valuable in preventing complications.',
             },
             
           ],
