@@ -134,7 +134,7 @@ export default function Navbar() {
   const mobileSections = [
     { id: 'specialities', label: 'Specialities', data: specialitiesCategories, isActive: location.pathname.startsWith('/specialities') },
     { id: 'treatments', label: 'Treatments', data: treatmentsCategories, isActive: location.pathname.startsWith('/treatments') },
-    { id: 'resources', label: 'Resources', data: resourceCategories, isActive: location.pathname.startsWith('/resources') },
+    { id: 'resources', label: 'Resources', data: resourceCategories, isActive: location.pathname.startsWith('/resources') || location.pathname.startsWith('/blog') },
   ];
   const currentMobileSection = mobileSections.find((section) => section.id === mobileActiveSection) ?? null;
 
@@ -417,7 +417,7 @@ export default function Navbar() {
                 categories={resourceCategories}
                 footerLinkTo="/resources"
                 footerLinkLabel="View all resources"
-                isActive={location.pathname.startsWith('/resources')}
+                isActive={location.pathname.startsWith('/resources') || location.pathname.startsWith('/blog')}
                 isOpen={openDropdown === 'resources'}
                 supportsHover={supportsHover}
                 onHoverOpen={scheduleHoverOpen}
