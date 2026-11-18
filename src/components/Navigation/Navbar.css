@@ -194,11 +194,12 @@
 }
 
 .navbar-dropdown {
+  --dropdown-width: min(var(--container-width), calc(100vw - 64px));
   position: absolute;
   top: calc(100% + 12px);
   left: 50%;
   right: auto;
-  width: min(var(--container-width), calc(100vw - 64px));
+  width: var(--dropdown-width);
   transform: translate3d(-50%, -8px, 0);
   background-color: #0f4681;
   backdrop-filter: blur(12px);
@@ -236,6 +237,16 @@
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0 32px;
+}
+
+/* Two-category menus (Resources): two of the usual three columns, at the same
+   column width (panel padding 2 x 36px, column gap 32px). */
+.navbar-dropdown--compact {
+  width: calc((var(--dropdown-width) - 136px) * 2 / 3 + 104px);
+}
+
+.navbar-dropdown--compact .navbar-dropdown-inner {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .navbar-dropdown-group {

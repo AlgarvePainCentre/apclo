@@ -71,9 +71,15 @@ function NavDropdown({
         aria-label={label}
         aria-labelledby={triggerId}
         aria-orientation="vertical"
-        className={
-          isOpen ? 'navbar-dropdown navbar-dropdown-open' : 'navbar-dropdown'
-        }
+        className={[
+          'navbar-dropdown',
+          // Fewer than three categories: a narrower panel with the same
+          // column width as the other menus.
+          categories.length < 3 ? 'navbar-dropdown--compact' : '',
+          isOpen ? 'navbar-dropdown-open' : '',
+        ]
+          .filter(Boolean)
+          .join(' ')}
         onKeyDown={(e) => onMenuKeyDown(e, menuKey)}
         onMouseEnter={() => onHoverOpen(menuKey, true)}
         onMouseLeave={() => onHoverClose(menuKey, true)}
