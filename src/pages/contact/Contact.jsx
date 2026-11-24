@@ -216,7 +216,6 @@ export default function Contact() {
             poster="/assets/images/illustrative/services-home-min-1.webp"
           >
             <source src="/assets/videos/banner-Contact-us.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
-            <source src="/assets/videos/banner-Contact-us.h264.mp4" type='video/mp4; codecs="avc1.42E01E"' />
             <source src="/assets/videos/banner-Contact-us.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>

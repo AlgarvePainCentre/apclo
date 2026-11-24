@@ -248,8 +248,8 @@ export default function Home() {
             preload="metadata"
             data-defer-ms="1400"
           >
-            <source data-src="/assets/videos/Appointment-Video.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
-            <source data-src="/assets/videos/Appointment-Video.h264.mp4" type='video/mp4; codecs="avc1.42E01E"' />
+            <source data-src="/assets/videos/banner-Contact-us.av1.mp4" type='video/mp4; codecs="av01.0.05M.08"' />
+            <source data-src="/assets/videos/banner-Contact-us.mp4" type='video/mp4; codecs="avc1.42E01E"' />
           </video>
         </div>
         <div className="hero-content hero-content-home hero-content-centered" ref={heroContentMotionRef}>
